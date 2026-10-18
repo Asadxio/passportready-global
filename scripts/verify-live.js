@@ -26,20 +26,20 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_3"/g) || []);
-  console.log('Scripts with ?v=20261019_3:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_3');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_4"/g) || []);
+  console.log('Scripts with ?v=20261019_4:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_4');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_3"/g) || []);
-  console.log('CSS with ?v=20261019_3:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_3');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_4"/g) || []);
+  console.log('CSS with ?v=20261019_4:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_4');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_3');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_4');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -115,6 +115,31 @@ async function verifyLive() {
   assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_3_year, 50.5);
   assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_6_year, 68.5);
   assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_10_year, 104.5);
+
+  console.log('MX Emergency Consular USD totals (1,3,6,10):', [
+    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.total_payable,
+    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.total_payable,
+    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.total_payable,
+    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.total_payable
+  ]);
+  assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.total_payable, 57);
+  assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.total_payable, 131);
+  assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.total_payable, 178);
+  assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.total_payable, 272);
+
+  console.log('MX Discounted Emergency Consular USD totals (1,3,6,10):', [
+    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_1_year.total_payable,
+    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_3_year.total_payable,
+    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_6_year.total_payable,
+    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_10_year.total_payable
+  ]);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_1_year.total_payable, 28.5);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_3_year.total_payable, 65.5);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_6_year.total_payable, 89);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_10_year.total_payable, 136);
+
+  assert(!mxFees.eligibility_conditions.validity_1_year.toLowerCase().includes('in emergency cases'), '1-year validity must not conflate with emergency cases');
+  assert(mxFees.eligibility_conditions.emergency_appointments.includes('Article 20 of the Ley Federal de Derechos'), 'Must detail Art. 20 LFD');
 
   // NG Check
   console.log('\n[NG Check - Preserved Verified NIS Fees]');

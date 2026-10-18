@@ -368,8 +368,34 @@ runTest('Mexico (MX) rule pack reflects official 2026 SRE domestic standard, dis
   assert.strictEqual(fees.consular_overseas_usd.discounted_50_percent.validity_6_year, 68.5, 'Consular discounted 6-year must be $68.50 USD');
   assert.strictEqual(fees.consular_overseas_usd.discounted_50_percent.validity_10_year, 104.5, 'Consular discounted 10-year must be $104.50 USD');
   
+  // Consular overseas USD emergency surcharge schedule (Art. 20 LFD - 30% statutory surcharge)
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.base_amount, 44);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.emergency_surcharge, 13);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.total_payable, 57, 'Consular emergency 1-year total must be $57 USD');
+  
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.base_amount, 101);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.emergency_surcharge, 30);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.total_payable, 131, 'Consular emergency 3-year total must be $131 USD');
+  
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.base_amount, 137);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.emergency_surcharge, 41);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.total_payable, 178, 'Consular emergency 6-year total must be $178 USD');
+  
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.base_amount, 209);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.emergency_surcharge, 63);
+  assert.strictEqual(fees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.total_payable, 272, 'Consular emergency 10-year total must be $272 USD');
+
+  // Consular overseas USD discounted emergency schedule (50% discount + 30% surcharge)
+  assert.strictEqual(fees.consular_overseas_usd.discounted_emergency_schedule.validity_1_year.total_payable, 28.5, 'Discounted emergency 1-year total must be $28.50 USD');
+  assert.strictEqual(fees.consular_overseas_usd.discounted_emergency_schedule.validity_3_year.total_payable, 65.5, 'Discounted emergency 3-year total must be $65.50 USD');
+  assert.strictEqual(fees.consular_overseas_usd.discounted_emergency_schedule.validity_6_year.total_payable, 89, 'Discounted emergency 6-year total must be $89.00 USD');
+  assert.strictEqual(fees.consular_overseas_usd.discounted_emergency_schedule.validity_10_year.total_payable, 136, 'Discounted emergency 10-year total must be $136.00 USD');
+  
   // Eligibility conditions
   assert(fees.eligibility_conditions.validity_1_year.includes('under three years of age'), '1-year must note issuance restricted to children under 3');
+  assert(!fees.eligibility_conditions.validity_1_year.toLowerCase().includes('in emergency cases') && !fees.eligibility_conditions.validity_1_year.toLowerCase().includes('or in emergency'), '1-year validity must not be conflated with emergency appointments');
+  assert(fees.eligibility_conditions.emergency_appointments.includes('Article 20 of the Ley Federal de Derechos'), 'Emergency appointment policy must cite Art. 20 LFD');
+  assert(fees.eligibility_conditions.emergency_appointments.includes('statutory rounded surcharge (30%)'), 'Emergency appointment policy must document 30% statutory rounded surcharge');
   assert(fees.eligibility_conditions.agricultural_worker_restriction.includes('NOT eligible for the discount on the 10-year passport'), 'Must document agricultural workers excluded from 10-year discount');
 });
 
@@ -400,7 +426,7 @@ runTest('Country rule packs store individual fee records with complete metadata 
     
     fees.fee_records.forEach(rec => {
       assert(rec.currency, `Record must have currency in ${code}`);
-      assert(typeof rec.amount === 'number' && rec.amount > 0, `Record must have positive numeric amount in ${code}`);
+      assert((typeof rec.amount === 'number' && rec.amount > 0) || (typeof rec.total_payable === 'number' && rec.total_payable > 0), `Record must have positive numeric amount in ${code}`);
       assert(rec.applicant_category, `Record must have applicant_category in ${code}`);
       assert(rec.application_channel, `Record must have application_channel in ${code}`);
       assert(rec.validity_period, `Record must have validity_period in ${code}`);
@@ -408,6 +434,15 @@ runTest('Country rule packs store individual fee records with complete metadata 
       assert(rec.official_source_url && rec.official_source_url.startsWith('http'), `Record must have official source URL in ${code}`);
       assert(/^\d{4}-\d{2}-\d{2}$/.test(rec.date_checked), `Record date_checked must be ISO date in ${code}`);
       assert(rec.verification_status, `Record must have verification_status in ${code}`);
+
+      if (code === 'MX') {
+        assert(typeof rec.base_amount === 'number' && rec.base_amount > 0, 'MX record must have base_amount');
+        assert(typeof rec.emergency_surcharge === 'number' && rec.emergency_surcharge >= 0, 'MX record must have emergency_surcharge');
+        assert(typeof rec.total_payable === 'number' && rec.total_payable > 0, 'MX record must have total_payable');
+        assert(rec.discount_eligibility, 'MX record must document discount_eligibility');
+        assert(rec.effective_date, 'MX record must specify effective_date');
+        assert(rec.verification_date, 'MX record must specify verification_date');
+      }
     });
   });
 });
@@ -475,6 +510,33 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   assert(mxAbroadFee.details.includes('USD 101') && mxAbroadFee.details.includes('USD 209'), 'Mexico consular fee must state USD 101 and USD 209');
   assert(mxAbroadFee.details.includes('USD 44'), 'Mexico consular fee must state USD 44 for 1-year');
   
+  // Mexico Abroad Urgent / Emergency Consular USD Evaluation
+  const mxAbroadUrgentRes = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  const mxAbroadUrgentFee = mxAbroadUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(mxAbroadUrgentFee.details.includes('Total USD 131'), 'Mexico emergency consular fee must state Total USD 131 for 3-year');
+  assert(mxAbroadUrgentFee.details.includes('Total USD 178'), 'Mexico emergency consular fee must state Total USD 178 for 6-year');
+  assert(mxAbroadUrgentFee.details.includes('Total USD 272'), 'Mexico emergency consular fee must state Total USD 272 for 10-year');
+  assert(mxAbroadUrgentFee.details.includes('Total USD 57'), 'Mexico emergency consular fee must state Total USD 57 for 1-year');
+
+  // Mexico Emergency Policy Flag on emergency urgency
+  const mxEmergencyRes = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'emergency'
+  });
+  assert(mxEmergencyRes.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'), 'Must flag MEXICO_EMERGENCY_APPOINTMENT_POLICY for Mexico emergency appointments');
+
+  
   // Unverified Country Warning
   const unverifiedRes = engine.evaluate({
     countryCode: 'AF',
@@ -494,7 +556,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_3'), `Stylesheet href must contain ?v=20261019_3 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_4'), `Stylesheet href must contain ?v=20261019_4 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -502,7 +564,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_3'), `Local script ${srcMatch[1]} must contain ?v=20261019_3 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_4'), `Local script ${srcMatch[1]} must contain ?v=20261019_4 cache-busting query string`);
     }
   });
 });

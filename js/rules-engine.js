@@ -361,13 +361,23 @@ class PassportRulesEngine {
         category: 'procedure'
       });
     } else if (urgency === 'emergency') {
-      flags.push({
-        severity: 'warning',
-        code: 'EMERGENCY_DOCUMENT_RESTRICTION',
-        title: 'Emergency Travel Document Conditions',
-        message: 'Emergency travel certificates or temporary passports usually have short validity (typically 30 days to 1 year) and are frequently valid ONLY for direct return travel to your country of citizenship.',
-        action: 'Confirm destination acceptance before purchasing non-refundable transit or flight tickets.'
-      });
+      if (countryCode === 'MX') {
+        flags.push({
+          severity: 'info',
+          code: 'MEXICO_EMERGENCY_APPOINTMENT_POLICY',
+          title: 'Mexican Emergency Consular Appointment Conditions',
+          message: 'Under SRE regulations (Art. 20 LFD), an emergency appointment (cita de emergencia) issues your standard eligible biometric passport (3, 6, or 10 years; or 1 year for children under 3) with an official 30% statutory surcharge. An emergency appointment does not automatically restrict or qualify you for a 1-year document. Temporary non-biometric booklets are issued only if biometric printing systems are physically unavailable.',
+          action: 'Contact your accredited Mexican consulate with documented proof of medical, humanitarian, or legal urgency to request an emergency slot.'
+        });
+      } else {
+        flags.push({
+          severity: 'warning',
+          code: 'EMERGENCY_DOCUMENT_RESTRICTION',
+          title: 'Emergency Travel Document Conditions',
+          message: 'Emergency travel certificates or temporary passports usually have short validity (typically 30 days to 1 year) and are frequently valid ONLY for direct return travel to your country of citizenship.',
+          action: 'Confirm destination acceptance before purchasing non-refundable transit or flight tickets.'
+        });
+      }
     }
 
     // 7. General Photographic & Biometric Standards
@@ -406,34 +416,55 @@ class PassportRulesEngine {
           specificFeeRecord = { currency: 'Local currency', note: 'Determined by MOFA consular regulations' };
         }
       } else if (countryCode === 'MX') {
+        const isUrgentOrEmergency = urgency === 'urgent' || urgency === 'emergency';
         if (location === 'inside') {
           if (age === 'infant') {
-            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 1-year validity (issued exclusively to children under 3 years old): MXN 920 (50% discount: MXN 460). Pay at authorized bank with SRE voucher.';
+            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 1-year validity (issued exclusively to children under 3 years old): MXN 920 (50% discount: MXN 460). Note: 1-year validity is age-based and not an emergency passport. Pay at authorized bank with SRE voucher.';
             feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'MXN', standard: 920, discounted: 460, validity: '1 year' };
+            specificFeeRecord = { currency: 'MXN', standard: 920, discounted: 460, validity: '1 year (under 3 only)' };
           } else if (age === 'senior') {
             feeDetails = 'Official Mexican domestic statutory fees (2026 SRE with 50% statutory senior discount for age 60+): 3-year: MXN 900; 6-year: MXN 1,220; 10-year: MXN 2,140. (Standard fees without discount: 3-yr MXN 1,795; 6-yr MXN 2,440; 10-yr MXN 4,280). Note: Agricultural workers under SAWP are excluded from the 10-year discount.';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'MXN', standard: [1795, 2440, 4280], discounted: [900, 1220, 2140], validity: '3, 6, 10 years' };
           } else {
-            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 3-year: MXN 1,795; 6-year: MXN 2,440; 10-year (adults only): MXN 4,280. 50% discount available for certified disabled, seniors 60+, and SAWP workers (3/6 yr): 3-yr MXN 900; 6-yr MXN 1,220; 10-yr MXN 2,140.';
+            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 3-year: MXN 1,795; 6-year: MXN 2,440; 10-year (adults only): MXN 4,280. 50% discount available for certified disabled, seniors 60+, and SAWP workers (3/6 yr): 3-yr MXN 900; 6-yr MXN 1,220; 10-yr MXN 2,140. (1-year validity is restricted exclusively to children under 3).';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'MXN', standard: [1795, 2440, 4280], discounted: [900, 1220, 2140], validity: '3, 6, 10 years' };
           }
+          if (isUrgentOrEmergency) {
+            feeDetails += ' SRE delegations issue standard scheduled passports same-day (2–4 hours) without surcharge; unscheduled emergency slots require in-person proof of urgency.';
+          }
         } else {
           // Overseas Consular USD
-          if (age === 'infant') {
-            feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 1-year validity (children under 3 only): USD 44 (50% discount: USD 22). Paid at Mexican Consulate abroad.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'USD', standard: 44, discounted: 22, validity: '1 year' };
-          } else if (age === 'senior') {
-            feeDetails = 'Official Mexican consular fees in USD (2026 with 50% discount for seniors 60+ and disabled): 3-year: USD 50.50; 6-year: USD 68.50; 10-year: USD 104.50. (Standard consular fees: 3-yr USD 101; 6-yr USD 137; 10-yr USD 209). Paid at Mexican Consulate abroad.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
+          if (isUrgentOrEmergency) {
+            if (age === 'infant') {
+              feeDetails = 'Official Mexican emergency consular fees in USD (Art. 20 LFD with 30% statutory surcharge): 1-year validity (children under 3 only): Base USD 44 + Surcharge USD 13 = Total USD 57 (50% discount: Base USD 22 + Surcharge USD 6.50 = Total USD 28.50). Paid at Mexican Consulate abroad.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', base: 44, surcharge: 13, total: 57, discounted_total: 28.5, validity: '1 year (under 3 only)' };
+            } else if (age === 'senior') {
+              feeDetails = 'Official Mexican emergency consular fees in USD (Art. 20 LFD with 50% discount + 30% surcharge for age 60+): 3-year: Total USD 65.50 (Base $50.50 + Surcharge $15); 6-year: Total USD 89.00 (Base $68.50 + Surcharge $20.50); 10-year: Total USD 136.00 (Base $104.50 + Surcharge $31.50). (Standard emergency totals without discount: 3-yr $131, 6-yr $178, 10-yr $272 USD).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', standard_totals: [131, 178, 272], discounted_totals: [65.5, 89, 136], validity: '3, 6, 10 years' };
+            } else {
+              feeDetails = 'Official Mexican emergency consular fees in USD (Art. 20 LFD with 30% statutory surcharge): 3-year: Total USD 131 (Base $101 + Surcharge $30); 6-year: Total USD 178 (Base $137 + Surcharge $41); 10-year (adults 18+ only): Total USD 272 (Base $209 + Surcharge $63). (1-year under 3 only: Total USD 57). 50% discount available for certified disabled/seniors: 3-yr $65.50, 6-yr $89, 10-yr $136 USD.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', standard_totals: [131, 178, 272], discounted_totals: [65.5, 89, 136], validity: '3, 6, 10 years' };
+            }
           } else {
-            feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 3-year: USD 101 (50% discount: USD 50.50); 6-year: USD 137 (50% discount: USD 68.50); 10-year (adults 18+ only): USD 209 (50% discount: USD 104.50). 1-year (under 3 only): USD 44 (discounted: USD 22). Paid at Mexican Consulate abroad.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
+            // Standard Consular USD
+            if (age === 'infant') {
+              feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 1-year validity (children under 3 only): USD 44 (50% discount: USD 22). (Approved emergency appointments incur 30% surcharge: total $57 / discounted $28.50 USD). Paid at Mexican Consulate abroad.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', standard: 44, discounted: 22, emergency_total: 57, validity: '1 year' };
+            } else if (age === 'senior') {
+              feeDetails = 'Official Mexican consular fees in USD (2026 with 50% discount for seniors 60+ and disabled): 3-year: USD 50.50; 6-year: USD 68.50; 10-year: USD 104.50. (Standard consular fees: 3-yr USD 101; 6-yr USD 137; 10-yr USD 209). Note: Approved emergency appointments incur 30% surcharge (discounted emergency totals: 3-yr $65.50, 6-yr $89.00, 10-yr $136.00 USD).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
+            } else {
+              feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 3-year: USD 101 (50% discount: USD 50.50); 6-year: USD 137 (50% discount: USD 68.50); 10-year (adults 18+ only): USD 209 (50% discount: USD 104.50). 1-year (under 3 only): USD 44 (discounted: USD 22). Note: Approved emergency appointments incur 30% surcharge (emergency totals: 1-yr $57, 3-yr $131, 6-yr $178, 10-yr $272 USD).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
+            }
           }
         }
       } else if (countryCode === 'NG') {
