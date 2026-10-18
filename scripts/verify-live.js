@@ -115,8 +115,8 @@ async function verifyLive() {
   // 1. Indonesia (ID - Phase 4.1 & Phase 4.2 Audited)
   console.log('[ID Check]');
   assert.strictEqual(rp.ID.age_bands.adult_minimum_age, 17, 'ID adult min age must be 17 (NOT 21)');
-  assert(rp.ID.age_bands.statutory_exceptions && rp.ID.age_bands.statutory_exceptions.legal_marriage_under_17, 'ID must have legal_marriage_under_17 exception');
-  assert.strictEqual(rp.ID.age_bands.statutory_exceptions.legal_marriage_under_17.validity_period, '10_years');
+  assert(Array.isArray(rp.ID.age_bands.statutory_exceptions) && rp.ID.age_bands.statutory_exceptions.some(e => e.code === 'LEGAL_MARRIAGE_UNDER_17'), 'ID must have LEGAL_MARRIAGE_UNDER_17 statutory exception');
+  assert(rp.ID.age_bands.statutory_exceptions.some(e => e.citation.includes('Permenkumham No. 18/2022 Pasal 2A')), 'ID exception must cite Permenkumham No. 18/2022 Pasal 2A');
   const idFees = rp.ID.services.first_passport.fees;
   assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_5_tahun, 350000);
   assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_10_tahun, 650000);
