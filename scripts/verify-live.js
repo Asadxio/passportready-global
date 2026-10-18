@@ -158,7 +158,7 @@ async function verifyLive() {
   assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_32_pages_5_year, 150);
   assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_64_pages_10_year, 230);
 
-  console.log('\n>>> ALL PHASE 3.2 LIVE CHECKS COMPLETED AND ASSERTED SUCCESSFULLY <<<');
+  console.log('\n>>> ALL PHASE 3.3 LIVE CHECKS COMPLETED AND ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {
