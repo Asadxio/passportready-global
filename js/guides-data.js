@@ -100,7 +100,7 @@ const PASSPORT_GUIDES = [
       },
       {
         heading: "3. Name Changes Following Marriage or Divorce",
-        content: "Many modern passport authorities provide simplified procedures for individuals changing their surname post-marriage. In India, the US, the UK, Canada, and Australia, an original certified Marriage Certificate issued by the competent civil registrar is accepted without requiring a court decree or Gazette publication. In divorce cases, the official divorce decree specifying resumption of a prior surname is required."
+        content: "Many modern passport authorities provide simplified procedures for individuals changing their surname post-marriage. In India, under current MEA rules, a simple self-declaration (Annexure 'E') is sufficient to change or add a spouse's surname post-marriage without needing a Gazette notification or marriage certificate. In the US, the UK, Canada, and Australia, an original certified Marriage Certificate issued by the competent civil registrar is accepted without requiring a court decree or Gazette publication. In divorce cases, an official divorce decree or certified court record specifying resumption of a prior surname is required."
       }
     ]
   },

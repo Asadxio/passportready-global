@@ -2473,7 +2473,7 @@
     "rule_pack_status": "verified",
     "last_reviewed": "2026-10-19",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
+    "effective_from": "2026-07-01",
     "jurisdictions": [
       {
         "name": "Domestic (Prefectural Passport Divisions / Mynaportal)",
@@ -2516,7 +2516,7 @@
             "last_reviewed": "2026-10-19"
           },
           {
-            "rule": "Applicants aged 18+ may select either a 5-year or 10-year passport. Minors under 18 can only receive a 5-year passport.",
+            "rule": "Effective 1 July 2026, applicants aged 18 and over must apply for a 10-year passport (the adult 5-year passport option was discontinued for new adult applications). Minors under 18 receive a 5-year passport.",
             "source_url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html",
             "last_reviewed": "2026-10-19"
           }
@@ -2527,7 +2527,7 @@
             "source_url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html"
           },
           {
-            "step": "Complete the General Passport Application Form (一般旅券発給申請書) for 5-year or 10-year validity.",
+            "step": "Complete the General Passport Application Form (一般旅券発給申請書) — 10-year validity for adults aged 18+, or 5-year validity for minors under 18.",
             "source_url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html"
           },
           {
@@ -2575,10 +2575,33 @@
         },
         "fees": {
           "currency": "JPY",
+          "effective_date": "2026-07-01",
+          "statutory_reform_notice": "Effective 1 July 2026, the 5-year adult passport option was discontinued for applicants aged 18 and over under MOFA statutory revision. Adults apply exclusively for a 10-year passport.",
           "adult_10_year_total": 16000,
-          "adult_5_year_total": 11000,
+          "minor_12_to_17_5_year_total": 11000,
           "child_under_12_5_year_total": 6000,
-          "identical_validity_replacement": 6000
+          "adult_5_year_discontinued_date": "2026-07-01",
+          "breakdown": {
+            "adult_10_year": {
+              "national_revenue_stamp": 14000,
+              "prefectural_fee": 2000,
+              "total": 16000
+            },
+            "minor_12_to_17_5_year": {
+              "national_revenue_stamp": 9000,
+              "prefectural_fee": 2000,
+              "total": 11000
+            },
+            "child_under_12_5_year": {
+              "national_revenue_stamp": 4000,
+              "prefectural_fee": 2000,
+              "total": 6000
+            }
+          },
+          "consular_overseas": {
+            "currency_rule": "Collected in local host currency equivalent determined by Japanese diplomatic missions under MOFA consular regulations.",
+            "guidance": "Applicants abroad pay the statutory equivalent in cash, debit card, or local postal money order specified by the local Japanese Embassy or Consulate-General."
+          }
         },
         "processing_times": {
           "domestic_standard": "6 to 8 business days (excluding weekends and public holidays)",
@@ -2589,6 +2612,12 @@
             "url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html",
             "publisher": "Ministry of Foreign Affairs of Japan",
             "page_title": "Passports Information Portal",
+            "checked_at": "2026-10-19"
+          },
+          {
+            "url": "https://www.mofa.go.jp/mofaj/toko/passport/pass_2.html",
+            "publisher": "Ministry of Foreign Affairs of Japan (MOFA)",
+            "page_title": "Passport Fees and Legal Validity Revisions",
             "checked_at": "2026-10-19"
           }
         ]
@@ -2806,10 +2835,41 @@
         },
         "fees": {
           "currency": "MXN",
-          "validity_3_year": 1655,
-          "validity_6_year": 2250,
-          "validity_10_year": 3940,
-          "discount_seniors_disabled_percent": 50
+          "fiscal_year": 2026,
+          "statutory_source": "Ley Federal de Derechos 2026 / Secretaría de Relaciones Exteriores (SRE)",
+          "validity_1_year": 920,
+          "validity_3_year": 1795,
+          "validity_6_year": 2440,
+          "validity_10_year": 4280,
+          "discount_50_percent_beneficiaries": [
+            "Adults aged 60 and over (Personas mayores de 60 años)",
+            "Persons with certified disability (Personas con discapacidad certificada)",
+            "Agricultural workers traveling to Canada under SAWP (Trabajadores agrícolas México-Canadá, 3 or 6 years only)"
+          ],
+          "discounted_rates_mxn": {
+            "validity_1_year": 460,
+            "validity_3_year": 895,
+            "validity_6_year": 1220,
+            "validity_10_year": 2140
+          },
+          "consular_overseas_usd": {
+            "currency": "USD",
+            "statutory_source": "Ley Federal de Derechos 2026 para trámites en el exterior",
+            "validity_1_year": 43,
+            "validity_3_year": 99,
+            "validity_6_year": 135,
+            "validity_10_year": 208,
+            "discount_50_percent_beneficiaries": [
+              "Adults aged 60 and over",
+              "Persons with certified disability"
+            ],
+            "discounted_rates_usd": {
+              "validity_1_year": 21.5,
+              "validity_3_year": 49.5,
+              "validity_6_year": 67.5,
+              "validity_10_year": 104
+            }
+          }
         },
         "processing_times": {
           "domestic_same_day": "2 to 4 hours post-appointment at major SRE delegations",
@@ -2820,6 +2880,12 @@
             "url": "https://www.gob.mx/pasaporte",
             "publisher": "Secretaría de Relaciones Exteriores (SRE)",
             "page_title": "Trámite de Pasaporte Mexicano",
+            "checked_at": "2026-10-19"
+          },
+          {
+            "url": "https://www.gob.mx/sre/acciones-y-programas/costo-del-pasaporte",
+            "publisher": "Secretaría de Relaciones Exteriores (SRE)",
+            "page_title": "Costos del Pasaporte Mexicano 2026",
             "checked_at": "2026-10-19"
           }
         ]
@@ -3363,7 +3429,7 @@
     "rule_pack_status": "verified",
     "last_reviewed": "2026-10-19",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
+    "effective_from": "2025-09-01",
     "jurisdictions": [
       {
         "name": "Domestic (NIS State Commands & Passport Front Offices)",
@@ -3483,9 +3549,18 @@
         },
         "fees": {
           "currency": "NGN",
-          "booklet_32_pages_5_year": 50000,
-          "booklet_64_pages_10_year": 100000,
-          "notes": "Official fees updated under Ministry of Interior directive. Foreign consular applications priced in USD ($130–$230)."
+          "effective_date": "2025-09-01",
+          "statutory_authority": "Federal Ministry of Interior / Nigeria Immigration Service (NIS)",
+          "statutory_notice": "Official fees updated pursuant to Federal Ministry of Interior directive effective 1 September 2025.",
+          "booklet_32_pages_5_year": 100000,
+          "booklet_64_pages_10_year": 200000,
+          "diaspora_overseas_usd": {
+            "currency": "USD",
+            "booklet_32_pages_5_year": 150,
+            "booklet_64_pages_10_year": 230
+          },
+          "payment_method": "Strictly online via passport.immigration.gov.ng official payment gateway; cash payments at passport control offices are strictly prohibited.",
+          "nin_validation_mandate": "National Identification Number (NIN) must be validated before payment and enrollment booking for both domestic and diaspora applications."
         },
         "processing_times": {
           "standard_charter_renewal": "3 weeks post-enrolment",
@@ -3496,6 +3571,12 @@
             "url": "https://passport.immigration.gov.ng/",
             "publisher": "Nigeria Immigration Service (NIS)",
             "page_title": "Official Passport Application Portal",
+            "checked_at": "2026-10-19"
+          },
+          {
+            "url": "https://immigration.gov.ng/standard-passport/",
+            "publisher": "Nigeria Immigration Service (NIS)",
+            "page_title": "Approved Passport Fees and Guidelines",
             "checked_at": "2026-10-19"
           }
         ]

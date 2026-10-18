@@ -309,6 +309,109 @@ runTest('All referenced scripts, styles, and assets exist on disk', () => {
   });
 });
 
+// 9. Japan Statutory 2026 Reform Validation
+runTest('Japan (JP) rule pack reflects 1 July 2026 MOFA statutory reform (adult 10-year mandate, discontinued 5-year adult)', () => {
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const jp = rulePacks.JP;
+  assert(jp, 'JP rule pack must exist');
+  assert.strictEqual(jp.country_code, 'JP');
+  
+  const fees = jp.services.first_passport.fees;
+  assert.strictEqual(fees.currency, 'JPY');
+  assert.strictEqual(fees.adult_10_year_total, 16000, 'Adult 10-year passport fee must be 16,000 JPY');
+  assert.strictEqual(fees.minor_12_to_17_5_year_total, 11000, 'Minor 12-17 fee must be 11,000 JPY');
+  assert.strictEqual(fees.child_under_12_5_year_total, 6000, 'Under 12 fee must be 6,000 JPY');
+  assert.strictEqual(fees.adult_5_year_discontinued_date, '2026-07-01', 'Adult 5-year discontinued date must be 2026-07-01');
+  assert(fees.consular_overseas && fees.consular_overseas.guidance, 'Must have consular fee guidance for JP');
+  
+  const eligibility = jp.services.first_passport.eligibility;
+  assert(eligibility.some(e => e.rule.includes('1 July 2026') && e.rule.includes('10-year')), 'Eligibility must state 10-year adult mandate effective 1 July 2026');
+});
+
+// 10. Mexico Statutory 2026 SRE Fee Schedule Validation
+runTest('Mexico (MX) rule pack reflects 2026 SRE statutory fee schedule and consular USD rates', () => {
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const mx = rulePacks.MX;
+  assert(mx, 'MX rule pack must exist');
+  
+  const fees = mx.services.first_passport.fees;
+  assert.strictEqual(fees.currency, 'MXN');
+  assert.strictEqual(fees.fiscal_year, 2026);
+  assert.strictEqual(fees.validity_1_year, 920, '1-year fee must be 920 MXN');
+  assert.strictEqual(fees.validity_3_year, 1795, '3-year fee must be 1,795 MXN');
+  assert.strictEqual(fees.validity_6_year, 2440, '6-year fee must be 2,440 MXN');
+  assert.strictEqual(fees.validity_10_year, 4280, '10-year fee must be 4,280 MXN');
+  assert(Array.isArray(fees.discount_50_percent_beneficiaries) && fees.discount_50_percent_beneficiaries.length >= 3, 'Must list 50% discount beneficiaries');
+  
+  // Consular USD fees
+  assert(fees.consular_overseas_usd, 'Consular USD fees must exist');
+  assert.strictEqual(fees.consular_overseas_usd.validity_1_year, 43, 'Consular 1-year must be $43 USD');
+  assert.strictEqual(fees.consular_overseas_usd.validity_3_year, 99, 'Consular 3-year must be $99 USD');
+  assert.strictEqual(fees.consular_overseas_usd.validity_6_year, 135, 'Consular 6-year must be $135 USD');
+  assert.strictEqual(fees.consular_overseas_usd.validity_10_year, 208, 'Consular 10-year must be $208 USD');
+});
+
+// 11. Nigeria Statutory 2025/2026 NIS Fee Reform Validation
+runTest('Nigeria (NG) rule pack reflects NIS Ministerial reform fees (₦100k/₦200k domestic, $150/$230 diaspora)', () => {
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const ng = rulePacks.NG;
+  assert(ng, 'NG rule pack must exist');
+  
+  const fees = ng.services.first_passport.fees;
+  assert.strictEqual(fees.currency, 'NGN');
+  assert.strictEqual(fees.booklet_32_pages_5_year, 100000, '32-page 5-year must be 100,000 NGN');
+  assert.strictEqual(fees.booklet_64_pages_10_year, 200000, '64-page 10-year must be 200,000 NGN');
+  assert.strictEqual(fees.diaspora_overseas_usd.booklet_32_pages_5_year, 150, 'Diaspora 32-page must be $150 USD');
+  assert.strictEqual(fees.diaspora_overseas_usd.booklet_64_pages_10_year, 230, 'Diaspora 64-page must be $230 USD');
+  assert(fees.nin_validation_mandate, 'Must document NIN validation mandate');
+});
+
+// 12. Asset Cache-Busting Verification in index.html
+runTest('index.html applies cache-busting query strings (?v=...) to all local scripts and stylesheets', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  
+  // Stylesheet check
+  const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
+  assert(styleMatch, 'Stylesheet link must exist');
+  assert(styleMatch[1].includes('?v='), `Stylesheet href must contain ?v= query string (got ${styleMatch[1]})`);
+  
+  // Scripts check
+  const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
+  assert(scriptTags.length >= 7, 'Must have at least 7 script tags');
+  scriptTags.forEach(tag => {
+    const srcMatch = tag.match(/src="([^"]+)"/);
+    if (srcMatch && !srcMatch[1].startsWith('http')) {
+      assert(srcMatch[1].includes('?v='), `Local script ${srcMatch[1]} must contain ?v= cache-busting query string`);
+    }
+  });
+});
+
+// 13. Elimination of Misleading & Unverified Claims Across Codebase
+runTest('Codebase contains zero occurrences of misleading claims (#1 cause, 99% rejection, unqualified gazette)', () => {
+  const targetFiles = [
+    'index.html',
+    'js/app.js',
+    'js/rules-engine.js',
+    'js/tools.js',
+    'js/guides-data.js',
+    'js/i18n.js'
+  ];
+  
+  const prohibitedPatterns = [
+    { pattern: /#1\s+cause/i, desc: '#1 cause claim' },
+    { pattern: /number\s+one\s+cause/i, desc: 'number one cause claim' },
+    { pattern: /99%\s+of\s+passports/i, desc: '99% rejection claim' }
+  ];
+  
+  targetFiles.forEach(file => {
+    const fullPath = path.join(__dirname, '..', file);
+    const content = fs.readFileSync(fullPath, 'utf8');
+    prohibitedPatterns.forEach(({ pattern, desc }) => {
+      assert(!pattern.test(content), `File ${file} must not contain ${desc}`);
+    });
+  });
+});
+
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');
@@ -316,3 +419,4 @@ console.log('====================================================');
 if (passedTests !== totalTests) {
   process.exit(1);
 }
+
