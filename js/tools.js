@@ -106,7 +106,7 @@ const PassportTools = {
           analysis.nameStatus = 'SPELLING_DIFFERENCE';
           analysis.discrepancyClass = 'LEGAL_DISCREPANCY';
           analysis.recommendations.push(
-            "Substantive Character or Spelling Difference: Distinct characters exist between records (e.g., 'Choudhary' vs 'Chaudhry'). In India, substantive name changes require Gazette publication and newspaper notices; in the US, certified court orders or marriage certificates are required under 22 CFR § 51.25; in the UK, an enrolled or unenrolled deed poll is required by HMPO."
+            "Substantive Character or Spelling Difference: Distinct characters exist between records (e.g., 'Choudhary' vs 'Chaudhry'). In India, minor spelling corrections matching secondary statutory IDs are accepted under MEA rules without a Gazette notice; only complete major name changes require Gazette publication and two newspaper ads. In the US, court orders or marriage certificates are required under 22 CFR § 51.25; in the UK, a deed poll is required by HMPO."
           );
         }
       }

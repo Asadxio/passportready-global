@@ -430,8 +430,8 @@
 
       let matchesFilter = true;
       if (state.directoryFilter === 'verified') matchesFilter = c.portal_status === 'verified';
-      else if (state.directoryFilter === 'linked') matchesFilter = !!c.authority_url;
-      else if (state.directoryFilter === 'needs_research') matchesFilter = !c.authority_url;
+      else if (state.directoryFilter === 'linked') matchesFilter = c.portal_status === 'official_portal_linked_rules_not_fully_audited';
+      else if (state.directoryFilter === 'needs_research') matchesFilter = c.portal_status === 'official_source_needs_research';
 
       return matchesQuery && matchesFilter;
     });

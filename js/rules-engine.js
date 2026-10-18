@@ -51,15 +51,27 @@ class PassportRulesEngine {
     // 1. Mismatch & Identity Consistency Evaluation
     if (nameMatch === 'major') {
       preparationScore -= 30;
-      let nameSpecificAdvice = "Securing legal name change documentation is required prior to filing. In India, this mandates an Affidavit, newspaper notices, and Official Gazette publication under MEA rules. In the US, a certified court order or marriage certificate is required under 22 CFR § 51.25. In the UK, an enrolled or unenrolled deed poll is required by HMPO. In the Philippines, an annotated PSA civil entry or court decree is mandatory.";
+      let nameSpecificAdvice = "Securing legal name change documentation is required prior to filing. In India, for marriage-related surname changes or adding spouse name, a simple self-declaration (Annexure 'E') suffices and NO Gazette publication is needed; only complete major name replacements require Gazette publication and two newspaper ads. In the US, a certified court order or marriage certificate is required (22 CFR § 51.25). In the UK, an enrolled or unenrolled deed poll is required by HMPO. In the Philippines, an annotated PSA civil entry or court decree is mandatory.";
       if (countryCode === 'IN') {
-        nameSpecificAdvice = "Under Indian MEA Passport Manual rules, major name changes require execution of a Deed Poll / Sworn Affidavit, notices in two daily newspapers, and publication in the Official Gazette of India.";
+        nameSpecificAdvice = "Under Indian MEA Passport Manual rules: if changing surname due to marriage or adding spouse name, a simple self-declaration (Annexure 'E') is sufficient and NO Gazette notification or marriage certificate is required. If undergoing a complete major change of given/family name unrelated to marriage, an Affidavit (Annexure 'E'), advertisements in two daily newspapers, and publication in the Gazette of India are mandatory. For minor spelling differences, two statutory public IDs are accepted without Gazette publication.";
       } else if (countryCode === 'US') {
         nameSpecificAdvice = "Under US Department of State rules (22 CFR § 51.25), legal name changes require an original certified court order or government marriage certificate.";
       } else if (countryCode === 'GB') {
         nameSpecificAdvice = "Under HMPO guidance, an enrolled or unenrolled deed poll accompanied by evidence of the new name in official use is required.";
       } else if (countryCode === 'PH') {
         nameSpecificAdvice = "Under Philippine DFA regulations, an annotated PSA civil registry record or court order is required pursuant to RA 9048/10172.";
+      } else if (countryCode === 'JP') {
+        nameSpecificAdvice = "Under Japanese MOFA rules, legal name changes require a certified Family Register (戸籍謄本 - Koseki Tohon) issued within the last 6 months reflecting the new civil registration entry.";
+      } else if (countryCode === 'MX') {
+        nameSpecificAdvice = "Under Mexican SRE regulations, legal name changes require an amended birth certificate issued by the Civil Registry (Registro Civil) with marginal notes or judicial decree.";
+      } else if (countryCode === 'BR') {
+        nameSpecificAdvice = "Under Brazilian Polícia Federal rules, name changes require an updated civil registry certificate (Certidão de Casamento ou Nascimento com averbação) and prior update of your CPF with Receita Federal.";
+      } else if (countryCode === 'ZA') {
+        nameSpecificAdvice = "Under South African DHA rules, name changes must first be updated on the National Population Register, and an updated Smart ID Card must be issued prior to passport processing.";
+      } else if (countryCode === 'NG') {
+        nameSpecificAdvice = "Under Nigeria Immigration Service rules, biographical data must first be amended in the NIMC database; passport issuance requires an updated NIN slip matching character-for-character.";
+      } else if (countryCode === 'IT') {
+        nameSpecificAdvice = "Under Italian law, name or surname changes require official registration with the Comune of civil registration (estratto per riassunto dell'atto di nascita con annotazioni marginali).";
       }
 
       flags.push({
@@ -269,6 +281,12 @@ class PassportRulesEngine {
       if (countryCode === 'US') minorSafeguardText = "Under US 22 CFR § 51.28, both parents must appear with the child under 16, or the non-applying parent must provide notarized Form DS-3053.";
       else if (countryCode === 'IN') minorSafeguardText = "Under Indian MEA Passports Rules, minors under 18 require Annexure D signed by both parents, or Annexure C for single parents under defined statutory grounds.";
       else if (countryCode === 'PH') minorSafeguardText = "Under Philippine DFA regulations, the mother's presence or Special Power of Attorney (SPA) is required for illegitimate minors.";
+      else if (countryCode === 'IT') minorSafeguardText = "Under Italian DL 69/2023, while adult applicants no longer require the other parent's consent for their own passport, issuance of a passport to a minor child strictly requires the formal consent (atto di assenso) of both parents.";
+      else if (countryCode === 'MX') minorSafeguardText = "Under Mexican SRE rules, both parents or guardians must appear in person and execute Form OP-7, or grant consent at an SRE delegation/consulate beforehand.";
+      else if (countryCode === 'BR') minorSafeguardText = "Under Brazilian CNJ Resolution 131, both parents must sign the authorization form (Formulário de Autorização de Passaporte para Menor) with notarized signatures.";
+      else if (countryCode === 'ZA') minorSafeguardText = "Under South African DHA regulations, both parents must sign Section B of Form DHA-73 and present the child's Unabridged Birth Certificate.";
+      else if (countryCode === 'NG') minorSafeguardText = "Under Nigeria Immigration Service rules, both parents must provide a signed Letter of Consent, valid passport data page copies, and the child's NPC birth certificate.";
+      else if (countryCode === 'JP') minorSafeguardText = "Under Japanese MOFA regulations, the parent with statutory parental authority (親権者) must sign the application form and present a Koseki Tohon issued within 6 months.";
 
       flags.push({
         severity: 'info',
@@ -289,10 +307,17 @@ class PassportRulesEngine {
 
     // 5. Filing Channel: Domestic vs Consular / Abroad
     if (location === 'abroad') {
+      flags.push({
+        severity: 'info',
+        code: 'CONSULAR_APPLICATION_CHANNEL',
+        title: 'Consular Lodgement & Lodgement Matrix',
+        message: `You are applying outside ${countryName}. Diplomatic missions enforce strict consular jurisdiction based on your place of residence in the host country.`,
+        action: 'Check your embassy website to confirm whether applications are handled directly by the consular section (e.g. US, Japan, Germany, Brazil, Italy) or through an authorized service partner (e.g. VFS Global, BLS International, TLScontact in select countries).'
+      });
       checklist.push({
         id: 'consular_jurisdiction',
-        title: 'Confirm Consular Jurisdiction & Authorized Channel',
-        details: `Verify which embassy, high commission, consulate, or authorized service center handles passport applications for your current city of residence.`,
+        title: 'Confirm Consular Jurisdiction & Lodgement Method',
+        details: `Verify which embassy, high commission, or authorized application center serves your current residential area. Do not assume a private intermediary is required without verifying your mission's direct guidance.`,
         mandatory: true,
         status: 'pending',
         category: 'procedure'
@@ -300,10 +325,18 @@ class PassportRulesEngine {
       checklist.push({
         id: 'residence_visa_proof',
         title: 'Proof of Legal Residence in Host Country',
-        details: 'Current valid residency visa, work permit, permanent resident card, or residence permit showing lawful status abroad.',
+        details: 'Current valid residency visa, work permit, permanent resident card, or residence certificate showing lawful status in the host nation.',
         mandatory: true,
         status: 'pending',
         category: 'documents'
+      });
+      checklist.push({
+        id: 'consular_fee_currency',
+        title: 'Verify Consular Fee Surcharge & Payment Currency',
+        details: 'Passports issued overseas frequently carry statutory consular surcharges and require payment in local host currency, debit card, or postal money order.',
+        mandatory: true,
+        status: 'pending',
+        category: 'payment'
       });
     } else {
       checklist.push({
@@ -314,7 +347,6 @@ class PassportRulesEngine {
           : `Schedule appointment through the official passport authority of ${countryName}.`,
         mandatory: true,
         status: 'pending',
-        category: 'procedure'
       });
     }
 

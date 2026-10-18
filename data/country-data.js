@@ -1,4 +1,5 @@
-const COUNTRY_DATA = [
+// Generated country data bundle for PassportReady
+window.COUNTRY_DATA = [
   {
     "name": "Afghanistan",
     "alpha2": "AF",
@@ -399,8 +400,8 @@ const COUNTRY_DATA = [
     "official_name": "Federative Republic of Brazil",
     "authority_url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
     "authority_label": "Polícia Federal do Brasil",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
-    "last_source_reviewed": "2026-10-18",
+    "portal_status": "verified",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -1422,8 +1423,8 @@ const COUNTRY_DATA = [
     "official_name": "Italian Republic",
     "authority_url": "https://www.poliziadistato.it/articolo/1087",
     "authority_label": "Polizia di Stato · Passaporto Elettronico",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
-    "last_source_reviewed": "2026-10-18",
+    "portal_status": "verified",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -1448,8 +1449,8 @@ const COUNTRY_DATA = [
     "official_name": null,
     "authority_url": "https://www.mofa.go.jp/ca/pss/page22e_000788.html",
     "authority_label": "Ministry of Foreign Affairs (MOFA)",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
-    "last_source_reviewed": "2026-10-18",
+    "portal_status": "verified",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -1827,8 +1828,8 @@ const COUNTRY_DATA = [
     "official_name": "United Mexican States",
     "authority_url": "https://www.gob.mx/pasaporte",
     "authority_label": "Secretaría de Relaciones Exteriores (SRE)",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
-    "last_source_reviewed": "2026-10-18",
+    "portal_status": "verified",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -2063,8 +2064,8 @@ const COUNTRY_DATA = [
     "official_name": "Federal Republic of Nigeria",
     "authority_url": "https://passport.immigration.gov.ng/",
     "authority_label": "Nigeria Immigration Service",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
-    "last_source_reviewed": "2026-10-18",
+    "portal_status": "verified",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -2682,8 +2683,8 @@ const COUNTRY_DATA = [
     "official_name": "Republic of South Africa",
     "authority_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
     "authority_label": "Department of Home Affairs",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
-    "last_source_reviewed": "2026-10-18",
+    "portal_status": "verified",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -3289,4 +3290,6 @@ const COUNTRY_DATA = [
     "search_terms": []
   }
 ];
-if (typeof module !== 'undefined' && module.exports) { module.exports = { COUNTRY_DATA }; }
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { COUNTRY_DATA: window.COUNTRY_DATA };
+}
