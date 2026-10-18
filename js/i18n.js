@@ -1,6 +1,7 @@
 /**
  * PassportReady Internationalization (i18n) Engine
  * Supported languages: English (en), Hindi (hi), Urdu (ur)
+ * Audited for factual accuracy and jurisdiction-specific qualification.
  */
 
 const I18N_TRANSLATIONS = {
@@ -40,8 +41,8 @@ const I18N_TRANSLATIONS = {
     feat2_desc: "Identify discrepancies in name spellings, initials, dates of birth, and addresses before paying fees.",
     feat3_title: "Document Alternatives Workflow",
     feat3_desc: "Discover verified document substitutes and official exception routes when a primary record is unavailable.",
-    feat4_title: "6-Month Validity Checker",
-    feat4_desc: "Verify whether your passport meets the 3-to-6-month international validity rule for your travel dates.",
+    feat4_title: "Destination Validity Evaluator",
+    feat4_desc: "Verify whether your passport meets the specific validity window (e.g. 6 months, 3 months, or duration of stay) mandated by your destination.",
     feat5_title: "Official Government Direction",
     feat5_desc: "Direct links to genuine foreign ministries, consular portals, and official appointment booking systems.",
     feat6_title: "Printable / PDF Checklist",
@@ -60,7 +61,7 @@ const I18N_TRANSLATIONS = {
     step1_title: "Where are you applying?",
     step1_helper: "Select the passport-issuing authority and whether you are applying domestically or at an overseas embassy.",
     label_issuing_country: "Passport Issuing Country / Authority",
-    country_placeholder: "Type country name (e.g., India, United States, United Kingdom)...",
+    country_placeholder: "Type country name (e.g., India, United States, United Kingdom, Germany, Philippines)...",
     label_applying_from: "Where are you applying from?",
     opt_domestic: "Inside issuing country (Domestic application)",
     opt_consular: "Abroad / Overseas (Embassy, High Commission or Consulate)",
@@ -111,7 +112,7 @@ const I18N_TRANSLATIONS = {
     doc_missing: "I do not have this document (need alternatives)",
 
     step7_title: "Identity Consistency & Mismatch Check",
-    step7_helper: "Minor spelling differences or date order errors are the #1 cause of application delay.",
+    step7_helper: "Spelling inconsistencies, inverted given and family names, or date-of-birth format errors commonly trigger processing delays.",
     label_name_match: "Do the applicant's name spellings match exactly across all documents?",
     match_yes: "Yes — First, middle, and last names match character-for-character",
     match_minor: "Minor difference (e.g., initials used, abbreviation, single letter)",
@@ -143,8 +144,8 @@ const I18N_TRANSLATIONS = {
     badge_missing: "MISSING DOCUMENTS",
     badge_official: "OFFICIAL VERIFICATION RECOMMENDED",
 
-    tools_expiry_title: "6-Month Passport Expiry Calculator",
-    tools_expiry_desc: "Many countries deny airline boarding if your passport has less than 3 or 6 months validity remaining on your planned travel date.",
+    tools_expiry_title: "Destination Passport Validity Evaluator",
+    tools_expiry_desc: "Entry requirements depend on destination: some require 6 months validity, European Schengen countries require 3 months beyond departure, while others require validity only for the duration of stay.",
     label_travel_date: "Planned Travel Date:",
     label_passport_expiry: "Passport Expiry Date:",
     btn_check_validity: "Check Validity →",
@@ -191,8 +192,8 @@ const I18N_TRANSLATIONS = {
     feat2_desc: "फीस भरने से पहले नाम की स्पेलिंग, उपनाम, जन्मतिथि और पते की विसंगतियों को पहचानें।",
     feat3_title: "दस्तावेज़ विकल्प समाधान",
     feat3_desc: "यदि कोई मूल दस्तावेज़ उपलब्ध न हो तो आधिकारिक रूप से स्वीकार्य विकल्प जानें।",
-    feat4_title: "6-महीने की वैधता चेकर",
-    feat4_desc: "जांचें कि यात्रा के समय आपके पासपोर्ट में अंतरराष्ट्रीय नियमों के अनुसार 6 महीने की वैधता है या नहीं।",
+    feat4_title: "गंतव्य पासपोर्ट वैधता मूल्यांकन",
+    feat4_desc: "जांचें कि यात्रा के समय आपके पासपोर्ट में गंतव्य देश के नियमों (जैसे 6 माह, 3 माह या ठहरने की अवधि) के अनुसार पर्याप्त वैधता है या नहीं।",
     feat5_title: "आधिकारिक सरकारी दिशा",
     feat5_desc: "विदेश मंत्रालय, पासपोर्ट सेवा और दूतावासों के असली पोर्टलों के सीधे लिंक।",
     feat6_title: "प्रिंट / PDF चेकलिस्ट",
@@ -211,7 +212,7 @@ const I18N_TRANSLATIONS = {
     step1_title: "आप किस देश के लिए आवेदन कर रहे हैं?",
     step1_helper: "पासपोर्ट जारी करने वाला देश चुनें और बताएं कि आप देश में हैं या विदेश में।",
     label_issuing_country: "पासपोर्ट जारीकर्ता देश / प्राधिकरण",
-    country_placeholder: "देश का नाम टाइप करें (उदा. India, United States, United Kingdom)...",
+    country_placeholder: "देश का नाम टाइप करें (उदा. India, United States, United Kingdom, Germany, Philippines)...",
     label_applying_from: "आप कहाँ से आवेदन कर रहे हैं?",
     opt_domestic: "देश के अंदर (घरेलू आवेदन)",
     opt_consular: "विदेश में (भारतीय दूतावास / वाणिज्य दूतावास)",
@@ -262,7 +263,7 @@ const I18N_TRANSLATIONS = {
     doc_missing: "मेरे पास यह दस्तावेज़ नहीं है (विकल्प चाहिए)",
 
     step7_title: "नाम व जन्मतिथि में विसंगति जांच",
-    step7_helper: "दस्तावेज़ों में नाम की वर्तनी (Spelling) में थोड़ा सा भी अंतर आवेदन रोक सकता है।",
+    step7_helper: "वर्तनी में अंतर, प्रथम व अंतिम नाम का उलटफेर या जन्मतिथि प्रारूप की गलतियाँ अक्सर प्रक्रिया में देरी का कारण बनती हैं।",
     label_name_match: "क्या सभी दस्तावेज़ों में आवेदक का नाम बिल्कुल एक समान है?",
     match_yes: "हाँ — प्रथम, मध्य और उपनाम अक्षर-दर-अक्षर समान हैं",
     match_minor: "मामूली अंतर (उदा. उपनाम आगे-पीछे, शुरुआती अक्षर / Initials)",
@@ -294,8 +295,8 @@ const I18N_TRANSLATIONS = {
     badge_missing: "दस्तावेज़ अनुपलब्ध",
     badge_official: "सरकारी पुष्टि आवश्यक",
 
-    tools_expiry_title: "6-महीने की पासपोर्ट वैधता कैलकुलेटर",
-    tools_expiry_desc: "कई देश विमान में चढ़ने की अनुमति नहीं देते यदि यात्रा की तारीख पर पासपोर्ट में कम से कम 6 महीने की वैधता न हो।",
+    tools_expiry_title: "गंतव्य पासपोर्ट वैधता कैलकुलेटर",
+    tools_expiry_desc: "वैधता नियम गंतव्य देश पर निर्भर करते हैं: कुछ देश 6 माह, यूरोपीय शेंगेन देश वापसी से 3 माह, जबकि अन्य केवल ठहरने की अवधि तक वैधता मांगते हैं।",
     label_travel_date: "नियोजित यात्रा की तारीख:",
     label_passport_expiry: "पासपोर्ट समाप्ति की तारीख:",
     btn_check_validity: "वैधता जांचें →",
@@ -342,8 +343,8 @@ const I18N_TRANSLATIONS = {
     feat2_desc: "فیس ادا کرنے سے پہلے نام کے ہجے، ولدیت اور تاریخ پیدائش کے فرق کو پکڑیں۔",
     feat3_title: "متبادل دستاویزات کا حل",
     feat3_desc: "اگر کوئی اصل دستاویز دستیاب نہ ہو تو سرکاری طور پر منظور شدہ متبادل جانیں۔",
-    feat4_title: "6 ماہ کی میعاد کی جانچ",
-    feat4_desc: "جانچیں کہ بین الاقوامی سفر کے لیے آپ کے پاسپورٹ میں مطلوبہ 6 ماہ کی میعاد موجود ہے یا نہیں۔",
+    feat4_title: "منزل کے مطابق پاسپورٹ میعاد کا اندازہ",
+    feat4_desc: "جانچیں کہ آپ کے پاسپورٹ کی میعاد آپ کے منزل مقصود ملک کے مخصوص قوانین (جیسے 6 ماہ، 3 ماہ یا قیام کی مدت) کے مطابق ہے۔",
     feat5_title: "براہ راست سرکاری رہنمائی",
     feat5_desc: "وزارت خارجہ، امیگریشن و پاسپورٹ کے اصل پورٹلز کے مصدقہ لنکس۔",
     feat6_title: "پرنٹ اور پی ڈی ایف چیک لسٹ",
@@ -362,7 +363,7 @@ const I18N_TRANSLATIONS = {
     step1_title: "آپ کس ملک کے لیے درخواست دے رہے ہیں؟",
     step1_helper: "پاسپورٹ جاری کرنے والا ملک منتخب کریں اور بتائیں کہ آپ ملک کے اندر ہیں یا بیرون ملک۔",
     label_issuing_country: "پاسپورٹ جاری کرنے والا ملک / ادارہ",
-    country_placeholder: "ملک کا نام درج کریں (مثلاً Pakistan, India, United States)...",
+    country_placeholder: "ملک کا نام درج کریں (مثلاً Pakistan, India, United States, Germany, Philippines)...",
     label_applying_from: "آپ کہاں سے درخواست دے رہے ہیں؟",
     opt_domestic: "ملک کے اندر (مقامی پاسپورٹ آفس)",
     opt_consular: "بیرون ملک (سفارت خانہ یا قونصل خانہ)",
@@ -413,7 +414,7 @@ const I18N_TRANSLATIONS = {
     doc_missing: "میرے پاس یہ دستاویز نہیں ہے (متبادل درکار ہے)",
 
     step7_title: "نام اور تاریخ پیدائش کے فرق کی جانچ",
-    step7_helper: "دستاویزات میں ہجے کا تھوڑا سا فرق بھی درخواست مسترد کرا سکتا ہے۔",
+    step7_helper: "ہجے میں معمولی فرق، نام اور خاندانی نام کا الٹ پلٹ یا تاریخ پیدائش کی غلطیاں اکثر کارروائی میں تاخیر کا باعث بنتی ہیں۔",
     label_name_match: "کیا تمام دستاویزات میں نام کے ہجے بالکل ایک جیسے ہیں؟",
     match_yes: "جی ہاں — تمام دستاویزات پر نام اور ہجے بالکل یکساں ہیں",
     match_minor: "معمولی فرق (مثلاً تخلص، مخفف یا کوئی ایک حرف)",
@@ -445,8 +446,8 @@ const I18N_TRANSLATIONS = {
     badge_missing: "دستاویزات نامکمل",
     badge_official: "سرکاری تصدیق ضروری",
 
-    tools_expiry_title: "6 ماہ پاسپورٹ میعاد کیلکولیٹر",
-    tools_expiry_desc: "کئی ممالک اور ایئر لائنز سفر کے وقت کم از کم 6 ماہ کی میعاد کا تقاضا کرتی ہیں۔",
+    tools_expiry_title: "منزل کے مطابق پاسپورٹ میعاد کیلکولیٹر",
+    tools_expiry_desc: "میعاد کے قوانین منزل مقصود ملک پر منحصر ہیں: کچھ ممالک 6 ماہ، یورپی شینگن ممالک روانگی سے 3 ماہ، جبکہ دیگر صرف قیام کی مدت تک میعاد مانگتے ہیں۔",
     label_travel_date: "سفر کی تاریخ:",
     label_passport_expiry: "پاسپورٹ کے اختتام کی تاریخ:",
     btn_check_validity: "میعاد جانچیں →",

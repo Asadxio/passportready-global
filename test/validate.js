@@ -57,7 +57,7 @@ runTest('data/country-rules.json conforms to rule schema standards', () => {
   assert(fs.existsSync(rulesPath), 'country-rules.json must exist');
   const rulePacks = JSON.parse(fs.readFileSync(rulesPath, 'utf8'));
 
-  const expectedPacks = ['IN', 'US', 'GB', 'CA', 'AU', 'PK', 'BD'];
+  const expectedPacks = ['IN', 'US', 'GB', 'CA', 'AU', 'PK', 'BD', 'DE', 'AE', 'PH', 'FR', 'SA'];
   expectedPacks.forEach(code => {
     const pack = rulePacks[code];
     assert(pack, `Rule pack for ${code} must exist`);
@@ -148,6 +148,17 @@ runTest('PassportRulesEngine evaluates standard and edge-case profiles accuratel
   };
   const lostRes = engine.evaluate(lostProfile);
   assert(lostRes.flags.some(f => f.code === 'LOST_STOLEN_MANDATORY_REPORT'), 'Should flag police report needed');
+
+  // Unverified Country Profile (Guardrail test)
+  const unverifiedProfile = {
+    ...standardProfile,
+    countryCode: 'AF',
+    countryName: 'Afghanistan'
+  };
+  const unverifiedRes = engine.evaluate(unverifiedProfile);
+  assert(unverifiedRes.readinessScore <= 70, 'Unverified country score must be capped at 70%');
+  assert.strictEqual(unverifiedRes.statusLabel, 'OFFICIAL_CONFIRMATION_RECOMMENDED');
+  assert(unverifiedRes.flags.some(f => f.code === 'UNVERIFIED_COUNTRY_PROCEDURAL_PACK'), 'Must flag UNVERIFIED_COUNTRY_PROCEDURAL_PACK');
 });
 
 // 7. Interactive Tools Unit Tests

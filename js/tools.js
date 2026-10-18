@@ -1,17 +1,17 @@
 /**
  * PassportReady Interactive Utility Tools
- * - 6-Month Expiry Rule Checker
+ * - Destination-Sensitive Passport Expiry Evaluator
  * - Name & Date-of-Birth Discrepancy Analyzer
- * - ICAO Photo Compliance Validator
+ * - Biometric Standards Checker
  */
 
 const PassportTools = {
-  // 1. 6-Month Passport Expiry Rule Evaluator
-  evaluateExpiry(passportExpiryDateStr, travelDateStr, destinationCountry = 'Generic') {
+  // 1. Destination-Sensitive Passport Validity Evaluator
+  evaluateExpiry(passportExpiryDateStr, travelDateStr, destinationRuleType = 'standard_six_month') {
     if (!passportExpiryDateStr || !travelDateStr) {
       return {
         valid: false,
-        error: "Please enter both travel date and passport expiry date."
+        error: "Please enter both your planned travel date and passport expiry date."
       };
     }
 
@@ -26,8 +26,8 @@ const PassportTools = {
       return {
         valid: false,
         status: "EXPIRED_AT_TRAVEL",
-        badge: "CRITICAL DANGER",
-        message: "Your passport will be completely expired on your travel date! You will be denied boarding.",
+        badge: "PASSPORT EXPIRED AT TRAVEL",
+        message: "Your passport will be expired on your travel date. International air carriers will deny boarding under international aviation regulations.",
         daysRemaining: 0,
         monthsRemaining: 0
       };
@@ -41,8 +41,8 @@ const PassportTools = {
       return {
         valid: false,
         status: "LESS_THAN_3_MONTHS",
-        badge: "HIGH RISK — RENEW NOW",
-        message: `Your passport will only have ${daysRemaining} days (~${monthsRemaining} months) of validity remaining when you travel. Almost all international destinations require at least 3 to 6 months. Airlines will likely deny boarding.`,
+        badge: "HIGH RISK — RENEWAL REQUIRED",
+        message: `Your passport will only have ${daysRemaining} days (~${monthsRemaining} months) of validity remaining on your travel date. This fails both the 6-month rule (enforced by countries such as Thailand, Malaysia, Indonesia, and UAE) and the 3-month post-departure rule enforced across the European Schengen Area under Regulation (EU) 2016/399. Immediate passport renewal is necessary prior to international travel.`,
         daysRemaining,
         monthsRemaining
       };
@@ -50,8 +50,8 @@ const PassportTools = {
       return {
         valid: false,
         status: "LESS_THAN_6_MONTHS",
-        badge: "MODERATE RISK — 6-MONTH RULE",
-        message: `Your passport has ${daysRemaining} days (~${monthsRemaining} months) validity left. While some destinations (e.g. parts of Europe with 3-month rule) may technically permit entry, over 70 countries enforce a strict 6-month rule. Urgent renewal is strongly recommended.`,
+        badge: "DESTINATION-DEPENDENT RISK",
+        message: `Your passport has ${daysRemaining} days (~${monthsRemaining} months) of validity remaining beyond your travel date. While this satisfies destinations requiring validity only for the duration of stay (such as the US for 'Six-Month Club' members, or the UK) or destinations requiring 3 months beyond departure (European Schengen Area), it fails the strict 6-month rule enforced by many Asian and Middle Eastern destinations. Verify your specific destination entry conditions before departure.`,
         daysRemaining,
         monthsRemaining
       };
@@ -59,8 +59,8 @@ const PassportTools = {
       return {
         valid: true,
         status: "SUFFICIENT_VALIDITY",
-        badge: "VALID FOR TRAVEL",
-        message: `Your passport has ${daysRemaining} days (~${monthsRemaining} months) of validity remaining beyond your travel date. This satisfies the standard international 6-month validity rule.`,
+        badge: "BROADLY COMPLIANT VALIDITY",
+        message: `Your passport has ${daysRemaining} days (~${monthsRemaining} months) of validity remaining beyond your planned travel date. This satisfies standard international destination validity thresholds (including 6-month and 3-month rules). Always ensure you also have sufficient blank visa pages for entry stamps.`,
         daysRemaining,
         monthsRemaining
       };
@@ -72,6 +72,7 @@ const PassportTools = {
     const analysis = {
       nameStatus: 'MATCH',
       dobStatus: 'MATCH',
+      discrepancyClass: 'NONE', // 'NONE', 'FORMATTING', 'LEGAL_DISCREPANCY'
       recommendations: []
     };
 
@@ -91,18 +92,21 @@ const PassportTools = {
 
         if (sortedA === sortedB) {
           analysis.nameStatus = 'NAME_ORDER_INVERSION';
+          analysis.discrepancyClass = 'FORMATTING';
           analysis.recommendations.push(
-            "Name Order Difference (Given Name vs Surname): The words are the same, but the order is flipped. In passport applications, the Given Name and Surname fields are distinct. Make sure your application form matches the primary civil birth record."
+            "Name Order Inversion (Given Name vs. Family Name): The words match, but the sequence is reversed. Passport forms separate 'Given Name' from 'Surname/Family Name'. Ensure your application form matches the family name assignment established in your primary civil birth or naturalization certificate."
           );
         } else if (wordsA.length !== wordsB.length) {
           analysis.nameStatus = 'INITIALS_OR_MISSING_NAME';
+          analysis.discrepancyClass = 'FORMATTING';
           analysis.recommendations.push(
-            "Initials or Missing Middle Name: One document uses an initial (e.g. 'A. Sharma') while another has the full name ('Amit Sharma'). Passport authorities generally require full names without abbreviations unless explicitly substantiated by school or civil records."
+            "Initials or Abbreviated Name: One record uses an initial (e.g. 'R. Kumar') while another uses the expanded full name ('Ramesh Kumar'). International passport authorities generally mandate full legal names without initials, unless an initial is your statutory legal name recorded on your birth certificate."
           );
         } else {
           analysis.nameStatus = 'SPELLING_DIFFERENCE';
+          analysis.discrepancyClass = 'LEGAL_DISCREPANCY';
           analysis.recommendations.push(
-            "Spelling Discrepancy: Characters differ between documents (e.g., 'Choudhary' vs 'Chaudhry' or 'Sara' vs 'Sarah'). You must determine which document is your legally recognized primary record and either correct the secondary ID or provide a certified affidavit/gazette."
+            "Substantive Character or Spelling Difference: Distinct characters exist between records (e.g., 'Choudhary' vs 'Chaudhry'). In India, substantive name changes require Gazette publication and newspaper notices; in the US, certified court orders or marriage certificates are required under 22 CFR § 51.25; in the UK, an enrolled or unenrolled deed poll is required by HMPO."
           );
         }
       }
@@ -111,8 +115,9 @@ const PassportTools = {
     if (docADob && docBDob) {
       if (docADob !== docBDob) {
         analysis.dobStatus = 'DOB_MISMATCH';
+        analysis.discrepancyClass = 'LEGAL_DISCREPANCY';
         analysis.recommendations.push(
-          `Date of Birth Mismatch (${docADob} vs ${docBDob}): Authorities enforce zero tolerance on birth date discrepancies. The date recorded on your primary municipal birth certificate or original citizenship certificate takes legal precedence.`
+          `Date-of-Birth Discrepancy (${docADob} vs ${docBDob}): Passport authorities treat birth date discrepancies as critical identity conflicts. The date recorded on your primary municipal/civil birth certificate or original certificate of citizenship legally supersedes dates on secondary records (school records, tax cards, driving licences). If your secondary ID is incorrect, update it with the civil registrar before submitting your passport application.`
         );
       }
     }
