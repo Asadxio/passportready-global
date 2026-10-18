@@ -240,6 +240,11 @@ class PassportRulesEngine {
       if (countryCode === 'US') lossNotice = "In the United States, file Form DS-64 immediately online or submit with Form DS-11; report theft to local police.";
       else if (countryCode === 'IN') lossNotice = "In India, lodge an FIR / Missing Certificate with local police, obtain official stamped copy, and submit Annexure F.";
       else if (countryCode === 'PH') lossNotice = "In the Philippines, an official Police Report (if valid lost passport) and notarized Affidavit of Loss are mandatory.";
+      else if (countryCode === 'MX') lossNotice = "In Mexico and at Mexican consulates abroad, lodge an official police report (acta de robo o extravío). You may schedule a replacement appointment or request an Emergency Type E passport if acute travel is necessary (subject to consular assessment).";
+      else if (countryCode === 'MY') lossNotice = "In Malaysia, lodge a police report with PDRM immediately; passport loss incurs an investigation interview and statutory fine (MYR 400 for first loss).";
+      else if (countryCode === 'SG') lossNotice = "In Singapore, report the loss immediately via MyICA e-Service. First loss carries a statutory penalty fee of SGD 50; repeat loss carries SGD 100 penalty.";
+      else if (countryCode === 'KE') lossNotice = "In Kenya, obtain an official Police Abstract and sworn Affidavit of Loss before applying on eCitizen (statutory replacement fee KES 20,000).";
+      else if (countryCode === 'ES') lossNotice = "In Spain, file an official police complaint (denuncia previa) before Policía Nacional or Guardia Civil before requesting replacement or Salvoconducto.";
 
       flags.push({
         severity: 'critical',
@@ -365,9 +370,9 @@ class PassportRulesEngine {
         flags.push({
           severity: 'info',
           code: 'MEXICO_EMERGENCY_APPOINTMENT_POLICY',
-          title: 'Mexican Emergency Consular Appointment Conditions',
-          message: 'Under SRE regulations (Art. 20 LFD), an emergency appointment (cita de emergencia) issues your standard eligible biometric passport (3, 6, or 10 years; or 1 year for children under 3) with an official 30% statutory surcharge. An emergency appointment does not automatically restrict or qualify you for a 1-year document. Temporary non-biometric booklets are issued only if biometric printing systems are physically unavailable.',
-          action: 'Contact your accredited Mexican consulate with documented proof of medical, humanitarian, or legal urgency to request an emergency slot.'
+          title: 'Mexican Emergency Consular Procedures & Document Types',
+          message: 'Under SRE consular regulations, emergency requests are evaluated individually: (1) An unscheduled emergency appointment (cita de emergencia) for a standard biometric passport (3, 6, 10 years, or 1 year for children under 3) carries a 30% statutory surcharge (Art. 20 LFD) and requires documented proof of medical, humanitarian, academic, or work urgency. (2) In verified circumstances of loss, theft, destruction, acute urgent travel, or technical downtime where the standard booklet cannot be produced in time, an Emergency Type E Passport (Pasaporte de Emergencia Tipo E) with limited validity (up to 1 year) may be issued upon consular approval under post-specific procedures (e.g. SRE Embamex Polonia). Emergency document availability and procedures depend on your specific accredited consular post.',
+          action: 'Contact your accredited Mexican embassy or consulate (e.g., via emergency consular email) with documentary evidence of your emergency and, if applicable, the police report for a lost or stolen passport.'
         });
       } else {
         flags.push({
@@ -476,6 +481,88 @@ class PassportRulesEngine {
           feeDetails = 'Official Nigerian diaspora consular fees (NIS reform): 32-page 5-year booklet: USD 150; 64-page 10-year booklet: USD 230. National Identification Number (NIN) verification is mandatory prior to booking biometric enrollment abroad.';
           feeStatus = 'verified_statutory';
           specificFeeRecord = { currency: 'USD', booklet_32_5yr: 150, booklet_64_10yr: 230 };
+        }
+      } else if (countryCode === 'ID') {
+        if (location === 'inside') {
+          feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024): Non-electronic 48-page: IDR 350,000; Electronic e-Paspor: IDR 650,000; Polycarbonate e-Paspor: IDR 950,000. Same-day express service surcharge (Layanan Percepatan): IDR 1,000,000. Pay via MPN G2/G3 billing code.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'IDR', non_electronic: 350000, electronic: 650000, polycarbonate: 950000, express_surcharge: 1000000 };
+        } else {
+          feeDetails = 'Indonesian overseas consular fees are collected in local host currency under SIMKIM regulations at KBRI/KJRI diplomatic missions. Check your accredited Indonesian embassy portal.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'Local currency', note: 'Determined by SIMKIM consular tariff' };
+        }
+      } else if (countryCode === 'IE') {
+        if (age === 'minor') {
+          feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard child 5-year online booklet: €20 via Passport Online. Paper Post Passport: €30 (+ €9.50 An Post charge).';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'EUR', online_child: 20, paper_child: 30 };
+        } else {
+          feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard adult 10-year online booklet: €75 (large 66-page: €105); Adult Passport Booklet + Card bundle: €100. Urgent appointment in Dublin/Cork: €150 (same-day) / €110 (4-day). Apply via dfa.ie/passportonline.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'EUR', online_adult: 75, large_booklet: 105, bundle_with_card: 100, urgent_same_day: 150 };
+        }
+      } else if (countryCode === 'KE') {
+        feeDetails = 'Official Kenyan statutory fees (Directorate of Immigration Services / eCitizen): Ordinary EAC e-Passport 34-page Series A: KES 7,500; 50-page Series B: KES 9,500; 66-page Series C: KES 12,500. Replacement of lost passport: KES 20,000. Payment must be made online via official eCitizen portal.';
+        feeStatus = 'verified_statutory';
+        specificFeeRecord = { currency: 'KES', series_a: 7500, series_b: 9500, series_c: 12500, lost_replacement: 20000 };
+      } else if (countryCode === 'MY') {
+        if (age === 'senior') {
+          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Warga Emas (Senior Citizens aged 60+): MYR 100 (50% statutory concession compared to MYR 200 standard adult rate; 5-year validity). Verified automatically via MyKad.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'MYR', senior_concession: 100, standard_adult: 200 };
+        } else if (age === 'minor' || age === 'infant') {
+          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Kanak-kanak (Children under 13): MYR 100 (5-year validity). (Aged 13–17 standard adult rate MYR 200).';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'MYR', child_under_13: 100, standard_13_plus: 200 };
+        } else {
+          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Standard 5-year validity (aged 13–59): MYR 200. Concession for children under 13 & seniors 60+: MYR 100. Persons with Disabilities (OKU): FREE upon presenting JKM card.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'MYR', standard_adult: 200, concession: 100, oku: 0 };
+        }
+      } else if (countryCode === 'NP') {
+        if (urgency === 'urgent' || urgency === 'emergency') {
+          feeDetails = 'Official Nepalese urgent statutory fees (Department of Passports Kathmandu fast-track): Standard 34-page e-Passport: NPR 12,000 (compared to NPR 5,000 standard DAO rate); Frequent traveller 66-page: NPR 20,000. Delivery within 2–3 business days at Tripureshwor.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NPR', urgent_34p: 12000, urgent_66p: 20000, standard_dao_34p: 5000 };
+        } else {
+          feeDetails = 'Official Nepalese statutory fees (Department of Passports): Standard 34-page e-Passport at District Administration Office (DAO): NPR 5,000; Frequent traveller 66-page: NPR 10,000. Fast-track urgent at DoP Kathmandu: NPR 12,000 (34-page). Mandatory NID number required.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NPR', dao_standard_34p: 5000, dao_standard_66p: 10000, dop_urgent_34p: 12000 };
+        }
+      } else if (countryCode === 'NZ') {
+        if (urgency === 'urgent' || urgency === 'emergency') {
+          feeDetails = 'Official New Zealand urgent passport fees (DIA): Standard Adult: NZD 445 (NZD 215 base + NZD 230 urgent surcharge); Child: NZD 355 (NZD 125 base + NZD 230 urgent surcharge). Urgent delivery within 3 working days.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NZD', adult_urgent: 445, child_urgent: 355, urgent_surcharge: 230 };
+        } else {
+          if (age === 'minor' || age === 'infant') {
+            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs): Child 5-year passport (under 16): NZD 125. Apply online at passports.govt.nz.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'NZD', child_5yr: 125 };
+          } else {
+            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs): Adult 10-year passport (16+): NZD 215; Child 5-year passport: NZD 125. Urgent service surcharge: +NZD 230 (Adult urgent total NZD 445). Apply online at passports.govt.nz.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'NZD', adult_10yr: 215, child_5yr: 125, urgent_surcharge: 230 };
+          }
+        }
+      } else if (countryCode === 'SG') {
+        feeDetails = 'Official Singapore statutory fees (Immigration & Checkpoints Authority): Online application via MyICA: SGD 70 (10-year validity for 16+, 5-year for under 16). In-person counter application at ICA Building: SGD 80. Lost passport penalty: SGD 50 (1st loss) / SGD 100 (subsequent).';
+        feeStatus = 'verified_statutory';
+        specificFeeRecord = { currency: 'SGD', online: 70, counter: 80, first_loss_penalty: 50, repeat_loss_penalty: 100 };
+      } else if (countryCode === 'ES') {
+        feeDetails = 'Official Spanish statutory fees (Policía Nacional - Tasas del Estado): Standard passport issuance/renewal: €30.00. (Issued on the spot during domestic police appointment). 100% EXEMPTION (FREE €0.00) for members of large families (Familias Numerosas under Ley 40/2003).';
+        feeStatus = 'verified_statutory';
+        specificFeeRecord = { currency: 'EUR', standard: 30.0, familia_numerosa: 0.0 };
+      } else if (countryCode === 'LK') {
+        if (urgency === 'urgent' || urgency === 'emergency') {
+          feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration): All Countries Urgent One-Day Service: LKR 20,000 (compared to LKR 10,000 normal service; issued same day at Battaramulla Head Office); Child 3-year urgent: LKR 6,000.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'LKR', urgent_all_countries: 20000, normal_all_countries: 10000, urgent_child_3yr: 6000 };
+        } else {
+          feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration): All Countries Normal Service: LKR 10,000 (10-year validity); Urgent One-Day Service: LKR 20,000. Child 3-year minor option: LKR 3,000 normal / LKR 6,000 urgent. Approved studio digital photo receipt required.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'LKR', normal_all_countries: 10000, urgent_all_countries: 20000, child_3yr_normal: 3000 };
         }
       }
     } else if (!isVerifiedPack) {

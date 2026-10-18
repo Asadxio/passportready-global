@@ -2835,6 +2835,11 @@ window.RULE_PACKS = {
             "rule": "Applicants aged 3 to 17 may receive 3-year or 6-year passports. Adults aged 18+ may select 3-year, 6-year, or 10-year validity.",
             "source_url": "https://www.gob.mx/pasaporte",
             "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "For acute emergencies abroad (loss, theft, destruction, or urgent unplanned travel), an Emergency Type E passport with limited validity may be requested subject to consular assessment and supporting documentation.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
           }
         ],
         "steps": [
@@ -2920,7 +2925,7 @@ window.RULE_PACKS = {
             "validity_1_year": "The 1-year passport is issued exclusively to children under three years of age due to rapid developmental and biometric changes. It is not an emergency appointment document.",
             "discount_50_percent": "Subject to documented eligibility for adults aged 60+, persons with certified disabilities, and agricultural workers under the Mexico-Canada SAWP programme.",
             "agricultural_worker_restriction": "Temporary agricultural workers under the Mexico-Canada SAWP programme are NOT eligible for the discount on the 10-year passport (validity restricted to 3 or 6 years).",
-            "emergency_appointments": "Emergency non-scheduled appointments at Mexican consulates abroad (citas de emergencia) are subject to consular approval based on documented humanitarian, medical, or legal urgency. Under Article 20 of the Ley Federal de Derechos, emergency consular processing incurs a statutory rounded surcharge (30%), added to the standard fee for the applicant eligible validity (1, 3, 6, or 10 years). An emergency appointment does not automatically restrict or qualify an applicant for a 1-year document."
+            "emergency_appointments": "Emergency non-scheduled appointments at Mexican consulates abroad (citas de emergencia) for standard biometric passports are subject to consular approval based on documented humanitarian, medical, academic, or employment urgency. Under Article 20 of the Ley Federal de Derechos, emergency consular processing incurs a statutory rounded surcharge (30%), added to the standard fee for the applicant eligible validity (1, 3, 6, or 10 years). Separately, in verified circumstances of loss, theft, destruction, acute unscheduled travel, or technical downtime where a standard biometric passport cannot be produced in time, an Emergency Type E Passport (Pasaporte de Emergencia Tipo E) with limited validity (up to 1 year) may be issued upon consular assessment under embassy-specific protocols (e.g. SRE Embamex Polonia). An emergency appointment for a standard passport does not automatically restrict or qualify an applicant for a 1-year document."
           },
           "consular_overseas_usd": {
             "currency": "USD",
@@ -3280,6 +3285,12 @@ window.RULE_PACKS = {
             "publisher": "Secretaría de Relaciones Exteriores (SRE) - Embamex / Secciones Consulares",
             "page_title": "Derechos Consulares y Tarifas con Recargo de Emergencia (Art. 20 LFD)",
             "checked_at": "2026-10-19"
+          },
+          {
+            "url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "publisher": "Secretaría de Relaciones Exteriores (SRE) - Embajada de México en Polonia",
+            "page_title": "Pasaportes Ordinarios y de Emergencia Tipo E",
+            "checked_at": "2026-10-19"
           }
         ]
       },
@@ -3357,6 +3368,152 @@ window.RULE_PACKS = {
             "checked_at": "2026-10-19"
           }
         ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Mexican citizens whose passport has been lost, stolen, or destroyed must report the loss to local authorities and may apply for replacement at an SRE delegation (domestically) or Mexican embassy/consulate abroad.",
+            "source_url": "https://www.gob.mx/pasaporte",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "For urgent travel abroad following loss, theft, or destruction, an Emergency Type E Passport (Pasaporte de Emergencia Tipo E) with limited validity may be requested subject to consular assessment and documentary proof of emergency.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "File an official police report (acta de robo o extravío) with the local police or civil authority immediately upon discovering the loss.",
+            "source_url": "https://www.gob.mx/pasaporte"
+          },
+          {
+            "step": "Schedule an appointment at an SRE delegation (in Mexico) or Mexican embassy/consulate abroad. For acute overseas travel emergencies, contact the consular section via emergency consular email.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes"
+          },
+          {
+            "step": "Present the police report, proof of Mexican nationality, government-issued photo ID, and evidence of emergency travel if requesting emergency Type E issuance.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Official Police Report of Loss or Theft (Acta de Robo o Extravío)",
+            "requiredness": "required",
+            "conditions": "Report must be lodged with local police or civil authority specifying passport details and circumstances of loss.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original stamped police report",
+            "translation_or_legalisation": "Translation if issued in local non-Spanish/English language",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Proof of Mexican Nationality",
+            "requiredness": "required",
+            "conditions": "Certified copy of Mexican birth certificate, naturalization letter, or prior passport record.",
+            "accepted_alternatives": [
+              "Copia certificada de acta de nacimiento",
+              "Carta de naturalización"
+            ],
+            "original_or_copy": "Original or certified copy",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.gob.mx/pasaporte",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Official Photo Identification",
+            "requiredness": "required",
+            "conditions": "Valid official credential (INE voting card, professional license, military card, or foreign ID).",
+            "accepted_alternatives": [
+              "INE / IFE",
+              "Cédula Profesional",
+              "Cartilla Militar",
+              "Matrícula Consular"
+            ],
+            "original_or_copy": "Original",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.gob.mx/pasaporte",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.gob.mx/pasaporte",
+            "publisher": "Secretaría de Relaciones Exteriores (SRE)",
+            "page_title": "Reposición de Pasaporte por Robo o Extravío",
+            "checked_at": "2026-10-19"
+          },
+          {
+            "url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "publisher": "Secretaría de Relaciones Exteriores (SRE) - Embajada de México en Polonia",
+            "page_title": "Pasaporte de Emergencia Tipo E y Reposición por Robo o Extravío",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "emergency_passport": {
+        "availability_status": "limited",
+        "eligibility": [
+          {
+            "rule": "Issued abroad at Mexican embassies and consulates exclusively for proven force majeure emergencies: urgent unscheduled travel, medical emergency, legal/employment necessity, or following loss, theft, or destruction of an existing passport when the standard biometric booklet cannot be delivered in time.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Emergency Type E passports carry limited statutory validity (typically up to 1 year) and are produced locally at authorized consular posts. Operational issuance capability and procedures vary by consular post.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Contact your accredited Mexican consular section via emergency channel (email/phone) with documentary evidence justifying urgency (flight tickets, medical certificate, employer letter, or police report).",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes"
+          },
+          {
+            "step": "Obtain consular authorization and attend an emergency consular appointment with proof of Mexican nationality and official photo ID.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes"
+          },
+          {
+            "step": "Pay applicable consular rights under Article 20 of the Ley Federal de Derechos.",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Documentary Proof of Emergency / Travel Urgency",
+            "requiredness": "required",
+            "conditions": "Confirmed travel itinerary, medical report, hospital admission letter, or proof of acute humanitarian/legal necessity.",
+            "accepted_alternatives": [
+              "Confirmed flight itinerary",
+              "Medical emergency certificate",
+              "Court appearance subpoena"
+            ],
+            "original_or_copy": "Original",
+            "translation_or_legalisation": "Spanish or English",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Proof of Mexican Nationality and Identity",
+            "requiredness": "required",
+            "conditions": "Birth certificate, prior passport copy, or consular matricula with government photo ID.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original or certified copy",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+            "publisher": "Secretaría de Relaciones Exteriores (SRE) - Embajada de México en Polonia",
+            "page_title": "Pasaportes de Emergencia Tipo E",
+            "checked_at": "2026-10-19"
+          }
+        ]
       }
     },
     "sources": [
@@ -3376,6 +3533,12 @@ window.RULE_PACKS = {
         "url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
         "publisher": "Secretaría de Relaciones Exteriores (SRE) - Embamex / Secciones Consulares",
         "page_title": "Derechos Consulares y Tarifas con Recargo de Emergencia (Art. 20 LFD)",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://embamex.sre.gob.mx/polonia/index.php/es/consular-menu/pasaportes",
+        "publisher": "Secretaría de Relaciones Exteriores (SRE) - Embajada de México en Polonia",
+        "page_title": "Pasaportes Ordinarios y de Emergencia Tipo E",
         "checked_at": "2026-10-19"
       }
     ]
@@ -4351,6 +4514,3088 @@ window.RULE_PACKS = {
         "checked_at": "2026-10-19"
       }
     ]
+  },
+  "IE": {
+    "country_code": "IE",
+    "country_name": "Ireland",
+    "authority_name": "Passport Service, Department of Foreign Affairs (An tSeirbhís Pasport)",
+    "official_portal_url": "https://www.dfa.ie/passports/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "Passport Online (Worldwide & Domestic)",
+        "application_channel": "domestic",
+        "source_url": "https://www.dfa.ie/passportonline/"
+      },
+      {
+        "name": "Post Passport (An Post in Ireland / Great Britain)",
+        "application_channel": "domestic",
+        "source_url": "https://www.dfa.ie/passports/how-to-apply-for-a-passport/post-passport/"
+      },
+      {
+        "name": "Irish Diplomatic Missions Abroad (Embassies & Consulates)",
+        "application_channel": "consular",
+        "source_url": "https://www.dfa.ie/embassies/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Child (Under 18 years of age)",
+        "min_age": 0,
+        "max_age": 17,
+        "age_basis_source": "https://www.dfa.ie/passports/documentary-requirements/child/"
+      },
+      {
+        "label": "Adult (18 years and older)",
+        "min_age": 18,
+        "max_age": null,
+        "age_basis_source": "https://www.dfa.ie/passports/documentary-requirements/adult/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.dfa.ie/passports/",
+        "publisher": "Department of Foreign Affairs, Ireland",
+        "page_title": "Passport Service Ireland",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.dfa.ie/passportonline/",
+        "publisher": "Department of Foreign Affairs, Ireland",
+        "page_title": "Passport Online Application Service",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.dfa.ie/passports/passport-fees/",
+        "publisher": "Department of Foreign Affairs, Ireland",
+        "page_title": "Statutory Passport Fees & Charges",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Irish citizens applying for their first passport must apply online via Passport Online or paper Post Passport and complete identity verification before an authorized witness.",
+            "source_url": "https://www.dfa.ie/passports/how-to-apply-for-a-passport/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Adult passports are valid for 10 years. Child passports are valid for 5 years.",
+            "source_url": "https://www.dfa.ie/passports/passport-fees/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Submit online application via Passport Online (upload digital photo and pay fee by card).",
+            "source_url": "https://www.dfa.ie/passportonline/"
+          },
+          {
+            "step": "Print the identity verification form and have it witnessed in person by an approved professional (Garda, lawyer, doctor, accountant, teacher, or bank manager).",
+            "source_url": "https://www.dfa.ie/passports/how-to-apply-for-a-passport/"
+          },
+          {
+            "step": "Post the original supporting documents (civil birth certificate, witnessed form, photo ID, proof of address and name) to the Passport Service in Dublin or Cork.",
+            "source_url": "https://www.dfa.ie/passports/how-to-apply-for-a-passport/"
+          },
+          {
+            "step": "Track application progress via the DFA Passport Tracking system; passport and documents are returned by registered post.",
+            "source_url": "https://www.dfa.ie/passports/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Full Civil Birth Certificate (Long Form)",
+            "requiredness": "required",
+            "conditions": "Issued by the General Register Office (GRO) showing parents names. If born abroad to Irish-born parent, Foreign Births Registration certificate is required.",
+            "accepted_alternatives": [
+              "Foreign Births Registration (FBR) Certificate",
+              "Certificate of Naturalisation"
+            ],
+            "original_or_copy": "Original civil certificate",
+            "translation_or_legalisation": "Certified English/Irish translation if issued abroad",
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/adult/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Identity Verification Form (Witnessed)",
+            "requiredness": "required",
+            "conditions": "Signed in the physical presence of an approved witness who knows the applicant or has verified photo ID.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original signed and stamped form",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.dfa.ie/passports/how-to-apply-for-a-passport/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Proof of Address and Name",
+            "requiredness": "required",
+            "conditions": "Utility bill, bank statement, or government letter dated within the last 6 months.",
+            "accepted_alternatives": [
+              "Revenue tax document",
+              "Social welfare letter"
+            ],
+            "original_or_copy": "Original or official printout",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/adult/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "EUR",
+          "fiscal_year": 2026,
+          "statutory_source": "Passports Act 2008 & Passport Regulations (Department of Foreign Affairs)",
+          "standard_online_eur": {
+            "adult_standard_34_pages": 75,
+            "adult_large_66_pages": 105,
+            "child_standard_5_years": 20,
+            "passport_card_alone": 35,
+            "adult_bundle_booklet_and_card": 100
+          },
+          "post_passport_paper_eur": {
+            "adult_standard": 80,
+            "child_standard": 30,
+            "an_post_handling_charge": 9.5
+          },
+          "urgent_appointment_service_eur": {
+            "same_day_renewal": 150,
+            "four_day_renewal": 110
+          },
+          "fee_records": [
+            {
+              "currency": "EUR",
+              "amount": 75,
+              "base_amount": 75,
+              "emergency_surcharge": 0,
+              "total_payable": 75,
+              "applicant_category": "adult_18_and_over",
+              "application_channel": "online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard statutory rate for 34-page booklet via Passport Online.",
+              "applicable_conditions": "Online application via dfa.ie/passportonline.",
+              "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 20,
+              "base_amount": 20,
+              "emergency_surcharge": 0,
+              "total_payable": 20,
+              "applicant_category": "child_under_18",
+              "application_channel": "online",
+              "validity_period": "5_years",
+              "discount_eligibility": "Statutory child rate.",
+              "applicable_conditions": "For all children under 18 years of age applying online.",
+              "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "adult_bundle",
+              "application_channel": "online",
+              "validity_period": "10_years_booklet_and_5_years_card",
+              "discount_eligibility": "Discounted bundle price (€10 saving versus separate purchase of €75 booklet + €35 card).",
+              "applicable_conditions": "Ordered simultaneously via Passport Online.",
+              "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 150,
+              "base_amount": 75,
+              "emergency_surcharge": 75,
+              "total_payable": 150,
+              "applicant_category": "adult_urgent_same_day",
+              "application_channel": "counter_urgent",
+              "validity_period": "10_years",
+              "discount_eligibility": "Includes €75 statutory urgent appointment surcharge.",
+              "applicable_conditions": "Urgent appointment booked in Dublin or Cork office for urgent travel within 3 working days.",
+              "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.dfa.ie/passports/passport-fees/",
+            "publisher": "Department of Foreign Affairs, Ireland",
+            "page_title": "Passport Fees",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Irish citizens whose passport has expired within the last 5 years or is within 12 months of expiry can renew 100% online without sending paper documents (for adult simple renewals).",
+            "source_url": "https://www.dfa.ie/passportonline/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Apply online at dfa.ie/passportonline with existing passport details and upload a compliant digital photo.",
+            "source_url": "https://www.dfa.ie/passportonline/"
+          },
+          {
+            "step": "Pay €75 fee online. No witness or physical old passport return is required for routine adult renewals if passport is less than 5 years expired.",
+            "source_url": "https://www.dfa.ie/passportonline/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Irish Passport Details",
+            "requiredness": "required",
+            "conditions": "Passport number and expiry date must be entered online.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.dfa.ie/passportonline/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.dfa.ie/passportonline/",
+            "publisher": "Department of Foreign Affairs, Ireland",
+            "page_title": "Adult Passport Renewal",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Passports for children under 18 have a 5-year validity. Consent of all legal guardians (both parents) is mandatory under Irish law.",
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/child/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Submit child application via Passport Online and print Child Identity and Consent Form.",
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/child/"
+          },
+          {
+            "step": "Both parents/guardians must sign the consent form in the presence of an approved witness (Garda/police officer or practicing professional).",
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/child/"
+          },
+          {
+            "step": "Post original long-form civil birth certificate and witnessed consent form to Passport Service.",
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/child/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Full Civil Birth Certificate of Child",
+            "requiredness": "required",
+            "conditions": "Showing parents names.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/child/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Witnessed Child Consent Form (Form APS2 / Online Consent)",
+            "requiredness": "required",
+            "conditions": "Signed by all legal guardians in presence of designated witness.",
+            "accepted_alternatives": [
+              "Court Order dispensing with guardian consent",
+              "Sole Guardian Affidavit (Form AFF1)"
+            ],
+            "source_url": "https://www.dfa.ie/passports/documentary-requirements/child/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.dfa.ie/passports/documentary-requirements/child/",
+            "publisher": "Department of Foreign Affairs, Ireland",
+            "page_title": "Child Passport Requirements",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost or stolen Irish passports must be reported immediately. The loss is registered with Interpol and the passport is permanently invalidated.",
+            "source_url": "https://www.dfa.ie/passports/lost-stolen-damaged-passports/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Declare the passport lost or stolen when applying via Passport Online.",
+            "source_url": "https://www.dfa.ie/passports/lost-stolen-damaged-passports/"
+          },
+          {
+            "step": "If applying on paper, file a report with An Garda Síochána (or local police abroad) and have Section 8 of the paper form witnessed by the police.",
+            "source_url": "https://www.dfa.ie/passports/lost-stolen-damaged-passports/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Police Report / Garda Witnessed Form",
+            "requiredness": "required",
+            "conditions": "Required for paper applications or emergency travel abroad.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.dfa.ie/passports/lost-stolen-damaged-passports/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.dfa.ie/passports/lost-stolen-damaged-passports/",
+            "publisher": "Department of Foreign Affairs, Ireland",
+            "page_title": "Lost and Stolen Passports",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "KE": {
+    "country_code": "KE",
+    "country_name": "Kenya",
+    "authority_name": "Directorate of Immigration Services (DIS), Ministry of Interior",
+    "official_portal_url": "https://immigration.go.ke/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "eCitizen Portal & Domestic Immigration Stations (Nyayo House Nairobi, Regional Stations)",
+        "application_channel": "domestic",
+        "source_url": "https://immigration.ecitizen.go.ke/"
+      },
+      {
+        "name": "Kenya Diplomatic Missions Abroad (High Commissions & Embassies)",
+        "application_channel": "consular",
+        "source_url": "https://immigration.go.ke/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Minor (Under 18 years of age)",
+        "min_age": 0,
+        "max_age": 17,
+        "age_basis_source": "https://immigration.ecitizen.go.ke/"
+      },
+      {
+        "label": "Adult (18 years and older)",
+        "min_age": 18,
+        "max_age": null,
+        "age_basis_source": "https://immigration.ecitizen.go.ke/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://immigration.go.ke/",
+        "publisher": "Directorate of Immigration Services, Kenya",
+        "page_title": "Directorate of Immigration Services Official Portal",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://immigration.ecitizen.go.ke/",
+        "publisher": "eCitizen Kenya / Directorate of Immigration",
+        "page_title": "eCitizen Passport Application & Fee Portal",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Kenyan citizens must apply online via the official eCitizen portal and attend biometric capture at an authorized Immigration station.",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "The East African Electronic Passport (e-Passport) is issued with 10-year validity for adults and 5-year validity for minors under 18.",
+            "source_url": "https://immigration.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Create or log in to eCitizen account, complete Form 19, and pay statutory fee online via M-Pesa, card, or bank.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          },
+          {
+            "step": "Download and print the pre-filled application form (Form 19), 3 copies of invoice, and appointment token.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          },
+          {
+            "step": "Attend biometric enrollment appointment in person at chosen Immigration station (Nyayo House Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Embu, Kisii) with original documents.",
+            "source_url": "https://immigration.go.ke/"
+          },
+          {
+            "step": "Collect the passport in person or via registered postal delivery upon SMS notification.",
+            "source_url": "https://immigration.go.ke/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Original Kenyan National Identity Card (plus copy)",
+            "requiredness": "required",
+            "conditions": "Mandatory for all citizens aged 18 and older.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + clear photocopy",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Original Birth Certificate (plus copy)",
+            "requiredness": "required",
+            "conditions": "Issued by Civil Registration Department.",
+            "accepted_alternatives": [
+              "Certificate of Naturalisation / Registration if not born Kenyan"
+            ],
+            "original_or_copy": "Original + clear photocopy",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Recommenders National ID Card Copy",
+            "requiredness": "required",
+            "conditions": "Recommender must be a Kenyan citizen not an immediate family member who signs Section 7 of Form 19.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Photocopy of recommenders National ID",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Parents National ID Cards and Birth Certificates",
+            "requiredness": "required",
+            "conditions": "Copies of parents identification; death certificates if deceased.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Photocopy",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "KES",
+          "fiscal_year": 2026,
+          "statutory_source": "Official Ministry of Interior and National Administration Gazette Notice on Revised Immigration Fees",
+          "standard_domestic_kes": {
+            "ordinary_a_series_34_pages": 7500,
+            "ordinary_b_series_50_pages": 9500,
+            "ordinary_c_series_66_pages": 12500,
+            "diplomatic_50_pages": 15000,
+            "replacement_lost_passport": 20000,
+            "replacement_mutilated_passport": 20000
+          },
+          "fee_records": [
+            {
+              "currency": "KES",
+              "amount": 7500,
+              "base_amount": 7500,
+              "emergency_surcharge": 0,
+              "total_payable": 7500,
+              "applicant_category": "general_series_a",
+              "application_channel": "domestic_ecitizen",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Standard statutory rate for 34-page booklet.",
+              "applicable_conditions": "Standard EAC e-Passport Series A.",
+              "official_source_url": "https://immigration.ecitizen.go.ke/",
+              "effective_date": "2024-03-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "KES",
+              "amount": 9500,
+              "base_amount": 9500,
+              "emergency_surcharge": 0,
+              "total_payable": 9500,
+              "applicant_category": "general_series_b",
+              "application_channel": "domestic_ecitizen",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard rate for 50-page frequent traveller booklet.",
+              "applicable_conditions": "Standard EAC e-Passport Series B.",
+              "official_source_url": "https://immigration.ecitizen.go.ke/",
+              "effective_date": "2024-03-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "KES",
+              "amount": 12500,
+              "base_amount": 12500,
+              "emergency_surcharge": 0,
+              "total_payable": 12500,
+              "applicant_category": "general_series_c",
+              "application_channel": "domestic_ecitizen",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard rate for 66-page frequent traveller booklet.",
+              "applicable_conditions": "Standard EAC e-Passport Series C.",
+              "official_source_url": "https://immigration.ecitizen.go.ke/",
+              "effective_date": "2024-03-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "KES",
+              "amount": 20000,
+              "base_amount": 20000,
+              "emergency_surcharge": 0,
+              "total_payable": 20000,
+              "applicant_category": "lost_passport_replacement",
+              "application_channel": "domestic_ecitizen",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Statutory replacement fee for lost passport.",
+              "applicable_conditions": "Requires police abstract and sworn affidavit of loss.",
+              "official_source_url": "https://immigration.ecitizen.go.ke/",
+              "effective_date": "2024-03-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://immigration.ecitizen.go.ke/",
+            "publisher": "eCitizen Kenya",
+            "page_title": "Passport Service Fees",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Kenyan citizens replacing an expired, expiring, or full passport must apply via eCitizen and present the old booklet for cancellation.",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Submit renewal application on eCitizen, pay fee, and print application invoice.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          },
+          {
+            "step": "Appear for appointment with previous passport booklet and National ID card.",
+            "source_url": "https://immigration.go.ke/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Previous Passport Booklet",
+            "requiredness": "required",
+            "conditions": "Original passport booklet; will be cancelled and returned.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Original National ID Card",
+            "requiredness": "required",
+            "conditions": "Plus photocopy.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://immigration.ecitizen.go.ke/",
+            "publisher": "eCitizen Kenya",
+            "page_title": "Passport Renewal Service",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Passports for children under 18 have 5-year validity. Consent of both legal parents/guardians is mandatory.",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Parent applies on behalf of child via parent eCitizen portal.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          },
+          {
+            "step": "Child and parent attend in-person enrollment with child birth certificate and parents IDs.",
+            "source_url": "https://immigration.go.ke/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Child Original Birth Certificate",
+            "requiredness": "required",
+            "conditions": "Plus photocopy.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Both Parents National ID Cards",
+            "requiredness": "required",
+            "conditions": "Originals and copies.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Parental Written Consent Letter",
+            "requiredness": "required",
+            "conditions": "Signed by parents granting permission for passport issuance.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://immigration.ecitizen.go.ke/",
+            "publisher": "eCitizen Kenya",
+            "page_title": "Child Passport Requirements",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost passports must be reported immediately to police and immigration. A statutory fee of KES 20,000 applies for replacement.",
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Obtain official Police Abstract from Kenya Police reporting the lost passport booklet.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          },
+          {
+            "step": "Swear an Affidavit of Loss before a Commissioner for Oaths or Magistrate.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          },
+          {
+            "step": "Apply online on eCitizen under Replacement of Lost Passport and pay KES 20,000.",
+            "source_url": "https://immigration.ecitizen.go.ke/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Police Abstract Report",
+            "requiredness": "required",
+            "conditions": "Original stamped police report.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Sworn Affidavit of Loss",
+            "requiredness": "required",
+            "conditions": "Certified by Commissioner for Oaths detailing how the passport was lost.",
+            "accepted_alternatives": [],
+            "source_url": "https://immigration.ecitizen.go.ke/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://immigration.ecitizen.go.ke/",
+            "publisher": "eCitizen Kenya",
+            "page_title": "Replacement of Lost Passport",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "MY": {
+    "country_code": "MY",
+    "country_name": "Malaysia",
+    "authority_name": "Jabatan Imigresen Malaysia (JIM), Ministry of Home Affairs",
+    "official_portal_url": "https://www.imi.gov.my/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "Pejabat Imigresen / UTC (Pusat Transformasi Bandar) & MyOnline Pasport",
+        "application_channel": "domestic",
+        "source_url": "https://imigresen-online.imi.gov.my/eservices/myPasport"
+      },
+      {
+        "name": "Perwakilan Malaysia di Luar Negeri (High Commissions & Embassies)",
+        "application_channel": "consular",
+        "source_url": "https://www.imi.gov.my/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Kanak-kanak (Children under 13 years)",
+        "min_age": 0,
+        "max_age": 12,
+        "age_basis_source": "https://www.imi.gov.my/"
+      },
+      {
+        "label": "Remaja & Dewasa (Aged 13 to 59)",
+        "min_age": 13,
+        "max_age": 59,
+        "age_basis_source": "https://www.imi.gov.my/"
+      },
+      {
+        "label": "Warga Emas (Seniors aged 60 and older)",
+        "min_age": 60,
+        "max_age": null,
+        "age_basis_source": "https://www.imi.gov.my/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.imi.gov.my/",
+        "publisher": "Jabatan Imigresen Malaysia",
+        "page_title": "Portal Rasmi Jabatan Imigresen Malaysia",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://imigresen-online.imi.gov.my/eservices/myPasport",
+        "publisher": "Jabatan Imigresen Malaysia",
+        "page_title": "MyOnline Pasport System",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Malaysian citizens applying for their first Pasport Malaysia Antarabangsa (PMA) must apply in person at an Immigration Office or UTC branch with their original MyKad.",
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Standard passport validity is 5 years. (10-year option available where implemented under Home Ministry policy).",
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Attend a Jabatan Imigresen branch or UTC with original MyKad (identity card). First-time applicants are not eligible for online application.",
+            "source_url": "https://www.imi.gov.my/"
+          },
+          {
+            "step": "Obtain queue token, complete biometric photograph and thumbprint scanning at the counter.",
+            "source_url": "https://www.imi.gov.my/"
+          },
+          {
+            "step": "Pay statutory fee by debit/credit card or Touch n Go (cashless payment enforced at most offices).",
+            "source_url": "https://www.imi.gov.my/"
+          },
+          {
+            "step": "Collect the passport within 1 hour after payment completion (standard domestic service benchmark).",
+            "source_url": "https://www.imi.gov.my/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "MyKad (National Registration Identity Card)",
+            "requiredness": "required",
+            "conditions": "Original MyKad in good condition with functioning microchip.",
+            "accepted_alternatives": [
+              "Temporary ID (JPN KPT) if MyKad is being replaced"
+            ],
+            "original_or_copy": "Original",
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "MYR",
+          "fiscal_year": 2026,
+          "statutory_source": "Passport Regulations (Jabatan Imigresen Malaysia)",
+          "standard_domestic_myr": {
+            "adult_13_to_59_years": 200,
+            "child_under_13_years": 100,
+            "senior_citizen_60_and_older": 100,
+            "persons_with_disabilities_oku": 0,
+            "students_under_21_studying_abroad": 100
+          },
+          "lost_passport_penalties_myr": {
+            "first_loss": 400,
+            "second_loss": 700,
+            "third_loss": 1200
+          },
+          "fee_records": [
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 200,
+              "emergency_surcharge": 0,
+              "total_payable": 200,
+              "applicant_category": "general_13_to_59",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard rate for applicants aged 13 to 59.",
+              "applicable_conditions": "Standard 5-year validity passport.",
+              "official_source_url": "https://www.imi.gov.my/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "child_under_13",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Statutory 50% concession for children under 13.",
+              "applicable_conditions": "Children under 13 years of age.",
+              "official_source_url": "https://www.imi.gov.my/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "senior_60_and_older",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+.",
+              "applicable_conditions": "Verified automatically via MyKad date of birth.",
+              "official_source_url": "https://www.imi.gov.my/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "persons_with_disabilities_oku",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "100% statutory fee exemption.",
+              "applicable_conditions": "Must present official OKU registration card issued by Department of Social Welfare (JKM).",
+              "official_source_url": "https://www.imi.gov.my/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.imi.gov.my/",
+            "publisher": "Jabatan Imigresen Malaysia",
+            "page_title": "Kadar Bayaran Pasport Malaysia Antarabangsa",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Malaysian adults aged 13 and above can renew their passport online via MyOnline Pasport if the existing passport is in good physical condition.",
+            "source_url": "https://imigresen-online.imi.gov.my/eservices/myPasport",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Log in to MyOnline Pasport portal, input MyKad and passport details, upload photo meeting specs, and pay fee online.",
+            "source_url": "https://imigresen-online.imi.gov.my/eservices/myPasport"
+          },
+          {
+            "step": "Collect the new passport in person at the selected immigration collection center upon presenting MyKad and old passport booklet.",
+            "source_url": "https://imigresen-online.imi.gov.my/eservices/myPasport"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Passport Booklet",
+            "requiredness": "required",
+            "conditions": "Original old passport booklet must be surrendered for invalidation.",
+            "accepted_alternatives": [],
+            "source_url": "https://imigresen-online.imi.gov.my/eservices/myPasport",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "MyKad",
+            "requiredness": "required",
+            "conditions": "Original MyKad.",
+            "accepted_alternatives": [],
+            "source_url": "https://imigresen-online.imi.gov.my/eservices/myPasport",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://imigresen-online.imi.gov.my/eservices/myPasport",
+            "publisher": "Jabatan Imigresen Malaysia",
+            "page_title": "Permohonan Pembaharuan Pasport Online",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "For minors under 18 years, a parent or legal guardian must appear in person with the child at an Immigration Office.",
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Parent and child attend Immigration Office in person with birth certificate and parents MyKad.",
+            "source_url": "https://www.imi.gov.my/"
+          },
+          {
+            "step": "Parent signs statutory consent declaration and completes biometric photo capture.",
+            "source_url": "https://www.imi.gov.my/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Sijil Kelahiran (Original Birth Certificate)",
+            "requiredness": "required",
+            "conditions": "Issued by Jabatan Pendaftaran Negara (JPN).",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Parent Original MyKad",
+            "requiredness": "required",
+            "conditions": "Legal parent registered on birth certificate.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Child MyKid or MyKad (if aged 12+)",
+            "requiredness": "required",
+            "conditions": "Original card.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.imi.gov.my/",
+            "publisher": "Jabatan Imigresen Malaysia",
+            "page_title": "Pasport untuk Kanak-kanak",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Under Malaysian law, losing a passport carries a statutory investigation and fine: MYR 400 for 1st loss, MYR 700 for 2nd loss, and MYR 1,200 for 3rd loss (plus the MYR 200 booklet fee).",
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Immediately lodge a police report at the nearest Royal Malaysia Police (PDRM) station.",
+            "source_url": "https://www.imi.gov.my/"
+          },
+          {
+            "step": "Appear in person at the State Immigration Enforcement / Passport Division with police report, MyKad, and Birth Certificate for investigation interview.",
+            "source_url": "https://www.imi.gov.my/"
+          },
+          {
+            "step": "Pay the statutory fine plus passport fee upon approval.",
+            "source_url": "https://www.imi.gov.my/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "PDRM Police Report of Loss",
+            "requiredness": "required",
+            "conditions": "Original certified police report detailing circumstances of loss or theft.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Original MyKad & Birth Certificate",
+            "requiredness": "required",
+            "conditions": "Identity and citizenship evidence.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imi.gov.my/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.imi.gov.my/",
+            "publisher": "Jabatan Imigresen Malaysia",
+            "page_title": "Gantian Pasport Hilang atau Rosak",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "NP": {
+    "country_code": "NP",
+    "country_name": "Nepal",
+    "authority_name": "Department of Passports (राहदानी विभाग), Ministry of Foreign Affairs",
+    "official_portal_url": "https://nepalpassport.gov.np/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "District Administration Offices (DAO), Area Administration Offices & DoP Kathmandu",
+        "application_channel": "domestic",
+        "source_url": "https://emrtds.nepalpassport.gov.np/"
+      },
+      {
+        "name": "Nepali Diplomatic Missions Abroad (Embassies & Consulates General)",
+        "application_channel": "consular",
+        "source_url": "https://nepalpassport.gov.np/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Minor under 10 years",
+        "min_age": 0,
+        "max_age": 9,
+        "age_basis_source": "https://nepalpassport.gov.np/"
+      },
+      {
+        "label": "Minor 10 to 15 years",
+        "min_age": 10,
+        "max_age": 15,
+        "age_basis_source": "https://nepalpassport.gov.np/"
+      },
+      {
+        "label": "Adult (16 years and older)",
+        "min_age": 16,
+        "max_age": null,
+        "age_basis_source": "https://nepalpassport.gov.np/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://nepalpassport.gov.np/",
+        "publisher": "Department of Passports, Nepal",
+        "page_title": "राहदानी विभाग (Department of Passports Official Portal)",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://emrtds.nepalpassport.gov.np/",
+        "publisher": "Department of Passports, Nepal",
+        "page_title": "Online e-Passport Pre-Enrollment System",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "All Nepali citizens applying for an e-Passport must pre-enroll online at emrtds.nepalpassport.gov.np and obtain a verified National Identity Card (NID) number.",
+            "source_url": "https://emrtds.nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Adult passports (16+) are issued with 10-year validity. Minors under 16 are issued with 5-year validity.",
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Fill out online pre-enrollment form on emrtds.nepalpassport.gov.np and select appointment location and time.",
+            "source_url": "https://emrtds.nepalpassport.gov.np/"
+          },
+          {
+            "step": "Pay the statutory fee through ConnectIPS, bank voucher, or designated revenue counter.",
+            "source_url": "https://nepalpassport.gov.np/"
+          },
+          {
+            "step": "Attend appointment with printed pre-enrollment slip, original Citizenship Certificate, and verified NID number for live biometric photo, fingerprints, and iris capture.",
+            "source_url": "https://nepalpassport.gov.np/"
+          },
+          {
+            "step": "Collect the e-Passport upon receiving SMS notification from the issuing office.",
+            "source_url": "https://nepalpassport.gov.np/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Original Nepali Citizenship Certificate (Nagarikta)",
+            "requiredness": "required",
+            "conditions": "Issued by District Administration Office.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + photocopy",
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "National Identity Card (NID) Number",
+            "requiredness": "required",
+            "conditions": "Verified NID number (or NID slip) issued by Department of National ID and Civil Registration is mandatory for adult domestic applicants.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Official NID slip / card",
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Printed Pre-Enrollment Application Slip with Barcode",
+            "requiredness": "required",
+            "conditions": "Generated from emrtds.nepalpassport.gov.np.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Printed slip",
+            "source_url": "https://emrtds.nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "NPR",
+          "fiscal_year": 2026,
+          "statutory_source": "Passport Regulations (Department of Passports, Ministry of Foreign Affairs, Nepal)",
+          "standard_domestic_npr": {
+            "standard_34_pages_dao": 5000,
+            "urgent_34_pages_dop_kathmandu": 12000,
+            "frequent_traveller_66_pages_dao": 10000,
+            "urgent_66_pages_dop_kathmandu": 20000,
+            "lost_damaged_replacement_dao": 10000,
+            "lost_damaged_replacement_dop": 17000
+          },
+          "consular_overseas_usd": {
+            "standard_34_pages": 80
+          },
+          "fee_records": [
+            {
+              "currency": "NPR",
+              "amount": 5000,
+              "base_amount": 5000,
+              "emergency_surcharge": 0,
+              "total_payable": 5000,
+              "applicant_category": "general_standard_34p",
+              "application_channel": "district_administration_office",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Standard statutory rate for 34-page booklet at DAO level.",
+              "applicable_conditions": "Standard DAO processing (approx 2–4 weeks).",
+              "official_source_url": "https://nepalpassport.gov.np/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NPR",
+              "amount": 12000,
+              "base_amount": 5000,
+              "emergency_surcharge": 7000,
+              "total_payable": 12000,
+              "applicant_category": "urgent_standard_34p",
+              "application_channel": "department_of_passports_kathmandu",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Fast-track urgent service at Department of Passports Tripureshwor.",
+              "applicable_conditions": "Delivery within 2–3 business days.",
+              "official_source_url": "https://nepalpassport.gov.np/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NPR",
+              "amount": 10000,
+              "base_amount": 10000,
+              "emergency_surcharge": 0,
+              "total_payable": 10000,
+              "applicant_category": "frequent_traveller_66p",
+              "application_channel": "district_administration_office",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard rate for 66-page booklet.",
+              "applicable_conditions": "Standard DAO issuance for frequent travellers.",
+              "official_source_url": "https://nepalpassport.gov.np/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NPR",
+              "amount": 20000,
+              "base_amount": 10000,
+              "emergency_surcharge": 10000,
+              "total_payable": 20000,
+              "applicant_category": "urgent_frequent_traveller_66p",
+              "application_channel": "department_of_passports_kathmandu",
+              "validity_period": "10_years",
+              "discount_eligibility": "Fast-track urgent rate for 66-page booklet at DoP.",
+              "applicable_conditions": "Urgent issuance at DoP Kathmandu.",
+              "official_source_url": "https://nepalpassport.gov.np/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://nepalpassport.gov.np/",
+            "publisher": "Department of Passports, Nepal",
+            "page_title": "Passport Fees and Tariffs",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Nepali citizens can renew an e-Passport within 1 year before expiry or anytime after expiry by applying through emrtds.nepalpassport.gov.np.",
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Select Renewal option on emrtds.nepalpassport.gov.np, enter old passport number and citizenship details.",
+            "source_url": "https://emrtds.nepalpassport.gov.np/"
+          },
+          {
+            "step": "Attend appointment with existing passport booklet, Citizenship certificate, and NID number.",
+            "source_url": "https://nepalpassport.gov.np/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Passport Booklet",
+            "requiredness": "required",
+            "conditions": "Original old passport booklet.",
+            "accepted_alternatives": [],
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Nepali Citizenship Certificate & NID",
+            "requiredness": "required",
+            "conditions": "Original Nagarikta and verified NID.",
+            "accepted_alternatives": [],
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://nepalpassport.gov.np/",
+            "publisher": "Department of Passports, Nepal",
+            "page_title": "Re-issue of e-Passport",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Passports for minors under 16 have 5-year validity. Issued based on Minor Identity Certificate (Nabalak Parichayapatra) and parents citizenship documents.",
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Parent fills out pre-enrollment for minor using Minor ID Certificate (Nabalak Parichayapatra).",
+            "source_url": "https://emrtds.nepalpassport.gov.np/"
+          },
+          {
+            "step": "Child and parent appear in person at DAO or DoP with original birth certificate, Nabalak Parichayapatra, parents citizenship, and marriage registration certificate.",
+            "source_url": "https://nepalpassport.gov.np/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Minor Identity Certificate (Nabalak Parichayapatra)",
+            "requiredness": "required",
+            "conditions": "Issued by District Administration Office.",
+            "accepted_alternatives": [],
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Parents Citizenship Certificates & Marriage Certificate",
+            "requiredness": "required",
+            "conditions": "Both parents Nagarikta and formal civil marriage registration.",
+            "accepted_alternatives": [],
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://nepalpassport.gov.np/",
+            "publisher": "Department of Passports, Nepal",
+            "page_title": "Minor Passport Requirements",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost or damaged passports require an official Nepal Police report and carry a double fee penalty (NPR 10,000 at DAO / NPR 17,000 at DoP Kathmandu).",
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Obtain official police loss verification report from Nepal Police.",
+            "source_url": "https://nepalpassport.gov.np/"
+          },
+          {
+            "step": "Pre-enroll online under Lost/Damaged category and attend appointment with police report and Nagarikta.",
+            "source_url": "https://nepalpassport.gov.np/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Nepal Police Loss Report",
+            "requiredness": "required",
+            "conditions": "Official police verification report certifying passport loss.",
+            "accepted_alternatives": [],
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Citizenship Certificate and NID",
+            "requiredness": "required",
+            "conditions": "Original documents.",
+            "accepted_alternatives": [],
+            "source_url": "https://nepalpassport.gov.np/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://nepalpassport.gov.np/",
+            "publisher": "Department of Passports, Nepal",
+            "page_title": "Lost Passport Replacement",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "NZ": {
+    "country_code": "NZ",
+    "country_name": "New Zealand",
+    "authority_name": "Passports Office, Te Tari Taiwhenua (Department of Internal Affairs)",
+    "official_portal_url": "https://www.passports.govt.nz/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "Online Passport Service (passports.govt.nz - Domestic & Global Mail Delivery)",
+        "application_channel": "domestic",
+        "source_url": "https://www.passports.govt.nz/"
+      },
+      {
+        "name": "New Zealand Embassies & High Commissions (Emergency Travel Documents)",
+        "application_channel": "consular",
+        "source_url": "https://www.passports.govt.nz/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Child (Under 16 years of age)",
+        "min_age": 0,
+        "max_age": 15,
+        "age_basis_source": "https://www.passports.govt.nz/"
+      },
+      {
+        "label": "Adult (16 years and older)",
+        "min_age": 16,
+        "max_age": null,
+        "age_basis_source": "https://www.passports.govt.nz/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.passports.govt.nz/",
+        "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
+        "page_title": "New Zealand Passports Official Portal",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.passports.govt.nz/fees-and-processing-times/",
+        "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
+        "page_title": "Passport Fees and Processing Times",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "New Zealand citizens can apply online via passports.govt.nz using a RealMe verified account or standard online identity check.",
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Adult passports (16+) are valid for 10 years. Child passports (under 16) are valid for 5 years.",
+            "source_url": "https://www.passports.govt.nz/fees-and-processing-times/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Apply online at passports.govt.nz, upload a compliant digital photo, and enter details of an identity referee.",
+            "source_url": "https://www.passports.govt.nz/"
+          },
+          {
+            "step": "The identity referee confirms the applicants identity online via email verification (referee must be a NZ passport holder who has known applicant for >1 year).",
+            "source_url": "https://www.passports.govt.nz/"
+          },
+          {
+            "step": "Pay the statutory fee online by credit or debit card.",
+            "source_url": "https://www.passports.govt.nz/fees-and-processing-times/"
+          },
+          {
+            "step": "Receive passport securely by tracked courier to your home or office address in NZ or overseas.",
+            "source_url": "https://www.passports.govt.nz/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "NZ Birth Certificate or Citizenship Certificate",
+            "requiredness": "required",
+            "conditions": "Details are verified electronically against the DIA Births, Deaths and Marriages database; physical certificate is rarely needed if born in NZ.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Identity Referee Confirmation",
+            "requiredness": "required",
+            "conditions": "Must be aged 16+, hold a valid NZ passport, have known applicant for at least 1 year, and not be related or live at same address.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "NZD",
+          "fiscal_year": 2026,
+          "statutory_source": "Passports Act 1992 & Passports Amendment Regulations (Department of Internal Affairs)",
+          "standard_online_nzd": {
+            "adult_10_year": 215,
+            "child_5_year": 125
+          },
+          "urgent_service_surcharge": 230,
+          "urgent_totals_nzd": {
+            "adult_urgent_total": 445,
+            "child_urgent_total": 355
+          },
+          "callout_emergency_surcharge": 390,
+          "fee_records": [
+            {
+              "currency": "NZD",
+              "amount": 215,
+              "base_amount": 215,
+              "emergency_surcharge": 0,
+              "total_payable": 215,
+              "applicant_category": "adult_16_and_over",
+              "application_channel": "online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard statutory adult rate.",
+              "applicable_conditions": "Standard online service (approx 10–15 working days).",
+              "official_source_url": "https://www.passports.govt.nz/fees-and-processing-times/",
+              "effective_date": "2024-05-27",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NZD",
+              "amount": 125,
+              "base_amount": 125,
+              "emergency_surcharge": 0,
+              "total_payable": 125,
+              "applicant_category": "child_under_16",
+              "application_channel": "online",
+              "validity_period": "5_years",
+              "discount_eligibility": "Statutory child concession.",
+              "applicable_conditions": "For children under 16 years of age.",
+              "official_source_url": "https://www.passports.govt.nz/fees-and-processing-times/",
+              "effective_date": "2024-05-27",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NZD",
+              "amount": 445,
+              "base_amount": 215,
+              "emergency_surcharge": 230,
+              "total_payable": 445,
+              "applicant_category": "adult_urgent",
+              "application_channel": "online_urgent",
+              "validity_period": "10_years",
+              "discount_eligibility": "Includes NZD 230 statutory urgent service fee.",
+              "applicable_conditions": "Urgent service delivered within 3 working days.",
+              "official_source_url": "https://www.passports.govt.nz/fees-and-processing-times/",
+              "effective_date": "2024-05-27",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NZD",
+              "amount": 355,
+              "base_amount": 125,
+              "emergency_surcharge": 230,
+              "total_payable": 355,
+              "applicant_category": "child_urgent",
+              "application_channel": "online_urgent",
+              "validity_period": "5_years",
+              "discount_eligibility": "Includes NZD 230 statutory urgent service fee.",
+              "applicable_conditions": "Urgent service delivered within 3 working days.",
+              "official_source_url": "https://www.passports.govt.nz/fees-and-processing-times/",
+              "effective_date": "2024-05-27",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.passports.govt.nz/fees-and-processing-times/",
+            "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
+            "page_title": "Passport Fees Schedule",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Adults can renew online in minutes using their existing passport details without needing an identity referee if adult appearance has not changed significantly.",
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Log in to passports.govt.nz, enter old passport details, and upload a new digital photo.",
+            "source_url": "https://www.passports.govt.nz/"
+          },
+          {
+            "step": "Pay NZD 215 fee online. Old passport is cancelled electronically upon dispatch of the new passport.",
+            "source_url": "https://www.passports.govt.nz/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing NZ Passport Details",
+            "requiredness": "required",
+            "conditions": "Entered into online renewal portal.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.passports.govt.nz/",
+            "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
+            "page_title": "Renew an Adult Passport",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Child passports (under 16) are valid for 5 years. Parental consent must be provided by a legal parent or guardian with guardianship rights under the Care of Children Act 2004.",
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Parent completes online application on child behalf, uploads photo, and provides identity referee details.",
+            "source_url": "https://www.passports.govt.nz/"
+          },
+          {
+            "step": "Parent completes legal declaration of guardianship.",
+            "source_url": "https://www.passports.govt.nz/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Parental Consent & Guardianship Declaration",
+            "requiredness": "required",
+            "conditions": "Submitted online by authorized guardian.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.passports.govt.nz/",
+            "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
+            "page_title": "Child Passport Service",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost, stolen, or damaged passports must be cancelled immediately online to prevent identity theft. Stolen passports must be reported to the police.",
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Report the loss online through the DIA Passports portal or phone +64 4 463 9360.",
+            "source_url": "https://www.passports.govt.nz/"
+          },
+          {
+            "step": "Apply for a replacement passport online; provide details of loss circumstances.",
+            "source_url": "https://www.passports.govt.nz/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Declaration of Loss or Theft",
+            "requiredness": "required",
+            "conditions": "Submitted during online replacement application; police reference needed if stolen.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.passports.govt.nz/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.passports.govt.nz/",
+            "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
+            "page_title": "Cancel a Lost or Stolen Passport",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "SG": {
+    "country_code": "SG",
+    "country_name": "Singapore",
+    "authority_name": "Immigration & Checkpoints Authority (ICA), Ministry of Home Affairs",
+    "official_portal_url": "https://www.ica.gov.sg/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "MyICA Online Portal & ICA Building (Kallang Road) / SingPost Outlets",
+        "application_channel": "domestic",
+        "source_url": "https://eservices.ica.gov.sg/esvclandingpage/myica"
+      },
+      {
+        "name": "Singapore Overseas Missions (High Commissions, Embassies, Consulates)",
+        "application_channel": "consular",
+        "source_url": "https://www.mfa.gov.sg/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Child (Under 16 years of age)",
+        "min_age": 0,
+        "max_age": 15,
+        "age_basis_source": "https://www.ica.gov.sg/"
+      },
+      {
+        "label": "Adult (16 years and older)",
+        "min_age": 16,
+        "max_age": null,
+        "age_basis_source": "https://www.ica.gov.sg/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.ica.gov.sg/",
+        "publisher": "Immigration & Checkpoints Authority, Singapore",
+        "page_title": "ICA Singapore Official Portal",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.ica.gov.sg/enter-transit-depart/more-information/singapore-citizenship/singapore-passport",
+        "publisher": "Immigration & Checkpoints Authority, Singapore",
+        "page_title": "Apply for or Renew Singapore Passport",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Singapore citizens must submit applications online through MyICA using Singpass authentication.",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Passports issued to citizens aged 16 and above have a 10-year validity. Children under 16 are issued 5-year passports.",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Log in to MyICA using Singpass, complete online application form, and upload passport photo meeting ICA specifications.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "Pay the SGD 70 application fee online via PayNow, credit/debit card, or internet banking.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "Book collection appointment online upon receiving email/SMS notification that passport is ready.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "Collect passport in person at selected SingPost post office, or at ICA Building via automated iCollect biometric kiosks.",
+            "source_url": "https://www.ica.gov.sg/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Digital Passport Photograph",
+            "requiredness": "required",
+            "conditions": "Taken within last 3 months, plain white background, matt or semi-matt finish, even lighting without shadows or glasses glare.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Digital upload (JPEG, max 2MB)",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "National Registration Identity Card (NRIC)",
+            "requiredness": "required",
+            "conditions": "Mandatory for citizens aged 15 and above upon collection.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original physical NRIC",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "SGD",
+          "fiscal_year": 2026,
+          "statutory_source": "Passports Act 2007 & Passports Regulations (Immigration & Checkpoints Authority)",
+          "standard_online_sgd": 70,
+          "counter_in_person_sgd": 80,
+          "lost_passport_penalty_fees_sgd": {
+            "first_loss": 50,
+            "second_and_subsequent_loss": 100
+          },
+          "damaged_passport_fee_sgd": 50,
+          "fee_records": [
+            {
+              "currency": "SGD",
+              "amount": 70,
+              "base_amount": 70,
+              "emergency_surcharge": 0,
+              "total_payable": 70,
+              "applicant_category": "general_online",
+              "application_channel": "online_myica",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Standard rate for all Singapore citizens applying online.",
+              "applicable_conditions": "Online submission via MyICA.",
+              "official_source_url": "https://www.ica.gov.sg/",
+              "effective_date": "2021-10-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "SGD",
+              "amount": 80,
+              "base_amount": 80,
+              "emergency_surcharge": 0,
+              "total_payable": 80,
+              "applicant_category": "counter_applicant",
+              "application_channel": "in_person_ica",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "In-person counter surcharge (+SGD 10).",
+              "applicable_conditions": "Exceptional counter application at ICA Building.",
+              "official_source_url": "https://www.ica.gov.sg/",
+              "effective_date": "2021-10-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "SGD",
+              "amount": 120,
+              "base_amount": 70,
+              "emergency_surcharge": 50,
+              "total_payable": 120,
+              "applicant_category": "first_loss_replacement",
+              "application_channel": "online_myica",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Includes statutory SGD 50 first loss fee + SGD 70 booklet fee.",
+              "applicable_conditions": "Replacement for 1st lost passport.",
+              "official_source_url": "https://www.ica.gov.sg/",
+              "effective_date": "2021-10-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "SGD",
+              "amount": 170,
+              "base_amount": 70,
+              "emergency_surcharge": 100,
+              "total_payable": 170,
+              "applicant_category": "repeat_loss_replacement",
+              "application_channel": "online_myica",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Includes statutory SGD 100 repeat loss penalty + SGD 70 booklet fee.",
+              "applicable_conditions": "Replacement for 2nd or subsequent loss within 3 years.",
+              "official_source_url": "https://www.ica.gov.sg/",
+              "effective_date": "2021-10-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.ica.gov.sg/",
+            "publisher": "Immigration & Checkpoints Authority, Singapore",
+            "page_title": "Passport Fees & Penalties",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Citizens can apply for renewal anytime online; remaining validity up to 9 months will be carried over to the new 10-year passport.",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Log in to MyICA with Singpass, submit renewal application, and upload new photograph.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "Bring existing physical passport upon collection for invalidation.",
+            "source_url": "https://www.ica.gov.sg/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Passport Booklet",
+            "requiredness": "required",
+            "conditions": "Must be brought to collection appointment for physical cancellation.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.ica.gov.sg/",
+            "publisher": "Immigration & Checkpoints Authority, Singapore",
+            "page_title": "Passport Renewal",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Child passports (under 16) are valid for 5 years. A parent must apply on behalf of the child using the parents Singpass account.",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Parent logs into MyICA, selects Child Passport, inputs child birth certificate number, and uploads child photo.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "Parent collects passport with child (child must be present for biometric identity confirmation if aged 6 and above).",
+            "source_url": "https://www.ica.gov.sg/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Child Birth Certificate or Citizenship Certificate",
+            "requiredness": "required",
+            "conditions": "Verified electronically against Dukcapil/ICA national registries.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.ica.gov.sg/",
+            "publisher": "Immigration & Checkpoints Authority, Singapore",
+            "page_title": "Child Passport Application",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost passports must be reported immediately via MyICA e-Service. First loss carries a statutory penalty of SGD 50; repeat loss within 3 years carries SGD 100 penalty.",
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Report lost passport immediately online through MyICA Report Lost Passport e-Service.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "If stolen or lost overseas, lodge a report with the local police department.",
+            "source_url": "https://www.ica.gov.sg/"
+          },
+          {
+            "step": "Apply for replacement passport online and pay replacement fee plus loss penalty.",
+            "source_url": "https://www.ica.gov.sg/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Online Loss Declaration / Police Report",
+            "requiredness": "required",
+            "conditions": "Police report mandatory if passport was stolen or lost through crime.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.ica.gov.sg/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.ica.gov.sg/",
+            "publisher": "Immigration & Checkpoints Authority, Singapore",
+            "page_title": "Report Lost or Damaged Passport",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "ES": {
+    "country_code": "ES",
+    "country_name": "Spain",
+    "authority_name": "Dirección General de la Policía (Policía Nacional, Ministerio del Interior) & MAEC",
+    "official_portal_url": "https://www.dgp.mir.es/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "Comisarías de Policía Nacional (Cita Previa en España - Expedición en el acto)",
+        "application_channel": "domestic",
+        "source_url": "https://www.citapreviadnie.es/"
+      },
+      {
+        "name": "Consulados Generales de España en el Exterior (Registro de Matrícula Consular)",
+        "application_channel": "consular",
+        "source_url": "https://www.exteriores.gob.es/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Menores de 5 años",
+        "min_age": 0,
+        "max_age": 4,
+        "age_basis_source": "https://www.dgp.mir.es/"
+      },
+      {
+        "label": "Menores y jóvenes (5 a 29 años)",
+        "min_age": 5,
+        "max_age": 29,
+        "age_basis_source": "https://www.dgp.mir.es/"
+      },
+      {
+        "label": "Adultos (30 años en adelante)",
+        "min_age": 30,
+        "max_age": null,
+        "age_basis_source": "https://www.dgp.mir.es/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.dgp.mir.es/",
+        "publisher": "Policía Nacional, Ministerio del Interior, España",
+        "page_title": "Documentación y Pasaportes",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.citapreviadnie.es/",
+        "publisher": "Policía Nacional, España",
+        "page_title": "Cita Previa DNI y Pasaporte",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.exteriores.gob.es/es/ServiciosAlCiudadano/Paginas/Pasaportes-y-otros-documentos.aspx",
+        "publisher": "Ministerio de Asuntos Exteriores, Unión Europea y Cooperación (MAEC)",
+        "page_title": "Pasaportes y Salvoconductos en el Exterior",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Spanish citizens must schedule an in-person appointment at a Policía Nacional station (domestically) or Spanish Consulate (abroad). The passport is manufactured and delivered on the spot during domestic police appointments.",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Validity: 2 years for children under 5; 5 years for applicants aged 5 to 29; 10 years for adults aged 30 and older.",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Book appointment (Cita Previa) online at citapreviadnie.es or phone 060.",
+            "source_url": "https://www.citapreviadnie.es/"
+          },
+          {
+            "step": "Attend appointment at designated Comisaría de Policía with valid DNI, photograph, and statutory fee.",
+            "source_url": "https://www.dgp.mir.es/"
+          },
+          {
+            "step": "Provide live fingerprints, verify digital data on counter terminal, and pay €30.00 in cash or card (or pre-paid online).",
+            "source_url": "https://www.dgp.mir.es/"
+          },
+          {
+            "step": "Receive the physical biometric electronic passport immediately in person before leaving the counter.",
+            "source_url": "https://www.dgp.mir.es/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Documento Nacional de Identidad (DNI)",
+            "requiredness": "required",
+            "conditions": "Original DNI in force (mandatory for all Spanish citizens resident in Spain aged 14+).",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original DNI",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Recent Color Photograph (32 x 26 mm)",
+            "requiredness": "conditional",
+            "conditions": "White background, front view. Not required if DNI was renewed recently at a station with digital capture.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original physical photo",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "EUR",
+          "fiscal_year": 2026,
+          "statutory_source": "Ley de Presupuestos Generales del Estado & Tasas de la Policía Nacional",
+          "standard_domestic_eur": 30,
+          "large_family_exemption_eur": 0,
+          "fee_records": [
+            {
+              "currency": "EUR",
+              "amount": 30,
+              "base_amount": 30,
+              "emergency_surcharge": 0,
+              "total_payable": 30,
+              "applicant_category": "general_standard",
+              "application_channel": "domestic_police_station",
+              "validity_period": "2_5_or_10_years",
+              "discount_eligibility": "Standard statutory rate for Spanish electronic passport.",
+              "applicable_conditions": "Standard issuance at Comisarías de Policía.",
+              "official_source_url": "https://www.dgp.mir.es/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "familia_numerosa",
+              "application_channel": "domestic_police_station",
+              "validity_period": "2_5_or_10_years",
+              "discount_eligibility": "100% statutory fee exemption.",
+              "applicable_conditions": "Must present valid accreditation card of Familia Numerosa (General or Especial) under Ley 40/2003.",
+              "official_source_url": "https://www.dgp.mir.es/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.dgp.mir.es/",
+            "publisher": "Policía Nacional, España",
+            "page_title": "Tasa de Expedición del Pasaporte",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Passports can be renewed when valid for less than 1 year or when all pages are full.",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Book appointment on citapreviadnie.es.",
+            "source_url": "https://www.citapreviadnie.es/"
+          },
+          {
+            "step": "Bring valid DNI and previous passport booklet to the appointment; new passport is issued on the spot.",
+            "source_url": "https://www.dgp.mir.es/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Passport Booklet & Valid DNI",
+            "requiredness": "required",
+            "conditions": "Old passport is physically perforated and returned.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.dgp.mir.es/",
+            "publisher": "Policía Nacional, España",
+            "page_title": "Renovación de Pasaporte",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Minors must appear in person accompanied by all persons exercising parental authority (patria potestad) or provide formal notary consent.",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Both parents attend the appointment with the minor and sign the official parental consent form before the police officer.",
+            "source_url": "https://www.dgp.mir.es/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Consentimiento Expreso de Quienes Ejerzan la Patria Potestad",
+            "requiredness": "required",
+            "conditions": "Executed in person before the police or via notarial deed/judicial resolution.",
+            "accepted_alternatives": [
+              "Poder Notarial de consentimiento",
+              "Resolución judicial de patria potestad exclusiva"
+            ],
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Certificación Literal de Nacimiento del Registro Civil",
+            "requiredness": "conditional",
+            "conditions": "Required if minor does not hold a DNI; issued within last 6 months for passport purposes.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.dgp.mir.es/",
+            "publisher": "Policía Nacional, España",
+            "page_title": "Pasaportes para Menores",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "A lost or stolen passport must be reported immediately (Denuncia previa) before a replacement or provisional passport can be issued.",
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "File a theft or loss complaint at a Policía Nacional or Guardia Civil station (or foreign police abroad).",
+            "source_url": "https://www.dgp.mir.es/"
+          },
+          {
+            "step": "Book appointment and present complaint copy to obtain replacement passport or temporary Salvoconducto (consular travel document).",
+            "source_url": "https://www.dgp.mir.es/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Denuncia por Pérdida o Sustracción",
+            "requiredness": "required",
+            "conditions": "Official police complaint document.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.dgp.mir.es/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.dgp.mir.es/",
+            "publisher": "Policía Nacional, España",
+            "page_title": "Sustracción o Extravío de Pasaporte",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "LK": {
+    "country_code": "LK",
+    "country_name": "Sri Lanka",
+    "authority_name": "Department of Immigration and Emigration (DIE), Ministry of Public Security",
+    "official_portal_url": "https://www.immigration.gov.lk/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "Department Head Office (Suhurupaya, Battaramulla) & Regional Offices (Kandy, Matara, Vavuniya, Kurunegala)",
+        "application_channel": "domestic",
+        "source_url": "https://www.immigration.gov.lk/"
+      },
+      {
+        "name": "Sri Lanka Overseas Diplomatic Missions (Embassies & High Commissions)",
+        "application_channel": "consular",
+        "source_url": "https://www.immigration.gov.lk/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Child under 16 years",
+        "min_age": 0,
+        "max_age": 15,
+        "age_basis_source": "https://www.immigration.gov.lk/"
+      },
+      {
+        "label": "Adult (16 years and older)",
+        "min_age": 16,
+        "max_age": null,
+        "age_basis_source": "https://www.immigration.gov.lk/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.immigration.gov.lk/",
+        "publisher": "Department of Immigration and Emigration, Sri Lanka",
+        "page_title": "Official Portal Department of Immigration and Emigration",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.immigration.gov.lk/web/index.php?option=com_content&view=article&id=141&Itemid=194&lang=en",
+        "publisher": "Department of Immigration and Emigration, Sri Lanka",
+        "page_title": "Passport Application Fees and Guidelines",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Sri Lankan citizens may apply for an All Countries passport under Normal Service or Urgent One-Day Service at the Battaramulla Head Office.",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Standard All Countries passport is valid for 10 years. For minors under 16, a 3-year minor passport option is also available.",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Obtain digital photograph from an authorized Department-approved studio across Sri Lanka and receive studio acknowledgment receipt with barcode.",
+            "source_url": "https://www.immigration.gov.lk/"
+          },
+          {
+            "step": "Reserve appointment slot online via immigration.gov.lk or report to Head Office Battaramulla / Regional Office with queue token.",
+            "source_url": "https://www.immigration.gov.lk/"
+          },
+          {
+            "step": "Submit completed Form K 35 A with original birth certificate, NIC, photo receipt, and pay statutory fee (LKR 10,000 normal / LKR 20,000 one-day urgent).",
+            "source_url": "https://www.immigration.gov.lk/"
+          },
+          {
+            "step": "Collect the passport on the same day (Urgent One-Day service) or receive via Speed Post / courier within 2–3 weeks (Normal service).",
+            "source_url": "https://www.immigration.gov.lk/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Original Birth Certificate",
+            "requiredness": "required",
+            "conditions": "Certified copy issued by the Divisional Secretariat within the last 3–6 months. Probable age birth certificates not accepted without supporting records.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original certified copy",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "National Identity Card (NIC)",
+            "requiredness": "required",
+            "conditions": "Original smart NIC or laminated NIC with English translation issued by Department for Registration of Persons.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + photocopy",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Studio Photo Acknowledgment Receipt",
+            "requiredness": "required",
+            "conditions": "Issued by approved photo studio verifying ICAO digital photo transmission.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original studio receipt",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "LKR",
+          "fiscal_year": 2026,
+          "statutory_source": "Official Gazette Extraordinary of the Democratic Socialist Republic of Sri Lanka (Immigration and Emigration Regulations)",
+          "standard_domestic_lkr": {
+            "all_countries_normal": 10000,
+            "all_countries_urgent_one_day": 20000,
+            "child_3_year_normal": 3000,
+            "child_3_year_urgent_one_day": 6000
+          },
+          "lost_passport_penalties_lkr": {
+            "with_passport_copy": 10000,
+            "without_passport_copy": 20000
+          },
+          "fee_records": [
+            {
+              "currency": "LKR",
+              "amount": 10000,
+              "base_amount": 10000,
+              "emergency_surcharge": 0,
+              "total_payable": 10000,
+              "applicant_category": "all_countries_normal",
+              "application_channel": "domestic_normal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard rate for 10-year All Countries passport.",
+              "applicable_conditions": "Standard processing (approx 14–21 working days).",
+              "official_source_url": "https://www.immigration.gov.lk/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "LKR",
+              "amount": 20000,
+              "base_amount": 10000,
+              "emergency_surcharge": 10000,
+              "total_payable": 20000,
+              "applicant_category": "all_countries_urgent",
+              "application_channel": "domestic_one_day_service",
+              "validity_period": "10_years",
+              "discount_eligibility": "Includes LKR 10,000 statutory one-day service surcharge.",
+              "applicable_conditions": "Issued same day at Battaramulla Head Office.",
+              "official_source_url": "https://www.immigration.gov.lk/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "LKR",
+              "amount": 3000,
+              "base_amount": 3000,
+              "emergency_surcharge": 0,
+              "total_payable": 3000,
+              "applicant_category": "child_under_16_normal",
+              "application_channel": "domestic_normal",
+              "validity_period": "3_years",
+              "discount_eligibility": "Statutory child 3-year validity concession.",
+              "applicable_conditions": "For children under 16 opting for 3-year validity.",
+              "official_source_url": "https://www.immigration.gov.lk/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "LKR",
+              "amount": 6000,
+              "base_amount": 3000,
+              "emergency_surcharge": 3000,
+              "total_payable": 6000,
+              "applicant_category": "child_under_16_urgent",
+              "application_channel": "domestic_one_day_service",
+              "validity_period": "3_years",
+              "discount_eligibility": "Child 3-year validity urgent one-day service.",
+              "applicable_conditions": "Issued same day at Battaramulla Head Office.",
+              "official_source_url": "https://www.immigration.gov.lk/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.immigration.gov.lk/",
+            "publisher": "Department of Immigration and Emigration, Sri Lanka",
+            "page_title": "Passport Fees Tariff",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Existing passport must be submitted for cancellation when applying for renewal or replacement of an expired booklet.",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Submit existing passport, NIC, and new photo studio receipt with Form K 35 A.",
+            "source_url": "https://www.immigration.gov.lk/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Passport Booklet",
+            "requiredness": "required",
+            "conditions": "Original passport booklet; cancelled and returned with new booklet.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "NIC & Photo Receipt",
+            "requiredness": "required",
+            "conditions": "Original NIC and studio acknowledgment.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.immigration.gov.lk/",
+            "publisher": "Department of Immigration and Emigration, Sri Lanka",
+            "page_title": "Passport Renewal",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Consent of both parents/legal guardians is required for minor child passport applications under Sri Lankan immigration law.",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Parents present child with original birth certificate, parents marriage certificate, parents NICs, and signed consent letters.",
+            "source_url": "https://www.immigration.gov.lk/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Child Original Birth Certificate",
+            "requiredness": "required",
+            "conditions": "Issued within last 3–6 months by Divisional Secretariat.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Parents NICs and Marriage Certificate",
+            "requiredness": "required",
+            "conditions": "Originals and photocopies.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Parents Consent Letter (Form K 35 A Section C)",
+            "requiredness": "required",
+            "conditions": "Signed by both parents.",
+            "accepted_alternatives": [
+              "Court custody order if parents separated/divorced"
+            ],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.immigration.gov.lk/",
+            "publisher": "Department of Immigration and Emigration, Sri Lanka",
+            "page_title": "Minor Passport Requirements",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost passports must be reported immediately to police. Under statutory regulations, a penalty fee of LKR 10,000 (with previous passport copy) or LKR 20,000 (without previous passport copy) is charged in addition to the standard passport fee.",
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "File complaint at the nearest Sri Lanka Police station and obtain certified police report copy.",
+            "source_url": "https://www.immigration.gov.lk/"
+          },
+          {
+            "step": "Submit police report, Form K 35 A, NIC, birth certificate, and pay statutory replacement penalty plus passport fee.",
+            "source_url": "https://www.immigration.gov.lk/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Sri Lanka Police Report of Loss",
+            "requiredness": "required",
+            "conditions": "Original certified extract of police complaint entry.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Copy of Lost Passport (if available)",
+            "requiredness": "conditional",
+            "conditions": "Reduces penalty fee by LKR 10,000.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.immigration.gov.lk/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.immigration.gov.lk/",
+            "publisher": "Department of Immigration and Emigration, Sri Lanka",
+            "page_title": "Lost Passport Replacement and Penalties",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
+  },
+  "ID": {
+    "country_code": "ID",
+    "country_name": "Indonesia",
+    "authority_name": "Direktorat Jenderal Imigrasi (Ministry of Law and Human Rights)",
+    "official_portal_url": "https://www.imigrasi.go.id/",
+    "rule_pack_status": "verified",
+    "last_reviewed": "2026-10-19",
+    "reviewed_by": "PassportReady Senior Research Analyst",
+    "effective_from": "2026-01-01",
+    "jurisdictions": [
+      {
+        "name": "Kantor Imigrasi & Unit Layanan Paspor (ULP)",
+        "application_channel": "domestic",
+        "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/"
+      },
+      {
+        "name": "Perwakilan RI di Luar Negeri (KBRI / KJRI)",
+        "application_channel": "consular",
+        "source_url": "https://kemlu.go.id/"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Anak-anak (Under 21 years of age)",
+        "min_age": 0,
+        "max_age": 20,
+        "age_basis_source": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/"
+      },
+      {
+        "label": "Dewasa (Aged 21 and above, or married)",
+        "min_age": 21,
+        "max_age": null,
+        "age_basis_source": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.imigrasi.go.id/",
+        "publisher": "Direktorat Jenderal Imigrasi",
+        "page_title": "Portal Resmi Direktorat Jenderal Imigrasi",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+        "publisher": "Direktorat Jenderal Imigrasi",
+        "page_title": "Biaya Dokumen Perjalanan Republik Indonesia (Tarif PNBP)",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+        "publisher": "Direktorat Jenderal Imigrasi",
+        "page_title": "Persyaratan Permohonan Paspor WNI",
+        "checked_at": "2026-10-19"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Indonesian citizens applying for the first time must book an appointment via the official Aplikasi M-Paspor and appear in person at Kantor Imigrasi.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Under Permenkumham No. 18/2022 and PP No. 51/2020, passports with 10-year validity are granted to Indonesian citizens aged 21 and above or married. Minors under 21 receive 5-year validity.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Download Aplikasi M-Paspor, register an account, upload scanned original identity documents, and select an immigration office and appointment slot.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/"
+          },
+          {
+            "step": "Pay the PNBP passport fee within 2 hours of booking using the billing code via MPN G2/G3, ATM, internet banking, or convenience stores.",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/"
+          },
+          {
+            "step": "Attend the scheduled Kantor Imigrasi appointment with original physical documents for document verification, live biometric photo capture, fingerprints, and interview.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/"
+          },
+          {
+            "step": "Collect the completed passport in person after 3–4 working days (or same day if percepatan fee was paid).",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Kartu Tanda Penduduk Elektronik (e-KTP)",
+            "requiredness": "required",
+            "conditions": "Original electronic national ID card or official temporary identity constancy (Surat Keterangan Kependudukan).",
+            "accepted_alternatives": [
+              "Surat Keterangan Pengganti KTP-el dari Disdukcapil"
+            ],
+            "original_or_copy": "Original + photocopy",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Kartu Keluarga (KK)",
+            "requiredness": "required",
+            "conditions": "Official family card issued by Dukcapil reflecting the applicant current registered address and family status.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + photocopy",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Akta Kelahiran / Akta Perkawinan / Ijazah Terakhir",
+            "requiredness": "required",
+            "conditions": "Must clearly state applicant full name, date and place of birth, and parents names. If data differs between documents, Dukcapil rectification constancy is required.",
+            "accepted_alternatives": [
+              "Buku Nikah (for married Muslim applicants)",
+              "Surat Baptis (for Christian applicants if recognized)"
+            ],
+            "original_or_copy": "Original + photocopy",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "fees": {
+          "currency": "IDR",
+          "fiscal_year": 2026,
+          "statutory_source": "Peraturan Pemerintah No. 28/2019 & No. 45/2024 tentang Jenis dan Tarif atas Jenis Penerimaan Negara Bukan Pajak (PNBP)",
+          "standard_domestic_idr": {
+            "paspor_non_elektronik_48_pages": 350000,
+            "paspor_elektronik_48_pages": 650000,
+            "paspor_elektronik_polikarbonat": 950000
+          },
+          "express_same_day_surcharge": 1000000,
+          "lost_passport_fine": 1000000,
+          "damaged_passport_fine": 500000,
+          "fee_records": [
+            {
+              "currency": "IDR",
+              "amount": 350000,
+              "base_amount": 350000,
+              "emergency_surcharge": 0,
+              "total_payable": 350000,
+              "applicant_category": "general",
+              "application_channel": "domestic",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "No discounts; statutory standard rate for 48-page non-electronic booklet.",
+              "applicable_conditions": "Standard domestic issuance for ordinary 48-page passport booklet.",
+              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+              "effective_date": "2024-12-18",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "IDR",
+              "amount": 650000,
+              "base_amount": 650000,
+              "emergency_surcharge": 0,
+              "total_payable": 650000,
+              "applicant_category": "general",
+              "application_channel": "domestic",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "No discounts; statutory standard rate for 48-page electronic biometric passport.",
+              "applicable_conditions": "Standard domestic issuance for 48-page e-Passport with biometric chip.",
+              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+              "effective_date": "2024-12-18",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "IDR",
+              "amount": 950000,
+              "base_amount": 950000,
+              "emergency_surcharge": 0,
+              "total_payable": 950000,
+              "applicant_category": "general",
+              "application_channel": "domestic",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "No discounts; statutory rate for polycarbonate data-page electronic passport.",
+              "applicable_conditions": "Available at Kantor Imigrasi equipped with polycarbonate printing technology.",
+              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+              "effective_date": "2024-12-18",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "IDR",
+              "amount": 1350000,
+              "base_amount": 350000,
+              "emergency_surcharge": 1000000,
+              "total_payable": 1350000,
+              "applicant_category": "general_urgent",
+              "application_channel": "domestic_express",
+              "validity_period": "10_years_or_5_years",
+              "discount_eligibility": "Statutory non-tax state revenue surcharge for same-day service.",
+              "applicable_conditions": "Layanan Percepatan Paspor Selesai Pada Hari yang Sama (IDR 1,000,000 statutory surcharge + IDR 350,000 booklet).",
+              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+              "effective_date": "2024-12-18",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+            "publisher": "Direktorat Jenderal Imigrasi",
+            "page_title": "Tarif Paspor dan Layanan Keimigrasian",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Indonesian citizens whose passport validity is ending (within 6 months of expiry) or full may apply for renewal (Penggantian Paspor).",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "For passports issued in Indonesia on or after 2009 with unchanged biometric data, simplified renewal requires only e-KTP and the existing passport booklet.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Submit renewal application through Aplikasi M-Paspor and choose Penggantian Paspor service.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/"
+          },
+          {
+            "step": "Attend appointment at Kantor Imigrasi with e-KTP and existing passport booklet for biometric verification.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Existing Passport Booklet (Paspor Lama)",
+            "requiredness": "required",
+            "conditions": "Original physical passport booklet must be presented; will be cancelled and returned.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + photocopy",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Kartu Tanda Penduduk Elektronik (e-KTP)",
+            "requiredness": "required",
+            "conditions": "Original e-KTP.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + photocopy",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "publisher": "Direktorat Jenderal Imigrasi",
+            "page_title": "Penggantian Paspor",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "minor_child": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Children under 21 years of age are issued passports with 5-year maximum validity under Indonesian nationality law.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Both parents must give formal statutory consent, and both parents plus the child must be physically present at Kantor Imigrasi.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Register child application in Aplikasi M-Paspor under parent account.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/"
+          },
+          {
+            "step": "Attend in-person appointment accompanied by both parents with original civil certificates and signed statement of parental consent.",
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Akta Kelahiran Anak",
+            "requiredness": "required",
+            "conditions": "Original child birth certificate issued by Dukcapil.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "e-KTP of Both Parents",
+            "requiredness": "required",
+            "conditions": "Both mother and father electronic ID cards.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Akta Perkawinan / Buku Nikah Orang Tua",
+            "requiredness": "required",
+            "conditions": "Parents marriage certificate or civil registry record.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Surat Pernyataan Orang Tua (Parental Consent Letter)",
+            "requiredness": "required",
+            "conditions": "Signed by both parents on official stamp duty (Meterai IDR 10,000).",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
+            "publisher": "Direktorat Jenderal Imigrasi",
+            "page_title": "Permohonan Paspor Anak",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      },
+      "lost_stolen": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Lost or damaged passports require a formal Police Report (Surat Keterangan Kehilangan Kepolisian) and a formal Investigation Process (Berita Acara Pemeriksaan - BAP) at Kantor Imigrasi.",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Under PP No. 28/2019, statutory non-tax revenue penalty of IDR 1,000,000 applies for lost passports, or IDR 500,000 for damaged passports, in addition to the booklet fee.",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Immediately file a missing passport report at the local Police Station (Polsek/Polres) and obtain Surat Keterangan Kehilangan.",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/"
+          },
+          {
+            "step": "Appear in person at Kantor Imigrasi for formal interrogation and drafting of Berita Acara Pemeriksaan (BAP).",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/"
+          },
+          {
+            "step": "Upon approval of the BAP by the Head of the Immigration Office, pay the statutory fine (IDR 1,000,000 for loss) plus the new passport booklet fee.",
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Surat Tanda Penerimaan Laporan Kehilangan (Police Report)",
+            "requiredness": "required",
+            "conditions": "Official police report stating passport number, circumstances, and date of loss.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "e-KTP & Kartu Keluarga",
+            "requiredness": "required",
+            "conditions": "Proof of citizenship and registered identity.",
+            "accepted_alternatives": [],
+            "source_url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
+            "last_reviewed": "2026-10-19"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+            "publisher": "Direktorat Jenderal Imigrasi",
+            "page_title": "Penggantian Paspor Karena Hilang atau Rusak",
+            "checked_at": "2026-10-19"
+          }
+        ]
+      }
+    }
   }
 };
 if (typeof module !== 'undefined' && module.exports) { module.exports = { RULE_PACKS: window.RULE_PACKS }; }

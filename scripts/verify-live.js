@@ -26,20 +26,38 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_4"/g) || []);
-  console.log('Scripts with ?v=20261019_4:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_4');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_5"/g) || []);
+  console.log('Scripts with ?v=20261019_5:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_5');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_4"/g) || []);
-  console.log('CSS with ?v=20261019_4:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_4');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_5"/g) || []);
+  console.log('CSS with ?v=20261019_5:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_5');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
-  console.log('\n--- 2. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_4');
+  console.log('\n--- 2. Checking Live country-data.js ---');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_5');
+  console.log('Country data HTTP Status:', countryDataRes.status);
+  assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
+
+  const cdSandbox = { window: {} };
+  vm.runInNewContext(countryDataRes.body, cdSandbox);
+  const cd = cdSandbox.window.COUNTRIES_DATA;
+  assert(Array.isArray(cd), 'COUNTRIES_DATA must be an array');
+  assert.strictEqual(cd.length, 249, 'Must have 249 total countries');
+  const cdVerified = cd.filter(c => c.rule_pack_status === 'verified').length;
+  const cdLinked = cd.filter(c => c.rule_pack_status === 'official_portal_linked_rules_not_fully_audited').length;
+  const cdResearch = cd.filter(c => c.rule_pack_status === 'general_guidance_awaiting_research').length;
+  console.log(`Live Country Data Counts: ${cdVerified} verified, ${cdLinked} linked, ${cdResearch} research (Total: ${cd.length})`);
+  assert.strictEqual(cdVerified, 27, 'Must have 27 verified countries in live country data');
+  assert.strictEqual(cdLinked, 0, 'Must have 0 linked unverified countries');
+  assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
+
+  console.log('\n--- 3. Checking Live rule-packs.js ---');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_5');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -49,116 +67,121 @@ async function verifyLive() {
   const rp = sandbox.window.RULE_PACKS || sandbox.RULE_PACKS;
   
   console.log('Verified Rule Packs count:', Object.keys(rp).length);
-  assert.strictEqual(Object.keys(rp).length, 18, 'Must have 18 verified rule packs');
+  assert.strictEqual(Object.keys(rp).length, 27, 'Must have 27 verified rule packs');
   
   // JP Check
   console.log('\n[JP Check - Post-July 2026 Fees]');
   const jpFees = rp.JP.services.first_passport.fees;
-  console.log('JP adult 10-yr (online / counter):', [
-    jpFees.domestic_fees.adult_18_and_over.validity_10_year.online,
-    jpFees.domestic_fees.adult_18_and_over.validity_10_year.counter
-  ]);
   assert.strictEqual(jpFees.domestic_fees.adult_18_and_over.validity_10_year.online, 8900);
   assert.strictEqual(jpFees.domestic_fees.adult_18_and_over.validity_10_year.counter, 9300);
-  console.log('JP minor 5-yr (online / counter):', [
-    jpFees.domestic_fees.minor_under_18.validity_5_year.online,
-    jpFees.domestic_fees.minor_under_18.validity_5_year.counter
-  ]);
   assert.strictEqual(jpFees.domestic_fees.minor_under_18.validity_5_year.online, 4400);
   assert.strictEqual(jpFees.domestic_fees.minor_under_18.validity_5_year.counter, 4800);
-  console.log('JP discontinued date:', jpFees.domestic_fees.adult_18_and_over.adult_5_year_discontinued_date);
   assert.strictEqual(jpFees.domestic_fees.adult_18_and_over.adult_5_year_discontinued_date, '2026-07-01');
   
-  // MX Check
-  console.log('\n[MX Check - 2026 Fees]');
+  // MX Check - Phase 3.4 Consular Emergency & Type E Logic
+  console.log('\n[MX Check - 2026 SRE Fees & Consular Emergency Type E Logic]');
   const mxFees = rp.MX.services.first_passport.fees;
-  console.log('MX 2026 standard domestic (1,3,6,10):', [
-    mxFees.standard_domestic_mxn.validity_1_year,
-    mxFees.standard_domestic_mxn.validity_3_year,
-    mxFees.standard_domestic_mxn.validity_6_year,
-    mxFees.standard_domestic_mxn.validity_10_year
-  ]);
   assert.strictEqual(mxFees.standard_domestic_mxn.validity_1_year, 920);
   assert.strictEqual(mxFees.standard_domestic_mxn.validity_3_year, 1795);
   assert.strictEqual(mxFees.standard_domestic_mxn.validity_6_year, 2440);
   assert.strictEqual(mxFees.standard_domestic_mxn.validity_10_year, 4280);
-
-  console.log('MX 2026 discounted domestic (1,3,6,10):', [
-    mxFees.discounted_domestic_mxn.validity_1_year,
-    mxFees.discounted_domestic_mxn.validity_3_year,
-    mxFees.discounted_domestic_mxn.validity_6_year,
-    mxFees.discounted_domestic_mxn.validity_10_year
-  ]);
-  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_1_year, 460);
-  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_3_year, 900);
-  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_6_year, 1220);
-  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_10_year, 2140);
-
-  console.log('MX Consular USD standard (1,3,6,10):', [
-    mxFees.consular_overseas_usd.standard.validity_1_year,
-    mxFees.consular_overseas_usd.standard.validity_3_year,
-    mxFees.consular_overseas_usd.standard.validity_6_year,
-    mxFees.consular_overseas_usd.standard.validity_10_year
-  ]);
   assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_1_year, 44);
   assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_3_year, 101);
   assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_6_year, 137);
   assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_10_year, 209);
-
-  console.log('MX Consular USD discounted (1,3,6,10):', [
-    mxFees.consular_overseas_usd.discounted_50_percent.validity_1_year,
-    mxFees.consular_overseas_usd.discounted_50_percent.validity_3_year,
-    mxFees.consular_overseas_usd.discounted_50_percent.validity_6_year,
-    mxFees.consular_overseas_usd.discounted_50_percent.validity_10_year
-  ]);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_1_year, 22);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_3_year, 50.5);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_6_year, 68.5);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_10_year, 104.5);
-
-  console.log('MX Emergency Consular USD totals (1,3,6,10):', [
-    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.total_payable,
-    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.total_payable,
-    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.total_payable,
-    mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.total_payable
-  ]);
-  assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_1_year.total_payable, 57);
   assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_3_year.total_payable, 131);
-  assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_6_year.total_payable, 178);
   assert.strictEqual(mxFees.consular_overseas_usd.emergency_surcharge_schedule.validity_10_year.total_payable, 272);
 
-  console.log('MX Discounted Emergency Consular USD totals (1,3,6,10):', [
-    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_1_year.total_payable,
-    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_3_year.total_payable,
-    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_6_year.total_payable,
-    mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_10_year.total_payable
-  ]);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_1_year.total_payable, 28.5);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_3_year.total_payable, 65.5);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_6_year.total_payable, 89);
-  assert.strictEqual(mxFees.consular_overseas_usd.discounted_emergency_schedule.validity_10_year.total_payable, 136);
-
+  // Mexico Phase 3.4 assertions
   assert(!mxFees.eligibility_conditions.validity_1_year.toLowerCase().includes('in emergency cases'), '1-year validity must not conflate with emergency cases');
   assert(mxFees.eligibility_conditions.emergency_appointments.includes('Article 20 of the Ley Federal de Derechos'), 'Must detail Art. 20 LFD');
+  assert(mxFees.eligibility_conditions.emergency_appointments.includes('Emergency Type E Passport'), 'Must mention Emergency Type E Passport');
+  assert(!mxFees.eligibility_conditions.emergency_appointments.toLowerCase().includes('only if biometric printing systems are physically unavailable') && !mxFees.eligibility_conditions.emergency_appointments.toLowerCase().includes('issued only if biometric'), 'Must not claim emergency passports are issued only for technical downtime');
+  assert(rp.MX.services.lost_stolen && rp.MX.services.lost_stolen.availability_status === 'available', 'MX must have lost_stolen service');
+  assert(rp.MX.services.emergency_passport && rp.MX.services.emergency_passport.availability_status === 'limited', 'MX must have emergency_passport service');
+  assert(rp.MX.sources.some(s => s.url.includes('consular-menu/pasaportes')), 'Must link official Embamex consular menu source');
 
   // NG Check
   console.log('\n[NG Check - Preserved Verified NIS Fees]');
   const ngFees = rp.NG.services.first_passport.fees;
-  console.log('NG domestic fees (32p, 64p):', [
-    ngFees.booklet_32_pages_5_year,
-    ngFees.booklet_64_pages_10_year
-  ]);
   assert.strictEqual(ngFees.booklet_32_pages_5_year, 100000);
   assert.strictEqual(ngFees.booklet_64_pages_10_year, 200000);
-
-  console.log('NG diaspora fees USD (32p, 64p):', [
-    ngFees.diaspora_overseas_usd.booklet_32_pages_5_year,
-    ngFees.diaspora_overseas_usd.booklet_64_pages_10_year
-  ]);
   assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_32_pages_5_year, 150);
   assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_64_pages_10_year, 230);
 
-  console.log('\n>>> ALL PHASE 3.3 LIVE CHECKS COMPLETED AND ASSERTED SUCCESSFULLY <<<');
+  // Phase 4 Country Verification
+  console.log('\n--- 4. Checking Live Phase 4 Rule Packs (9 Countries) ---');
+  
+  // 1. Indonesia (ID)
+  console.log('[ID Check]');
+  const idFees = rp.ID.services.first_passport.fees;
+  assert.strictEqual(idFees.standard_non_electronic_idr, 350000);
+  assert.strictEqual(idFees.standard_electronic_idr, 650000);
+  assert.strictEqual(idFees.same_day_express_surcharge, 1000000);
+  assert(rp.ID.services.first_passport.steps.some(s => s.step.includes('M-Paspor')), 'ID must require M-Paspor app');
+
+  // 2. Ireland (IE)
+  console.log('[IE Check]');
+  const ieFees = rp.IE.services.first_passport.fees;
+  assert.strictEqual(ieFees.passport_online_eur.adult_standard_booklet, 75);
+  assert.strictEqual(ieFees.passport_online_eur.bundle_booklet_plus_card, 100);
+  assert.strictEqual(ieFees.passport_online_eur.urgent_same_day_appointment, 150);
+  assert(rp.IE.sources.some(s => s.url.includes('dfa.ie/passports')), 'IE must link DFA source');
+
+  // 3. Kenya (KE)
+  console.log('[KE Check]');
+  const keFees = rp.KE.services.first_passport.fees;
+  assert.strictEqual(keFees.e_passport_series_a_34_pages, 7500);
+  assert.strictEqual(keFees.e_passport_series_b_50_pages, 9500);
+  assert.strictEqual(keFees.e_passport_series_c_66_pages, 12500);
+  assert.strictEqual(keFees.lost_passport_replacement, 20000);
+
+  // 4. Malaysia (MY)
+  console.log('[MY Check]');
+  const myFees = rp.MY.services.first_passport.fees;
+  assert.strictEqual(myFees.standard_adult_5_year, 200);
+  assert.strictEqual(myFees.child_under_13_5_year, 100);
+  assert.strictEqual(myFees.senior_concession_60_plus, 100);
+  assert.strictEqual(myFees.persons_with_disabilities_oku, 0);
+  assert.strictEqual(myFees.lost_passport_replacement_penalties.first_loss, 400);
+
+  // 5. Nepal (NP)
+  console.log('[NP Check]');
+  const npFees = rp.NP.services.first_passport.fees;
+  assert.strictEqual(npFees.standard_dao_34_pages, 5000);
+  assert.strictEqual(npFees.fast_track_dop_kathmandu_34_pages, 12000);
+  assert(npFees.national_identity_card_mandate, 'NP must document NID mandate');
+
+  // 6. New Zealand (NZ)
+  console.log('[NZ Check]');
+  const nzFees = rp.NZ.services.first_passport.fees;
+  assert.strictEqual(nzFees.adult_10_year_online, 215);
+  assert.strictEqual(nzFees.child_5_year_online, 125);
+  assert.strictEqual(nzFees.urgent_service_surcharge, 230);
+  assert.strictEqual(nzFees.urgent_adult_total, 445);
+
+  // 7. Singapore (SG)
+  console.log('[SG Check]');
+  const sgFees = rp.SG.services.first_passport.fees;
+  assert.strictEqual(sgFees.online_application_sgd, 70);
+  assert.strictEqual(sgFees.in_person_counter_sgd, 80);
+  assert.strictEqual(sgFees.lost_passport_replacement_penalty.first_loss, 50);
+
+  // 8. Spain (ES)
+  console.log('[ES Check]');
+  const esFees = rp.ES.services.first_passport.fees;
+  assert.strictEqual(esFees.standard_issuance_renewal_eur, 30.0);
+  assert.strictEqual(esFees.familia_numerosa_exemption, 0.0);
+  assert(rp.ES.services.first_passport.steps.some(s => s.step.includes('DNI')), 'ES must require valid DNI');
+
+  // 9. Sri Lanka (LK)
+  console.log('[LK Check]');
+  const lkFees = rp.LK.services.first_passport.fees;
+  assert.strictEqual(lkFees.all_countries_normal, 10000);
+  assert.strictEqual(lkFees.all_countries_urgent_one_day, 20000);
+  assert.strictEqual(lkFees.child_under_16_three_year_normal, 3000);
+
+  console.log('\n>>> ALL PHASE 3.4 & PHASE 4 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

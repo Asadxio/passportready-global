@@ -58,8 +58,8 @@ runTest('countries.json has 249 valid entries with unique ISO alpha-2 and alpha-
   });
 });
 
-// 3. Country Rule Packs Schema & Integrity for 18 Verified Nations
-runTest('data/country-rules.json conforms to rule schema standards for all 18 verified nations', () => {
+// 3. Country Rule Packs Schema & Integrity for 27 Verified Nations
+runTest('data/country-rules.json conforms to rule schema standards for all 27 verified nations', () => {
   const rulesPath = path.join(__dirname, '..', 'data', 'country-rules.json');
   assert(fs.existsSync(rulesPath), 'country-rules.json must exist');
   const rulePacks = JSON.parse(fs.readFileSync(rulesPath, 'utf8'));
@@ -67,10 +67,11 @@ runTest('data/country-rules.json conforms to rule schema standards for all 18 ve
   const expectedPacks = [
     'IN', 'US', 'GB', 'CA', 'AU', 'PK', 'BD',
     'DE', 'AE', 'PH', 'FR', 'SA',
-    'JP', 'MX', 'BR', 'ZA', 'NG', 'IT'
+    'JP', 'MX', 'BR', 'ZA', 'NG', 'IT',
+    'ID', 'IE', 'KE', 'MY', 'NP', 'NZ', 'SG', 'ES', 'LK'
   ];
 
-  assert.strictEqual(Object.keys(rulePacks).length, 18, 'Must have exactly 18 verified country packs');
+  assert.strictEqual(Object.keys(rulePacks).length, 27, 'Must have exactly 27 verified country packs');
 
   expectedPacks.forEach(code => {
     const pack = rulePacks[code];
@@ -154,8 +155,8 @@ runTest('country-coverage-tracker.csv has 250 rows and strict consistency with c
     else if (portalStatus === 'official_source_needs_research') needsResearchCount++;
   }
 
-  assert.strictEqual(verifiedCount, 18, 'Exactly 18 verified country packs');
-  assert.strictEqual(linkedCount, 9, 'Exactly 9 portal linked unverified countries');
+  assert.strictEqual(verifiedCount, 27, 'Exactly 27 verified country packs');
+  assert.strictEqual(linkedCount, 0, 'Exactly 0 portal linked unverified countries');
   assert.strictEqual(needsResearchCount, 222, 'Exactly 222 awaiting research countries');
   assert.strictEqual(verifiedCount + linkedCount + needsResearchCount, 249, 'Total must equal 249');
 });
@@ -397,6 +398,13 @@ runTest('Mexico (MX) rule pack reflects official 2026 SRE domestic standard, dis
   assert(fees.eligibility_conditions.emergency_appointments.includes('Article 20 of the Ley Federal de Derechos'), 'Emergency appointment policy must cite Art. 20 LFD');
   assert(fees.eligibility_conditions.emergency_appointments.includes('statutory rounded surcharge (30%)'), 'Emergency appointment policy must document 30% statutory rounded surcharge');
   assert(fees.eligibility_conditions.agricultural_worker_restriction.includes('NOT eligible for the discount on the 10-year passport'), 'Must document agricultural workers excluded from 10-year discount');
+
+  // Phase 3.4 Consular Emergency & Type E Logic Validation
+  assert(mx.services.lost_stolen && mx.services.lost_stolen.availability_status === 'available', 'MX must have lost_stolen service');
+  assert(mx.services.emergency_passport && mx.services.emergency_passport.availability_status === 'limited', 'MX must have emergency_passport service');
+  assert(fees.eligibility_conditions.emergency_appointments.includes('Emergency Type E Passport'), 'Must document Emergency Type E Passport option');
+  assert(!fees.eligibility_conditions.emergency_appointments.toLowerCase().includes('only if biometric printing systems are physically unavailable') && !fees.eligibility_conditions.emergency_appointments.toLowerCase().includes('issued only if biometric'), 'Must not claim emergency passports are issued only for technical downtime');
+  assert(mx.sources.some(s => s.url.includes('consular-menu/pasaportes')), 'Must link official Embamex consular menu source');
 });
 
 // 11. Nigeria Statutory 2025/2026 NIS Fee Reform Validation
@@ -417,7 +425,7 @@ runTest('Nigeria (NG) rule pack reflects NIS Ministerial reform fees (₦100k/�
 // 12. Granular Fee Record Schema & Stale-Rules Prevention Mechanism
 runTest('Country rule packs store individual fee records with complete metadata (stale-rules prevention)', () => {
   const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
-  const testCountries = ['JP', 'MX', 'NG'];
+  const testCountries = ['JP', 'MX', 'NG', 'ID', 'IE', 'KE', 'MY', 'NP', 'NZ', 'SG', 'ES', 'LK'];
   
   testCountries.forEach(code => {
     const pack = rulePacks[code];
@@ -426,7 +434,7 @@ runTest('Country rule packs store individual fee records with complete metadata 
     
     fees.fee_records.forEach(rec => {
       assert(rec.currency, `Record must have currency in ${code}`);
-      assert((typeof rec.amount === 'number' && rec.amount > 0) || (typeof rec.total_payable === 'number' && rec.total_payable > 0), `Record must have positive numeric amount in ${code}`);
+      assert((typeof rec.amount === 'number' && rec.amount >= 0) || (typeof rec.total_payable === 'number' && rec.total_payable >= 0), `Record must have non-negative numeric amount in ${code}`);
       assert(rec.applicant_category, `Record must have applicant_category in ${code}`);
       assert(rec.application_channel, `Record must have application_channel in ${code}`);
       assert(rec.validity_period, `Record must have validity_period in ${code}`);
@@ -536,7 +544,109 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   });
   assert(mxEmergencyRes.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'), 'Must flag MEXICO_EMERGENCY_APPOINTMENT_POLICY for Mexico emergency appointments');
 
-  
+  // Phase 4 Country Evaluations
+  // Indonesia Adult Inside Normal
+  const idAdultRes = engine.evaluate({
+    countryCode: 'ID',
+    countryName: 'Indonesia',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const idAdultFee = idAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(idAdultFee.details.includes('IDR 350,000') && idAdultFee.details.includes('IDR 650,000'), 'Indonesia adult fee must mention IDR 350,000 and IDR 650,000');
+
+  // Ireland Adult Inside Normal
+  const ieAdultRes = engine.evaluate({
+    countryCode: 'IE',
+    countryName: 'Ireland',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const ieAdultFee = ieAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(ieAdultFee.details.includes('€75') && ieAdultFee.details.includes('€100'), 'Ireland adult fee must mention €75 standard and €100 bundle');
+
+  // Kenya Adult Inside Normal
+  const keAdultRes = engine.evaluate({
+    countryCode: 'KE',
+    countryName: 'Kenya',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const keAdultFee = keAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(keAdultFee.details.includes('KES 7,500') && keAdultFee.details.includes('KES 9,500'), 'Kenya fee must mention Series A KES 7,500 and Series B KES 9,500');
+
+  // Malaysia Senior Inside (Concession)
+  const mySeniorRes = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'senior'
+  });
+  const mySeniorFee = mySeniorRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(mySeniorFee.details.includes('MYR 100') && mySeniorFee.details.includes('MYR 200'), 'Malaysia senior fee must mention MYR 100 concession vs MYR 200 standard');
+
+  // Nepal Adult Inside Urgent (DoP)
+  const npUrgentRes = engine.evaluate({
+    countryCode: 'NP',
+    countryName: 'Nepal',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  const npUrgentFee = npUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(npUrgentFee.details.includes('NPR 12,000') && npUrgentFee.details.includes('NPR 5,000'), 'Nepal urgent fee must mention NPR 12,000 DoP urgent and NPR 5,000 standard');
+
+  // New Zealand Adult Inside Urgent
+  const nzUrgentRes = engine.evaluate({
+    countryCode: 'NZ',
+    countryName: 'New Zealand',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  const nzUrgentFee = nzUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(nzUrgentFee.details.includes('NZD 445') && nzUrgentFee.details.includes('NZD 215'), 'NZ urgent fee must mention NZD 445 total and NZD 215 standard');
+
+  // Singapore Adult Inside Normal
+  const sgAdultRes = engine.evaluate({
+    countryCode: 'SG',
+    countryName: 'Singapore',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const sgAdultFee = sgAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(sgAdultFee.details.includes('SGD 70') && sgAdultFee.details.includes('SGD 80'), 'Singapore fee must mention SGD 70 online and SGD 80 counter');
+
+  // Spain Adult Inside Normal
+  const esAdultRes = engine.evaluate({
+    countryCode: 'ES',
+    countryName: 'Spain',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const esAdultFee = esAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(esAdultFee.details.includes('€30.00') && esAdultFee.details.includes('Familias Numerosas'), 'Spain fee must mention €30.00 and Familias Numerosas exemption');
+
+  // Sri Lanka Adult Inside Urgent
+  const lkUrgentRes = engine.evaluate({
+    countryCode: 'LK',
+    countryName: 'Sri Lanka',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  const lkUrgentFee = lkUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(lkUrgentFee.details.includes('LKR 20,000') && lkUrgentFee.details.includes('LKR 10,000'), 'Sri Lanka urgent fee must mention LKR 20,000 one-day and LKR 10,000 normal');
+
   // Unverified Country Warning
   const unverifiedRes = engine.evaluate({
     countryCode: 'AF',
@@ -556,7 +666,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_4'), `Stylesheet href must contain ?v=20261019_4 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_5'), `Stylesheet href must contain ?v=20261019_5 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -564,7 +674,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_4'), `Local script ${srcMatch[1]} must contain ?v=20261019_4 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_5'), `Local script ${srcMatch[1]} must contain ?v=20261019_5 cache-busting query string`);
     }
   });
 });

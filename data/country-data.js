@@ -1,5 +1,4 @@
-// Generated country data bundle for PassportReady
-window.COUNTRY_DATA = [
+window.PASSPORT_COUNTRIES = [
   {
     "name": "Afghanistan",
     "alpha2": "AF",
@@ -1343,7 +1342,7 @@ window.COUNTRY_DATA = [
     "official_name": "Republic of Indonesia",
     "authority_url": "https://www.imigrasi.go.id/",
     "authority_label": "Direktorat Jenderal Imigrasi · Kemenkumham",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -1384,7 +1383,7 @@ window.COUNTRY_DATA = [
     "official_name": null,
     "authority_url": "https://www.dfa.ie/passports/",
     "authority_label": "Department of Foreign Affairs Passport Service",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -1501,7 +1500,7 @@ window.COUNTRY_DATA = [
     "official_name": "Republic of Kenya",
     "authority_url": "https://immigration.ecitizen.go.ke/",
     "authority_label": "Directorate of Immigration Services · eCitizen",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -1711,7 +1710,7 @@ window.COUNTRY_DATA = [
     "official_name": null,
     "authority_url": "https://imigresen-online.imi.gov.my/eservices/myPasport",
     "authority_label": "Jabatan Imigresen Malaysia (MyOnline Pasport)",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -1986,7 +1985,7 @@ window.COUNTRY_DATA = [
     "official_name": "Federal Democratic Republic of Nepal",
     "authority_url": "https://nepalpassport.gov.np/",
     "authority_label": "Department of Passports · Ministry of Foreign Affairs",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -2025,7 +2024,7 @@ window.COUNTRY_DATA = [
     "official_name": null,
     "authority_url": "https://www.passports.govt.nz/",
     "authority_label": "Te Tari Taiwhenua · Department of Internal Affairs",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -2605,7 +2604,7 @@ window.COUNTRY_DATA = [
     "official_name": "Republic of Singapore",
     "authority_url": "https://www.ica.gov.sg/enter-transit-depart/more-information/singapore-citizenship/singapore-passport",
     "authority_label": "Immigration & Checkpoints Authority (ICA)",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -2738,7 +2737,7 @@ window.COUNTRY_DATA = [
     "official_name": "Kingdom of Spain",
     "authority_url": "https://www.dgp.mir.es/",
     "authority_label": "Dirección General de la Policía · Pasaporte",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -2751,7 +2750,7 @@ window.COUNTRY_DATA = [
     "official_name": "Democratic Socialist Republic of Sri Lanka",
     "authority_url": "http://www.immigration.gov.lk/",
     "authority_label": "Department of Immigration and Emigration",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
@@ -3290,6 +3289,4 @@ window.COUNTRY_DATA = [
     "search_terms": []
   }
 ];
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { COUNTRY_DATA: window.COUNTRY_DATA };
-}
+if (typeof module !== 'undefined' && module.exports) { module.exports = { PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES }; }
