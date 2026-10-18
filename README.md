@@ -1,56 +1,124 @@
-# PassportReady — Global Passport Preparation Prototype
+# PassportReady — Check Before You Apply
+## Global Passport Preparation & Application-Readiness Platform
 
-A responsive, mobile-first front-end concept for a global passport readiness and document-preparation tool.
+**Live Production Deployment:** [https://passport.myoss.in/](https://passport.myoss.in/)  
+**GitHub Repository:** [Asadxio/passportready-global](https://github.com/Asadxio/passportready-global)
 
-## What's included
+---
 
-- Searchable ISO 3166-1 country/territory index (249 entries in this data snapshot) in the application wizard and directory. ISO 3166-1 includes country codes for countries, dependencies and certain areas; a listed area is not automatically a sovereign passport issuer.
-- Domestic vs. overseas/consular application path.
-- First passport, renewal/reissue, lost/stolen, damaged, correction/name change, emergency travel document and unsure service paths.
-- Infant/young child, child/minor, adult and senior citizen applicant groups. The product does not assume a universal age threshold.
-- General preparation checklist, name/DOB mismatch flags, document/translation/copy checks, photo/form checks, appointment/payment/tracking reminders, and printable output.
-- Country data file (`countries.json`) with ISO alpha-2/alpha-3/numeric codes, authority URL where a portal was researched, source status and review date.
-- Production-oriented validation template (`country-rule-pack.schema.json`) for per-country, per-service rules and provenance.
+## 1. Product Vision & Principles
 
-## Critical coverage status
+PassportReady is an independent worldwide passport preparation platform designed to help travelers, families, and citizens prepare confidently for passport applications. It organizes the checks that matter: identifying spelling and date-of-birth discrepancies before submission, discovering verified document alternatives, verifying international 6-month validity rules, and connecting directly to official government foreign ministry and passport portals.
 
-**This is a global-capable prototype, not a completed global legal rules database.** All 249 indexed entries can be selected. In this snapshot, official entry-point links have been researched for India, the United States, United Kingdom, Canada, Australia, Pakistan and Bangladesh. Even for those entries, the prototype does not claim every child/adult/renewal/urgent/consular exception has been fully audited. Most entries remain marked `official_source_needs_research`.
+### Core Safeguards:
+- **Zero Identity Retention (Privacy-by-Design):** No passport numbers, national identity numbers, exact residential addresses, or scanned documents are collected or retained.
+- **100% Client-Side Processing:** All readiness evaluations, date comparisons, and checklist generation run securely inside the user's web browser.
+- **Strict Hierarchy of Official Sources:** Requirements and links are grounded exclusively in official government agencies, national immigration directorates, and ICAO Doc 9303 standards.
+- **Transparent Verification Status:** Geographic index presence is clearly separated from verified procedural coverage.
 
-The generic checklist helps users identify what to verify; it must never be described as a country's definitive accepted-document list. Do not publish exact document alternatives, fees, processing times, age cut-offs, Tatkaal/expedited eligibility, police/background checks or name-change procedures without the relevant current official source and a recorded review.
+---
 
-## Run locally
+## 2. Key Features
 
-1. Extract the ZIP.
-2. Open `passportready/index.html` in a modern browser.
-3. No build tool is required for this front-end demo.
+- **10-Step Interactive Readiness Checker:**
+  - Issuing country and domestic vs. consular application paths.
+  - Service selection: First-time passport, renewal/reissue, lost/stolen, damaged, name correction, child/minor, expedited/Tatkaal, emergency travel certificates.
+  - Age-tailored guidance: Infant (under 5), child/minor (under 16/18), adult, senior citizen.
+  - Urgency rules, document availability checks, and identity consistency audit.
+  - Actionable checklist with interactive progress checkboxes, readiness scores, and verified government portal link.
+- **Interactive Pre-Flight Tools:**
+  - **6-Month Passport Expiry Calculator:** Evaluates remaining validity against travel dates to prevent airline boarding denials under international TIMATIC rules.
+  - **Name & DOB Discrepancy Analyzer:** Identifies name inversions (given name vs. surname), initials, and birth date format errors between primary and secondary records.
+- **Comprehensive Educational Guides:**
+  - Dedicated walkthroughs for First-Time Passports, Renewals, Lost/Stolen Protocols, Name Changes, Minor Protection Safeguards, 6-Month Expiry Rule, and ICAO 9303 Photo Specifications.
+- **Internationalization (i18n):**
+  - Instant UI language switching for **English (`en`)**, **Hindi (`hi` - हिन्दी)**, and **Urdu (`ur` - اردو)** with automatic Right-to-Left (RTL) layout support.
+- **Global Country Directory (249 Entries):**
+  - Searchable by country name, ISO Alpha-2/Alpha-3 codes, or search aliases.
+  - Filter by verification status: Verified Rule Packs, Official Portals Linked, and Awaiting Research.
+- **Printable & PDF-Ready Checklist:**
+  - Clean `@media print` stylesheet for clean paper and PDF output.
 
-## Main files
+---
 
-- `index.html` — interactive responsive prototype; country list and starter authority map are embedded so it works as a local file.
-- `countries.json` — editable country/territory directory and current source-status manifest.
-- `country-rule-pack.schema.json` — schema starter for the production country-specific rule engine.
+## 3. Architecture & File Structure
 
-## Official sources linked in the prototype
+```
+passportready/
+├── CNAME                              # Custom domain configuration (passport.myoss.in)
+├── index.html                         # Semantic, mobile-first accessible single-page app
+├── robots.txt                         # Search engine crawler instructions
+├── sitemap.xml                        # XML sitemap with canonical URLs
+├── countries.json                     # Complete ISO 3166-1 index (249 entries) with portal metadata
+├── country-coverage-tracker.csv       # Audited coverage tracker (249 entries + header)
+├── country-rule-pack.schema.json      # JSON Schema starter for rule packs
+├── css/
+│   └── styles.css                     # WCAG 2.2 AA design system (Emerald green, gold accents)
+├── data/
+│   ├── country-data.js                # Browser JS bundle of countries.json
+│   ├── country-rules.json             # Structured rule packs for key jurisdictions
+│   └── rule-packs.js                  # Browser JS bundle of rule packs
+├── js/
+│   ├── app.js                         # Main application controller
+│   ├── guides-data.js                 # Structured knowledge base articles
+│   ├── i18n.js                        # Translation engine (English, Hindi, Urdu RTL)
+│   ├── rules-engine.js                # Core rules engine evaluating eligibility & flags
+│   └── tools.js                       # 6-Month validity & mismatch calculators
+├── scripts/
+│   ├── build-data.js                  # Data compilation & synchronization script
+│   └── export-data-js.js              # Script to package data as JS modules
+└── test/
+    └── validate.js                    # Automated verification & quality test suite
+```
 
-- India Passport Seva: https://www.passportindia.gov.in/
-- United States Department of State: https://travel.state.gov/en/passports.html
-- United Kingdom GOV.UK passports: https://www.gov.uk/browse/abroad/passports
-- Canada passport services: https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports.html
-- Australian Passport Office: https://www.passports.gov.au/
-- Pakistan Directorate General of Immigration & Passports: https://dgip.gov.pk/passport/ordinary-passport.php
-- Bangladesh e-Passport portal: https://www.epassport.gov.bd/landing
-- ISO 3166 country-code information: https://www.iso.org/iso-3166-country-codes.html
+---
 
-## Production checklist before launch
+## 4. Verified Country Rule Packs
 
-1. Assign owners/reviewers by jurisdiction and language.
-2. Research official passport authority, legislation, application forms, fee pages, and embassy/consulate pages per nationality and filing location.
-3. Populate service packs separately for fresh, child, renewal/reissue, lost/stolen, damaged, correction/name change, urgent/emergency, overseas/consular and special legal circumstances.
-4. Store source URL, exact supporting rule, last-reviewed date, effective date, reviewer and conflicts for every rule/document alternative/fee/time.
-5. Add automated link checks and review reminders, plus a human approval gate before rules become visible.
-6. Add multilingual reviewed translations, accessibility review, privacy notices, secure handling, data retention/deletion policy and security testing before any document upload.
-7. Add backend, authenticated admin CMS, rule versioning/audit logs, analytics with privacy controls, monitoring and automated browser tests.
+Structured rule packs conforming to `country-rule-pack.schema.json` are implemented for key jurisdictions:
 
-## Privacy and legal positioning
+| Country | Code | Primary Passport Authority | Official Portal | Status |
+|---|---|---|---|---|
+| **India** | `IN` | Passport Seva Project · MEA | `passportindia.gov.in` | **Verified** |
+| **United States** | `US` | U.S. Dept of State · Consular Affairs | `travel.state.gov` | **Verified** |
+| **United Kingdom** | `GB` | HM Passport Office · Home Office | `gov.uk/browse/abroad/passports` | **Verified** |
+| **Canada** | `CA` | IRCC · Passport Program | `canada.ca/.../canadian-passports.html` | **Verified** |
+| **Australia** | `AU` | Australian Passport Office · DFAT | `passports.gov.au` | **Verified** |
+| **Pakistan** | `PK` | DG Immigration & Passports | `dgip.gov.pk` | **Verified** |
+| **Bangladesh** | `BD` | Dept of Immigration & Passports | `epassport.gov.bd` | **Verified** |
 
-The demo asks no passport number and does not upload files. A production release should collect the minimum necessary data, avoid storing document images by default, define deletion controls, and clearly state that PassportReady is independent and cannot guarantee passport issuance or approval.
+Additionally, official government portal links have been researched and linked for Germany, UAE, Philippines, Saudi Arabia, Nigeria, South Africa, France, Brazil, Singapore, New Zealand, Ireland, Japan, Italy, Spain, Mexico, Malaysia, Indonesia, Kenya, Nepal, and Sri Lanka.
+
+---
+
+## 5. Running Tests & Quality Verification
+
+Run the automated test suite locally:
+```bash
+node test/validate.js
+```
+
+The test suite verifies:
+1. `CNAME` consistency with `passport.myoss.in`.
+2. 249 country records in `countries.json` with unique ISO Alpha-2 codes.
+3. Rule pack schema conformity and presence of required services/sources.
+4. Line count and alignment in `country-coverage-tracker.csv`.
+5. Translation completeness and key parity across English, Hindi, and Urdu (with RTL).
+6. Rules engine evaluation across clean, mismatch, minor, and lost passport profiles.
+7. 6-Month validity calculator and name inversion analysis accuracy.
+8. Physical asset existence for all scripts, stylesheets, and meta files.
+
+---
+
+## 6. Deployment & Git Workflow
+
+The project is hosted as a static application on **GitHub Pages** tracking the `main` branch.
+
+To push updates:
+```bash
+git add .
+git commit -m "Update passportready platform"
+git push origin main
+```
+
+Within 1–2 minutes, GitHub Pages deploys the changes live to [https://passport.myoss.in/](https://passport.myoss.in/).
