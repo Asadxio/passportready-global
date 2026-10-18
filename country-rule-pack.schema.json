@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://passportready.example/schemas/country-passport-rules.schema.json",
+  "title": "PassportReady Country Passport Rule Pack",
+  "description": "Production starter schema. Do not publish a requirement until supported by a current official source and human review.",
+  "type": "object",
+  "required": [
+    "country_code",
+    "authority_name",
+    "rule_pack_status",
+    "last_reviewed",
+    "sources",
+    "services"
+  ],
+  "properties": {
+    "country_code": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "authority_name": {
+      "type": "string"
+    },
+    "official_portal_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "rule_pack_status": {
+      "enum": [
+        "not_started",
+        "research_in_progress",
+        "official_sources_collected",
+        "review_pending",
+        "verified",
+        "needs_reverification",
+        "suspended"
+      ]
+    },
+    "last_reviewed": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "reviewed_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "effective_from": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "application_channel": {
+            "enum": [
+              "domestic",
+              "consular",
+              "both"
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "name",
+          "application_channel",
+          "source_url"
+        ]
+      }
+    },
+    "age_bands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "min_age"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "min_age": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "max_age": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "age_basis_source": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "description": "Every service must store category-specific rules; never infer availability from another country.",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "availability_status",
+          "steps",
+          "documents",
+          "sources"
+        ],
+        "properties": {
+          "availability_status": {
+            "enum": [
+              "available",
+              "not_available",
+              "limited",
+              "unknown"
+            ]
+          },
+          "eligibility": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "rule",
+                "source_url"
+              ],
+              "properties": {
+                "rule": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "last_reviewed": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "step",
+                "source_url"
+              ],
+              "properties": {
+                "step": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "document_name",
+                "requiredness",
+                "accepted_alternatives",
+                "source_url"
+              ],
+              "properties": {
+                "document_name": {
+                  "type": "string"
+                },
+                "requiredness": {
+                  "enum": [
+                    "required",
+                    "conditional",
+                    "not_required",
+                    "unknown"
+                  ]
+                },
+                "conditions": {
+                  "type": "string"
+                },
+                "accepted_alternatives": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "original_or_copy": {
+                  "type": "string"
+                },
+                "translation_or_legalisation": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "last_reviewed": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          },
+          "photo_rules": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "fees": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "processing_times": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "appointment_rules": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "verification_checks": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "delivery_rules": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "exceptions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "case": {
+                  "type": "string"
+                },
+                "guidance": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "url",
+                "publisher",
+                "page_title",
+                "checked_at"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "publisher": {
+                  "type": "string"
+                },
+                "page_title": {
+                  "type": "string"
+                },
+                "checked_at": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "effective_date": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "source_type": {
+                  "enum": [
+                    "law",
+                    "official_guidance",
+                    "official_form",
+                    "official_fee_page",
+                    "consular_notice"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "publication_gate": [
+    "At least one official source per published rule",
+    "Last reviewed date and reviewer recorded",
+    "Country + application channel + service + age group scope confirmed",
+    "Accepted alternatives explicitly sourced (never AI-invented)",
+    "Fee/time fields expire and are rechecked on a schedule",
+    "Conflicting official sources escalated for human review"
+  ]
+}
