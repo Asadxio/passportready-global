@@ -26,20 +26,20 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_5"/g) || []);
-  console.log('Scripts with ?v=20261019_5:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_5');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_6"/g) || []);
+  console.log('Scripts with ?v=20261019_6:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_6');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_5"/g) || []);
-  console.log('CSS with ?v=20261019_5:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_5');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_6"/g) || []);
+  console.log('CSS with ?v=20261019_6:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_6');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_5');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_6');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -57,7 +57,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_5');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_6');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -109,15 +109,20 @@ async function verifyLive() {
   assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_32_pages_5_year, 150);
   assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_64_pages_10_year, 230);
 
-  // Phase 4 Country Verification
-  console.log('\n--- 4. Checking Live Phase 4 Rule Packs (9 Countries) ---');
+  // Phase 4 & 4.1 Country Verification
+  console.log('\n--- 4. Checking Live Phase 4 & Phase 4.1 Rule Packs (9 Countries) ---');
   
-  // 1. Indonesia (ID)
+  // 1. Indonesia (ID - Phase 4.1 Audited)
   console.log('[ID Check]');
+  assert.strictEqual(rp.ID.age_bands.adult_minimum_age, 17, 'ID adult min age must be 17 (NOT 21)');
   const idFees = rp.ID.services.first_passport.fees;
-  assert.strictEqual(idFees.standard_domestic_idr.paspor_non_elektronik_48_pages, 350000);
-  assert.strictEqual(idFees.standard_domestic_idr.paspor_elektronik_48_pages, 650000);
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_5_tahun, 350000);
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_10_tahun, 650000);
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_elektronik_5_tahun, 650000);
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_elektronik_10_tahun, 950000);
   assert.strictEqual(idFees.express_same_day_surcharge, 1000000);
+  assert.strictEqual(idFees.lost_passport_fine, 1000000);
+  assert.strictEqual(idFees.damaged_passport_fine, 500000);
   assert(rp.ID.services.first_passport.steps.some(s => s.step.includes('M-Paspor')), 'ID must require M-Paspor app');
 
   // 2. Ireland (IE)
@@ -128,22 +133,27 @@ async function verifyLive() {
   assert.strictEqual(ieFees.urgent_appointment_service_eur.same_day_renewal, 150);
   assert(rp.IE.sources.some(s => s.url.includes('dfa.ie/passports')), 'IE must link DFA source');
 
-  // 3. Kenya (KE)
+  // 3. Kenya (KE - Phase 4.1 Audited)
   console.log('[KE Check]');
+  assert.strictEqual(rp.KE.official_portal_url, 'https://immigration.go.ke/', 'KE official portal must be https://immigration.go.ke/');
   const keFees = rp.KE.services.first_passport.fees;
-  assert.strictEqual(keFees.standard_domestic_kes.ordinary_a_series_34_pages, 7500);
-  assert.strictEqual(keFees.standard_domestic_kes.ordinary_b_series_50_pages, 9500);
-  assert.strictEqual(keFees.standard_domestic_kes.ordinary_c_series_66_pages, 12500);
-  assert.strictEqual(keFees.standard_domestic_kes.replacement_lost_passport, 20000);
+  assert.strictEqual(keFees.standard_domestic_kes.ordinary_a_series_34_pages, 7550);
+  assert.strictEqual(keFees.standard_domestic_kes.ordinary_b_series_50_pages, 9550);
+  assert.strictEqual(keFees.standard_domestic_kes.ordinary_c_series_66_pages, 12050);
+  assert.strictEqual(keFees.standard_domestic_kes.replacement_lost_passport, 20050);
+  assert.strictEqual(keFees.standard_domestic_kes.replacement_mutilated_passport, 20050);
 
-  // 4. Malaysia (MY)
+  // 4. Malaysia (MY - Phase 4.1 Audited)
   console.log('[MY Check]');
   const myFees = rp.MY.services.first_passport.fees;
-  assert.strictEqual(myFees.standard_domestic_myr.adult_13_to_59_years, 200);
-  assert.strictEqual(myFees.standard_domestic_myr.child_under_13_years, 100);
-  assert.strictEqual(myFees.standard_domestic_myr.senior_citizen_60_and_older, 100);
-  assert.strictEqual(myFees.standard_domestic_myr.persons_with_disabilities_oku, 0);
-  assert.strictEqual(myFees.lost_passport_penalties_myr.first_loss, 400);
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year, 200);
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_10_year, 350);
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_5_year, 100);
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year, 175);
+  assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year, 100);
+  assert.strictEqual(myFees.fee_schedule_by_category.persons_with_disabilities_oku.validity_10_year, 0);
+  assert.strictEqual(myFees.lost_passport_replacement_penalties.standard_adults_13_to_59.first_loss, 400);
+  assert.strictEqual(myFees.lost_passport_replacement_penalties.children_under_12_and_oku.first_loss, 300);
 
   // 5. Nepal (NP)
   console.log('[NP Check]');
@@ -152,13 +162,16 @@ async function verifyLive() {
   assert.strictEqual(npFees.standard_domestic_npr.urgent_34_pages_dop_kathmandu, 12000);
   assert(rp.NP.services.first_passport.documents.some(d => d.document_name.includes('National Identity Card (NID)')), 'NP must document NID mandate');
 
-  // 6. New Zealand (NZ)
+  // 6. New Zealand (NZ - Phase 4.1 Audited)
   console.log('[NZ Check]');
   const nzFees = rp.NZ.services.first_passport.fees;
-  assert.strictEqual(nzFees.standard_online_nzd.adult_10_year, 215);
-  assert.strictEqual(nzFees.standard_online_nzd.child_5_year, 125);
-  assert.strictEqual(nzFees.urgent_service_surcharge, 230);
-  assert.strictEqual(nzFees.urgent_totals_nzd.adult_urgent_total, 445);
+  assert.strictEqual(nzFees.standard_service_nzd.adult_10_year, 247);
+  assert.strictEqual(nzFees.standard_service_nzd.child_5_year, 144);
+  assert.strictEqual(nzFees.urgent_service_nzd.adult_10_year, 494);
+  assert.strictEqual(nzFees.urgent_service_nzd.child_5_year, 391);
+  assert.strictEqual(nzFees.after_hours_callout_service_nzd.adult_10_year, 1001);
+  assert.strictEqual(nzFees.after_hours_callout_service_nzd.child_5_year, 898);
+  assert(nzFees.courier_delivery_cost_note.includes('additional cost'));
 
   // 7. Singapore (SG)
   console.log('[SG Check]');
@@ -174,14 +187,18 @@ async function verifyLive() {
   assert.strictEqual(esFees.large_family_exemption_eur, 0.0);
   assert(rp.ES.services.first_passport.steps.some(s => s.step.includes('DNI')), 'ES must require valid DNI');
 
-  // 9. Sri Lanka (LK)
+  // 9. Sri Lanka (LK - Phase 4.1 Audited)
   console.log('[LK Check]');
   const lkFees = rp.LK.services.first_passport.fees;
   assert.strictEqual(lkFees.standard_domestic_lkr.all_countries_normal, 10000);
   assert.strictEqual(lkFees.standard_domestic_lkr.all_countries_urgent_one_day, 20000);
-  assert.strictEqual(lkFees.standard_domestic_lkr.child_3_year_normal, 3000);
+  assert.strictEqual(lkFees.standard_domestic_lkr.child_under_16_three_year_normal, 3000);
+  assert.strictEqual(lkFees.standard_domestic_lkr.child_under_16_three_year_urgent_one_day, 9000);
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_within_1_year_of_issue, 20000);
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_1_year_with_validity_remaining, 15000);
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
-  console.log('\n>>> ALL PHASE 3.4 & PHASE 4 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4 & PHASE 4.1 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

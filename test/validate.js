@@ -544,7 +544,7 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   });
   assert(mxEmergencyRes.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'), 'Must flag MEXICO_EMERGENCY_APPOINTMENT_POLICY for Mexico emergency appointments');
 
-  // Phase 4 Country Evaluations
+  // Phase 4 & Phase 4.1 Country Evaluations
   // Indonesia Adult Inside Normal
   const idAdultRes = engine.evaluate({
     countryCode: 'ID',
@@ -554,7 +554,8 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
     age: 'adult'
   });
   const idAdultFee = idAdultRes.checklist.find(c => c.id === 'official_fee_payment');
-  assert(idAdultFee.details.includes('IDR 350,000') && idAdultFee.details.includes('IDR 650,000'), 'Indonesia adult fee must mention IDR 350,000 and IDR 650,000');
+  assert(idAdultFee.details.includes('IDR 350,000') && idAdultFee.details.includes('IDR 650,000') && idAdultFee.details.includes('IDR 950,000'), 'Indonesia adult fee must mention IDR 350,000, IDR 650,000, and IDR 950,000');
+  assert(idAdultFee.details.includes('17+'), 'Indonesia fee must document 17+ validity threshold');
 
   // Ireland Adult Inside Normal
   const ieAdultRes = engine.evaluate({
@@ -567,7 +568,7 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   const ieAdultFee = ieAdultRes.checklist.find(c => c.id === 'official_fee_payment');
   assert(ieAdultFee.details.includes('€75') && ieAdultFee.details.includes('€100'), 'Ireland adult fee must mention €75 standard and €100 bundle');
 
-  // Kenya Adult Inside Normal
+  // Kenya Adult Inside Normal (Phase 4.1 Audited Fees)
   const keAdultRes = engine.evaluate({
     countryCode: 'KE',
     countryName: 'Kenya',
@@ -576,9 +577,10 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
     age: 'adult'
   });
   const keAdultFee = keAdultRes.checklist.find(c => c.id === 'official_fee_payment');
-  assert(keAdultFee.details.includes('KES 7,500') && keAdultFee.details.includes('KES 9,500'), 'Kenya fee must mention Series A KES 7,500 and Series B KES 9,500');
+  assert(keAdultFee.details.includes('KES 7,550') && keAdultFee.details.includes('KES 9,550') && keAdultFee.details.includes('KES 12,050'), 'Kenya fee must mention Series A KES 7,550, Series B KES 9,550, and Series C KES 12,050');
+  assert(keAdultFee.details.includes('KES 20,050'), 'Kenya fee must mention KES 20,050 replacement fee');
 
-  // Malaysia Senior Inside (Concession)
+  // Malaysia Senior Inside (Concession 5-year & 10-year)
   const mySeniorRes = engine.evaluate({
     countryCode: 'MY',
     countryName: 'Malaysia',
@@ -587,7 +589,19 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
     age: 'senior'
   });
   const mySeniorFee = mySeniorRes.checklist.find(c => c.id === 'official_fee_payment');
-  assert(mySeniorFee.details.includes('MYR 100') && mySeniorFee.details.includes('MYR 200'), 'Malaysia senior fee must mention MYR 100 concession vs MYR 200 standard');
+  assert(mySeniorFee.details.includes('RM 100') && mySeniorFee.details.includes('RM 175'), 'Malaysia senior fee must mention RM 100 (5-yr) and RM 175 (10-yr) concession');
+
+  // Malaysia Adult Inside Normal (5-year & 10-year options)
+  const myAdultRes = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const myAdultFee = myAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(myAdultFee.details.includes('RM 200') && myAdultFee.details.includes('RM 350'), 'Malaysia adult fee must mention RM 200 (5-yr) and RM 350 (10-yr)');
+  assert(myAdultFee.details.includes('OKU') && myAdultFee.details.includes('RM 0'), 'Malaysia adult fee must document OKU 100% exemption');
 
   // Nepal Adult Inside Urgent (DoP)
   const npUrgentRes = engine.evaluate({
@@ -601,7 +615,7 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   const npUrgentFee = npUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
   assert(npUrgentFee.details.includes('NPR 12,000') && npUrgentFee.details.includes('NPR 5,000'), 'Nepal urgent fee must mention NPR 12,000 DoP urgent and NPR 5,000 standard');
 
-  // New Zealand Adult Inside Urgent
+  // New Zealand Adult Inside Urgent (Phase 4.1 Audited Fees)
   const nzUrgentRes = engine.evaluate({
     countryCode: 'NZ',
     countryName: 'New Zealand',
@@ -611,7 +625,20 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
     urgency: 'urgent'
   });
   const nzUrgentFee = nzUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
-  assert(nzUrgentFee.details.includes('NZD 445') && nzUrgentFee.details.includes('NZD 215'), 'NZ urgent fee must mention NZD 445 total and NZD 215 standard');
+  assert(nzUrgentFee.details.includes('NZD 494') && nzUrgentFee.details.includes('NZD 247'), 'NZ urgent fee must mention NZD 494 total and NZD 247 standard');
+  assert(nzUrgentFee.details.includes('Courier delivery is an additional cost'), 'NZ fee must note courier delivery is an additional cost');
+
+  // New Zealand Emergency After-Hours Callout
+  const nzCalloutRes = engine.evaluate({
+    countryCode: 'NZ',
+    countryName: 'New Zealand',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'emergency'
+  });
+  const nzCalloutFee = nzCalloutRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(nzCalloutFee.details.includes('NZD 1,001') && nzCalloutFee.details.includes('NZD 898'), 'NZ callout fee must mention NZD 1,001 adult and NZD 898 child');
 
   // Singapore Adult Inside Normal
   const sgAdultRes = engine.evaluate({
@@ -635,6 +662,18 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   const esAdultFee = esAdultRes.checklist.find(c => c.id === 'official_fee_payment');
   assert(esAdultFee.details.includes('€30.00') && esAdultFee.details.includes('Familias Numerosas'), 'Spain fee must mention €30.00 and Familias Numerosas exemption');
 
+  // Sri Lanka Minor Child Urgent (Phase 4.1 Audited Fee LKR 9,000)
+  const lkMinorUrgentRes = engine.evaluate({
+    countryCode: 'LK',
+    countryName: 'Sri Lanka',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'minor',
+    urgency: 'urgent'
+  });
+  const lkMinorUrgentFee = lkMinorUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(lkMinorUrgentFee.details.includes('LKR 9,000') && lkMinorUrgentFee.details.includes('LKR 3,000'), 'Sri Lanka minor urgent fee must state LKR 9,000 (NOT 6,000) and LKR 3,000 normal');
+
   // Sri Lanka Adult Inside Urgent
   const lkUrgentRes = engine.evaluate({
     countryCode: 'LK',
@@ -646,6 +685,7 @@ runTest('PassportRulesEngine outputs accurate channel, location, and age fee gui
   });
   const lkUrgentFee = lkUrgentRes.checklist.find(c => c.id === 'official_fee_payment');
   assert(lkUrgentFee.details.includes('LKR 20,000') && lkUrgentFee.details.includes('LKR 10,000'), 'Sri Lanka urgent fee must mention LKR 20,000 one-day and LKR 10,000 normal');
+  assert(lkUrgentFee.details.includes('LKR 9,000'), 'Sri Lanka adult urgent text must mention LKR 9,000 for child option');
 
   // Unverified Country Warning
   const unverifiedRes = engine.evaluate({
@@ -666,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_5'), `Stylesheet href must contain ?v=20261019_5 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_6'), `Stylesheet href must contain ?v=20261019_6 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -674,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_5'), `Local script ${srcMatch[1]} must contain ?v=20261019_5 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_6'), `Local script ${srcMatch[1]} must contain ?v=20261019_6 cache-busting query string`);
     }
   });
 });
@@ -703,6 +743,82 @@ runTest('Codebase contains zero occurrences of misleading claims (#1 cause, 99% 
       assert(!pattern.test(content), `File ${file} must not contain ${desc}`);
     });
   });
+});
+
+// 16. Dedicated Phase 4.1 Audited Rule Pack Standards (NZ, KE, ID, MY, LK statutory fee & eligibility assertions)
+runTest('Dedicated Phase 4.1 Audited Rule Pack Standards (NZ, KE, ID, MY, LK statutory fee & eligibility assertions)', () => {
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  
+  // 1. New Zealand (NZ)
+  const nz = rulePacks.NZ;
+  assert(nz, 'NZ rule pack must exist');
+  const nzFees = nz.services.first_passport.fees;
+  assert.strictEqual(nzFees.currency, 'NZD');
+  assert.strictEqual(nzFees.standard_service_nzd.adult_10_year, 247, 'NZ standard adult must be NZD 247');
+  assert.strictEqual(nzFees.standard_service_nzd.child_5_year, 144, 'NZ standard child must be NZD 144');
+  assert.strictEqual(nzFees.urgent_service_nzd.adult_10_year, 494, 'NZ urgent adult total must be NZD 494');
+  assert.strictEqual(nzFees.urgent_service_nzd.child_5_year, 391, 'NZ urgent child total must be NZD 391');
+  assert.strictEqual(nzFees.after_hours_callout_service_nzd.adult_10_year, 1001, 'NZ after-hours callout adult must be NZD 1,001');
+  assert.strictEqual(nzFees.after_hours_callout_service_nzd.child_5_year, 898, 'NZ after-hours callout child must be NZD 898');
+  assert(nzFees.courier_delivery_cost_note.includes('additional cost'), 'NZ must document courier delivery is an additional cost');
+
+  // 2. Kenya (KE)
+  const ke = rulePacks.KE;
+  assert(ke, 'KE rule pack must exist');
+  assert.strictEqual(ke.official_portal_url, 'https://immigration.go.ke/', 'KE official portal must be https://immigration.go.ke/');
+  const keFees = ke.services.first_passport.fees;
+  assert.strictEqual(keFees.currency, 'KES');
+  assert.strictEqual(keFees.standard_domestic_kes.ordinary_a_series_34_pages, 7550, 'KE Series A must be KES 7,550');
+  assert.strictEqual(keFees.standard_domestic_kes.ordinary_b_series_50_pages, 9550, 'KE Series B must be KES 9,550');
+  assert.strictEqual(keFees.standard_domestic_kes.ordinary_c_series_66_pages, 12050, 'KE Series C must be KES 12,050');
+  assert.strictEqual(keFees.standard_domestic_kes.replacement_lost_passport, 20050, 'KE lost replacement must be KES 20,050');
+  assert.strictEqual(keFees.standard_domestic_kes.replacement_mutilated_passport, 20050, 'KE mutilated replacement must be KES 20,050');
+
+  // 3. Indonesia (ID)
+  const id = rulePacks.ID;
+  assert(id, 'ID rule pack must exist');
+  assert.strictEqual(id.age_bands.adult_minimum_age, 17, 'ID adult minimum age threshold must be 17 (NOT 21)');
+  const idFees = id.services.first_passport.fees;
+  assert.strictEqual(idFees.currency, 'IDR');
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_5_tahun, 350000, 'ID non-elec 5-yr must be IDR 350,000');
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_10_tahun, 650000, 'ID non-elec 10-yr must be IDR 650,000');
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_elektronik_5_tahun, 650000, 'ID electronic 5-yr must be IDR 650,000');
+  assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_elektronik_10_tahun, 950000, 'ID electronic 10-yr must be IDR 950,000');
+  assert.strictEqual(idFees.express_same_day_surcharge, 1000000, 'ID express surcharge must be IDR 1,000,000');
+  assert.strictEqual(idFees.lost_passport_fine, 1000000, 'ID lost fine must be IDR 1,000,000');
+  assert.strictEqual(idFees.damaged_passport_fine, 500000, 'ID damaged fine must be IDR 500,000');
+
+  // 4. Malaysia (MY)
+  const my = rulePacks.MY;
+  assert(my, 'MY rule pack must exist');
+  const myFees = my.services.first_passport.fees;
+  assert.strictEqual(myFees.currency, 'MYR');
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year, 200, 'MY adult 5-yr must be RM 200');
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_10_year, 350, 'MY adult 10-yr must be RM 350');
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_5_year, 100, 'MY senior 5-yr must be RM 100');
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year, 175, 'MY senior 10-yr must be RM 175');
+  assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year, 100, 'MY child under 12 must be RM 100');
+  assert.strictEqual(myFees.fee_schedule_by_category.persons_with_disabilities_oku.validity_10_year, 0, 'MY OKU must be 100% exempt (RM 0)');
+  assert.strictEqual(myFees.lost_passport_replacement_penalties.standard_adults_13_to_59.first_loss, 400, 'MY adult 1st loss fine must be RM 400');
+  assert.strictEqual(myFees.lost_passport_replacement_penalties.children_under_12_and_oku.first_loss, 300, 'MY child 1st loss fine must be RM 300');
+
+  // 5. Sri Lanka (LK)
+  const lk = rulePacks.LK;
+  assert(lk, 'LK rule pack must exist');
+  const lkFees = lk.services.first_passport.fees;
+  assert.strictEqual(lkFees.currency, 'LKR');
+  assert.strictEqual(lkFees.standard_domestic_lkr.all_countries_normal, 10000, 'LK normal must be LKR 10,000');
+  assert.strictEqual(lkFees.standard_domestic_lkr.all_countries_urgent_one_day, 20000, 'LK urgent one-day must be LKR 20,000');
+  assert.strictEqual(lkFees.standard_domestic_lkr.child_under_16_three_year_normal, 3000, 'LK child 3-yr normal must be LKR 3,000');
+  assert.strictEqual(lkFees.standard_domestic_lkr.child_under_16_three_year_urgent_one_day, 9000, 'LK child 3-yr urgent must be LKR 9,000 (NOT 6,000)');
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_within_1_year_of_issue, 20000, 'LK lost within 1 yr penalty must be LKR 20,000');
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_1_year_with_validity_remaining, 15000, 'LK lost after 1 yr penalty must be LKR 15,000');
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0, 'LK lost after expiry penalty must be LKR 0');
+
+  // 6. Reconciliation of All 27 Rule Pack Keys
+  const actualKeys = Object.keys(rulePacks).sort();
+  const expectedKeys = ['AE', 'AU', 'BD', 'BR', 'CA', 'DE', 'ES', 'FR', 'GB', 'ID', 'IE', 'IN', 'IT', 'JP', 'KE', 'LK', 'MX', 'MY', 'NG', 'NP', 'NZ', 'PH', 'PK', 'SA', 'SG', 'US', 'ZA'].sort();
+  assert.deepStrictEqual(actualKeys, expectedKeys, 'Rule pack keys must strictly match AE, BD, BR (not TR, UA, VN)');
 });
 
 console.log('\n====================================================');

@@ -1498,10 +1498,10 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "KEN",
     "numeric": "404",
     "official_name": "Republic of Kenya",
-    "authority_url": "https://immigration.ecitizen.go.ke/",
-    "authority_label": "Directorate of Immigration Services · eCitizen",
+    "authority_url": "https://immigration.go.ke/",
+    "authority_label": "Directorate of Immigration Services (State Department for Immigration and Citizen Services)",
     "portal_status": "verified",
-    "last_source_reviewed": "2026-10-18",
+    "last_source_reviewed": "2026-10-19",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   },
@@ -3289,4 +3289,6 @@ window.PASSPORT_COUNTRIES = [
     "search_terms": []
   }
 ];
-if (typeof module !== 'undefined' && module.exports) { module.exports = { PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES }; }
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES };
+}

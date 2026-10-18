@@ -241,10 +241,13 @@ class PassportRulesEngine {
       else if (countryCode === 'IN') lossNotice = "In India, lodge an FIR / Missing Certificate with local police, obtain official stamped copy, and submit Annexure F.";
       else if (countryCode === 'PH') lossNotice = "In the Philippines, an official Police Report (if valid lost passport) and notarized Affidavit of Loss are mandatory.";
       else if (countryCode === 'MX') lossNotice = "In Mexico and at Mexican consulates abroad, lodge an official police report (acta de robo o extravío). You may schedule a replacement appointment or request an Emergency Type E passport if acute travel is necessary (subject to consular assessment).";
-      else if (countryCode === 'MY') lossNotice = "In Malaysia, lodge a police report with PDRM immediately; passport loss incurs an investigation interview and statutory fine (MYR 400 for first loss).";
+      else if (countryCode === 'MY') lossNotice = "In Malaysia, lodge a police report with PDRM immediately; passport loss incurs an investigation interview and statutory fine (RM 400 for adult first loss; RM 300 for child/OKU, payable in addition to passport fee).";
       else if (countryCode === 'SG') lossNotice = "In Singapore, report the loss immediately via MyICA e-Service. First loss carries a statutory penalty fee of SGD 50; repeat loss carries SGD 100 penalty.";
-      else if (countryCode === 'KE') lossNotice = "In Kenya, obtain an official Police Abstract and sworn Affidavit of Loss before applying on eCitizen (statutory replacement fee KES 20,000).";
+      else if (countryCode === 'KE') lossNotice = "In Kenya, obtain an official Police Abstract and sworn Affidavit of Loss before applying on eCitizen (statutory replacement fee KES 20,050).";
       else if (countryCode === 'ES') lossNotice = "In Spain, file an official police complaint (denuncia previa) before Policía Nacional or Guardia Civil before requesting replacement or Salvoconducto.";
+      else if (countryCode === 'LK') lossNotice = "In Sri Lanka, obtain a certified Police Report (Form D.I.E. 39). Conditional penalty is LKR 20,000 if lost within 1 year of issue date, or LKR 15,000 if lost after 1 year with validity remaining (payable in addition to the passport fee).";
+      else if (countryCode === 'ID') lossNotice = "In Indonesia, obtain a Police Loss Report and attend a formal BAP interview at Kantor Imigrasi (statutory fine IDR 1,000,000 for loss, IDR 500,000 for damage, payable in addition to booklet fee).";
+      else if (countryCode === 'NZ') lossNotice = "In New Zealand, report the lost/stolen passport immediately online at passports.govt.nz to cancel it. Replacement standard fee is NZD 247 adult / NZD 144 child (or NZD 494 / NZD 391 urgent; courier delivery is an additional cost).";
 
       flags.push({
         severity: 'critical',
@@ -484,9 +487,15 @@ class PassportRulesEngine {
         }
       } else if (countryCode === 'ID') {
         if (location === 'inside') {
-          feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024): Non-electronic 48-page: IDR 350,000; Electronic e-Paspor: IDR 650,000; Polycarbonate e-Paspor: IDR 950,000. Same-day express service surcharge (Layanan Percepatan): IDR 1,000,000. Pay via MPN G2/G3 billing code.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'IDR', non_electronic: 350000, electronic: 650000, polycarbonate: 950000, express_surcharge: 1000000 };
+          if (age === 'minor' || age === 'infant') {
+            feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Children under 17 receive 5-year validity passports: Non-electronic 5-year: IDR 350,000; Electronic e-Paspor 5-year: IDR 650,000. (10-year validity is restricted to applicants aged 17+ or legally married). Same-day express surcharge: +IDR 1,000,000.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'IDR', non_electronic_5yr: 350000, electronic_5yr: 650000, express_surcharge: 1000000 };
+          } else {
+            feeDetails = 'Official Indonesian domestic statutory fees by passport type and validity (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Non-electronic ordinary passport: 5-year validity IDR 350,000 / 10-year validity IDR 650,000; Electronic e-Paspor: 5-year validity IDR 650,000 / 10-year validity IDR 950,000. (10-year validity available to citizens aged 17+ or married). Same-day express service surcharge (Layanan Percepatan): +IDR 1,000,000. Lost passport fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'IDR', non_electronic_5yr: 350000, non_electronic_10yr: 650000, electronic_5yr: 650000, electronic_10yr: 950000, express_surcharge: 1000000, lost_fine: 1000000, damaged_fine: 500000 };
+          }
         } else {
           feeDetails = 'Indonesian overseas consular fees are collected in local host currency under SIMKIM regulations at KBRI/KJRI diplomatic missions. Check your accredited Indonesian embassy portal.';
           feeStatus = 'consular_local_currency';
@@ -503,22 +512,22 @@ class PassportRulesEngine {
           specificFeeRecord = { currency: 'EUR', online_adult: 75, large_booklet: 105, bundle_with_card: 100, urgent_same_day: 150 };
         }
       } else if (countryCode === 'KE') {
-        feeDetails = 'Official Kenyan statutory fees (Directorate of Immigration Services / eCitizen): Ordinary EAC e-Passport 34-page Series A: KES 7,500; 50-page Series B: KES 9,500; 66-page Series C: KES 12,500. Replacement of lost passport: KES 20,000. Payment must be made online via official eCitizen portal.';
+        feeDetails = 'Official Kenyan statutory fees (Directorate of Immigration Services / immigration.go.ke / eCitizen): Ordinary EAC e-Passport 34-page Series A: KES 7,550; 50-page Series B: KES 9,550; 66-page Series C: KES 12,050. Replacement of lost passport: KES 20,050; Mutilated passport replacement: KES 20,050. Payment must be made strictly online via official eCitizen portal.';
         feeStatus = 'verified_statutory';
-        specificFeeRecord = { currency: 'KES', series_a: 7500, series_b: 9500, series_c: 12500, lost_replacement: 20000 };
+        specificFeeRecord = { currency: 'KES', series_a: 7550, series_b: 9550, series_c: 12050, lost_replacement: 20050, mutilated_replacement: 20050 };
       } else if (countryCode === 'MY') {
         if (age === 'senior') {
-          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Warga Emas (Senior Citizens aged 60+): MYR 100 (50% statutory concession compared to MYR 200 standard adult rate; 5-year validity). Verified automatically via MyKad.';
+          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Warga Emas (Senior Citizens aged 60+): RM 100 for 5-year validity (50% concession compared to RM 200 standard adult rate) or RM 175 for 10-year validity (50% concession compared to RM 350 standard adult rate). Verified automatically via MyKad.';
           feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'MYR', senior_concession: 100, standard_adult: 200 };
+          specificFeeRecord = { currency: 'MYR', senior_5yr: 100, senior_10yr: 175, standard_adult_5yr: 200, standard_adult_10yr: 350 };
         } else if (age === 'minor' || age === 'infant') {
-          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Kanak-kanak (Children under 13): MYR 100 (5-year validity). (Aged 13–17 standard adult rate MYR 200).';
+          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Kanak-kanak (Children under 12): RM 100 for 5-year validity; Applicants aged 13–17: RM 200 for 5-year validity. (Applicants under 18 are not eligible for 10-year validity).';
           feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'MYR', child_under_13: 100, standard_13_plus: 200 };
+          specificFeeRecord = { currency: 'MYR', child_under_12_5yr: 100, youth_13_to_17_5yr: 200 };
         } else {
-          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Standard 5-year validity (aged 13–59): MYR 200. Concession for children under 13 & seniors 60+: MYR 100. Persons with Disabilities (OKU): FREE upon presenting JKM card.';
+          feeDetails = 'Official Malaysian statutory fees by validity (Jabatan Imigresen Malaysia): Adults aged 18–59: RM 200 for 5-year validity; RM 350 for 10-year validity. Senior citizens (60+): RM 100 (5-yr) / RM 175 (10-yr). Children under 12: RM 100 (5-yr). Persons with Disabilities (OKU with official JKM card): 100% EXEMPT (RM 0) for both 5-year and 10-year options. Lost passport penalty: 1st loss RM 400 (adult) / RM 300 (child/OKU), 2nd loss RM 700 / RM 600, 3rd loss RM 1,200 / RM 1,100 (payable in addition to the passport fee).';
           feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'MYR', standard_adult: 200, concession: 100, oku: 0 };
+          specificFeeRecord = { currency: 'MYR', adult_5yr: 200, adult_10yr: 350, senior_5yr: 100, senior_10yr: 175, child_under_12_5yr: 100, oku: 0, first_loss_adult: 400, first_loss_child: 300 };
         }
       } else if (countryCode === 'NP') {
         if (urgency === 'urgent' || urgency === 'emergency') {
@@ -531,19 +540,23 @@ class PassportRulesEngine {
           specificFeeRecord = { currency: 'NPR', dao_standard_34p: 5000, dao_standard_66p: 10000, dop_urgent_34p: 12000 };
         }
       } else if (countryCode === 'NZ') {
-        if (urgency === 'urgent' || urgency === 'emergency') {
-          feeDetails = 'Official New Zealand urgent passport fees (DIA): Standard Adult: NZD 445 (NZD 215 base + NZD 230 urgent surcharge); Child: NZD 355 (NZD 125 base + NZD 230 urgent surcharge). Urgent delivery within 3 working days.';
+        if (urgency === 'emergency') {
+          feeDetails = 'Official New Zealand after-hours callout emergency passport fees (DIA / passports.govt.nz): Adult 10-year total fee: NZD 1,001; Child 5-year total fee: NZD 898. For urgent travel outside normal business hours. Note: Courier delivery is an additional cost.';
           feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NZD', adult_urgent: 445, child_urgent: 355, urgent_surcharge: 230 };
+          specificFeeRecord = { currency: 'NZD', adult_callout_total: 1001, child_callout_total: 898, courier_note: 'Additional cost' };
+        } else if (urgency === 'urgent') {
+          feeDetails = 'Official New Zealand urgent passport total fees (DIA / passports.govt.nz): Adult 10-year total fee: NZD 494 (ready in up to 3 working days); Child 5-year total fee: NZD 391. (Standard fees are NZD 247 adult / NZD 144 child). Note: Courier delivery is an additional cost.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NZD', adult_urgent_total: 494, child_urgent_total: 391, adult_standard: 247, child_standard: 144, courier_note: 'Additional cost' };
         } else {
           if (age === 'minor' || age === 'infant') {
-            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs): Child 5-year passport (under 16): NZD 125. Apply online at passports.govt.nz.';
+            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Child 5-year passport (under 16): Standard service NZD 144 (ready in up to 10–15 working days); Urgent service NZD 391 (ready in up to 3 working days); After-hours callout NZD 898. Note: Courier delivery is an additional cost.';
             feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'NZD', child_5yr: 125 };
+            specificFeeRecord = { currency: 'NZD', child_standard_5yr: 144, child_urgent_5yr: 391, child_callout_5yr: 898, courier_note: 'Additional cost' };
           } else {
-            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs): Adult 10-year passport (16+): NZD 215; Child 5-year passport: NZD 125. Urgent service surcharge: +NZD 230 (Adult urgent total NZD 445). Apply online at passports.govt.nz.';
+            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Adult 10-year passport (16+): Standard service NZD 247 (ready in up to 10–15 working days); Urgent service NZD 494 (ready in up to 3 working days); After-hours callout service NZD 1,001. Child 5-year: Standard NZD 144 / Urgent NZD 391 / Callout NZD 898. Note: Courier delivery is an additional cost.';
             feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'NZD', adult_10yr: 215, child_5yr: 125, urgent_surcharge: 230 };
+            specificFeeRecord = { currency: 'NZD', adult_standard_10yr: 247, adult_urgent_10yr: 494, adult_callout_10yr: 1001, child_standard_5yr: 144, child_urgent_5yr: 391, courier_note: 'Additional cost' };
           }
         }
       } else if (countryCode === 'SG') {
@@ -556,13 +569,25 @@ class PassportRulesEngine {
         specificFeeRecord = { currency: 'EUR', standard: 30.0, familia_numerosa: 0.0 };
       } else if (countryCode === 'LK') {
         if (urgency === 'urgent' || urgency === 'emergency') {
-          feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration): All Countries Urgent One-Day Service: LKR 20,000 (compared to LKR 10,000 normal service; issued same day at Battaramulla Head Office); Child 3-year urgent: LKR 6,000.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'LKR', urgent_all_countries: 20000, normal_all_countries: 10000, urgent_child_3yr: 6000 };
+          if (age === 'minor' || age === 'infant') {
+            feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year minor urgent service: LKR 9,000 (compared to LKR 3,000 normal service); Child 10-year urgent service: LKR 20,000. Issued same day at Battaramulla Head Office.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'LKR', child_3yr_urgent: 9000, child_3yr_normal: 3000, child_10yr_urgent: 20000 };
+          } else {
+            feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): All Countries Urgent One-Day Service: LKR 20,000 (compared to LKR 10,000 normal service; issued same day at Battaramulla Head Office); Child 3-year urgent: LKR 9,000.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'LKR', urgent_all_countries: 20000, normal_all_countries: 10000, child_3yr_urgent: 9000 };
+          }
         } else {
-          feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration): All Countries Normal Service: LKR 10,000 (10-year validity); Urgent One-Day Service: LKR 20,000. Child 3-year minor option: LKR 3,000 normal / LKR 6,000 urgent. Approved studio digital photo receipt required.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'LKR', normal_all_countries: 10000, urgent_all_countries: 20000, child_3yr_normal: 3000 };
+          if (age === 'minor' || age === 'infant') {
+            feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year validity: LKR 3,000 normal / LKR 9,000 urgent one-day; Standard 10-year passport: LKR 10,000 normal / LKR 20,000 urgent. Approved studio digital photo receipt required.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'LKR', child_3yr_normal: 3000, child_3yr_urgent: 9000, child_10yr_normal: 10000, child_10yr_urgent: 20000 };
+          } else {
+            feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): All Countries Normal Service: LKR 10,000 (10-year validity); Urgent One-Day Service: LKR 20,000. Child 3-year minor option: LKR 3,000 normal / LKR 9,000 urgent. Conditional lost-passport penalty: LKR 20,000 if lost within 1 year of issue date; LKR 15,000 if lost after 1 year with validity remaining (payable in addition to the passport fee). No penalty if validity already expired.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'LKR', normal_all_countries: 10000, urgent_all_countries: 20000, child_3yr_normal: 3000, child_3yr_urgent: 9000, lost_penalty_under_1yr: 20000, lost_penalty_over_1yr: 15000 };
+          }
         }
       }
     } else if (!isVerifiedPack) {
