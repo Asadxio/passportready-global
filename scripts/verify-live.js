@@ -26,20 +26,20 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_6"/g) || []);
-  console.log('Scripts with ?v=20261019_6:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_6');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_7"/g) || []);
+  console.log('Scripts with ?v=20261019_7:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_7');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_6"/g) || []);
-  console.log('CSS with ?v=20261019_6:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_6');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_7"/g) || []);
+  console.log('CSS with ?v=20261019_7:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_7');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_6');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_7');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -57,7 +57,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_6');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_7');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -112,9 +112,11 @@ async function verifyLive() {
   // Phase 4 & 4.1 Country Verification
   console.log('\n--- 4. Checking Live Phase 4 & Phase 4.1 Rule Packs (9 Countries) ---');
   
-  // 1. Indonesia (ID - Phase 4.1 Audited)
+  // 1. Indonesia (ID - Phase 4.1 & Phase 4.2 Audited)
   console.log('[ID Check]');
   assert.strictEqual(rp.ID.age_bands.adult_minimum_age, 17, 'ID adult min age must be 17 (NOT 21)');
+  assert(rp.ID.age_bands.statutory_exceptions && rp.ID.age_bands.statutory_exceptions.legal_marriage_under_17, 'ID must have legal_marriage_under_17 exception');
+  assert.strictEqual(rp.ID.age_bands.statutory_exceptions.legal_marriage_under_17.validity_period, '10_years');
   const idFees = rp.ID.services.first_passport.fees;
   assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_5_tahun, 350000);
   assert.strictEqual(idFees.passport_fees_by_product_and_validity_idr.paspor_biasa_non_elektronik_10_tahun, 650000);
@@ -143,17 +145,17 @@ async function verifyLive() {
   assert.strictEqual(keFees.standard_domestic_kes.replacement_lost_passport, 20050);
   assert.strictEqual(keFees.standard_domestic_kes.replacement_mutilated_passport, 20050);
 
-  // 4. Malaysia (MY - Phase 4.1 Audited)
+  // 4. Malaysia (MY - Phase 4.2 Audited)
   console.log('[MY Check]');
   const myFees = rp.MY.services.first_passport.fees;
-  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year, 200);
-  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_10_year, 350);
-  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_5_year, 100);
-  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year, 175);
-  assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year, 100);
-  assert.strictEqual(myFees.fee_schedule_by_category.persons_with_disabilities_oku.validity_10_year, 0);
-  assert.strictEqual(myFees.lost_passport_replacement_penalties.standard_adults_13_to_59.first_loss, 400);
-  assert.strictEqual(myFees.lost_passport_replacement_penalties.children_under_12_and_oku.first_loss, 300);
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year.amount, 200);
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_10_year.amount, 350);
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_5_year.amount, 100);
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year.amount, 175);
+  assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year.amount, 100);
+  assert.strictEqual(myFees.fee_schedule_by_category.oku_18_and_older.validity_10_year.amount, 0);
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.adult_18_to_59_years.first_loss, 400);
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.children_under_12_years.first_loss, 300);
 
   // 5. Nepal (NP)
   console.log('[NP Check]');
@@ -198,7 +200,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_1_year_with_validity_remaining, 15000);
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4 & PHASE 4.1 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1 & PHASE 4.2 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_6'), `Stylesheet href must contain ?v=20261019_6 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_7'), `Stylesheet href must contain ?v=20261019_7 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_6'), `Local script ${srcMatch[1]} must contain ?v=20261019_6 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_7'), `Local script ${srcMatch[1]} must contain ?v=20261019_7 cache-busting query string`);
     }
   });
 });
@@ -793,14 +793,14 @@ runTest('Dedicated Phase 4.1 Audited Rule Pack Standards (NZ, KE, ID, MY, LK sta
   assert(my, 'MY rule pack must exist');
   const myFees = my.services.first_passport.fees;
   assert.strictEqual(myFees.currency, 'MYR');
-  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year, 200, 'MY adult 5-yr must be RM 200');
-  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_10_year, 350, 'MY adult 10-yr must be RM 350');
-  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_5_year, 100, 'MY senior 5-yr must be RM 100');
-  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year, 175, 'MY senior 10-yr must be RM 175');
-  assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year, 100, 'MY child under 12 must be RM 100');
-  assert.strictEqual(myFees.fee_schedule_by_category.persons_with_disabilities_oku.validity_10_year, 0, 'MY OKU must be 100% exempt (RM 0)');
-  assert.strictEqual(myFees.lost_passport_replacement_penalties.standard_adults_13_to_59.first_loss, 400, 'MY adult 1st loss fine must be RM 400');
-  assert.strictEqual(myFees.lost_passport_replacement_penalties.children_under_12_and_oku.first_loss, 300, 'MY child 1st loss fine must be RM 300');
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year.amount, 200, 'MY adult 5-yr must be RM 200');
+  assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_10_year.amount, 350, 'MY adult 10-yr must be RM 350');
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_5_year.amount, 100, 'MY senior 5-yr must be RM 100');
+  assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year.amount, 175, 'MY senior 10-yr must be RM 175');
+  assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year.amount, 100, 'MY child under 12 must be RM 100');
+  assert.strictEqual(myFees.fee_schedule_by_category.oku_18_and_older.validity_10_year.amount, 0, 'MY OKU 18+ must be 100% exempt (RM 0)');
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.adult_18_to_59_years.first_loss, 400, 'MY adult 1st loss fine must be RM 400');
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.children_under_12_years.first_loss, 300, 'MY child 1st loss fine must be RM 300');
 
   // 5. Sri Lanka (LK)
   const lk = rulePacks.LK;
@@ -819,6 +819,190 @@ runTest('Dedicated Phase 4.1 Audited Rule Pack Standards (NZ, KE, ID, MY, LK sta
   const actualKeys = Object.keys(rulePacks).sort();
   const expectedKeys = ['AE', 'AU', 'BD', 'BR', 'CA', 'DE', 'ES', 'FR', 'GB', 'ID', 'IE', 'IN', 'IT', 'JP', 'KE', 'LK', 'MX', 'MY', 'NG', 'NP', 'NZ', 'PH', 'PK', 'SA', 'SG', 'US', 'ZA'].sort();
   assert.deepStrictEqual(actualKeys, expectedKeys, 'Rule pack keys must strictly match AE, BD, BR (not TR, UA, VN)');
+});
+
+// 17. Phase 4.2 Comprehensive Statutory Accuracy: Malaysia 16-Case Audit, Indonesia Legal-Marriage Exception, and Multi-Jurisdiction Regressions
+runTest('Phase 4.2 Comprehensive Statutory Accuracy: Malaysia 16-Case Audit, Indonesia Legal-Marriage Exception, and Multi-Jurisdiction Regressions', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // ================= MALAYSIA 16-CASE AUDIT =================
+  // Case 1: Adult (18-59) 5-year validity -> RM 200
+  const c1 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'adult', validity: '5_year' });
+  const f1 = c1.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f1.details.includes('RM 200') && !f1.details.includes('RM 350'), 'C1: MY Adult 5-yr must be RM 200');
+
+  // Case 2: Adult (18-59) 10-year validity -> RM 350
+  const c2 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'adult', validity: '10_year' });
+  const f2 = c2.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f2.details.includes('RM 350') && !f2.details.includes('RM 200'), 'C2: MY Adult 10-yr must be RM 350');
+
+  // Case 3: Child under 12 (age 11) -> 5-yr RM 100 eligible; 10-yr not_eligible
+  const c3_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 11, validity: '5_year' });
+  const f3_5 = c3_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f3_5.details.includes('RM 100'), 'C3: MY child under 12 5-yr must be RM 100');
+  const c3_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 11, validity: '10_year' });
+  const f3_10 = c3_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f3_10.details.toLowerCase().includes('not eligible') || f3_10.feeStatus === 'not_eligible', 'C3: MY child under 12 10-yr must be NOT ELIGIBLE');
+  assert(c3_10.flags.some(fl => fl.code === 'MALAYSIA_VALIDITY_INELIGIBLE'), 'C3: Must flag MALAYSIA_VALIDITY_INELIGIBLE');
+
+  // Case 4: Age 12 minor -> 5-yr RM 200 eligible; 10-yr not_eligible (statutory transition)
+  const c4_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 12, validity: '5_year' });
+  const f4_5 = c4_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f4_5.details.includes('RM 200'), 'C4: MY age 12 5-yr must be RM 200 (NOT RM 100)');
+  const c4_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 12, validity: '10_year' });
+  const f4_10 = c4_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f4_10.details.toLowerCase().includes('not eligible') || f4_10.feeStatus === 'not_eligible', 'C4: MY age 12 10-yr must be NOT ELIGIBLE');
+
+  // Case 5: Minor 13-17 -> 5-yr RM 200 eligible; 10-yr not_eligible
+  const c5_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'minor', ageExact: 16, validity: '5_year' });
+  const f5_5 = c5_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f5_5.details.includes('RM 200'), 'C5: MY minor 13-17 5-yr must be RM 200');
+  const c5_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'minor', validity: '10_year' });
+  const f5_10 = c5_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f5_10.details.toLowerCase().includes('not eligible') || f5_10.feeStatus === 'not_eligible', 'C5: MY minor 10-yr must be NOT ELIGIBLE');
+
+  // Case 6: Senior (60+) 5-year validity -> RM 100
+  const c6 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'senior', validity: '5_year' });
+  const f6 = c6.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f6.details.includes('RM 100') && !f6.details.includes('RM 175'), 'C6: MY Senior 5-yr must be RM 100');
+
+  // Case 7: Senior (60+) 10-year validity -> RM 175
+  const c7 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'senior', validity: '10_year' });
+  const f7 = c7.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f7.details.includes('RM 175') && !f7.details.includes('RM 100'), 'C7: MY Senior 10-yr must be RM 175');
+
+  // Case 8: OKU under 18 -> 5-yr Free (RM 0); 10-yr not_eligible
+  const c8_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'oku_under_18', validity: '5_year' });
+  const f8_5 = c8_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f8_5.details.includes('RM 0 (Free)') || f8_5.details.includes('RM 0'), 'C8: MY OKU under 18 5-yr must be RM 0');
+  const c8_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'oku_under_18', validity: '10_year' });
+  const f8_10 = c8_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f8_10.details.toLowerCase().includes('not eligible') || f8_10.feeStatus === 'not_eligible', 'C8: MY OKU under 18 10-yr must be NOT ELIGIBLE');
+
+  // Case 9: OKU 18+ -> 10-yr Free (RM 0); 5-yr not_eligible
+  const c9_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'oku_18_plus', validity: '10_year' });
+  const f9_10 = c9_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f9_10.details.includes('RM 0 (Free)') || f9_10.details.includes('RM 0'), 'C9: MY OKU 18+ 10-yr must be RM 0');
+  const c9_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'oku_18_plus', validity: '5_year' });
+  const f9_5 = c9_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f9_5.details.toLowerCase().includes('not eligible') || f9_5.feeStatus === 'not_eligible', 'C9: MY OKU 18+ 5-yr must be NOT ELIGIBLE');
+
+  // Case 10: Overseas degree student under 21 -> 5-yr RM 100; 10-yr not_eligible
+  const c10_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'students_under_21_degree_abroad', validity: '5_year' });
+  const f10_5 = c10_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f10_5.details.includes('RM 100'), 'C10: MY overseas student 5-yr must be RM 100');
+  const c10_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'students_under_21_degree_abroad', validity: '10_year' });
+  const f10_10 = c10_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f10_10.details.toLowerCase().includes('not eligible') || f10_10.feeStatus === 'not_eligible', 'C10: MY overseas student 10-yr must be NOT ELIGIBLE');
+
+  // Case 11: Hajj pilgrims -> 5-yr RM 100; 10-yr not_eligible
+  const c11_5 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'hajj_pilgrims', validity: '5_year' });
+  const f11_5 = c11_5.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f11_5.details.includes('RM 100'), 'C11: MY Hajj pilgrim 5-yr must be RM 100');
+  const c11_10 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', applicantCategory: 'hajj_pilgrims', validity: '10_year' });
+  const f11_10 = c11_10.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f11_10.details.toLowerCase().includes('not eligible') || f11_10.feeStatus === 'not_eligible', 'C11: MY Hajj pilgrim 10-yr must be NOT ELIGIBLE');
+
+  // Case 12: Lost 5-year replacement schedule across all tiers
+  const mySched5 = rulePacks.MY.services.first_passport.fees.lost_and_damaged_replacement_schedule.validity_5_year;
+  assert.strictEqual(mySched5.adult_18_to_59_years.first_loss, 400);
+  assert.strictEqual(mySched5.adult_18_to_59_years.second_loss, 700);
+  assert.strictEqual(mySched5.adult_18_to_59_years.third_loss, 1200);
+  assert.strictEqual(mySched5.children_under_12_years.first_loss, 300);
+  assert.strictEqual(mySched5.children_under_12_years.second_loss, 600);
+  assert.strictEqual(mySched5.children_under_12_years.third_loss, 1100);
+  assert.strictEqual(mySched5.senior_citizens_60_and_older.first_loss, 300);
+  assert.strictEqual(mySched5.senior_citizens_60_and_older.second_loss, 600);
+  assert.strictEqual(mySched5.senior_citizens_60_and_older.third_loss, 1100);
+  assert.strictEqual(mySched5.oku_under_18.first_loss, 200);
+  assert.strictEqual(mySched5.oku_under_18.second_loss, 500);
+  assert.strictEqual(mySched5.oku_under_18.third_loss, 1000);
+
+  // Case 13: Lost 10-year replacement schedule across all tiers
+  const mySched10 = rulePacks.MY.services.first_passport.fees.lost_and_damaged_replacement_schedule.validity_10_year;
+  assert.strictEqual(mySched10.adult_18_to_59_years.first_loss, 550);
+  assert.strictEqual(mySched10.adult_18_to_59_years.second_loss, 850);
+  assert.strictEqual(mySched10.adult_18_to_59_years.third_loss, 1350);
+  assert.strictEqual(mySched10.senior_citizens_60_and_older.first_loss, 375);
+  assert.strictEqual(mySched10.senior_citizens_60_and_older.second_loss, 675);
+  assert.strictEqual(mySched10.senior_citizens_60_and_older.third_loss, 1175);
+  assert.strictEqual(mySched10.oku_18_and_older.first_loss, 200);
+  assert.strictEqual(mySched10.oku_18_and_older.second_loss, 500);
+  assert.strictEqual(mySched10.oku_18_and_older.third_loss, 1000);
+
+  // Case 14: Missing validity on replacement passport requires confirmation, does not silently guess
+  const c14 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen', age: 'adult' });
+  const f14 = c14.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f14.details.includes('Validity Confirmation Required') || f14.details.includes('RM 400') && f14.details.includes('RM 550'), 'C14: Replacement without validity selection must outline both schedules and demand confirmation');
+  assert(c14.flags.some(fl => fl.code === 'MALAYSIA_REPLACEMENT_VALIDITY_REQUIRED'), 'C14: Must flag MALAYSIA_REPLACEMENT_VALIDITY_REQUIRED');
+
+  // Case 15: Ineligible combinations marked not_eligible with guidance
+  const c15 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'minor', validity: '10_year' });
+  assert(c15.flags.some(fl => fl.code === 'MALAYSIA_VALIDITY_INELIGIBLE'), 'C15: Must flag MALAYSIA_VALIDITY_INELIGIBLE for minor 10-year request');
+
+  // Case 16: Replacement fee is NEVER presented as original passport fee
+  const c16_fresh = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', age: 'adult', validity: '5_year' });
+  const f16_fresh = c16_fresh.checklist.find(c => c.id === 'official_fee_payment');
+  assert(!f16_fresh.details.includes('Replacement Penalty') && !f16_fresh.details.includes('RM 400'), 'C16: Fresh passport fee must not include replacement penalty');
+  const c16_lost = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen', age: 'adult', validity: '5_year', lossTier: 'first_loss' });
+  const f16_lost = c16_lost.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f16_lost.details.includes('RM 400') && f16_lost.details.includes('RM 200 base fee + RM 200 statutory penalty'), 'C16: Replacement fee breakdown must distinguish base fee from statutory penalty');
+
+  // ================= INDONESIA MARRIAGE EXCEPTION & REGRESSIONS =================
+  // Case 17: Indonesia 4 product-validity combinations in data model
+  const idFees = rulePacks.ID.services.first_passport.fees.passport_fees_by_product_and_validity_idr;
+  assert.strictEqual(idFees.paspor_biasa_non_elektronik_5_tahun, 350000);
+  assert.strictEqual(idFees.paspor_biasa_non_elektronik_10_tahun, 650000);
+  assert.strictEqual(idFees.paspor_biasa_elektronik_5_tahun, 650000);
+  assert.strictEqual(idFees.paspor_biasa_elektronik_10_tahun, 950000);
+
+  // Case 18: Indonesia unmarried minor -> 5-year validity only
+  const c18 = engine.evaluate({ countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport', age: 'minor', maritalStatus: 'unmarried' });
+  const f18 = c18.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f18.details.toLowerCase().includes('5-year validity') && !f18.details.includes('10-year validity IDR 650,000'), 'C18: Unmarried Indonesian minor must only be given 5-year validity options');
+
+  // Case 19: Indonesia legally married minor -> 10-year exception + marriage certificate requirement
+  const c19 = engine.evaluate({ countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport', age: 'minor', maritalStatus: 'married' });
+  const f19 = c19.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f19.details.toLowerCase().includes('10-year validity') && f19.details.includes('Permenkumham No. 18/2022 Pasal 2A'), 'C19: Married minor must receive 10-year validity option citing Pasal 2A');
+  assert(c19.flags.some(fl => fl.code === 'INDONESIA_MARRIED_MINOR_EXCEPTION'), 'C19: Must flag INDONESIA_MARRIED_MINOR_EXCEPTION');
+  assert(c19.checklist.some(ch => ch.id === 'id_marriage_proof_under_17'), 'C19: Checklist must include marriage certificate item for under-17 married minor');
+
+  // Case 20: Indonesia minor with unknown marital status -> conditional warning, never assumes marriage
+  const c20 = engine.evaluate({ countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport', age: 'minor' });
+  assert(c20.flags.some(fl => fl.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'), 'C20: Unknown marital status must trigger confirmation flag');
+
+  // Case 21: Indonesia express same-day surcharge (+IDR 1,000,000) kept distinct from booklet fee
+  const c21 = engine.evaluate({ countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport', age: 'adult', urgency: 'urgent' });
+  const f21 = c21.checklist.find(c => c.id === 'official_fee_payment');
+  assert(f21.details.includes('+IDR 1,000,000') && f21.details.includes('kept separate from booklet fee'), 'C21: Express surcharge must be listed as separate surcharge');
+
+  // Case 22: Regressions for NZ, KE, LK
+  // NZ
+  const nzFees = rulePacks.NZ.services.first_passport.fees;
+  assert.strictEqual(nzFees.standard_service_nzd.adult_10_year, 247);
+  assert.strictEqual(nzFees.standard_service_nzd.child_5_year, 144);
+  assert.strictEqual(nzFees.urgent_service_nzd.adult_10_year, 494);
+  assert.strictEqual(nzFees.urgent_service_nzd.child_5_year, 391);
+  assert.strictEqual(nzFees.after_hours_callout_service_nzd.adult_10_year, 1001);
+  assert.strictEqual(nzFees.after_hours_callout_service_nzd.child_5_year, 898);
+  // KE
+  const keFees = rulePacks.KE.services.first_passport.fees.standard_domestic_kes;
+  assert.strictEqual(keFees.ordinary_a_series_34_pages, 7550);
+  assert.strictEqual(keFees.ordinary_b_series_50_pages, 9550);
+  assert.strictEqual(keFees.ordinary_c_series_66_pages, 12050);
+  assert.strictEqual(keFees.replacement_lost_passport, 20050);
+  // LK
+  const lkFees = rulePacks.LK.services.first_passport.fees;
+  assert.strictEqual(lkFees.standard_domestic_lkr.all_countries_normal, 10000);
+  assert.strictEqual(lkFees.standard_domestic_lkr.all_countries_urgent_one_day, 20000);
+  assert.strictEqual(lkFees.standard_domestic_lkr.child_under_16_three_year_normal, 3000);
+  assert.strictEqual(lkFees.standard_domestic_lkr.child_under_16_three_year_urgent_one_day, 9000);
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_within_1_year_of_issue, 20000);
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_1_year_with_validity_remaining, 15000);
+  assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 });
 
 console.log('\n====================================================');

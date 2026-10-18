@@ -487,14 +487,99 @@ class PassportRulesEngine {
         }
       } else if (countryCode === 'ID') {
         if (location === 'inside') {
-          if (age === 'minor' || age === 'infant') {
-            feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Children under 17 receive 5-year validity passports: Non-electronic 5-year: IDR 350,000; Electronic e-Paspor 5-year: IDR 650,000. (10-year validity is restricted to applicants aged 17+ or legally married). Same-day express surcharge: +IDR 1,000,000.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'IDR', non_electronic_5yr: 350000, electronic_5yr: 650000, express_surcharge: 1000000 };
+          // Check if applicant is under 17
+          const exactAge = typeof profile.ageExact === 'number' ? profile.ageExact : (typeof profile.applicantAge === 'number' ? profile.applicantAge : null);
+          const isUnder17 = (exactAge !== null && exactAge < 17) || (exactAge === null && (age === 'minor' || age === 'infant'));
+          const isMarried = profile.maritalStatus === 'married' || profile.isMarried === true || special === 'married_under_17' || profile.applicantCategory === 'married_under_17';
+          const isSingle = profile.maritalStatus === 'single' || profile.maritalStatus === 'unmarried' || profile.isMarried === false;
+          const maritalStatusKnown = profile.maritalStatus !== undefined || profile.isMarried !== undefined || special === 'married_under_17' || profile.applicantCategory === 'married_under_17';
+
+          if (isUnder17) {
+            if (isMarried) {
+              // Legally married minor exception (Permenkumham No. 18/2022 Pasal 2A)
+              feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024 / Permenkumham No. 18/2022 Pasal 2A): Statutory exception for legally married minor applied: Eligible for 10-year validity (Non-electronic 10-year: IDR 650,000; Electronic 10-year: IDR 950,000) or standard 5-year validity (Non-electronic: IDR 350,000; Electronic: IDR 650,000). Official marriage certificate (Buku Nikah / Akta Perkawinan) is mandatory. Same-day express service surcharge (Layanan Percepatan) is +IDR 1,000,000 (kept separate from booklet fee). Lost fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'IDR',
+                legal_marriage_exception: true,
+                non_electronic_5yr: 350000,
+                non_electronic_10yr: 650000,
+                electronic_5yr: 650000,
+                electronic_10yr: 950000,
+                express_surcharge: 1000000,
+                lost_fine: 1000000,
+                damaged_fine: 500000,
+                validity_options: ['5_year', '10_year']
+              };
+              flags.push({
+                severity: 'info',
+                code: 'INDONESIA_MARRIED_MINOR_EXCEPTION',
+                title: 'Permenkumham No. 18/2022 Statutory Marriage Exception',
+                message: 'Applicant under 17 qualifies for 10-year validity on the statutory ground of legal marriage under Permenkumham No. 18/2022 Pasal 2A.',
+                action: 'Present original authenticated Buku Nikah / Akta Perkawinan along with e-KTP/KK and parental/spousal documentation at Kantor Imigrasi.'
+              });
+              checklist.push({
+                id: 'id_marriage_proof_under_17',
+                title: 'Submit Authenticated Marriage Certificate (Buku Nikah / Akta Perkawinan)',
+                details: 'Under Permenkumham No. 18/2022 Pasal 2A, citizens under 17 qualify for 10-year validity upon presenting original government marriage certificate.',
+                mandatory: true,
+                status: 'pending',
+                category: 'identity'
+              });
+            } else if (maritalStatusKnown && isSingle) {
+              // Explicitly unmarried minor
+              feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Unmarried minors under 17 receive 5-year validity passports: Non-electronic 5-year: IDR 350,000; Electronic e-Paspor 5-year: IDR 650,000. (Ten-year validity is not available to unmarried minors under 17). Same-day express service surcharge (Layanan Percepatan): +IDR 1,000,000 (kept separate from booklet fee). Lost passport fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'IDR',
+                legal_marriage_exception: false,
+                non_electronic_5yr: 350000,
+                electronic_5yr: 650000,
+                express_surcharge: 1000000,
+                lost_fine: 1000000,
+                damaged_fine: 500000,
+                validity_options: ['5_year']
+              };
+            } else {
+              // Marital status is missing / unknown for under-17 applicant
+              feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Children under 17 standardly receive 5-year validity passports: Non-electronic 5-year: IDR 350,000; Electronic e-Paspor 5-year: IDR 650,000. Conditional statutory exception: Under Permenkumham No. 18/2022 Pasal 2A, applicants under 17 who are legally married qualify for 10-year validity (Non-electronic 10-year: IDR 650,000; Electronic 10-year: IDR 950,000) upon presenting official marriage proof. Same-day express service surcharge (Layanan Percepatan) is +IDR 1,000,000 (kept separate from booklet fee). Lost fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'IDR',
+                legal_marriage_exception: 'conditional_unconfirmed',
+                non_electronic_5yr: 350000,
+                non_electronic_10yr: 650000,
+                electronic_5yr: 650000,
+                electronic_10yr: 950000,
+                express_surcharge: 1000000,
+                lost_fine: 1000000,
+                damaged_fine: 500000,
+                validity_options: ['5_year', '10_year_if_married']
+              };
+              flags.push({
+                severity: 'warning',
+                code: 'INDONESIA_MARITAL_STATUS_CONFIRMATION',
+                title: 'Indonesian Minor Validity & Statutory Marriage Exception',
+                message: 'Ten-year validity is standard for citizens aged 17+. Minors under 17 standardly receive 5-year passports, unless legally married under Permenkumham No. 18/2022 Pasal 2A.',
+                action: 'If the applicant is under 17 and legally married, bring an authenticated marriage certificate (Buku Nikah / Akta Perkawinan) to Kantor Imigrasi to request 10-year validity. Otherwise, the standard 5-year passport applies.'
+              });
+            }
           } else {
-            feeDetails = 'Official Indonesian domestic statutory fees by passport type and validity (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Non-electronic ordinary passport: 5-year validity IDR 350,000 / 10-year validity IDR 650,000; Electronic e-Paspor: 5-year validity IDR 650,000 / 10-year validity IDR 950,000. (10-year validity available to citizens aged 17+ or married). Same-day express service surcharge (Layanan Percepatan): +IDR 1,000,000. Lost passport fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
+            // Adult (17+)
+            feeDetails = 'Official Indonesian domestic statutory fees by passport type and validity (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Non-electronic ordinary passport: 5-year validity IDR 350,000 / 10-year validity IDR 650,000; Electronic e-Paspor: 5-year validity IDR 650,000 / 10-year validity IDR 950,000. (10-year validity standardly available to citizens aged 17+). Same-day express service surcharge (Layanan Percepatan): +IDR 1,000,000 (kept separate from booklet fee). Lost passport fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
             feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'IDR', non_electronic_5yr: 350000, non_electronic_10yr: 650000, electronic_5yr: 650000, electronic_10yr: 950000, express_surcharge: 1000000, lost_fine: 1000000, damaged_fine: 500000 };
+            specificFeeRecord = {
+              currency: 'IDR',
+              legal_marriage_exception: 'not_applicable_adult',
+              non_electronic_5yr: 350000,
+              non_electronic_10yr: 650000,
+              electronic_5yr: 650000,
+              electronic_10yr: 950000,
+              express_surcharge: 1000000,
+              lost_fine: 1000000,
+              damaged_fine: 500000,
+              validity_options: ['5_year', '10_year']
+            };
           }
         } else {
           feeDetails = 'Indonesian overseas consular fees are collected in local host currency under SIMKIM regulations at KBRI/KJRI diplomatic missions. Check your accredited Indonesian embassy portal.';
@@ -516,18 +601,266 @@ class PassportRulesEngine {
         feeStatus = 'verified_statutory';
         specificFeeRecord = { currency: 'KES', series_a: 7550, series_b: 9550, series_c: 12050, lost_replacement: 20050, mutilated_replacement: 20050 };
       } else if (countryCode === 'MY') {
-        if (age === 'senior') {
-          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Warga Emas (Senior Citizens aged 60+): RM 100 for 5-year validity (50% concession compared to RM 200 standard adult rate) or RM 175 for 10-year validity (50% concession compared to RM 350 standard adult rate). Verified automatically via MyKad.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'MYR', senior_5yr: 100, senior_10yr: 175, standard_adult_5yr: 200, standard_adult_10yr: 350 };
-        } else if (age === 'minor' || age === 'infant') {
-          feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Kanak-kanak (Children under 12): RM 100 for 5-year validity; Applicants aged 13–17: RM 200 for 5-year validity. (Applicants under 18 are not eligible for 10-year validity).';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'MYR', child_under_12_5yr: 100, youth_13_to_17_5yr: 200 };
+        const isLostOrDamaged = service === 'lost_stolen' || service === 'damaged' || status === 'lost' || status === 'damaged';
+        
+        // 1. Resolve exact applicant age and effective category
+        const exactAge = typeof profile.ageExact === 'number' ? profile.ageExact : (typeof profile.applicantAge === 'number' ? profile.applicantAge : null);
+        const isOku = profile.applicantCategory === 'oku' || profile.applicantCategory === 'oku_under_18' || profile.applicantCategory === 'oku_18_and_older' || profile.applicantCategory === 'oku_18_plus' || profile.isOku === true || (special === 'accessibility' && profile.accessibilityCard === 'oku');
+        const isStudent = profile.applicantCategory === 'students_under_21_degree_abroad' || profile.applicantCategory === 'student_degree_overseas' || profile.applicantCategory === 'student_overseas' || profile.applicantCategory === 'student';
+        const isHajj = profile.applicantCategory === 'hajj_pilgrims' || profile.applicantCategory === 'hajj_pilgrim' || profile.applicantCategory === 'hajj';
+
+        let effectiveAgeBand = age;
+        if (exactAge !== null) {
+          if (exactAge < 12) effectiveAgeBand = 'child_under_12';
+          else if (exactAge < 18) effectiveAgeBand = 'minor'; // 12 to 17
+          else if (exactAge < 60) effectiveAgeBand = 'adult'; // 18 to 59
+          else effectiveAgeBand = 'senior'; // 60+
         } else {
-          feeDetails = 'Official Malaysian statutory fees by validity (Jabatan Imigresen Malaysia): Adults aged 18–59: RM 200 for 5-year validity; RM 350 for 10-year validity. Senior citizens (60+): RM 100 (5-yr) / RM 175 (10-yr). Children under 12: RM 100 (5-yr). Persons with Disabilities (OKU with official JKM card): 100% EXEMPT (RM 0) for both 5-year and 10-year options. Lost passport penalty: 1st loss RM 400 (adult) / RM 300 (child/OKU), 2nd loss RM 700 / RM 600, 3rd loss RM 1,200 / RM 1,100 (payable in addition to the passport fee).';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'MYR', adult_5yr: 200, adult_10yr: 350, senior_5yr: 100, senior_10yr: 175, child_under_12_5yr: 100, oku: 0, first_loss_adult: 400, first_loss_child: 300 };
+          if (age === 'infant' || age === 'child_under_12' || age === 'under_12') effectiveAgeBand = 'child_under_12';
+          else if (age === '12') effectiveAgeBand = 'minor';
+        }
+
+        let categoryKey = 'adult_18_to_59_years';
+        if (profile.applicantCategory === 'oku_under_18') {
+          categoryKey = 'oku_under_18';
+        } else if (profile.applicantCategory === 'oku_18_and_older' || profile.applicantCategory === 'oku_18_plus') {
+          categoryKey = 'oku_18_and_older';
+        } else if (isOku) {
+          if (effectiveAgeBand === 'minor' || effectiveAgeBand === 'infant' || effectiveAgeBand === 'child_under_12') {
+            categoryKey = 'oku_under_18';
+          } else {
+            categoryKey = 'oku_18_and_older';
+          }
+        } else if (isStudent) {
+          categoryKey = 'students_under_21_degree_abroad';
+        } else if (isHajj) {
+          categoryKey = 'hajj_pilgrims';
+        } else if (effectiveAgeBand === 'senior') {
+          categoryKey = 'senior_citizens_60_and_older';
+        } else if (effectiveAgeBand === 'child_under_12') {
+          categoryKey = 'children_under_12_years';
+        } else if (effectiveAgeBand === 'minor') {
+          categoryKey = 'applicants_under_18'; // 12 to 17
+        } else {
+          categoryKey = 'adult_18_to_59_years';
+        }
+
+        // Validity period requested
+        const rawValidity = profile.validity || profile.validityPeriod || profile.selectedValidity;
+        let selectedValidity = null;
+        if (rawValidity === '5' || rawValidity === 5 || rawValidity === '5_year' || rawValidity === '5_years') selectedValidity = '5_year';
+        else if (rawValidity === '10' || rawValidity === 10 || rawValidity === '10_year' || rawValidity === '10_years') selectedValidity = '10_year';
+
+        // Loss tier (1st, 2nd, 3rd)
+        let lossTier = 'first_loss';
+        const rawLoss = profile.lossTier || profile.replacementLoss || profile.replacementCount;
+        if (rawLoss === 'second' || rawLoss === 'second_loss' || rawLoss === 2 || rawLoss === '2') lossTier = 'second_loss';
+        else if (rawLoss === 'third' || rawLoss === 'third_loss' || rawLoss === 3 || rawLoss === '3') lossTier = 'third_loss';
+
+        if (isLostOrDamaged) {
+          // REPLACEMENT FEES (Step 2 B)
+          if (!selectedValidity) {
+            // Missing validity period for replacement
+            feeDetails = 'Official Malaysian lost/damaged passport replacement guidance (Jabatan Imigresen Malaysia): Replacement fees depend strictly on the previous passport validity (5-year vs. 10-year), applicant age/category, and replacement frequency (1st, 2nd, or 3rd loss). 5-year replacement: Adults RM 400 (1st) / RM 700 (2nd) / RM 1,200 (3rd); Children under 12 & Seniors RM 300 / RM 600 / RM 1,100; OKU under 18 RM 200 / RM 500 / RM 1,000. 10-year replacement: Adults RM 550 (1st) / RM 850 (2nd) / RM 1,350 (3rd); Seniors RM 375 / RM 675 / RM 1,175; OKU 18+ RM 200 / RM 500 / RM 1,000. Please confirm your passport validity period to determine the exact statutory replacement fee. Mandatory police report and Borang IM.42c investigation required.';
+            feeStatus = 'validity_confirmation_required';
+            specificFeeRecord = {
+              currency: 'MYR',
+              status: 'validity_confirmation_required',
+              category: categoryKey,
+              prompt: 'Please confirm previous passport validity (5-year vs. 10-year) to calculate exact replacement fee.'
+            };
+            flags.push({
+              severity: 'warning',
+              code: 'MALAYSIA_REPLACEMENT_VALIDITY_REQUIRED',
+              title: 'Previous Passport Validity Confirmation Required',
+              message: 'Malaysian statutory replacement fees differ between 5-year and 10-year passports. Confirm your previous document validity to calculate the precise fee.',
+              action: 'Check your previous passport or police report for validity duration.'
+            });
+          } else if (selectedValidity === '10_year') {
+            // Check eligibility for 10-year validity
+            if (categoryKey === 'applicants_under_18' || categoryKey === 'children_under_12_years' || categoryKey === 'oku_under_18' || categoryKey === 'students_under_21_degree_abroad' || categoryKey === 'hajj_pilgrims') {
+              feeDetails = `Ten-year passport validity is NOT eligible for ${categoryKey.replace(/_/g, ' ')} under Malaysian Immigration Department regulations. Replacement cannot be calculated for a 10-year passport for this category. Minors under 18, students under 21, and Hajj pilgrims are eligible strictly for 5-year validity.`;
+              feeStatus = 'not_eligible';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '10_year',
+                status: 'not_eligible',
+                reason: 'Ten-year validity not available to this category under official JIM regulations.'
+              };
+              preparationScore -= 10;
+              flags.push({
+                severity: 'warning',
+                code: 'MALAYSIA_VALIDITY_INELIGIBLE',
+                title: 'Requested Validity Not Eligible',
+                message: `Ten-year validity replacement is not eligible for ${categoryKey.replace(/_/g, ' ')}. Minors under 18, students under 21, and Hajj pilgrims are eligible strictly for 5-year validity.`,
+                action: 'Select 5-year validity replacement.'
+              });
+            } else {
+              // 10-year replacement schedule
+              let baseFee = 350;
+              const penaltyFee = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
+              if (categoryKey === 'adult_18_to_59_years') {
+                baseFee = 350;
+              } else if (categoryKey === 'senior_citizens_60_and_older') {
+                baseFee = 175;
+              } else if (categoryKey === 'oku_18_and_older') {
+                baseFee = 0;
+              }
+              const replacementFee = baseFee + penaltyFee;
+              feeDetails = `Official Malaysian statutory replacement fee for 10-year passport (${categoryKey.replace(/_/g, ' ')}, ${lossTier.replace(/_/g, ' ')}): RM ${replacementFee} (comprising RM ${baseFee} base fee + RM ${penaltyFee} statutory penalty). Police report, Borang IM.42c, and investigation approval by Director General of Immigration are strictly mandatory.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '10_year',
+                category: categoryKey,
+                loss_tier: lossTier,
+                base_fee: baseFee,
+                statutory_penalty: penaltyFee,
+                total_replacement_fee: replacementFee
+              };
+            }
+          } else {
+            // 5-year replacement schedule
+            if (categoryKey === 'oku_18_and_older') {
+              feeDetails = 'Adult OKU applicants in Malaysia are issued 10-year passports under current JIM regulations. Five-year replacement is not eligible for adult OKU applicants.';
+              feeStatus = 'not_eligible';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '5_year',
+                status: 'not_eligible',
+                reason: 'Adult OKU applicants are issued 10-year validity passports under current regulations.'
+              };
+            } else {
+              let baseFee = 200;
+              const penaltyFee = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
+              if (categoryKey === 'adult_18_to_59_years' || categoryKey === 'applicants_under_18') {
+                baseFee = 200;
+              } else if (categoryKey === 'children_under_12_years' || categoryKey === 'senior_citizens_60_and_older' || categoryKey === 'students_under_21_degree_abroad' || categoryKey === 'hajj_pilgrims') {
+                baseFee = 100;
+              } else if (categoryKey === 'oku_under_18') {
+                baseFee = 0;
+              }
+              const replacementFee = baseFee + penaltyFee;
+              feeDetails = `Official Malaysian statutory replacement fee for 5-year passport (${categoryKey.replace(/_/g, ' ')}, ${lossTier.replace(/_/g, ' ')}): RM ${replacementFee} (comprising RM ${baseFee} base fee + RM ${penaltyFee} statutory penalty). Police report, Borang IM.42c, and investigation approval by Director General of Immigration are strictly mandatory.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '5_year',
+                category: categoryKey,
+                loss_tier: lossTier,
+                base_fee: baseFee,
+                statutory_penalty: penaltyFee,
+                total_replacement_fee: replacementFee
+              };
+            }
+          }
+        } else {
+          // ORIGINAL PASSPORT FEES (First-time or renewal)
+          if (selectedValidity === '10_year') {
+            if (categoryKey === 'applicants_under_18' || categoryKey === 'children_under_12_years' || categoryKey === 'oku_under_18' || categoryKey === 'students_under_21_degree_abroad' || categoryKey === 'hajj_pilgrims') {
+              feeDetails = `Ten-year passport validity is NOT eligible for ${categoryKey.replace(/_/g, ' ')} under Malaysian Immigration Department regulations. Minors under 18, students under 21, and Hajj pilgrims are eligible strictly for 5-year validity.`;
+              feeStatus = 'not_eligible';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '10_year',
+                status: 'not_eligible',
+                reason: 'Ten-year validity is restricted to adult applicants aged 18 and older.'
+              };
+              preparationScore -= 10;
+              flags.push({
+                severity: 'warning',
+                code: 'MALAYSIA_VALIDITY_INELIGIBLE',
+                title: 'Requested Validity Not Eligible',
+                message: `Ten-year validity is restricted to adult applicants aged 18 and older. ${categoryKey.replace(/_/g, ' ')} is eligible strictly for 5-year validity.`,
+                action: 'Select 5-year validity on the official portal.'
+              });
+            } else if (categoryKey === 'oku_18_and_older') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU aged 18+ with official JKM card): 100% EXEMPT (FREE / RM 0) for 10-year validity passport.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '10_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+            } else if (categoryKey === 'senior_citizens_60_and_older') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Senior Citizens (Warga Emas aged 60+): RM 175 for 10-year validity (50% statutory concession).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '10_year', category: categoryKey, amount: 175, status: 'eligible' };
+            } else {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Adults aged 18–59: RM 350 for 10-year validity passport.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '10_year', category: categoryKey, amount: 350, status: 'eligible' };
+            }
+          } else if (selectedValidity === '5_year') {
+            if (categoryKey === 'oku_18_and_older') {
+              feeDetails = 'Adult OKU applicants in Malaysia are issued 10-year passports under current JIM regulations. Five-year passport is not eligible for adult OKU applicants.';
+              feeStatus = 'not_eligible';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '5_year',
+                status: 'not_eligible',
+                reason: 'Adult OKU applicants are issued 10-year validity passports under current regulations.'
+              };
+              flags.push({
+                severity: 'info',
+                code: 'MALAYSIA_VALIDITY_INELIGIBLE',
+                title: 'Requested Validity Not Applicable',
+                message: 'Adult OKU applicants in Malaysia are issued 10-year validity passports with 100% statutory fee exemption.',
+                action: 'Select 10-year validity on the official portal.'
+              });
+            } else if (categoryKey === 'oku_under_18') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU cardholders under 18): 100% EXEMPT (FREE / RM 0) for 5-year validity passport.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+            } else if (categoryKey === 'children_under_12_years') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Children under 12 years (0 to 11): RM 100 for 5-year validity passport. (Note: Applicants aged 12 pay the standard under-18 youth rate of RM 200).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 100, status: 'eligible' };
+            } else if (categoryKey === 'applicants_under_18') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Youth / Minors aged 12 to 17: RM 200 for 5-year validity passport.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 200, status: 'eligible' };
+            } else if (categoryKey === 'senior_citizens_60_and_older') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Senior Citizens (Warga Emas aged 60+): RM 100 for 5-year validity (50% statutory concession).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 100, status: 'eligible' };
+            } else if (categoryKey === 'students_under_21_degree_abroad' || categoryKey === 'hajj_pilgrims') {
+              feeDetails = `Official Malaysian statutory concession fee (Jabatan Imigresen Malaysia): ${categoryKey === 'hajj_pilgrims' ? 'Hajj Pilgrims' : 'Students under 21 studying overseas'}: RM 100 for 5-year validity.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 100, status: 'eligible' };
+            } else {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Adults aged 18–59: RM 200 for 5-year validity passport.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 200, status: 'eligible' };
+            }
+          } else {
+            // No specific validity selected - show full eligible options for this category
+            if (categoryKey === 'oku_under_18') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU cardholders under 18): 100% EXEMPT (FREE / RM 0) for 5-year validity passport. (Minors under 18 are not eligible for 10-year validity).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'eligible', amount: 0 }, validity_10yr: { status: 'not_eligible' } };
+            } else if (categoryKey === 'oku_18_and_older') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU cardholders aged 18+): 100% EXEMPT (FREE / RM 0) for 10-year validity passport. (Adult OKU applicants are issued 10-year passports).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'not_eligible' }, validity_10yr: { status: 'eligible', amount: 0 } };
+            } else if (categoryKey === 'children_under_12_years') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Kanak-kanak (Children under 12 years / 0 to 11): RM 100 for 5-year validity. (Applicants under 18 are not eligible for 10-year validity).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: 100, validity_10yr: 'not_eligible' };
+            } else if (categoryKey === 'applicants_under_18') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Youth / Minors aged 12 to 17: RM 200 for 5-year validity. (Applicants under 18 are not eligible for 10-year validity).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: 200, validity_10yr: 'not_eligible' };
+            } else if (categoryKey === 'senior_citizens_60_and_older') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Warga Emas (Senior Citizens aged 60+): RM 100 for 5-year validity (50% concession) or RM 175 for 10-year validity (50% concession). Verified automatically via MyKad.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', senior_5yr: 100, senior_10yr: 175, standard_adult_5yr: 200, standard_adult_10yr: 350 };
+            } else if (categoryKey === 'students_under_21_degree_abroad' || categoryKey === 'hajj_pilgrims') {
+              feeDetails = `Official Malaysian statutory concession fee (Jabatan Imigresen Malaysia): ${categoryKey === 'hajj_pilgrims' ? 'Hajj Pilgrims' : 'Students under 21 studying overseas'}: RM 100 for 5-year validity. (Not eligible for 10-year validity).`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: 100, validity_10yr: 'not_eligible' };
+            } else {
+              feeDetails = 'Official Malaysian statutory fees by validity (Jabatan Imigresen Malaysia): Adults aged 18–59: RM 200 for 5-year validity; RM 350 for 10-year validity. Senior citizens (60+): RM 100 (5-yr) / RM 175 (10-yr). Children under 12: RM 100 (5-yr). Youth 12–17: RM 200 (5-yr). Persons with Disabilities (OKU with official JKM card): 100% EXEMPT (RM 0; 5-yr for under 18, 10-yr for 18+). Lost passport penalty: 5-year replacement (Adult RM 400 1st / RM 700 2nd / RM 1,200 3rd; Child & Senior RM 300 / RM 600 / RM 1,100; OKU RM 200 / RM 500 / RM 1,000); 10-year replacement (Adult RM 550 1st / RM 850 2nd / RM 1,350 3rd; Senior RM 375 / RM 675 / RM 1,175; OKU RM 200 / RM 500 / RM 1,000).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', adult_5yr: 200, adult_10yr: 350, senior_5yr: 100, senior_10yr: 175, child_under_12_5yr: 100, youth_12_to_17_5yr: 200 };
+            }
+          }
         }
       } else if (countryCode === 'NP') {
         if (urgency === 'urgent' || urgency === 'emergency') {

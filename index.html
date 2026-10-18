@@ -39,7 +39,7 @@
   }
   </script>
   
-  <link rel="stylesheet" href="css/styles.css?v=20261019_6">
+  <link rel="stylesheet" href="css/styles.css?v=20261019_7">
 </head>
 <body>
   <a class="skip-link" href="#checker">Skip to content</a>
@@ -316,6 +316,30 @@
                 </label>
               </div>
             </div>
+            <div class="form-grid" style="margin-top:14px">
+              <div class="field">
+                <label for="exactAge">Exact Age (optional — for specific rate thresholds like under 12 vs 12, under 17)</label>
+                <input id="exactAge" type="number" min="0" max="120" placeholder="e.g. 11, 12, 16, 17, 18, 60" style="padding:10px">
+              </div>
+              <div class="field">
+                <label for="applicantCategory">Special Concession Category (if applicable)</label>
+                <select id="applicantCategory">
+                  <option value="standard" selected>Standard Citizen Applicant</option>
+                  <option value="oku">Person with Disabilities (OKU cardholder)</option>
+                  <option value="student_overseas">Student under 21 (Bachelor's degree abroad)</option>
+                  <option value="hajj_pilgrim">Hajj Pilgrim (with Tabung Haji letter)</option>
+                  <option value="married_under_17">Legally Married Minor (under 17)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" style="margin-top:14px">
+              <label for="validityOption">Passport Validity Option</label>
+              <select id="validityOption">
+                <option value="auto" selected>Auto (determine best eligible validity for age & category)</option>
+                <option value="5_year">5-Year Passport</option>
+                <option value="10_year">10-Year Passport (where officially eligible)</option>
+              </select>
+            </div>
           </div>
 
           <!-- STEP 4: Processing Urgency -->
@@ -360,6 +384,14 @@
                   <span data-i18n="stat_lost">Lost or stolen</span>
                 </label>
               </div>
+            </div>
+            <div class="field" style="margin-top:14px">
+              <label for="lossTier">Replacement Frequency (if lost or damaged)</label>
+              <select id="lossTier">
+                <option value="first_loss" selected>First-time replacement (1st loss/damage)</option>
+                <option value="second_loss">Second replacement (2nd loss/damage)</option>
+                <option value="third_loss">Third or subsequent replacement (3rd+ loss/damage)</option>
+              </select>
             </div>
           </div>
 
@@ -682,12 +714,12 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- Scripts: Loaded in dependency order with cache-busting version query string -->
-  <script src="data/country-data.js?v=20261019_6"></script>
-  <script src="data/rule-packs.js?v=20261019_6"></script>
-  <script src="js/i18n.js?v=20261019_6"></script>
-  <script src="js/rules-engine.js?v=20261019_6"></script>
-  <script src="js/tools.js?v=20261019_6"></script>
-  <script src="js/guides-data.js?v=20261019_6"></script>
-  <script src="js/app.js?v=20261019_6"></script>
+  <script src="data/country-data.js?v=20261019_7"></script>
+  <script src="data/rule-packs.js?v=20261019_7"></script>
+  <script src="js/i18n.js?v=20261019_7"></script>
+  <script src="js/rules-engine.js?v=20261019_7"></script>
+  <script src="js/tools.js?v=20261019_7"></script>
+  <script src="js/guides-data.js?v=20261019_7"></script>
+  <script src="js/app.js?v=20261019_7"></script>
 </body>
 </html>

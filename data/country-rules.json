@@ -5266,10 +5266,17 @@
     "age_bands": {
       "adult_minimum_age": 18,
       "child_upper_age": 17,
-      "child_under_12_upper_age": 12,
+      "child_under_12_max_age": 11,
+      "youth_min_age": 12,
+      "youth_max_age": 17,
       "senior_minimum_age": 60,
-      "standard_adult_validity_years": 10,
-      "standard_concession_validity_years": 5
+      "standard_adult_validity_years": [
+        5,
+        10
+      ],
+      "minor_validity_years": [
+        5
+      ]
     },
     "sources": [
       {
@@ -5358,31 +5365,185 @@
         "fees": {
           "currency": "MYR",
           "fiscal_year": 2026,
-          "statutory_source": "Passport Regulations (Jabatan Imigresen Malaysia published schedule: https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/)",
+          "statutory_source": "Fees (Passports and Visas) (Amendment) Order & Jabatan Imigresen Malaysia (https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/)",
+          "verification_date": "2026-10-19",
+          "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
           "fee_schedule_by_category": {
             "adult_18_to_59_years": {
-              "validity_5_year": 200,
-              "validity_10_year": 350
+              "category_label": "Adults aged 18 to 59 years",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 200
+              },
+              "validity_10_year": {
+                "status": "eligible",
+                "amount": 350
+              }
             },
-            "applicants_13_to_17_years": {
-              "validity_5_year": 200,
-              "validity_10_year": "not_eligible"
+            "applicants_under_18": {
+              "category_label": "Youth / Minors aged 12 to 17 years",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 200
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Ten-year validity is restricted to adult applicants aged 18 and older."
+              }
             },
             "children_under_12_years": {
-              "validity_5_year": 100,
-              "validity_10_year": "not_eligible"
+              "category_label": "Children under 12 years (0 to 11)",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Ten-year validity is restricted to adult applicants aged 18 and older."
+              }
             },
             "senior_citizens_60_and_older": {
-              "validity_5_year": 100,
-              "validity_10_year": 175
-            },
-            "persons_with_disabilities_oku": {
-              "validity_5_year": 0,
-              "validity_10_year": 0
+              "category_label": "Senior Citizens aged 60 and older",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "eligible",
+                "amount": 175
+              }
             },
             "students_under_21_degree_abroad": {
-              "validity_5_year": 100,
-              "validity_10_year": "not_eligible"
+              "category_label": "Students under 21 pursuing a Bachelor's degree overseas",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Student concession is restricted to 5-year validity."
+              }
+            },
+            "hajj_pilgrims": {
+              "category_label": "Hajj Pilgrims with Tabung Haji letter",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Hajj pilgrim concession is restricted to 5-year validity."
+              }
+            },
+            "oku_under_18": {
+              "category_label": "Persons with Disabilities (OKU cardholders under 18)",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 0,
+                "exemption": "100% statutory fee exemption upon presenting valid JKM OKU card."
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Minors under 18 are not eligible for 10-year validity."
+              }
+            },
+            "oku_18_and_older": {
+              "category_label": "Persons with Disabilities (OKU cardholders aged 18 and older)",
+              "validity_5_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Adult OKU applicants are issued 10-year validity passports under current JIM regulations."
+              },
+              "validity_10_year": {
+                "status": "eligible",
+                "amount": 0,
+                "exemption": "100% statutory fee exemption upon presenting valid JKM OKU card."
+              }
+            }
+          },
+          "lost_and_damaged_replacement_schedule": {
+            "validity_5_year": {
+              "adult_18_to_59_years": {
+                "first_loss": 400,
+                "second_loss": 700,
+                "third_loss": 1200
+              },
+              "applicants_under_18": {
+                "first_loss": 400,
+                "second_loss": 700,
+                "third_loss": 1200
+              },
+              "children_under_12_years": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "senior_citizens_60_and_older": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "students_under_21_degree_abroad": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "hajj_pilgrims": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "oku_under_18": {
+                "first_loss": 200,
+                "second_loss": 500,
+                "third_loss": 1000
+              },
+              "oku_18_and_older": {
+                "status": "not_eligible",
+                "reason": "Adult OKU replacement is processed under the 10-year validity schedule."
+              }
+            },
+            "validity_10_year": {
+              "adult_18_to_59_years": {
+                "first_loss": 550,
+                "second_loss": 850,
+                "third_loss": 1350
+              },
+              "senior_citizens_60_and_older": {
+                "first_loss": 375,
+                "second_loss": 675,
+                "third_loss": 1175
+              },
+              "oku_18_and_older": {
+                "first_loss": 200,
+                "second_loss": 500,
+                "third_loss": 1000
+              },
+              "applicants_under_18": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available to applicants under 18."
+              },
+              "children_under_12_years": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available to children under 12."
+              },
+              "oku_under_18": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available to OKU under 18."
+              },
+              "students_under_21_degree_abroad": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available under student concession."
+              },
+              "hajj_pilgrims": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available under Hajj concession."
+              }
             }
           },
           "lost_passport_replacement_penalties": {
@@ -5404,7 +5565,7 @@
               "base_amount": 200,
               "emergency_surcharge": 0,
               "total_payable": 200,
-              "applicant_category": "adult_18_to_59",
+              "applicant_category": "adult_18_to_59_years",
               "application_channel": "domestic_counter_or_online",
               "validity_period": "5_years",
               "discount_eligibility": "Standard statutory adult rate for 5-year passport.",
@@ -5421,7 +5582,7 @@
               "base_amount": 350,
               "emergency_surcharge": 0,
               "total_payable": 350,
-              "applicant_category": "adult_18_to_59",
+              "applicant_category": "adult_18_to_59_years",
               "application_channel": "domestic_counter_or_online",
               "validity_period": "10_years",
               "discount_eligibility": "Standard statutory adult rate for 10-year passport.",
@@ -5438,11 +5599,11 @@
               "base_amount": 200,
               "emergency_surcharge": 0,
               "total_payable": 200,
-              "applicant_category": "applicant_13_to_17",
+              "applicant_category": "applicants_under_18",
               "application_channel": "domestic_counter",
               "validity_period": "5_years",
-              "discount_eligibility": "Standard rate for applicants aged 13 to 17. Not eligible for 10-year validity.",
-              "applicable_conditions": "Applicants aged 13 to 17 years.",
+              "discount_eligibility": "Standard youth rate for applicants aged 12 to 17. Not eligible for 10-year validity.",
+              "applicable_conditions": "Applicants aged 12 to 17 years.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
               "verification_date": "2026-10-19",
@@ -5455,10 +5616,10 @@
               "base_amount": 100,
               "emergency_surcharge": 0,
               "total_payable": 100,
-              "applicant_category": "child_under_12",
+              "applicant_category": "children_under_12_years",
               "application_channel": "domestic_counter",
               "validity_period": "5_years",
-              "discount_eligibility": "Statutory concession for children under 12 years. Not eligible for 10-year validity.",
+              "discount_eligibility": "Statutory concession for children under 12 years (0 to 11). Not eligible for 10-year validity.",
               "applicable_conditions": "Children under 12 years of age.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
@@ -5472,7 +5633,7 @@
               "base_amount": 100,
               "emergency_surcharge": 0,
               "total_payable": 100,
-              "applicant_category": "senior_60_and_older",
+              "applicant_category": "senior_citizens_60_and_older",
               "application_channel": "domestic_counter_or_online",
               "validity_period": "5_years",
               "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (5-year passport).",
@@ -5489,7 +5650,7 @@
               "base_amount": 175,
               "emergency_surcharge": 0,
               "total_payable": 175,
-              "applicant_category": "senior_60_and_older",
+              "applicant_category": "senior_citizens_60_and_older",
               "application_channel": "domestic_counter_or_online",
               "validity_period": "10_years",
               "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (10-year passport).",
@@ -5502,15 +5663,66 @@
             },
             {
               "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "students_under_21_degree_abroad",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Concession rate for students under 21 pursuing a Bachelor degree overseas.",
+              "applicable_conditions": "Letter of offer and student visa required.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "hajj_pilgrims",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Concession rate for pilgrims performing Hajj.",
+              "applicable_conditions": "Letter from Lembaga Tabung Haji required.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
               "amount": 0,
               "base_amount": 0,
               "emergency_surcharge": 0,
               "total_payable": 0,
-              "applicant_category": "persons_with_disabilities_oku",
+              "applicant_category": "oku_under_18",
               "application_channel": "domestic_counter",
-              "validity_period": "10_years_or_5_years",
-              "discount_eligibility": "100% statutory fee exemption for OKU cardholders.",
-              "applicable_conditions": "Must present official OKU registration card issued by Department of Social Welfare (JKM).",
+              "validity_period": "5_years",
+              "discount_eligibility": "100% statutory fee exemption for OKU cardholders under 18 (5-year passport only).",
+              "applicable_conditions": "Must present official OKU registration card issued by JKM. Minors under 18 ineligible for 10-year validity.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "oku_18_and_older",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "100% statutory fee exemption for OKU cardholders aged 18+ (issued 10-year passport).",
+              "applicable_conditions": "Must present official OKU registration card issued by JKM. Adult OKU applicants receive 10-year validity.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
               "verification_date": "2026-10-19",
@@ -5520,14 +5732,31 @@
             {
               "currency": "MYR",
               "amount": 400,
-              "base_amount": 0,
-              "emergency_surcharge": 400,
+              "base_amount": 200,
+              "emergency_surcharge": 200,
               "total_payable": 400,
-              "applicant_category": "lost_passport_adult_first_loss",
+              "applicant_category": "lost_passport_adult_5yr_first_loss",
               "application_channel": "domestic_counter",
-              "validity_period": "varies",
-              "discount_eligibility": "Statutory replacement penalty for first lost passport.",
-              "applicable_conditions": "Penalty payable in addition to the new passport fee for adult first loss.",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for adult 5-year passport first loss (RM 200 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 550,
+              "base_amount": 350,
+              "emergency_surcharge": 200,
+              "total_payable": 550,
+              "applicant_category": "lost_passport_adult_10yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "Replacement fee for adult 10-year passport first loss (RM 350 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
               "verification_date": "2026-10-19",
@@ -5537,14 +5766,82 @@
             {
               "currency": "MYR",
               "amount": 300,
-              "base_amount": 0,
-              "emergency_surcharge": 300,
+              "base_amount": 100,
+              "emergency_surcharge": 200,
               "total_payable": 300,
-              "applicant_category": "lost_passport_child_first_loss",
+              "applicant_category": "lost_passport_child_under_12_5yr_first_loss",
               "application_channel": "domestic_counter",
-              "validity_period": "varies",
-              "discount_eligibility": "Statutory replacement penalty for first lost passport (child under 12 / OKU).",
-              "applicable_conditions": "Penalty payable in addition to the new passport fee for child/OKU first loss.",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for child under 12 5-year passport first loss (RM 100 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 300,
+              "base_amount": 100,
+              "emergency_surcharge": 200,
+              "total_payable": 300,
+              "applicant_category": "lost_passport_senior_5yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for senior citizen 5-year passport first loss (RM 100 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 375,
+              "base_amount": 175,
+              "emergency_surcharge": 200,
+              "total_payable": 375,
+              "applicant_category": "lost_passport_senior_10yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "Replacement fee for senior citizen 10-year passport first loss (RM 175 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 0,
+              "emergency_surcharge": 200,
+              "total_payable": 200,
+              "applicant_category": "lost_passport_oku_under_18_5yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for OKU under 18 first loss (RM 0 base + RM 200 penalty).",
+              "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 0,
+              "emergency_surcharge": 200,
+              "total_payable": 200,
+              "applicant_category": "lost_passport_oku_18_and_older_10yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "Replacement fee for OKU aged 18+ first loss (RM 0 base + RM 200 penalty).",
+              "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
               "verification_date": "2026-10-19",
@@ -5724,7 +6021,495 @@
             "page_title": "Lost Passport Procedures",
             "checked_at": "2026-10-19"
           }
-        ]
+        ],
+        "fees": {
+          "currency": "MYR",
+          "fiscal_year": 2026,
+          "statutory_source": "Fees (Passports and Visas) (Amendment) Order & Jabatan Imigresen Malaysia (https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/)",
+          "verification_date": "2026-10-19",
+          "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+          "fee_schedule_by_category": {
+            "adult_18_to_59_years": {
+              "category_label": "Adults aged 18 to 59 years",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 200
+              },
+              "validity_10_year": {
+                "status": "eligible",
+                "amount": 350
+              }
+            },
+            "applicants_under_18": {
+              "category_label": "Youth / Minors aged 12 to 17 years",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 200
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Ten-year validity is restricted to adult applicants aged 18 and older."
+              }
+            },
+            "children_under_12_years": {
+              "category_label": "Children under 12 years (0 to 11)",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Ten-year validity is restricted to adult applicants aged 18 and older."
+              }
+            },
+            "senior_citizens_60_and_older": {
+              "category_label": "Senior Citizens aged 60 and older",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "eligible",
+                "amount": 175
+              }
+            },
+            "students_under_21_degree_abroad": {
+              "category_label": "Students under 21 pursuing a Bachelor's degree overseas",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Student concession is restricted to 5-year validity."
+              }
+            },
+            "hajj_pilgrims": {
+              "category_label": "Hajj Pilgrims with Tabung Haji letter",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 100
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Hajj pilgrim concession is restricted to 5-year validity."
+              }
+            },
+            "oku_under_18": {
+              "category_label": "Persons with Disabilities (OKU cardholders under 18)",
+              "validity_5_year": {
+                "status": "eligible",
+                "amount": 0,
+                "exemption": "100% statutory fee exemption upon presenting valid JKM OKU card."
+              },
+              "validity_10_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Minors under 18 are not eligible for 10-year validity."
+              }
+            },
+            "oku_18_and_older": {
+              "category_label": "Persons with Disabilities (OKU cardholders aged 18 and older)",
+              "validity_5_year": {
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Adult OKU applicants are issued 10-year validity passports under current JIM regulations."
+              },
+              "validity_10_year": {
+                "status": "eligible",
+                "amount": 0,
+                "exemption": "100% statutory fee exemption upon presenting valid JKM OKU card."
+              }
+            }
+          },
+          "lost_and_damaged_replacement_schedule": {
+            "validity_5_year": {
+              "adult_18_to_59_years": {
+                "first_loss": 400,
+                "second_loss": 700,
+                "third_loss": 1200
+              },
+              "applicants_under_18": {
+                "first_loss": 400,
+                "second_loss": 700,
+                "third_loss": 1200
+              },
+              "children_under_12_years": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "senior_citizens_60_and_older": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "students_under_21_degree_abroad": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "hajj_pilgrims": {
+                "first_loss": 300,
+                "second_loss": 600,
+                "third_loss": 1100
+              },
+              "oku_under_18": {
+                "first_loss": 200,
+                "second_loss": 500,
+                "third_loss": 1000
+              },
+              "oku_18_and_older": {
+                "status": "not_eligible",
+                "reason": "Adult OKU replacement is processed under the 10-year validity schedule."
+              }
+            },
+            "validity_10_year": {
+              "adult_18_to_59_years": {
+                "first_loss": 550,
+                "second_loss": 850,
+                "third_loss": 1350
+              },
+              "senior_citizens_60_and_older": {
+                "first_loss": 375,
+                "second_loss": 675,
+                "third_loss": 1175
+              },
+              "oku_18_and_older": {
+                "first_loss": 200,
+                "second_loss": 500,
+                "third_loss": 1000
+              },
+              "applicants_under_18": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available to applicants under 18."
+              },
+              "children_under_12_years": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available to children under 12."
+              },
+              "oku_under_18": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available to OKU under 18."
+              },
+              "students_under_21_degree_abroad": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available under student concession."
+              },
+              "hajj_pilgrims": {
+                "status": "not_eligible",
+                "reason": "Ten-year validity not available under Hajj concession."
+              }
+            }
+          },
+          "lost_passport_replacement_penalties": {
+            "standard_adults_13_to_59": {
+              "first_loss": 400,
+              "second_loss": 700,
+              "third_loss": 1200
+            },
+            "children_under_12_and_oku": {
+              "first_loss": 300,
+              "second_loss": 600,
+              "third_loss": 1100
+            }
+          },
+          "fee_records": [
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 200,
+              "emergency_surcharge": 0,
+              "total_payable": 200,
+              "applicant_category": "adult_18_to_59_years",
+              "application_channel": "domestic_counter_or_online",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard statutory adult rate for 5-year passport.",
+              "applicable_conditions": "Malaysian adults aged 18 to 59.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 350,
+              "base_amount": 350,
+              "emergency_surcharge": 0,
+              "total_payable": 350,
+              "applicant_category": "adult_18_to_59_years",
+              "application_channel": "domestic_counter_or_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard statutory adult rate for 10-year passport.",
+              "applicable_conditions": "Malaysian adults aged 18 to 59.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 200,
+              "emergency_surcharge": 0,
+              "total_payable": 200,
+              "applicant_category": "applicants_under_18",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard youth rate for applicants aged 12 to 17. Not eligible for 10-year validity.",
+              "applicable_conditions": "Applicants aged 12 to 17 years.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "children_under_12_years",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Statutory concession for children under 12 years (0 to 11). Not eligible for 10-year validity.",
+              "applicable_conditions": "Children under 12 years of age.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "senior_citizens_60_and_older",
+              "application_channel": "domestic_counter_or_online",
+              "validity_period": "5_years",
+              "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (5-year passport).",
+              "applicable_conditions": "Senior citizens aged 60 and older.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 175,
+              "base_amount": 175,
+              "emergency_surcharge": 0,
+              "total_payable": 175,
+              "applicant_category": "senior_citizens_60_and_older",
+              "application_channel": "domestic_counter_or_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (10-year passport).",
+              "applicable_conditions": "Senior citizens aged 60 and older.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "students_under_21_degree_abroad",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Concession rate for students under 21 pursuing a Bachelor degree overseas.",
+              "applicable_conditions": "Letter of offer and student visa required.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 100,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 100,
+              "applicant_category": "hajj_pilgrims",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Concession rate for pilgrims performing Hajj.",
+              "applicable_conditions": "Letter from Lembaga Tabung Haji required.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "oku_under_18",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "100% statutory fee exemption for OKU cardholders under 18 (5-year passport only).",
+              "applicable_conditions": "Must present official OKU registration card issued by JKM. Minors under 18 ineligible for 10-year validity.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "oku_18_and_older",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "100% statutory fee exemption for OKU cardholders aged 18+ (issued 10-year passport).",
+              "applicable_conditions": "Must present official OKU registration card issued by JKM. Adult OKU applicants receive 10-year validity.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 400,
+              "base_amount": 200,
+              "emergency_surcharge": 200,
+              "total_payable": 400,
+              "applicant_category": "lost_passport_adult_5yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for adult 5-year passport first loss (RM 200 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 550,
+              "base_amount": 350,
+              "emergency_surcharge": 200,
+              "total_payable": 550,
+              "applicant_category": "lost_passport_adult_10yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "Replacement fee for adult 10-year passport first loss (RM 350 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 300,
+              "base_amount": 100,
+              "emergency_surcharge": 200,
+              "total_payable": 300,
+              "applicant_category": "lost_passport_child_under_12_5yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for child under 12 5-year passport first loss (RM 100 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 300,
+              "base_amount": 100,
+              "emergency_surcharge": 200,
+              "total_payable": 300,
+              "applicant_category": "lost_passport_senior_5yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for senior citizen 5-year passport first loss (RM 100 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 375,
+              "base_amount": 175,
+              "emergency_surcharge": 200,
+              "total_payable": 375,
+              "applicant_category": "lost_passport_senior_10yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "Replacement fee for senior citizen 10-year passport first loss (RM 175 base + RM 200 penalty).",
+              "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 0,
+              "emergency_surcharge": 200,
+              "total_payable": 200,
+              "applicant_category": "lost_passport_oku_under_18_5yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "Replacement fee for OKU under 18 first loss (RM 0 base + RM 200 penalty).",
+              "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 200,
+              "base_amount": 0,
+              "emergency_surcharge": 200,
+              "total_payable": 200,
+              "applicant_category": "lost_passport_oku_18_and_older_10yr_first_loss",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "Replacement fee for OKU aged 18+ first loss (RM 0 base + RM 200 penalty).",
+              "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            }
+          ]
+        }
       }
     }
   },
@@ -7444,7 +8229,15 @@
       "adult_minimum_age": 17,
       "child_upper_age": 16,
       "standard_adult_validity_years": 10,
-      "child_validity_years": 5
+      "child_validity_years": 5,
+      "statutory_exceptions": [
+        {
+          "code": "LEGAL_MARRIAGE_UNDER_17",
+          "citation": "Permenkumham No. 18/2022 Pasal 2A ayat (1) dan (2)",
+          "rule": "WNI di bawah 17 tahun yang telah menikah secara sah memenuhi syarat untuk paspor dengan masa berlaku 10 tahun dengan menyertakan bukti perkawinan yang sah (Buku Nikah / Akta Perkawinan).",
+          "source_url": "https://www.imigrasi.go.id/id/biaya-paspor/"
+        }
+      ]
     },
     "sources": [
       {

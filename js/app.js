@@ -108,6 +108,14 @@
       };
       const countryInput = document.getElementById('countryInput');
       if (countryInput) countryInput.value = 'India';
+      const exactAgeEl = document.getElementById('exactAge');
+      if (exactAgeEl) exactAgeEl.value = '';
+      const applicantCatEl = document.getElementById('applicantCategory');
+      if (applicantCatEl) applicantCatEl.value = 'general';
+      const validityEl = document.getElementById('validityOption');
+      if (validityEl) validityEl.value = 'auto';
+      const lossTierEl = document.getElementById('lossTier');
+      if (lossTierEl) lossTierEl.value = '';
       renderStep(0);
       updateCountryHint();
       document.getElementById('resultbox').classList.remove('show');
@@ -256,6 +264,30 @@
     if (getVal('special')) state.answers.special = getVal('special');
     if (getVal('locationSelect')) state.answers.location = getVal('locationSelect');
     if (getVal('checkedGov')) state.answers.checkedGov = getVal('checkedGov');
+
+    if (getVal('exactAge')) {
+      const parsedAge = parseInt(getVal('exactAge'), 10);
+      if (!isNaN(parsedAge)) {
+        state.answers.ageExact = parsedAge;
+      } else {
+        delete state.answers.ageExact;
+      }
+    } else {
+      delete state.answers.ageExact;
+    }
+
+    if (getVal('applicantCategory')) state.answers.applicantCategory = getVal('applicantCategory');
+    if (getVal('validityOption') && getVal('validityOption') !== 'auto') {
+      state.answers.validity = getVal('validityOption');
+    } else {
+      delete state.answers.validity;
+    }
+
+    if (getVal('lossTier')) {
+      state.answers.lossTier = getVal('lossTier');
+    } else {
+      delete state.answers.lossTier;
+    }
   }
 
   function setupWizardListeners() {
