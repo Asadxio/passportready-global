@@ -1,5 +1,6 @@
 const https = require('https');
 const vm = require('vm');
+const assert = require('assert');
 
 function fetchUrl(url) {
   return new Promise((resolve, reject) => {
@@ -15,25 +16,32 @@ async function verifyLive() {
   console.log('--- 1. Checking Live https://passport.myoss.in/ ---');
   const index = await fetchUrl('https://passport.myoss.in/?cachebust=' + Date.now());
   console.log('HTTP Status:', index.status);
+  assert.strictEqual(index.status, 200, 'Must return HTTP 200');
   
   const hasDemoOnly = index.body.includes('DEMONSTRATION ONLY');
   console.log('Has "DEMONSTRATION ONLY":', hasDemoOnly);
+  assert(hasDemoOnly, 'Must display DEMONSTRATION ONLY');
   
   const hasLivePreview = index.body.includes('LIVE PREVIEW');
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
+  assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_2"/g) || []);
-  console.log('Scripts with ?v=20261019_2:', scriptsWithV.length);
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_3"/g) || []);
+  console.log('Scripts with ?v=20261019_3:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_3');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_2"/g) || []);
-  console.log('CSS with ?v=20261019_2:', cssWithV.length);
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_3"/g) || []);
+  console.log('CSS with ?v=20261019_3:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_3');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
+  assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_2');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_3');
   console.log('Rule packs HTTP Status:', rulePacks.status);
+  assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
   // Evaluate rule packs
   const sandbox = { window: {}, module: {} };
@@ -41,40 +49,94 @@ async function verifyLive() {
   const rp = sandbox.window.RULE_PACKS || sandbox.RULE_PACKS;
   
   console.log('Verified Rule Packs count:', Object.keys(rp).length);
+  assert.strictEqual(Object.keys(rp).length, 18, 'Must have 18 verified rule packs');
   
   // JP Check
-  console.log('\n[JP Check]');
-  console.log('JP adult 10-yr fee:', rp.JP.services.first_passport.fees.adult_10_year_total);
-  console.log('JP minor 12-17 fee:', rp.JP.services.first_passport.fees.minor_12_to_17_5_year_total);
-  console.log('JP discontinued date:', rp.JP.services.first_passport.fees.adult_5_year_discontinued_date);
+  console.log('\n[JP Check - Post-July 2026 Fees]');
+  const jpFees = rp.JP.services.first_passport.fees;
+  console.log('JP adult 10-yr (online / counter):', [
+    jpFees.domestic_fees.adult_18_and_over.validity_10_year.online,
+    jpFees.domestic_fees.adult_18_and_over.validity_10_year.counter
+  ]);
+  assert.strictEqual(jpFees.domestic_fees.adult_18_and_over.validity_10_year.online, 8900);
+  assert.strictEqual(jpFees.domestic_fees.adult_18_and_over.validity_10_year.counter, 9300);
+  console.log('JP minor 5-yr (online / counter):', [
+    jpFees.domestic_fees.minor_under_18.validity_5_year.online,
+    jpFees.domestic_fees.minor_under_18.validity_5_year.counter
+  ]);
+  assert.strictEqual(jpFees.domestic_fees.minor_under_18.validity_5_year.online, 4400);
+  assert.strictEqual(jpFees.domestic_fees.minor_under_18.validity_5_year.counter, 4800);
+  console.log('JP discontinued date:', jpFees.domestic_fees.adult_18_and_over.adult_5_year_discontinued_date);
+  assert.strictEqual(jpFees.domestic_fees.adult_18_and_over.adult_5_year_discontinued_date, '2026-07-01');
   
   // MX Check
-  console.log('\n[MX Check]');
-  console.log('MX 2026 fees (1,3,6,10):', [
-    rp.MX.services.first_passport.fees.validity_1_year,
-    rp.MX.services.first_passport.fees.validity_3_year,
-    rp.MX.services.first_passport.fees.validity_6_year,
-    rp.MX.services.first_passport.fees.validity_10_year
+  console.log('\n[MX Check - 2026 Fees]');
+  const mxFees = rp.MX.services.first_passport.fees;
+  console.log('MX 2026 standard domestic (1,3,6,10):', [
+    mxFees.standard_domestic_mxn.validity_1_year,
+    mxFees.standard_domestic_mxn.validity_3_year,
+    mxFees.standard_domestic_mxn.validity_6_year,
+    mxFees.standard_domestic_mxn.validity_10_year
   ]);
-  console.log('MX Consular USD (1,3,6,10):', [
-    rp.MX.services.first_passport.fees.consular_overseas_usd.validity_1_year,
-    rp.MX.services.first_passport.fees.consular_overseas_usd.validity_3_year,
-    rp.MX.services.first_passport.fees.consular_overseas_usd.validity_6_year,
-    rp.MX.services.first_passport.fees.consular_overseas_usd.validity_10_year
+  assert.strictEqual(mxFees.standard_domestic_mxn.validity_1_year, 920);
+  assert.strictEqual(mxFees.standard_domestic_mxn.validity_3_year, 1795);
+  assert.strictEqual(mxFees.standard_domestic_mxn.validity_6_year, 2440);
+  assert.strictEqual(mxFees.standard_domestic_mxn.validity_10_year, 4280);
+
+  console.log('MX 2026 discounted domestic (1,3,6,10):', [
+    mxFees.discounted_domestic_mxn.validity_1_year,
+    mxFees.discounted_domestic_mxn.validity_3_year,
+    mxFees.discounted_domestic_mxn.validity_6_year,
+    mxFees.discounted_domestic_mxn.validity_10_year
   ]);
+  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_1_year, 460);
+  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_3_year, 900);
+  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_6_year, 1220);
+  assert.strictEqual(mxFees.discounted_domestic_mxn.validity_10_year, 2140);
+
+  console.log('MX Consular USD standard (1,3,6,10):', [
+    mxFees.consular_overseas_usd.standard.validity_1_year,
+    mxFees.consular_overseas_usd.standard.validity_3_year,
+    mxFees.consular_overseas_usd.standard.validity_6_year,
+    mxFees.consular_overseas_usd.standard.validity_10_year
+  ]);
+  assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_1_year, 44);
+  assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_3_year, 101);
+  assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_6_year, 137);
+  assert.strictEqual(mxFees.consular_overseas_usd.standard.validity_10_year, 209);
+
+  console.log('MX Consular USD discounted (1,3,6,10):', [
+    mxFees.consular_overseas_usd.discounted_50_percent.validity_1_year,
+    mxFees.consular_overseas_usd.discounted_50_percent.validity_3_year,
+    mxFees.consular_overseas_usd.discounted_50_percent.validity_6_year,
+    mxFees.consular_overseas_usd.discounted_50_percent.validity_10_year
+  ]);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_1_year, 22);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_3_year, 50.5);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_6_year, 68.5);
+  assert.strictEqual(mxFees.consular_overseas_usd.discounted_50_percent.validity_10_year, 104.5);
 
   // NG Check
-  console.log('\n[NG Check]');
+  console.log('\n[NG Check - Preserved Verified NIS Fees]');
+  const ngFees = rp.NG.services.first_passport.fees;
   console.log('NG domestic fees (32p, 64p):', [
-    rp.NG.services.first_passport.fees.booklet_32_pages_5_year,
-    rp.NG.services.first_passport.fees.booklet_64_pages_10_year
+    ngFees.booklet_32_pages_5_year,
+    ngFees.booklet_64_pages_10_year
   ]);
-  console.log('NG diaspora fees USD (32p, 64p):', [
-    rp.NG.services.first_passport.fees.diaspora_overseas_usd.booklet_32_pages_5_year,
-    rp.NG.services.first_passport.fees.diaspora_overseas_usd.booklet_64_pages_10_year
-  ]);
+  assert.strictEqual(ngFees.booklet_32_pages_5_year, 100000);
+  assert.strictEqual(ngFees.booklet_64_pages_10_year, 200000);
 
-  console.log('\n>>> ALL LIVE CHECKS COMPLETED SUCCESSFULLY <<<');
+  console.log('NG diaspora fees USD (32p, 64p):', [
+    ngFees.diaspora_overseas_usd.booklet_32_pages_5_year,
+    ngFees.diaspora_overseas_usd.booklet_64_pages_10_year
+  ]);
+  assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_32_pages_5_year, 150);
+  assert.strictEqual(ngFees.diaspora_overseas_usd.booklet_64_pages_10_year, 230);
+
+  console.log('\n>>> ALL PHASE 3.2 LIVE CHECKS COMPLETED AND ASSERTED SUCCESSFULLY <<<');
 }
 
-verifyLive().catch(console.error);
+verifyLive().catch(err => {
+  console.error('✗ Live verification failed:', err);
+  process.exit(1);
+});

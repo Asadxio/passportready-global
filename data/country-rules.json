@@ -2576,32 +2576,77 @@
         "fees": {
           "currency": "JPY",
           "effective_date": "2026-07-01",
-          "statutory_reform_notice": "Effective 1 July 2026, the 5-year adult passport option was discontinued for applicants aged 18 and over under MOFA statutory revision. Adults apply exclusively for a 10-year passport.",
-          "adult_10_year_total": 16000,
-          "minor_12_to_17_5_year_total": 11000,
-          "child_under_12_5_year_total": 6000,
-          "adult_5_year_discontinued_date": "2026-07-01",
-          "breakdown": {
-            "adult_10_year": {
-              "national_revenue_stamp": 14000,
-              "prefectural_fee": 2000,
-              "total": 16000
+          "statutory_reform_notice": "Effective 1 July 2026, domestic passport fees are differentiated by application channel (online vs counter), and the adult 5-year passport option was discontinued for applicants aged 18 and over under MOFA revision.",
+          "domestic_fees": {
+            "adult_18_and_over": {
+              "validity_10_year": {
+                "online": 8900,
+                "counter": 9300
+              },
+              "adult_5_year_discontinued_date": "2026-07-01"
             },
-            "minor_12_to_17_5_year": {
-              "national_revenue_stamp": 9000,
-              "prefectural_fee": 2000,
-              "total": 11000
-            },
-            "child_under_12_5_year": {
-              "national_revenue_stamp": 4000,
-              "prefectural_fee": 2000,
-              "total": 6000
+            "minor_under_18": {
+              "validity_5_year": {
+                "online": 4400,
+                "counter": 4800
+              }
             }
           },
           "consular_overseas": {
-            "currency_rule": "Collected in local host currency equivalent determined by Japanese diplomatic missions under MOFA consular regulations.",
-            "guidance": "Applicants abroad pay the statutory equivalent in cash, debit card, or local postal money order specified by the local Japanese Embassy or Consulate-General."
-          }
+            "currency_rule": "Overseas consular fees are determined in local host currency under MOFA consular regulations and must not be confused with domestic fees.",
+            "guidance": "Applicants abroad must consult their local Japanese Embassy or Consulate-General portal for current local currency amounts and application guidelines."
+          },
+          "confirmation_required": false,
+          "fee_records": [
+            {
+              "currency": "JPY",
+              "amount": 8900,
+              "applicant_category": "adult_18_and_over",
+              "application_channel": "online",
+              "validity_period": "10_years",
+              "applicable_conditions": "Japanese nationals aged 18+ applying online via Mynaportal.",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/toko/passport/page22_003986.html",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-07-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "JPY",
+              "amount": 9300,
+              "applicant_category": "adult_18_and_over",
+              "application_channel": "counter",
+              "validity_period": "10_years",
+              "applicable_conditions": "Japanese nationals aged 18+ applying in person at prefectural passport counter.",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/toko/passport/page22_003986.html",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-07-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "JPY",
+              "amount": 4400,
+              "applicant_category": "minor_under_18",
+              "application_channel": "online",
+              "validity_period": "5_years",
+              "applicable_conditions": "Minors under 18 applying online via Mynaportal with statutory guardian signature.",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/ca/pss/pagew_000001_02493.html",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-07-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "JPY",
+              "amount": 4800,
+              "applicant_category": "minor_under_18",
+              "application_channel": "counter",
+              "validity_period": "5_years",
+              "applicable_conditions": "Minors under 18 applying in person at prefectural passport counter with statutory guardian signature.",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/ca/pss/pagew_000001_02493.html",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-07-01",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "domestic_standard": "6 to 8 business days (excluding weekends and public holidays)",
@@ -2609,15 +2654,21 @@
         },
         "sources": [
           {
-            "url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html",
-            "publisher": "Ministry of Foreign Affairs of Japan",
-            "page_title": "Passports Information Portal",
+            "url": "https://www.mofa.go.jp/mofaj/toko/passport/page22_003986.html",
+            "publisher": "Ministry of Foreign Affairs of Japan (MOFA)",
+            "page_title": "Passport Fee Revision Guidance (Domestic Online & Counter)",
             "checked_at": "2026-10-19"
           },
           {
-            "url": "https://www.mofa.go.jp/mofaj/toko/passport/pass_2.html",
+            "url": "https://www.mofa.go.jp/mofaj/ca/pss/pagew_000001_02493.html",
             "publisher": "Ministry of Foreign Affairs of Japan (MOFA)",
-            "page_title": "Passport Fees and Legal Validity Revisions",
+            "page_title": "Notice Regarding Passport Issuance Fees (Post-July 2026)",
+            "checked_at": "2026-10-19"
+          },
+          {
+            "url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html",
+            "publisher": "Ministry of Foreign Affairs (Domestic Consular Services)",
+            "page_title": "Passport Issuance and Renewal Guidance",
             "checked_at": "2026-10-19"
           }
         ]
@@ -2706,9 +2757,15 @@
     },
     "sources": [
       {
-        "url": "https://www.mofa.go.jp/ca/pss/page22e_000788.html",
+        "url": "https://www.mofa.go.jp/mofaj/toko/passport/page22_003986.html",
         "publisher": "Ministry of Foreign Affairs of Japan (MOFA)",
-        "page_title": "Passports Information",
+        "page_title": "Passport Fee Revision Guidance (Domestic Online & Counter)",
+        "checked_at": "2026-10-19"
+      },
+      {
+        "url": "https://www.mofa.go.jp/mofaj/ca/pss/pagew_000001_02493.html",
+        "publisher": "Ministry of Foreign Affairs of Japan (MOFA)",
+        "page_title": "Notice Regarding Passport Issuance Fees (Post-July 2026)",
         "checked_at": "2026-10-19"
       },
       {
@@ -2837,39 +2894,234 @@
           "currency": "MXN",
           "fiscal_year": 2026,
           "statutory_source": "Ley Federal de Derechos 2026 / Secretaría de Relaciones Exteriores (SRE)",
-          "validity_1_year": 920,
-          "validity_3_year": 1795,
-          "validity_6_year": 2440,
-          "validity_10_year": 4280,
-          "discount_50_percent_beneficiaries": [
-            "Adults aged 60 and over (Personas mayores de 60 años)",
-            "Persons with certified disability (Personas con discapacidad certificada)",
-            "Agricultural workers traveling to Canada under SAWP (Trabajadores agrícolas México-Canadá, 3 or 6 years only)"
-          ],
-          "discounted_rates_mxn": {
+          "standard_domestic_mxn": {
+            "validity_1_year": 920,
+            "validity_3_year": 1795,
+            "validity_6_year": 2440,
+            "validity_10_year": 4280
+          },
+          "discounted_domestic_mxn": {
             "validity_1_year": 460,
-            "validity_3_year": 895,
+            "validity_3_year": 900,
             "validity_6_year": 1220,
             "validity_10_year": 2140
+          },
+          "eligibility_conditions": {
+            "validity_1_year": "The 1-year passport is issued exclusively to children under three years of age under the normal validity schedule, or in emergency cases.",
+            "discount_50_percent": "Subject to documented eligibility for adults aged 60+, persons with certified disabilities, and agricultural workers under the Mexico-Canada SAWP programme.",
+            "agricultural_worker_restriction": "Temporary agricultural workers under the Mexico-Canada programme are NOT eligible for the discount on the 10-year passport (validity restricted to 3 or 6 years)."
           },
           "consular_overseas_usd": {
             "currency": "USD",
             "statutory_source": "Ley Federal de Derechos 2026 para trámites en el exterior",
-            "validity_1_year": 43,
-            "validity_3_year": 99,
-            "validity_6_year": 135,
-            "validity_10_year": 208,
-            "discount_50_percent_beneficiaries": [
-              "Adults aged 60 and over",
-              "Persons with certified disability"
-            ],
-            "discounted_rates_usd": {
-              "validity_1_year": 21.5,
-              "validity_3_year": 49.5,
-              "validity_6_year": 67.5,
-              "validity_10_year": 104
+            "standard": {
+              "validity_1_year": 44,
+              "validity_3_year": 101,
+              "validity_6_year": 137,
+              "validity_10_year": 209
+            },
+            "discounted_50_percent": {
+              "validity_1_year": 22,
+              "validity_3_year": 50.5,
+              "validity_6_year": 68.5,
+              "validity_10_year": 104.5
             }
-          }
+          },
+          "confirmation_required": false,
+          "fee_records": [
+            {
+              "currency": "MXN",
+              "amount": 920,
+              "applicant_category": "children_under_3_only",
+              "application_channel": "domestic",
+              "validity_period": "1_year",
+              "applicable_conditions": "Issued only to children under 3 years old under normal validity schedule.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 1795,
+              "applicant_category": "general",
+              "application_channel": "domestic",
+              "validity_period": "3_years",
+              "applicable_conditions": "Standard domestic issuance for applicants aged 3 and older.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 2440,
+              "applicant_category": "general",
+              "application_channel": "domestic",
+              "validity_period": "6_years",
+              "applicable_conditions": "Standard domestic issuance for applicants aged 3 and older.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 4280,
+              "applicant_category": "adult_18_and_over",
+              "application_channel": "domestic",
+              "validity_period": "10_years",
+              "applicable_conditions": "Available exclusively to adult applicants aged 18 and older.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 460,
+              "applicant_category": "discount_eligible_children_under_3",
+              "application_channel": "domestic",
+              "validity_period": "1_year",
+              "applicable_conditions": "50% discount for disabled children under 3 years old.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 900,
+              "applicant_category": "discount_eligible",
+              "application_channel": "domestic",
+              "validity_period": "3_years",
+              "applicable_conditions": "50% discount for seniors 60+, certified disabled, and Canada SAWP agricultural workers.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 1220,
+              "applicant_category": "discount_eligible",
+              "application_channel": "domestic",
+              "validity_period": "6_years",
+              "applicable_conditions": "50% discount for seniors 60+, certified disabled, and Canada SAWP agricultural workers.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MXN",
+              "amount": 2140,
+              "applicant_category": "discount_eligible",
+              "application_channel": "domestic",
+              "validity_period": "10_years",
+              "applicable_conditions": "50% discount for seniors 60+ and certified disabled. Note: SAWP agricultural workers are NOT eligible for 10-year discount.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 44,
+              "applicant_category": "children_under_3_only",
+              "application_channel": "consular_overseas",
+              "validity_period": "1_year",
+              "applicable_conditions": "Consular issuance abroad for children under 3.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 101,
+              "applicant_category": "general",
+              "application_channel": "consular_overseas",
+              "validity_period": "3_years",
+              "applicable_conditions": "Standard consular issuance abroad.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 137,
+              "applicant_category": "general",
+              "application_channel": "consular_overseas",
+              "validity_period": "6_years",
+              "applicable_conditions": "Standard consular issuance abroad.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 209,
+              "applicant_category": "adult_18_and_over",
+              "application_channel": "consular_overseas",
+              "validity_period": "10_years",
+              "applicable_conditions": "Consular issuance abroad for adults 18+.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 22,
+              "applicant_category": "discount_eligible_children_under_3",
+              "application_channel": "consular_overseas",
+              "validity_period": "1_year",
+              "applicable_conditions": "50% discount for disabled children under 3 years old at consulates abroad.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 50.5,
+              "applicant_category": "discount_eligible",
+              "application_channel": "consular_overseas",
+              "validity_period": "3_years",
+              "applicable_conditions": "50% discount for seniors 60+ and certified disabled at consulates abroad.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 68.5,
+              "applicant_category": "discount_eligible",
+              "application_channel": "consular_overseas",
+              "validity_period": "6_years",
+              "applicable_conditions": "50% discount for seniors 60+ and certified disabled at consulates abroad.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 104.5,
+              "applicant_category": "discount_eligible",
+              "application_channel": "consular_overseas",
+              "validity_period": "10_years",
+              "applicable_conditions": "50% discount for seniors 60+ and certified disabled at consulates abroad.",
+              "official_source_url": "https://www.gob.mx/pasaporte",
+              "date_checked": "2026-10-19",
+              "effective_date": "2026-01-01",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "domestic_same_day": "2 to 4 hours post-appointment at major SRE delegations",
@@ -2879,7 +3131,7 @@
           {
             "url": "https://www.gob.mx/pasaporte",
             "publisher": "Secretaría de Relaciones Exteriores (SRE)",
-            "page_title": "Trámite de Pasaporte Mexicano",
+            "page_title": "Trámite de Pasaporte Mexicano - Costos 2026",
             "checked_at": "2026-10-19"
           },
           {
@@ -2969,14 +3221,14 @@
     "sources": [
       {
         "url": "https://www.gob.mx/pasaporte",
-        "publisher": "Gobierno de México · Secretaría de Relaciones Exteriores",
-        "page_title": "Pasaporte Ordinario Mexicano",
+        "publisher": "Secretaría de Relaciones Exteriores (SRE)",
+        "page_title": "Trámite de Pasaporte Mexicano - Costos 2026",
         "checked_at": "2026-10-19"
       },
       {
-        "url": "https://citas.sre.gob.mx/",
-        "publisher": "SRE Citas",
-        "page_title": "Sistema de Citas SRE",
+        "url": "https://www.gob.mx/sre/acciones-y-programas/costo-del-pasaporte",
+        "publisher": "Secretaría de Relaciones Exteriores (SRE)",
+        "page_title": "Costos del Pasaporte Mexicano 2026",
         "checked_at": "2026-10-19"
       }
     ]
@@ -3560,7 +3812,58 @@
             "booklet_64_pages_10_year": 230
           },
           "payment_method": "Strictly online via passport.immigration.gov.ng official payment gateway; cash payments at passport control offices are strictly prohibited.",
-          "nin_validation_mandate": "National Identification Number (NIN) must be validated before payment and enrollment booking for both domestic and diaspora applications."
+          "nin_validation_mandate": "National Identification Number (NIN) must be validated before payment and enrollment booking for both domestic and diaspora applications.",
+          "confirmation_required": false,
+          "fee_records": [
+            {
+              "currency": "NGN",
+              "amount": 100000,
+              "applicant_category": "general",
+              "application_channel": "domestic_online",
+              "validity_period": "5_years",
+              "applicable_conditions": "32-page booklet for domestic Nigerian citizens with verified NIN.",
+              "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
+              "date_checked": "2026-10-19",
+              "effective_date": "2025-09-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "NGN",
+              "amount": 200000,
+              "applicant_category": "general",
+              "application_channel": "domestic_online",
+              "validity_period": "10_years",
+              "applicable_conditions": "64-page booklet for domestic Nigerian citizens aged 18+ with verified NIN.",
+              "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
+              "date_checked": "2026-10-19",
+              "effective_date": "2025-09-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 150,
+              "applicant_category": "diaspora",
+              "application_channel": "consular_overseas",
+              "validity_period": "5_years",
+              "applicable_conditions": "32-page booklet for Nigerian citizens residing abroad.",
+              "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
+              "date_checked": "2026-10-19",
+              "effective_date": "2025-09-01",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 230,
+              "applicant_category": "diaspora",
+              "application_channel": "consular_overseas",
+              "validity_period": "10_years",
+              "applicable_conditions": "64-page booklet for Nigerian citizens residing abroad.",
+              "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
+              "date_checked": "2026-10-19",
+              "effective_date": "2025-09-01",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard_charter_renewal": "3 weeks post-enrolment",
@@ -3568,15 +3871,15 @@
         },
         "sources": [
           {
-            "url": "https://passport.immigration.gov.ng/",
+            "url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
             "publisher": "Nigeria Immigration Service (NIS)",
-            "page_title": "Official Passport Application Portal",
+            "page_title": "NIS Announces Upward Review of Nigerian Standard Passport Fees",
             "checked_at": "2026-10-19"
           },
           {
-            "url": "https://immigration.gov.ng/standard-passport/",
+            "url": "https://passport.immigration.gov.ng/",
             "publisher": "Nigeria Immigration Service (NIS)",
-            "page_title": "Approved Passport Fees and Guidelines",
+            "page_title": "Official Passport Application Portal",
             "checked_at": "2026-10-19"
           }
         ]
@@ -3658,9 +3961,15 @@
     },
     "sources": [
       {
+        "url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
+        "publisher": "Nigeria Immigration Service (NIS)",
+        "page_title": "NIS Announces Upward Review of Nigerian Standard Passport Fees",
+        "checked_at": "2026-10-19"
+      },
+      {
         "url": "https://passport.immigration.gov.ng/",
         "publisher": "Nigeria Immigration Service (NIS)",
-        "page_title": "NIS Standard e-Passport Information",
+        "page_title": "Official Passport Application Portal",
         "checked_at": "2026-10-19"
       }
     ]

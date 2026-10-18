@@ -309,8 +309,8 @@ runTest('All referenced scripts, styles, and assets exist on disk', () => {
   });
 });
 
-// 9. Japan Statutory 2026 Reform Validation
-runTest('Japan (JP) rule pack reflects 1 July 2026 MOFA statutory reform (adult 10-year mandate, discontinued 5-year adult)', () => {
+// 9. Japan Statutory Post-July 2026 Domestic Fees & Channel Differentiation
+runTest('Japan (JP) rule pack models post-July 2026 domestic fees by channel (Online ¥8,900 / Counter ¥9,300 for adults; Online ¥4,400 / Counter ¥4,800 for minors) without applying domestic fees abroad', () => {
   const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
   const jp = rulePacks.JP;
   assert(jp, 'JP rule pack must exist');
@@ -318,18 +318,24 @@ runTest('Japan (JP) rule pack reflects 1 July 2026 MOFA statutory reform (adult 
   
   const fees = jp.services.first_passport.fees;
   assert.strictEqual(fees.currency, 'JPY');
-  assert.strictEqual(fees.adult_10_year_total, 16000, 'Adult 10-year passport fee must be 16,000 JPY');
-  assert.strictEqual(fees.minor_12_to_17_5_year_total, 11000, 'Minor 12-17 fee must be 11,000 JPY');
-  assert.strictEqual(fees.child_under_12_5_year_total, 6000, 'Under 12 fee must be 6,000 JPY');
-  assert.strictEqual(fees.adult_5_year_discontinued_date, '2026-07-01', 'Adult 5-year discontinued date must be 2026-07-01');
-  assert(fees.consular_overseas && fees.consular_overseas.guidance, 'Must have consular fee guidance for JP');
+  assert.strictEqual(fees.domestic_fees.adult_18_and_over.validity_10_year.online, 8900, 'Adult 10-year online fee must be 8,900 JPY');
+  assert.strictEqual(fees.domestic_fees.adult_18_and_over.validity_10_year.counter, 9300, 'Adult 10-year counter fee must be 9,300 JPY');
+  assert.strictEqual(fees.domestic_fees.minor_under_18.validity_5_year.online, 4400, 'Minor under 18 online fee must be 4,400 JPY');
+  assert.strictEqual(fees.domestic_fees.minor_under_18.validity_5_year.counter, 4800, 'Minor under 18 counter fee must be 4,800 JPY');
+  assert.strictEqual(fees.domestic_fees.adult_18_and_over.adult_5_year_discontinued_date, '2026-07-01', 'Adult 5-year discontinued date must be 2026-07-01');
   
-  const eligibility = jp.services.first_passport.eligibility;
-  assert(eligibility.some(e => e.rule.includes('1 July 2026') && e.rule.includes('10-year')), 'Eligibility must state 10-year adult mandate effective 1 July 2026');
+  // Consular separation: Domestic fees must NOT be applied to overseas applications
+  assert(fees.consular_overseas && fees.consular_overseas.guidance, 'Must have consular fee guidance for JP');
+  assert(!fees.consular_overseas.online, 'Domestic online fees must not be placed in consular overseas');
+  assert(!fees.consular_overseas.counter, 'Domestic counter fees must not be placed in consular overseas');
+  
+  // Sources verification
+  const sources = jp.services.first_passport.sources || jp.sources;
+  assert(sources.some(s => s.url.includes('page22_003986.html') || s.url.includes('pagew_000001_02493.html')), 'Must link official MOFA fee revision notices');
 });
 
-// 10. Mexico Statutory 2026 SRE Fee Schedule Validation
-runTest('Mexico (MX) rule pack reflects 2026 SRE statutory fee schedule and consular USD rates', () => {
+// 10. Mexico Statutory 2026 Domestic and Consular Fee Schedule Validation
+runTest('Mexico (MX) rule pack reflects official 2026 SRE domestic standard, discounted (900 MXN for 3-yr), and consular USD fees (44, 101, 137, 209 USD)', () => {
   const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
   const mx = rulePacks.MX;
   assert(mx, 'MX rule pack must exist');
@@ -337,18 +343,34 @@ runTest('Mexico (MX) rule pack reflects 2026 SRE statutory fee schedule and cons
   const fees = mx.services.first_passport.fees;
   assert.strictEqual(fees.currency, 'MXN');
   assert.strictEqual(fees.fiscal_year, 2026);
-  assert.strictEqual(fees.validity_1_year, 920, '1-year fee must be 920 MXN');
-  assert.strictEqual(fees.validity_3_year, 1795, '3-year fee must be 1,795 MXN');
-  assert.strictEqual(fees.validity_6_year, 2440, '6-year fee must be 2,440 MXN');
-  assert.strictEqual(fees.validity_10_year, 4280, '10-year fee must be 4,280 MXN');
-  assert(Array.isArray(fees.discount_50_percent_beneficiaries) && fees.discount_50_percent_beneficiaries.length >= 3, 'Must list 50% discount beneficiaries');
   
-  // Consular USD fees
-  assert(fees.consular_overseas_usd, 'Consular USD fees must exist');
-  assert.strictEqual(fees.consular_overseas_usd.validity_1_year, 43, 'Consular 1-year must be $43 USD');
-  assert.strictEqual(fees.consular_overseas_usd.validity_3_year, 99, 'Consular 3-year must be $99 USD');
-  assert.strictEqual(fees.consular_overseas_usd.validity_6_year, 135, 'Consular 6-year must be $135 USD');
-  assert.strictEqual(fees.consular_overseas_usd.validity_10_year, 208, 'Consular 10-year must be $208 USD');
+  // Domestic standard fees
+  assert.strictEqual(fees.standard_domestic_mxn.validity_1_year, 920, 'Domestic 1-year must be 920 MXN');
+  assert.strictEqual(fees.standard_domestic_mxn.validity_3_year, 1795, 'Domestic 3-year must be 1,795 MXN');
+  assert.strictEqual(fees.standard_domestic_mxn.validity_6_year, 2440, 'Domestic 6-year must be 2,440 MXN');
+  assert.strictEqual(fees.standard_domestic_mxn.validity_10_year, 4280, 'Domestic 10-year must be 4,280 MXN');
+  
+  // Domestic discounted fees (50%)
+  assert.strictEqual(fees.discounted_domestic_mxn.validity_1_year, 460, 'Domestic discounted 1-year must be 460 MXN');
+  assert.strictEqual(fees.discounted_domestic_mxn.validity_3_year, 900, 'Domestic discounted 3-year must be 900 MXN (NOT 895)');
+  assert.strictEqual(fees.discounted_domestic_mxn.validity_6_year, 1220, 'Domestic discounted 6-year must be 1,220 MXN');
+  assert.strictEqual(fees.discounted_domestic_mxn.validity_10_year, 2140, 'Domestic discounted 10-year must be 2,140 MXN');
+  
+  // Consular overseas USD fees (Standard)
+  assert.strictEqual(fees.consular_overseas_usd.standard.validity_1_year, 44, 'Consular 1-year must be $44 USD (NOT $43)');
+  assert.strictEqual(fees.consular_overseas_usd.standard.validity_3_year, 101, 'Consular 3-year must be $101 USD (NOT $99)');
+  assert.strictEqual(fees.consular_overseas_usd.standard.validity_6_year, 137, 'Consular 6-year must be $137 USD (NOT $135)');
+  assert.strictEqual(fees.consular_overseas_usd.standard.validity_10_year, 209, 'Consular 10-year must be $209 USD (NOT $208)');
+  
+  // Consular overseas USD fees (Discounted 50%)
+  assert.strictEqual(fees.consular_overseas_usd.discounted_50_percent.validity_1_year, 22, 'Consular discounted 1-year must be $22 USD');
+  assert.strictEqual(fees.consular_overseas_usd.discounted_50_percent.validity_3_year, 50.5, 'Consular discounted 3-year must be $50.50 USD');
+  assert.strictEqual(fees.consular_overseas_usd.discounted_50_percent.validity_6_year, 68.5, 'Consular discounted 6-year must be $68.50 USD');
+  assert.strictEqual(fees.consular_overseas_usd.discounted_50_percent.validity_10_year, 104.5, 'Consular discounted 10-year must be $104.50 USD');
+  
+  // Eligibility conditions
+  assert(fees.eligibility_conditions.validity_1_year.includes('under three years of age'), '1-year must note issuance restricted to children under 3');
+  assert(fees.eligibility_conditions.agricultural_worker_restriction.includes('NOT eligible for the discount on the 10-year passport'), 'Must document agricultural workers excluded from 10-year discount');
 });
 
 // 11. Nigeria Statutory 2025/2026 NIS Fee Reform Validation
@@ -366,14 +388,113 @@ runTest('Nigeria (NG) rule pack reflects NIS Ministerial reform fees (₦100k/�
   assert(fees.nin_validation_mandate, 'Must document NIN validation mandate');
 });
 
-// 12. Asset Cache-Busting Verification in index.html
+// 12. Granular Fee Record Schema & Stale-Rules Prevention Mechanism
+runTest('Country rule packs store individual fee records with complete metadata (stale-rules prevention)', () => {
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const testCountries = ['JP', 'MX', 'NG'];
+  
+  testCountries.forEach(code => {
+    const pack = rulePacks[code];
+    const fees = pack.services.first_passport.fees;
+    assert(Array.isArray(fees.fee_records) && fees.fee_records.length > 0, `Fee records array required for ${code}`);
+    
+    fees.fee_records.forEach(rec => {
+      assert(rec.currency, `Record must have currency in ${code}`);
+      assert(typeof rec.amount === 'number' && rec.amount > 0, `Record must have positive numeric amount in ${code}`);
+      assert(rec.applicant_category, `Record must have applicant_category in ${code}`);
+      assert(rec.application_channel, `Record must have application_channel in ${code}`);
+      assert(rec.validity_period, `Record must have validity_period in ${code}`);
+      assert(rec.applicable_conditions, `Record must have applicable_conditions in ${code}`);
+      assert(rec.official_source_url && rec.official_source_url.startsWith('http'), `Record must have official source URL in ${code}`);
+      assert(/^\d{4}-\d{2}-\d{2}$/.test(rec.date_checked), `Record date_checked must be ISO date in ${code}`);
+      assert(rec.verification_status, `Record must have verification_status in ${code}`);
+    });
+  });
+});
+
+// 13. Rules Engine Dynamic Fee Guidance & Channel Resolution
+runTest('PassportRulesEngine outputs accurate channel, location, and age fee guidance', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+  
+  // Japan Adult Inside
+  const jpAdultRes = engine.evaluate({
+    countryCode: 'JP',
+    countryName: 'Japan',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const jpAdultFee = jpAdultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(jpAdultFee.details.includes('¥8,900') && jpAdultFee.details.includes('¥9,300'), 'Japan adult fee must state ¥8,900 online and ¥9,300 counter');
+  
+  // Japan Minor Inside
+  const jpMinorRes = engine.evaluate({
+    countryCode: 'JP',
+    countryName: 'Japan',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'minor'
+  });
+  const jpMinorFee = jpMinorRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(jpMinorFee.details.includes('¥4,400') && jpMinorFee.details.includes('¥4,800'), 'Japan minor fee must state ¥4,400 online and ¥4,800 counter');
+  
+  // Japan Abroad Consular
+  const jpAbroadRes = engine.evaluate({
+    countryCode: 'JP',
+    countryName: 'Japan',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const jpAbroadFee = jpAbroadRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(jpAbroadFee.details.includes('local host currency') && !jpAbroadFee.details.includes('¥8,900'), 'Japan overseas fee must not substitute domestic amounts');
+  
+  // Mexico Senior Inside (50% Discount)
+  const mxSeniorRes = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'senior'
+  });
+  const mxSeniorFee = mxSeniorRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(mxSeniorFee.details.includes('MXN 900'), 'Mexico senior discounted fee must include MXN 900 (NOT 895)');
+  assert(mxSeniorFee.details.includes('MXN 2,140'), 'Mexico senior discounted fee must include MXN 2,140');
+  
+  // Mexico Abroad Consular USD
+  const mxAbroadRes = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const mxAbroadFee = mxAbroadRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(mxAbroadFee.details.includes('USD 101') && mxAbroadFee.details.includes('USD 209'), 'Mexico consular fee must state USD 101 and USD 209');
+  assert(mxAbroadFee.details.includes('USD 44'), 'Mexico consular fee must state USD 44 for 1-year');
+  
+  // Unverified Country Warning
+  const unverifiedRes = engine.evaluate({
+    countryCode: 'AF',
+    countryName: 'Afghanistan',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  const unverifiedFee = unverifiedRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert(unverifiedFee.details.includes('Fee Confirmation Required'), 'Unverified country must display Fee Confirmation Required warning');
+});
+
+// 14. Asset Cache-Busting Verification in index.html
 runTest('index.html applies cache-busting query strings (?v=...) to all local scripts and stylesheets', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v='), `Stylesheet href must contain ?v= query string (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_3'), `Stylesheet href must contain ?v=20261019_3 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -381,12 +502,12 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v='), `Local script ${srcMatch[1]} must contain ?v= cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_3'), `Local script ${srcMatch[1]} must contain ?v=20261019_3 cache-busting query string`);
     }
   });
 });
 
-// 13. Elimination of Misleading & Unverified Claims Across Codebase
+// 15. Elimination of Misleading & Unverified Claims Across Codebase
 runTest('Codebase contains zero occurrences of misleading claims (#1 cause, 99% rejection, unqualified gazette)', () => {
   const targetFiles = [
     'index.html',

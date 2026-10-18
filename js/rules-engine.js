@@ -382,14 +382,85 @@ class PassportRulesEngine {
       category: 'photo'
     });
 
-    // 8. Official Payment Channel
+    // 8. Official Payment Channel & Statutory Fee Guidance
+    let feeDetails = 'Always pay fees directly through the government portal, designated post office, or authorized bank challan. Never pay private agents claiming to guarantee approval.';
+    let feeStatus = 'general_guidance';
+    let specificFeeRecord = null;
+
+    if (isVerifiedPack && pack.services && pack.services[service]?.fees) {
+      const fees = pack.services[service].fees;
+      if (countryCode === 'JP') {
+        if (location === 'inside') {
+          if (age === 'adult' || age === 'senior') {
+            feeDetails = 'Official Japanese domestic statutory fees (effective 1 July 2026): Online application via Mynaportal: ¥8,900; Counter application: ¥9,300 (10-year validity). Note: The 5-year adult option was discontinued for new applications from 1 July 2026.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'JPY', online: 8900, counter: 9300, validity: '10 years' };
+          } else {
+            feeDetails = 'Official Japanese domestic statutory fees (effective 1 July 2026): Online application via Mynaportal: ¥4,400; Counter application: ¥4,800 (5-year validity). Application must be signed by parent with parental authority (親権者).';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'JPY', online: 4400, counter: 4800, validity: '5 years' };
+          }
+        } else {
+          feeDetails = 'Overseas consular fees are determined in local host currency under Japanese MOFA consular regulations. Do not use domestic fee amounts. Check your local Japanese Embassy or Consulate-General portal for current local currency payment instructions.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'Local currency', note: 'Determined by MOFA consular regulations' };
+        }
+      } else if (countryCode === 'MX') {
+        if (location === 'inside') {
+          if (age === 'infant') {
+            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 1-year validity (issued exclusively to children under 3 years old): MXN 920 (50% discount: MXN 460). Pay at authorized bank with SRE voucher.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'MXN', standard: 920, discounted: 460, validity: '1 year' };
+          } else if (age === 'senior') {
+            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE with 50% statutory senior discount for age 60+): 3-year: MXN 900; 6-year: MXN 1,220; 10-year: MXN 2,140. (Standard fees without discount: 3-yr MXN 1,795; 6-yr MXN 2,440; 10-yr MXN 4,280). Note: Agricultural workers under SAWP are excluded from the 10-year discount.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'MXN', standard: [1795, 2440, 4280], discounted: [900, 1220, 2140], validity: '3, 6, 10 years' };
+          } else {
+            feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 3-year: MXN 1,795; 6-year: MXN 2,440; 10-year (adults only): MXN 4,280. 50% discount available for certified disabled, seniors 60+, and SAWP workers (3/6 yr): 3-yr MXN 900; 6-yr MXN 1,220; 10-yr MXN 2,140.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'MXN', standard: [1795, 2440, 4280], discounted: [900, 1220, 2140], validity: '3, 6, 10 years' };
+          }
+        } else {
+          // Overseas Consular USD
+          if (age === 'infant') {
+            feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 1-year validity (children under 3 only): USD 44 (50% discount: USD 22). Paid at Mexican Consulate abroad.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'USD', standard: 44, discounted: 22, validity: '1 year' };
+          } else if (age === 'senior') {
+            feeDetails = 'Official Mexican consular fees in USD (2026 with 50% discount for seniors 60+ and disabled): 3-year: USD 50.50; 6-year: USD 68.50; 10-year: USD 104.50. (Standard consular fees: 3-yr USD 101; 6-yr USD 137; 10-yr USD 209). Paid at Mexican Consulate abroad.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
+          } else {
+            feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 3-year: USD 101 (50% discount: USD 50.50); 6-year: USD 137 (50% discount: USD 68.50); 10-year (adults 18+ only): USD 209 (50% discount: USD 104.50). 1-year (under 3 only): USD 44 (discounted: USD 22). Paid at Mexican Consulate abroad.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
+          }
+        }
+      } else if (countryCode === 'NG') {
+        if (location === 'inside') {
+          feeDetails = 'Official Nigerian domestic statutory fees (NIS Ministry of Interior reform): 32-page 5-year booklet: ₦100,000; 64-page 10-year booklet: ₦200,000. Payment must be made strictly online via passport.immigration.gov.ng official gateway; cash payments at passport control offices are strictly prohibited. Verified NIN required.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NGN', booklet_32_5yr: 100000, booklet_64_10yr: 200000 };
+        } else {
+          feeDetails = 'Official Nigerian diaspora consular fees (NIS reform): 32-page 5-year booklet: USD 150; 64-page 10-year booklet: USD 230. National Identification Number (NIN) verification is mandatory prior to booking biometric enrollment abroad.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'USD', booklet_32_5yr: 150, booklet_64_10yr: 230 };
+        }
+      }
+    } else if (!isVerifiedPack) {
+      feeDetails = `Fee Confirmation Required: Official statutory fees for ${countryName} have not been individually verified. Confirm the current statutory fee and official payment channel directly on the official government portal before making any payment.`;
+      feeStatus = 'confirmation_required';
+    }
+
     checklist.push({
       id: 'official_fee_payment',
       title: 'Pay Official Government Fee Directly',
-      details: 'Always pay fees directly through the government portal, designated post office, or authorized bank challan. Never pay private agents claiming to guarantee approval.',
+      details: feeDetails,
       mandatory: true,
       status: 'pending',
-      category: 'payment'
+      category: 'payment',
+      feeStatus,
+      feeRecord: specificFeeRecord
     });
 
     // Calculate final status and preparation completeness
@@ -419,6 +490,13 @@ class PassportRulesEngine {
       flags,
       alternatives,
       checklist,
+      feeGuidance: {
+        countryCode,
+        location,
+        feeStatus,
+        details: feeDetails,
+        specificRecord: specificFeeRecord
+      },
       summary: {
         totalItems: checklist.length,
         mandatoryItems: checklist.filter(c => c.mandatory).length,
