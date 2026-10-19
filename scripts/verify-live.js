@@ -306,7 +306,7 @@ async function verifyLive() {
   const liveMy60 = liveEngine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 60, validity: '5_year' });
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2 & PHASE 4.3 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3 & PHASE 4.3.1 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {
