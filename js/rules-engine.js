@@ -9,6 +9,348 @@ class PassportRulesEngine {
     this.rulePacks = rulePacks;
   }
 
+  formatServiceName(service) {
+    const map = {
+      first_passport: 'First-Time / Fresh Passport',
+      renewal_reissue: 'Renewal / Reissue (Expiring or Full)',
+      lost_stolen: 'Lost or Stolen Passport',
+      damaged: 'Damaged / Mutilated Passport',
+      name_correction: 'Correction / Name or Detail Change',
+      minor_child: 'Child / Minor Passport',
+      urgent_expedited: 'Urgent / Expedited Processing',
+      emergency_travel: 'Emergency Travel Certificate (ETC)'
+    };
+    return map[service] || service;
+  }
+
+  determineServiceCoverage(pack, countryCode, service, location = 'inside', urgency = 'standard') {
+    const isVerifiedPack = !!(pack && (pack.rule_pack_status === 'verified' || pack.is_verified === true));
+    const countryName = (pack && pack.country_name) || countryCode;
+
+    if (!isVerifiedPack) {
+      return {
+        service,
+        serviceKey: service,
+        status: 'awaiting_research',
+        label: 'Awaiting Detailed Research',
+        badgeClass: 'status-needs-research',
+        isFullyVerified: false,
+        summary: `Dedicated service-level research for "${this.formatServiceName(service)}" in ${countryName} is not yet complete. Checklist relies on baseline international standards.`,
+        supportedChecks: ['International baseline travel document preparation standards'],
+        missingChecks: [
+          'Country-specific document requirements and civil records',
+          'Official statutory fee schedule and accepted payment channels',
+          'Application lodging channels and authority appointment procedures'
+        ],
+        officialSourceUrl: pack ? pack.official_portal_url : null,
+        rulePackKey: null
+      };
+    }
+
+    // Verified Country Pack: Service-by-Service Audit
+    switch (service) {
+      case 'first_passport': {
+        const hasServiceObj = !!(pack.services && pack.services.first_passport);
+        return {
+          service,
+          serviceKey: 'first_passport',
+          status: 'verified',
+          label: 'Verified Statutory Rules',
+          badgeClass: 'status-verified',
+          isFullyVerified: true,
+          summary: `Fully verified country-specific first-time passport rules, mandatory citizenship evidence, and statutory fee schedules for ${countryName}.`,
+          supportedChecks: [
+            'Mandatory civil birth and citizenship proof requirements',
+            'Official statutory fee schedule and payment channels',
+            'Domestic and consular lodging jurisdiction guidance'
+          ],
+          missingChecks: [],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: 'first_passport'
+        };
+      }
+
+      case 'renewal_reissue': {
+        const hasServiceObj = !!(pack.services && pack.services.renewal_reissue);
+        if (hasServiceObj) {
+          return {
+            service,
+            serviceKey: 'renewal_reissue',
+            status: 'verified',
+            label: 'Verified Statutory Rules',
+            badgeClass: 'status-verified',
+            isFullyVerified: true,
+            summary: `Fully verified country-specific renewal and reissue requirements for ${countryName}, including physical passport surrender and expiry threshold checks.`,
+            supportedChecks: [
+              'Existing passport physical cancellation and surrender rules',
+              'Validity renewal conditions and expiry interval checks',
+              'Standard renewal fee schedule'
+            ],
+            missingChecks: [],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'renewal_reissue'
+          };
+        }
+        return {
+          service,
+          serviceKey: 'renewal_reissue',
+          status: 'general_guidance',
+          label: 'General Preparation Guidance',
+          badgeClass: 'status-needs-research',
+          isFullyVerified: false,
+          summary: `Although ${countryName} has a verified first-time passport pack, dedicated renewal rules are not yet separately modeled in this rule pack.`,
+          supportedChecks: ['General travel document renewal and cancellation standards'],
+          missingChecks: [
+            'Specific renewal application forms and eligibility thresholds',
+            'Dedicated renewal fee schedule and processing timeframes'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      case 'lost_stolen': {
+        const hasServiceObj = !!(pack.services && pack.services.lost_stolen);
+        if (hasServiceObj) {
+          return {
+            service,
+            serviceKey: 'lost_stolen',
+            status: 'verified',
+            label: 'Verified Statutory Rules',
+            badgeClass: 'status-verified',
+            isFullyVerified: true,
+            summary: `Fully verified country-specific lost/stolen passport replacement procedures for ${countryName}, including police reporting requirements and statutory replacement fee schedules.`,
+            supportedChecks: [
+              'Official police report / missing certificate requirements',
+              'Statutory replacement / penalty fee schedules across loss frequencies',
+              'Formal loss circumstance declaration protocols'
+            ],
+            missingChecks: [],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'lost_stolen'
+          };
+        }
+
+        const hasStatutoryNotice = ['US', 'PH'].includes(countryCode);
+        return {
+          service,
+          serviceKey: 'lost_stolen',
+          status: hasStatutoryNotice ? 'partial' : 'general_guidance',
+          label: hasStatutoryNotice ? 'Partial Service Coverage' : 'General Preparation Guidance',
+          badgeClass: hasStatutoryNotice ? 'status-linked' : 'status-needs-research',
+          isFullyVerified: false,
+          summary: hasStatutoryNotice
+            ? `Key statutory reporting requirements (such as Form DS-64 / Affidavit of Loss) are codified for ${countryName}, but dedicated replacement fee tables require direct verification.`
+            : `Dedicated lost/stolen passport replacement rule packs are not yet codified for ${countryName}. Standard police reporting and identity theft mitigation guidance applies.`,
+          supportedChecks: [
+            'Mandatory police report and loss declaration advisories',
+            'Identity fraud prevention safeguards'
+          ],
+          missingChecks: [
+            'Country-specific replacement fee schedules and penalty tiers',
+            'Official replacement application forms and investigation interview procedures'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      case 'damaged': {
+        const hasCodifiedPenalty = ['MY', 'ID', 'KE', 'LK'].includes(countryCode);
+        return {
+          service,
+          serviceKey: 'damaged',
+          status: hasCodifiedPenalty ? 'partial' : 'general_guidance',
+          label: hasCodifiedPenalty ? 'Partial Service Coverage' : 'General Preparation Guidance',
+          badgeClass: hasCodifiedPenalty ? 'status-linked' : 'status-needs-research',
+          isFullyVerified: false,
+          summary: hasCodifiedPenalty
+            ? `Statutory mutilated/damaged passport fine schedules are verified for ${countryName}, but full damaged booklet replacement workflows require official confirmation.`
+            : `Dedicated damaged passport rule packs are not yet codified for ${countryName}. General physical booklet inspection and surrender standards apply.`,
+          supportedChecks: hasCodifiedPenalty
+            ? [
+                'Statutory damaged passport replacement fine and penalty schedule',
+                'Physical booklet surrender and mutilation inspection requirements'
+              ]
+            : ['Physical booklet surrender and mutilation inspection requirements'],
+          missingChecks: [
+            'Dedicated damaged passport replacement application form',
+            'Authority-specific physical damage threshold assessment criteria'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      case 'name_correction': {
+        const hasServiceObj = !!(pack.services && pack.services.name_correction);
+        if (hasServiceObj) {
+          return {
+            service,
+            serviceKey: 'name_correction',
+            status: 'verified',
+            label: 'Verified Statutory Rules',
+            badgeClass: 'status-verified',
+            isFullyVerified: true,
+            summary: `Fully verified statutory name correction rules for ${countryName}, including self-declarations for marital surname changes (Annexure E) and official Gazette notifications for major changes.`,
+            supportedChecks: [
+              'Self-declaration routes for routine marital surname changes (Annexure E)',
+              'Official Gazette notification requirements for major name changes',
+              'Newspaper publication standards for alias corrections'
+            ],
+            missingChecks: [],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'name_correction'
+          };
+        }
+        return {
+          service,
+          serviceKey: 'name_correction',
+          status: 'general_guidance',
+          label: 'General Preparation Guidance',
+          badgeClass: 'status-needs-research',
+          isFullyVerified: false,
+          summary: `Dedicated name or detail amendment rule packs are not yet codified for ${countryName}. Standard legal name change documentation guidance applies.`,
+          supportedChecks: ['Baseline civil proof of legal name change (marriage certificate, deed poll, or court order)'],
+          missingChecks: [
+            'Country-specific deed poll / gazette notification requirements',
+            'Official name correction application forms and statutory fees'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      case 'minor_child': {
+        const hasServiceObj = !!(pack.services && pack.services.minor_child);
+        if (hasServiceObj) {
+          return {
+            service,
+            serviceKey: 'minor_child',
+            status: 'verified',
+            label: 'Verified Statutory Rules',
+            badgeClass: 'status-verified',
+            isFullyVerified: true,
+            summary: `Fully verified minor/child passport regulations for ${countryName}, including parental consent mandates, parental appearance rules, and child validity schedules.`,
+            supportedChecks: [
+              'Parental consent and parental presence statutory mandates',
+              'Civil birth certificate and parental identity proof',
+              'Minor validity duration and applicable child fee schedules'
+            ],
+            missingChecks: [],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'minor_child'
+          };
+        }
+        return {
+          service,
+          serviceKey: 'minor_child',
+          status: 'partial',
+          label: 'Partial Service Coverage',
+          badgeClass: 'status-linked',
+          isFullyVerified: false,
+          summary: `Statutory parental consent and civil birth documentation rules are verified for ${countryName}, but standalone minor service packs are not separately modeled.`,
+          supportedChecks: [
+            'Statutory parental consent safeguards (e.g. Annexure D/C, US 22 CFR § 51.28)',
+            'Civil birth certificate documentation'
+          ],
+          missingChecks: [
+            'Standalone minor passport application forms',
+            'Country-specific minor fee tiers (where distinct from general tables)'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      case 'urgent_expedited': {
+        const hasUrgentSchedule = ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN'].includes(countryCode);
+        return {
+          service,
+          serviceKey: 'urgent_expedited',
+          status: hasUrgentSchedule ? 'partial' : 'general_guidance',
+          label: hasUrgentSchedule ? 'Partial Service Coverage' : 'General Preparation Guidance',
+          badgeClass: hasUrgentSchedule ? 'status-linked' : 'status-needs-research',
+          isFullyVerified: false,
+          summary: hasUrgentSchedule
+            ? `Official expedited/urgent fee schedules and surcharge amounts are verified for ${countryName}, but daily booking quotas, appointment availability, and service exclusions vary by post.`
+            : `Dedicated expedited processing rule packs are not yet codified for ${countryName}. Standard urgent processing advice applies.`,
+          supportedChecks: hasUrgentSchedule
+            ? [
+                'Official statutory expedited fee and surcharge schedule',
+                'Expedited processing timeframe baselines'
+              ]
+            : ['General expedited preparation guidance'],
+          missingChecks: [
+            'Daily expedited appointment slot availability and booking procedures',
+            'Service-specific expedited exclusion criteria (e.g. complex name changes, replacement of lost records)'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      case 'emergency_travel': {
+        if (countryCode === 'MX') {
+          return {
+            service,
+            serviceKey: 'emergency_travel',
+            status: 'partial',
+            label: 'Partial Service Coverage',
+            badgeClass: 'status-linked',
+            isFullyVerified: false,
+            summary: 'In Mexico, emergency travel is handled via consular Emergency Type E Passports (Pasaporte de Emergencia Tipo E) or unscheduled emergency appointments (+30% surcharge, Art. 20 LFD). Standalone Emergency Travel Certificates (ETC/salvoconducto) are not standard.',
+            supportedChecks: [
+              'Consular emergency appointment 30% surcharge schedule (Art. 20 LFD)',
+              'Emergency Type E Passport validity ceiling (up to 1 year) and consular assessment requirements'
+            ],
+            missingChecks: [
+              'Local consular post Emergency Type E physical booklet stock availability',
+              'Non-consular domestic emergency exceptions'
+            ],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'emergency_passport'
+          };
+        }
+        return {
+          service,
+          serviceKey: 'emergency_travel',
+          status: 'general_guidance',
+          label: 'General Preparation Guidance',
+          badgeClass: 'status-needs-research',
+          isFullyVerified: false,
+          summary: `Emergency Travel Certificates (ETC) / Emergency Travel Documents are single-journey travel papers issued under strict consular discretion for urgent repatriations. Country-specific rules for ${countryName} are not yet codified in this rule pack.`,
+          supportedChecks: ['General consular emergency repatriation documentation standards'],
+          missingChecks: [
+            'Direct consular emergency duty officer contact procedures',
+            'Specific emergency travel document application forms and fees',
+            'Transit country and airline acceptance limitations (most ETCs are valid only for direct travel home)'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+      }
+
+      default:
+        return {
+          service,
+          serviceKey: service,
+          status: 'general_guidance',
+          label: 'General Preparation Guidance',
+          badgeClass: 'status-needs-research',
+          isFullyVerified: false,
+          summary: `No dedicated rule pack is codified for "${this.formatServiceName(service)}" in ${countryName}. Standard international preparation guidance applies.`,
+          supportedChecks: ['General international travel document standards'],
+          missingChecks: [
+            'Country-specific application forms',
+            'Statutory fee schedule and official payment channels'
+          ],
+          officialSourceUrl: pack.official_portal_url,
+          rulePackKey: null
+        };
+    }
+  }
+
   evaluate(profile) {
     const {
       countryCode = 'IN',
@@ -70,6 +412,7 @@ class PassportRulesEngine {
 
     const pack = this.rulePacks[countryCode] || null;
     const isVerifiedPack = pack && pack.rule_pack_status === 'verified';
+    const serviceCoverage = this.determineServiceCoverage(pack, countryCode, service, location, urgency);
 
     const checklist = [];
     const flags = [];
@@ -1076,12 +1419,46 @@ class PassportRulesEngine {
       feeRecord: specificFeeRecord
     });
 
+    // Service-level coverage status and readiness score protections
+    if (serviceCoverage.status === 'awaiting_research') {
+      preparationScore = Math.min(70, preparationScore);
+      flags.unshift({
+        severity: 'warning',
+        code: 'SERVICE_AWAITING_RESEARCH',
+        title: `Service-Level Rules Awaiting Research: ${countryName}`,
+        message: serviceCoverage.summary,
+        action: `Verify all requirements, fees, and appointment procedures directly with the official passport authority of ${countryName}.`
+      });
+    } else if (serviceCoverage.status === 'general_guidance') {
+      preparationScore = Math.min(75, preparationScore);
+      flags.unshift({
+        severity: 'warning',
+        code: 'SERVICE_GENERAL_GUIDANCE_ONLY',
+        title: `General Guidance: No Dedicated Country Pack for ${this.formatServiceName(service)}`,
+        message: serviceCoverage.summary,
+        action: `Consult the official portal of ${pack && pack.authority_name ? pack.authority_name : countryName} to confirm specific forms, documentary proof, and fees for this service.`
+      });
+    } else if (serviceCoverage.status === 'partial') {
+      preparationScore = Math.min(80, preparationScore);
+      flags.unshift({
+        severity: 'info',
+        code: 'SERVICE_COVERAGE_PARTIAL',
+        title: `Partial Service Coverage: ${this.formatServiceName(service)}`,
+        message: serviceCoverage.summary,
+        action: `Review the specific notices in your checklist and verify final lodgement requirements on the official authority portal.`
+      });
+    }
+
     // Calculate final status and preparation completeness
     preparationScore = Math.max(10, Math.min(100, preparationScore));
     let statusLabel = 'PREPARED';
 
-    if (!isVerifiedPack) {
+    if (!isVerifiedPack || serviceCoverage.status === 'awaiting_research') {
       statusLabel = 'OFFICIAL_CONFIRMATION_RECOMMENDED';
+    } else if (serviceCoverage.status === 'general_guidance') {
+      statusLabel = (preparationScore < 50 ? 'CRITICAL_ATTENTION_REQUIRED' : (preparationScore < 75 ? 'NEEDS_ATTENTION' : 'GENERAL_GUIDANCE_ONLY'));
+    } else if (serviceCoverage.status === 'partial') {
+      statusLabel = (preparationScore < 50 ? 'CRITICAL_ATTENTION_REQUIRED' : (preparationScore < 75 ? 'NEEDS_ATTENTION' : 'VERIFICATION_RECOMMENDED'));
     } else if (preparationScore < 50) {
       statusLabel = 'CRITICAL_ATTENTION_REQUIRED';
     } else if (preparationScore < 75) {
@@ -1098,6 +1475,7 @@ class PassportRulesEngine {
         lastReviewed: pack ? pack.last_reviewed : null,
         statusNote: isVerifiedPack ? 'Verified Official Source Pack' : 'General Preparation Pack (Awaiting detailed official research)'
       },
+      serviceCoverage,
       applicant: {
         exactAge: rawExactAge,
         canonicalAgeBand,
@@ -1115,13 +1493,15 @@ class PassportRulesEngine {
         location,
         feeStatus,
         details: feeDetails,
-        specificRecord: specificFeeRecord
+        specificRecord: specificFeeRecord,
+        serviceCoverageStatus: serviceCoverage.status
       },
       summary: {
         totalItems: checklist.length,
         mandatoryItems: checklist.filter(c => c.mandatory).length,
         criticalFlags: flags.filter(f => f.severity === 'critical').length,
         warningFlags: flags.filter(f => f.severity === 'warning').length,
+        serviceCoverageStatus: serviceCoverage.status,
         isDemonstration: false
       }
     };

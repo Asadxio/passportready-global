@@ -366,10 +366,51 @@
     // Score badge
     const badgeEl = document.getElementById('resStatusBadge');
     badgeEl.textContent = result.statusLabel.replace(/_/g, ' ');
-    badgeEl.className = 'status-pill ' + (result.readinessScore >= 80 ? 'status-verified' : (result.readinessScore >= 60 ? 'status-linked' : 'status-needs-research'));
+    if (result.statusLabel === 'PREPARED') {
+      badgeEl.className = 'status-pill status-verified';
+    } else if (result.statusLabel === 'VERIFICATION_RECOMMENDED' || result.statusLabel === 'NEEDS_ATTENTION') {
+      badgeEl.className = 'status-pill status-linked';
+    } else {
+      badgeEl.className = 'status-pill status-needs-research';
+    }
 
     document.getElementById('resScoreNum').textContent = `${result.readinessScore}%`;
     document.getElementById('resScoreBar').style.width = `${result.readinessScore}%`;
+
+    // Service Coverage Transparency Card
+    const coverageCard = document.getElementById('resServiceCoverageCard');
+    if (coverageCard && result.serviceCoverage) {
+      const sc = result.serviceCoverage;
+      const isCountryVerified = result.country && result.country.isVerified;
+      const countryBadgeClass = isCountryVerified ? 'status-verified' : 'status-needs-research';
+      const countryBadgeText = isCountryVerified ? 'VERIFIED COUNTRY PACK' : 'AWAITING RESEARCH';
+
+      const supportedHtml = (sc.supportedChecks && sc.supportedChecks.length > 0)
+        ? `<div style="margin-top:10px"><strong style="font-size:12px;color:#166534">✓ Researched Checks Supported:</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#334155;line-height:1.4">${sc.supportedChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
+        : '';
+
+      const missingHtml = (sc.missingChecks && sc.missingChecks.length > 0)
+        ? `<div style="margin-top:8px"><strong style="font-size:12px;color:#b45309">⚠ Direct Official Confirmation Required:</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#78350f;line-height:1.4">${sc.missingChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
+        : '';
+
+      coverageCard.innerHTML = `
+        <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:16px;margin-bottom:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+            <span style="font-size:12px;font-weight:700;color:var(--slate-dark);text-transform:uppercase;letter-spacing:0.04em">Service Verification Audit</span>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="status-pill ${countryBadgeClass}">${countryBadgeText}</span>
+              <span class="status-pill ${sc.badgeClass}">${escapeHTML(sc.label.toUpperCase())}</span>
+            </div>
+          </div>
+          <p style="margin:0;font-size:13px;color:#475569;line-height:1.5">${escapeHTML(sc.summary)}</p>
+          ${supportedHtml}
+          ${missingHtml}
+          <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #cbd5e1;font-size:11px;color:#64748b">
+            <em>Readiness score reflects document preparation completeness only; it does not calculate, indicate, or guarantee passport issuance or approval.</em>
+          </div>
+        </div>
+      `;
+    }
 
     // Flags section
     const flagsContainer = document.getElementById('resFlagsContainer');

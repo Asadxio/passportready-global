@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_10'), `Stylesheet href must contain ?v=20261019_10 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_11'), `Stylesheet href must contain ?v=20261019_11 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_10'), `Local script ${srcMatch[1]} must contain ?v=20261019_10 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_11'), `Local script ${srcMatch[1]} must contain ?v=20261019_11 cache-busting query string`);
     }
   });
 });
@@ -1334,6 +1334,184 @@ runTest('Phase 4.3.2 Directory filter counts derive dynamically from country dat
 
   const bySearchTerm2 = sandbox.window.PassportApp.getCountryByQuery('UK');
   assert(bySearchTerm2 && bySearchTerm2.alpha2 === 'GB', 'getCountryByQuery must resolve by search_terms alias UK');
+});
+
+// 20. Phase 4.3.3 Explicit Service-Level Coverage Status, Service Mapping Audit, and Result Protection
+runTest('Phase 4.3.3 Service-level coverage status, score protections, and safe badge assertions', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // 1. Verified Country + Verified Service
+  const inVerified = engine.evaluate({
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  assert(inVerified.serviceCoverage, 'Result must contain serviceCoverage');
+  assert.strictEqual(inVerified.serviceCoverage.status, 'verified', 'India first_passport must be verified');
+  assert.strictEqual(inVerified.serviceCoverage.isFullyVerified, true, 'India first_passport must be fully verified');
+  assert.strictEqual(inVerified.statusLabel, 'PREPARED', 'India clean first_passport can achieve PREPARED');
+  assert(inVerified.serviceCoverage.officialSourceUrl, 'Verified service must provide official source URL');
+  assert(!inVerified.flags.some(f => f.code === 'SERVICE_GENERAL_GUIDANCE_ONLY' || f.code === 'SERVICE_AWAITING_RESEARCH'), 'Verified service must not emit guidance warning flag');
+
+  // 2. Verified Country + Uncodified Service (General Guidance)
+  // US Emergency Travel
+  const usEmergency = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'emergency_travel',
+    age: 'adult'
+  });
+  assert.strictEqual(usEmergency.serviceCoverage.status, 'general_guidance', 'US emergency_travel must be general_guidance');
+  assert.strictEqual(usEmergency.serviceCoverage.isFullyVerified, false, 'US emergency_travel is not fully verified');
+  assert(usEmergency.readinessScore <= 75, 'General guidance score must be capped <= 75%');
+  assert.strictEqual(usEmergency.statusLabel, 'GENERAL_GUIDANCE_ONLY', 'General guidance must have statusLabel GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(usEmergency.statusLabel, 'PREPARED', 'General guidance must never be PREPARED');
+  assert(usEmergency.flags.some(f => f.code === 'SERVICE_GENERAL_GUIDANCE_ONLY'), 'Must emit SERVICE_GENERAL_GUIDANCE_ONLY flag');
+
+  // GB Name Correction
+  const gbName = engine.evaluate({
+    countryCode: 'GB',
+    countryName: 'United Kingdom',
+    location: 'inside',
+    service: 'name_correction',
+    age: 'adult'
+  });
+  assert.strictEqual(gbName.serviceCoverage.status, 'general_guidance', 'GB name_correction must be general_guidance');
+  assert(gbName.readinessScore <= 75, 'GB name_correction score must be capped <= 75%');
+  assert.strictEqual(gbName.statusLabel, 'GENERAL_GUIDANCE_ONLY', 'GB name_correction statusLabel must be GENERAL_GUIDANCE_ONLY');
+
+  // BD Renewal / Reissue (BD has no renewal_reissue in rule pack)
+  const bdRenewal = engine.evaluate({
+    countryCode: 'BD',
+    countryName: 'Bangladesh',
+    location: 'inside',
+    service: 'renewal_reissue',
+    age: 'adult'
+  });
+  assert.strictEqual(bdRenewal.serviceCoverage.status, 'general_guidance', 'BD renewal_reissue must be general_guidance');
+  assert.notStrictEqual(bdRenewal.statusLabel, 'PREPARED', 'BD renewal must not be PREPARED');
+
+  // 3. Partial Service Coverage
+  // MX Emergency Travel (maps to emergency_passport with Art. 20 LFD surcharge)
+  const mxEmergency = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'emergency_travel',
+    age: 'adult'
+  });
+  assert.strictEqual(mxEmergency.serviceCoverage.status, 'partial', 'MX emergency_travel must be partial');
+  assert.strictEqual(mxEmergency.serviceCoverage.rulePackKey, 'emergency_passport', 'MX emergency_travel must link to emergency_passport rulePackKey');
+  assert(mxEmergency.readinessScore <= 80, 'Partial service score must be capped <= 80%');
+  assert.strictEqual(mxEmergency.statusLabel, 'VERIFICATION_RECOMMENDED', 'Partial service statusLabel must be VERIFICATION_RECOMMENDED');
+  assert.notStrictEqual(mxEmergency.statusLabel, 'PREPARED', 'Partial service must never be PREPARED');
+  assert(mxEmergency.flags.some(f => f.code === 'SERVICE_COVERAGE_PARTIAL'), 'Must emit SERVICE_COVERAGE_PARTIAL flag');
+  assert(mxEmergency.serviceCoverage.summary.includes('Art. 20 LFD'), 'MX summary must cite Art. 20 LFD');
+
+  // US Lost/Stolen
+  const usLost = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'lost_stolen',
+    age: 'adult'
+  });
+  assert.strictEqual(usLost.serviceCoverage.status, 'partial', 'US lost_stolen must be partial');
+  assert(usLost.readinessScore <= 80, 'US lost_stolen score must be capped <= 80%');
+  assert.strictEqual(usLost.statusLabel, 'VERIFICATION_RECOMMENDED');
+
+  // NZ Urgent Expedited
+  const nzUrgent = engine.evaluate({
+    countryCode: 'NZ',
+    countryName: 'New Zealand',
+    location: 'inside',
+    service: 'urgent_expedited',
+    age: 'adult'
+  });
+  assert.strictEqual(nzUrgent.serviceCoverage.status, 'partial', 'NZ urgent_expedited must be partial');
+  assert(nzUrgent.readinessScore <= 80, 'NZ urgent_expedited score must be capped <= 80%');
+  assert.strictEqual(nzUrgent.statusLabel, 'VERIFICATION_RECOMMENDED');
+
+  // 4. Country Awaiting Research
+  const afFirst = engine.evaluate({
+    countryCode: 'AF',
+    countryName: 'Afghanistan',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult'
+  });
+  assert.strictEqual(afFirst.serviceCoverage.status, 'awaiting_research', 'AF first_passport must be awaiting_research');
+  assert.strictEqual(afFirst.serviceCoverage.isFullyVerified, false, 'AF is not verified');
+  assert(afFirst.readinessScore <= 70, 'Awaiting research score must be capped <= 70%');
+  assert.strictEqual(afFirst.statusLabel, 'OFFICIAL_CONFIRMATION_RECOMMENDED', 'AF statusLabel must be OFFICIAL_CONFIRMATION_RECOMMENDED');
+  assert.notStrictEqual(afFirst.statusLabel, 'PREPARED', 'Awaiting research must never be PREPARED');
+  assert(afFirst.flags.some(f => f.code === 'SERVICE_AWAITING_RESEARCH'), 'Must emit SERVICE_AWAITING_RESEARCH flag');
+
+  const zwRenewal = engine.evaluate({
+    countryCode: 'ZW',
+    countryName: 'Zimbabwe',
+    location: 'inside',
+    service: 'renewal_reissue',
+    age: 'adult'
+  });
+  assert.strictEqual(zwRenewal.serviceCoverage.status, 'awaiting_research', 'ZW renewal must be awaiting_research');
+  assert(zwRenewal.readinessScore <= 70, 'ZW renewal score must be capped <= 70%');
+  assert.strictEqual(zwRenewal.statusLabel, 'OFFICIAL_CONFIRMATION_RECOMMENDED');
+
+  // 5. Lost / Damaged Services Not Fully Covered
+  const deLost = engine.evaluate({
+    countryCode: 'DE',
+    countryName: 'Germany',
+    location: 'inside',
+    service: 'lost_stolen',
+    age: 'adult'
+  });
+  assert.strictEqual(deLost.serviceCoverage.status, 'general_guidance', 'DE lost_stolen must be general_guidance');
+
+  const myDamaged = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'damaged',
+    age: 'adult'
+  });
+  assert.strictEqual(myDamaged.serviceCoverage.status, 'partial', 'MY damaged must be partial');
+  assert(myDamaged.serviceCoverage.supportedChecks.some(c => c.includes('replacement')), 'MY damaged supported checks must note replacement schedule');
+
+  // 6. Preservation of Preserved Statutory Findings (Malaysia JIM Staff & Indonesia Marital Status)
+  const myStaff10Rep = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '10_year',
+    lossTier: 'first_loss'
+  });
+  const myStaffFee = myStaff10Rep.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(myStaffFee.feeStatus, 'verified_statutory', 'MY staff replacement must remain verified_statutory');
+  assert.strictEqual(myStaffFee.feeRecord.total_replacement_fee, 200, 'MY staff first loss must remain RM 200');
+
+  const idMarital = engine.evaluate({
+    countryCode: 'ID',
+    countryName: 'Indonesia',
+    location: 'inside',
+    service: 'first_passport',
+    ageExact: 16
+  });
+  assert.strictEqual(idMarital.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required', 'ID minor unknown marital status must remain confirmation_required');
+
+  // 7. Check UI Coverage Card rendering via App
+  const appJsCode = fs.readFileSync(path.join(__dirname, '..', 'js', 'app.js'), 'utf8');
+  assert(appJsCode.includes('resServiceCoverageCard'), 'app.js must render into resServiceCoverageCard');
+  assert(appJsCode.includes('Service Verification Audit'), 'app.js must include Service Verification Audit section title');
+  assert(appJsCode.includes('Readiness score reflects document preparation completeness only'), 'app.js must include issuance disclaimer');
+  assert(appJsCode.includes("badgeEl.className = 'status-pill status-verified'"), 'app.js must assign status-verified ONLY when statusLabel === PREPARED');
 });
 
 console.log('\n====================================================');

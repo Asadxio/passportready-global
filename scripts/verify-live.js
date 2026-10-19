@@ -26,13 +26,17 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_10"/g) || []);
-  console.log('Scripts with ?v=20261019_10:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_10');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_11"/g) || []);
+  console.log('Scripts with ?v=20261019_11:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_11');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_10"/g) || []);
-  console.log('CSS with ?v=20261019_10:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_10');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_11"/g) || []);
+  console.log('CSS with ?v=20261019_11:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_11');
+
+  // Service coverage card check
+  assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
+  assert(index.body.includes('Readiness score reflects document preparation completeness only'), 'Live HTML must contain readiness disclaimer');
 
   // Directory filter pills checks
   assert(!index.body.includes('Verified Rules (18)'), 'Live HTML must NOT contain stale "Verified Rules (18)"');
@@ -50,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_10');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_11');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -68,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_10');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_11');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -220,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_10');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_11');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -355,9 +359,15 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_10');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_11');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
+
+  // Verify Phase 4.3.3 UI safeguards in live app.js
+  assert(appJsRes.body.includes('resServiceCoverageCard'), 'Live app.js must render into resServiceCoverageCard');
+  assert(appJsRes.body.includes('Service Verification Audit'), 'Live app.js must include Service Verification Audit');
+  assert(appJsRes.body.includes('Readiness score reflects document preparation completeness only'), 'Live app.js must include issuance disclaimer');
+  assert(appJsRes.body.includes("badgeEl.className = 'status-pill status-verified'"), 'Live app.js must restrict status-verified to PREPARED');
 
   const appSandbox = {
     PassportRulesEngine: class { constructor() {} },
@@ -385,7 +395,98 @@ async function verifyLive() {
   assert.strictEqual(liveCounts.linked, 0, 'Live linked count must be 0');
   assert.strictEqual(liveCounts.needs_research, 222, 'Live needs_research count must be 222');
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1 & PHASE 4.3.2 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 7. Checking Live Phase 4.3.3 Service-Level Coverage Status, Score Caps, and Safe Badges ---');
+  // 7.1 Verified country + verified service (IN first_passport)
+  const liveInVerified = liveEngine.evaluate({
+    countryCode: 'IN', countryName: 'India', location: 'inside', service: 'first_passport', age: 'adult'
+  });
+  assert(liveInVerified.serviceCoverage, 'Live IN result must contain serviceCoverage');
+  assert.strictEqual(liveInVerified.serviceCoverage.status, 'verified', 'Live IN first_passport must be verified');
+  assert.strictEqual(liveInVerified.serviceCoverage.isFullyVerified, true, 'Live IN first_passport isFullyVerified must be true');
+  assert.strictEqual(liveInVerified.statusLabel, 'PREPARED', 'Live IN clean first_passport can achieve PREPARED');
+  assert(liveInVerified.serviceCoverage.officialSourceUrl, 'Live IN verified service must have officialSourceUrl');
+  assert(!liveInVerified.flags.some(f => f.code === 'SERVICE_GENERAL_GUIDANCE_ONLY' || f.code === 'SERVICE_AWAITING_RESEARCH'), 'Live IN verified service must not emit guidance flags');
+
+  // 7.2 Verified country + uncodified service (US emergency_travel, GB name_correction, BD renewal_reissue)
+  const liveUsEmergency = liveEngine.evaluate({
+    countryCode: 'US', countryName: 'United States', location: 'inside', service: 'emergency_travel', age: 'adult'
+  });
+  assert.strictEqual(liveUsEmergency.serviceCoverage.status, 'general_guidance', 'Live US emergency_travel must be general_guidance');
+  assert.strictEqual(liveUsEmergency.serviceCoverage.isFullyVerified, false, 'Live US emergency_travel is not fully verified');
+  assert(liveUsEmergency.readinessScore <= 75, 'Live US emergency_travel score must be capped <= 75%');
+  assert.strictEqual(liveUsEmergency.statusLabel, 'GENERAL_GUIDANCE_ONLY', 'Live US emergency_travel statusLabel must be GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(liveUsEmergency.statusLabel, 'PREPARED', 'Live US emergency_travel must never be PREPARED');
+  assert(liveUsEmergency.flags.some(f => f.code === 'SERVICE_GENERAL_GUIDANCE_ONLY'), 'Live US emergency_travel must emit SERVICE_GENERAL_GUIDANCE_ONLY flag');
+
+  const liveGbName = liveEngine.evaluate({
+    countryCode: 'GB', countryName: 'United Kingdom', location: 'inside', service: 'name_correction', age: 'adult'
+  });
+  assert.strictEqual(liveGbName.serviceCoverage.status, 'general_guidance', 'Live GB name_correction must be general_guidance');
+  assert(liveGbName.readinessScore <= 75, 'Live GB name_correction score must be capped <= 75%');
+  assert.strictEqual(liveGbName.statusLabel, 'GENERAL_GUIDANCE_ONLY', 'Live GB name_correction statusLabel must be GENERAL_GUIDANCE_ONLY');
+
+  const liveBdRenewal = liveEngine.evaluate({
+    countryCode: 'BD', countryName: 'Bangladesh', location: 'inside', service: 'renewal_reissue', age: 'adult'
+  });
+  assert.strictEqual(liveBdRenewal.serviceCoverage.status, 'general_guidance', 'Live BD renewal_reissue must be general_guidance');
+  assert.notStrictEqual(liveBdRenewal.statusLabel, 'PREPARED', 'Live BD renewal_reissue must never be PREPARED');
+
+  // 7.3 Partial service coverage (MX emergency_travel, US lost_stolen, NZ urgent_expedited)
+  const liveMxEmergency = liveEngine.evaluate({
+    countryCode: 'MX', countryName: 'Mexico', location: 'abroad', service: 'emergency_travel', age: 'adult'
+  });
+  assert.strictEqual(liveMxEmergency.serviceCoverage.status, 'partial', 'Live MX emergency_travel must be partial');
+  assert.strictEqual(liveMxEmergency.serviceCoverage.rulePackKey, 'emergency_passport', 'Live MX emergency_travel must link to emergency_passport rulePackKey');
+  assert(liveMxEmergency.readinessScore <= 80, 'Live MX emergency_travel score must be capped <= 80%');
+  assert.strictEqual(liveMxEmergency.statusLabel, 'VERIFICATION_RECOMMENDED', 'Live MX emergency_travel statusLabel must be VERIFICATION_RECOMMENDED');
+  assert.notStrictEqual(liveMxEmergency.statusLabel, 'PREPARED', 'Live MX emergency_travel must never be PREPARED');
+  assert(liveMxEmergency.flags.some(f => f.code === 'SERVICE_COVERAGE_PARTIAL'), 'Live MX emergency_travel must emit SERVICE_COVERAGE_PARTIAL');
+
+  const liveUsLost = liveEngine.evaluate({
+    countryCode: 'US', countryName: 'United States', location: 'inside', service: 'lost_stolen', age: 'adult'
+  });
+  assert.strictEqual(liveUsLost.serviceCoverage.status, 'partial', 'Live US lost_stolen must be partial');
+  assert(liveUsLost.readinessScore <= 80, 'Live US lost_stolen score must be capped <= 80%');
+  assert.strictEqual(liveUsLost.statusLabel, 'VERIFICATION_RECOMMENDED');
+
+  const liveNzUrgent = liveEngine.evaluate({
+    countryCode: 'NZ', countryName: 'New Zealand', location: 'inside', service: 'urgent_expedited', age: 'adult'
+  });
+  assert.strictEqual(liveNzUrgent.serviceCoverage.status, 'partial', 'Live NZ urgent_expedited must be partial');
+  assert(liveNzUrgent.readinessScore <= 80, 'Live NZ urgent_expedited score must be capped <= 80%');
+  assert.strictEqual(liveNzUrgent.statusLabel, 'VERIFICATION_RECOMMENDED');
+
+  // 7.4 Country awaiting research (AF first_passport, ZW renewal_reissue)
+  const liveAfFirst = liveEngine.evaluate({
+    countryCode: 'AF', countryName: 'Afghanistan', location: 'inside', service: 'first_passport', age: 'adult'
+  });
+  assert.strictEqual(liveAfFirst.serviceCoverage.status, 'awaiting_research', 'Live AF first_passport must be awaiting_research');
+  assert.strictEqual(liveAfFirst.serviceCoverage.isFullyVerified, false, 'Live AF is not verified');
+  assert(liveAfFirst.readinessScore <= 70, 'Live AF score must be capped <= 70%');
+  assert.strictEqual(liveAfFirst.statusLabel, 'OFFICIAL_CONFIRMATION_RECOMMENDED', 'Live AF statusLabel must be OFFICIAL_CONFIRMATION_RECOMMENDED');
+  assert.notStrictEqual(liveAfFirst.statusLabel, 'PREPARED', 'Live AF must never be PREPARED');
+  assert(liveAfFirst.flags.some(f => f.code === 'SERVICE_AWAITING_RESEARCH'), 'Live AF must emit SERVICE_AWAITING_RESEARCH flag');
+
+  const liveZwRenewal = liveEngine.evaluate({
+    countryCode: 'ZW', countryName: 'Zimbabwe', location: 'inside', service: 'renewal_reissue', age: 'adult'
+  });
+  assert.strictEqual(liveZwRenewal.serviceCoverage.status, 'awaiting_research', 'Live ZW renewal must be awaiting_research');
+  assert(liveZwRenewal.readinessScore <= 70, 'Live ZW renewal score must be capped <= 70%');
+  assert.strictEqual(liveZwRenewal.statusLabel, 'OFFICIAL_CONFIRMATION_RECOMMENDED');
+
+  // 7.5 Lost and damaged services with partial or general coverage
+  const liveDeLost = liveEngine.evaluate({
+    countryCode: 'DE', countryName: 'Germany', location: 'inside', service: 'lost_stolen', age: 'adult'
+  });
+  assert.strictEqual(liveDeLost.serviceCoverage.status, 'general_guidance', 'Live DE lost_stolen must be general_guidance');
+
+  const liveMyDamaged = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'damaged', age: 'adult'
+  });
+  assert.strictEqual(liveMyDamaged.serviceCoverage.status, 'partial', 'Live MY damaged must be partial');
+  assert(liveMyDamaged.serviceCoverage.supportedChecks.some(c => c.includes('replacement')), 'Live MY damaged supported checks must note replacement schedule');
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2 & PHASE 4.3.3 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {
