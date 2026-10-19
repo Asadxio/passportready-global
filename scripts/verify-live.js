@@ -238,6 +238,7 @@ async function verifyLive() {
   const liveMyImmRepFeeItem = liveMyImmRep.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(liveMyImmRepFeeItem.feeStatus, 'not_eligible', 'LIVE: MY immigration staff 5-yr replacement must return not_eligible (Phase 4.3.1)');
   assert.strictEqual(liveMyImmRepFeeItem.feeRecord.status, 'not_eligible', 'LIVE: MY immigration staff 5-yr replacement feeRecord.status must be not_eligible');
+  assert(liveMyImmRepFeeItem.details.includes('NOT eligible') && (liveMyImmRepFeeItem.details.includes('10-year') || liveMyImmRepFeeItem.details.includes('10-year validity')), 'LIVE: MY immigration staff 5-yr replacement details must state 10-year-only restriction');
 
   // Phase 4.3.1: Staff 10-year original must return eligible_free RM 0 with no replacement fees attached
   const liveMyImm10 = liveEngine.evaluate({
@@ -245,8 +246,9 @@ async function verifyLive() {
     applicantCategory: 'immigration_officers_staff', validity: '10_year'
   });
   const liveMyImm10Fee = liveMyImm10.checklist.find(c => c.id === 'official_fee_payment');
-  assert.strictEqual(liveMyImm10Fee.feeRecord.amount, 0, 'LIVE: MY immigration staff 10-yr must be RM 0');
+  assert.strictEqual(liveMyImm10Fee.feeStatus, 'verified_statutory', 'LIVE: MY immigration staff 10-yr must return feeStatus verified_statutory');
   assert.strictEqual(liveMyImm10Fee.feeRecord.status, 'eligible_free', 'LIVE: MY immigration staff 10-yr status must be eligible_free');
+  assert.strictEqual(liveMyImm10Fee.feeRecord.amount, 0, 'LIVE: MY immigration staff 10-yr must be RM 0');
   assert.strictEqual(liveMyImm10Fee.feeRecord.total_replacement_fee, undefined, 'LIVE: Original issuance must not present replacement fee');
   assert.strictEqual(liveMyImm10Fee.feeRecord.official_replacement_amount, undefined, 'LIVE: Original issuance must not present replacement amount');
   assert.strictEqual(liveMyImm10Fee.feeRecord.statutory_penalty, undefined, 'LIVE: Original issuance must not present statutory penalty');
@@ -259,8 +261,11 @@ async function verifyLive() {
     applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss'
   });
   const liveMyImm10RepFee1 = liveMyImm10Rep1.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee1.feeStatus, 'verified_statutory', 'LIVE: MY immigration staff 10-yr 1st loss must be verified_statutory');
   assert.strictEqual(liveMyImm10RepFee1.feeRecord.total_replacement_fee, 200, 'LIVE: MY immigration staff 10-yr 1st loss must be RM 200');
   assert.strictEqual(liveMyImm10RepFee1.feeRecord.official_replacement_amount, 200, 'LIVE: MY immigration staff 10-yr feeRecord must have official_replacement_amount 200');
+  assert(liveMyImm10RepFee1.details.includes('RM 200'), 'LIVE: MY immigration staff 10-yr 1st loss details must mention RM 200');
+  assert(!liveMyImm10RepFee1.details.includes('calculated difference'), 'LIVE: MY immigration staff 10-yr 1st loss details must NOT use calculated difference language');
 
   // Tier 2: Second loss = RM 500
   const liveMyImm10Rep2 = liveEngine.evaluate({
@@ -268,8 +273,11 @@ async function verifyLive() {
     applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'second_loss'
   });
   const liveMyImm10RepFee2 = liveMyImm10Rep2.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee2.feeStatus, 'verified_statutory', 'LIVE: MY immigration staff 10-yr 2nd loss must be verified_statutory');
   assert.strictEqual(liveMyImm10RepFee2.feeRecord.total_replacement_fee, 500, 'LIVE: MY immigration staff 10-yr 2nd loss must be RM 500');
   assert.strictEqual(liveMyImm10RepFee2.feeRecord.official_replacement_amount, 500, 'LIVE: MY immigration staff 10-yr 2nd loss feeRecord must have official_replacement_amount 500');
+  assert(liveMyImm10RepFee2.details.includes('RM 500'), 'LIVE: MY immigration staff 10-yr 2nd loss details must mention RM 500');
+  assert(!liveMyImm10RepFee2.details.includes('calculated difference'), 'LIVE: MY immigration staff 10-yr 2nd loss details must NOT use calculated difference language');
 
   // Tier 3: Third or subsequent loss = RM 1,000
   const liveMyImm10Rep3 = liveEngine.evaluate({
@@ -277,8 +285,11 @@ async function verifyLive() {
     applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'third_loss'
   });
   const liveMyImm10RepFee3 = liveMyImm10Rep3.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee3.feeStatus, 'verified_statutory', 'LIVE: MY immigration staff 10-yr 3rd loss must be verified_statutory');
   assert.strictEqual(liveMyImm10RepFee3.feeRecord.total_replacement_fee, 1000, 'LIVE: MY immigration staff 10-yr 3rd loss must be RM 1,000');
   assert.strictEqual(liveMyImm10RepFee3.feeRecord.official_replacement_amount, 1000, 'LIVE: MY immigration staff 10-yr 3rd loss feeRecord must have official_replacement_amount 1000');
+  assert(liveMyImm10RepFee3.details.includes('RM 1000') || liveMyImm10RepFee3.details.includes('RM 1,000'), 'LIVE: MY immigration staff 10-yr 3rd loss details must mention RM 1000');
+  assert(!liveMyImm10RepFee3.details.includes('calculated difference'), 'LIVE: MY immigration staff 10-yr 3rd loss details must NOT use calculated difference language');
 
   const liveMyPmd = liveEngine.evaluate({
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
