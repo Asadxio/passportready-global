@@ -210,9 +210,9 @@ async function verifyLive() {
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
-  const reSandbox = { window: {}, module: {}, require: () => {} };
+  const reSandbox = { window: {}, module: { exports: {} }, require: () => {} };
   vm.runInNewContext(rulesEngineRes.body, reSandbox);
-  const PassportRulesEngine = reSandbox.module.exports?.PassportRulesEngine || reSandbox.window.PassportRulesEngine;
+  const PassportRulesEngine = reSandbox.module.exports?.PassportRulesEngine || reSandbox.PassportRulesEngine || reSandbox.window.PassportRulesEngine;
   assert(PassportRulesEngine, 'PassportRulesEngine must be defined in live script');
 
   const liveEngine = new PassportRulesEngine(rp);
