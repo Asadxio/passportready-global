@@ -6,6 +6,10 @@
 (function () {
   'use strict';
 
+  // Country Data Reference: resolve from window.PASSPORT_COUNTRIES or window.COUNTRY_DATA
+  const COUNTRY_DATA = (typeof window !== 'undefined' && (window.COUNTRY_DATA || window.PASSPORT_COUNTRIES)) ||
+    (typeof PASSPORT_COUNTRIES !== 'undefined' ? PASSPORT_COUNTRIES : []);
+
   // Application State
   const state = {
     currentStep: 0,
@@ -41,6 +45,7 @@
     setupLanguageSelector();
     initializeRulesEngine();
     renderCountryOptions();
+    updateDirectoryFilterCounts();
     renderCountryDirectory();
     renderGuides();
     setupWizardListeners();
@@ -157,6 +162,7 @@
       c.name.toLowerCase() === q ||
       c.alpha2.toLowerCase() === q ||
       c.alpha3.toLowerCase() === q ||
+      (c.official_name && c.official_name.toLowerCase() === q) ||
       (c.search_terms && c.search_terms.some(t => t.toLowerCase() === q))
     ) || null;
   }
@@ -448,6 +454,34 @@
     }
   }
 
+  // Country Directory Filter Counts & Dynamic Labeling
+  function getDirectoryCounts() {
+    const list = Array.isArray(COUNTRY_DATA) ? COUNTRY_DATA :
+      ((typeof window !== 'undefined' && (window.COUNTRY_DATA || window.PASSPORT_COUNTRIES)) || []);
+    return {
+      all: list.length,
+      verified: list.filter(c => c.portal_status === 'verified').length,
+      linked: list.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length,
+      needs_research: list.filter(c => c.portal_status === 'official_source_needs_research').length
+    };
+  }
+
+  function updateDirectoryFilterCounts() {
+    const counts = getDirectoryCounts();
+    const filterButtons = document.querySelectorAll('[data-dir-filter]');
+    filterButtons.forEach(btn => {
+      const filterKey = btn.dataset.dirFilter;
+      const count = counts[filterKey] !== undefined ? counts[filterKey] : 0;
+      const countSpan = btn.querySelector('.dir-filter-count');
+      if (countSpan) {
+        countSpan.textContent = `(${count})`;
+      } else {
+        const labelText = btn.dataset.filterLabel || btn.textContent.replace(/\s*\(\d+\)/, '').trim();
+        btn.innerHTML = `${escapeHTML(labelText)} <span class="dir-filter-count">(${count})</span>`;
+      }
+    });
+  }
+
   // Country Directory Rendering & Filtering
   function renderCountryDirectory() {
     const container = document.getElementById('countryDirectoryGrid');
@@ -461,6 +495,7 @@
         c.name.toLowerCase().includes(query) ||
         c.alpha2.toLowerCase().includes(query) ||
         c.alpha3.toLowerCase().includes(query) ||
+        (c.official_name && c.official_name.toLowerCase().includes(query)) ||
         (c.search_terms && c.search_terms.some(t => t.toLowerCase().includes(query)));
 
       let matchesFilter = true;
@@ -476,10 +511,15 @@
     }
 
     if (filtered.length === 0) {
+      const isSearch = !!query;
+      const emptyTitle = isSearch ? 'No Matching Country or Territory' : 'No Countries in this Category';
+      const emptyDesc = isSearch
+        ? 'Try searching by common English name or two-letter ISO code.'
+        : 'All 27 currently audited national portals have been fully verified. Zero portals remain in partial audit status.';
       container.innerHTML = `
         <div style="grid-column:1/-1;text-align:center;padding:40px;background:#f8fafc;border-radius:16px;border:1px dashed #cbd5e1">
-          <h3 style="margin:0 0 8px;color:#334155">No Matching Country or Territory</h3>
-          <p style="margin:0;color:#64748b;font-size:13px">Try searching by common English name or two-letter ISO code.</p>
+          <h3 style="margin:0 0 8px;color:#334155">${escapeHTML(emptyTitle)}</h3>
+          <p style="margin:0;color:#64748b;font-size:13px">${escapeHTML(emptyDesc)}</p>
         </div>
       `;
       return;
@@ -768,7 +808,10 @@
     toggleCheck,
     selectCountryFromDirectory,
     openGuideModal,
-    openInformationalModal
+    openInformationalModal,
+    getDirectoryCounts,
+    updateDirectoryFilterCounts,
+    getCountryByQuery
   };
 
   // Run on DOM load

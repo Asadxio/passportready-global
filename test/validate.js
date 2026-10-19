@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_9'), `Stylesheet href must contain ?v=20261019_9 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_10'), `Stylesheet href must contain ?v=20261019_10 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_9'), `Local script ${srcMatch[1]} must contain ?v=20261019_9 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_10'), `Local script ${srcMatch[1]} must contain ?v=20261019_10 cache-busting query string`);
     }
   });
 });
@@ -1252,6 +1252,88 @@ runTest('Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verificat
 
   const my60 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 60, validity: '5_year' });
   assert.strictEqual(my60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'MY age 60 must be RM 100');
+});
+
+// 19. Phase 4.3.2 Country Directory Dynamic Filter Counts and Consistency Audit
+runTest('Phase 4.3.2 Directory filter counts derive dynamically from country dataset without hardcoded stale counts', () => {
+  const countryDataModule = require('../data/country-data.js');
+  const countries = countryDataModule.PASSPORT_COUNTRIES;
+  assert(Array.isArray(countries), 'PASSPORT_COUNTRIES must be an array');
+  assert.strictEqual(countries.length, 249, 'Must have exactly 249 indexed countries/territories');
+
+  // Compute expected counts directly from dataset
+  const expectedTotal = countries.length;
+  const expectedVerified = countries.filter(c => c.portal_status === 'verified').length;
+  const expectedLinked = countries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length;
+  const expectedResearch = countries.filter(c => c.portal_status === 'official_source_needs_research').length;
+
+  assert.strictEqual(expectedTotal, 249, 'Dataset must have 249 entries');
+  assert.strictEqual(expectedVerified, 27, 'Dataset must have 27 verified countries');
+  assert.strictEqual(expectedLinked, 0, 'Dataset must have 0 partially audited linked portals');
+  assert.strictEqual(expectedResearch, 222, 'Dataset must have 222 awaiting research');
+  assert.strictEqual(expectedVerified + expectedLinked + expectedResearch, expectedTotal, 'Status counts must partition all entries');
+
+  // Assert index.html does not contain stale hardcoded counts
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert(!html.includes('Verified Rules (18)'), 'index.html must NOT contain stale "Verified Rules (18)"');
+  assert(!html.includes('Portal Linked (9)'), 'index.html must NOT contain stale "Portal Linked (9)"');
+  assert(!html.includes('All (249)'), 'index.html filter button must NOT hardcode count inside button text');
+  assert(!html.includes('Awaiting Research (222)'), 'index.html filter button must NOT hardcode count inside button text');
+
+  // Assert filter buttons structure in index.html
+  assert(html.includes('data-dir-filter="all"'), 'index.html must have data-dir-filter="all"');
+  assert(html.includes('data-dir-filter="verified"'), 'index.html must have data-dir-filter="verified"');
+  assert(html.includes('data-dir-filter="linked"'), 'index.html must have data-dir-filter="linked"');
+  assert(html.includes('data-dir-filter="needs_research"'), 'index.html must have data-dir-filter="needs_research"');
+  assert(html.includes('dir-filter-count'), 'index.html must provide dir-filter-count spans for dynamic insertion');
+
+  // Test dynamic count calculation via app.js
+  const vm = require('vm');
+  const appJsCode = fs.readFileSync(path.join(__dirname, '..', 'js', 'app.js'), 'utf8');
+  const sandbox = {
+    PassportRulesEngine: class { constructor() {} },
+    window: {
+      PASSPORT_COUNTRIES: countries,
+      COUNTRY_DATA: countries,
+      addEventListener: () => {}
+    },
+    document: {
+      getElementById: () => null,
+      querySelector: () => null,
+      querySelectorAll: () => [],
+      addEventListener: () => {},
+      readyState: 'complete'
+    },
+    localStorage: { getItem: () => null, setItem: () => {} }
+  };
+  vm.runInNewContext(appJsCode, sandbox);
+
+  assert(sandbox.window.PassportApp, 'window.PassportApp must be exported');
+  assert(typeof sandbox.window.PassportApp.getDirectoryCounts === 'function', 'getDirectoryCounts must be exported on PassportApp');
+  const computedCounts = sandbox.window.PassportApp.getDirectoryCounts();
+  assert.strictEqual(computedCounts.all, 249, 'Computed all count must be 249');
+  assert.strictEqual(computedCounts.verified, 27, 'Computed verified count must be 27');
+  assert.strictEqual(computedCounts.linked, 0, 'Computed linked count must be 0');
+  assert.strictEqual(computedCounts.needs_research, 222, 'Computed needs_research count must be 222');
+
+  // Verify getCountryByQuery works across name, alpha2, alpha3, official_name, search_terms
+  const byName = sandbox.window.PassportApp.getCountryByQuery('Malaysia');
+  assert(byName && byName.alpha2 === 'MY', 'getCountryByQuery must resolve by name');
+
+  const byAlpha2 = sandbox.window.PassportApp.getCountryByQuery('MY');
+  assert(byAlpha2 && byAlpha2.name === 'Malaysia', 'getCountryByQuery must resolve by alpha2');
+
+  const byAlpha3 = sandbox.window.PassportApp.getCountryByQuery('MYS');
+  assert(byAlpha3 && byAlpha3.name === 'Malaysia', 'getCountryByQuery must resolve by alpha3');
+
+  const byOfficial = sandbox.window.PassportApp.getCountryByQuery('Republic of India');
+  assert(byOfficial && byOfficial.alpha2 === 'IN', 'getCountryByQuery must resolve by official_name');
+
+  const bySearchTerm = sandbox.window.PassportApp.getCountryByQuery('USA');
+  assert(bySearchTerm && bySearchTerm.alpha2 === 'US', 'getCountryByQuery must resolve by search_terms alias USA');
+
+  const bySearchTerm2 = sandbox.window.PassportApp.getCountryByQuery('UK');
+  assert(bySearchTerm2 && bySearchTerm2.alpha2 === 'GB', 'getCountryByQuery must resolve by search_terms alias UK');
 });
 
 console.log('\n====================================================');

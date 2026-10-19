@@ -1,3 +1,6 @@
+if (typeof window === 'undefined') {
+  var window = {};
+}
 window.PASSPORT_COUNTRIES = [
   {
     "name": "Afghanistan",
@@ -3289,6 +3292,12 @@ window.PASSPORT_COUNTRIES = [
     "search_terms": []
   }
 ];
+if (typeof window !== 'undefined') {
+  window.COUNTRY_DATA = window.PASSPORT_COUNTRIES;
+}
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES };
+  module.exports = {
+    PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES,
+    COUNTRY_DATA: window.PASSPORT_COUNTRIES
+  };
 }

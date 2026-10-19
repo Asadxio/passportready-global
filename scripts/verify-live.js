@@ -26,20 +26,31 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_9"/g) || []);
-  console.log('Scripts with ?v=20261019_9:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_9');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_10"/g) || []);
+  console.log('Scripts with ?v=20261019_10:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_10');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_9"/g) || []);
-  console.log('CSS with ?v=20261019_9:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_9');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_10"/g) || []);
+  console.log('CSS with ?v=20261019_10:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_10');
+
+  // Directory filter pills checks
+  assert(!index.body.includes('Verified Rules (18)'), 'Live HTML must NOT contain stale "Verified Rules (18)"');
+  assert(!index.body.includes('Portal Linked (9)'), 'Live HTML must NOT contain stale "Portal Linked (9)"');
+  assert(!index.body.includes('All (249)'), 'Live HTML filter button must NOT hardcode count inside button text');
+  assert(!index.body.includes('Awaiting Research (222)'), 'Live HTML filter button must NOT hardcode count inside button text');
+  assert(index.body.includes('data-dir-filter="all"'), 'Live HTML must contain data-dir-filter="all"');
+  assert(index.body.includes('data-dir-filter="verified"'), 'Live HTML must contain data-dir-filter="verified"');
+  assert(index.body.includes('data-dir-filter="linked"'), 'Live HTML must contain data-dir-filter="linked"');
+  assert(index.body.includes('data-dir-filter="needs_research"'), 'Live HTML must contain data-dir-filter="needs_research"');
+  assert(index.body.includes('dir-filter-count'), 'Live HTML must contain dir-filter-count spans');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_9');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_10');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -57,7 +68,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_9');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_10');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -209,7 +220,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_9');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_10');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -343,7 +354,38 @@ async function verifyLive() {
   const liveMy60 = liveEngine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 60, validity: '5_year' });
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3 & PHASE 4.3.1 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_10');
+  console.log('app.js HTTP Status:', appJsRes.status);
+  assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
+
+  const appSandbox = {
+    PassportRulesEngine: class { constructor() {} },
+    window: {
+      PASSPORT_COUNTRIES: cd,
+      COUNTRY_DATA: cd,
+      addEventListener: () => {}
+    },
+    document: {
+      getElementById: () => null,
+      querySelector: () => null,
+      querySelectorAll: () => [],
+      addEventListener: () => {},
+      readyState: 'complete'
+    },
+    localStorage: { getItem: () => null, setItem: () => {} }
+  };
+  vm.runInNewContext(appJsRes.body, appSandbox);
+  assert(appSandbox.window.PassportApp, 'Live window.PassportApp must exist');
+  assert(typeof appSandbox.window.PassportApp.getDirectoryCounts === 'function', 'Live PassportApp.getDirectoryCounts must be a function');
+  const liveCounts = appSandbox.window.PassportApp.getDirectoryCounts();
+  console.log('Live PassportApp computed directory counts:', liveCounts);
+  assert.strictEqual(liveCounts.all, 249, 'Live all count must be 249');
+  assert.strictEqual(liveCounts.verified, 27, 'Live verified count must be 27');
+  assert.strictEqual(liveCounts.linked, 0, 'Live linked count must be 0');
+  assert.strictEqual(liveCounts.needs_research, 222, 'Live needs_research count must be 222');
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1 & PHASE 4.3.2 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {
