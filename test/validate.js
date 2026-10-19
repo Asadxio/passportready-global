@@ -1057,6 +1057,12 @@ runTest('Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verificat
   const myImmFee10 = myImmigration10yr.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(myImmFee10.feeStatus, 'verified_statutory', 'MY immigration staff 10-yr must return verified_statutory');
   assert.strictEqual(myImmFee10.feeRecord.amount, 0, 'MY immigration staff 10-yr feeRecord.amount must be 0 (Gratis)');
+  assert.strictEqual(myImmFee10.feeRecord.status, 'eligible_free', 'MY immigration staff 10-yr feeRecord.status must be eligible_free');
+  // Verify no replacement amount or penalty is presented as an original passport fee
+  assert.strictEqual(myImmFee10.feeRecord.total_replacement_fee, undefined, 'MY staff original passport feeRecord must not present total_replacement_fee');
+  assert.strictEqual(myImmFee10.feeRecord.official_replacement_amount, undefined, 'MY staff original passport feeRecord must not present official_replacement_amount');
+  assert.strictEqual(myImmFee10.feeRecord.statutory_penalty, undefined, 'MY staff original passport feeRecord must not present statutory_penalty');
+  assert(!myImmFee10.details.toLowerCase().includes('replacement'), 'MY staff original passport details must not describe replacement fees');
 
   // ENGINE: Staff 5-year replacement = not_eligible
   const myImmReplacement5yr = engine.evaluate({
@@ -1073,7 +1079,8 @@ runTest('Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verificat
   assert.strictEqual(myImmRepFee5.feeRecord.status, 'not_eligible', 'MY immigration staff 5-yr replacement feeRecord.status must be not_eligible');
   assert(myImmRepFee5.details.includes('NOT eligible'), 'MY immigration staff 5-yr replacement details must mention NOT eligible');
 
-  // ENGINE: Staff 10-year replacement = official amounts (no "calculated difference" language)
+  // ENGINE: Staff 10-year replacement at all three tiers = official amounts (no "calculated difference" language)
+  // Tier 1: First loss = RM 200
   const myImmReplacement1 = engine.evaluate({
     countryCode: 'MY',
     countryName: 'Malaysia',
@@ -1090,6 +1097,7 @@ runTest('Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verificat
   assert(myImmRepFee1.details.includes('RM 200'), 'MY immigration staff 10-yr 1st loss details must mention RM 200');
   assert(!myImmRepFee1.details.includes('calculated difference'), 'MY immigration staff 10-yr details must NOT use calculated difference language');
 
+  // Tier 2: Second loss = RM 500
   const myImmReplacement2 = engine.evaluate({
     countryCode: 'MY',
     countryName: 'Malaysia',
@@ -1099,7 +1107,27 @@ runTest('Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verificat
     validity: '10_year',
     lossTier: 'second_loss'
   });
-  assert.strictEqual(myImmReplacement2.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 500, 'MY immigration staff 10-yr 2nd loss must be RM 500');
+  const myImmRepFee2 = myImmReplacement2.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(myImmRepFee2.feeStatus, 'verified_statutory', 'MY immigration staff 10-yr 2nd loss must be verified_statutory');
+  assert.strictEqual(myImmRepFee2.feeRecord.total_replacement_fee, 500, 'MY immigration staff 10-yr 2nd loss must be RM 500');
+  assert.strictEqual(myImmRepFee2.feeRecord.official_replacement_amount, 500, 'MY staff 10-yr 2nd loss feeRecord must use official_replacement_amount field');
+  assert(myImmRepFee2.details.includes('RM 500'), 'MY immigration staff 10-yr 2nd loss details must mention RM 500');
+
+  // Tier 3: Third or subsequent loss = RM 1,000
+  const myImmReplacement3 = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '10_year',
+    lossTier: 'third_loss'
+  });
+  const myImmRepFee3 = myImmReplacement3.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(myImmRepFee3.feeStatus, 'verified_statutory', 'MY immigration staff 10-yr 3rd loss must be verified_statutory');
+  assert.strictEqual(myImmRepFee3.feeRecord.total_replacement_fee, 1000, 'MY immigration staff 10-yr 3rd loss must be RM 1,000');
+  assert.strictEqual(myImmRepFee3.feeRecord.official_replacement_amount, 1000, 'MY staff 10-yr 3rd loss feeRecord must use official_replacement_amount field');
+  assert(myImmRepFee3.details.includes('RM 1000') || myImmRepFee3.details.includes('RM 1,000'), 'MY immigration staff 10-yr 3rd loss details must mention RM 1000');
 
   // 1.2 PMD / PMR Diplomatic & Official Passports (Gratis 5-yr, 10-yr, replacements)
   const myPmdFresh = engine.evaluate({

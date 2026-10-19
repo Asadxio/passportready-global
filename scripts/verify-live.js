@@ -237,22 +237,48 @@ async function verifyLive() {
   // Phase 4.3.1: Staff 5-year replacement must return not_eligible
   const liveMyImmRepFeeItem = liveMyImmRep.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(liveMyImmRepFeeItem.feeStatus, 'not_eligible', 'LIVE: MY immigration staff 5-yr replacement must return not_eligible (Phase 4.3.1)');
+  assert.strictEqual(liveMyImmRepFeeItem.feeRecord.status, 'not_eligible', 'LIVE: MY immigration staff 5-yr replacement feeRecord.status must be not_eligible');
 
-  // Phase 4.3.1: Staff 10-year original must return eligible_free RM 0
+  // Phase 4.3.1: Staff 10-year original must return eligible_free RM 0 with no replacement fees attached
   const liveMyImm10 = liveEngine.evaluate({
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
     applicantCategory: 'immigration_officers_staff', validity: '10_year'
   });
-  assert.strictEqual(liveMyImm10.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0, 'LIVE: MY immigration staff 10-yr must be RM 0');
+  const liveMyImm10Fee = liveMyImm10.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10Fee.feeRecord.amount, 0, 'LIVE: MY immigration staff 10-yr must be RM 0');
+  assert.strictEqual(liveMyImm10Fee.feeRecord.status, 'eligible_free', 'LIVE: MY immigration staff 10-yr status must be eligible_free');
+  assert.strictEqual(liveMyImm10Fee.feeRecord.total_replacement_fee, undefined, 'LIVE: Original issuance must not present replacement fee');
+  assert.strictEqual(liveMyImm10Fee.feeRecord.official_replacement_amount, undefined, 'LIVE: Original issuance must not present replacement amount');
+  assert.strictEqual(liveMyImm10Fee.feeRecord.statutory_penalty, undefined, 'LIVE: Original issuance must not present statutory penalty');
+  assert(!liveMyImm10Fee.details.toLowerCase().includes('replacement'), 'LIVE: Original issuance details must not describe replacement fees');
 
-  // Phase 4.3.1: Staff 10-year replacement must return official amount RM 200
-  const liveMyImm10Rep = liveEngine.evaluate({
+  // Phase 4.3.1: Staff 10-year replacement at all three tiers = official schedule
+  // Tier 1: First loss = RM 200
+  const liveMyImm10Rep1 = liveEngine.evaluate({
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen',
     applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss'
   });
-  const liveMyImm10RepFee = liveMyImm10Rep.checklist.find(c => c.id === 'official_fee_payment');
-  assert.strictEqual(liveMyImm10RepFee.feeRecord.total_replacement_fee, 200, 'LIVE: MY immigration staff 10-yr 1st loss must be RM 200');
-  assert.strictEqual(liveMyImm10RepFee.feeRecord.official_replacement_amount, 200, 'LIVE: MY immigration staff 10-yr feeRecord must have official_replacement_amount 200');
+  const liveMyImm10RepFee1 = liveMyImm10Rep1.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee1.feeRecord.total_replacement_fee, 200, 'LIVE: MY immigration staff 10-yr 1st loss must be RM 200');
+  assert.strictEqual(liveMyImm10RepFee1.feeRecord.official_replacement_amount, 200, 'LIVE: MY immigration staff 10-yr feeRecord must have official_replacement_amount 200');
+
+  // Tier 2: Second loss = RM 500
+  const liveMyImm10Rep2 = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'second_loss'
+  });
+  const liveMyImm10RepFee2 = liveMyImm10Rep2.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee2.feeRecord.total_replacement_fee, 500, 'LIVE: MY immigration staff 10-yr 2nd loss must be RM 500');
+  assert.strictEqual(liveMyImm10RepFee2.feeRecord.official_replacement_amount, 500, 'LIVE: MY immigration staff 10-yr 2nd loss feeRecord must have official_replacement_amount 500');
+
+  // Tier 3: Third or subsequent loss = RM 1,000
+  const liveMyImm10Rep3 = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'third_loss'
+  });
+  const liveMyImm10RepFee3 = liveMyImm10Rep3.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee3.feeRecord.total_replacement_fee, 1000, 'LIVE: MY immigration staff 10-yr 3rd loss must be RM 1,000');
+  assert.strictEqual(liveMyImm10RepFee3.feeRecord.official_replacement_amount, 1000, 'LIVE: MY immigration staff 10-yr 3rd loss feeRecord must have official_replacement_amount 1000');
 
   const liveMyPmd = liveEngine.evaluate({
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
