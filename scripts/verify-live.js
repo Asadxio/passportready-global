@@ -26,20 +26,20 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_8"/g) || []);
-  console.log('Scripts with ?v=20261019_8:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_8');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_9"/g) || []);
+  console.log('Scripts with ?v=20261019_9:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_9');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_8"/g) || []);
-  console.log('CSS with ?v=20261019_8:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_8');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_9"/g) || []);
+  console.log('CSS with ?v=20261019_9:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_9');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_8');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_9');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -57,7 +57,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_8');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_9');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -154,12 +154,15 @@ async function verifyLive() {
   assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year.amount, 175);
   assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year.amount, 100);
   assert.strictEqual(myFees.fee_schedule_by_category.oku_18_and_older.validity_10_year.amount, 0);
-  assert.strictEqual(myFees.fee_schedule_by_category.immigration_officers_staff.validity_5_year.amount, 0);
+  // Phase 4.3.1: Staff 5-year is NOT eligible — amount must be null, status not_eligible
+  assert.strictEqual(myFees.fee_schedule_by_category.immigration_officers_staff.validity_5_year.status, 'not_eligible', 'Live data: MY staff 5yr must be not_eligible');
+  assert.strictEqual(myFees.fee_schedule_by_category.immigration_officers_staff.validity_5_year.amount, null, 'Live data: MY staff 5yr amount must be null');
   assert.strictEqual(myFees.fee_schedule_by_category.pmd_pmr_diplomatic_official.validity_10_year.amount, 0);
   assert.strictEqual(myFees.fee_schedule_by_category.pma_dependents.validity_5_year.amount, 0);
   assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.adult_18_to_59_years.first_loss, 400);
   assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.children_under_12_years.first_loss, 300);
-  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.immigration_officers_staff.first_loss, 200);
+  // Phase 4.3.1: Staff 5-year replacement is NOT eligible
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.immigration_officers_staff.status, 'not_eligible', 'Live data: MY staff 5yr rep must be not_eligible');
   assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.pmd_pmr_diplomatic_official.first_loss, 0);
 
   // 5. Nepal (NP)
@@ -206,7 +209,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_8');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_9');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -222,13 +225,34 @@ async function verifyLive() {
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
     applicantCategory: 'immigration_officers_staff', validity: '5_year'
   });
-  assert.strictEqual(liveMyImm.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0, 'Live MY immigration staff must be RM 0');
+  // Phase 4.3.1: Staff 5-year must return not_eligible (not RM 0)
+  const liveMyImmFeeItem = liveMyImm.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImmFeeItem.feeStatus, 'not_eligible', 'LIVE: MY immigration staff 5-yr must return not_eligible (Phase 4.3.1)');
+  assert.strictEqual(liveMyImmFeeItem.feeRecord.amount, null, 'LIVE: MY immigration staff 5-yr feeRecord.amount must be null');
 
   const liveMyImmRep = liveEngine.evaluate({
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen',
     applicantCategory: 'immigration_officers_staff', validity: '5_year', lossTier: 'first_loss'
   });
-  assert.strictEqual(liveMyImmRep.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 200, 'Live MY immigration staff 1st loss must be RM 200');
+  // Phase 4.3.1: Staff 5-year replacement must return not_eligible
+  const liveMyImmRepFeeItem = liveMyImmRep.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImmRepFeeItem.feeStatus, 'not_eligible', 'LIVE: MY immigration staff 5-yr replacement must return not_eligible (Phase 4.3.1)');
+
+  // Phase 4.3.1: Staff 10-year original must return eligible_free RM 0
+  const liveMyImm10 = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
+    applicantCategory: 'immigration_officers_staff', validity: '10_year'
+  });
+  assert.strictEqual(liveMyImm10.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0, 'LIVE: MY immigration staff 10-yr must be RM 0');
+
+  // Phase 4.3.1: Staff 10-year replacement must return official amount RM 200
+  const liveMyImm10Rep = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss'
+  });
+  const liveMyImm10RepFee = liveMyImm10Rep.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveMyImm10RepFee.feeRecord.total_replacement_fee, 200, 'LIVE: MY immigration staff 10-yr 1st loss must be RM 200');
+  assert.strictEqual(liveMyImm10RepFee.feeRecord.official_replacement_amount, 200, 'LIVE: MY immigration staff 10-yr feeRecord must have official_replacement_amount 200');
 
   const liveMyPmd = liveEngine.evaluate({
     countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',

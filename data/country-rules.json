@@ -5322,7 +5322,7 @@
             "last_reviewed": "2026-10-19"
           },
           {
-            "rule": "Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM) receive 100% statutory fee exemption (Gratis / RM 0) for original 5-year and 10-year passports upon departmental verification.",
+            "rule": "Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM) receive 100% statutory fee exemption (Gratis / RM 0) for 10-year passports only upon departmental verification. Five-year passports are NOT eligible for this category under the official JIM fee schedule.",
             "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
             "last_reviewed": "2026-10-19"
           },
@@ -5492,14 +5492,14 @@
             "immigration_officers_staff": {
               "category_label": "Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM)",
               "validity_5_year": {
-                "status": "eligible_free",
-                "amount": 0,
-                "exemption": "Statutory fee exemption for immigration officers and staff."
+                "status": "not_eligible",
+                "amount": null,
+                "reason": "Malaysian Immigration Department (JIM) fee schedule restricts officers and staff (Pegawai dan Kakitangan JIM) to 10-year validity only. Five-year passports are not issued to this category under the official JIM fee schedule."
               },
               "validity_10_year": {
                 "status": "eligible_free",
                 "amount": 0,
-                "exemption": "Official service allocation for immigration officers and staff."
+                "exemption": "Official service allocation for immigration officers and staff — 10-year passport issued Gratis (RM 0) upon departmental verification."
               }
             },
             "pmd_pmr_diplomatic_official": {
@@ -5571,9 +5571,8 @@
                 "reason": "Adult OKU replacement is processed under the 10-year validity schedule."
               },
               "immigration_officers_staff": {
-                "first_loss": 200,
-                "second_loss": 500,
-                "third_loss": 1000
+                "status": "not_eligible",
+                "reason": "Malaysian Immigration Department (JIM) staff are not eligible for 5-year passport replacement. Staff category is restricted to 10-year passports only under the official JIM fee schedule."
               },
               "pmd_pmr_diplomatic_official": {
                 "first_loss": 0,
@@ -5627,7 +5626,8 @@
               "immigration_officers_staff": {
                 "first_loss": 200,
                 "second_loss": 500,
-                "third_loss": 1000
+                "third_loss": 1000,
+                "note": "Official replacement amounts per the JIM fee schedule. Departmental verification, police report (Borang IM.42c), and investigation approval by the Director General of Immigration are required."
               },
               "pmd_pmr_diplomatic_official": {
                 "first_loss": 0,
@@ -5939,23 +5939,6 @@
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for OKU aged 18+ first loss (RM 0 base + RM 200 penalty).",
               "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
-            },
-            {
-              "currency": "MYR",
-              "amount": 0,
-              "base_amount": 0,
-              "emergency_surcharge": 0,
-              "total_payable": 0,
-              "applicant_category": "immigration_officers_staff",
-              "application_channel": "domestic_counter",
-              "validity_period": "5_years",
-              "discount_eligibility": "100% statutory fee exemption for officers and staff of the Immigration Department of Malaysia.",
-              "applicable_conditions": "Must provide departmental service identification and verification.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
               "verification_date": "2026-10-19",

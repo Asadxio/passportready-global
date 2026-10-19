@@ -700,7 +700,7 @@ class PassportRulesEngine {
           // REPLACEMENT FEES
           if (!selectedValidity) {
             // Missing validity period for replacement
-            feeDetails = 'Official Malaysian lost/damaged passport replacement guidance (Jabatan Imigresen Malaysia): Replacement fees depend strictly on the previous passport validity (5-year vs. 10-year), applicant age/category, and replacement frequency (1st, 2nd, or 3rd loss). 5-year replacement: Adults RM 400 (1st) / RM 700 (2nd) / RM 1,200 (3rd); Children under 12 & Seniors RM 300 / RM 600 / RM 1,100; OKU under 18 & Immigration staff RM 200 / RM 500 / RM 1,000; Diplomatic/Official Gratis (RM 0). 10-year replacement: Adults RM 550 (1st) / RM 850 (2nd) / RM 1,350 (3rd); Seniors RM 375 / RM 675 / RM 1,175; OKU 18+ & Immigration staff RM 200 / RM 500 / RM 1,000; Diplomatic/Official Gratis (RM 0). Please confirm your previous passport validity period to determine the exact statutory replacement fee. Mandatory police report and Borang IM.42c investigation required.';
+            feeDetails = 'Official Malaysian lost/damaged passport replacement guidance (Jabatan Imigresen Malaysia): Replacement fees depend strictly on the previous passport validity (5-year vs. 10-year), applicant age/category, and replacement frequency (1st, 2nd, or 3rd loss). 5-year replacement: Adults RM 400 (1st) / RM 700 (2nd) / RM 1,200 (3rd); Children under 12 & Seniors RM 300 / RM 600 / RM 1,100; OKU under 18 RM 200 / RM 500 / RM 1,000; Diplomatic/Official Gratis (RM 0). Note: Immigration Department Officers and Staff (JIM) are NOT eligible for 5-year passport replacement — this category is restricted to 10-year validity only. 10-year replacement: Adults RM 550 (1st) / RM 850 (2nd) / RM 1,350 (3rd); Seniors RM 375 / RM 675 / RM 1,175; OKU 18+ RM 200 / RM 500 / RM 1,000; Immigration Department Officers and Staff (JIM) RM 200 / RM 500 / RM 1,000; Diplomatic/Official Gratis (RM 0). Please confirm your previous passport validity period to determine the exact statutory replacement fee. Mandatory police report and Borang IM.42c investigation required.';
             feeStatus = 'validity_confirmation_required';
             specificFeeRecord = {
               currency: 'MYR',
@@ -749,18 +749,16 @@ class PassportRulesEngine {
                 status: 'eligible_free'
               };
             } else if (categoryKey === 'immigration_officers_staff') {
-              const diff = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
-              feeDetails = `Official Malaysian statutory replacement fee for 10-year passport (Immigration Department staff, ${lossTier.replace(/_/g, ' ')}): RM ${diff} (comprising RM 0 original fee + RM ${diff} calculated difference / replacement fee). Departmental verification, police report, Borang IM.42c, and investigation approval required.`;
+              const officialAmount = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
+              feeDetails = `Official Malaysian statutory replacement amount for 10-year passport (Immigration Department Officers and Staff / Pegawai dan Kakitangan JIM, ${lossTier.replace(/_/g, ' ')}): RM ${officialAmount} per the official JIM fee schedule. Departmental verification, police report, Borang IM.42c, and investigation approval by the Director General of Immigration are strictly required.`;
               feeStatus = 'verified_statutory';
               specificFeeRecord = {
                 currency: 'MYR',
                 validity: '10_year',
                 category: categoryKey,
                 loss_tier: lossTier,
-                base_fee: 0,
-                calculated_difference: diff,
-                statutory_penalty: diff,
-                total_replacement_fee: diff
+                official_replacement_amount: officialAmount,
+                total_replacement_fee: officialAmount
               };
             } else {
               // Standard 10-year replacement schedule
@@ -813,18 +811,14 @@ class PassportRulesEngine {
                 status: 'eligible_free'
               };
             } else if (categoryKey === 'immigration_officers_staff') {
-              const diff = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
-              feeDetails = `Official Malaysian statutory replacement fee for 5-year passport (Immigration Department staff, ${lossTier.replace(/_/g, ' ')}): RM ${diff} (comprising RM 0 original fee + RM ${diff} calculated difference / replacement fee). Departmental verification, police report, Borang IM.42c, and investigation approval required.`;
-              feeStatus = 'verified_statutory';
+              feeDetails = 'Malaysian Immigration Department Officers and Staff (Pegawai dan Kakitangan JIM) are NOT eligible for 5-year passport replacement. Under the official JIM fee schedule, this category is restricted to 10-year validity passports. Replacement fees for a lost or damaged passport apply only to 10-year passports. Police report (Borang IM.42c) and departmental authorization still required.';
+              feeStatus = 'not_eligible';
               specificFeeRecord = {
                 currency: 'MYR',
                 validity: '5_year',
                 category: categoryKey,
-                loss_tier: lossTier,
-                base_fee: 0,
-                calculated_difference: diff,
-                statutory_penalty: diff,
-                total_replacement_fee: diff
+                status: 'not_eligible',
+                reason: 'JIM staff are not eligible for 5-year passport replacement. Staff category is restricted to 10-year passports under the official JIM fee schedule.'
               };
             } else {
               let baseFee = 200;
@@ -914,9 +908,17 @@ class PassportRulesEngine {
                 action: 'Select 10-year validity on the official portal.'
               });
             } else if (categoryKey === 'immigration_officers_staff') {
-              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM): 100% EXEMPT (FREE / RM 0) for 5-year validity passport upon departmental verification.';
-              feeStatus = 'verified_statutory';
-              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+              feeDetails = 'Malaysian Immigration Department Officers and Staff (Pegawai dan Kakitangan JIM) are NOT eligible for a 5-year passport. The official JIM fee schedule restricts this category to 10-year validity passports only (issued Gratis). Please select 10-year validity to proceed.';
+              feeStatus = 'not_eligible';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: null, status: 'not_eligible', reason: 'JIM fee schedule restricts officers and staff (Pegawai dan Kakitangan JIM) to 10-year validity only. Five-year passports are not issued to this category.' };
+              preparationScore -= 10;
+              flags.push({
+                severity: 'info',
+                code: 'MALAYSIA_VALIDITY_INELIGIBLE',
+                title: 'Validity Not Eligible for This Category',
+                message: 'Malaysian Immigration Department officers and staff (Pegawai dan Kakitangan JIM) are restricted to 10-year passports under the official JIM fee schedule. Five-year passports are not issued to this category.',
+                action: 'Select 10-year validity on the official JIM portal.'
+              });
             } else if (categoryKey === 'pmd_pmr_diplomatic_official') {
               feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Diplomatic (PMD) & Official (PMR) Passports: 100% EXEMPT (FREE / RM 0) for 5-year validity with approval aligned with Kementerian Luar Negeri (KLN).';
               feeStatus = 'verified_statutory';
@@ -953,9 +955,9 @@ class PassportRulesEngine {
           } else {
             // No specific validity selected - show full eligible options for this category
             if (categoryKey === 'immigration_officers_staff') {
-              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Officers and Staff of Immigration Department (Pegawai dan Kakitangan JIM): 100% EXEMPT (FREE / RM 0) for both 5-year and 10-year validity passports upon departmental verification.';
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Officers and Staff of Immigration Department (Pegawai dan Kakitangan JIM): ONLY 10-year validity passports are issued to this category (Gratis / FREE / RM 0) upon departmental verification. Five-year passports are NOT eligible for this category under the official JIM fee schedule. Select 10-year validity to proceed.';
               feeStatus = 'verified_statutory';
-              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'eligible_free', amount: 0 }, validity_10yr: { status: 'eligible_free', amount: 0 } };
+              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'not_eligible', amount: null, reason: 'JIM fee schedule restricts staff to 10-year validity only.' }, validity_10yr: { status: 'eligible_free', amount: 0 } };
             } else if (categoryKey === 'pmd_pmr_diplomatic_official') {
               feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Diplomatic (PMD) & Official (PMR) Passports: 100% EXEMPT (FREE / RM 0) for both 5-year and 10-year validity with KLN authorization.';
               feeStatus = 'verified_statutory';
