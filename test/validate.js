@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_7'), `Stylesheet href must contain ?v=20261019_7 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_8'), `Stylesheet href must contain ?v=20261019_8 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_7'), `Local script ${srcMatch[1]} must contain ?v=20261019_7 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_8'), `Local script ${srcMatch[1]} must contain ?v=20261019_8 cache-busting query string`);
     }
   });
 });
@@ -1003,6 +1003,164 @@ runTest('Phase 4.2 Comprehensive Statutory Accuracy: Malaysia 16-Case Audit, Ind
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_within_1_year_of_issue, 20000);
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_1_year_with_validity_remaining, 15000);
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
+});
+
+// 18. Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verification Status Audit
+runTest('Phase 4.3 Comprehensive Canonical Age, JIM Categories, and ID Verification Status Audit', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // 1. Malaysia New Official Statutory Categories (JIM)
+  // 1.1 Immigration Officers and Staff (Pegawai dan Kakitangan JIM)
+  const myImmigrationFresh = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'first_passport',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '5_year'
+  });
+  const myImmFee = myImmigrationFresh.checklist.find(c => c.id === 'official_fee_payment');
+  assert(myImmFee.details.includes('100% EXEMPT (FREE / RM 0)') && myImmFee.feeRecord.amount === 0, 'MY immigration staff must be RM 0 for 5-yr');
+  assert.strictEqual(myImmFee.feeStatus, 'verified_statutory');
+
+  // Immigration staff replacement (calculated difference 200/500/1000)
+  const myImmReplacement1 = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '5_year',
+    lossTier: 'first_loss'
+  });
+  const myImmRepFee1 = myImmReplacement1.checklist.find(c => c.id === 'official_fee_payment');
+  assert(myImmRepFee1.details.includes('RM 200'), 'MY immigration staff 1st loss must be RM 200');
+  assert.strictEqual(myImmRepFee1.feeRecord.total_replacement_fee, 200);
+  assert.strictEqual(myImmRepFee1.feeRecord.calculated_difference, 200);
+
+  // 1.2 PMD / PMR Diplomatic & Official Passports (Gratis 5-yr, 10-yr, replacements)
+  const myPmdFresh = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'first_passport',
+    applicantCategory: 'pmd_pmr_diplomatic_official',
+    validity: '10_year'
+  });
+  const myPmdFee = myPmdFresh.checklist.find(c => c.id === 'official_fee_payment');
+  assert(myPmdFee.details.includes('100% EXEMPT (FREE / RM 0)') && myPmdFee.feeRecord.amount === 0, 'MY PMD/PMR 10-yr must be RM 0');
+
+  const myPmdReplacement = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'lost_stolen',
+    applicantCategory: 'pmd_pmr_diplomatic_official',
+    validity: '5_year',
+    lossTier: 'second_loss'
+  });
+  const myPmdRepFee = myPmdReplacement.checklist.find(c => c.id === 'official_fee_payment');
+  assert(myPmdRepFee.details.includes('Gratis / RM 0 across all tiers') && myPmdRepFee.feeRecord.total_replacement_fee === 0, 'MY PMD/PMR replacement must be RM 0');
+
+  // 1.3 PMA Dependents (Gratis 5-yr, 10-yr, replacements)
+  const myPmaFresh = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'first_passport',
+    applicantCategory: 'pma_dependents',
+    validity: '5_year'
+  });
+  const myPmaFee = myPmaFresh.checklist.find(c => c.id === 'official_fee_payment');
+  assert(myPmaFee.details.includes('100% EXEMPT (FREE / RM 0)') && myPmaFee.feeRecord.amount === 0, 'MY PMA dependents must be RM 0');
+
+  // 2. Indonesia Unknown Marital Status Verification State
+  const idUnknown = engine.evaluate({
+    countryCode: 'ID',
+    countryName: 'Indonesia',
+    location: 'inside',
+    service: 'first_passport',
+    ageExact: 16
+    // maritalStatus deliberately omitted
+  });
+  const idUnknownFee = idUnknown.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(idUnknown.country.isVerified, true, 'ID country pack must remain verified');
+  assert.strictEqual(idUnknownFee.feeStatus, 'confirmation_required', 'ID minor with unconfirmed marital status must return feeStatus confirmation_required');
+  assert.strictEqual(idUnknownFee.feeRecord.status, 'confirmation_required', 'ID fee record status must be confirmation_required');
+  assert(idUnknown.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'), 'Must include INDONESIA_MARITAL_STATUS_CONFIRMATION flag');
+
+  // 3. Exact Age Precedence Over Broad Radio Buttons
+  // 3.1 Adult radio ('adult') overridden by exactAge 15 -> triggers minor parental consent in US
+  const usMinorOverride = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    ageExact: 15
+  });
+  assert.strictEqual(usMinorOverride.applicant.isMinor, true, 'Exact age 15 must override adult radio to minor');
+  assert(usMinorOverride.flags.some(f => f.code === 'MINOR_PARENTAL_CONSENT'), 'Exact age 15 must trigger parental consent flag');
+
+  // 3.2 Minor radio ('minor') overridden by exactAge 18 -> treated as adult
+  const usAdultOverride = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'minor',
+    ageExact: 18
+  });
+  assert.strictEqual(usAdultOverride.applicant.isAdult, true, 'Exact age 18 must override minor radio to adult');
+  assert(!usAdultOverride.flags.some(f => f.code === 'MINOR_PARENTAL_CONSENT'), 'Exact age 18 must NOT trigger parental consent flag');
+
+  // 4. Age Boundary Verifications (NZ, LK, MY, ID)
+  // NZ: under 16 is child (NZD 144 standard); 16+ is adult (NZD 247 standard)
+  const nz15 = engine.evaluate({ countryCode: 'NZ', countryName: 'New Zealand', location: 'inside', service: 'first_passport', ageExact: 15 });
+  const nz15Fee = nz15.checklist.find(c => c.id === 'official_fee_payment');
+  assert(nz15Fee.details.includes('NZD 144'), 'NZ age 15 must receive child standard fee NZD 144');
+
+  const nz16 = engine.evaluate({ countryCode: 'NZ', countryName: 'New Zealand', location: 'inside', service: 'first_passport', ageExact: 16 });
+  const nz16Fee = nz16.checklist.find(c => c.id === 'official_fee_payment');
+  assert(nz16Fee.details.includes('NZD 247'), 'NZ age 16 must receive adult standard fee NZD 247');
+
+  // LK: under 16 is child (LKR 3,000 normal / 9,000 urgent); 16+ is adult (LKR 10,000 normal / 20,000 urgent)
+  const lk15 = engine.evaluate({ countryCode: 'LK', countryName: 'Sri Lanka', location: 'inside', service: 'first_passport', ageExact: 15 });
+  const lk15Fee = lk15.checklist.find(c => c.id === 'official_fee_payment');
+  assert(lk15Fee.details.includes('LKR 3,000'), 'LK age 15 must receive child 3-yr normal fee LKR 3,000');
+
+  const lk16 = engine.evaluate({ countryCode: 'LK', countryName: 'Sri Lanka', location: 'inside', service: 'first_passport', ageExact: 16 });
+  const lk16Fee = lk16.checklist.find(c => c.id === 'official_fee_payment');
+  assert(lk16Fee.details.includes('LKR 10,000'), 'LK age 16 must receive adult normal fee LKR 10,000');
+
+  // ID: under 17 is minor; 17+ is adult
+  const id16 = engine.evaluate({ countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport', ageExact: 16, maritalStatus: 'unmarried' });
+  assert.strictEqual(id16.applicant.isMinor, true, 'ID age 16 must be minor');
+
+  const id17 = engine.evaluate({ countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport', ageExact: 17 });
+  assert.strictEqual(id17.applicant.isAdult, true, 'ID age 17 must be adult');
+  assert.strictEqual(id17.applicant.isMinor, false, 'ID age 17 is not minor');
+
+  // MY: exact age boundaries 11, 12, 17, 18, 59, 60
+  const my11 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 11, validity: '5_year' });
+  assert.strictEqual(my11.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'MY age 11 must be RM 100');
+
+  const my12 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 12, validity: '5_year' });
+  assert.strictEqual(my12.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 200, 'MY age 12 must be RM 200');
+
+  const my17 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 17, validity: '5_year' });
+  assert.strictEqual(my17.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 200, 'MY age 17 must be RM 200');
+
+  const my18 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 18, validity: '10_year' });
+  assert.strictEqual(my18.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 350, 'MY age 18 10-yr must be RM 350');
+
+  const my59 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 59, validity: '5_year' });
+  assert.strictEqual(my59.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 200, 'MY age 59 must be RM 200');
+
+  const my60 = engine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 60, validity: '5_year' });
+  assert.strictEqual(my60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'MY age 60 must be RM 100');
 });
 
 console.log('\n====================================================');

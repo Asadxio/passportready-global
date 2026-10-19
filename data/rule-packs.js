@@ -5320,6 +5320,21 @@ window.RULE_PACKS = {
             "rule": "Malaysian students under 21 years studying abroad at degree level receive a concession rate of RM 100 for a 5-year passport upon presenting proof of study.",
             "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
             "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM) receive 100% statutory fee exemption (Gratis / RM 0) for original 5-year and 10-year passports upon departmental verification.",
+            "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "Diplomatic (PMD) and Official (PMR) passport holders receive 100% statutory fee exemption (Gratis / RM 0) with approval periods aligned with Kementerian Luar Negeri (KLN / Wisma Putra).",
+            "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "PMA Dependents receive 100% statutory fee exemption (Gratis / RM 0) aligned with PMD or PMR Principal authorization.",
+            "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+            "last_reviewed": "2026-10-19"
           }
         ],
         "steps": [
@@ -5358,6 +5373,15 @@ window.RULE_PACKS = {
             "conditions": "Original OKU card issued by Jabatan Kebajikan Masyarakat (JKM).",
             "accepted_alternatives": [],
             "original_or_copy": "Original + photocopy",
+            "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+            "last_reviewed": "2026-10-19"
+          },
+          {
+            "document_name": "Official Immigration Department / Ministry Service Credentials (for official exemptions)",
+            "requiredness": "conditional",
+            "conditions": "Official Immigration Department service ID for JIM staff; official Kementerian Luar Negeri (KLN) authorization letter for PMD/PMR; formal principal dependency confirmation for PMA dependents.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + certified official copy",
             "source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
             "last_reviewed": "2026-10-19"
           }
@@ -5464,6 +5488,45 @@ window.RULE_PACKS = {
                 "amount": 0,
                 "exemption": "100% statutory fee exemption upon presenting valid JKM OKU card."
               }
+            },
+            "immigration_officers_staff": {
+              "category_label": "Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM)",
+              "validity_5_year": {
+                "status": "eligible_free",
+                "amount": 0,
+                "exemption": "Statutory fee exemption for immigration officers and staff."
+              },
+              "validity_10_year": {
+                "status": "eligible_free",
+                "amount": 0,
+                "exemption": "Official service allocation for immigration officers and staff."
+              }
+            },
+            "pmd_pmr_diplomatic_official": {
+              "category_label": "PMD and PMR (Diplomatic & Official Passports - KLN approval)",
+              "validity_5_year": {
+                "status": "eligible_free",
+                "amount": 0,
+                "approval": "Aligned with Kementerian Luar Negeri (KLN) approval."
+              },
+              "validity_10_year": {
+                "status": "eligible_free",
+                "amount": 0,
+                "approval": "Aligned with Kementerian Luar Negeri (KLN) approval."
+              }
+            },
+            "pma_dependents": {
+              "category_label": "PMA Dependents (aligned with PMD or PMR Principal)",
+              "validity_5_year": {
+                "status": "eligible_free",
+                "amount": 0,
+                "approval": "Aligned with PMD or PMR Principal authorization."
+              },
+              "validity_10_year": {
+                "status": "eligible_free",
+                "amount": 0,
+                "approval": "Aligned with PMD or PMR Principal authorization."
+              }
             }
           },
           "lost_and_damaged_replacement_schedule": {
@@ -5506,6 +5569,23 @@ window.RULE_PACKS = {
               "oku_18_and_older": {
                 "status": "not_eligible",
                 "reason": "Adult OKU replacement is processed under the 10-year validity schedule."
+              },
+              "immigration_officers_staff": {
+                "first_loss": 200,
+                "second_loss": 500,
+                "third_loss": 1000
+              },
+              "pmd_pmr_diplomatic_official": {
+                "first_loss": 0,
+                "second_loss": 0,
+                "third_loss": 0,
+                "note": "Gratis across all replacement tiers"
+              },
+              "pma_dependents": {
+                "first_loss": 0,
+                "second_loss": 0,
+                "third_loss": 0,
+                "note": "Gratis across all replacement tiers"
               }
             },
             "validity_10_year": {
@@ -5543,6 +5623,23 @@ window.RULE_PACKS = {
               "hajj_pilgrims": {
                 "status": "not_eligible",
                 "reason": "Ten-year validity not available under Hajj concession."
+              },
+              "immigration_officers_staff": {
+                "first_loss": 200,
+                "second_loss": 500,
+                "third_loss": 1000
+              },
+              "pmd_pmr_diplomatic_official": {
+                "first_loss": 0,
+                "second_loss": 0,
+                "third_loss": 0,
+                "note": "Gratis across all replacement tiers"
+              },
+              "pma_dependents": {
+                "first_loss": 0,
+                "second_loss": 0,
+                "third_loss": 0,
+                "note": "Gratis across all replacement tiers"
               }
             }
           },
@@ -5842,6 +5939,108 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for OKU aged 18+ first loss (RM 0 base + RM 200 penalty).",
               "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "immigration_officers_staff",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "100% statutory fee exemption for officers and staff of the Immigration Department of Malaysia.",
+              "applicable_conditions": "Must provide departmental service identification and verification.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "immigration_officers_staff",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "100% statutory fee exemption for officers and staff of the Immigration Department of Malaysia.",
+              "applicable_conditions": "Must provide departmental service identification and verification.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "pmd_pmr_diplomatic_official",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "100% statutory fee exemption for Diplomatic (PMD) and Official (PMR) passports.",
+              "applicable_conditions": "Approval period aligned with Kementerian Luar Negeri (KLN).",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "pmd_pmr_diplomatic_official",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "100% statutory fee exemption for Diplomatic (PMD) and Official (PMR) passports.",
+              "applicable_conditions": "Approval period aligned with Kementerian Luar Negeri (KLN).",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "pma_dependents",
+              "application_channel": "domestic_counter",
+              "validity_period": "5_years",
+              "discount_eligibility": "100% statutory fee exemption for PMA Dependents.",
+              "applicable_conditions": "Approval aligned with PMD or PMR Principal.",
+              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "MYR",
+              "amount": 0,
+              "base_amount": 0,
+              "emergency_surcharge": 0,
+              "total_payable": 0,
+              "applicant_category": "pma_dependents",
+              "application_channel": "domestic_counter",
+              "validity_period": "10_years",
+              "discount_eligibility": "100% statutory fee exemption for PMA Dependents.",
+              "applicable_conditions": "Approval aligned with PMD or PMR Principal.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
               "effective_date": "2024-01-01",
               "verification_date": "2026-10-19",
@@ -8466,6 +8665,23 @@ window.RULE_PACKS = {
               "verification_date": "2026-10-19",
               "date_checked": "2026-10-19",
               "verification_status": "verified"
+            },
+            {
+              "currency": "IDR",
+              "amount": 350000,
+              "base_amount": 350000,
+              "emergency_surcharge": 0,
+              "total_payable": 350000,
+              "applicant_category": "minor_under_17_conditional_marital_status",
+              "application_channel": "domestic_kantor_imigrasi_or_mpaspor",
+              "validity_period": "5_year_standard_or_10_year_if_married",
+              "discount_eligibility": "Conditional statutory evaluation under Permenkumham No. 18/2022 Pasal 2A.",
+              "applicable_conditions": "WNI di bawah 17 tahun: standar masa berlaku 5 tahun (Rp 350.000 / Rp 650.000); syarat 10 tahun (Rp 650.000 / Rp 950.000) memerlukan konfirmasi status perkawinan yang sah.",
+              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
+              "effective_date": "2024-12-18",
+              "verification_date": "2026-10-19",
+              "date_checked": "2026-10-19",
+              "verification_status": "confirmation_required"
             }
           ]
         },

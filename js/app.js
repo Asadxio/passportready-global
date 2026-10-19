@@ -352,7 +352,10 @@
     // Header info
     document.getElementById('resCountryName').textContent = result.country.name;
     document.getElementById('resServiceName').textContent = formatServiceName(state.answers.service);
-    document.getElementById('resApplicantMeta').textContent = `${formatAgeName(state.answers.age)} · ${state.answers.location === 'abroad' ? 'Applying Abroad (Embassy/Consulate)' : 'Domestic Application'}`;
+    const metaAge = (result.applicant && result.applicant.exactAge !== null)
+      ? `Age ${result.applicant.exactAge} (${formatAgeBandName(result.applicant.canonicalAgeBand)})`
+      : formatAgeName(state.answers.age);
+    document.getElementById('resApplicantMeta').textContent = `${metaAge} · ${state.answers.location === 'abroad' ? 'Applying Abroad (Embassy/Consulate)' : 'Domestic Application'}`;
 
     // Score badge
     const badgeEl = document.getElementById('resStatusBadge');
@@ -735,6 +738,17 @@
       senior: "Senior Citizen (60+)"
     };
     return map[a] || a;
+  }
+
+  function formatAgeBandName(band) {
+    const map = {
+      child_under_12: "Child Under 12",
+      minor_12_to_16: "Minor / Youth (12–16)",
+      age_17: "Age 17",
+      adult_18_to_59: "Adult (18–59)",
+      senior_60_plus: "Senior Citizen (60+)"
+    };
+    return map[band] || band;
   }
 
   function escapeHTML(s) {

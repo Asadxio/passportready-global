@@ -26,20 +26,20 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_7"/g) || []);
-  console.log('Scripts with ?v=20261019_7:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_7');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_8"/g) || []);
+  console.log('Scripts with ?v=20261019_8:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_8');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_7"/g) || []);
-  console.log('CSS with ?v=20261019_7:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_7');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_8"/g) || []);
+  console.log('CSS with ?v=20261019_8:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_8');
 
   const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
   console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_7');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_8');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -57,7 +57,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_7');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_8');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -145,7 +145,7 @@ async function verifyLive() {
   assert.strictEqual(keFees.standard_domestic_kes.replacement_lost_passport, 20050);
   assert.strictEqual(keFees.standard_domestic_kes.replacement_mutilated_passport, 20050);
 
-  // 4. Malaysia (MY - Phase 4.2 Audited)
+  // 4. Malaysia (MY - Phase 4.2 & 4.3 Audited)
   console.log('[MY Check]');
   const myFees = rp.MY.services.first_passport.fees;
   assert.strictEqual(myFees.fee_schedule_by_category.adult_18_to_59_years.validity_5_year.amount, 200);
@@ -154,8 +154,13 @@ async function verifyLive() {
   assert.strictEqual(myFees.fee_schedule_by_category.senior_citizens_60_and_older.validity_10_year.amount, 175);
   assert.strictEqual(myFees.fee_schedule_by_category.children_under_12_years.validity_5_year.amount, 100);
   assert.strictEqual(myFees.fee_schedule_by_category.oku_18_and_older.validity_10_year.amount, 0);
+  assert.strictEqual(myFees.fee_schedule_by_category.immigration_officers_staff.validity_5_year.amount, 0);
+  assert.strictEqual(myFees.fee_schedule_by_category.pmd_pmr_diplomatic_official.validity_10_year.amount, 0);
+  assert.strictEqual(myFees.fee_schedule_by_category.pma_dependents.validity_5_year.amount, 0);
   assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.adult_18_to_59_years.first_loss, 400);
   assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.children_under_12_years.first_loss, 300);
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.immigration_officers_staff.first_loss, 200);
+  assert.strictEqual(myFees.lost_and_damaged_replacement_schedule.validity_5_year.pmd_pmr_diplomatic_official.first_loss, 0);
 
   // 5. Nepal (NP)
   console.log('[NP Check]');
@@ -200,7 +205,84 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_1_year_with_validity_remaining, 15000);
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1 & PHASE 4.2 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_8');
+  console.log('Rules engine HTTP Status:', rulesEngineRes.status);
+  assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
+
+  const reSandbox = { window: {}, module: {}, require: () => {} };
+  vm.runInNewContext(rulesEngineRes.body, reSandbox);
+  const PassportRulesEngine = reSandbox.module.exports?.PassportRulesEngine || reSandbox.window.PassportRulesEngine;
+  assert(PassportRulesEngine, 'PassportRulesEngine must be defined in live script');
+
+  const liveEngine = new PassportRulesEngine(rp);
+
+  // 5.1 Malaysia Statutory Categories (JIM)
+  const liveMyImm = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
+    applicantCategory: 'immigration_officers_staff', validity: '5_year'
+  });
+  assert.strictEqual(liveMyImm.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0, 'Live MY immigration staff must be RM 0');
+
+  const liveMyImmRep = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff', validity: '5_year', lossTier: 'first_loss'
+  });
+  assert.strictEqual(liveMyImmRep.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 200, 'Live MY immigration staff 1st loss must be RM 200');
+
+  const liveMyPmd = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
+    applicantCategory: 'pmd_pmr_diplomatic_official', validity: '10_year'
+  });
+  assert.strictEqual(liveMyPmd.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0, 'Live MY PMD/PMR 10-yr must be RM 0');
+
+  const liveMyPma = liveEngine.evaluate({
+    countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport',
+    applicantCategory: 'pma_dependents', validity: '5_year'
+  });
+  assert.strictEqual(liveMyPma.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0, 'Live MY PMA dependents must be RM 0');
+
+  // 5.2 Indonesia Unknown Marital Status Verification State
+  const liveIdUnknown = liveEngine.evaluate({
+    countryCode: 'ID', countryName: 'Indonesia', location: 'inside', service: 'first_passport',
+    ageExact: 16
+  });
+  const liveIdFee = liveIdUnknown.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(liveIdUnknown.country.isVerified, true, 'Live ID country pack must be verified');
+  assert.strictEqual(liveIdFee.feeStatus, 'confirmation_required', 'Live ID minor unknown marital status must return confirmation_required');
+  assert.strictEqual(liveIdFee.feeRecord.status, 'confirmation_required', 'Live ID feeRecord must be confirmation_required');
+  assert(liveIdUnknown.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'), 'Live ID must include INDONESIA_MARITAL_STATUS_CONFIRMATION flag');
+
+  // 5.3 Exact Age Precedence and Boundaries
+  const liveAgeOverride = liveEngine.evaluate({
+    countryCode: 'US', countryName: 'United States', location: 'inside', service: 'first_passport',
+    age: 'adult', ageExact: 15
+  });
+  assert.strictEqual(liveAgeOverride.applicant.isMinor, true, 'Live exact age 15 must override adult radio');
+  assert(liveAgeOverride.flags.some(f => f.code === 'MINOR_PARENTAL_CONSENT'), 'Live exact age 15 must trigger parental consent flag');
+
+  const liveNz15 = liveEngine.evaluate({ countryCode: 'NZ', countryName: 'New Zealand', location: 'inside', service: 'first_passport', ageExact: 15 });
+  assert(liveNz15.checklist.find(c => c.id === 'official_fee_payment').details.includes('NZD 144'), 'Live NZ age 15 must be child fee NZD 144');
+
+  const liveNz16 = liveEngine.evaluate({ countryCode: 'NZ', countryName: 'New Zealand', location: 'inside', service: 'first_passport', ageExact: 16 });
+  assert(liveNz16.checklist.find(c => c.id === 'official_fee_payment').details.includes('NZD 247'), 'Live NZ age 16 must be adult fee NZD 247');
+
+  const liveLk15 = liveEngine.evaluate({ countryCode: 'LK', countryName: 'Sri Lanka', location: 'inside', service: 'first_passport', ageExact: 15 });
+  assert(liveLk15.checklist.find(c => c.id === 'official_fee_payment').details.includes('LKR 3,000'), 'Live LK age 15 must be child fee LKR 3,000');
+
+  const liveLk16 = liveEngine.evaluate({ countryCode: 'LK', countryName: 'Sri Lanka', location: 'inside', service: 'first_passport', ageExact: 16 });
+  assert(liveLk16.checklist.find(c => c.id === 'official_fee_payment').details.includes('LKR 10,000'), 'Live LK age 16 must be adult fee LKR 10,000');
+
+  const liveMy11 = liveEngine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 11, validity: '5_year' });
+  assert.strictEqual(liveMy11.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 11 must be RM 100');
+
+  const liveMy12 = liveEngine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 12, validity: '5_year' });
+  assert.strictEqual(liveMy12.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 200, 'Live MY age 12 must be RM 200');
+
+  const liveMy60 = liveEngine.evaluate({ countryCode: 'MY', countryName: 'Malaysia', location: 'inside', service: 'first_passport', ageExact: 60, validity: '5_year' });
+  assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2 & PHASE 4.3 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

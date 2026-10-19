@@ -27,6 +27,47 @@ class PassportRulesEngine {
       checkedGov = 'yes'
     } = profile;
 
+    // Canonical Age Normalization across all stages
+    const rawExactAge = typeof profile.ageExact === 'number' && !isNaN(profile.ageExact)
+      ? profile.ageExact
+      : (typeof profile.applicantAge === 'number' && !isNaN(profile.applicantAge)
+        ? profile.applicantAge
+        : (typeof profile.exactAge === 'number' && !isNaN(profile.exactAge) ? profile.exactAge : null));
+
+    let canonicalAgeBand;
+    if (rawExactAge !== null) {
+      if (rawExactAge < 12) {
+        canonicalAgeBand = 'child_under_12';
+      } else if (rawExactAge <= 16) {
+        canonicalAgeBand = 'minor_12_to_16';
+      } else if (rawExactAge === 17) {
+        canonicalAgeBand = 'age_17';
+      } else if (rawExactAge < 60) {
+        canonicalAgeBand = 'adult_18_to_59';
+      } else {
+        canonicalAgeBand = 'senior_60_plus';
+      }
+    } else {
+      if (age === 'infant' || age === 'child_under_12' || age === 'under_12') {
+        canonicalAgeBand = 'child_under_12';
+      } else if (age === 'minor') {
+        canonicalAgeBand = 'minor_12_to_16';
+      } else if (age === 'senior') {
+        canonicalAgeBand = 'senior_60_plus';
+      } else {
+        canonicalAgeBand = 'adult_18_to_59';
+      }
+    }
+
+    // Canonical minor status based on jurisdiction threshold
+    // In Indonesia (Permenkumham No. 18/2022), adult minimum age is 17; under 17 is minor
+    // In standard jurisdictions, under 18 is minor
+    const isMinorApplicant = countryCode === 'ID'
+      ? (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16')
+      : (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16' || canonicalAgeBand === 'age_17');
+    const isSeniorApplicant = canonicalAgeBand === 'senior_60_plus';
+    const isAdultApplicant = !isMinorApplicant;
+
     const pack = this.rulePacks[countryCode] || null;
     const isVerifiedPack = pack && pack.rule_pack_status === 'verified';
 
@@ -284,7 +325,7 @@ class PassportRulesEngine {
     }
 
     // 4. Age-Specific Safeguards
-    if (age === 'infant' || age === 'minor') {
+    if (isMinorApplicant) {
       let minorSafeguardText = "Under statutory child protection rules (e.g. US 22 CFR § 51.28, India Annexure D/C, UK parental responsibility, Germany gemeinsames Sorgerecht), parental consent must be legally proven.";
       if (countryCode === 'US') minorSafeguardText = "Under US 22 CFR § 51.28, both parents must appear with the child under 16, or the non-applying parent must provide notarized Form DS-3053.";
       else if (countryCode === 'IN') minorSafeguardText = "Under Indian MEA Passports Rules, minors under 18 require Annexure D signed by both parents, or Annexure C for single parents under defined statutory grounds.";
@@ -409,7 +450,7 @@ class PassportRulesEngine {
       const fees = pack.services[service].fees;
       if (countryCode === 'JP') {
         if (location === 'inside') {
-          if (age === 'adult' || age === 'senior') {
+          if (isAdultApplicant) {
             feeDetails = 'Official Japanese domestic statutory fees (effective 1 July 2026): Online application via Mynaportal: ¥8,900; Counter application: ¥9,300 (10-year validity). Note: The 5-year adult option was discontinued for new applications from 1 July 2026.';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'JPY', online: 8900, counter: 9300, validity: '10 years' };
@@ -425,12 +466,13 @@ class PassportRulesEngine {
         }
       } else if (countryCode === 'MX') {
         const isUrgentOrEmergency = urgency === 'urgent' || urgency === 'emergency';
+        const isUnder3Mx = (rawExactAge !== null && rawExactAge < 3) || (rawExactAge === null && age === 'infant');
         if (location === 'inside') {
-          if (age === 'infant') {
+          if (isUnder3Mx) {
             feeDetails = 'Official Mexican domestic statutory fees (2026 SRE): 1-year validity (issued exclusively to children under 3 years old): MXN 920 (50% discount: MXN 460). Note: 1-year validity is age-based and not an emergency passport. Pay at authorized bank with SRE voucher.';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'MXN', standard: 920, discounted: 460, validity: '1 year (under 3 only)' };
-          } else if (age === 'senior') {
+          } else if (isSeniorApplicant) {
             feeDetails = 'Official Mexican domestic statutory fees (2026 SRE with 50% statutory senior discount for age 60+): 3-year: MXN 900; 6-year: MXN 1,220; 10-year: MXN 2,140. (Standard fees without discount: 3-yr MXN 1,795; 6-yr MXN 2,440; 10-yr MXN 4,280). Note: Agricultural workers under SAWP are excluded from the 10-year discount.';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'MXN', standard: [1795, 2440, 4280], discounted: [900, 1220, 2140], validity: '3, 6, 10 years' };
@@ -445,11 +487,11 @@ class PassportRulesEngine {
         } else {
           // Overseas Consular USD
           if (isUrgentOrEmergency) {
-            if (age === 'infant') {
+            if (isUnder3Mx) {
               feeDetails = 'Official Mexican emergency consular fees in USD (Art. 20 LFD with 30% statutory surcharge): 1-year validity (children under 3 only): Base USD 44 + Surcharge USD 13 = Total USD 57 (50% discount: Base USD 22 + Surcharge USD 6.50 = Total USD 28.50). Paid at Mexican Consulate abroad.';
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'USD', base: 44, surcharge: 13, total: 57, discounted_total: 28.5, validity: '1 year (under 3 only)' };
-            } else if (age === 'senior') {
+            } else if (isSeniorApplicant) {
               feeDetails = 'Official Mexican emergency consular fees in USD (Art. 20 LFD with 50% discount + 30% surcharge for age 60+): 3-year: Total USD 65.50 (Base $50.50 + Surcharge $15); 6-year: Total USD 89.00 (Base $68.50 + Surcharge $20.50); 10-year: Total USD 136.00 (Base $104.50 + Surcharge $31.50). (Standard emergency totals without discount: 3-yr $131, 6-yr $178, 10-yr $272 USD).';
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'USD', standard_totals: [131, 178, 272], discounted_totals: [65.5, 89, 136], validity: '3, 6, 10 years' };
@@ -460,11 +502,11 @@ class PassportRulesEngine {
             }
           } else {
             // Standard Consular USD
-            if (age === 'infant') {
+            if (isUnder3Mx) {
               feeDetails = 'Official Mexican consular fees in USD (2026 Ley Federal de Derechos): 1-year validity (children under 3 only): USD 44 (50% discount: USD 22). (Approved emergency appointments incur 30% surcharge: total $57 / discounted $28.50 USD). Paid at Mexican Consulate abroad.';
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'USD', standard: 44, discounted: 22, emergency_total: 57, validity: '1 year' };
-            } else if (age === 'senior') {
+            } else if (isSeniorApplicant) {
               feeDetails = 'Official Mexican consular fees in USD (2026 with 50% discount for seniors 60+ and disabled): 3-year: USD 50.50; 6-year: USD 68.50; 10-year: USD 104.50. (Standard consular fees: 3-yr USD 101; 6-yr USD 137; 10-yr USD 209). Note: Approved emergency appointments incur 30% surcharge (discounted emergency totals: 3-yr $65.50, 6-yr $89.00, 10-yr $136.00 USD).';
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'USD', standard: [101, 137, 209], discounted: [50.5, 68.5, 104.5], validity: '3, 6, 10 years' };
@@ -488,8 +530,7 @@ class PassportRulesEngine {
       } else if (countryCode === 'ID') {
         if (location === 'inside') {
           // Check if applicant is under 17
-          const exactAge = typeof profile.ageExact === 'number' ? profile.ageExact : (typeof profile.applicantAge === 'number' ? profile.applicantAge : null);
-          const isUnder17 = (exactAge !== null && exactAge < 17) || (exactAge === null && (age === 'minor' || age === 'infant'));
+          const isUnder17 = canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16';
           const isMarried = profile.maritalStatus === 'married' || profile.isMarried === true || special === 'married_under_17' || profile.applicantCategory === 'married_under_17';
           const isSingle = profile.maritalStatus === 'single' || profile.maritalStatus === 'unmarried' || profile.isMarried === false;
           const maritalStatusKnown = profile.maritalStatus !== undefined || profile.isMarried !== undefined || special === 'married_under_17' || profile.applicantCategory === 'married_under_17';
@@ -542,10 +583,11 @@ class PassportRulesEngine {
               };
             } else {
               // Marital status is missing / unknown for under-17 applicant
-              feeDetails = 'Official Indonesian domestic statutory fees (PP No. 28/2019 & No. 45/2024 / Ditjen Imigrasi): Children under 17 standardly receive 5-year validity passports: Non-electronic 5-year: IDR 350,000; Electronic e-Paspor 5-year: IDR 650,000. Conditional statutory exception: Under Permenkumham No. 18/2022 Pasal 2A, applicants under 17 who are legally married qualify for 10-year validity (Non-electronic 10-year: IDR 650,000; Electronic 10-year: IDR 950,000) upon presenting official marriage proof. Same-day express service surcharge (Layanan Percepatan) is +IDR 1,000,000 (kept separate from booklet fee). Lost fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
-              feeStatus = 'verified_statutory';
+              feeDetails = 'Official Indonesian domestic statutory fee guidance (Ditjen Imigrasi / Permenkumham No. 18/2022 Pasal 2A): Marital status unconfirmed for applicant under 17. Minors under 17 standardly receive 5-year validity passports: Non-electronic 5-year: IDR 350,000; Electronic e-Paspor 5-year: IDR 650,000. Conditional statutory exception: Under Permenkumham No. 18/2022 Pasal 2A, applicants under 17 who are legally married qualify for 10-year validity (Non-electronic 10-year: IDR 650,000; Electronic 10-year: IDR 950,000) upon presenting official marriage proof. Confirm your marital status at Kantor Imigrasi to verify exact statutory eligibility and fees. Same-day express service surcharge (Layanan Percepatan) is +IDR 1,000,000 (kept separate from booklet fee). Lost fine: IDR 1,000,000; Damaged fine: IDR 500,000.';
+              feeStatus = 'confirmation_required';
               specificFeeRecord = {
                 currency: 'IDR',
+                status: 'confirmation_required',
                 legal_marriage_exception: 'conditional_unconfirmed',
                 non_electronic_5yr: 350000,
                 non_electronic_10yr: 650000,
@@ -587,7 +629,7 @@ class PassportRulesEngine {
           specificFeeRecord = { currency: 'Local currency', note: 'Determined by SIMKIM consular tariff' };
         }
       } else if (countryCode === 'IE') {
-        if (age === 'minor') {
+        if (isMinorApplicant) {
           feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard child 5-year online booklet: €20 via Passport Online. Paper Post Passport: €30 (+ €9.50 An Post charge).';
           feeStatus = 'verified_statutory';
           specificFeeRecord = { currency: 'EUR', online_child: 20, paper_child: 30 };
@@ -603,30 +645,27 @@ class PassportRulesEngine {
       } else if (countryCode === 'MY') {
         const isLostOrDamaged = service === 'lost_stolen' || service === 'damaged' || status === 'lost' || status === 'damaged';
         
-        // 1. Resolve exact applicant age and effective category
-        const exactAge = typeof profile.ageExact === 'number' ? profile.ageExact : (typeof profile.applicantAge === 'number' ? profile.applicantAge : null);
+        // 1. Resolve effective category using canonical age band & special categories
         const isOku = profile.applicantCategory === 'oku' || profile.applicantCategory === 'oku_under_18' || profile.applicantCategory === 'oku_18_and_older' || profile.applicantCategory === 'oku_18_plus' || profile.isOku === true || (special === 'accessibility' && profile.accessibilityCard === 'oku');
         const isStudent = profile.applicantCategory === 'students_under_21_degree_abroad' || profile.applicantCategory === 'student_degree_overseas' || profile.applicantCategory === 'student_overseas' || profile.applicantCategory === 'student';
         const isHajj = profile.applicantCategory === 'hajj_pilgrims' || profile.applicantCategory === 'hajj_pilgrim' || profile.applicantCategory === 'hajj';
-
-        let effectiveAgeBand = age;
-        if (exactAge !== null) {
-          if (exactAge < 12) effectiveAgeBand = 'child_under_12';
-          else if (exactAge < 18) effectiveAgeBand = 'minor'; // 12 to 17
-          else if (exactAge < 60) effectiveAgeBand = 'adult'; // 18 to 59
-          else effectiveAgeBand = 'senior'; // 60+
-        } else {
-          if (age === 'infant' || age === 'child_under_12' || age === 'under_12') effectiveAgeBand = 'child_under_12';
-          else if (age === '12') effectiveAgeBand = 'minor';
-        }
+        const isJimStaff = profile.applicantCategory === 'immigration_officers_staff' || profile.applicantCategory === 'jim_staff' || profile.applicantCategory === 'immigration_staff';
+        const isPmdPmr = profile.applicantCategory === 'pmd_pmr_diplomatic_official' || profile.applicantCategory === 'pmd_pmr' || profile.applicantCategory === 'diplomatic_official';
+        const isPmaDep = profile.applicantCategory === 'pma_dependents' || profile.applicantCategory === 'pma_dependent';
 
         let categoryKey = 'adult_18_to_59_years';
-        if (profile.applicantCategory === 'oku_under_18') {
+        if (isJimStaff) {
+          categoryKey = 'immigration_officers_staff';
+        } else if (isPmdPmr) {
+          categoryKey = 'pmd_pmr_diplomatic_official';
+        } else if (isPmaDep) {
+          categoryKey = 'pma_dependents';
+        } else if (profile.applicantCategory === 'oku_under_18') {
           categoryKey = 'oku_under_18';
         } else if (profile.applicantCategory === 'oku_18_and_older' || profile.applicantCategory === 'oku_18_plus') {
           categoryKey = 'oku_18_and_older';
         } else if (isOku) {
-          if (effectiveAgeBand === 'minor' || effectiveAgeBand === 'infant' || effectiveAgeBand === 'child_under_12') {
+          if (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16' || canonicalAgeBand === 'age_17') {
             categoryKey = 'oku_under_18';
           } else {
             categoryKey = 'oku_18_and_older';
@@ -635,11 +674,11 @@ class PassportRulesEngine {
           categoryKey = 'students_under_21_degree_abroad';
         } else if (isHajj) {
           categoryKey = 'hajj_pilgrims';
-        } else if (effectiveAgeBand === 'senior') {
+        } else if (canonicalAgeBand === 'senior_60_plus') {
           categoryKey = 'senior_citizens_60_and_older';
-        } else if (effectiveAgeBand === 'child_under_12') {
+        } else if (canonicalAgeBand === 'child_under_12') {
           categoryKey = 'children_under_12_years';
-        } else if (effectiveAgeBand === 'minor') {
+        } else if (canonicalAgeBand === 'minor_12_to_16' || canonicalAgeBand === 'age_17') {
           categoryKey = 'applicants_under_18'; // 12 to 17
         } else {
           categoryKey = 'adult_18_to_59_years';
@@ -658,10 +697,10 @@ class PassportRulesEngine {
         else if (rawLoss === 'third' || rawLoss === 'third_loss' || rawLoss === 3 || rawLoss === '3') lossTier = 'third_loss';
 
         if (isLostOrDamaged) {
-          // REPLACEMENT FEES (Step 2 B)
+          // REPLACEMENT FEES
           if (!selectedValidity) {
             // Missing validity period for replacement
-            feeDetails = 'Official Malaysian lost/damaged passport replacement guidance (Jabatan Imigresen Malaysia): Replacement fees depend strictly on the previous passport validity (5-year vs. 10-year), applicant age/category, and replacement frequency (1st, 2nd, or 3rd loss). 5-year replacement: Adults RM 400 (1st) / RM 700 (2nd) / RM 1,200 (3rd); Children under 12 & Seniors RM 300 / RM 600 / RM 1,100; OKU under 18 RM 200 / RM 500 / RM 1,000. 10-year replacement: Adults RM 550 (1st) / RM 850 (2nd) / RM 1,350 (3rd); Seniors RM 375 / RM 675 / RM 1,175; OKU 18+ RM 200 / RM 500 / RM 1,000. Please confirm your passport validity period to determine the exact statutory replacement fee. Mandatory police report and Borang IM.42c investigation required.';
+            feeDetails = 'Official Malaysian lost/damaged passport replacement guidance (Jabatan Imigresen Malaysia): Replacement fees depend strictly on the previous passport validity (5-year vs. 10-year), applicant age/category, and replacement frequency (1st, 2nd, or 3rd loss). 5-year replacement: Adults RM 400 (1st) / RM 700 (2nd) / RM 1,200 (3rd); Children under 12 & Seniors RM 300 / RM 600 / RM 1,100; OKU under 18 & Immigration staff RM 200 / RM 500 / RM 1,000; Diplomatic/Official Gratis (RM 0). 10-year replacement: Adults RM 550 (1st) / RM 850 (2nd) / RM 1,350 (3rd); Seniors RM 375 / RM 675 / RM 1,175; OKU 18+ & Immigration staff RM 200 / RM 500 / RM 1,000; Diplomatic/Official Gratis (RM 0). Please confirm your previous passport validity period to determine the exact statutory replacement fee. Mandatory police report and Borang IM.42c investigation required.';
             feeStatus = 'validity_confirmation_required';
             specificFeeRecord = {
               currency: 'MYR',
@@ -695,8 +734,36 @@ class PassportRulesEngine {
                 message: `Ten-year validity replacement is not eligible for ${categoryKey.replace(/_/g, ' ')}. Minors under 18, students under 21, and Hajj pilgrims are eligible strictly for 5-year validity.`,
                 action: 'Select 5-year validity replacement.'
               });
+            } else if (categoryKey === 'pmd_pmr_diplomatic_official' || categoryKey === 'pma_dependents') {
+              feeDetails = `Official Malaysian statutory replacement fee for 10-year passport (${categoryKey === 'pma_dependents' ? 'PMA Dependents' : 'PMD / PMR Diplomatic & Official Passports'}, ${lossTier.replace(/_/g, ' ')}): 100% EXEMPT (Gratis / RM 0 across all tiers) with official authorization. Police report, Borang IM.42c, and investigation approval required.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '10_year',
+                category: categoryKey,
+                loss_tier: lossTier,
+                base_fee: 0,
+                calculated_difference: 0,
+                statutory_penalty: 0,
+                total_replacement_fee: 0,
+                status: 'eligible_free'
+              };
+            } else if (categoryKey === 'immigration_officers_staff') {
+              const diff = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
+              feeDetails = `Official Malaysian statutory replacement fee for 10-year passport (Immigration Department staff, ${lossTier.replace(/_/g, ' ')}): RM ${diff} (comprising RM 0 original fee + RM ${diff} calculated difference / replacement fee). Departmental verification, police report, Borang IM.42c, and investigation approval required.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '10_year',
+                category: categoryKey,
+                loss_tier: lossTier,
+                base_fee: 0,
+                calculated_difference: diff,
+                statutory_penalty: diff,
+                total_replacement_fee: diff
+              };
             } else {
-              // 10-year replacement schedule
+              // Standard 10-year replacement schedule
               let baseFee = 350;
               const penaltyFee = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
               if (categoryKey === 'adult_18_to_59_years') {
@@ -707,7 +774,7 @@ class PassportRulesEngine {
                 baseFee = 0;
               }
               const replacementFee = baseFee + penaltyFee;
-              feeDetails = `Official Malaysian statutory replacement fee for 10-year passport (${categoryKey.replace(/_/g, ' ')}, ${lossTier.replace(/_/g, ' ')}): RM ${replacementFee} (comprising RM ${baseFee} base fee + RM ${penaltyFee} statutory penalty). Police report, Borang IM.42c, and investigation approval by Director General of Immigration are strictly mandatory.`;
+              feeDetails = `Official Malaysian statutory replacement fee for 10-year passport (${categoryKey.replace(/_/g, ' ')}, ${lossTier.replace(/_/g, ' ')}): RM ${replacementFee} (comprising RM ${baseFee} base fee + RM ${penaltyFee} statutory penalty / calculated difference). Police report, Borang IM.42c, and investigation approval by Director General of Immigration are strictly mandatory.`;
               feeStatus = 'verified_statutory';
               specificFeeRecord = {
                 currency: 'MYR',
@@ -715,6 +782,7 @@ class PassportRulesEngine {
                 category: categoryKey,
                 loss_tier: lossTier,
                 base_fee: baseFee,
+                calculated_difference: penaltyFee,
                 statutory_penalty: penaltyFee,
                 total_replacement_fee: replacementFee
               };
@@ -730,6 +798,34 @@ class PassportRulesEngine {
                 status: 'not_eligible',
                 reason: 'Adult OKU applicants are issued 10-year validity passports under current regulations.'
               };
+            } else if (categoryKey === 'pmd_pmr_diplomatic_official' || categoryKey === 'pma_dependents') {
+              feeDetails = `Official Malaysian statutory replacement fee for 5-year passport (${categoryKey === 'pma_dependents' ? 'PMA Dependents' : 'PMD / PMR Diplomatic & Official Passports'}, ${lossTier.replace(/_/g, ' ')}): 100% EXEMPT (Gratis / RM 0 across all tiers) with official authorization. Police report, Borang IM.42c, and investigation approval required.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '5_year',
+                category: categoryKey,
+                loss_tier: lossTier,
+                base_fee: 0,
+                calculated_difference: 0,
+                statutory_penalty: 0,
+                total_replacement_fee: 0,
+                status: 'eligible_free'
+              };
+            } else if (categoryKey === 'immigration_officers_staff') {
+              const diff = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
+              feeDetails = `Official Malaysian statutory replacement fee for 5-year passport (Immigration Department staff, ${lossTier.replace(/_/g, ' ')}): RM ${diff} (comprising RM 0 original fee + RM ${diff} calculated difference / replacement fee). Departmental verification, police report, Borang IM.42c, and investigation approval required.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = {
+                currency: 'MYR',
+                validity: '5_year',
+                category: categoryKey,
+                loss_tier: lossTier,
+                base_fee: 0,
+                calculated_difference: diff,
+                statutory_penalty: diff,
+                total_replacement_fee: diff
+              };
             } else {
               let baseFee = 200;
               const penaltyFee = lossTier === 'first_loss' ? 200 : (lossTier === 'second_loss' ? 500 : 1000);
@@ -741,7 +837,7 @@ class PassportRulesEngine {
                 baseFee = 0;
               }
               const replacementFee = baseFee + penaltyFee;
-              feeDetails = `Official Malaysian statutory replacement fee for 5-year passport (${categoryKey.replace(/_/g, ' ')}, ${lossTier.replace(/_/g, ' ')}): RM ${replacementFee} (comprising RM ${baseFee} base fee + RM ${penaltyFee} statutory penalty). Police report, Borang IM.42c, and investigation approval by Director General of Immigration are strictly mandatory.`;
+              feeDetails = `Official Malaysian statutory replacement fee for 5-year passport (${categoryKey.replace(/_/g, ' ')}, ${lossTier.replace(/_/g, ' ')}): RM ${replacementFee} (comprising RM ${baseFee} base fee + RM ${penaltyFee} statutory penalty / calculated difference). Police report, Borang IM.42c, and investigation approval by Director General of Immigration are strictly mandatory.`;
               feeStatus = 'verified_statutory';
               specificFeeRecord = {
                 currency: 'MYR',
@@ -749,6 +845,7 @@ class PassportRulesEngine {
                 category: categoryKey,
                 loss_tier: lossTier,
                 base_fee: baseFee,
+                calculated_difference: penaltyFee,
                 statutory_penalty: penaltyFee,
                 total_replacement_fee: replacementFee
               };
@@ -774,6 +871,18 @@ class PassportRulesEngine {
                 message: `Ten-year validity is restricted to adult applicants aged 18 and older. ${categoryKey.replace(/_/g, ' ')} is eligible strictly for 5-year validity.`,
                 action: 'Select 5-year validity on the official portal.'
               });
+            } else if (categoryKey === 'immigration_officers_staff') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM): 100% EXEMPT (FREE / RM 0) for 10-year validity passport upon departmental verification.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '10_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+            } else if (categoryKey === 'pmd_pmr_diplomatic_official') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Diplomatic (PMD) & Official (PMR) Passports: 100% EXEMPT (FREE / RM 0) for 10-year validity with approval aligned with Kementerian Luar Negeri (KLN).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '10_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+            } else if (categoryKey === 'pma_dependents') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): PMA Dependents: 100% EXEMPT (FREE / RM 0) for 10-year validity aligned with PMD or PMR Principal authorization.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '10_year', category: categoryKey, amount: 0, status: 'eligible_free' };
             } else if (categoryKey === 'oku_18_and_older') {
               feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU aged 18+ with official JKM card): 100% EXEMPT (FREE / RM 0) for 10-year validity passport.';
               feeStatus = 'verified_statutory';
@@ -804,6 +913,18 @@ class PassportRulesEngine {
                 message: 'Adult OKU applicants in Malaysia are issued 10-year validity passports with 100% statutory fee exemption.',
                 action: 'Select 10-year validity on the official portal.'
               });
+            } else if (categoryKey === 'immigration_officers_staff') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Officers and Staff of the Immigration Department of Malaysia (Pegawai dan Kakitangan JIM): 100% EXEMPT (FREE / RM 0) for 5-year validity passport upon departmental verification.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+            } else if (categoryKey === 'pmd_pmr_diplomatic_official') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Diplomatic (PMD) & Official (PMR) Passports: 100% EXEMPT (FREE / RM 0) for 5-year validity with approval aligned with Kementerian Luar Negeri (KLN).';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 0, status: 'eligible_free' };
+            } else if (categoryKey === 'pma_dependents') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): PMA Dependents: 100% EXEMPT (FREE / RM 0) for 5-year validity aligned with PMD or PMR Principal authorization.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity: '5_year', category: categoryKey, amount: 0, status: 'eligible_free' };
             } else if (categoryKey === 'oku_under_18') {
               feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU cardholders under 18): 100% EXEMPT (FREE / RM 0) for 5-year validity passport.';
               feeStatus = 'verified_statutory';
@@ -831,7 +952,19 @@ class PassportRulesEngine {
             }
           } else {
             // No specific validity selected - show full eligible options for this category
-            if (categoryKey === 'oku_under_18') {
+            if (categoryKey === 'immigration_officers_staff') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Officers and Staff of Immigration Department (Pegawai dan Kakitangan JIM): 100% EXEMPT (FREE / RM 0) for both 5-year and 10-year validity passports upon departmental verification.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'eligible_free', amount: 0 }, validity_10yr: { status: 'eligible_free', amount: 0 } };
+            } else if (categoryKey === 'pmd_pmr_diplomatic_official') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Diplomatic (PMD) & Official (PMR) Passports: 100% EXEMPT (FREE / RM 0) for both 5-year and 10-year validity with KLN authorization.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'eligible_free', amount: 0 }, validity_10yr: { status: 'eligible_free', amount: 0 } };
+            } else if (categoryKey === 'pma_dependents') {
+              feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): PMA Dependents: 100% EXEMPT (FREE / RM 0) for both 5-year and 10-year validity aligned with PMD/PMR Principal.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'eligible_free', amount: 0 }, validity_10yr: { status: 'eligible_free', amount: 0 } };
+            } else if (categoryKey === 'oku_under_18') {
               feeDetails = 'Official Malaysian statutory fees (Jabatan Imigresen Malaysia): Persons with Disabilities (OKU cardholders under 18): 100% EXEMPT (FREE / RM 0) for 5-year validity passport. (Minors under 18 are not eligible for 10-year validity).';
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'MYR', validity_5yr: { status: 'eligible', amount: 0 }, validity_10yr: { status: 'not_eligible' } };
@@ -882,15 +1015,16 @@ class PassportRulesEngine {
           feeStatus = 'verified_statutory';
           specificFeeRecord = { currency: 'NZD', adult_urgent_total: 494, child_urgent_total: 391, adult_standard: 247, child_standard: 144, courier_note: 'Additional cost' };
         } else {
-          if (age === 'minor' || age === 'infant') {
-            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Child 5-year passport (under 16): Standard service NZD 144 (ready in up to 10–15 working days); Urgent service NZD 391 (ready in up to 3 working days); After-hours callout NZD 898. Note: Courier delivery is an additional cost.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'NZD', child_standard_5yr: 144, child_urgent_5yr: 391, child_callout_5yr: 898, courier_note: 'Additional cost' };
-          } else {
-            feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Adult 10-year passport (16+): Standard service NZD 247 (ready in up to 10–15 working days); Urgent service NZD 494 (ready in up to 3 working days); After-hours callout service NZD 1,001. Child 5-year: Standard NZD 144 / Urgent NZD 391 / Callout NZD 898. Note: Courier delivery is an additional cost.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'NZD', adult_standard_10yr: 247, adult_urgent_10yr: 494, adult_callout_10yr: 1001, child_standard_5yr: 144, child_urgent_5yr: 391, courier_note: 'Additional cost' };
-          }
+          const isNzChild = (rawExactAge !== null ? rawExactAge < 16 : (age === 'minor' || age === 'infant'));
+          if (isNzChild) {
+          feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Child 5-year passport (under 16): Standard service NZD 144 (ready in up to 10–15 working days); Urgent service NZD 391 (ready in up to 3 working days); After-hours callout NZD 898. Note: Courier delivery is an additional cost.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NZD', child_standard_5yr: 144, child_urgent_5yr: 391, child_callout_5yr: 898, courier_note: 'Additional cost' };
+        } else {
+          feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Adult 10-year passport (16+): Standard service NZD 247 (ready in up to 10–15 working days); Urgent service NZD 494 (ready in up to 3 working days); After-hours callout service NZD 1,001. Child 5-year: Standard NZD 144 / Urgent NZD 391 / Callout NZD 898. Note: Courier delivery is an additional cost.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'NZD', adult_standard_10yr: 247, adult_urgent_10yr: 494, adult_callout_10yr: 1001, child_standard_5yr: 144, child_urgent_5yr: 391, courier_note: 'Additional cost' };
+        }
         }
       } else if (countryCode === 'SG') {
         feeDetails = 'Official Singapore statutory fees (Immigration & Checkpoints Authority): Online application via MyICA: SGD 70 (10-year validity for 16+, 5-year for under 16). In-person counter application at ICA Building: SGD 80. Lost passport penalty: SGD 50 (1st loss) / SGD 100 (subsequent).';
@@ -901,8 +1035,9 @@ class PassportRulesEngine {
         feeStatus = 'verified_statutory';
         specificFeeRecord = { currency: 'EUR', standard: 30.0, familia_numerosa: 0.0 };
       } else if (countryCode === 'LK') {
+        const isLkChild = (rawExactAge !== null ? rawExactAge < 16 : (age === 'minor' || age === 'infant'));
         if (urgency === 'urgent' || urgency === 'emergency') {
-          if (age === 'minor' || age === 'infant') {
+          if (isLkChild) {
             feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year minor urgent service: LKR 9,000 (compared to LKR 3,000 normal service); Child 10-year urgent service: LKR 20,000. Issued same day at Battaramulla Head Office.';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'LKR', child_3yr_urgent: 9000, child_3yr_normal: 3000, child_10yr_urgent: 20000 };
@@ -912,7 +1047,7 @@ class PassportRulesEngine {
             specificFeeRecord = { currency: 'LKR', urgent_all_countries: 20000, normal_all_countries: 10000, child_3yr_urgent: 9000 };
           }
         } else {
-          if (age === 'minor' || age === 'infant') {
+          if (isLkChild) {
             feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year validity: LKR 3,000 normal / LKR 9,000 urgent one-day; Standard 10-year passport: LKR 10,000 normal / LKR 20,000 urgent. Approved studio digital photo receipt required.';
             feeStatus = 'verified_statutory';
             specificFeeRecord = { currency: 'LKR', child_3yr_normal: 3000, child_3yr_urgent: 9000, child_10yr_normal: 10000, child_10yr_urgent: 20000 };
@@ -960,6 +1095,13 @@ class PassportRulesEngine {
         officialPortalUrl: pack ? pack.official_portal_url : null,
         lastReviewed: pack ? pack.last_reviewed : null,
         statusNote: isVerifiedPack ? 'Verified Official Source Pack' : 'General Preparation Pack (Awaiting detailed official research)'
+      },
+      applicant: {
+        exactAge: rawExactAge,
+        canonicalAgeBand,
+        isMinor: isMinorApplicant,
+        isAdult: isAdultApplicant,
+        isSenior: isSeniorApplicant
       },
       readinessScore: preparationScore,
       statusLabel,
