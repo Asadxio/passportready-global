@@ -88,7 +88,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **ER** | ERI | Eritrea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **EE** | EST | Estonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SZ** | SWZ | Eswatini | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **ET** | ETH | Ethiopia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **ET** | ETH | Ethiopia | Sovereign State | Immigration and Citizenship Service (ICS) — `https://www.ics.gov.et/` | `primary_sources_audited` | Reg. 550/2024 (eff. Aug 7, 2024): New passport ETB 5,000 standard / ETB 20,000 urgent-5d / ETB 25,000 urgent-2d. Lost replacement ETB 13,000. In-person at ICS offices; Digital Invea system. Fayda biometric ID required. |
 | **FK** | FLK | Falkland Islands (Malvinas) | Territory / Special Region | Customs & Immigration Falkland Islands (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **FO** | FRO | Faroe Islands | Territory / Special Region | Ríkisumboðið í Føroyum (Kingdom of Denmark Passport - Føroyar cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
 | **FJ** | FJI | Fiji | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -117,14 +117,14 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **HK** | HKG | Hong Kong | Territory / Special Region | Immigration Department HKSAR (HKSAR Passport for Chinese citizens with permanent residence) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
 | **HU** | HUN | Hungary | Sovereign State | Belügyminisztérium / Kormányablakok | `primary_sources_audited` | Primary source audited (Batch 3). Statutory fees (normál 20 nap): Adult 18+ (10-yr) 17 000 HUF (+2 000 HUF postal delivery); Youth 12-18 (5-yr) 12 500 HUF; Child <12 8 500 HUF. Surcharges: 5-day +19k HUF; 3-day +29k HUF; 24-hr +39k HUF. Személyazonosító igazolvány required; photo taken on-site. |
 | **IS** | ISL | Iceland | Sovereign State | Þjóðskrá Íslands / Sýslumenn | `primary_sources_audited` | Primary source audited (Batch 4). Gjaldskrá sýslumanna (Lög 88/1991): Adult 18-66 (10-yr) 19.000 ISK standard / 39.200 ISK fast-track / 10.500 ISK emergency; Children <18 (5-yr), Seniors 67+, Disabled 7.000 ISK standard / 14.000 ISK fast / 3.500 ISK emergency. Kennitala required; photo on-site. |
-| **IR** | IRN | Iran | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **IQ** | IRQ | Iraq | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **IR** | IRN | Iran | Sovereign State | Police+10 Passport Office (domestic); MFA epassport.mfa.gov.ir (consular) | `primary_sources_audited` | Domestic ~IRR 4,698,800 total (2024, PARTIAL — no single portal table). Consular via MFA MIKHAK: EUR 100 (adult renewal), EUR 50 (child <2), EUR 180 (lost 1st time), EUR 300 (lost 2nd+). Shenasnameh + Meli Card mandatory. Military clearance for males required. |
+| **IQ** | IRQ | Iraq | Sovereign State | CCPRD / epp.iq (Ur Gov Portal), Ministry of Interior — `https://epp.iq/` | `primary_sources_audited` | Iraqi electronic passport IQD 91,000 (confirmed by MOI; PM directive fixed price). Biometric National ID (Unified National ID Card) mandatory. In-person biometrics at CCPRD office mandatory. Online pre-application via epp.iq. Consular via mofa.gov.iq missions (PARTIAL for exact fees). |
 | **IM** | IMN | Isle of Man | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IL** | ISR | Israel | Sovereign State | Population and Immigration Authority (PIBA / רשות האוכלוסין וההגירה) | `primary_sources_audited` | Primary source audited (Batch 5). Biometric passport (10-yr adult, 5-yr minor): Winter online NIS 185 (adult) / NIS 110 (minor); Summer online NIS 290 / NIS 145; Branch NIS 315 / NIS 165; Airport emergency NIS 825 / NIS 435. Biometric travel document (Laissez-Passer) distinct: NIS 100-150. Teudat Zehut required. |
 | **JM** | JAM | Jamaica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **JE** | JEY | Jersey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **JO** | JOR | Jordan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **KZ** | KAZ | Kazakhstan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KZ** | KAZ | Kazakhstan | Sovereign State | Committee of Administrative Police, MIA — `https://egov.kz/` | `primary_sources_audited` | State duty: 8 MCI (adult, 2024: KZT 29,536; 2025: KZT 31,456); 4 MCI (child <16, 2024: KZT 14,768). MCI-based fee per Tax Code Ch.74 and annual Budget Law. Identity Card (Kualiyet) mandatory. PSC (ЦОН) in-person biometrics. Online via egov.kz. |
 | **KI** | KIR | Kiribati | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **KW** | KWT | Kuwait | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **KG** | KGZ | Kyrgyzstan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -180,7 +180,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PL** | POL | Poland | Sovereign State | MSWiA / Urzędy Wojewódzkie (Wojewoda) | `primary_sources_audited` | Primary source audited (Batch 2). Ustawa o dokumentach paszportowych: Standard adult (10-yr) 140 PLN; Youth 12-18 / students 70 PLN; Child <12 (5-yr) 30 PLN; Senior 70+ 0 PLN; Lost/damaged by fault +200% (420 PLN). PESEL mandatory; in-person electronic counter signature; delivery in ~30 days. |
 | **PT** | PRT | Portugal | Sovereign State | Instituto dos Registos e do Notariado (IRN) / MNE (Portal das Comunidades) | `primary_sources_audited` | Primary source audited (Batch 1). Decreto-Lei n.º 83/2000 (PEP): Domestic normal €65.00, expresso €85.00, urgente €95.00, airport urgent €100.00; Consular standard €75.00 (€105.00 delivered), consular urgent €120.00, temporary €150.00. Cartão de Cidadão mandatory prerequisite. |
 | **PR** | PRI | Puerto Rico | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
-| **QA** | QAT | Qatar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **QA** | QAT | Qatar | Sovereign State | Nationality & Travel Documents Dept., MOI — `https://portal.moi.gov.qa/` | `primary_sources_audited` | Standard Qatari passport (new/renewal): QAR 100. Travel Document: QAR 400. Qatar ID (citizens): QAR 50. Online via portal.moi.gov.qa or Metrash2 app. QID + Family Book (Kitab al-A'ila) mandatory. Applicable only to Qatari citizens (not expatriate residents). |
 | **CG** | COG | Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **RO** | ROU | Romania | Sovereign State | Direcția Generală de Pașapoarte (DGP) / Ministerul Afacerilor Interne | `primary_sources_audited` | Primary source audited (Batch 3). Revised August 1, 2025 tariff: Pașaport simplu electronic 265 RON (TVA inclus) across all ages (10-yr for 18+, 5-yr for 12-18, 3-yr for <12); Temporar 265 RON. Carte de Identitate mandatory prerequisite; Ghișeul.ro / CEC Bank; delivery in 5 working days. |
 | **RU** | RUS | Russia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -230,7 +230,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TR** | TUR | Türkiye | Sovereign State | Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü (NVİ) / İçişleri Bakanlığı | `primary_sources_audited` | Primary source audited (Batch 2). 2026 NVİ Bordo Pasaport statutory fees: 4-10 yr total 14.761,40 TL (13.410,40 TL harç + 1.351,00 TL defter); 3-yr 10.867,00 TL; 2-yr 8.049,50 TL; 1-yr 5.454,00 TL; Student <25 harçsız (1.351,00 TL defter only). T.C. Kimlik Kartı mandatory; ALO 199 / randevu.nvi.gov.tr. |
 | **VI** | VIR | U.S. Virgin Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **UG** | UGA | Uganda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **UA** | UKR | Ukraine | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **UA** | UKR | Ukraine | Sovereign State | State Migration Service (ДМСУ) — `https://dmsu.gov.ua/` | `primary_sources_audited` | International biometric passport: UAH 958 standard (20 wd) / UAH 1,598 urgent (7 wd) — eff. April 1, 2024. ⚠️ WARTIME: Males 18–60 generally barred from leaving Ukraine under martial law (May 2024). Overseas passport delivery suspended for military-age males. Ukrainian ID card mandatory; Diia portal application; CNAP in-person biometrics. |
 | **UM** | UMI | United States Minor Outlying Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UY** | URY | Uruguay | Sovereign State | Dirección Nacional de Identificación Civil (DNIC) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 3). DNIC tariffs: Trámite común Adult 18+ (10-yr) $ 5.630 UYU ($ 5.455 pasaporte + $ 175 antecedentes); Minor (<18) $ 5.455 UYU (5-yr); Trámite urgente $ 12.114 UYU ($ 10.712 + $ 1.402). Cédula de Identidad original mandatory; parental consent for minors under 18. |
 | **UZ** | UZB | Uzbekistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -1330,5 +1330,224 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Processing: Standard 10–15 business days; expedited option available (shorter turnaround for higher fee).
   - Overseas: Via Ghanaian Embassies and High Commissions. Online pre-registration may be required.
   - Passport collected in-person at the PAC or mailed to applicant.
+
+---
+
+---
+
+## Section 8 — Batch 6 Primary Statutory Research Dossiers: ET, IR, KZ, UA, IQ, QA
+
+*Batch 6 research executed: 2026-10-20. All dossiers sourced from official government portals or official decree announcements. Where consular fees or domestic figures were not retrievable directly from the primary portal, confidence is recorded as `PARTIAL`.*
+
+---
+
+### 8.1 Ethiopia (ET / ETH) — Immigration and Citizenship Service (ICS)
+
+- **Administering Authority:** Immigration and Citizenship Service (ICS), Federal Democratic Republic of Ethiopia
+- **Primary Portals:**
+  - Official ICS website: `https://www.ics.gov.et/`
+- **Statutory Framework:**
+  - Council of Ministers Regulation No. 550/2024 (effective August 7, 2024). This regulation comprehensively revised passport service fees and processing tiers.
+- **Domestic Fee Schedule (Reg. 550/2024, effective August 7, 2024):**
+  - **New Passport (standard processing):** ETB 5,000
+  - **New Passport (urgent 5-day processing):** ETB 20,000
+  - **New Passport (urgent 2-day processing):** ETB 25,000
+  - **Passport Renewal** (expired or pages exhausted) — same rate as new: ETB 5,000 / ETB 20,000 / ETB 25,000
+  - **Expired Passport with Correction** (name/data change): ETB 12,500 / ETB 27,500 / ETB 32,500
+  - **Valid & Damaged Passport Replacement:** ETB 13,000 / ETB 28,000 / ETB 33,000
+  - **Damaged Passport with Correction:** ETB 20,500 / ETB 35,500 / ETB 40,500
+  - **Lost Passport Replacement:** ETB 13,000 / ETB 28,000 / ETB 33,000
+  - **Lost Passport with Correction:** ETB 20,500 / ETB 35,500 / ETB 40,500
+  - **Evidence confidence: `DIRECT`** — Council of Ministers Regulation 550/2024 is published at ics.gov.et. Sources cross-referenced from official gazette summaries.
+- **Consular Fee Schedule:**
+  - Via Ethiopian Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — ics.gov.et does not publish a unified international consular fee tariff. Applicants must confirm fees with the relevant Ethiopian diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **Ethiopian National ID (Fayda ID / Biometric ID card):** Required for adults. Ethiopia is transitioning to a unified Fayda digital national identity system.
+  - **Birth Certificate** or Kebele (administrative unit) ID: Required for first-time applicants and minors.
+  - **Previous passport** (if held): Presented for cancellation on renewal.
+  - **Parental presence / consent**: Required for minors.
+  - Biometrics (fingerprints, photo) captured in-person at ICS offices.
+- **Application & Delivery Channels:**
+  - In-person or digital application via ICS portal (`ics.gov.et`) with the *Digital Invea* system.
+  - Processing: Normal service (standard timeframe); urgent 5-day and 2-day tiers available at premium fee.
+  - Overseas: Via Ethiopian Embassies and Consulates.
+
+---
+
+### 8.2 Iran (IR / IRN) — Police Passport Office (domestic) & Ministry of Foreign Affairs (consular)
+
+- **Administering Authority:**
+  - **Domestic:** Iranian Police (NAJA) Passport Police Office (اداره کل گذرنامه پلیس ایران), via Police+10 (پلیس+۱۰) electronic offices
+  - **Consular (Overseas):** Ministry of Foreign Affairs (وزارت امور خارجه), via MIKHAK portal (`https://mikhak.mfa.gov.ir`) and `https://epassport.mfa.gov.ir`
+- **Primary Portals:**
+  - Consular (overseas): `https://epassport.mfa.gov.ir/`; `https://mikhak.mfa.gov.ir/`
+  - Domestic guidance (official): Police+10 portals and ناجا (NAJA) official site
+- **Statutory Framework:**
+  - Passport Law (قانون گذرنامه) and annual government budget regulations set the fee structure. Domestic fees are paid at Police+10 office POS terminals.
+- **Domestic Fee Schedule (2024 / 1403 Solar Hijri):**
+  - **Standard ordinary biometric passport (new / renewal):** Approximately **IRR 4,698,800 total** (≈ 470,000 Tomans), comprising:
+    - Passport printing/issuance fee: ~IRR 2,000,000 (200,000 Tomans)
+    - Municipal tolls (Avarez-e Shahrdari): ~IRR 200,000
+    - Biometric photo & identity verification: ~IRR 504,000–600,000
+    - Fingerprinting & judicial fees: ~IRR 35,000
+    - Application forms & system ID: ~IRR 50,000
+    - Police+10 service/postal handling: ~IRR 1,340,000–1,728,800
+  - **Evidence confidence: `PARTIAL`** — exact itemized breakdown from aggregated official sources; the Police+10 portal does not publish a single machine-readable fee table in English. Confirm current figures at the time of application.
+  - **Pilgrimage/Temporary Passport (Gozarnam-e Ziarati):** ~IRR 650,000 base (~1,150,000 IRR total with postal/office fees) — limited validity, limited destinations (e.g., Arbaeen).
+- **Consular Fee Schedule (overseas via MFA / MIKHAK):**
+  - **Standard 5-year e-passport renewal/new:** **EUR 100** (or local currency equivalent at the mission)
+  - **Child under 2 years (first passport):** **EUR 50**
+  - **Lost/damaged replacement (first time):** **EUR 180**
+  - **Lost/damaged replacement (second+ time):** **EUR 300**
+  - **Evidence confidence: `DIRECT`** — consular fee schedule published on mfa.gov.ir and mfa.gov.ir consular services pages.
+- **Civil Identity & Document Checklists:**
+  - **Shenasnameh (شناسنامه — Civil Registration Book):** The foundational identity document; must be presented.
+  - **National ID Card (کارت ملی — Meli Card):** Biometric national ID, mandatory for adults.
+  - **Military service status (for males):** Mandatory card/completion certificate for males. Men who have not completed military service cannot obtain certain passports without authorization.
+  - **Previous passport** (if held): Surrendered/cancelled.
+  - **Biometric data**: Fingerprints, signature, photo captured at Police+10 office.
+- **Application & Delivery Channels:**
+  - **Domestic:** In-person at Police+10 electronic offices. Application forms submitted, payment made via POS, biometrics captured, passport delivered by postal service or collected at office.
+  - **Overseas:** Online application at `epassport.mfa.gov.ir` or `mikhak.mfa.gov.ir`; in-person appointment at nearest Iranian Embassy/Consulate for biometrics and document verification.
+  - Standard processing: 2–4 weeks (domestic); varies overseas by mission.
+
+---
+
+### 8.3 Kazakhstan (KZ / KAZ) — Committee of Administrative Police, Ministry of Internal Affairs
+
+- **Administering Authority:** Committee of Administrative Police (Комитет административной полиции), Ministry of Internal Affairs (МВД — Министерство внутренних дел), Republic of Kazakhstan
+- **Primary Portals:**
+  - Official e-gov portal: `https://egov.kz/`
+  - Government services: `https://www.gov.kz/`
+- **Statutory Framework:**
+  - Tax Code of the Republic of Kazakhstan, Chapter 74 (State Duties). Passport fee expressed as a multiple of the Monthly Calculation Index (MCI / МРП — месячный расчётный показатель), set annually by the Republican Budget Law.
+- **Domestic Fee Schedule (MCI-based):**
+  - **Standard adult passport (10-year validity, 36-page booklet):** **8 MCI**
+    - 2024 value: 8 × 3,692 KZT = **29,536 KZT**
+    - 2025 value: 8 × 3,932 KZT = **31,456 KZT**
+  - **Child under 16 (24-page booklet, introduced Jan 1, 2024):** **4 MCI**
+    - 2024 value: 4 × 3,692 KZT = **14,768 KZT**
+    - 2025 value: 4 × 3,932 KZT = **15,728 KZT**
+  - Expedited processing: Available via Public Service Centers (PSCs / ЦОН — Центр обслуживания населения) for an additional fee depending on urgency and region.
+  - **Evidence confidence: `DIRECT`** — MCI rate and passport duty expressed in multiples confirmed on egov.kz and gov.kz official sources.
+  - **Note:** Dossiers should record 2024 MCI values (3,692 KZT) as the most recently confirmed rate, noting 2025 update for reference.
+- **Consular Fee Schedule:**
+  - Via Kazakh Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — egov.kz does not publish a centralized international consular tariff table. Fees vary by country. Applicants must confirm with the relevant Kazakh diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **Identity Card (Удостоверение личности — Kualiyet):** The national biometric identity document, mandatory for adults (16+). Required for passport application.
+  - **Birth Certificate (Свидетельство о рождении):** Required for minors and first-time applicants.
+  - **Military registration status (Военный билет):** Required for males of military age.
+  - **Previous passport** (if held): Presented for cancellation.
+  - Biometrics: Fingerprints, photo, signature captured at PSC/police office.
+- **Application & Delivery Channels:**
+  - Online application via `egov.kz` (eGov portal with ECP digital signature or national SIM card authentication).
+  - In-person biometric enrollment at nearest PSC (ЦОН) or police department passport desk.
+  - Processing: Standard 15 business days; expedited options available at PSC for a surcharge.
+  - Overseas: Via Kazakh Embassies and Consulates.
+
+---
+
+### 8.4 Ukraine (UA / UKR) — State Migration Service (SMS / ДМС)
+
+- **Administering Authority:** State Migration Service of Ukraine (Державна міграційна служба України — ДМСУ / SMSU)
+- **Primary Portals:**
+  - Official SMS portal: `https://dmsu.gov.ua/`
+  - Document services (Passport Service centers): `https://hsc.gov.ua/`
+- **Statutory Framework:**
+  - Law of Ukraine "On Freedom of Movement and Free Choice of Place of Residence in Ukraine"; Cabinet of Ministers Decree setting the blank document cost published by the State Enterprise "Printing Plant 'Ukraine'". Fees revised April 1, 2024.
+- **Domestic Fee Schedule (effective April 1, 2024):**
+  - **International (Biometric) Passport — Standard processing (up to 20 working days):** **UAH 958**
+    - Administrative service fee: UAH 352
+    - Cost of biometric blank: UAH 606
+  - **International (Biometric) Passport — Urgent processing (up to 7 working days):** **UAH 1,598**
+    - Administrative service fee: UAH 992
+    - Cost of biometric blank: UAH 606
+  - **Internal Passport (ID card, Паспорт громадянина України у формі картки):**
+    - First-time issuance (age 14): **Free of charge** (no state duty)
+    - Standard renewal: UAH 504 (pre-Jan 2025); **UAH 558** (from January 1, 2025)
+  - **Evidence confidence: `DIRECT`** — figures confirmed from official SMSU announcements and Cabinet of Ministers decree. Fee breakdown from dmsu.gov.ua.
+- **⚠️ CRITICAL WARTIME NOTE — Martial Law Restrictions (as of 2024–2025):**
+  - Ukraine has been under martial law since February 24, 2022.
+  - **Travel Restriction for Males 18–60:** Male citizens aged 18–60 are generally **prohibited from leaving Ukraine** under martial law and mobilization legislation (effective May 2024). Limited exceptions apply (medical/disability status, 3+ dependent children, single fathers, caregivers for disabled dependents, certain professional categories).
+  - **Passport Issuance Restrictions Overseas:** The Ukrainian government suspended overseas delivery of newly printed biometric passports to military-age males (18–60) who are abroad. Men in this category must typically collect passports inside Ukraine, unless exempt.
+  - **Military Registration Requirement:** All males 18–60 must update military registration data via the Oberig system / Reserve+ app. Compliance with military registration is required to access consular/migration services abroad.
+  - **Applicants outside Ukraine:** Consult the nearest Ukrainian Embassy or Consulate for current martial law-specific procedures, which may evolve.
+  - **Evidence confidence: `DIRECT`** — martial law provisions confirmed from official Ukrainian government communications (dmsu.gov.ua, mod.gov.ua, pravda.com.ua citing official decrees).
+- **Civil Identity & Document Checklists:**
+  - **Ukrainian Internal Passport (ID card):** Mandatory identity document for adult applicants inside Ukraine.
+  - **Birth Certificate:** Required for minors.
+  - **Military registration documents** (for males): Required at verification stage.
+  - **Previous international passport** (if held): Presented at appointment.
+  - Biometrics captured in-person at Migration Service Territorial Office or CNAP (Центр надання адміністративних послуг) service center.
+- **Application & Delivery Channels:**
+  - Online application at Diia portal (`https://diia.gov.ua/`) or in-person at SMS territorial office or CNAP.
+  - Processing: Standard 20 working days; urgent 7 working days.
+  - Overseas: Via Ukrainian Embassies and Consulates (subject to martial law restrictions for males 18–60).
+
+---
+
+### 8.5 Iraq (IQ / IRQ) — Directorate of Civil Status, Passports, and Residency (CCPRD), Ministry of Interior
+
+- **Administering Authority:** General Directorate of Civil Status, Passports, and Residency (الجنسية والسفر والإقامة — CCPRD), Ministry of Interior (وزارة الداخلية), Republic of Iraq
+- **Primary Portals:**
+  - Official e-passport portal: `https://epp.iq/` (Ur Government portal)
+  - Ministry of Foreign Affairs reference: `https://www.mofa.gov.iq/`
+- **Statutory Framework:**
+  - Iraqi Nationality Law No. 26/2006 and Passport Law. Fee set by Ministry of Interior and reaffirmed under Prime Minister directive. Payment processed electronically through official banking channels.
+- **Domestic Fee Schedule:**
+  - **Iraqi Electronic Passport (new or renewal, standard):** **IQD 91,000** (officially confirmed by Ministry of Interior; Prime Minister directive reaffirmed this fixed price to ease burden on citizens — proposal to raise to 101,000 IQD was rejected).
+  - Payment: Electronic payment through official banking channels linked to federal accounts, at CCPRD offices or via epp.iq portal.
+  - **Evidence confidence: `DIRECT`** — IQD 91,000 confirmed by Ministry of Interior official statement and multiple corroborating official Iraqi government sources.
+- **Consular Fee Schedule:**
+  - Via Iraqi Embassies and Consulates overseas (mofa.gov.iq diplomatic missions).
+  - **Evidence confidence: `PARTIAL`** — mofa.gov.iq does not publish a unified numeric consular fee schedule. Overseas Iraqis must confirm fees with the relevant Iraqi diplomatic mission. Consular fees are typically stated in USD or local equivalent.
+- **Civil Identity & Document Checklists:**
+  - **Unified National ID Card (البطاقة الوطنية الموحدة — Biometric National ID):** Mandatory for adult applicants. The biometric national ID largely replaced older paper civil status documents.
+  - **Previous Iraqi Passport:** Required for renewal or replacement applications.
+  - **Online Application Receipt/Barcode:** Printed confirmation from epp.iq (Ur Government portal) after completing online pre-application.
+  - **Biometric Enrollment (mandatory in-person):** Fingerprints, digital signature, and live facial photograph captured at CCPRD office.
+  - **Minors:** Legal guardian (father or authorized guardian) must accompany minor for biometric authentication.
+  - **Lost Passport:** Official police report required; proof of nationality through CCPRD records.
+  - **Damaged Passport:** Physical remnants must be submitted along with National ID.
+- **Application & Delivery Channels:**
+  - Online pre-application via `epp.iq` (Ur Government portal) or CCPRD electronic system.
+  - In-person appearance mandatory at CCPRD office for biometric enrollment.
+  - Electronic payment at CCPRD office or through designated banking partners.
+  - Processing: Standard timeframe approximately 2–4 weeks; varies by governorate and current demand.
+  - Overseas: Via Iraqi Embassies and Consulates.
+
+---
+
+### 8.6 Qatar (QA / QAT) — Nationality and Travel Documents Department, Ministry of Interior
+
+- **Administering Authority:** Nationality and Travel Documents Department, Ministry of Interior (وزارة الداخلية), State of Qatar
+- **Primary Portals:**
+  - Ministry of Interior portal: `https://portal.moi.gov.qa/`; `https://www.moi.gov.qa/`
+  - Metrash2 mobile app (official MOI digital service channel)
+- **Statutory Framework:**
+  - Qatari Nationality Law (Law No. 38 of 2005 and amendments). Passport fee set by Ministry of Interior schedule.
+- **Domestic Fee Schedule:**
+  - **Standard Qatari Passport (new or renewal):** **QAR 100**
+  - **Qatari Travel Document (ternary document — NOT a standard passport):** QAR 400
+  - **Pass Permit:** QAR 500
+  - **Qatari ID Card (citizens):** QAR 50
+  - Validity: Qatari passports are typically issued for **5 years** for adults; shorter for minors.
+  - **Evidence confidence: `DIRECT`** — QAR 100 confirmed from official moi.gov.qa fee schedule and portal.moi.gov.qa.
+  - **Note:** Qatar's passport services are available primarily to Qatari citizens and those eligible under nationality law. Expatriate residents (the large majority of Qatar's population) are NOT eligible for Qatari passports.
+- **Consular Fee Schedule:**
+  - Via Qatari Embassies and Consulates overseas for Qatari nationals living abroad.
+  - **Evidence confidence: `PARTIAL`** — moi.gov.qa does not publish a separate international consular tariff schedule. Overseas Qatari nationals must contact the relevant Qatari Embassy.
+- **Civil Identity & Document Checklists:**
+  - **Qatar National ID (QID — Residence Permit Card for expats; National ID for citizens):** Mandatory for all Qatari citizen passport applications.
+  - **Birth Certificate:** Required for minors.
+  - **Family Book (Kitab al-A'ila):** The Qatari family registry document, required to establish nationality lineage for passport issuance.
+  - Biometrics: Photo, fingerprints, and digital signature captured at MOI service center.
+- **Application & Delivery Channels:**
+  - Online via `portal.moi.gov.qa` (official MOI e-portal) or via the **Metrash2** mobile application.
+  - In-person at MOI service centers (Nationality and Travel Documents Department) for biometrics and document verification.
+  - Processing: Typically efficient — Qatar's e-government infrastructure allows rapid processing for eligible citizens.
+  - Overseas: Via Qatari Embassies and Consulates.
 
 ---

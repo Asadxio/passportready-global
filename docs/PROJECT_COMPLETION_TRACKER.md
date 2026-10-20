@@ -29,6 +29,7 @@
 | **Phase M** | `TASK-M1` | Global Jurisdiction Completion — Batch 3 (PE, EC, UY, CZ, HU, RO) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 3 complete; Proceed to Phase N |
 | **Phase N** | `TASK-N1` | Global Jurisdiction Completion — Batch 4 (BE, DK, FI, NO, SE, IS) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 4 complete; Proceed to Batch 5 |
 | **Phase O** | `TASK-O1` | Global Jurisdiction Completion — Batch 5 (TW, IL, EG, MA, VN, GH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 5 complete; Proceed to Batch 6 |
+| **Phase P** | `TASK-P1` | Global Jurisdiction Completion — Batch 6 (ET, IR, KZ, UA, IQ, QA) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 6 complete; Proceed to Batch 7 |
 
 ---
 
@@ -356,3 +357,30 @@
   - **VN:** Counter 200,000 VND; online portal discount 180,000 VND; lost/damaged 400,000 VND. CCCD chip card mandatory since July 1, 2024. Consular `PARTIAL`.
   - **GH:** L.I. 2481 (eff. April 1, 2024) tariffs confirmed: GHS 500/644/700/800. Ghana Card (NIA) mandatory from 2022. Consular `PARTIAL`.
 - **Next Actionable Task:** Batch 6 Official Source Research for next priority nations (ET, IR, KZ, UA, IQ, QA).
+
+
+---
+
+### Phase P: Global Jurisdiction Completion — Batch 6 (ET, IR, KZ, UA, IQ, QA)
+- **Task ID:** `TASK-P1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Ethiopia (ET), Iran (IR), Kazakhstan (KZ), Ukraine (UA), Iraq (IQ), and Qatar (QA). Each jurisdiction upgraded from `official_source_needs_research` to `primary_sources_audited` in Section 2 of GLOBAL_JURISDICTION_RESEARCH_LEDGER.md. Full dossiers written in Section 8. Claim-level audit rows added to SOURCE_AUDIT_REGISTER.md Section 9. All fees sourced from official government portals or official decree references; consular fees and domestic breakdowns marked `PARTIAL` where not directly retrievable.
+  - Update `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md` (Section 2 statuses + Section 8 full dossiers).
+  - Update `docs/SOURCE_AUDIT_REGISTER.md` (Section 9 claim audit rows with exact URLs and confidence levels).
+  - Maintain 100% test passage in `test/validate.js` and live verification.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 8 Batch 6 dossiers for ET, IR, KZ, UA, IQ, QA.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 9 claim audit table with 21 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase P deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **ET:** Council of Ministers Regulation No. 550/2024 (eff. Aug 7, 2024). New passport ETB 5,000 standard; ETB 20,000/25,000 urgent (5-day/2-day). Significant corrective penalties for lost/damaged documents. Fayda biometric ID is the emerging mandatory identity anchor.
+  - **IR:** Domestic ~IRR 4,698,800 total (PARTIAL — Police+10 portal does not publish single fee table). Consular via MFA MIKHAK: EUR 100 adult / EUR 50 child under 2 / EUR 180 lost first time / EUR 300 lost second+ — confirmed DIRECT from mfa.gov.ir. Male military clearance mandatory.
+  - **KZ:** Fee expressed as 8 MCI (adult) and 4 MCI (child <16). 2024 MCI = KZT 3,692 → KZT 29,536 adult. Fee confirmed DIRECT from egov.kz and gov.kz. Annual MCI revision means the tenge amount changes each January 1.
+  - **UA:** International biometric passport UAH 958 standard / UAH 1,598 urgent (eff. April 1, 2024). ⚠️ CRITICAL WARTIME: Male citizens 18–60 barred from leaving Ukraine under martial law (May 2024 mobilization law); overseas passport delivery suspended for military-age males. Confirmed DIRECT from SMSU / dmsu.gov.ua and MOD.
+  - **IQ:** IQD 91,000 confirmed DIRECT — MOI officially reaffirmed fixed price; PM directive rejected proposal to raise to 101,000 IQD. Biometric National ID mandatory. Online pre-application via epp.iq (Ur portal); in-person biometrics at CCPRD mandatory.
+  - **QA:** QAR 100 confirmed DIRECT from portal.moi.gov.qa. Only Qatari citizens eligible — expatriate residents (majority of Qatar's population) are NOT eligible for Qatari passports. Metrash2 app is the primary digital service channel. Travel Document (non-passport) = QAR 400 (distinct document).
+- **Next Actionable Task:** Batch 7 Official Source Research (suggested: Algeria DZ, Venezuela VE, Cuba CU, Myanmar MM, Sudan SD, Uzbekistan UZ).
