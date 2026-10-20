@@ -228,7 +228,7 @@ async function verifyLive() {
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
-  const reSandbox = { window: {}, module: { exports: {} }, require: () => {} };
+  const reSandbox = { window: {}, module: { exports: {} }, require: () => {}, URL: globalThis.URL };
   vm.runInNewContext(rulesEngineRes.body, reSandbox);
   const PassportRulesEngine = reSandbox.module.exports?.PassportRulesEngine || reSandbox.PassportRulesEngine || reSandbox.window.PassportRulesEngine;
   assert(PassportRulesEngine, 'PassportRulesEngine must be defined in live script');
@@ -1044,7 +1044,7 @@ async function verifyLive() {
   assert.strictEqual(liveNonUrlRes.serviceCoverage.dimensions.service.evidence.sources.length, 0);
 
   // 10.6 Scenario F: Live dynamic verifiedFields (no steps claimed when steps absent)
-  const liveNoStepsPack = {
+  const liveNoStepsP437Pack = {
     country_code: 'IN',
     country_name: 'India',
     rule_pack_status: 'verified',
@@ -1061,11 +1061,11 @@ async function verifyLive() {
       }
     }
   };
-  const liveNoStepsRes = new PassportRulesEngine({ IN: liveNoStepsPack }).evaluate({
+  const liveNoStepsP437Res = new PassportRulesEngine({ IN: liveNoStepsP437Pack }).evaluate({
     countryCode: 'IN', location: 'inside', service: 'first_passport'
   });
-  assert.strictEqual(liveNoStepsRes.serviceCoverage.dimensions.service.status, 'verified');
-  const liveVFields = liveNoStepsRes.serviceCoverage.dimensions.service.evidence.verifiedFields;
+  assert.strictEqual(liveNoStepsP437Res.serviceCoverage.dimensions.service.status, 'verified');
+  const liveVFields = liveNoStepsP437Res.serviceCoverage.dimensions.service.evidence.verifiedFields;
   assert(!liveVFields.includes('steps'), 'Live engine: verifiedFields must NOT claim steps when steps are absent');
   assert(liveVFields.includes('eligibility') && liveVFields.includes('documents') && liveVFields.includes('fees'));
 

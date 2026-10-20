@@ -40,12 +40,19 @@ class PassportRulesEngine {
     if (typeof url !== 'string') return false;
     const trimmed = url.trim();
     if (!trimmed.startsWith('https://') && !trimmed.startsWith('http://')) return false;
-    try {
-      const parsed = new URL(trimmed);
-      return parsed.protocol === 'http:' || parsed.protocol === 'https:';
-    } catch {
-      return false;
+    if (typeof URL !== 'undefined') {
+      try {
+        const parsed = new URL(trimmed);
+        return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+      } catch {
+        return false;
+      }
     }
+    // Safe fallback if URL constructor is omitted from sandbox scope
+    if (trimmed.length < 10) return false;
+    if (trimmed.includes(' ') || trimmed.includes('<') || trimmed.includes('>') || trimmed.includes('"')) return false;
+    const afterProto = trimmed.startsWith('https://') ? trimmed.slice(8) : trimmed.slice(7);
+    return afterProto.includes('.');
   }
 
   extractUrlFromSource(s) {
