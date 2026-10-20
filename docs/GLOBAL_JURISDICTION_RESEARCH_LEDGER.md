@@ -143,10 +143,10 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 | **JE** | JEY | Jersey | Territory / Special Region | Jersey Customs & Immigration Service / HMPO (British Crown Dependency) | `official_source_needs_research` | British Crown Dependency: passport issuance administered under HMPO / Jersey Customs & Immigration Service. British variant passport. |
 | **JO** | JOR | Jordan | Sovereign State | Civil Status & Passports Dept. (CSPD), MOI — `https://cspd.gov.jo/` | `primary_sources_audited` | Passport Fees Regulation: Standard adult (16+, 5-yr) 50 JOD (new/expired/<180d remaining); renewal >180d remaining: 100 JOD; minor <16: 25 JOD; full pages: 20 JOD; lost: 125 JOD (1st) / 250 JOD (subsequent) (DIRECT). Fast-track +25 JOD; Jordan Post +3 JOD. Smart ID Card + Family Book mandatory; Sanad app or CSPD directorate offices. |
 | **KZ** | KAZ | Kazakhstan | Sovereign State | Committee of Administrative Police, MIA — `https://egov.kz/` | `primary_sources_audited` | State duty: 8 MCI (adult, 2024: KZT 29,536; 2025: KZT 31,456); 4 MCI (child <16, 2024: KZT 14,768). MCI-based fee per Tax Code Ch.74 and annual Budget Law. Identity Card (Kualiyet) mandatory. PSC (ЦОН) in-person biometrics. Online via egov.kz. |
-| **KI** | KIR | Kiribati | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KI** | KIR | Kiribati | Sovereign State | Immigration Division, Ministry of Foreign Affairs and Immigration (MFAI) (`mfai.gov.ki` / `mfa.gov.ki`) | `primary_sources_audited` | Passports Act (Cap. 65): 4-tier domestic processing in AUD $: Regular (10 days) $56.25 AUD; Standard (5 days) $84.40 AUD; Expedited (3 days) $98.40 AUD; Priority (1 day) $112.50 AUD (DIRECT). 5-year validity across all categories. Lost/damaged penalty: 1st loss $100 AUD fine + fee; 2nd loss $300 AUD fine + fee. Certificate of Identity (COI) $30 AUD. Birth Certificate + National Photo ID + Section 8 Recommender certification + Treasury receipt mandatory; biometrics at Bairiki, Tarawa. |
 | **KW** | KWT | Kuwait | Sovereign State | General Directorate of Nationality & Travel Documents, MOI — `https://www.moi.gov.kw/` | `primary_sources_audited` | Ministerial Decision No. 1769: Standard passport issue/renewal/replacement KWD 100 (DIRECT); airport emergency (Res. 180): KWD 13 (5-yr) / KWD 16 (10-yr). Validity 10-yr (age 30+) / 5-yr (<30). Original Nationality Certificate + Civil ID mandatory. Sahel app or MOI centers. Strictly for Kuwaiti citizens (Bidoon receive Article 17 travel doc under separate restrictions). |
 | **KG** | KGZ | Kyrgyzstan | Sovereign State | Dept. of Population Registration, Ministry of Digital Development (`digital.gov.kg`) | `primary_sources_audited` | DRN / Infocom tariffs: Standard 18 days: First-time/renewal 2,981 KGS; Name/address change 3,081 KGS; Lost replacement 3,181 KGS (DIRECT). Urgent tiers: 8 days (2,720–2,920 KGS surcharge); 4 days (3,302–3,502 KGS); 2 days (3,808–4,008 KGS); 3 hours (Bishkek 10,363–10,563 KGS). National ID-card with chip + PIN mandatory; Public Service Centers (ЦОН). |
-| **LA** | LAO | Laos | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LA** | LAO | Laos | Sovereign State | Consular Department (ກົມການກົງສຸນ), Ministry of Foreign Affairs (`consularlao.gov.la` / `mofa.gov.la`) | `primary_sources_audited` | Ordinary e-Passport (ICAO Doc 9303 chip): USD $60.00 (collected in LAK at MOF rate); Non-electronic: USD $40.00 (DIRECT). 10-yr validity (adults 16+), 5-yr (minors <16). Standard turnaround 10 working days. Expedited surcharges: 5 days +300,000 LAK; 3 days +500,000 LAK; 1 day +1,000,000 LAK. National ID Card (ບັດປະຈຳຕົວ) + Family Book (ປຶ້ມສຳມະໂນຄົວ) + Application stamped by Village Head (Nai Ban) mandatory; in-person biometrics at Consular Dept Vientiane or provincial hubs; online booking via consularlao.gov.la. |
 | **LV** | LVA | Latvia | Sovereign State | Pilsonības un migrācijas lietu pārvalde (PMLP — `pmlp.gov.lv`) | `primary_sources_audited` | Valsts nodeva statutory tariff: Standard 10 working days: Adult (10-yr) 50.00 EUR; Children <20 / Pensioners / Disabled 25.00 EUR; Urgent 2 working days: Adult 75.00 EUR / Reduced 45.00 EUR (DIRECT). Personas kods + eID card mandatory; biometrics at PMLP territorial divisions or via latvija.lv. |
 | **LB** | LBN | Lebanon | Sovereign State | General Directorate of General Security (Sûreté Générale) — `https://www.general-security.gov.lb/` | `primary_sources_audited` | General Security official fee: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000 (DIRECT). Fast-track surcharges apply. Ikhraj Qayd Fardi (<3mo) or Biometric ID Card mandatory; Moukhtar-certified photos; in-person at General Security regional bureau. Quota appointment system applies due to high demand. Consular USD 300/600 (PARTIAL). |
 | **LS** | LSO | Lesotho | Sovereign State | Dept. of Immigration Services, Ministry of Home Affairs (`homeaffairs.gov.ls`) | `primary_sources_audited` | Passports & Travel Documents (Fees) Regs: Regular 32-page e-passport (10-yr adult / 5-yr minor) M 130.00; Regular 64-page frequent traveller M 300.00; Urgent processing surcharge +M 500.00 (DIRECT). Lesotho National ID Card (e-ID) + NICR security-featured Birth Certificate mandatory; in-person biometrics at Home Affairs district offices. |
@@ -161,7 +161,7 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 | **MV** | MDV | Maldives | Sovereign State | Maldives Immigration, Ministry of Homeland Security (`immigration.gov.mv`) | `primary_sources_audited` | Maldives Immigration statutory tariffs: Electronic Passport 32-page (5-yr) MVR 1,000; 48-page frequent traveler MVR 1,500; Non-electronic (under 10 or abroad) MVR 600; Lost/damaged valid passport penalty: up to MVR 2,000 (DIRECT). National Identity Card (DNR ID) mandatory; 100% digital submission via IMUGA portal (imuga.immigration.gov.mv). |
 | **ML** | MLI | Mali | Sovereign State | Direction de la Police des Frontières (DPF), DGPN (`demarchesadministratives.gouv.ml` / `securite.gouv.ml`) | `primary_sources_audited` | Décret tarifaire passeports biométriques: Passeport ordinaire (5-year validity) 45 000 FCFA (revised from 55 000 FCFA); Service optionnel / prémium 90 000 FCFA (DIRECT). Turnaround ~7 to 14 working days (express ~2 to 3 days). CNI en cours de validité / Fiche descriptive NINA + Extrait d'acte de naissance (Volet III) mandatory; in-person biometrics at DPF Hamdallaye ACI 2000, Bamako. |
 | **MT** | MLT | Malta | Sovereign State | Identità (Passport Office — `identita.gov.mt`) | `primary_sources_audited` | Passports Regulations statutory tariff: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent (4 hours): €160.00 adult / €80.00 minor; Lost replacement supplement: +€15.00 (DIRECT). Form A + Maltese ID Card + recommender endorsement; appointments via passportbooking.identita.gov.mt. |
-| **MH** | MHL | Marshall Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MH** | MHL | Marshall Islands | Sovereign State | Passport Office, Office of the Attorney General (OAG), Ministry of Justice (`rmiparliament.org`) | `primary_sources_audited` | Title 43 MIRC Ch. 1 Passport Act 1984: Adult 13+ (10-yr validity) USD $100.00; Child 12 and under (5-yr validity) USD $50.00 (DIRECT). Extra pages USD $150.00. Expedited emergency surcharge +USD $50.00 (medical/bereavement proof required). Lost/damaged unexpired penalty: Adult USD $200.00 / Child USD $100.00 ($100/$50 statutory fine + renewal fee) with police report. Paid to Secretary of Finance. Compact of Free Association (COFA): valid passport strictly mandatory to enter/work in US visa-free. Birth Certificate + MISSA/photo ID mandatory. |
 | **MQ** | MTQ | Martinique | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **MR** | MRT | Mauritania | Sovereign State | Agence Nationale du Registre des Populations et des Titres Sécurisés (ANRPTS) (`anrpts.gov.mr`) | `primary_sources_audited` | Décret tarifaire ANRPTS: Passeport biométrique ordinaire 32 pages (5-year validity) 3 000 MRU; Grand format 64 pages 10 000 MRU; Lost replacement graduated penalty (4 000 to 10 000 MRU) (DIRECT). Carte Nationale d'Identité (CNI) avec NNI + Acte de naissance sécurisé ANRPTS mandatory; enrollment via Centre d'Accueil des Citoyens (CAC) or Houwiyeti portal. |
 | **MU** | MUS | Mauritius | Sovereign State | Passport and Immigration Office (PIO) — `https://passport.govmu.org/` | `primary_sources_audited` | Passports Act regulations: Adults (16–54, 10-yr) MUR 700; Minors (<16, 5-yr) / Seniors (55+) / Disabled: MUR 400 (DIRECT). Lost/damaged penalty: 1st loss MUR 5,000; 2nd loss MUR 15,000; subsequent MUR 15,000. NIC + original birth certificate mandatory; Police loss declaration; Form PF 136 in-person at PIO Port Louis or district divisional HQs. |
@@ -222,7 +222,7 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 | **SK** | SVK | Slovakia | Sovereign State | Oddelenie dokladov PZ / Ministerstvo vnútra SR (`minv.sk` / `slovensko.sk`) | `primary_sources_audited` | Zákon č. 145/1995 Z. z. (Položka 33, eff. 1 Apr 2024): Adults 16+ (10-yr): 30 days 50 €, 10 days 100 €, 2 days 150 €; Children 6–16 (5-yr): 20 € / 40 € / 60 €; Children <6 (2-yr): 12 € / 24 € / 36 € (DIRECT). Lost/damaged penalty: 1st time 2x (100 € adult), repeated 5x (250 €), 3rd+ 10x (500 €). Občiansky preukaz (OP) mandatory; in-person biometrics (fingerprints & signature from age 12+) at any Oddelenie dokladov PZ. |
 | **SI** | SVN | Slovenia | Sovereign State | Upravne enote / Ministrstvo za notranje zadeve (`e-uprava.gov.si` / `gov.si`) | `primary_sources_audited` | ZUT Taksa 14 & Odredba o ceni obrazcev (New generation 1 Jun 2026): Total fee (form 44,77 € + admin tax): Adults 18+ (10-yr) 58,87 €; Children 3–18 (5-yr) 52,07 €; Children <3 (3-yr) 47,97 €; Provisional 1-yr 47,57 € (DIRECT). Fast-track priority collection at Cetis Celje. e-fotograf reference code + valid ID/citizenship mandatory; fingerprints from age 12+; signature from age 8+; in-person at Upravna enota. |
 | **SB** | SLB | Solomon Islands | Sovereign State | Immigration Division, MCILI (`commerce.gov.sb` / `immigration.gov.sb`) | `primary_sources_audited` | Passports Act (Cap. 61) & Regs: Standard ordinary e-passport (10-year validity) SBD $1,000.00 (DIRECT). Payable at Ministry of Finance & Treasury (MoFT) counter prior to lodgment. Civil Registry certified birth certificate + two Statutory Declarations (family member and independent citizen) mandatory; in-person biometrics at Immigration Division Honiara. |
-| **SO** | SOM | Somalia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SO** | SOM | Somalia | Sovereign State | Immigration and Citizenship Agency (ICA / Hay’adda Socdaalka iyo Jinsiyadda) (`immigration.gov.so`) | `primary_sources_audited` | Biometric e-Passport (5-yr validity): Domestic standard fee USD $180.00 (turnaround ~1 week) (DIRECT). Paid via mobile money (EVC Plus) or authorized bank deposit. Consular abroad: USD $250–$350 (£250–£300 in UK) via diplomatic missions. NIRA National ID Card (Kaarka Aqoonsiga Qaranka) + Birth Certificate + CID Police Clearance (Dambi La'aan) mandatory; in-person biometrics (photo, 10-fingerprints) at Aden Adde Airport / ICA centers. |
 | **GS** | SGS | South Georgia and the South Sandwich Islands | Territory / Special Region | South Georgia and South Sandwich Islands (No civilian population; UK admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **KR** | KOR | South Korea | Sovereign State | Ministry of Foreign Affairs (MOFA) / Passport Division | `primary_sources_audited` | Primary source audited (Batch 1). Passport Act (Enforcement Decree revised March 1, 2026): Next-Gen e-Passport Adult (18+) 58-pg ₩52,000 / 26-pg ₩49,000; Minor (8-17) ₩44,000 / ₩41,000; Child (<8) ₩35,000 / ₩32,000 (Contribution fund waived); Single-entry ₩17,000; Emergency ₩50,000. |
 | **SS** | SSD | South Sudan | Sovereign State | Directorate of Civil Registry, Nationality, Passport & Immigration, Ministry of Interior — `https://www.moi.goss.org/` | `primary_sources_audited` | USD-denominated fees paid in SSP at CBS rate: Adult USD 100; Child USD 50; Business USD 400 (PARTIAL — MOI portal has limited access; from Financial Act circulars). Nationality Certificate mandatory. ⚠️ Fragile state: recurring conflict; service availability varies by region. |
@@ -231,7 +231,7 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 | **SJ** | SJM | Svalbard and Jan Mayen | Territory / Special Region | Governor of Svalbard / Norwegian Police (Norwegian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
 | **SE** | SWE | Sweden | Sovereign State | Polismyndigheten (Passexpedition) | `primary_sources_audited` | Primary source audited (Batch 4). Passförordningen (1979:664): Regular passport 500 SEK (5-yr validity for 12+, 3-yr for <12); National ID card 400 SEK; Provisoriskt pass 980 SEK (max 72 hrs prior to departure). Consular 1,600 SEK. Max 3 ordinary passports in 5 years per Passlagen § 7b. Photo on-site. |
 | **CH** | CHE | Switzerland | Sovereign State | Bundesamt für Polizei (fedpol) / Kantonale Passbüros | `primary_sources_audited` | Primary source audited (Batch 1). Ausweisgesetz (AwG) / VAwG: Pass 10 Adult (18+) CHF 145.00 (CHF 140 fee + CHF 5 porto), Child (<18) CHF 65.00 (CHF 60 fee + CHF 5 porto); Kombiangebot Adult CHF 158.00 / Child CHF 78.00; Notpass CHF 100.00 (centre) / CHF 150.00 (airport). Biometrics at cantonal centre mandatory. |
-| **SY** | SYR | Syria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SY** | SYR | Syria | Sovereign State | Directorate of Emigration and Passports (إدارة الهجرة والجوازات), Ministry of Interior (`moi.gov.sy` / `ecsc.gov.sy`) | `primary_sources_audited` | Biometric Ordinary Passport (6-yr adult / 2-yr military deferral): Domestic via Citizen Service Center (ecsc.gov.sy): Normal 312,700 SYP (~30–45 days); Urgent 432,700 SYP (~15–20 days); Immediate (فوري) 1,600,000 SYP (24–48h) (DIRECT). Consular abroad via diplomatic missions & MOFA SY app: Regular queue $300 USD; Urgent/Immediate $800 USD (certain mission circulars quote $200/$400; discrepancy noted); Lost fine +$100 USD. National ID Card (الهوية الشخصية) + Military Service Book (males 18–42) mandatory; in-person biometrics. |
 | **TW** | TWN | Taiwan | Territory / Special Region | Bureau of Consular Affairs (BOCA) / Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 5). BOCA statutory tariffs: Adult 14+ (10-yr) NT$1,300; Minor <14 (5-yr) NT$900; Expedited +NT$300 (1 day), +NT$600 (2 days), +NT$900 (3 days). Consular overseas: USD 45 adult / USD 31 minor. National ID card (身分證) required; military status review for males 19-36. |
 | **TJ** | TJK | Tajikistan | Sovereign State | Consular Dept. MFA (`consular.tj` / `mfa.tj`) & Passport Service MIA (`vkd.tj`) | `primary_sources_audited` | Presidential Decree & Government Resolution: Standard ~15 days: Adult 16+ (10-yr) US$ 75.00 + 40 TJS; Minor <16 (5-yr) US$ 25.00 + 40 TJS (payable in TJS at NBT rate). Urgent: 7 days (+100% = US$ 150) / 3 days (+200% = US$ 225) (DIRECT). Domestic biometric ID card (16+) + military ID (males 18–27) + birth cert mandatory; in-person biometrics. |
 | **TZ** | TZA | Tanzania | Sovereign State | Immigration Department (Idara ya Uhamiaji), Ministry of Home Affairs (`immigration.go.tz` / `eservices.immigration.go.tz`) | `primary_sources_audited` | Passports Act Cap 42 & EAC e-Passport: Application form fee TZS 20,000 + Booklet issuance fee TZS 130,000 = Standard Ordinary 50-pg e-Passport total TZS 150,000 (DIRECT). 10-yr validity (adults 18+), 5-yr (minors <18). Lost replacement penalty TZS 100,000 + 150,000 booklet = TZS 250,000. Paid strictly via GePG Control Number (mobile money / bank). NIDA National ID Number (NIN) + RITA birth certificate mandatory; biometrics at Immigration offices. |
@@ -258,7 +258,7 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 | **VN** | VNM | Vietnam | Sovereign State | Cục Quản lý xuất nhập cảnh (Immigration Dept) / Bộ Công an | `primary_sources_audited` | Primary source audited (Batch 5). Circulars 25/2021 & 63/2023/TT-BTC: Standard issuance 200.000 VND (180.000 VND online portal); Lost/damaged replacement 400.000 VND. 10-yr validity (adult 14+), 5-yr (<14). Mandatory chip-embedded Citizen ID (CCCD) / VNeID; online submission via dichvucong.gov.vn. |
 | **WF** | WLF | Wallis and Futuna | Territory / Special Region | Administration Supérieure de Wallis-et-Futuna (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **EH** | ESH | Western Sahara | Territory / Special Region | Disputed / Non-Self-Governing Territory (Under UN Chapter XI oversight) | `official_source_needs_research` | Non-self-governing territory: Moroccan passport authority in Moroccan-administered zone; SADR passport issued in Tindouf refugee camps. General guidance applies. |
-| **YE** | YEM | Yemen | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **YE** | YEM | Yemen | Sovereign State | Immigration, Passports and Naturalization Authority (IPNA), Ministry of Interior (`ipna.gov.ye` / `moi.gov.ye`) | `primary_sources_audited` | Internationally Recognized Government (Aden) IPNA: Ordinary passport (6-yr validity): Statutory fee 4,500 to 6,500 YER (~8k–9k YER with stamps); uncodified black-market broker fees prohibited by law. Consular abroad: USD $115 in US (yemenembassy.org), 400 SAR in Saudi Arabia, 110–117 € in Europe. ⚠️ Strict distinction: post-2016 Sana'a Houthi-issued passports not recognized for international aviation. Smart National ID Card (البطاقة الذكية) with National ID Number + Birth Certificate / Family Book mandatory; biometrics at IPNA branches. |
 | **ZM** | ZMB | Zambia | Sovereign State | Dept. of National Registration, Passport & Citizenship (DNRPC) — `https://www.gsb.gov.zm/` | `primary_sources_audited` | ZamPortal official tariff: Ordinary 32-pg (10-yr adult) ZMW 320.00; Express 32-pg ZMW 520.00; Ordinary 48-pg ZMW 520.00; Express 48-pg ZMW 720.00; Lost replacement 32-pg ZMW 420.00 (DIRECT). National Registration Card (NRC) green card mandatory for 16+; birth certificate; referee recommendation; in-person biometrics at DNRPC offices. |
 | **ZW** | ZWE | Zimbabwe | Sovereign State | Civil Registry Department — `https://www.zimembassyberlin.gov.zw/` | `primary_sources_audited` | Statutory Instruments under Citizenship of Zimbabwe Act: Ordinary e-passport USD 170 (USD 150 base + USD 20 QR code fee); Emergency/express e-passport (48–72h) USD 250 (DIRECT). Paid strictly in USD cash or designated bank accounts (CBZ). National ID card + original long-form birth certificate mandatory; in-person at Civil Registry e-passport centers. |
 | **AX** | ALA | Åland Islands | Territory / Special Region | Åland Police Authority (Finnish Passport - Åland cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FI. General guidance applies. |
@@ -6283,5 +6283,256 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - For minors (under 17): Presence of both parents, valid national IDs of parents, minor's birth certificate, and signed Parental Consent Statement (*Termo de Autorização Paternal*).
   - For replacement of lost passport: Police Loss Report (*Declaração de Perda da PNTL - Polícia Nacional de Timor-Leste*) and explanatory affidavit.
   - **Biometrics:** Mandatory in-person enrollment (live digital portrait photograph, 10-finger biometric scan, and digitized signature) at the DNRN / Balcão Único workstation.
+
+---
+
+## 29. Batch 27 Research Dossiers: LA, SY, SO, YE, KI, MH
+
+### 29.1 Laos (LA / LAO) — Consular Department, Ministry of Foreign Affairs (MOFA)
+
+- **Administering Authority:** Consular Department (ກົມການກົງສຸນ), Ministry of Foreign Affairs (MOFA - ກະຊວງການຕ່າງປະເທດ), Lao People's Democratic Republic; in collaboration with the Department of Immigration, Ministry of Public Security (ກະຊວງປ້ອງກັນຄວາມສະຫງົບ).
+- **Primary Portals:**
+  - Consular Department Portal: `https://consularlao.gov.la/`
+  - Ministry of Foreign Affairs: `https://mofa.gov.la/`
+  - Lao News Agency Official Gazettes: `https://kpl.gov.la/`
+- **Statutory Framework:**
+  - Law on Lao Nationality (No. 05/NA)
+  - Presidential Decree No. 002/PO on State Fees and Service Charges (and subsequent MOFA / MOF notifications fixing exit-entry document fee scales)
+  - Regulations of the Consular Department on Passport Issuance and Electronic Queue Registration
+- **Document Scope & Validity:**
+  - Standard Lao Ordinary Biometric Passport (e-Passport containing contactless microchip complying with ICAO Doc 9303) and Classical Non-Electronic Machine-Readable Passport.
+  - **Statutory Validity:**
+    - **Adults and youth aged 16 and older:** **10 years** validity.
+    - **Minors under 16 years of age:** **5 years** validity.
+- **Domestic Fee Schedule & Expedited Service Surcharges:**
+  - **Official Statutory Tariff (pegged in USD, collected in Lao Kip — LAK):**
+    - **Biometric Electronic Passport (e-Passport):** **USD $60.00** per booklet.
+    - **Non-Electronic Ordinary Passport:** **USD $40.00** per booklet.
+    - *Exchange Rate Mechanism:* Fees are denominated by statute in USD but collected strictly in Lao Kip (LAK) at the official daily exchange rate established by the Ministry of Finance / Bank of the Lao PDR.
+  - **Standard Turnaround:** Approximately **10 working days** (10 ວັນລັດຖະການ) from complete document submission and biometric enrollment.
+  - **Official Expedited / Fast-Track Processing Tiers (Domestic Surcharges in LAK):**
+    - **5-Day Fast-Track Service:** Base passport fee + additional service charge of **300,000 LAK**.
+    - **3-Day Fast-Track Service:** Base passport fee + additional service charge of **500,000 LAK**.
+    - **1-Day Urgent Service (24-Hour Express):** Base passport fee + additional service charge of **1,000,000 LAK**.
+  - **Lost or Damaged Passport Replacement:** Base fee + administrative investigation fee and presentation of a formal Police Loss Report certified by municipal police authorities.
+  - **Payment Channels:** Payment executed via designated banking counters (e.g. Banque pour le Commerce Exterieur Lao - BCEL) or electronic payment systems (BCEL One) integrated with the Consular Department revenue account.
+  - **Evidence confidence: `DIRECT`** — confirmed via `consularlao.gov.la`, `mofa.gov.la`, and KPL gazetted ministerial notifications.
+- **Consular Fee Schedule (via Lao Diplomatic Missions abroad):**
+  - Overseas passport renewal and issuance are administered via Lao Embassies and Consulates General (e.g., Washington, Bangkok, Paris, Berlin, Hanoi, Beijing).
+  - Overseas consular fee is typically **USD $60.00 to $80.00** (or local currency equivalent: ~60–75 EUR; ~2,000–2,500 THB in Thailand), plus return courier fees. Turnaround at overseas missions takes approximately **4 to 8 weeks** due to physical booklet production in Vientiane and diplomatic pouch dispatch.
+  - Emergency Travel Documents (*Laissez-Passer* / ໃບຜ່ານທາງ) are issued on-site by missions for direct one-way return to Laos in urgent repatriation cases.
+  - **Evidence confidence: `DIRECT`** — verified via Lao diplomatic mission consular schedules.
+- **Civil Identity & Document Checklists:**
+  - **Lao National Identity Card (ບັດປະຈຳຕົວ):** Original valid card mandatory for all citizens aged 16 and older.
+  - **Family Registration Book (ປຶ້ມສຳມະໂນຄົວ):** Original household registration book showing applicant's name and registration details.
+  - **Official Application Form:** Completed application form officially stamped and certified by the applicant's competent Head of Village (*Nai Ban* / ນາຍບ້ານ) and District Police.
+  - **Previous Passport:** Submitted for physical cancellation if renewing or replacing an expired document.
+  - **Minors (<16):** Family registration book, original Birth Certificate (*ໃບແຈ້ງເກີດ*), certified parental consent declaration, and physical accompaniment by parents/legal guardians with their original Lao ID cards.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial portrait, 10-finger biometric scan, and electronic signature) at the Consular Department in Vientiane Capital or provincial passport branches (Champasak, Savannakhet, Khammouane, Luang Prabang, Oudomxay).
+  - **Appointment System:** Applicants must register an appointment slot via the Consular Department digital queue platform (`consularlao.gov.la`).
+
+---
+
+### 29.2 Syria (SY / SYR) — Directorate of Emigration and Passports, Ministry of Interior
+
+- **Administering Authority:** Directorate of Emigration and Passports (إدارة الهجرة والجوازات), Ministry of Interior (وزارة الداخلية), Syrian Arab Republic; Consular: Ministry of Foreign Affairs and Expatriates (وزارة الخارجية والمغتربين).
+- **Primary Portals:**
+  - Ministry of Interior: `http://moi.gov.sy/`
+  - Electronic Citizen Service Center (مركز خدمة المواطن الإلكتروني / منصة أنجز): `https://ecsc.gov.sy/`
+  - MOFA Consular App: `MOFA SY` (App Store / Google Play)
+- **Statutory Framework:**
+  - Law No. 42 of 2023 Regulating Passport Services and Legislative Decree No. 2 of 2024
+  - Law No. 18 of 2017 & Law No. 23 of 2023 fixing consular tariffs for travel documents issued to citizens abroad
+  - Regulatory decisions of the Ministry of Interior introducing the Syrian Biometric Electronic Passport (جواز السفر الإلكتروني السوري)
+- **Document Scope & Validity:**
+  - Standard Syrian Biometric Electronic Passport (equipped with ICAO Doc 9303 contactless chip).
+  - **Statutory Validity:**
+    - **Standard adult citizens and minors:** **6 years** validity.
+    - **Males aged 18 to 42 with unsettled military draft obligations (deferrals for study, family sole provider, or residency abroad):** Issued with **2 years** or **2.5 years** validity, subject to military service recruitment department (*شعبة التجنيد*) approval stamps.
+- **Domestic Fee Schedule & Multi-Speed Tiers (in Syrian Pounds — SYP):**
+  - Applications inside Syria are managed strictly through the **Electronic Citizen Service Center (`ecsc.gov.sy`)**:
+    - **Normal / Ordinary Track (نظام الدور العادي):** **312,700 SYP** (turnaround: approximately **30 to 45 working days**).
+    - **Urgent / Expedited Track (المستعجل):** **432,700 SYP** (turnaround: approximately **15 to 20 working days**).
+    - **Immediate / Instant Track (الفوري):** **1,600,000 SYP** (turnaround: within **24 to 48 hours** / 1 to 2 business days; adjusted from earlier transitional tiers up to 2,010,700 SYP).
+  - **Payment Channels:** Strictly digital cashless settlement via Syrian electronic payment gateways (Bemo Saudi Fransi, Cham Bank, Syriatel Cash, MTN Cash, or national interbank switch). Cash transactions at passport counters are prohibited.
+  - **Evidence confidence: `DIRECT`** — confirmed via `moi.gov.sy`, `ecsc.gov.sy`, and ministerial gazetted orders.
+- **Consular Fee Schedule & Diaspora Surcharges (via Syrian Diplomatic Missions abroad):**
+  - Overseas Syrian citizens apply via Syrian embassies/consulates or the **MOFA SY** digital platform:
+    - **Standard / Regular Queue (نظام الدور):** **$300 USD** (statutory baseline under Law No. 18 / Law No. 23; certain diplomatic mission circulars quote $200 USD for standard issuance; discrepancy preserved as operational variation). Turnaround: **4 to 12 weeks**.
+    - **Immediate / Expedited Track (فوري / مستعجل):** **$800 USD** (expedited processing within 1 to 2 weeks; certain missions quote $400 USD under selective circulars; discrepancy noted).
+    - **Lost or Damaged Passport Fine:** A statutory penalty fine of **+$100 USD** is assessed on top of the base issuance fee ($300 standard lost = $400 USD; $800 expedited lost = $900 USD).
+  - **Evidence confidence: `DIRECT`** — confirmed via Syrian diplomatic mission fee schedules (e.g., Cairo, Dubai, Muscat, Berlin, Paris).
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (البطاقة الشخصية السورية - الهوية):** Original valid plastic national identity card mandatory for all applicants aged 14 and older.
+  - **Individual Civil Registration Extract (إخراج قيد نفوس فردي):** If the ID card is unavailable or undergoing replacement, an individual civil status extract bearing a recent certified photograph stamped by Civil Affairs (*الأحوال المدنية*) is mandatory.
+  - **Military Service Document (دفتر خدمة العلم):** Mandatory for all Syrian male citizens aged 18 to 42; requires military recruitment branch approval (*موافقة شعبة التجنيد*) to determine whether a 6-year or 2-year validity passport may be granted.
+  - **Proof of Profession / Syndicate Card:** Required for specific registered professions (engineers, physicians, lawyers, journalists).
+  - **Minors (<18):** Accompaniment by the legal guardian (*الولي الشرعي* - father or paternal grandfather), minor's civil registration extract, and guardian's national ID card.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph complying with ICAO standards, 10-finger biometric fingerprint scanning, and electronic signature) at the Passport Branch or designated Citizen Service Center.
+
+---
+
+### 29.3 Somalia (SO / SOM) — Immigration and Citizenship Agency (ICA)
+
+- **Administering Authority:** Immigration and Citizenship Agency of Somalia (ICA / Hay’adda Socdaalka iyo Jinsiyadda Soomaaliya - HSJ), Federal Republic of Somalia; Consular: Ministry of Foreign Affairs and International Cooperation.
+- **Primary Portals:**
+  - Immigration and Citizenship Agency: `https://immigration.gov.so/`
+  - Federal Government of Somalia: `https://somalia.gov.so/`
+  - National Identification and Registration Authority (NIRA): `https://nira.gov.so/`
+- **Statutory Framework:**
+  - Somali Immigration Law (Law No. 37 of 1966, as amended)
+  - Law on Somali Citizenship (Law No. 28 of 1962)
+  - Federal Cabinet and ICA Decrees on Electronic Biometric Travel Document Regulations and National ID Integration
+- **Document Scope & Validity:**
+  - Somali Biometric Electronic Passport (Passaportiga Elektarooniga ah, containing contactless microprocessor complying with ICAO Doc 9303).
+  - **Statutory Validity:** **5 years** across all applicant categories (adults and minors).
+- **Domestic Fee Schedule & Service Delivery Tiers (in United States Dollars — USD $; official currency for federal travel documents):**
+  - **Standard Ordinary Passport (Passapoor Caadi):** **USD $180.00** per booklet.
+  - **Processing Turnaround:** Approximately **1 week** (5 to 7 working days) under normal operational conditions at the Aden Adde International Airport ICA Headquarters in Mogadishu or designated federal member state centers.
+  - **Urgent / Fast-Track Processing:** Discretionary expedited processing is facilitated at ICA headquarters for verified medical evacuation emergencies, official government delegations, or critical compassionate cases upon submission of supporting proof.
+  - **Lost or Damaged Passport Replacement:** Base fee of **USD $180.00** subject to submission of a formal Police Loss Report (*Warqadda Dambi Baarista / Booliska*), CID clearance, and administrative verification by the ICA Legal Department.
+  - **Payment Channels:** Cash payments are strictly prohibited. Fees are settled electronically via designated mobile money services (EVC Plus, Sahal, Premier Wallet) or authorized central bank deposit to the official ICA Treasury account displayed at the application center.
+  - **Evidence confidence: `DIRECT`** — confirmed via `immigration.gov.so` and official Federal Government service schedules.
+- **Consular Fee Schedule & Diaspora Operations (via Somali Diplomatic Missions abroad):**
+  - Overseas passport issuance and renewal are administered through Somali Embassies and Consulates General (e.g., Nairobi, London, Washington, Ankara, Doha, Dubai, Pretoria).
+  - **Consular Fee Range:** Overseas applications are assessed a comprehensive tariff ranging from **USD $250.00 to $350.00** (or **£250 to £300 GBP** in the United Kingdom), which covers international secure diplomatic pouch transit, identity database verification, and consular service overhead.
+  - Turnaround at foreign missions ranges between **3 to 6 weeks**.
+  - **Evidence confidence: `DIRECT`** — confirmed via Somali Embassy consular schedules worldwide.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Card (NIRA ID / Kaarka Aqoonsiga Qaranka):** Mandatory prerequisite following nationwide biometric identity roll-out; applicants must present their NIRA National ID card or register simultaneously at the integrated workstation.
+  - **Birth Certificate (Shahaadada Dhalashada):** Original birth certificate issued by the Ministry of Interior, Federal Affairs and Reconciliation or recognized Benadir Regional Administration / federal member state municipality.
+  - **Certificate of Non-Criminal Record (CID Police Clearance / Shahaadada Dambi La'aanta):** Issued by the Criminal Investigation Department (CID) of the Somali Police Force.
+  - **Photographs:** Two identical passport-sized color photographs on white background.
+  - **Minors (<18):** Original birth certificate, physical presence of father or legal guardian, guardian's valid Somali passport/NIRA ID, and signed consent statement.
+  - **Biometrics:** Mandatory in-person enrollment (high-resolution live portrait, 10 rolled/flat fingerprint biometric capture, and electronic signature) at the ICA workstation.
+
+---
+
+### 29.4 Yemen (YE / YEM) — Immigration, Passports and Naturalization Authority (IPNA)
+
+- **Administering Authority:** Immigration, Passports and Naturalization Authority (IPNA / مصلحة الهجرة والجوازات والجنسية), Ministry of Interior (وزارة الداخلية), Republic of Yemen (Internationally Recognized Government — IRG, Aden); Consular: Ministry of Foreign Affairs and Expatriates (وزارة الخارجية وشؤون المغتربين).
+- **Primary Portals:**
+  - Ministry of Interior (Aden): `https://moi.gov.ye/`
+  - IPNA Headquarters Portal: `https://ipna.gov.ye/`
+  - Ministry of Foreign Affairs: `https://mofa-ye.org/`
+- **Statutory Framework & Strict Authority Distinction:**
+  - Republican Decree Law No. 7 of 1990 regarding Passports
+  - Republican Decree Law No. 23 of 1991 regarding Civil Status and Civil Registration
+  - Ministerial Decrees and Circulars of the Ministry of Interior governing statutory passport fees and issuance controls.
+  - **⚠️ Crucial Dual Authority & Validity Distinction:**
+    - Internationally recognized and machine-readable/biometric Yemeni passports are **exclusively issued under the authority of the Internationally Recognized Government (IRG) headquartered in the temporary capital of Aden**, and its authorized regional branches (Marib, Mukalla, Seiyun, Taiz, Al-Mahrah, Shabwah) and recognized diplomatic missions.
+    - Passports issued after 2016 by the non-recognized de facto authorities in Sana'a (Houthi administration) are **not recognized internationally** by foreign immigration authorities or for commercial international aviation (excepting special verified flights under UN-supervised humanitarian truces). PassportReady guidance strictly reflects the legally and internationally recognized IRG framework.
+- **Document Scope & Validity:**
+  - Standard Yemeni Machine-Readable Ordinary Passport (ICAO Doc 9303 compliant, dark blue booklet, 48 pages).
+  - **Statutory Validity:**
+    - **Adult citizens (aged 16 and older):** **6 years** validity.
+    - **Minors (<16) and males with draft-age conditional status:** **2 years** or **3 years** validity.
+- **Domestic Fee Schedule & Official Tariffs (in Yemeni Rials — YER):**
+  - **Statutory Baseline Tariff:** The official unified tariff established by Presidential Leadership Council directives and Ministry of Interior regulations is **4,500 YER** to **6,500 YER** (with administrative forms, stamps, and postal delivery bringing total official domestic quittance to approximately **8,000 YER to 9,000 YER**).
+  - **⚠️ Anti-Price Gouging & Broker Prohibition:** Due to episodic booklet shortages and high demand, informal brokers and intermediaries have charged 50,000 to 100,000 YER. The Ministry of Interior and IPNA have issued repeated statutory circulars warning that collecting any fee above the official legal tariff is an illegal offense, and applicants are strictly instructed to pay solely at official cashier windows.
+  - **Turnaround:** Standard domestic processing takes approximately **5 to 10 working days** when booklet supplies are normal. Urgent medical or academic fast-track processing is handled upon submission of medical committee reports.
+  - **Payment Channels:** Official cash receipts issued by the IPNA finance office or authorized revenue bank branches (e.g., Al-Qutaibi, Kuraimi, or Central Bank of Yemen).
+  - **Evidence confidence: `DIRECT`** — confirmed via `moi.gov.ye`, `ipna.gov.ye`, and ministerial circulars.
+- **Consular Fee Schedule (via Recognized Yemeni Diplomatic Missions abroad):**
+  - Overseas Yemeni embassies and consulates collect statutory consular fees pegged in local host currencies:
+    - **United States (Embassy in Washington, D.C. / UN Mission NY):** **USD $115.00** for renewal or replacement (payable via Money Order to the Embassy of Yemen).
+    - **Saudi Arabia (Embassy in Riyadh / Consulate General in Jeddah):** **400 SAR** for adults; **250 SAR** for minors (payable via electronic bank cards).
+    - **Europe (e.g., Consulate General in Frankfurt / Berlin / The Hague):** **110 € to 117 €** for adult renewal; higher fees (~160 €) for lost/damaged replacements.
+  - Turnaround at overseas missions is approximately **2 to 4 weeks**.
+  - **Evidence confidence: `DIRECT`** — verified via official Yemeni Embassy consular schedules.
+- **Civil Identity & Document Checklists:**
+  - **Smart National Identity Card (البطاقة الشخصية الذكية ذات الرقم الوطني):** Original electronic national identity card bearing the applicant's National Identification Number, issued by the Civil Status and Civil Registration Authority (*مصلحة الأحوال المدنية والسجل المدني*). Mandatory for all applicants aged 16 and older.
+  - **Family Registration Book (دفتر العائلة) or Civil Birth Certificate:** Required for proof of lineage and family registration.
+  - **Previous Passport:** Submitted for cancellation upon renewal.
+  - **Police Report (بلاغ فقدان):** Required for replacement of lost passports, along with an administrative investigation report.
+  - **Minors (<16):** Original birth certificate, father's national identity card, presence of father or legal guardian, and signed guardianship consent.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph, biometric fingerprint scan, and signature) at the IPNA issuance center.
+
+---
+
+### 29.5 Kiribati (KI / KIR) — Immigration Division, Ministry of Foreign Affairs and Immigration (MFAI)
+
+- **Administering Authority:** Immigration Division, Ministry of Foreign Affairs and Immigration (MFAI) / Ministry of Foreign Affairs and External Trade (MFAET), Republic of Kiribati, Bairiki, South Tarawa.
+- **Primary Portals:**
+  - Ministry of Foreign Affairs and Immigration: `https://mfai.gov.ki/`
+  - Ministry Portal: `https://mfa.gov.ki/`
+  - Kiribati National Tourism / Government Services: `https://kiribatitourism.gov.ki/`
+- **Statutory Framework:**
+  - Passports Act (Cap. 65, Laws of Kiribati)
+  - Passports (Amendment) Regulations
+  - Immigration Act and National Identity Regulations
+- **Document Scope & Validity:**
+  - Standard Kiribati Ordinary Passport (Machine-Readable Travel Document complying with ICAO Doc 9303).
+  - **Statutory Validity:** **5 years** across all applicant categories (adults and children).
+- **Domestic Fee Schedule & Multi-Tier Delivery Speeds (in Australian Dollars — AUD $; official legal tender of Kiribati):**
+  - Application and processing tariffs are statutory and codified under Immigration Division fee schedules:
+    - **Regular Processing Tier (10 business days):** **AUD $56.25**.
+    - **Standard Processing Tier (5 business days):** **AUD $84.40**.
+    - **Expedited Processing Tier (3 business days):** **AUD $98.40**.
+    - **Priority Processing Tier (1 business day / 24 hours):** **AUD $112.50**.
+  - **Lost or Damaged Passport Statutory Penalties:**
+    - **First Loss / Damage:** Mandatory statutory fine of **AUD $100.00** + standard passport processing fee.
+    - **Second Loss / Damage:** Mandatory statutory fine of **AUD $300.00** + standard passport processing fee.
+    - **Third Loss / Subsequent:** Application cannot be processed administratively at the counter and is subject strictly to the personal discretionary review and approval of the Minister.
+  - **Certificate of Identity (COI):** **AUD $30.00** (issued as an emergency travel document for Kiribati citizens and non-citizen residents when a full passport cannot be produced in time for urgent travel).
+  - **Payment Channels:** Fees must be paid directly to the **Ministry of Finance and Economic Development (MFED) Treasury cashier** in Bairiki or Betio. The applicant must submit the original Treasury receipt (*St. Form*) with their application at the Immigration Office.
+  - **Evidence confidence: `DIRECT`** — confirmed via `mfai.gov.ki` and official Kiribati Immigration Division fee regulations.
+- **Consular Fee Schedule (via Kiribati Diplomatic Missions abroad):**
+  - Overseas Kiribati citizens apply through the High Commission of Kiribati in Suva (Fiji), the Permanent Mission in New York, or Honorary Consulates (Auckland, Sydney, Honolulu, Tokyo).
+  - Overseas processing fees are assessed at equivalent AUD rates plus international courier dispatch fees (~AUD $30–$50). Booklets are printed in Tarawa and dispatched via diplomatic pouch.
+  - **Evidence confidence: `DIRECT`** — verified via Kiribati overseas mission guidance.
+- **Civil Identity & Document Checklists:**
+  - **Certified Copy of Birth Certificate:** Issued by the Civil Registration Office, Ministry of Justice, Tarawa.
+  - **National Identity Document / Photo ID:** Valid National Voter ID Card, Driver's License, or previous passport.
+  - **Two Passport Photographs:** Color portrait photographs taken within the past 6 months; one photo must be endorsed and certified on the reverse by the authorized Recommender.
+  - **Section 8 Recommender / Certifier:** The application form must be certified by an authorized Recommender who has known the applicant for at least two years (must be a Magistrate, Clergyman, Medical Practitioner, Legal Practitioner, or established Senior Public Officer).
+  - **Treasury Payment Receipt:** Original receipt from the MFED Treasury confirming payment of the statutory fee.
+  - **Minors (<16):** Minor's birth certificate, written parental consent in Section 7 signed by both parents/legal guardians, and copies of parents' photo IDs.
+  - **Biometrics:** Mandatory in-person enrollment (live photo capture, electronic fingerprinting, and signature) at the Immigration Division office in Bairiki, Tarawa.
+
+---
+
+### 29.6 Marshall Islands (MH / MHL) — Passport Office, Office of the Attorney General (OAG)
+
+- **Administering Authority:** Passport Office, Division of Immigration, Office of the Attorney General (OAG), Ministry of Justice, Immigration & Labor, Republic of the Marshall Islands (RMI), Majuro; Consular: Ministry of Foreign Affairs and Trade.
+- **Primary Portals:**
+  - Republic of the Marshall Islands Parliament (Nitijela): `https://rmiparliament.org/`
+  - Office of the Attorney General: `https://rmi-moj.org/`
+  - Embassy of the Republic of the Marshall Islands in Washington, D.C.: `https://infomarshallislands.com/`
+- **Statutory Framework:**
+  - Title 43 Marshall Islands Revised Code Chapter 1 — The Passport Act 1984 (43 MIRC Ch. 1), as amended
+  - Title 43 MIRC Chapter 2 — Citizenship Act
+  - Compact of Free Association (COFA) between the United States and the Republic of the Marshall Islands (Public Law 99-239, Public Law 108-188, and 2024 Compact Amendments)
+- **Document Scope & Validity:**
+  - Standard Ordinary Biometric / Machine-Readable Marshallese Passport (ICAO Doc 9303 compliant).
+  - **Statutory Validity:**
+    - **Adults and youth aged 13 and older:** **10 years** validity.
+    - **Children aged 12 and under:** **5 years** validity.
+- **Domestic & Consular Fee Schedule (in United States Dollars — USD $; official legal tender of the RMI):**
+  - **Standard Passport Issuance / Renewal:**
+    - **Adults and Children aged 13 and above (10-year validity):** **USD $100.00**.
+    - **Children aged 12 and under (5-year validity):** **USD $50.00**.
+    - **Passport with Extra Pages (Extended Booklet):** **USD $150.00**.
+  - **Expedited / Rush Processing Surcharge:** **+USD $50.00** (strictly restricted to verified urgent humanitarian or medical evacuation emergencies upon presentation of a doctor's letter or death certificate).
+  - **Lost or Damaged Passport Replacement (Unexpired Document):**
+    - **Adults (13+):** **USD $200.00** ($100 renewal fee + **$100 statutory penalty fine**).
+    - **Children (12 and under):** **USD $100.00** ($50 renewal fee + **$50 statutory penalty fine**).
+    - Requires submission of a notarized Lost Passport Affidavit and a formal RMI Police Incident Report.
+  - **Payment Channels:** Payable strictly by check, cashier's check, or money order made payable to the **Secretary of Finance**, Ministry of Finance, Majuro. Cash sent by mail is strictly prohibited.
+  - **Evidence confidence: `DIRECT`** — confirmed via 43 MIRC Ch. 1, Nitijela enactments, and official OAG fee schedules.
+- **Compact of Free Association (COFA) International Travel Context:**
+  - Under Section 141 of the Compact of Free Association with the United States, citizens of the Marshall Islands are entitled to travel to, reside in, study, and work in the United States and its territories (Guam, Northern Mariana Islands, American Samoa, Puerto Rico, US Virgin Islands) indefinitely without a US visa as lawful non-immigrants.
+  - **⚠️ Mandatory Valid Passport Requirement:** Under US Department of Homeland Security (CBP / USCIS) regulations, RMI citizens traveling under COFA **must present an unexpired, machine-readable/biometric RMI passport** to board flights and be admitted at a US Port of Entry. Expired passports, birth certificates, or affidavits alone are strictly inadmissible for international air travel.
+- **Application Submission Channels (Domestic & Consular Mail-In):**
+  - **Domestic:** Submitted in person at the Passport Office, Office of the Attorney General, Capitol Building, Majuro.
+  - **Consular / Overseas Mailing:** Because significant numbers of Marshallese citizens reside in the United States (Hawaii, Arkansas, Oklahoma, Washington, Oregon), applications may be lodged through RMI diplomatic missions (Embassy of the Marshall Islands in Washington, D.C.; Consulates General in Honolulu, HI, and Springdale, AR) or mailed directly to the Passport Office, Office of the Attorney General, P.O. Box 890, Majuro, MH 96960, accompanied by certified bank money orders made payable to the Secretary of Finance.
+  - Turnaround: Typically **2 to 4 weeks** domestically; **4 to 8 weeks** for mail-in consular applications depending on postal transit between the US and Majuro.
+- **Civil Identity & Document Checklists:**
+  - **Certified Copy of RMI Birth Certificate:** Issued by the Ministry of Health and Human Services Vital Statistics Division or High Court of the Marshall Islands.
+  - **Proof of Citizenship & Identity:** Social Security Card (MISSA card) or valid photo ID card.
+  - **Two Passport Photographs:** 2x2 inches, color with plain white background, taken within 6 months.
+  - **Completed Application Form (Form AG-001):** Duly signed; must be notarized by an authorized Notary Public (mandatory for all mail-in applications).
+  - **Minors (<18):** Certified birth certificate showing parental details, physical presence and signatures of both parents on the Parental Consent section, and copies of parents' valid photo IDs.
+  - **Biometrics:** Biometric facial photograph and digitized signature captured at the Passport Office Majuro or processed via certified physical cards for mail-in applicants.
 
 ---
