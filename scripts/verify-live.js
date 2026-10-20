@@ -365,7 +365,7 @@ async function verifyLive() {
 
   // Verify Phase 4.3.4 UI safeguards in live app.js
   assert(appJsRes.body.includes('resServiceCoverageCard'), 'Live app.js must render into resServiceCoverageCard');
-  assert(appJsRes.body.includes('Multi-Dimensional Coverage Audit') || appJsRes.body.includes('Coverage Audit'), 'Live app.js must include Multi-Dimensional Coverage Audit');
+  assert(appJsRes.body.includes('Multi-Dimensional Coverage') && appJsRes.body.includes('Service Verification Audit'), 'Live app.js must include Multi-Dimensional Coverage and Service Verification Audit');
   assert(appJsRes.body.includes('Readiness score reflects document preparation completeness only'), 'Live app.js must include issuance disclaimer');
   assert(appJsRes.body.includes("badgeEl.className = 'status-pill status-verified'"), 'Live app.js must restrict status-verified to PREPARED');
 
