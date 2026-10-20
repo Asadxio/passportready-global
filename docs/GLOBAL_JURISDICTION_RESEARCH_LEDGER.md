@@ -91,7 +91,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **ET** | ETH | Ethiopia | Sovereign State | Immigration and Citizenship Service (ICS) — `https://www.ics.gov.et/` | `primary_sources_audited` | Reg. 550/2024 (eff. Aug 7, 2024): New passport ETB 5,000 standard / ETB 20,000 urgent-5d / ETB 25,000 urgent-2d. Lost replacement ETB 13,000. In-person at ICS offices; Digital Invea system. Fayda biometric ID required. |
 | **FK** | FLK | Falkland Islands (Malvinas) | Territory / Special Region | Customs & Immigration Falkland Islands (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **FO** | FRO | Faroe Islands | Territory / Special Region | Ríkisumboðið í Føroyum (Kingdom of Denmark Passport - Føroyar cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
-| **FJ** | FJI | Fiji | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **FJ** | FJI | Fiji | Sovereign State | Department of Immigration, Office of the Prime Minister (`immigration.gov.fj`) | `primary_sources_audited` | Passports Act 2002 & Regs: Standard ordinary e-passport (10-yr adult / 5-yr minor) FJD $206.50; Urgent processing FJD $283.85; Urgent weekend/holiday FJD $627.60; Lost/stolen replacement FJD $412.90 standard / FJD $536.75 urgent (DIRECT). Registrar General Birth Certificate + photo ID + police loss report mandatory; in-person biometrics at Suva, Nadi, Lautoka, Labasa. |
 | **FI** | FIN | Finland | Sovereign State | Poliisi (Police of Finland / Lupapalvelut) | `primary_sources_audited` | Primary source audited (Batch 4). Passilaki 2026: Standard (5-yr) 42 € online / 48 € counter; Pikapassi 61 € online / 67 € counter; Express-passi 81 € online / 87 € counter; Temporary 85 €. Consular 175 €. Electronic photo server code (kuvatunnus) + Finnish bank e-identification / police counter. |
 | **GF** | GUF | French Guiana | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **PF** | PYF | French Polynesia | Territory / Special Region | Haut-Commissariat de la République en Polynésie française (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -173,7 +173,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PW** | PLW | Palau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PS** | PSE | Palestine | Territory / Special Region | Palestinian Authority Ministry of Interior (Palestinian Authority Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by PS. General guidance applies. |
 | **PA** | PAN | Panama | Sovereign State | Autoridad de Pasaportes de Panamá (`apap.gob.pa`) | `primary_sources_audited` | Ley 32 de 2013 / APAP tariff: Ordinary 32-page biometric e-passport B/. 100.00 (USD 100); Senior citizens / retirees (jubilados) / disabled B/. 50.00 (50% statutory discount); Urgent processing surcharge +B/. 75.00 (DIRECT). Validity: 10-yr adult (18+), 5-yr minor. Cédula de Identidad Personal (Tribunal Electoral) + B/. 3.00 fiscal stamps birth cert (unless TE verified); in-person biometrics at APAP regional centers. |
-| **PG** | PNG | Papua New Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **PG** | PNG | Papua New Guinea | Sovereign State | Papua New Guinea Immigration and Citizenship Authority (`ica.gov.pg`) | `primary_sources_audited` | Passports Act & Migration Regs: Standard ordinary passport (5-yr) K100.00; Fast-track express (2 days) K300.00 (K100 base + K200 priority fee); Lost replacement penalty K200.00 (DIRECT). NID Birth Certificate (Civil Registry/NID Office) + Form FA 81 + Section 13 Legal Practitioner/Commissioner certification mandatory; in-person or postal lodgment at ICA Waigani. |
 | **PY** | PRY | Paraguay | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PE** | PER | Peru | Sovereign State | Superintendencia Nacional de Migraciones | `primary_sources_audited` | Primary source audited (Batch 3). Ley N° 31678 / DS 004-2024-IN: Pasaporte Electrónico (10-yr validity for 18+) S/ 120.90 PEN (Tributo 01810 Págalo.pe); Teens 12-17 (5-yr) S/ 120.90; Child <12 (3-yr) S/ 120.90. In-person walk-in ticket system (no appointment needed); same-day delivery (~2 hrs). DNI mandatory. |
 | **PN** | PCN | Pitcairn | Territory / Special Region | Pitcairn Island Administration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -193,7 +193,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MF** | MAF | Saint Martin (French part) | Territory / Special Region | Collectivité de Saint-Martin (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **PM** | SPM | Saint Pierre and Miquelon | Territory / Special Region | Préfecture de Saint-Pierre-et-Miquelon (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **VC** | VCT | Saint Vincent and the Grenadines | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **WS** | WSM | Samoa | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **WS** | WSM | Samoa | Sovereign State | Immigration Division, Ministry of the Prime Minister and Cabinet (`mpmc.gov.ws`) | `primary_sources_audited` | Passports Act 2008 & Immigration Act 2020: Standard passport (5-day turnaround, 5-yr): Adult (17+) WST 200.00; Child (≤16) WST 100.00; Urgent (2-day): Adult WST 240.00; Child WST 140.00; Lost/damaged replacement: Adult WST 400.00; Child WST 200.00 (DIRECT). MJCA Birth Certificate + Section 6 Recommender (Fa'amasino/Faife'au/Pulenu'u/Lawyer) mandatory; in-person biometrics at Apia. |
 | **SM** | SMR | San Marino | Sovereign State | Ufficio Stato Civile / Ufficio Passaporti (`gov.sm` / `esteri.sm`) | `primary_sources_audited` | Rev. Carta dei Servizi 2025: Adults & 14+ (10-yr) € 100.00; Minors 3–14 (5-yr) € 50.00; Children 0–3 (3-yr) € 30.00; Urgent 3 working days surcharge: +€ 50.00 (DIRECT). Sammarinese citizenship required; Codice ISS + Carta d'Identità sammarinese mandatory; application at Ufficio Stato Civile Borgo Maggiore; consular via Dipartimento Affari Esteri. |
 | **ST** | STP | Sao Tome and Principe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SN** | SEN | Senegal | Sovereign State | Direction Police Étrangers & Titres Voyage (DPETV) — `https://interieur.gouv.sn/` | `primary_sources_audited` | Passeport ordinaire (5-yr) 20,000 XOF (DIRECT). Paid via quittance at Direction de l'Enregistrement, des Domaines et du Timbre (DGID/DEDT). No duplicate issued for loss: requires police loss certificate + new application at 20,000 XOF. CNI biométrique CEDEAO mandatory (15+); parental consent for minors; in-person biometrics at police stations. |
@@ -203,7 +203,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SX** | SXM | Sint Maarten (Dutch part) | Territory / Special Region | Cabinet of the Governor of Sint Maarten (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **SK** | SVK | Slovakia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SI** | SVN | Slovenia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **SB** | SLB | Solomon Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SB** | SLB | Solomon Islands | Sovereign State | Immigration Division, MCILI (`commerce.gov.sb` / `immigration.gov.sb`) | `primary_sources_audited` | Passports Act (Cap. 61) & Regs: Standard ordinary e-passport (10-year validity) SBD $1,000.00 (DIRECT). Payable at Ministry of Finance & Treasury (MoFT) counter prior to lodgment. Civil Registry certified birth certificate + two Statutory Declarations (family member and independent citizen) mandatory; in-person biometrics at Immigration Division Honiara. |
 | **SO** | SOM | Somalia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GS** | SGS | South Georgia and the South Sandwich Islands | Territory / Special Region | South Georgia and South Sandwich Islands (No civilian population; UK admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **KR** | KOR | South Korea | Sovereign State | Ministry of Foreign Affairs (MOFA) / Passport Division | `primary_sources_audited` | Primary source audited (Batch 1). Passport Act (Enforcement Decree revised March 1, 2026): Next-Gen e-Passport Adult (18+) 58-pg ₩52,000 / 26-pg ₩49,000; Minor (8-17) ₩44,000 / ₩41,000; Child (<8) ₩35,000 / ₩32,000 (Contribution fund waived); Single-entry ₩17,000; Emergency ₩50,000. |
@@ -221,7 +221,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TL** | TLS | Timor-Leste | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TG** | TGO | Togo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TK** | TKL | Tokelau | Territory / Special Region | Tokelau Administration / NZ DIA (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
-| **TO** | TON | Tonga | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TO** | TON | Tonga | Sovereign State | Immigration Department, Ministry of Foreign Affairs (`foreignaffairs.gov.to`) | `primary_sources_audited` | Tonga Passport Regulations (Cap. 62): Adult 16+ 10-year passport TOP$ 250.00; Adult 16+ 5-year passport TOP$ 150.00; Minor <16 (5-year) TOP$ 100.00 (DIRECT). Ministry of Justice Birth Certificate + Form 1 + certification by Town Officer ('Ofisa Kolo)/District Officer/Minister of Religion mandatory; in-person biometrics at Immigration Dept Nuku'alofa. |
 | **TT** | TTO | Trinidad and Tobago | Sovereign State | Immigration Division, Ministry of Homeland/National Security (`nationalsecurity.gov.tt`) | `primary_sources_audited` | Immigration Regulations statutory fees: Ordinary 32-page passport (adults 16–59, 10-yr) TTD $500; 48-page business TTD $700; Children <16 (5-yr) TTD $500 (under-2 first issue FREE); Seniors 60+ FREE ($0 TTD); Expedited surcharge +TTD $600; Lost/stolen/mutilated penalty TTD $2,000 (DIRECT). Computerized RGD Birth Certificate with PIN + National ID card (EBC) mandatory; appointment via appointments.gov.tt. |
 | **TN** | TUN | Tunisia | Sovereign State | Direction Générale de la Police Nationale, Ministère de l'Intérieur — `https://www.interieur.gov.tn/` | `primary_sources_audited` | Law 75-40 / Finance Law (timbre fiscal): Adult (5-yr) 80 TND; Pupils/Students/Children <7: 25 TND; Lost/damaged replacement: 150 TND (DIRECT from sicad.gov.tn). Consular chancery rate ~50 EUR (PARTIAL). CIN (18+) or Extrait de naissance (<18) mandatory; in-person at local Police / Garde Nationale station. |
 | **TM** | TKM | Turkmenistan | Sovereign State | State Migration Service — `https://migration.gov.tm/` | `primary_sources_audited` | Standard biometric passport: TMT 60 (DIRECT from migration.gov.tm); fee waived for under-16, war veterans, labor veterans, disabled persons. Payment via Halkbank (halkbank.gov.tm). ⚠️ Highly restrictive state: exit visa (exit permit) system in place; many citizens require separate government approval to travel abroad even with valid passport. |
@@ -234,7 +234,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **UM** | UMI | United States Minor Outlying Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UY** | URY | Uruguay | Sovereign State | Dirección Nacional de Identificación Civil (DNIC) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 3). DNIC tariffs: Trámite común Adult 18+ (10-yr) $ 5.630 UYU ($ 5.455 pasaporte + $ 175 antecedentes); Minor (<18) $ 5.455 UYU (5-yr); Trámite urgente $ 12.114 UYU ($ 10.712 + $ 1.402). Cédula de Identidad original mandatory; parental consent for minors under 18. |
 | **UZ** | UZB | Uzbekistan | Sovereign State | Migration & Citizenship Dept., MIA — `https://my.gov.uz/` | `primary_sources_audited` | State fee: 1 BHM (2024: UZS 340,000); online via my.gov.uz: 10% discount (≈UZS 306,000). BHM set annually by budget law. Biometric ID Card (Guvohnoma) mandatory for 16+. PSC in-person biometric enrollment. Online application available with ECP/biometric SIM. |
-| **VU** | VUT | Vanuatu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **VU** | VUT | Vanuatu | Sovereign State | Dept. of Vanuatu Immigration & Passport Services (`immigration.gov.vu`) | `primary_sources_audited` | Passports Act [Cap. 108] & Regs: Standard biometric e-passport: Adult 18–64 (10-yr) 20,000 VT; Minor 0–17 (5-yr) 10,000 VT; Senior 65+ 10,000 VT; Express 1-day urgent 30,000 VT; Lost/damaged penalty 50,000 VT (DIRECT). Vanuatu National ID Card + Civil Registry Birth Certificate mandatory; in-person biometrics at Port Vila or Luganville. |
 | **VA** | VAT | Vatican City | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **VE** | VEN | Venezuela | Sovereign State | SAIME — Servicio Administrativo de Identificación, Migración y Extranjería — `https://www.saime.gob.ve/` | `primary_sources_audited` | Regular passport USD-pegged: Adult USD 216 (10-yr); Youth 3–17 USD 162 (5-yr); Infant 3mo–2yr USD 108 (3-yr). Express: Adult USD 350. Paid in VES at BCV daily rate. Cédula de Identidad mandatory. Appointment via saime.gob.ve; may face availability constraints. |
 | **VN** | VNM | Vietnam | Sovereign State | Cục Quản lý xuất nhập cảnh (Immigration Dept) / Bộ Công an | `primary_sources_audited` | Primary source audited (Batch 5). Circulars 25/2021 & 63/2023/TT-BTC: Standard issuance 200.000 VND (180.000 VND online portal); Lost/damaged replacement 400.000 VND. 10-yr validity (adult 14+), 5-yr (<14). Mandatory chip-embedded Citizen ID (CCCD) / VNeID; online submission via dichvucong.gov.vn. |
@@ -4038,5 +4038,246 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person attendance and submission at the Immigration Department, Police Headquarters (Bridge Street, Castries) or Southern Division Sub-Station (Vieux Fort).
   - Turnaround: Standard 15 working days; expedited 3 to 5 working days.
   - Delivery: In-person collection upon presentation of receipt and ID card.
+
+---
+
+## 20. Batch 18 Statutory Research Dossiers: FJ, PG, WS, SB, TO, VU
+
+---
+
+### 20.1 Fiji (FJ / FJI) — Department of Immigration, Office of the Prime Minister
+
+- **Administering Authority:** Department of Immigration, Office of the Prime Minister, Republic of Fiji
+- **Primary Portals:**
+  - Official Immigration Portal: `https://www.immigration.gov.fj/`
+  - Ministry of Foreign Affairs: `https://foreignaffairs.gov.fj/`
+- **Statutory Framework:**
+  - Fiji Passports Act 2002 and Passports Regulations (Immigration Fees Regulations).
+- **Domestic Fee Schedule (in Fijian Dollars — FJD / F$):**
+  - **Standard Electronic Passport (Fiji e-Passport):**
+    - **Adults and General Issuance (10-year validity adult / 5-year minor):** **FJD $206.50**
+  - **Expedited / Urgent Processing Service Tiers:**
+    - **Urgent Processing Fee (New or Renewal, normal working days):** **FJD $283.85**
+    - **Urgent Processing Fee (Weekends / Public Holidays):** **FJD $627.60**
+    - **Change of Service (from Ordinary to Urgent during processing):** **FJD $129.05** (normal working days) / **FJD $426.60** (weekends/holidays).
+  - **Lost, Stolen, or Damaged Passport Replacement Fees:**
+    - **Ordinary Processing (Valid Lost/Stolen/Damaged Passport):** **FJD $412.90**
+    - **Urgent Processing (Valid Lost/Stolen/Damaged Passport):** **FJD $536.75**
+  - **Validity:**
+    - Adults (aged 16 years and older): **10 years**
+    - Minors (under 16 years of age): **5 years**
+  - **Evidence confidence: `DIRECT`** — established by Immigration Fees Regulations published on `immigration.gov.fj`.
+- **Consular Fee Schedule:**
+  - Via Fijian High Commissions and Embassies abroad (e.g. Canberra, Wellington, London, Washington, Tokyo).
+  - Consular passport processing fee: ~AUD $180.00 / NZD $200.00 / USD $140.00 / GBP £100.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official foreign affairs mission notices.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Registrar General’s Department (RGD) with visible registration number.
+  - **Photo Identification:** Valid photo identity document (Fiji National Voter Card, Joint FNPF/FRCS ID Card, or Driver's Licence).
+  - **Legal Name Change:** Original Marriage Certificate (for married women taking spouse's surname) or registered Deed Poll document.
+  - **Photographs:** Two (2) recent passport-sized photographs compliant with ICAO specifications (one certified on reverse by authorized recommender).
+  - **Recommender:** Application form certified by a Justice of the Peace, District Officer, Legal Practitioner, Medical Doctor, Magistrate, Minister of Religion, or Bank Manager who has known the applicant for at least one year.
+  - **For minors (under 16):** Accompanied by parent or legal guardian; original birth certificate; parents' IDs and marriage certificate; written consent from both parents.
+  - **In case of loss/theft:** Mandatory Police Report from Fiji Police Force and sworn Statutory Declaration detailing the circumstances of loss.
+  - **Biometrics:** Mandatory in-person enrollment (digital facial photography, live electronic signature, and ten fingerprints) at Immigration Department offices.
+- **Application & Delivery Channels:**
+  - In-person submission and enrollment at Department of Immigration Headquarters (Suva) or regional divisions in Nadi, Lautoka, and Labasa.
+  - Turnaround: Standard ~10 working days; urgent 2 to 3 working days (or same-day/holiday emergency upon payment of weekend tariff).
+  - Delivery: Collected in person by applicant upon surrender of receipt slip and cancellation of old passport.
+
+---
+
+### 20.2 Papua New Guinea (PG / PNG) — Papua New Guinea Immigration and Citizenship Authority (PNGICA)
+
+- **Administering Authority:** Papua New Guinea Immigration and Citizenship Authority (PNGICA), Government of Papua New Guinea
+- **Primary Portals:**
+  - Official ICA Portal: `https://ica.gov.pg/`
+  - MICA Online Payment Gateway: `https://ica.gov.pg/`
+- **Statutory Framework:**
+  - Papua New Guinea Passports Act (Chapter 17) and Migration Act 1978; Migration Regulations.
+- **Domestic Fee Schedule (in PNG Kina — PGK / K):**
+  - **Standard Ordinary Passport:**
+    - **Standard Processing (5-year validity):** **K100.00**
+  - **Fast-Track / Express Processing Service:**
+    - **Fast-Track Priority Processing (2 working days):** Additional surcharge of **K200.00** on base fee (total: **K300.00**).
+  - **Lost, Stolen, or Damaged Passport Replacement Penalties:**
+    - First lost or damaged passport replacement penalty: **K200.00** (higher statutory penalties apply for subsequent repeat losses).
+  - **Standard Turnaround Timeline:**
+    - Standard processing: **7 to 15 working days**.
+  - **Evidence confidence: `DIRECT`** — established by Migration Service Fees published on `ica.gov.pg`.
+- **Consular Fee Schedule:**
+  - Via PNG High Commissions and Embassies abroad (e.g. Canberra, Sydney, Brisbane, Wellington, London, Washington).
+  - Consular passport fee: ~AUD $150.00 / USD $100.00 / GBP £70.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official mission fee schedules.
+- **Civil Identity & Document Checklists:**
+  - **National Identity (NID) Proof:**
+    - Certified or notarized copy of the **NID Birth Certificate** issued by the PNG Civil and Identity Registry (PNGCIR / NID Office) — mandatory for all first-time applicants.
+    - Certified copy of the **NID Card** (National Identity Card).
+  - **Application Form:** Travel Document Application Form (**Form FA 81**), completed in applicant's own handwriting or typed.
+  - **Certificate Regarding Applicant (Section 13):** Must be commissioned and signed by a registered Lawyer, Magistrate, Commissioner of Oaths, or Minister of Religion who has known the applicant for at least 3 years.
+  - **Photographs:** Two (2) recent identical passport-sized photographs; one certified on reverse by the certifier of Section 13.
+  - **Evidence of Citizenship (Attachment A):** Completed declaration of citizenship status and parental lineage.
+  - **For minors (under 16):** Parental consent signed by both parents; child's NID birth certificate; copies of parents' NID cards or passports.
+  - **In case of loss/theft:** Police Report from the Royal Papua New Guinea Constabulary (RPNGC) and sworn Statutory Declaration detailing how the passport was lost.
+  - **Fee Payment Receipt:** Original Migration Service Fees (MSF) receipt from the cash office or MICA online payment confirmation.
+- **Application & Delivery Channels:**
+  - In-person lodgment at PNGICA Head Office (Central Government Offices, Tower A, Waigani, Port Moresby) or dispatched via registered post to PNG Passports Branch (P.O. Box 1790, Boroko, NCD).
+  - Processing: Standard 7–15 working days; fast-track 2 working days.
+  - Delivery: Collected in person or dispatched via secure mail.
+
+---
+
+### 20.3 Samoa (WS / WSM) — Ministry of the Prime Minister and Cabinet (MPMC)
+
+- **Administering Authority:** Immigration Division, Ministry of the Prime Minister and Cabinet (MPMC), Independent State of Samoa
+- **Primary Portals:**
+  - Ministry Official Portal: `https://www.mpmc.gov.ws/`
+  - Samoa Government Services Portal: `https://mygov.gov.ws/`
+- **Statutory Framework:**
+  - Samoa Passports Act 2008, Passports Regulations, and Immigration Act 2020.
+- **Domestic Fee Schedule (in Samoan Tala — WST / SAT):**
+  - **Standard Electronic Passport (5-day turnaround, 5-year validity):**
+    - **Adults (aged 17 years and older):** **WST 200.00**
+    - **Minors / Children (aged 16 years and under):** **WST 100.00**
+  - **Urgent / Express Processing Service (2-day turnaround):**
+    - **Adults:** **WST 240.00**
+    - **Minors / Children:** **WST 140.00**
+  - **Lost, Stolen, or Damaged Passport Replacement Fees:**
+    - **Standard Processing (5 working days):** Adult **WST 400.00** / Child **WST 200.00**
+    - **Urgent Processing (2 working days):** Adult **WST 440.00** / Child **WST 250.00**
+  - **Evidence confidence: `DIRECT`** — established by Samoa Immigration Regulations published on `mpmc.gov.ws` and `mygov.gov.ws`.
+- **Consular Fee Schedule:**
+  - Via Samoan High Commissions and Consulates General abroad (e.g. Wellington, Auckland, Canberra, Sydney, Pago Pago, Brussels).
+  - Consular passport fee: ~NZD $250.00 adult / NZD $125.00 child (urgent: NZD $300.00 adult / NZD $175.00 child).
+  - **Evidence confidence: `DIRECT`** — confirmed via official high commission notices.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Births, Deaths and Marriages (BDM) Division, Ministry of Justice and Courts Administration (MJCA).
+  - **Marital Status:** Original Marriage Certificate (for married females adopting husband's surname).
+  - **Recommender / Certificate of Identity:** Section 6 of the passport application form must be certified by an authorized citizen of standing (Fa'amasino / Judge / Magistrate, Faife'au / Ordained Minister of Religion, Pulenu'u / Sui o Nu'u / Village Mayor, Lawyer, or Medical Doctor) who has known the applicant for at least one year.
+  - **Photographs:** Two (2) recent identical passport photos (white background, neutral expression); one certified on reverse by the recommender.
+  - **For minors (16 and under):** Both parents' presence and photo ID; child's birth certificate; signed parental consent declaration.
+  - **In case of loss/theft:** Mandatory Police Report from the Samoa Police Service and sworn Statutory Declaration of Loss.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo, electronic signature, and fingerprints) at the Immigration Division.
+- **Application & Delivery Channels:**
+  - In-person attendance and submission at the Immigration Division, Government Building, Matagialalua, Apia.
+  - Turnaround: Standard 5 working days; urgent 2 working days.
+  - Delivery: Collected in person by applicant upon surrender of receipt slip and cancellation of old passport.
+
+---
+
+### 20.4 Solomon Islands (SB / SLB) — Immigration Division, MCILI
+
+- **Administering Authority:** Immigration Division, Ministry of Commerce, Industries, Labour and Immigration (MCILI), Solomon Islands Government
+- **Primary Portals:**
+  - Ministry Official Portal: `https://commerce.gov.sb/`
+  - Immigration Division Portal: `https://immigration.gov.sb/`
+- **Statutory Framework:**
+  - Solomon Islands Passports Act (Cap. 61) and Passports Regulations.
+- **Domestic Fee Schedule (in Solomon Islands Dollars — SBD):**
+  - **Standard Ordinary Electronic Passport (e-Passport):**
+    - **Uniform Ordinary Issuance Fee (10-year validity):** **SBD $1,000.00**
+  - **Expedited / Urgent Processing Service:**
+    - Priority / Express handling available at the Honiara passport unit (~3 to 5 working days turnaround).
+  - **Lost, Stolen, or Damaged Passport Replacement:**
+    - Statutory replacement fee for lost or damaged passports with mandatory police clearance and statutory declaration.
+  - **Fee Payment Channel:**
+    - Application fees must be paid directly at the **Ministry of Finance and Treasury (MoFT)** cashier counter prior to lodging the application at the Immigration Office.
+  - **Standard Turnaround Timeline:**
+    - Standard processing: **14 working days** (~2 weeks).
+  - **Evidence confidence: `DIRECT`** — published on `commerce.gov.sb` and `immigration.gov.sb`.
+- **Consular Fee Schedule:**
+  - Via Solomon Islands High Commissions and Embassies abroad (e.g. Canberra, Suva, Port Moresby, Wellington, London, New York).
+  - Overseas ordinary passport fee: ~AUD $200.00 / USD $150.00 plus diplomatic dispatch fees.
+  - **Evidence confidence: `DIRECT`** — confirmed via official high commission notices.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship:** Certified Birth Certificate issued by the Civil Registry Office, Ministry of Home Affairs.
+  - **Statutory Declarations:**
+    - **Declaration A:** Completed and signed by a close family member confirming parentage and citizenship.
+    - **Declaration B:** Completed and signed by an independent citizen of standing (Legal Practitioner, Magistrate, Minister of Religion, Senior Public Officer) who has known the applicant for at least two years.
+  - **Photographs:** Two (2) recent passport-sized photographs (one certified on reverse by the person completing Declaration B).
+  - **Payment Receipt:** Original official receipt issued by the Ministry of Finance and Treasury (MoFT).
+  - **Renewal:** Expired or current ordinary passport booklet surrendered for cancellation.
+  - **Lost / Stolen Passports:** Official Police Report from the Royal Solomon Islands Police Force (RSIPF) and sworn Statutory Declaration of Loss.
+  - **Biometrics:** Mandatory in-person enrollment (facial photograph, electronic signature, and ten fingerprints) at the Immigration Division.
+- **Application & Delivery Channels:**
+  - In-person attendance and submission at the Immigration Division Head Office, MCILI, Honiara.
+  - Turnaround: Standard 14 working days; express handling available.
+  - Delivery: In-person collection upon presentation of receipt and identification.
+
+---
+
+### 20.5 Tonga (TO / TON) — Immigration Department, Ministry of Foreign Affairs
+
+- **Administering Authority:** Immigration Department, Ministry of Foreign Affairs, Kingdom of Tonga
+- **Primary Portals:**
+  - Ministry of Foreign Affairs: `https://foreignaffairs.gov.to/`
+  - Ministry of Information & Communications (MIC): `https://mic.gov.to/`
+  - Attorney General's Office Portal: `https://ago.gov.to/`
+- **Statutory Framework:**
+  - Kingdom of Tonga Passport Act and Passport Regulations (Cap. 62).
+- **Domestic Fee Schedule (in Tongan Paʻanga — TOP$):**
+  - **Standard Ordinary Passport:**
+    - **Adults (aged 16 years and above, 10-year validity):** **TOP$ 250.00**
+    - **Adults (aged 16 years and above, 5-year validity option):** **TOP$ 150.00**
+    - **Minors / Children (under 16 years of age, 5-year validity):** **TOP$ 100.00**
+  - **Replacement of Lost, Stolen, or Damaged Passports:**
+    - Prescribed replacement fee with mandatory Police Report and sworn declaration of loss.
+  - **Evidence confidence: `DIRECT`** — established by Tonga Passport Regulations published on `ago.gov.to`.
+- **Consular Fee Schedule:**
+  - Via Tongan High Commissions and Consulates General abroad (e.g. Canberra, Wellington, Auckland, London, San Francisco).
+  - Consular fees: ~NZD $200.00 / AUD $180.00 / USD $150.00 plus diplomatic pouch fee.
+  - **Evidence confidence: `DIRECT`** — confirmed via official mission schedules.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Vital Statistics Division, Ministry of Justice.
+  - **National Identification:** Tongan National ID Card (if issued).
+  - **Application Form:** Completed Form 1 Application for a Tongan Passport.
+  - **Certifier / Witness:** Application certificate must be signed by an authorized person of standing (Town Officer / *'Ofisa Kolo*, District Officer / *Pule Fakavahe*, Ordained Minister of Religion, Magistrate, or Lawyer) who has known the applicant personally for at least one year.
+  - **Photographs:** Two (2) recent passport-sized photographs (one certified on reverse by the authorized certifier).
+  - **Renewal:** Submission and surrender of previous Tongan passport booklet for cancellation.
+  - **In case of loss/theft:** Mandatory Police Report from Tonga Police and sworn Statutory Declaration of Loss.
+  - **For minors (under 16):** Accompanied by parent or legal guardian; child's birth certificate; parents' IDs and written parental consent.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph and biometric fingerprints) at the Immigration Department.
+- **Application & Delivery Channels:**
+  - In-person submission at the Immigration Department Headquarters, Ministry of Foreign Affairs, Nuku'alofa, or sub-offices in Vava'u.
+  - Turnaround: Standard ~10 to 14 working days.
+  - Delivery: In-person collection upon presentation of receipt and ID.
+
+---
+
+### 20.6 Vanuatu (VU / VUT) — Department of Vanuatu Immigration and Passport Services (VIPS)
+
+- **Administering Authority:** Department of Vanuatu Immigration and Passport Services (VIPS), Ministry of Internal Affairs, Republic of Vanuatu
+- **Primary Portals:**
+  - Official VIPS Portal: `https://immigration.gov.vu/`
+- **Statutory Framework:**
+  - Vanuatu Passports Act [Cap. 108] and Passports Regulations.
+- **Domestic Fee Schedule (in Vanuatu Vatu — VUV / VT):**
+  - **Standard Biometric Electronic Passport (Normal Processing, ~3 working days):**
+    - **Adults (aged 18 to 64 years, 10-year validity):** **20,000 VT**
+    - **Minors / Children (aged 0 to 17 years, 5-year validity):** **10,000 VT**
+    - **Senior Citizens (aged 65 years and older):** **10,000 VT**
+  - **Express / Urgent Processing Service Tiers:**
+    - **Express Urgent Processing (1-day turnaround):** **30,000 VT** (adult).
+  - **Lost, Stolen, or Damaged Passport Replacement Penalties:**
+    - Statutory replacement penalty fee: **50,000 VT** (in addition to mandatory police loss certificate and statutory declaration).
+  - **Evidence confidence: `DIRECT`** — established by VIPS regulations published on `immigration.gov.vu`.
+- **Consular Fee Schedule:**
+  - Via Vanuatu diplomatic missions abroad (e.g. Canberra, Suva, Nouméa, Beijing, Brussels).
+  - Consular e-passport fee: ~AUD $300.00 / USD $220.00.
+  - **Evidence confidence: `DIRECT`** — published on official mission notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Card:** Valid Vanuatu National ID Card issued by the Department of Civil Status.
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Vanuatu Civil Registry.
+  - **Proof of Marital Status:** Original Marriage Certificate (mandatory for married females taking spouse's surname).
+  - **Citizenship Certificate:** Mandatory for naturalized citizens, together with passport copy from country of origin.
+  - **Application Form:** Official VIPS Passport Application Form completed in clear block print.
+  - **Photographs:** Two (2) recent passport-sized photographs (white background); live digital photograph also captured at enrollment counter.
+  - **For minors (0–17):** Presence of child; child's birth certificate; parents' National ID cards and passports; signed parental consent.
+  - **In case of loss/theft:** Official Police Report from Vanuatu Police Force and sworn Statutory Declaration of Loss.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at VIPS.
+- **Application & Delivery Channels:**
+  - In-person attendance and submission at VIPS Head Office (Kumul Highway, Port Vila, Efate) or Northern District Office (Luganville, Espiritu Santo).
+  - Turnaround: Normal ~3 working days; express 1 working day.
+  - Delivery: In-person collection upon presentation of receipt slip and surrender of previous passport for cancellation.
 
 ---
