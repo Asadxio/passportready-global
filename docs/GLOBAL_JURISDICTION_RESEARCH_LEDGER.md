@@ -39,7 +39,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BS** | BHS | Bahamas | Sovereign State | Passport Office, Ministry of Foreign Affairs (`mofa.gov.bs`) | `primary_sources_audited` | E-passport fees: Adult 15½+ (10-yr) $50.00; Minor <15½ (5-yr) $25.00; Frequent Traveller (expanded) $100.00 (DIRECT). Expedited tiers: 36–48 hrs +$300.00; same-day +$350.00; lost replacement rush +$75–$375. National Insurance Board (NIB) Smart Card + birth certificate (RGD) mandatory; in-person or MyGateway (online adult renewal). |
 | **BH** | BHR | Bahrain | Sovereign State | Nationality, Passports & Residence Affairs (NPRA), MOI — `https://www.npra.gov.bh/` | `primary_sources_audited` | Biometric e-passport: First issue BHD 12 (adult) / BHD 6 (senior 60+); Renewal/replacement BHD 15 (adult) / BHD 7.5 (senior 60+) (DIRECT). Validity 10-yr adult / 5-yr minor. National ID (Smart Card/CPR) mandatory; online via bahrain.bh with eKey or NPRA app; NPRA service centers. |
 | **BB** | BRB | Barbados | Sovereign State | Barbados Immigration Department, Ministry of Home Affairs (`immigration.gov.bb`) | `primary_sources_audited` | Passports & Travel Documents Regs: Adult 16+ (10-yr, Form A) BDS$ 150.00; Minor <16 (5-yr, Form B) BDS$ 100.00; Urgent 2–5 days BDS$ 225.00; Express 1-day BDS$ 300.00; Lost/damaged penalty fee BDS$ 300.00 (DIRECT). Barbados Trident ID card + birth certificate + Section 10 Guarantor mandatory; in-person biometrics at Princess Alice Highway, Bridgetown. |
-| **BY** | BLR | Belarus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BY** | BLR | Belarus | Sovereign State | ДГиМ МВД Республики Беларусь (`mvd.gov.by` / `nalog.gov.by`) | `primary_sources_audited` | Налоговый кодекс & Указ № 107 (1 БВ = 45 BYN): Паспорт 1996 г. (10-yr) 1 БВ (45 BYN; дети <14 бесплатно первый раз); ID-карта 1,5 БВ (67,50 BYN); Биометрический паспорт (10-yr) 2 БВ (90 BYN; дети <14, пенсионеры 1,5 БВ) (DIRECT). Ускорение: 15 дней +1 БВ, 7 дней +2 БВ. Оплата ЕРИП. ⚠️ Указ № 278: выдача за рубежом ЗАПРЕЩЕНА; граждане обязаны обращаться лично в ОГиМ в Беларуси. |
 | **BE** | BEL | Belgium | Sovereign State | SPF Affaires étrangères / Communes belges | `primary_sources_audited` | Primary source audited (Batch 4). Base federal tariffs: Adult 18+ (7-yr) €65 standard (€240 urgent, €350 superurgente); Minor <18 (5-yr) €35 standard (€210 urgent, €320 superurgente); plus municipal tax. Consular adult €75 standard / €210 urgent. eID required; ICAO photo. |
 | **BZ** | BLZ | Belize | Sovereign State | Dept. of Border Management & Immigration, MFAFTI (`immigration.gov.bz`) | `primary_sources_audited` | Belize Electronic Passport System (BEPS): Adult 16+ (10-yr) BZ$ 200.00; Minor <16 (5-yr) BZ$ 150.00; 24-hr expedite +BZ$ 300.00; 48-hr expedite +BZ$ 130.00; 5-day emergency +BZ$ 100.00; Lost replacement penalty +BZ$ 200.00 (DIRECT). Social Security Card (SSB) + Vital Statistics birth cert + Form 3A Recommender mandatory; in-person biometrics. |
 | **BJ** | BEN | Benin | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -52,8 +52,8 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BV** | BVT | Bouvet Island | Territory / Special Region | Bouvet Island (Uninhabited subantarctic volcanic island; Norwegian dependency) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
 | **IO** | IOT | British Indian Ocean Territory | Territory / Special Region | British Indian Ocean Territory (No permanent civilian population; UK military/admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **VG** | VGB | British Virgin Islands | Territory / Special Region | Civil Registry & Passport Office BVI (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **BN** | BRN | Brunei | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **BG** | BGR | Bulgaria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BN** | BRN | Brunei | Sovereign State | Jabatan Imigresen dan Pendaftaran Kebangsaan (JIPK) (`immigration.gov.bn` / `moha.gov.bn`) | `primary_sources_audited` | Brunei Passports Act (Cap 146): Standard ordinary biometric e-passport (5-year validity across all ages): BND $60.00 (DIRECT). Lost passport replacement penalty surcharge: 1st instance BND $150.00 (total BND $210); 2nd instance BND $300.00; 3rd instance BND $450.00. Turnaround ~3–7 working days. Brunei Yellow Smart IC + original Birth Certificate mandatory; appointment booking via QueUp app; in-person biometrics at JIPK headquarters. |
+| **BG** | BGR | Bulgaria | Sovereign State | Дирекция БДС, МВР (`mvr.bg/dbds` / `mvr.bg`) | `primary_sources_audited` | Тарифа № 4 МВР & ЗБЛД (New generation 27 Apr 2026): 5-year passport (14–70): Обикновена 27 € (52.80 лв.), Бърза 54 €, Експресна 135 €; 10-year option (18–70): Обикновена 29 € (56.71 лв.), Бърза 58 €, Експресна 145 € (DIRECT). Children <14: 1st passport 7 € / subsequent 14 €. Експресна (8h) collection strictly at ДБДС Sofia. Лична карта / Удостоверение за раждане mandatory; biometrics at РУ / ОДМВР. |
 | **BF** | BFA | Burkina Faso | Sovereign State | Division de la Migration, DGPN / ONI (`police.gov.bf` / `oni.bf`) | `primary_sources_audited` | Décret portant tarification des passeports: Standard biometric passport (5-year validity) 50 000 FCFA + 200 FCFA fiscal stamp (total 50 200 FCFA) (DIRECT). Turnaround ~7 to 15 working days. CNIB (Carte Nationale d'Identité Burkinabè) légalisée + Copie légalisée d'acte de naissance + Certificat de nationalité burkinabè + Casier judiciaire (<3mo) mandatory; in-person biometrics at Division de la Migration (Ouagadougou / Bobo-Dioulasso). |
 | **BI** | BDI | Burundi | Sovereign State | Commissariat Général des Migrations (CGM) (`migration.gov.bi`) | `primary_sources_audited` | Ordonnance ministérielle conjointe & CGM: Passeport biométrique ordinaire (10-yr adult 16+ / 5-yr minor <16) 235 000 BIF (DIRECT). Turnaround ~5 to 10 working days. Laissez-passer: 30 000 BIF; CEPGL card: 18 000 BIF. Carte Nationale d'Identité (CNI) burundaise + Acte de naissance certifié conforme + Attestation de résidence mandatory; in-person biometrics at CGM Kigobe, Bujumbura. |
 | **CV** | CPV | Cabo Verde | Sovereign State | Direção de Estrangeiros e Fronteiras (DEF) / Polícia Nacional (`gov.cv` / `policianacional.cv`) | `primary_sources_audited` | Regulamento do Passaporte Eletrónico Cabo-Verdiano (PEC): Pedido normal 5.600 CVE; Pedido urgente 6.000 CVE; Consular no estrangeiro 69,00 € normal / 120,00 € urgente (DIRECT). Validade: 5 anos (adultos/crianças ≥5), 2 anos (<5). Cartão Nacional de Identificação (CNI) cabo-verdiano ou BI válido + Certidão de Nascimento mandatory; in-person biometrics at DEF or Casa do Cidadão. |
@@ -70,7 +70,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KM** | COM | Comoros | Sovereign State | Direction Générale de la Sûreté Nationale (DGSN) (`beit-salam.km`) | `primary_sources_audited` | Décret présidentiel titres biométriques: Standard biometric passport (5-year validity) 40 000 KMF (DIRECT). Consular fee abroad ~EUR 150–200. Carte Nationale d'Identité (CNI biométrique comorienne) + Extrait d'acte de naissance + Certificat de nationalité comorienne mandatory; in-person biometrics at Centre de Production des Titres Sécurisés (DGSN) Moroni, Mutsamudu, or Fomboni. |
 | **CK** | COK | Cook Islands | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **CR** | CRI | Costa Rica | Sovereign State | DGME (`migracion.go.cr`) / Banco de Costa Rica (`bancobcr.com`) | `primary_sources_audited` | Ley General de Migración y Extranjería: Pasaporte Biométrico USD $75.00 + CRC ₡250 (timbre de parques nacionales) + BCR banking commission (~$12–$15 USD) + Correos de Costa Rica delivery (~₡5,763 CRC) (DIRECT). Validity: 10-yr adult (18+), 5-yr minor. Cédula de Identidad (TSE) mandatory for 18+; TIM for 12–17; parental presence for minors. Appointment via BCR Punto País or Correos VES. |
-| **HR** | HRV | Croatia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **HR** | HRV | Croatia | Sovereign State | Ministarstvo unutarnjih poslova (MUP) (`mup.gov.hr` / `gov.hr`) | `primary_sources_audited` | Zakon o putnim ispravama: Redovni postupak (30 days) 42,47 EUR (counter or e-Građani; +3,98 EUR courier delivery); Žurni postupak: PUZ Zagreb 54,42 EUR (48h), ostale PU 61,72 EUR (3d) (DIRECT). Validity: 10 years (age 21+); 5 years (under 21). Consular: 55,74 EUR (<21) / 74,32 EUR (21+). e-Osobna iskaznica (eOI) or Domovnica + birth cert mandatory; in-person biometrics (photo, 2 fingerprints, signature from age 12+). |
 | **CU** | CUB | Cuba | Sovereign State | MINREX (cubaminrex.cu) — domestic: MININT/DIIE | `primary_sources_audited` | Domestic: CUP 2,500 (PARTIAL). Consular via MINREX Res. 37/2026: Adult USD/EUR 200; Minor USD/EUR 160; Provisional USD/EUR 120 (DIRECT). Carné de Identidad mandatory. In-person DIIE enrollment. Emigration controls may apply to "regulated" professionals. |
 | **CW** | CUW | Curaçao | Territory / Special Region | Cabinet of the Governor of Curaçao (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **CY** | CYP | Cyprus | Sovereign State | Civil Registry & Migration Dept. (`moi.gov.cy/crmd`) / `gov.cy` | `primary_sources_audited` | CRMD statutory fees: Adult 18+ (10-yr) €70.00; Minor <18 (5-yr) €45.00; Accelerated fast-track surcharge +€50.00 (total €120 adult / €95 minor); Lost/damaged replacement doubles to €140 adult / €90 minor (DIRECT). Cypriot ID card (Δελτίο Ταυτότητας) mandatory; parental consent for minors; biometric capture at District Administration Offices or Citizen Service Centres (KEP). |
@@ -201,8 +201,8 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SC** | SYC | Seychelles | Sovereign State | Dept. of Immigration and Civil Status (`ics.gov.sc`) | `primary_sources_audited` | Passports Act (Cap. 159) & Regs: Standard biometric passport (10-yr adult / 5-yr minor) SCR 750; Misplaced/lost passport surcharge +SCR 1,500 (total SCR 2,250); Overseas courier surcharge SCR 1,000 (DIRECT). Turnaround ~72 hours (3 working days); paperless application (no form). National Identity Number (NIN) Card + birth cert mandatory; in-person biometrics at Independence House, Victoria, Mahé. |
 | **SL** | SLE | Sierra Leone | Sovereign State | Sierra Leone Immigration Department (SLID) (`slid.gov.sl`) | `primary_sources_audited` | Passports Act & SLID statutory tariff: Standard ordinary biometric passport (5-year validity) USD $100.00 (pegged in local currency via approved voucher system at ~SLE 2,280) (DIRECT). Turnaround ~5 to 10 working days. NCRA National Identification Number (NIN) strictly mandatory + NCRA certified birth certificate + bank voucher receipt; in-person biometrics at SLID HQ, Freetown. |
 | **SX** | SXM | Sint Maarten (Dutch part) | Territory / Special Region | Cabinet of the Governor of Sint Maarten (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
-| **SK** | SVK | Slovakia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **SI** | SVN | Slovenia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SK** | SVK | Slovakia | Sovereign State | Oddelenie dokladov PZ / Ministerstvo vnútra SR (`minv.sk` / `slovensko.sk`) | `primary_sources_audited` | Zákon č. 145/1995 Z. z. (Položka 33, eff. 1 Apr 2024): Adults 16+ (10-yr): 30 days 50 €, 10 days 100 €, 2 days 150 €; Children 6–16 (5-yr): 20 € / 40 € / 60 €; Children <6 (2-yr): 12 € / 24 € / 36 € (DIRECT). Lost/damaged penalty: 1st time 2x (100 € adult), repeated 5x (250 €), 3rd+ 10x (500 €). Občiansky preukaz (OP) mandatory; in-person biometrics (fingerprints & signature from age 12+) at any Oddelenie dokladov PZ. |
+| **SI** | SVN | Slovenia | Sovereign State | Upravne enote / Ministrstvo za notranje zadeve (`e-uprava.gov.si` / `gov.si`) | `primary_sources_audited` | ZUT Taksa 14 & Odredba o ceni obrazcev (New generation 1 Jun 2026): Total fee (form 44,77 € + admin tax): Adults 18+ (10-yr) 58,87 €; Children 3–18 (5-yr) 52,07 €; Children <3 (3-yr) 47,97 €; Provisional 1-yr 47,57 € (DIRECT). Fast-track priority collection at Cetis Celje. e-fotograf reference code + valid ID/citizenship mandatory; fingerprints from age 12+; signature from age 8+; in-person at Upravna enota. |
 | **SB** | SLB | Solomon Islands | Sovereign State | Immigration Division, MCILI (`commerce.gov.sb` / `immigration.gov.sb`) | `primary_sources_audited` | Passports Act (Cap. 61) & Regs: Standard ordinary e-passport (10-year validity) SBD $1,000.00 (DIRECT). Payable at Ministry of Finance & Treasury (MoFT) counter prior to lodgment. Civil Registry certified birth certificate + two Statutory Declarations (family member and independent citizen) mandatory; in-person biometrics at Immigration Division Honiara. |
 | **SO** | SOM | Somalia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GS** | SGS | South Georgia and the South Sandwich Islands | Territory / Special Region | South Georgia and South Sandwich Islands (No civilian population; UK admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -5729,5 +5729,269 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - **Application Location:** Servei de Tràmits del Govern (Edifici Administratiu del Govern, C/ Prat de la Creu 62-64, Andorra la Vella) or participating Comuns (Ordino, Encamp, La Massana, etc.).
 
 ---
+
+## Section 27 — Batch 25 Research Dossiers: Croatia (HR), Slovakia (SK), Slovenia (SI), Bulgaria (BG), Belarus (BY), Brunei Darussalam (BN)
+
+*Batch 25 research completed: 2026-10-21. Primary statutory dossiers established from official legislation (Croatian Zakon o putnim ispravama hrvatskih državljana, Slovak Zákon č. 647/2007 Z. z. & Zákon č. 145/1995 Z. z. Položka 33 eff. 1 Apr 2024, Slovenian Zakon o potnih listinah & ZUT Taksa 14 with 5th generation rollout 1 Jun 2026, Bulgarian Закон за българските лични документи & Тарифа № 4 МВР announced 27 Apr 2026, Belarusian Налоговый кодекс Приложение 21 & Указ № 107 / Указ № 278, Brunei Passports Act Cap 146), administering national authorities (Croatia MUP / MVEP, Slovakia Oddelenie dokladov PZ / MV SR, Slovenia Upravne enote / MNZ, Bulgaria Дирекция БДС МВР, Belarus ДГиМ МВД РБ, Brunei JIPK / MOHA), and government electronic service platforms (`mup.gov.hr`, `gov.hr`, `minv.sk`, `slovensko.sk`, `e-uprava.gov.si`, `gov.si`, `mvr.bg`, `nalog.gov.by`, `mvd.gov.by`, `immigration.gov.bn`, `mfa.gov.bn`).*
+
+---
+
+### 27.1 Croatia (HR / HRV) — Ministarstvo unutarnjih poslova (MUP)
+
+- **Administering Authority:** Ministarstvo unutarnjih poslova (MUP), Republika Hrvatska; Consular: Ministarstvo vanjskih i europskih poslova (MVEP)
+- **Primary Portals:**
+  - MUP Putovnica portal: `https://mup.gov.hr/putovnica-330/330`
+  - Portal e-Građani: `https://gov.hr/` (`https://gov.hr/en/issuing-passport-through-e-citizens/1892`)
+  - MVEP Consular Information: `https://mvep.gov.hr/` (`https://mvep.gov.hr/consular-information-246396/travel-documents/247156`)
+- **Statutory Framework:**
+  - Zakon o putnim ispravama hrvatskih državljana (*Narodne novine* br. 77/99, 133/02, 48/05, 74/09, 154/14, 82/15, 42/20)
+  - Pravilnik o obrascima i evidencijama putnih isprava hrvatskih državljana
+  - Uredba o tarifi upravnih pristojbi
+- **Validity by Age Category:**
+  - **Adults aged 21 and older:** **10 years** validity.
+  - **Minors and youth under 21 years of age:** **5 years** validity.
+- **Domestic Fee Schedule (in EUR):**
+  - **Redovni postupak (Standard regular procedure, up to 30 days):**
+    - Physical submission at Police Administration/Station counter: **42,47 EUR** (comprising 42,47 EUR total statutory fee).
+    - Via e-Građani electronic portal (with personal pickup at police administration): **42,47 EUR**.
+    - Via e-Građani with secure courier home delivery to registered residential address: **46,45 EUR** (42,47 EUR + 3,98 EUR delivery).
+  - **Žurni postupak (Expedited fast-track procedure):**
+    - Policijska uprava zagrebačka (PUZ - Petrinjska 30 / Heinzelova 98, Zagreb): **54,42 EUR** (delivered within 48 hours / 2 business days).
+    - At other regional police administrations: **61,72 EUR** (delivered within 3 business days).
+  - **Evidence confidence: `DIRECT`** — verified via `mup.gov.hr` and `gov.hr`.
+- **Consular Fee Schedule (via MVEP diplomatic missions abroad):**
+  - Applicants aged 21 and older (10-year validity): **74,32 EUR**.
+  - Applicants under 21 years (5-year validity): **55,74 EUR**.
+  - **Evidence confidence: `DIRECT`** — confirmed via `mvep.gov.hr`.
+- **Civil Identity & Document Checklists:**
+  - **Adult Citizens:**
+    - Valid Croatian electronic identity card (*e-Osobna iskaznica — eOI*) or classic ID card with OIB (*Osobni identifikacijski broj*).
+    - If applying for first passport without an ID card: Proof of Croatian citizenship (*Domovnica*) and Birth Certificate extract (*Izvadak iz matice rođenih*).
+    - Payment proof: Bank/FINA/Pošta receipt or e-Pristojbe confirmation slip.
+    - Previous passport booklet (if renewing) presented for physical invalidation.
+  - **Minor Citizens (<18):**
+    - Must have their own individual passport (children are never endorsed on parents' passports).
+    - Minor's birth certificate and Domovnica (for first passport).
+    - Application submitted by parents: both parents present, or one parent with signed written consent/certified power of attorney of the other parent, or final court custody decision.
+    - Children aged 12 and older must be present in person for biometric fingerprint capture and signature.
+  - **Electronic Application (e-Građani) Restrictions:**
+    - Strictly limited to adult citizens possessing a valid electronic identity card (eOI) with active qualified signature certificates whose biometrics were captured by MUP within the preceding 5 years. First-time issuances, minors, and name/status changes must apply in person at the police station counter.
+  - **Biometrics:** Live digital photography or 1 standard biometric photograph (35x45 mm), two digital fingerprints (scanned for age 12+), and digital signature on-site.
+  - **Lost/Stolen/Damaged:** Mandatory immediate report to the nearest police station; declaration on Form 7; gazette publication fee abolished.
+
+---
+
+### 27.2 Slovakia (SK / SVK) — Oddelenie dokladov Policajného zboru / Ministerstvo vnútra SR (MV SR)
+
+- **Administering Authority:** Oddelenie dokladov odboru poriadkovej polície okresného riaditeľstva Policajného zboru / Ministerstvo vnútra Slovenskej republiky (MV SR); Consular: Ministerstvo zahraničných vecí a európskych záležitostí SR (MZVEZ SR)
+- **Primary Portals:**
+  - Ústredný portál verejnej správy: `https://www.slovensko.sk/sk/zivotne-situacie/zivotna-situacia/_spravne-poplatky-za-cestovny-p/`
+  - Ministerstvo vnútra SR (FAQ / Doklady): `https://pes.minv.sk/` / `https://www.minv.sk/`
+  - Slovenská legislatíva Slov-Lex: `https://www.slov-lex.sk/`
+  - MZVEZ SR (Consular): `https://www.mzv.sk/`
+- **Statutory Framework:**
+  - Zákon č. 647/2007 Z. z. o cestovných dokladoch a o zmene a doplnení niektorých zákonov v znení neskorších predpisov
+  - Zákon č. 145/1995 Z. z. o správnych poplatkoch v znení neskorších predpisov (Položka 33 Sadzobníka správnych poplatkov, novela účinná od 1. apríla 2024)
+- **Passport Validity by Age:**
+  - **Children under 6 years:** **2 years** validity.
+  - **Children from 6 to 16 years:** **5 years** validity.
+  - **Citizens aged 16 and older:** **10 years** validity.
+- **Domestic Fee Schedule (in EUR — Položka 33, eff. 1 April 2024 / reviewed Dec 2025):**
+  - **Standard Processing (do 30 dní):**
+    - Children under 6 years: **12 €**
+    - Children from 6 to 16 years: **20 €**
+    - Citizens aged 16 and older: **50 €**
+  - **Accelerated Processing (do 10 pracovných dní — 2x base fee):**
+    - Children under 6 years: **24 €**
+    - Children from 6 to 16 years: **40 €**
+    - Citizens aged 16 and older: **100 €**
+  - **Express Priority Processing (do 2 pracovných dní — 3x base fee):**
+    - Children under 6 years: **36 €**
+    - Children from 6 to 16 years: **60 €**
+    - Citizens aged 16 and older: **150 €**
+  - **Surcharges for Lost, Stolen, or Damaged Passports (Položka 33 poznámka):**
+    - 1st loss, theft, or damage within booklet validity: **Double fee (2x)** of the applicable rate (e.g. 100 € for an adult 30-day passport).
+    - 2nd loss, theft, or damage repeatedly within 2 consecutive years: **Five-fold fee (5x)** of the applicable rate (e.g. 250 € for an adult).
+    - 3rd and subsequent loss within 2 consecutive years: **Ten-fold fee (10x)** of the applicable rate (e.g. 500 € for an adult).
+    - Exemption: Penalty multiplier waived if the document was stolen through violent crime and promptly reported to the Police.
+    - Failure to promptly report a lost or stolen passport constitutes an administrative infraction subject to a fine of up to **331 €**.
+  - **Evidence confidence: `DIRECT`** — established from `slovensko.sk` and `minv.sk`.
+- **Consular Fee Schedule (via Slovak diplomatic missions abroad):**
+  - Standard consular processing: Children <6: approx. **25 €**; Children 6–16: approx. **35 €**; Adults 16+: approx. **75 €**.
+  - **Evidence confidence: `DIRECT`** — verified on `mzv.sk`.
+- **Civil Identity & Document Checklists:**
+  - **Adults (16+):** Valid Slovak Identity Card (*Občiansky preukaz — OP*); previous passport (if issued) for physical cancellation; payment confirmation (e-Kolok). If applying without an OP: Certificate of Slovak citizenship (*Osvedčenie o štátnom občianstve SR*) and Birth Certificate (*Rodný list*).
+  - **Minors (under 15/18):** Accompanied by legal guardian (parent); child's birth certificate; parent's valid Občiansky preukaz. Children must be personally present for photo/biometric enrollment.
+  - **Biometrics:** Live digital facial photo, two digital fingerprints (scanned for age 12+), and electronic signature captured on-site at any Oddelenie dokladov Policajného zboru nationwide regardless of registered residence.
+
+---
+
+### 27.3 Slovenia (SI / SVN) — Upravne enote / Ministrstvo za notranje zadeve (MNZ)
+
+- **Administering Authority:** Upravne enote (Administrative Units) / Ministrstvo za notranje zadeve (MNZ), Republika Slovenija; Consular: Ministrstvo za zunanje in evropske zadeve (MZEZ)
+- **Primary Portals:**
+  - Portal eUprava: `https://e-uprava.gov.si/` (`https://e-uprava.gov.si/en/podrocja/personal-documents-certificates-change-of-residence/personal-documents-digital-certificate/passport.html?lang=en`)
+  - Portal Gov.si: `https://www.gov.si/`
+  - Portal eSamonaročanje: `https://esamonarocanje.gov.si/`
+- **Statutory Framework:**
+  - Zakon o potnih listinah (ZPL, Uradni list RS, št. 29/11 – uradno prečiščeno besedilo)
+  - Zakon o upravnih taksah (ZUT, Taksa št. 14 in Taksa št. 1)
+  - Odredba o ceni obrazcev potnih listin (New generation introduced 1 June 2026)
+- **New Generation Biometric Passport (Effective 1 June 2026):**
+  - Rollout of the 5th generation Slovenian biometric travel documents featuring an updated graphic layout, over 100 new security elements, a polycarbonate data page, embedded QR code, and revised document form manufacturing costs (44,77 € base form cost).
+- **Fee Schedule & Validity (in EUR, effective 1 June 2026 onwards):**
+  - **Adults aged 18 and older (10-year validity):**
+    - Form cost: 44,77 € + Issuance tax: 13,60 € + Application tax: 0,50 € = **58,87 €** (standard unit rounding up to 59,37 €).
+  - **Children from 3 to 18 years (5-year validity):**
+    - Form cost: 44,77 € + Issuance tax: 6,80 € + Application tax: 0,50 € = **52,07 €**
+  - **Children under 3 years (3-year validity):**
+    - Form cost: 44,77 € + Issuance tax: 2,70 € + Application tax: 0,50 € = **47,97 €**
+  - **Provisional Passport (1-year validity, for frequent loss or temporary biometric impediment):**
+    - Form cost: 44,77 € + Issuance tax: 2,30 € + Application tax: 0,50 € = **47,57 €**
+  - **Priority Issuance (Nujna izdaja):**
+    - Express priority production at Cetis Celje: delivery within 1 business day for an expedited surcharge (doubled issuance tax / approx. +14,00 € to +28,00 €).
+  - **Negligent Loss Penalty:** If a passport is lost, stolen, or damaged through negligent handling more than once in a 5-year period, double the statutory issuance administrative tax is assessed.
+  - **Evidence confidence: `DIRECT`** — established from `gov.si` and `e-uprava.gov.si`.
+- **Consular Fee Schedule (via Slovenian embassies and consulates):**
+  - Overseas diplomatic missions collect specialized consular tariffs under ZUT: approx. **70,00 € to 115,00 €** depending on validity.
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - Personal appearance is mandatory at any Upravna enota (Administrative Unit) in Slovenia. Prior appointment scheduling available via `esamonarocanje.gov.si` on eUprava.
+  - **Identity & Citizenship:** Valid Slovenian identity card (*Osebna izkaznica*) or existing passport; if applying without an ID card, proof of citizenship (*Ugotovitev državljanstva*) and birth extract (*Izpisek iz rojstne matične knjige*).
+  - **Photographic Standard:** Reference code (*potrdilo z referenčno številko*) issued by a certified professional photographer uploaded directly to the central **e-fotograf** electronic photo registry; physical paper photographs (35x45 mm) accepted only by way of exception.
+  - **Biometrics:** Two digital fingerprints scanned for all applicants aged **12 and older**; digital signature required for children aged **8 and older** (children aged 8+ must be physically present).
+  - **Minors (<18):** Application lodged by legal representative (parent); if parents live apart, custody order or consent of second parent required.
+
+---
+
+### 27.4 Bulgaria (BG / BGR) — Дирекция „Български документи за самоличност“ (ДБДС), МВР
+
+- **Administering Authority:** Дирекция „Български документи за самоличност“ (ДБДС), Министерство на вътрешните работи (МВР), Република България; Consular: Министерство на външните работи (МВнР)
+- **Primary Portals:**
+  - Дирекция БДС: `https://www.mvr.bg/dbds`
+  - Портал на МВР: `https://www.mvr.bg/`
+  - Портал за електронни административни услуги на МВР: `https://e-uslugi.mvr.bg/`
+- **Statutory Framework:**
+  - Закон за българските лични документи (ЗБЛД)
+  - Тарифа № 4 за таксите, които се събират в системата на Министерството на вътрешните работи по Закона за държавните такси
+  - Постановление на Министерския съвет за изменение на Тарифа № 4 (New generation biometric travel documents announced 27 April 2026)
+- **New Generation Biometric Travel Documents (Announced 27 April 2026):**
+  - Introduction of modern generation passport with upgraded polycarbonate page and option for **10-year validity** for adult citizens aged 18 to 70.
+  - MVR publishes official fees in both EUR (€) and BGN (лв.), pegged at 1 EUR = 1.95583 BGN.
+- **Domestic Fee Schedule:**
+  - **Adults (18 to 70 years) — 5-Year Passport:**
+    - Обикновена услуга (Standard, up to 30 days): **27 €** (approx. 52.80 лв.).
+    - Бърза услуга (Accelerated, up to 3 working days): **54 €** (approx. 105.60 лв.) — 2x base rate.
+    - Експресна услуга (Express, within 8 working hours): **135 €** (approx. 264.01 лв.) — 5x base rate.
+  - **Adults (18 to 70 years) — 10-Year Passport Option:**
+    - Обикновена услуга (Standard, up to 30 days): **29 €** (approx. 56.71 лв.).
+    - Бърза услуга (Accelerated, up to 3 working days): **58 €** (approx. 113.44 лв.).
+    - Експресна услуга (Express, within 8 working hours): **145 €** (approx. 283.58 лв.).
+    - *Quota Caveat:* MVR manages 10-year blank issuance; during supply adjustments, 5-year booklets are issued with fee difference compensation.
+  - **Children under 14 years (5-Year Passport):**
+    - First passport: Обикновена **7 €** (13.69 лв.) / Бърза **14 €** (27.38 лв.) / Експресна **35 €** (68.45 лв.).
+    - Subsequent passport: Обикновена **14 €** (27.38 лв.) / Бърза **28 €** (54.76 лв.) / Експресна **70 €** (136.91 лв.).
+  - **Youth from 14 to 18 years:**
+    - Обикновена **27 €** (52.81 лв.) / Бърза **54 €** (105.61 лв.) / Експресна **135 €** (264.04 лв.).
+  - **Senior Citizens over 70 years:**
+    - Обикновена **7 €** / Бърза **14 €** / Експресна **35 €**.
+  - **Persons with permanent disability (50% and above):**
+    - Обикновена **2 €** / Бърза **4 €** / Експресна **10 €**.
+  - **Express Service Restriction:** Express 8-hour service can ONLY be requested and collected at the central headquarters of the Directorate "Bulgarian Identity Documents" (ДБДС - МВР) in Sofia (бул. "Кн. Мария Луиза" 48).
+  - **Evidence confidence: `DIRECT`** — confirmed on `mvr.bg/dbds`.
+- **Consular Fee Schedule (via Bulgarian embassies and consulates abroad):**
+  - Regular diplomatic consular tariff: Adult 5-year passport: approx. **40 € to 50 €**; expedited courier pouch additions apply.
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - Valid Bulgarian Identity Card (*Лична карта*) for citizens aged 14+.
+  - For children under 14: Original Birth Certificate (*Удостоверение за раждане*) and copy.
+  - Previous passport booklet (presented for physical cancellation).
+  - For minors (<18): Personal attendance mandatory; accompanied by both parents who must sign the application; if one parent absent, certified power of attorney or court decree required.
+  - **Biometrics:** Live photography, two digital fingerprints (mandatory from age 12+), and digital signature captured on-site at any District Police Directorate (ОДМВР / РУ).
+
+---
+
+### 27.5 Belarus (BY / BLR) — Департамент по гражданству и миграции (ДГиМ), МВД РБ
+
+- **Administering Authority:** Департамент по гражданству и миграции (ДГиМ), Министерство внутренних дел Республики Беларусь (МВД РБ); Министерство по налогам и сборам (МНС)
+- **Primary Portals:**
+  - Министерство внутренних дел РБ: `https://mvd.gov.by/`
+  - Министерство по налогам и сборам: `https://nalog.gov.by/individuals/other_taxes/government_duty/`
+  - Национальный правовой интернет-портал: `https://pravo.by/`
+- **Statutory Framework:**
+  - Налоговый кодекс Республики Беларусь (Особенная часть, Приложение 21 — ставки государственной пошлины)
+  - Указ Президента Республики Беларусь № 107 «О биометрических документах»
+  - Указ Президента Республики Беларусь № 278 «О порядке выдачи документов и совершения действий» (Consular passport issuance ban)
+- **Base Unit Mechanism (Базовая величина — БВ):**
+  - Statutory rates are legislated in Basic Units (БВ). Rate effective 2026: **1 Base Unit (БВ) = 45,00 BYN** (Belarusian Rubles).
+- **Fee Schedule & Document Regimes:**
+  1. **Non-biometric Classical Passport (Паспорт гражданина Республики Беларусь образца 1996 года):**
+     - Single document functioning as domestic identity proof and foreign travel document.
+     - Adult (14 years and older, 10-year validity): **1 БВ** (**45,00 BYN**).
+     - Children under 14 years: **Free of charge (0 BYN)** on initial issuance; **1 БВ** (**45,00 BYN**) upon routine renewal.
+     - Turnaround: Standard: **1 month** (до 30 дней); Accelerated (до 15 дней): **+1 БВ** (+45,00 BYN); Urgent express (до 7 дней): **+2 БВ** (+90,00 BYN).
+  2. **Biometric Dual System (ID-карта + Биометрический паспорт):**
+     - **ID-карта (Internal biometric identity card — mandatory prerequisite):**
+       - Adults and youth aged 14+: **1,5 БВ** (**67,50 BYN**).
+       - Pensioners, persons with disabilities (Groups I & II): **1 БВ** (**45,00 BYN**).
+       - Children under 14: **Free of charge (0 BYN)**.
+       - Validity: 10 years (adults), 5 years (under 14).
+     - **Биометрический паспорт (Travel passport — foreign travel strictly):**
+       - Adults and youth aged 14+: **2 БВ** (**90,00 BYN**).
+       - Children under 14, pensioners, disabled (Groups I & II): **1,5 БВ** (**67,50 BYN**).
+       - Citizens may legally hold **two valid biometric passports simultaneously**.
+       - Validity: 10 years.
+       - Turnaround: Standard: **15 working days**; Accelerated (до 10 рабочих дней): **+1 БВ** (+45,00 BYN); Urgent (до 5 рабочих дней): **+2 БВ** (+90,00 BYN).
+     - Irreversibility: Once an applicant elects to obtain biometric documents (ID-card), they cannot revert to the non-biometric passport.
+  - **Evidence confidence: `DIRECT`** — established from `nalog.gov.by` and `mvd.gov.by`.
+- **CRITICAL Consular Restriction (Указ № 278):**
+  - Belarusian diplomatic and consular missions abroad are **legally prohibited from issuing, renewing, or exchanging passports or ID cards**.
+  - Citizens residing abroad MUST travel in person to Belarus to lodge applications at their territorial citizenship and migration department (ОГиМ). Foreign missions can only issue a temporary one-way Return Certificate (*Свидетельство на возвращение*).
+- **Civil Identity & Document Checklists:**
+  - Form/Application (*заявление*).
+  - Current passport (or birth certificate for minors under 14 receiving initial document).
+  - 4 color photographs (40x50 mm) for non-biometric passport, or live digital photo booth capture for biometric ID-card/passport.
+  - Payment confirmation: Automated payment via ERIP system (*ЕРИП: МВД -> Гражданство и миграция*) referencing applicant's personal identification number (*идентификационный номер*).
+  - **Biometrics:** Live photo, 2 fingerprints, and cryptographic digital signature stored on the chip.
+
+---
+
+### 27.6 Brunei Darussalam (BN / BRN) — Jabatan Imigresen dan Pendaftaran Kebangsaan (JIPK)
+
+- **Administering Authority:** Jabatan Imigresen dan Pendaftaran Kebangsaan (JIPK) (Immigration and National Registration Department), Kementerian Hal Ehwal Dalam Negeri (Ministry of Home Affairs - MOHA), Negara Brunei Darussalam; Consular: Kementerian Hal Ehwal Luar Negeri (Ministry of Foreign Affairs - MFA)
+- **Primary Portals:**
+  - JIPK Official Portal: `https://www.immigration.gov.bn/` (`https://www.immigration.gov.bn/en/SitePages/Travel%20Document.aspx`)
+  - Ministry of Home Affairs (MOHA): `https://www.moha.gov.bn/`
+  - Ministry of Foreign Affairs (MFA): `https://www.mfa.gov.bn/`
+- **Statutory Framework:**
+  - Brunei Passports Act (Chapter 146)
+  - Immigration Regulations of Brunei Darussalam
+- **Passport Validity:**
+  - Standard ordinary electronic biometric passport (Brunei e-Passport with ICAO contactless biometric chip) has a statutory validity of **5 years** across all categories (both adults and minors).
+- **Domestic Fee Schedule (in Brunei Dollars — BND):**
+  - Standard issuance / renewal (Adults and Minors): **BND $60.00**
+  - **Lost Passport Replacement Penalty Surcharges (payable in addition to booklet fee):**
+    - First lost instance: **BND $150.00** (total BND $210.00).
+    - Second lost instance: **BND $300.00** (total BND $360.00).
+    - Third and subsequent lost instance: **BND $450.00** (total BND $510.00).
+  - Damaged passport replacement: **BND $60.00** base fee + administrative surcharge assessed on inspection.
+  - **Turnaround:** Typically **3 to 7 working days** domestically.
+  - **Payment Channel:** Paid directly at the JIPK cashier counter via cash or local interbank debit card.
+  - **Appointment & Queuing:** Electronic queuing and appointment booking managed via the official mobile application **QueUp** (Apple iOS and Google Play) or on-site walk-in ticket distribution.
+  - **Evidence confidence: `DIRECT`** — verified via `mfa.gov.bn` and `immigration.gov.bn`.
+- **Consular Fee Schedule (via Brunei High Commissions and Embassies abroad):**
+  - Standard passport renewal abroad: equivalent to **BND $60.00** in local mission currency (e.g., GBP £35 / USD $45).
+  - Mandatory requirements: Formal explanatory letter addressed to the Director of Immigration and National Registration detailing the overseas residency/study reason, application form, smart IC copy, birth certificate copy, 4 passport photos (white background), and self-addressed pre-paid courier return envelope. Turnaround: 4 to 8 weeks due to diplomatic pouch transit.
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Brunei Smart Identity Card (Smart IC) — Yellow IC (*Kad Pengenalan Pintar Warna Kuning*) for Brunei Citizens. (Green IC for temporary residents, Purple IC for permanent residents).
+  - **Original Birth Certificate** (*Sijil Kelahiran*).
+  - Current/Previous Brunei Passport (submitted for physical invalidation).
+  - **For Minors (under 18):** Minor's Yellow IC (if 12+) or Birth Certificate; presence and Yellow ICs of parents; Parental Consent Letter (*Surat Kebenaran Ibu Bapa*).
+  - **In-person biometrics:** Digital photography, fingerprint scan (mandatory from age 12+), and digital signature at JIPK headquarters, Jalan Menteri Besar, Bandar Seri Begawan or district branches (Kuala Belait, Tutong, Temburong).
+  - **Lost/Stolen Procedure:** Mandatory Police report filed at Royal Brunei Police Force (RBPF) station, followed by endorsement at the Magistrate's / Civil Court before presenting documents at JIPK.
+
+---
+
 
 
