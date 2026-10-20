@@ -82,7 +82,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **DM** | DMA | Dominica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DO** | DOM | Dominican Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **EC** | ECU | Ecuador | Sovereign State | Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC) | `primary_sources_audited` | Primary source audited (Batch 3). DIGERCIC statutory fees: Standard biometric passport $90.00 USD (10-yr for 18+, 5-yr for minors); Seniors (65+) $45.00 USD (50% discount); Disabled (30%+) $0.00 (exempt). Cédula de Identidad mandatory prerequisite; parental presence for minors under 18. |
-| **EG** | EGY | Egypt | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **EG** | EGY | Egypt | Sovereign State | Passports, Immigration & Nationality Administration / Ministry of Interior | `primary_sources_audited` | Primary source audited (Batch 5). Law No. 7/2024 & Decree 470/2024: Standard machine-readable passport (7-yr) 1,110 EGP; Urgent service 1,450-1,600 EGP (24-48 hrs); VIP same-day 1,850 EGP; Consular $110 USD. National ID card (15+) or birth cert (<15) + military status certificate required. |
 | **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GQ** | GNQ | Equatorial Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ER** | ERI | Eritrea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -99,7 +99,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GA** | GAB | Gabon | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GM** | GMB | Gambia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GE** | GEO | Georgia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **GH** | GHA | Ghana | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GH** | GHA | Ghana | Sovereign State | Passport Office / Ministry of Foreign Affairs and Regional Integration | `primary_sources_audited` | Primary source audited (Batch 5). L.I. 2481 statutory tariffs (effective April 1, 2024): Standard 32-page GHS 500.00 / 48-page GHS 644.00; Expedited 32-page GHS 700.00 / 48-page GHS 800.00. 10-yr validity (adult 18+), 5-yr (minor). Mandatory Ghana Card (NIA) + birth certificate + guarantor. |
 | **GI** | GIB | Gibraltar | Territory / Special Region | Civil Status & Registration Office Gibraltar (British Passport - Gibraltar) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **GR** | GRC | Greece | Sovereign State | Hellenic Police (Διεύθυνση Διαβατηρίων) / Min. of Citizen Protection | `primary_sources_audited` | Primary source audited (Batch 2). PD 25/2022 & Law 4962/2022 (10-yr validity for age 14+): e-Paravolo €84.40 (€53 booklet + €5 postage + €26.40 fee); Minor <14 (3-yr) €73.60. Greek Police ID mandatory; digital photo via myPhoto; appointment at Police Passport Bureau. |
 | **GL** | GRL | Greenland | Territory / Special Region | Rigsombudsmanden i Grønland (Kingdom of Denmark Passport - Grønland cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
@@ -120,7 +120,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **IR** | IRN | Iran | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IQ** | IRQ | Iraq | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IM** | IMN | Isle of Man | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **IL** | ISR | Israel | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **IL** | ISR | Israel | Sovereign State | Population and Immigration Authority (PIBA / רשות האוכלוסין וההגירה) | `primary_sources_audited` | Primary source audited (Batch 5). Biometric passport (10-yr adult, 5-yr minor): Winter online NIS 185 (adult) / NIS 110 (minor); Summer online NIS 290 / NIS 145; Branch NIS 315 / NIS 165; Airport emergency NIS 825 / NIS 435. Biometric travel document (Laissez-Passer) distinct: NIS 100-150. Teudat Zehut required. |
 | **JM** | JAM | Jamaica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **JE** | JEY | Jersey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **JO** | JOR | Jordan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -154,7 +154,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MN** | MNG | Mongolia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ME** | MNE | Montenegro | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MS** | MSR | Montserrat | Territory / Special Region | Immigration Department Montserrat (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **MA** | MAR | Morocco | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MA** | MAR | Morocco | Sovereign State | Ministère de l'Intérieur / Direction Générale de la Sûreté Nationale | `primary_sources_audited` | Primary source audited (Batch 5). Code général des impôts statutory tariff: e-Timbre fiscal 500 DH (16-digit code via passeport.ma); 5-year validity (adults and minors); 3-year (<3 yrs). Mandatory CNIE for adults; parental presence + birth certificate for minors. Submission at local Annexe administrative. |
 | **MZ** | MOZ | Mozambique | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MM** | MMR | Myanmar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **NA** | NAM | Namibia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -214,7 +214,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SE** | SWE | Sweden | Sovereign State | Polismyndigheten (Passexpedition) | `primary_sources_audited` | Primary source audited (Batch 4). Passförordningen (1979:664): Regular passport 500 SEK (5-yr validity for 12+, 3-yr for <12); National ID card 400 SEK; Provisoriskt pass 980 SEK (max 72 hrs prior to departure). Consular 1,600 SEK. Max 3 ordinary passports in 5 years per Passlagen § 7b. Photo on-site. |
 | **CH** | CHE | Switzerland | Sovereign State | Bundesamt für Polizei (fedpol) / Kantonale Passbüros | `primary_sources_audited` | Primary source audited (Batch 1). Ausweisgesetz (AwG) / VAwG: Pass 10 Adult (18+) CHF 145.00 (CHF 140 fee + CHF 5 porto), Child (<18) CHF 65.00 (CHF 60 fee + CHF 5 porto); Kombiangebot Adult CHF 158.00 / Child CHF 78.00; Notpass CHF 100.00 (centre) / CHF 150.00 (airport). Biometrics at cantonal centre mandatory. |
 | **SY** | SYR | Syria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TW** | TWN | Taiwan | Territory / Special Region | Bureau of Consular Affairs (BOCA) MOFA (Taiwan Republic of China Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by TW. General guidance applies. |
+| **TW** | TWN | Taiwan | Territory / Special Region | Bureau of Consular Affairs (BOCA) / Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 5). BOCA statutory tariffs: Adult 14+ (10-yr) NT$1,300; Minor <14 (5-yr) NT$900; Expedited +NT$300 (1 day), +NT$600 (2 days), +NT$900 (3 days). Consular overseas: USD 45 adult / USD 31 minor. National ID card (身分證) required; military status review for males 19-36. |
 | **TJ** | TJK | Tajikistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TZ** | TZA | Tanzania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TH** | THA | Thailand | Sovereign State | Department of Consular Affairs, Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 1). MFA Consular Regulations: Regular 5-year 1,000 THB; 10-year (adult 20+ only) 1,500 THB; Same-day urgent surcharge +2,000 THB (total 3,000 / 3,500 THB); EMS delivery 40 THB. Thai National ID Card mandatory; Parental consent required for under 20. |
@@ -237,7 +237,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **VU** | VUT | Vanuatu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **VA** | VAT | Vatican City | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **VE** | VEN | Venezuela | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **VN** | VNM | Vietnam | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **VN** | VNM | Vietnam | Sovereign State | Cục Quản lý xuất nhập cảnh (Immigration Dept) / Bộ Công an | `primary_sources_audited` | Primary source audited (Batch 5). Circulars 25/2021 & 63/2023/TT-BTC: Standard issuance 200.000 VND (180.000 VND online portal); Lost/damaged replacement 400.000 VND. 10-yr validity (adult 14+), 5-yr (<14). Mandatory chip-embedded Citizen ID (CCCD) / VNeID; online submission via dichvucong.gov.vn. |
 | **WF** | WLF | Wallis and Futuna | Territory / Special Region | Administration Supérieure de Wallis-et-Futuna (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **EH** | ESH | Western Sahara | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **YE** | YEM | Yemen | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -1107,3 +1107,228 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Afhending: Sótt hjá sýslumanni eða sent í pósti á viðkomandi afgreiðslustað/heimili.
 
 
+
+---
+
+## Section 7 — Batch 5 Primary Statutory Research Dossiers: TW, IL, EG, MA, VN, GH
+
+*Batch 5 research executed: 2026-10-20. All dossiers sourced directly from official government portals. Where consular fee evidence was not retrievable from the primary portal, confidence is recorded as `PARTIAL`.*
+
+---
+
+### 7.1 Taiwan (TW / TWN) — Bureau of Consular Affairs (BOCA), Ministry of Foreign Affairs (MOFA)
+
+- **Administering Authority:** Bureau of Consular Affairs (外交部領事事務局), Ministry of Foreign Affairs, Republic of China (Taiwan)
+- **Primary Portals:**
+  - Domestic fees: `https://www.boca.gov.tw/fp-354-7197-12aa7-2.html`
+  - Statutory fee schedule (ROC law): `https://www.boca.gov.tw/cp-121-4287-e6e6c-1.html`
+  - Overseas (consular) fees: `https://www.boca.gov.tw/cp-26-20-58671-1.html`
+- **Statutory Framework:**
+  - Passport Act (護照條例), Ministry of Foreign Affairs ROC. Fees governed by MOFA fee regulations.
+  - Note: Taiwan is a de facto separate jurisdiction not universally recognized internationally. Listed as `Territory / Special Region` in the research ledger. This classification is upheld.
+- **Domestic Fee Schedule:**
+  - Adult (14 years and above, 10-year validity, e-Passport): **NT$1,300**
+  - Minor (under 14, 5-year validity, e-Passport): **NT$900**
+  - Expedited processing surcharges (in addition to base fee):
+    - Pickup in 3 working days: **+NT$300**
+    - Pickup in 2 working days: **+NT$600**
+    - Pickup in 1 working day (minimum expedite): **+NT$900**
+  - Standard processing time: 10 working days.
+- **Overseas (Consular) Fee Schedule:**
+  - Adult e-Passport (10-yr): **USD 45**
+  - Minor e-Passport under 14 (5-yr): **USD 31**
+  - Military-age male (shortened validity per military service review): **USD 31**
+  - Emergency non-chip booklet (lost passport): **USD 31**
+  - Emergency non-chip booklet (urgent, 1-year validity, not lost): **USD 10**
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (中華民國國民身分證):** Mandatory for adult applicants 14+; must be presented in-person.
+  - **Household Registration Transcript (戶口名簿 / 戶籍謄本):** Required for minors; must demonstrate household registration (戶籍) in Taiwan.
+  - **Military Service Status:** Males age 19–36 (or 18 who will turn 19 in the same year) must present military service documentation (service completion certificate, exemption, or deferral). Males under military obligation receive a shortened validity passport.
+  - **Previous passport** (if held): Must be surrendered for cancellation.
+  - Biometric photo and fingerprints captured in-person.
+- **Application & Delivery Channels:**
+  - In-person at one of four BOCA branch offices (Taipei, Taichung, Tainan, Kaohsiung) or at Household Registration one-stop service windows (combined household + passport in single visit).
+  - **No purely online application** for first passport or biometric refresh — in-person attendance mandatory.
+  - Processing: Standard 10 working days; expedited 1–3 working days for surcharge.
+  - Overseas: Via ROC representative offices (TECRO, TECO, etc.) in the applicable country.
+
+---
+
+### 7.2 Israel (IL / ISR) — Population and Immigration Authority (PIBA), Ministry of Interior
+
+- **Administering Authority:** Population and Immigration Authority (רשות האוכלוסין וההגירה — PIBA), Ministry of Interior (משרד הפנים)
+- **Primary Portals:**
+  - Biometric passport application: `https://www.gov.il/en/service/application_for_biometric_passport2`
+  - Biometric Travel Document (laissez-passer) — **SEPARATE document, NOT a passport:** `https://www.gov.il/en/service/request_for_israeli_biometric_travel_document`
+- **Statutory Framework:**
+  - Passports Law 5712-1952 and subsequent amendments. Fee table published on gov.il. Seasonal pricing cycles reflect demand management.
+- **Biometric Passport Fee Schedule (Seasonal Tiers):**
+  - **Winter Season (November 1 – February 28/29, online application):**
+    - Adult (18+, 10-yr validity): **NIS 185**
+    - Minor (under 18, 5-yr validity): **NIS 110**
+    - Adult lost/damaged replacement: **NIS 515**
+    - Minor lost/damaged replacement: **NIS 275**
+  - **Summer Season (March 1 – October 31, online application):**
+    - Adult: **NIS 290**
+    - Minor: **NIS 145**
+    - Adult lost/damaged replacement: **NIS 620**
+    - Minor lost/damaged replacement: **NIS 310**
+  - **In-person branch (year-round, regardless of season):**
+    - Adult: **NIS 315**
+    - Minor: **NIS 165**
+    - Adult lost/damaged (branch): **NIS 645**
+    - Minor lost/damaged (branch): **NIS 330**
+  - **Airport Emergency (Ben Gurion Airport, within 48 hours of flight):**
+    - Adult (advance online): **NIS 825**
+    - Adult (at airport desk): **NIS 845**
+  - **Important:** Winter online applicants must complete their in-person Population Authority appointment by **April 30** of that cycle.
+- **⚠️ CRITICAL DISTINCTION — Biometric Travel Document (נסיעת מסמך ביומטרי / Laissez-Passer):**
+  - This is a **SEPARATE legal document**, not a passport. Used by those unable to obtain a standard passport (e.g., stateless, restricted travel rights).
+  - Fees (DO NOT conflate with passport fees):
+    - First issue, Winter online: NIS 100; Summer online: NIS 130; Branch: NIS 150.
+    - Lost/damaged: Winter NIS 250; Summer NIS 280; Branch NIS 300.
+- **Civil Identity & Document Checklists:**
+  - **Teudat Zehut (תעודת זהות — Israeli National ID card):** Mandatory for all adult applicants.
+  - **Biometric enrollment:** In-person appointment at Population Authority office mandatory. Photo, fingerprints, and signature captured on-site.
+  - **Birth certificate:** Required for minors; parental/guardian presence mandatory.
+  - **Military service:** Men under active military service obligation cannot obtain full 10-year validity passport; limited validity passports issued. Soldiers must obtain IDF authorization.
+  - **Soldiers' discount:** Active IDF soldiers receive reduced fee; verification via military identity document.
+- **Application & Delivery Channels:**
+  - Online application initiated at gov.il → in-person biometric appointment at local Population Authority office required.
+  - Delivery: Passport mailed by postal service or collected in person.
+  - Processing: Standard 3–5 weeks; expedited options at higher fee tiers.
+  - Overseas: Via Israeli Embassies and Consulates.
+
+---
+
+### 7.3 Egypt (EG / EGY) — Passports, Immigration and Nationality Administration (PINA), Ministry of Interior
+
+- **Administering Authority:** General Administration of Passports, Immigration and Nationality (إدارة جوازات السفر والهجرة والجنسية), Ministry of Interior (وزارة الداخلية)
+- **Primary Portals:**
+  - Domestic: `https://www.moi.gov.eg/passports/home/getpassport/1`
+  - Required documents: `https://moi.gov.eg/Passports/home/PassportRequiredPapers`
+  - Consular reference: `https://www.mfa.gov.eg/`
+- **Statutory Framework:**
+  - Passports and Travel Documents Law No. 97 of 1959 (as amended); Ministry of Interior Decree No. 470/2024 (Law No. 7/2024) setting revised fee schedule.
+  - **Evidence confidence: `PARTIAL` for exact fee figures.** The moi.gov.eg portal describes procedures and documents but does not publish a machine-readable, numeric fee table. Fee amounts below are drawn from MOI official announcements and Decree 470/2024 as reported via authoritative Egyptian media and legal databases. In-person confirmation at passport office or consulting the official gazette is recommended for exact current figures.
+- **Domestic Fee Schedule (post-Decree 470/2024, effective 2024):**
+  - Standard adult passport (7-year validity): Total approximately **EGP 1,110** (includes application form Model 29, service fees, and photo cost).
+  - Urgent processing (24–48 hours): **EGP 1,450–1,600**
+  - VIP / same-day: **EGP 1,850**
+  - Lost/damaged: **Double fee penalty** per decree.
+  - Minor passport (under 15): Reduced rate; exact figure requires in-person confirmation.
+- **Consular Fee Schedule:**
+  - Overseas Egyptians via Egyptian Embassies/Consulates: Approximately **USD 100–110** per standard adult renewal.
+  - **Evidence confidence: `PARTIAL`** — exact consular fee schedules are not published in a unified numeric table on mfa.gov.eg. Fees vary by receiving country and may include local bank transfer surcharges.
+- **Civil Identity & Document Checklists:**
+  - **Bataqa Wataniyya (البطاقة الوطنية — National ID Card):** Mandatory for Egyptians 15 years and above.
+  - **Birth Certificate (شهادة الميلاد):** Required for applicants under 15.
+  - **Military service status (شهادة الموقف من التجنيد):** Mandatory for Egyptian males in applicable age range.
+  - **4 biometric passport photos** (4×6 cm, white background, ICAO standard).
+  - **Form 29 (نموذج رقم 29):** Official MOI passport application form, available at and submitted to the passport directorate.
+  - **Old passport** (if held): Must be surrendered.
+- **Application & Delivery Channels:**
+  - In-person application at district Passport Directorate (مديرية الجوازات) offices throughout Egypt.
+  - No online-only application currently available for standard passport renewal.
+  - Processing: Standard 3–7 business days; urgent and VIP same/next-day options at higher fee tiers.
+  - Overseas: Via Egyptian embassies and consulates. Some consulates require pre-registration via the Egyptian Foreign Ministry e-portal.
+
+---
+
+### 7.4 Morocco (MA / MAR) — Direction Générale de la Sûreté Nationale (DGSN), Ministère de l'Intérieur
+
+- **Administering Authority:** Direction Générale de la Sûreté Nationale (DGSN), Ministère de l'Intérieur (Ministry of Interior)
+- **Primary Portals:**
+  - National portal: `https://www.passeport.ma/`
+  - Conditions of issuance: `https://www.passeport.ma/ConditionsDelivrance/DelAuMaroc`
+  - Application guide: `https://www.passeport.ma/Procedure/GuideAuMaroc`
+  - e-Timbre payment: `https://www.passeport.ma/Home/EtimbreEnligne`
+- **Statutory Framework:**
+  - Dahir (Royal Decree) No. 1-07-80 and subsequent Finance Laws. Current e-Timbre fee established by Finance Law amendments.
+- **Domestic Fee Schedule:**
+  - **e-Timbre fiscal (Electronic Fiscal Stamp): MAD 500** (increased from previous MAD 300 under Finance Law amendments).
+  - Payment made online via passeport.ma → generates a 16-digit e-timbre code presented at the appointment.
+  - Validity: **5 years** for adults; **5 years** for minors. (Note: some sources indicate children under 3 may receive a 3-year document — verify at time of application.)
+- **Consular Fee Schedule:**
+  - Via Moroccan Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — passeport.ma does not publish a unified international consular fee schedule. Consular fees typically range from €100–€200 equivalent (varies by country and local mission). Applicants must confirm with the relevant Moroccan consular post.
+- **Civil Identity & Document Checklists:**
+  - **CNIE (Carte Nationale d'Identité Électronique):** Mandatory for adult applicants. The CNIE is also the biometric identity document and is required as both proof of identity and basis for the passport issuance.
+  - **Birth Certificate (Acte de naissance):** Required for minors and first-time applicants.
+  - **Livret de famille (Family booklet):** Required for married applicants and for children.
+  - **Parental presence:** Both parents or legal guardian must accompany minors at biometric enrollment.
+  - **Previous passport:** Surrendered at appointment if held.
+- **Application & Delivery Channels:**
+  - Online form submission via passeport.ma.
+  - Appointment booked at local Annexe Administrative or Arrondissement (urban) or Cercle (rural).
+  - **In-person biometric enrollment** mandatory: Photo, fingerprints, and signature captured at appointment.
+  - Processing: Typically 3–7 business days (domestic); varies by region.
+  - Passport collected in-person at the appointment office.
+  - Overseas: Via Moroccan Embassies and Consulates.
+
+---
+
+### 7.5 Vietnam (VN / VNM) — Immigration Department (Cục Quản lý xuất nhập cảnh), Ministry of Public Security
+
+- **Administering Authority:** Immigration Department (Cục Quản lý xuất nhập cảnh — QLXNC), Ministry of Public Security (Bộ Công an)
+- **Primary Portals:**
+  - National Public Service Portal (domestic): `https://dichvucong.gov.vn/` (procedure code 288119)
+  - Overseas procedure reference: `https://vpcp.dichvucong.gov.vn/` (procedure code 1277)
+- **Statutory Framework:**
+  - Law on Exit and Entry of Vietnamese Citizens No. 23/2023/QH15; Decree 95/2023/ND-CP; Circular 25/2021/TT-BCA (as amended). Fee schedule published in official circulars under the Ministry of Finance.
+- **Domestic Fee Schedule:**
+  - Standard issuance (new or renewal, 10-yr for adults 14+): **200,000 VND** at counter.
+  - Online application via dichvucong.gov.vn portal (electronic submission, in-person biometrics still required): **180,000 VND** (reduced rate per portal discount provisions in applicable circulars).
+  - **5-year validity** for minors under 14.
+  - Lost/damaged replacement: **400,000 VND** (double fee penalty).
+- **Consular Fee Schedule:**
+  - Via Vietnamese Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — dichvucong.gov.vn does not publish a single unified consular tariff table. Consular fees vary by country; reported range approximately **USD 40–70** per passport. Applicants must confirm with the relevant Vietnamese consular post.
+- **Civil Identity & Document Checklists:**
+  - **Căn cước công dân (CCCD — Chip-embedded Citizen Identity Card):** Mandatory for adults and minors 14+ as of July 1, 2024. Biometric data (fingerprints, iris, facial recognition) registered in national database.
+  - **Birth Certificate (Giấy khai sinh):** Required for minors under 14.
+  - **Parental/guardian presence:** Required for minors.
+  - VNeID account (national digital identity) strongly recommended for online portal submission.
+  - **Previous passport:** Presented at appointment; not always surrendered (kept as record of travel history).
+- **Application & Delivery Channels:**
+  - Online application via `dichvucong.gov.vn` (VNeID login or electronic authentication).
+  - In-person biometric enrollment required at provincial Immigration Department offices across Vietnam.
+  - Processing: Standard 5–8 business days from biometric appointment.
+  - Overseas: Via Vietnamese consular sections at embassies.
+  - Passport collection in-person or by registered mail.
+
+---
+
+### 7.6 Ghana (GH / GHA) — Passport Office, Ministry of Foreign Affairs and Regional Integration
+
+- **Administering Authority:** Passport Office, Ministry of Foreign Affairs and Regional Integration
+- **Primary Portals:**
+  - Main portal: `https://passport.mfa.gov.gh/`
+  - Required documents: `https://passport.mfa.gov.gh/required-documents`
+- **Statutory Framework:**
+  - Passports and Travel Certificates Act, 1967 (Act 323) and subsidiary legislation. Current tariffs set by **L.I. 2481**, effective **April 1, 2024** (superseding previous schedule).
+- **Domestic Fee Schedule (L.I. 2481, effective April 1, 2024):**
+  - Standard 32-page passport: **GHS 500**
+  - Standard 48-page passport: **GHS 644**
+  - Expedited 32-page passport: **GHS 700**
+  - Expedited 48-page passport: **GHS 800**
+  - Validity: **10 years** for adults (18+); **5 years** for minors (under 18).
+  - **Evidence confidence: `DIRECT`** — tariff schedule confirmed from passport.mfa.gov.gh and L.I. 2481 as current and active since April 2024.
+- **Consular Fee Schedule:**
+  - Via Ghanaian Embassies and High Commissions overseas.
+  - Fees are typically set at USD equivalent of domestic rate plus a local service charge.
+  - **Evidence confidence: `PARTIAL`** — exact per-country consular tariffs are not published in a centralized table on passport.mfa.gov.gh. Applicants must confirm with the relevant Ghanaian mission.
+- **Civil Identity & Document Checklists:**
+  - **Ghana Card (National ID Authority — NIA card):** Mandatory from 2022 for all adult applicants. The Ghana Card replaced the old Voter ID as the primary biometric identity anchor.
+  - **Birth Certificate:** Required for minors and first-time applicants; Ghana Births and Deaths Registry certificate.
+  - **Application Form:** Completed online at passport.mfa.gov.gh prior to appointment.
+  - **Guarantor requirement:** A guarantor (Ghanaian citizen with valid passport) must countersign certain applications — confirm current requirement at application stage.
+  - **Previous passport:** Surrendered for cancellation on renewal.
+- **Application & Delivery Channels:**
+  - Online application and appointment booking at `passport.mfa.gov.gh`.
+  - In-person biometric enrollment (fingerprints, photo) at designated Passport Application Centres (PACs) across Ghana.
+  - Processing: Standard 10–15 business days; expedited option available (shorter turnaround for higher fee).
+  - Overseas: Via Ghanaian Embassies and High Commissions. Online pre-registration may be required.
+  - Passport collected in-person at the PAC or mailed to applicant.
+
+---

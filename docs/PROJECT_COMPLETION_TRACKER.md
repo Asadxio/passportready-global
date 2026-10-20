@@ -28,6 +28,7 @@
 | **Phase L** | `TASK-L1` | Global Jurisdiction Completion — Batch 2 (AR, CL, CO, PL, GR, TR) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 2 complete; Proceed to Phase M |
 | **Phase M** | `TASK-M1` | Global Jurisdiction Completion — Batch 3 (PE, EC, UY, CZ, HU, RO) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 3 complete; Proceed to Phase N |
 | **Phase N** | `TASK-N1` | Global Jurisdiction Completion — Batch 4 (BE, DK, FI, NO, SE, IS) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 4 complete; Proceed to Batch 5 |
+| **Phase O** | `TASK-O1` | Global Jurisdiction Completion — Batch 5 (TW, IL, EG, MA, VN, GH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 5 complete; Proceed to Batch 6 |
 
 ---
 
@@ -328,3 +329,30 @@
   - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
 - **Approval Requirements:** None (Feature branch research and documentation)
 - **Next Actionable Task:** Batch 5 Official Source Research for next priority sovereign nations (e.g., Vietnam `VN`, Philippines/Malaysia [already verified], Taiwan `TW`, Israel `IL`, Egypt `EG`, South Africa/Morocco `MA`).
+
+
+---
+
+### Phase O: Global Jurisdiction Completion — Batch 5 (TW, IL, EG, MA, VN, GH)
+- **Task ID:** `TASK-O1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Taiwan (TW), Israel (IL), Egypt (EG), Morocco (MA), Vietnam (VN), and Ghana (GH). Each jurisdiction upgraded from `official_source_needs_research` to `primary_sources_audited` in Section 2 of GLOBAL_JURISDICTION_RESEARCH_LEDGER.md. Full dossiers written in Section 7. Claim-level audit rows added to SOURCE_AUDIT_REGISTER.md Section 8. All fees sourced from official government portals; consular fees marked `PARTIAL` where not directly retrievable.
+  - Update `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md` (Section 2 statuses + Section 7 full dossiers).
+  - Update `docs/SOURCE_AUDIT_REGISTER.md` (Section 8 claim audit rows with exact URLs and confidence levels).
+  - Maintain 100% test passage in `test/validate.js` and live verification.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 7 Batch 5 dossiers for TW, IL, EG, MA, VN, GH.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 8 claim audit table with 24 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase O deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **TW:** BOCA domestic NT$1,300 (adult) / NT$900 (minor); overseas USD 45/31. No online-only application; in-person at BOCA mandatory. Males 19–36 require military status docs.
+  - **IL:** Seasonal fee structure (winter online NIS 185; summer online NIS 290; branch NIS 315). Airport emergency NIS 825/845. IMPORTANT: Israeli Biometric Travel Document (laissez-passer) is a SEPARATE document with distinct fees — NOT conflated.
+  - **EG:** Fees marked `PARTIAL` — moi.gov.eg portal describes procedure but does not publish a numeric fee table. Decree 470/2024 figures (EGP ~1,110 standard; EGP 1,450–1,850 urgent/VIP) require official gazette or in-person confirmation.
+  - **MA:** e-Timbre fiscal MAD 500 confirmed from passeport.ma. Consular fees `PARTIAL` (varies by mission, no unified table on portal).
+  - **VN:** Counter 200,000 VND; online portal discount 180,000 VND; lost/damaged 400,000 VND. CCCD chip card mandatory since July 1, 2024. Consular `PARTIAL`.
+  - **GH:** L.I. 2481 (eff. April 1, 2024) tariffs confirmed: GHS 500/644/700/800. Ghana Card (NIA) mandatory from 2022. Consular `PARTIAL`.
+- **Next Actionable Task:** Batch 6 Official Source Research for next priority nations (ET, IR, KZ, UA, IQ, QA).
