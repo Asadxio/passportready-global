@@ -26,13 +26,13 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_14"/g) || []);
-  console.log('Scripts with ?v=20261019_14:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_14');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_15"/g) || []);
+  console.log('Scripts with ?v=20261019_15:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_15');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_14"/g) || []);
-  console.log('CSS with ?v=20261019_14:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_14');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_15"/g) || []);
+  console.log('CSS with ?v=20261019_15:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_15');
 
   // Service coverage card check
   assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
@@ -54,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_14');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_15');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -72,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_14');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_15');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -224,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_14');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_15');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -359,7 +359,7 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_14');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_15');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
 
@@ -862,7 +862,255 @@ async function verifyLive() {
     'Live engine: NZ without callout fee must yield general_guidance'
   );
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5 & PHASE 4.3.6 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 10. Checking Live Phase 4.3.7 Source-to-Claim Binding & Strict Fee Schema Safeguards ---');
+
+  // 10.1 Scenario A: Generic Pack Sources (Urgent Route Fallback)
+  const liveGenericPack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [{ url: 'https://passportindia.gov.in', page_title: 'National Passport Portal', checked_at: '2026-10-18', publisher: 'MEA' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [{ url: 'https://passportindia.gov.in', page_title: 'National Passport Portal' }],
+        fees: { currency: 'INR', standard: 1500, tatkaal_surcharge: 2000 },
+        documents: [{ document_name: 'Citizenship Evidence' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const liveGenericEngine = new PassportRulesEngine({ IN: liveGenericPack });
+  const liveGenericRes = liveGenericEngine.evaluate({
+    countryCode: 'IN',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(
+    liveGenericRes.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Live engine: Generic pack URL without urgent/tatkaal source must fall back to general_guidance'
+  );
+  assert.strictEqual(liveGenericRes.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false);
+  assert(liveGenericRes.readinessScore <= 75, 'Live engine: Score must be capped <= 75 for general_guidance');
+  assert.notStrictEqual(liveGenericRes.statusLabel, 'PREPARED');
+
+  // 10.2 Scenario B: Missing Consular Sources (Overseas Channel Fallback)
+  const liveNoConsularSourcesPack = {
+    country_code: 'MX',
+    country_name: 'Mexico',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    official_portal_url: 'https://domestic.gov.mx',
+    sources: [{ url: 'https://domestic.gov.mx', page_title: 'Domestic Service', checked_at: '2026-10-19', publisher: 'SRE' }],
+    jurisdictions: [{ name: 'Consular Section', application_channel: 'consular' }], // Bare jurisdiction without source_url
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'USD', consular_overseas_usd: { standard: { validity_1_year: 44, validity_3_year: 101 } } },
+        documents: [{ document_name: 'Birth Certificate' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const liveNoConsularEngine = new PassportRulesEngine({ MX: liveNoConsularSourcesPack });
+  const liveNoConsularRes = liveNoConsularEngine.evaluate({
+    countryCode: 'MX',
+    location: 'abroad',
+    service: 'first_passport'
+  });
+  assert.strictEqual(
+    liveNoConsularRes.serviceCoverage.dimensions.channel.status,
+    'general_guidance',
+    'Live engine: Consular jurisdiction without traceable consular source must receive general_guidance'
+  );
+  assert.strictEqual(liveNoConsularRes.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, false);
+
+  // 10.3 Scenario C: Invalid Consular Fee Objects Rejected from Verified
+  const liveInvalidConsularFees = [
+    { desc: 'empty object', fees: { currency: 'USD', consular_overseas_usd: {} } },
+    { desc: 'placeholder object', fees: { currency: 'USD', consular_overseas_usd: { status: 'pending' } } },
+    { desc: 'string amounts', fees: { currency: 'USD', diaspora_overseas_usd: { booklet_32_pages_5_year: '150' } } },
+    { desc: 'empty nested standard', fees: { currency: 'USD', consular_overseas_usd: { standard: {} } } }
+  ];
+  liveInvalidConsularFees.forEach(({ desc, fees }) => {
+    const pack = {
+      country_code: 'MX',
+      country_name: 'Mexico',
+      rule_pack_status: 'verified',
+      authority_name: 'SRE',
+      sources: [{ url: 'https://embamex.sre.gob.mx/consular', page_title: 'SRE Consular', checked_at: '2026-10-19', publisher: 'SRE' }],
+      jurisdictions: [{ application_channel: 'consular', source_url: 'https://embamex.sre.gob.mx/consular' }],
+      services: {
+        first_passport: {
+          availability_status: 'available',
+          fees,
+          documents: [{ document_name: 'Acta' }],
+          eligibility: [{ rule: 'Mexicano' }]
+        }
+      }
+    };
+    const e = new PassportRulesEngine({ MX: pack });
+    const res = e.evaluate({ countryCode: 'MX', location: 'abroad', service: 'first_passport' });
+    assert.notStrictEqual(
+      res.serviceCoverage.dimensions.channel.status,
+      'verified',
+      `Live engine: Consular channel must NOT be verified with ${desc}`
+    );
+  });
+
+  // 10.4 Scenario D: Malformed Emergency Fee Objects Rejected
+  const liveMxStringEmergPack = {
+    country_code: 'MX',
+    country_name: 'Mexico',
+    rule_pack_status: 'verified',
+    authority_name: 'SRE',
+    sources: [{ url: 'https://embamex.sre.gob.mx/consular-emergency', page_title: 'Consular Emergency Type E', checked_at: '2026-10-19', publisher: 'SRE' }],
+    jurisdictions: [{ application_channel: 'consular' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'USD', consular_overseas_usd: { emergency_surcharge_schedule: { validity_3_year: { total_payable: '131' } } } },
+        documents: [{ document_name: 'Acta' }],
+        eligibility: [{ rule: 'Mexicano' }]
+      }
+    }
+  };
+  const liveMxStringEmergRes = new PassportRulesEngine({ MX: liveMxStringEmergPack }).evaluate({
+    countryCode: 'MX', location: 'abroad', service: 'emergency_travel', urgency: 'emergency'
+  });
+  assert.strictEqual(
+    liveMxStringEmergRes.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Live engine: MX with non-numeric emergency surcharge must fall back to general_guidance'
+  );
+
+  const liveNzStringCalloutPack = {
+    country_code: 'NZ',
+    country_name: 'New Zealand',
+    rule_pack_status: 'verified',
+    authority_name: 'DIA',
+    sources: [{ url: 'https://passports.govt.nz/passport-costs', page_title: 'After-Hours Emergency Callout Service', checked_at: '2026-10-19', publisher: 'DIA' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'NZD', after_hours_callout_service_nzd: { adult_10_year: '1001' } },
+        documents: [{ document_name: 'Birth Cert' }],
+        eligibility: [{ rule: 'NZ Citizen' }]
+      }
+    }
+  };
+  const liveNzStringCalloutRes = new PassportRulesEngine({ NZ: liveNzStringCalloutPack }).evaluate({
+    countryCode: 'NZ', location: 'inside', service: 'first_passport', urgency: 'emergency'
+  });
+  assert.strictEqual(
+    liveNzStringCalloutRes.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Live engine: NZ with string callout fee must fall back to general_guidance'
+  );
+
+  // 10.5 Scenario E: Source Metadata Integrity
+  const liveNonUrlSourcesPack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [{ page_title: 'Portal Without URL' }, 'Ministry string', { url: '' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [{ page_title: 'No URL' }, 'Not a URL', { url: '' }],
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Evidence' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const liveNonUrlRes = new PassportRulesEngine({ IN: liveNonUrlSourcesPack }).evaluate({
+    countryCode: 'IN', location: 'inside', service: 'first_passport'
+  });
+  assert.strictEqual(
+    liveNonUrlRes.serviceCoverage.dimensions.service.status,
+    'general_guidance',
+    'Live engine: Object with only invalid source entries must receive general_guidance'
+  );
+  assert.strictEqual(liveNonUrlRes.serviceCoverage.dimensions.service.evidence.sources.length, 0);
+
+  // 10.6 Scenario F: Live dynamic verifiedFields (no steps claimed when steps absent)
+  const liveNoStepsPack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Seva',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA', page_title: 'Passport Seva', checked_at: '2026-10-18' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const liveNoStepsRes = new PassportRulesEngine({ IN: liveNoStepsPack }).evaluate({
+    countryCode: 'IN', location: 'inside', service: 'first_passport'
+  });
+  assert.strictEqual(liveNoStepsRes.serviceCoverage.dimensions.service.status, 'verified');
+  const liveVFields = liveNoStepsRes.serviceCoverage.dimensions.service.evidence.verifiedFields;
+  assert(!liveVFields.includes('steps'), 'Live engine: verifiedFields must NOT claim steps when steps are absent');
+  assert(liveVFields.includes('eligibility') && liveVFields.includes('documents') && liveVFields.includes('fees'));
+
+  // 10.7 Scenario G: Live verified pack assertions with authentic claim-bound sources
+  const liveInTatkaalReal = liveEngine.evaluate({
+    countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'urgent'
+  });
+  assert.strictEqual(liveInTatkaalReal.serviceCoverage.dimensions.urgency.status, 'partial', 'Live engine: IN Tatkaal must be partial');
+  assert(liveInTatkaalReal.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('tatkaalPassports')), 'Live engine: IN Tatkaal evidence must include tatkaalPassports URL');
+
+  const liveMxEmergReal = liveEngine.evaluate({
+    countryCode: 'MX', location: 'abroad', service: 'emergency_travel', urgency: 'emergency'
+  });
+  assert.strictEqual(liveMxEmergReal.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(liveMxEmergReal.serviceCoverage.dimensions.urgency.summary.includes('Art. 20 LFD'));
+
+  const liveNzEmergReal = liveEngine.evaluate({
+    countryCode: 'NZ', location: 'inside', service: 'first_passport', urgency: 'emergency'
+  });
+  assert.strictEqual(liveNzEmergReal.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(liveNzEmergReal.serviceCoverage.dimensions.urgency.summary.includes('after-hours callout'));
+
+  // 10.8 Scenario H: Score Caps & PREPARED Prohibition
+  [liveGenericRes, liveNoConsularRes, liveMxStringEmergRes, liveNzStringCalloutRes, liveNonUrlRes].forEach(res => {
+    assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Live engine: Non-verified status must NEVER be PREPARED');
+    assert(res.readinessScore <= 80, 'Live engine: Non-verified status score must be capped <= 80%');
+  });
+
+  // 10.9 Scenario I: Statutory Preservations
+  const liveMyStaffRepCheck = liveEngine.evaluate({
+    countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss'
+  });
+  assert.strictEqual(liveMyStaffRepCheck.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 200);
+
+  const liveMyStaff5Check = liveEngine.evaluate({
+    countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '5_year', lossTier: 'first_loss'
+  });
+  assert.strictEqual(liveMyStaff5Check.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'not_eligible');
+
+  const liveMyStaffOrigCheck = liveEngine.evaluate({
+    countryCode: 'MY', location: 'inside', service: 'first_passport', applicantCategory: 'immigration_officers_staff', validity: '10_year'
+  });
+  assert.strictEqual(liveMyStaffOrigCheck.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0);
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5, PHASE 4.3.6 & PHASE 4.3.7 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

@@ -36,77 +36,367 @@ class PassportRulesEngine {
     return location === 'abroad' ? 'Consular / Overseas Application' : 'Domestic Application';
   }
 
+  isValidSourceUrl(url) {
+    if (typeof url !== 'string') return false;
+    const trimmed = url.trim();
+    if (!trimmed.startsWith('https://') && !trimmed.startsWith('http://')) return false;
+    try {
+      const parsed = new URL(trimmed);
+      return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+    } catch {
+      return false;
+    }
+  }
+
+  extractUrlFromSource(s) {
+    if (!s) return null;
+    if (typeof s === 'string') {
+      return this.isValidSourceUrl(s) ? s.trim() : null;
+    }
+    if (typeof s === 'object') {
+      const candidate = s.url || s.official_source_url || s.source_url;
+      return this.isValidSourceUrl(candidate) ? candidate.trim() : null;
+    }
+    return null;
+  }
+
   collectServiceSources(pack, serviceObj) {
     const list = [];
     if (serviceObj && Array.isArray(serviceObj.sources)) {
-      list.push(...serviceObj.sources);
+      serviceObj.sources.forEach(s => {
+        const url = this.extractUrlFromSource(s);
+        if (url) list.push(url);
+      });
     }
     if (pack && Array.isArray(pack.sources)) {
-      list.push(...pack.sources);
+      pack.sources.forEach(s => {
+        const url = this.extractUrlFromSource(s);
+        if (url) list.push(url);
+      });
     }
     if (serviceObj?.documents && Array.isArray(serviceObj.documents)) {
       serviceObj.documents.forEach(d => {
-        if (d && (d.official_source_url || d.source_url)) {
-          list.push(d.official_source_url || d.source_url);
-        }
+        const url = this.extractUrlFromSource(d);
+        if (url) list.push(url);
       });
     }
     if (serviceObj?.steps && Array.isArray(serviceObj.steps)) {
       serviceObj.steps.forEach(s => {
-        if (s && (s.official_source_url || s.source_url)) {
-          list.push(s.official_source_url || s.source_url);
-        }
+        const url = this.extractUrlFromSource(s);
+        if (url) list.push(url);
       });
     }
     if (serviceObj?.fees?.fee_records && Array.isArray(serviceObj.fees.fee_records)) {
       serviceObj.fees.fee_records.forEach(r => {
-        if (r && r.official_source_url) {
-          list.push(r.official_source_url);
+        const url = this.extractUrlFromSource(r);
+        if (url) list.push(url);
+      });
+    }
+    return Array.from(new Set(list));
+  }
+
+  collectUrgentSources(pack, serviceObj) {
+    const list = [];
+    const urgentKeywords = ['urgent', 'tatkaal', 'expedit', 'express', 'fast-track', 'fast_track', 'one-day', 'one_day', 'same-day', 'same_day'];
+
+    const matchesUrgent = (text) => {
+      if (!text || typeof text !== 'string') return false;
+      const lower = text.toLowerCase();
+      return urgentKeywords.some(kw => lower.includes(kw));
+    };
+
+    // 1. Pack and service sources matching urgent keywords in URL or title
+    const checkSourceList = (sources) => {
+      if (!Array.isArray(sources)) return;
+      sources.forEach(s => {
+        const url = this.extractUrlFromSource(s);
+        if (url) {
+          const title = typeof s === 'object' ? (s.page_title || s.publisher || '') : '';
+          if (matchesUrgent(url) || matchesUrgent(title)) {
+            list.push(url);
+          }
+        }
+      });
+    };
+    checkSourceList(serviceObj?.sources);
+    checkSourceList(pack?.sources);
+
+    // 2. Fee records relating to urgent processing
+    const feeRecords = serviceObj?.fees?.fee_records || pack?.services?.first_passport?.fees?.fee_records;
+    if (Array.isArray(feeRecords)) {
+      feeRecords.forEach(r => {
+        if (!r) return;
+        const channel = r.application_channel || '';
+        const cat = r.applicant_category || '';
+        const cond = r.applicable_conditions || '';
+        const disc = r.discount_eligibility || '';
+        const isUrgent = matchesUrgent(channel) || matchesUrgent(cat) || matchesUrgent(cond) || matchesUrgent(disc) ||
+          (typeof r.emergency_surcharge === 'number' && Number.isFinite(r.emergency_surcharge) && r.emergency_surcharge > 0);
+        if (isUrgent) {
+          const url = this.extractUrlFromSource(r);
+          if (url) list.push(url);
         }
       });
     }
-    return list.map(s => typeof s === 'string' ? s : (s?.url || s?.page_title)).filter(Boolean);
+
+    // 3. Steps relating to urgent processing
+    const steps = serviceObj?.steps || pack?.services?.first_passport?.steps;
+    if (Array.isArray(steps)) {
+      steps.forEach(st => {
+        const text = typeof st === 'string' ? st : (st?.step || st?.title || st?.description || '');
+        if (matchesUrgent(text)) {
+          const url = this.extractUrlFromSource(st);
+          if (url) list.push(url);
+        }
+      });
+    }
+
+    return Array.from(new Set(list));
+  }
+
+  collectConsularSources(pack, serviceObj) {
+    const list = [];
+    const consularKeywords = ['consul', 'embassy', 'diplomatic', 'overseas', 'diaspora', 'high commission', 'abroad'];
+
+    const matchesConsular = (text) => {
+      if (!text || typeof text !== 'string') return false;
+      const lower = text.toLowerCase();
+      return consularKeywords.some(kw => lower.includes(kw));
+    };
+
+    // 1. Pack and service sources matching consular keywords in URL or title
+    const checkSourceList = (sources) => {
+      if (!Array.isArray(sources)) return;
+      sources.forEach(s => {
+        const url = this.extractUrlFromSource(s);
+        if (url) {
+          const title = typeof s === 'object' ? (s.page_title || s.publisher || '') : '';
+          if (matchesConsular(url) || matchesConsular(title)) {
+            list.push(url);
+          }
+        }
+      });
+    };
+    checkSourceList(serviceObj?.sources);
+    checkSourceList(pack?.sources);
+
+    // 2. Jurisdictions with consular channel that have a valid source URL
+    if (Array.isArray(pack?.jurisdictions)) {
+      pack.jurisdictions.forEach(j => {
+        if (!j) return;
+        const channel = j.application_channel || '';
+        const name = j.name || '';
+        if (matchesConsular(channel) || matchesConsular(name)) {
+          const url = this.extractUrlFromSource(j);
+          if (url) list.push(url);
+        }
+      });
+    }
+
+    // 3. Fee records with consular / overseas / diaspora channel
+    const feeRecords = serviceObj?.fees?.fee_records || pack?.services?.first_passport?.fees?.fee_records;
+    if (Array.isArray(feeRecords)) {
+      feeRecords.forEach(r => {
+        if (!r) return;
+        const channel = r.application_channel || '';
+        const cat = r.applicant_category || '';
+        if (matchesConsular(channel) || matchesConsular(cat)) {
+          const url = this.extractUrlFromSource(r);
+          if (url) list.push(url);
+        }
+      });
+    }
+
+    // 4. Steps mentioning consular/embassy with valid source URL
+    const steps = serviceObj?.steps || pack?.services?.first_passport?.steps;
+    if (Array.isArray(steps)) {
+      steps.forEach(st => {
+        const text = typeof st === 'string' ? st : (st?.step || st?.title || st?.description || '');
+        if (matchesConsular(text)) {
+          const url = this.extractUrlFromSource(st);
+          if (url) list.push(url);
+        }
+      });
+    }
+
+    return Array.from(new Set(list));
+  }
+
+  collectEmergencySources(pack, serviceObj, countryCode) {
+    const list = [];
+    const emergKeywords = ['emergency', 'emergencia', 'callout', 'call-out', 'after-hours', 'after_hours', 'art. 20', 'artículo 20', 'lfd', 'tipo e', 'salvoconducto'];
+
+    const matchesEmerg = (text) => {
+      if (!text || typeof text !== 'string') return false;
+      const lower = text.toLowerCase();
+      return emergKeywords.some(kw => lower.includes(kw));
+    };
+
+    // 1. Pack and service sources
+    const checkSourceList = (sources) => {
+      if (!Array.isArray(sources)) return;
+      sources.forEach(s => {
+        const url = this.extractUrlFromSource(s);
+        if (url) {
+          const title = typeof s === 'object' ? (s.page_title || s.publisher || '') : '';
+          if (matchesEmerg(url) || matchesEmerg(title)) {
+            list.push(url);
+          }
+        }
+      });
+    };
+    checkSourceList(serviceObj?.sources);
+    checkSourceList(pack?.sources);
+
+    // 2. Fee records
+    const feeRecords = serviceObj?.fees?.fee_records || pack?.services?.first_passport?.fees?.fee_records;
+    if (Array.isArray(feeRecords)) {
+      feeRecords.forEach(r => {
+        if (!r) return;
+        const channel = r.application_channel || '';
+        const cat = r.applicant_category || '';
+        const cond = r.applicable_conditions || '';
+        const isEmerg = (typeof r.emergency_surcharge === 'number' && Number.isFinite(r.emergency_surcharge) && r.emergency_surcharge > 0) ||
+          matchesEmerg(channel) || matchesEmerg(cat) || matchesEmerg(cond);
+        if (isEmerg) {
+          const url = this.extractUrlFromSource(r);
+          if (url) list.push(url);
+        }
+      });
+    }
+
+    // 3. For NZ specifically: passports.govt.nz passport-costs covers After-Hours Callout Service
+    if (countryCode === 'NZ') {
+      const feesObj = serviceObj?.fees || pack?.services?.first_passport?.fees;
+      if (feesObj?.after_hours_callout_service_nzd && typeof feesObj.after_hours_callout_service_nzd === 'object') {
+        const allUrls = this.collectServiceSources(pack, serviceObj);
+        allUrls.forEach(u => {
+          if (u.includes('passport-costs')) list.push(u);
+        });
+      }
+    }
+
+    return Array.from(new Set(list));
   }
 
   hasUrgentFeeEvidence(feesObj) {
     if (!feesObj || typeof feesObj !== 'object') return false;
-    if (typeof feesObj.tatkaal_surcharge === 'number' && feesObj.tatkaal_surcharge > 0) return true;
-    if (feesObj.urgent_service_nzd && typeof feesObj.urgent_service_nzd === 'object' && Object.keys(feesObj.urgent_service_nzd).length > 0) return true;
-    if (feesObj.urgent_appointment_service_eur && typeof feesObj.urgent_appointment_service_eur === 'object' && Object.keys(feesObj.urgent_appointment_service_eur).length > 0) return true;
-    if (feesObj.standard_domestic_lkr && typeof feesObj.standard_domestic_lkr.all_countries_urgent_one_day === 'number' && feesObj.standard_domestic_lkr.all_countries_urgent_one_day > 0) return true;
-    if (typeof feesObj.express_same_day_surcharge === 'number' && feesObj.express_same_day_surcharge > 0) return true;
-    if (feesObj.standard_domestic_npr && typeof feesObj.standard_domestic_npr.urgent_34_pages_dop_kathmandu === 'number' && feesObj.standard_domestic_npr.urgent_34_pages_dop_kathmandu > 0) return true;
-    if (typeof feesObj.expedite_service_fee === 'number' && feesObj.expedite_service_fee > 0) return true;
-    if (typeof feesObj.expedited_service_usd === 'number' && feesObj.expedited_service_usd > 0) return true;
-    if (feesObj.consular_overseas_usd && feesObj.consular_overseas_usd.emergency_surcharge_schedule && typeof feesObj.consular_overseas_usd.emergency_surcharge_schedule === 'object' && Object.keys(feesObj.consular_overseas_usd.emergency_surcharge_schedule).length > 0) return true;
-    if (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && (r.emergency_surcharge > 0 || (r.application_channel && r.application_channel.includes('urgent'))))) return true;
+
+    // Tatkaal surcharge (strict numeric > 0)
+    if (typeof feesObj.tatkaal_surcharge === 'number' && Number.isFinite(feesObj.tatkaal_surcharge) && feesObj.tatkaal_surcharge > 0) {
+      return true;
+    }
+
+    // New Zealand urgent_service_nzd (object with numeric values > 0)
+    if (feesObj.urgent_service_nzd && typeof feesObj.urgent_service_nzd === 'object') {
+      const hasPositiveNum = Object.values(feesObj.urgent_service_nzd).some(v => typeof v === 'number' && Number.isFinite(v) && v > 0);
+      if (hasPositiveNum) return true;
+    }
+
+    // Ireland urgent_appointment_service_eur (object with numeric values > 0)
+    if (feesObj.urgent_appointment_service_eur && typeof feesObj.urgent_appointment_service_eur === 'object') {
+      const hasPositiveNum = Object.values(feesObj.urgent_appointment_service_eur).some(v => typeof v === 'number' && Number.isFinite(v) && v > 0);
+      if (hasPositiveNum) return true;
+    }
+
+    // Sri Lanka standard_domestic_lkr.all_countries_urgent_one_day
+    if (feesObj.standard_domestic_lkr && typeof feesObj.standard_domestic_lkr === 'object') {
+      const val = feesObj.standard_domestic_lkr.all_countries_urgent_one_day;
+      if (typeof val === 'number' && Number.isFinite(val) && val > 0) return true;
+    }
+
+    // Indonesia express_same_day_surcharge
+    if (typeof feesObj.express_same_day_surcharge === 'number' && Number.isFinite(feesObj.express_same_day_surcharge) && feesObj.express_same_day_surcharge > 0) {
+      return true;
+    }
+
+    // Nepal standard_domestic_npr.urgent_34_pages_dop_kathmandu
+    if (feesObj.standard_domestic_npr && typeof feesObj.standard_domestic_npr === 'object') {
+      const val = feesObj.standard_domestic_npr.urgent_34_pages_dop_kathmandu;
+      if (typeof val === 'number' && Number.isFinite(val) && val > 0) return true;
+    }
+
+    // US expedite_service_fee / expedited_service_usd
+    if (typeof feesObj.expedite_service_fee === 'number' && Number.isFinite(feesObj.expedite_service_fee) && feesObj.expedite_service_fee > 0) {
+      return true;
+    }
+    if (typeof feesObj.expedited_service_usd === 'number' && Number.isFinite(feesObj.expedited_service_usd) && feesObj.expedited_service_usd > 0) {
+      return true;
+    }
+
+    // Mexico consular_overseas_usd.emergency_surcharge_schedule
+    if (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && typeof feesObj.consular_overseas_usd.emergency_surcharge_schedule === 'object') {
+      const ess = feesObj.consular_overseas_usd.emergency_surcharge_schedule;
+      const hasPositive = Object.values(ess).some(tier => {
+        if (!tier) return false;
+        if (typeof tier === 'number' && Number.isFinite(tier) && tier > 0) return true;
+        if (typeof tier === 'object') {
+          return (typeof tier.total_payable === 'number' && Number.isFinite(tier.total_payable) && tier.total_payable > 0) ||
+                 (typeof tier.emergency_surcharge === 'number' && Number.isFinite(tier.emergency_surcharge) && tier.emergency_surcharge > 0);
+        }
+        return false;
+      });
+      if (hasPositive) return true;
+    }
+
+    // Fee records with positive emergency_surcharge or urgent channel with positive numeric amount
+    if (Array.isArray(feesObj.fee_records)) {
+      const hasUrgentRecord = feesObj.fee_records.some(r => {
+        if (!r) return false;
+        if (typeof r.emergency_surcharge === 'number' && Number.isFinite(r.emergency_surcharge) && r.emergency_surcharge > 0) return true;
+        const channel = (r.application_channel || '').toLowerCase();
+        const cat = (r.applicant_category || '').toLowerCase();
+        if ((channel.includes('urgent') || channel.includes('express') || cat.includes('urgent') || cat.includes('express')) &&
+            typeof r.amount === 'number' && Number.isFinite(r.amount) && r.amount > 0) {
+          return true;
+        }
+        return false;
+      });
+      if (hasUrgentRecord) return true;
+    }
+
     return false;
   }
 
   hasActualConsularFeeSchedule(feesObj) {
     if (!feesObj || typeof feesObj !== 'object') return false;
+
+    // 1. consular_overseas_usd
     if (feesObj.consular_overseas_usd && typeof feesObj.consular_overseas_usd === 'object') {
       const cos = feesObj.consular_overseas_usd;
-      if (cos.standard && typeof cos.standard === 'object' && Object.keys(cos.standard).length > 0) return true;
-      if (typeof cos.standard_34_pages === 'number' && cos.standard_34_pages > 0) return true;
-      const numValues = Object.values(cos).filter(v => typeof v === 'number' && v > 0);
+      if (cos.standard && typeof cos.standard === 'object') {
+        const hasNumInStandard = Object.values(cos.standard).some(v => typeof v === 'number' && Number.isFinite(v) && v > 0);
+        if (hasNumInStandard) return true;
+      }
+      if (typeof cos.standard_34_pages === 'number' && Number.isFinite(cos.standard_34_pages) && cos.standard_34_pages > 0) {
+        return true;
+      }
+      const numValues = Object.values(cos).filter(v => typeof v === 'number' && Number.isFinite(v) && v > 0);
       if (numValues.length > 0) return true;
     }
+
+    // 2. diaspora_overseas_usd
     if (feesObj.diaspora_overseas_usd && typeof feesObj.diaspora_overseas_usd === 'object') {
       const dos = feesObj.diaspora_overseas_usd;
-      if (typeof dos.booklet_32_pages_5_year === 'number' && dos.booklet_32_pages_5_year > 0) return true;
-      const numValues = Object.values(dos).filter(v => typeof v === 'number' && v > 0);
+      if (typeof dos.booklet_32_pages_5_year === 'number' && Number.isFinite(dos.booklet_32_pages_5_year) && dos.booklet_32_pages_5_year > 0) {
+        return true;
+      }
+      const numValues = Object.values(dos).filter(v => typeof v === 'number' && Number.isFinite(v) && v > 0);
       if (numValues.length > 0) return true;
     }
+
+    // 3. standard_overseas_usd
     if (feesObj.standard_overseas_usd && typeof feesObj.standard_overseas_usd === 'object') {
       const sos = feesObj.standard_overseas_usd;
-      const numValues = Object.values(sos).filter(v => typeof v === 'number' && v > 0);
+      const numValues = Object.values(sos).filter(v => typeof v === 'number' && Number.isFinite(v) && v > 0);
       if (numValues.length > 0) return true;
     }
+
+    // 4. fee_records with valid numeric amount > 0
     if (Array.isArray(feesObj.fee_records)) {
       const consularRecords = feesObj.fee_records.filter(r => 
-        r && (r.application_channel?.includes('consular') || r.application_channel?.includes('overseas') || r.application_channel?.includes('diaspora')) &&
-        typeof r.amount === 'number' && r.amount > 0
+        r && (r.application_channel?.includes('consular') || r.application_channel?.includes('overseas') || r.application_channel?.includes('diaspora') || r.applicant_category?.includes('diaspora')) &&
+        typeof r.amount === 'number' && Number.isFinite(r.amount) && r.amount > 0
       );
       if (consularRecords.length > 0) return true;
     }
@@ -115,8 +405,14 @@ class PassportRulesEngine {
 
   hasConsularGuidance(pack, serviceObj) {
     if (!pack) return false;
-    // 1. Jurisdictions explicitly mentioning consular/embassy/diplomatic/overseas
-    if (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => {
+    const consularSources = this.collectConsularSources(pack, serviceObj);
+    if (consularSources.length === 0) {
+      // Bare jurisdiction or step without traceable, valid consular source URL is rejected
+      return false;
+    }
+
+    // Must be accompanied by a consular jurisdiction or consular steps or consular fee schedule
+    const hasConsularJurisdiction = Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => {
       if (!j) return false;
       if (j.application_channel === 'consular' || j.application_channel === 'embassy' || j.application_channel === 'overseas') return true;
       if (typeof j.name === 'string') {
@@ -124,31 +420,18 @@ class PassportRulesEngine {
         return n.includes('consul') || n.includes('embassy') || n.includes('diplomatic') || n.includes('high commission') || n.includes('overseas');
       }
       return false;
-    })) {
-      return true;
-    }
-    // 2. Sources mentioning consular/embassy/diplomatic/overseas
-    const allSources = [
-      ...(Array.isArray(serviceObj?.sources) ? serviceObj.sources : []),
-      ...(Array.isArray(pack.sources) ? pack.sources : [])
-    ];
-    if (allSources.some(s => {
-      const url = typeof s === 'string' ? s : (s?.url || s?.page_title || '');
-      const lower = url.toLowerCase();
-      return lower.includes('consul') || lower.includes('embassy') || lower.includes('diplomatic') || lower.includes('overseas');
-    })) {
-      return true;
-    }
-    // 3. Service steps mentioning embassy/consulate
+    });
+    if (hasConsularJurisdiction) return true;
+
     const steps = (serviceObj?.steps || pack.services?.first_passport?.steps || []);
-    if (Array.isArray(steps) && steps.some(st => {
+    const hasConsularSteps = Array.isArray(steps) && steps.some(st => {
       const text = typeof st === 'string' ? st : (st?.step || st?.title || st?.description || '');
       const lower = text.toLowerCase();
       return lower.includes('embassy') || lower.includes('consulate') || lower.includes('consular') || lower.includes('overseas');
-    })) {
-      return true;
-    }
-    return false;
+    });
+    if (hasConsularSteps) return true;
+
+    return consularSources.length > 0;
   }
 
   determineBaseServiceCoverage(pack, countryCode, service) {
@@ -588,7 +871,7 @@ class PassportRulesEngine {
       case 'urgent_expedited': {
         const serviceObj = pack.services && (pack.services.urgent_expedited || pack.services.first_passport);
         const feesObj = serviceObj?.fees || {};
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectUrgentSources(pack, serviceObj);
         const hasUrgentSchedule = this.hasUrgentFeeEvidence(feesObj) && sources.length > 0;
 
         return {
@@ -626,10 +909,20 @@ class PassportRulesEngine {
       case 'emergency_travel': {
         const serviceObj = pack.services && (pack.services.emergency_travel || pack.services.emergency_passport || pack.services.first_passport);
         const feesObj = serviceObj?.fees || pack.services?.first_passport?.fees || {};
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectEmergencySources(pack, serviceObj, countryCode);
         const hasMxEmergencyData = !!(
-          (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && Object.keys(feesObj.consular_overseas_usd.emergency_surcharge_schedule).length > 0) ||
-          (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && r.emergency_surcharge > 0))
+          (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && typeof feesObj.consular_overseas_usd.emergency_surcharge_schedule === 'object' &&
+            Object.values(feesObj.consular_overseas_usd.emergency_surcharge_schedule).some(tier => {
+              if (!tier) return false;
+              if (typeof tier === 'number' && Number.isFinite(tier) && tier > 0) return true;
+              if (typeof tier === 'object') {
+                return (typeof tier.total_payable === 'number' && Number.isFinite(tier.total_payable) && tier.total_payable > 0) ||
+                       (typeof tier.emergency_surcharge === 'number' && Number.isFinite(tier.emergency_surcharge) && tier.emergency_surcharge > 0);
+              }
+              return false;
+            })
+          ) ||
+          (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && typeof r.emergency_surcharge === 'number' && Number.isFinite(r.emergency_surcharge) && r.emergency_surcharge > 0))
         );
 
         if (countryCode === 'MX' && hasMxEmergencyData && sources.length > 0) {
@@ -664,7 +957,7 @@ class PassportRulesEngine {
         const hasNzCalloutData = !!(
           feesObj.after_hours_callout_service_nzd &&
           typeof feesObj.after_hours_callout_service_nzd === 'object' &&
-          Object.keys(feesObj.after_hours_callout_service_nzd).length > 0
+          Object.values(feesObj.after_hours_callout_service_nzd).some(v => typeof v === 'number' && Number.isFinite(v) && v > 0)
         );
 
         if (countryCode === 'NZ' && hasNzCalloutData && sources.length > 0) {
@@ -831,7 +1124,7 @@ class PassportRulesEngine {
     if (urgency === 'urgent') {
       const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
       const feesObj = serviceObj?.fees || {};
-      const sources = this.collectServiceSources(pack, serviceObj);
+      const sources = this.collectUrgentSources(pack, serviceObj);
       const hasUrgentFeeEvidence = this.hasUrgentFeeEvidence(feesObj);
 
       if (hasUrgentFeeEvidence && sources.length > 0) {
@@ -883,11 +1176,21 @@ class PassportRulesEngine {
     if (urgency === 'emergency') {
       const serviceObj = pack.services && (pack.services.emergency_travel || pack.services.first_passport);
       const feesObj = serviceObj?.fees || pack.services?.first_passport?.fees || {};
-      const sources = this.collectServiceSources(pack, serviceObj);
+      const sources = this.collectEmergencySources(pack, serviceObj, countryCode);
 
       const hasMxEmergencyData = !!(
-        (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && Object.keys(feesObj.consular_overseas_usd.emergency_surcharge_schedule).length > 0) ||
-        (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && r.emergency_surcharge > 0))
+        (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && typeof feesObj.consular_overseas_usd.emergency_surcharge_schedule === 'object' &&
+          Object.values(feesObj.consular_overseas_usd.emergency_surcharge_schedule).some(tier => {
+            if (!tier) return false;
+            if (typeof tier === 'number' && Number.isFinite(tier) && tier > 0) return true;
+            if (typeof tier === 'object') {
+              return (typeof tier.total_payable === 'number' && Number.isFinite(tier.total_payable) && tier.total_payable > 0) ||
+                     (typeof tier.emergency_surcharge === 'number' && Number.isFinite(tier.emergency_surcharge) && tier.emergency_surcharge > 0);
+            }
+            return false;
+          })
+        ) ||
+        (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && typeof r.emergency_surcharge === 'number' && Number.isFinite(r.emergency_surcharge) && r.emergency_surcharge > 0))
       );
 
       if (countryCode === 'MX' && hasMxEmergencyData && sources.length > 0) {
@@ -920,7 +1223,7 @@ class PassportRulesEngine {
       const hasNzCalloutData = !!(
         feesObj.after_hours_callout_service_nzd &&
         typeof feesObj.after_hours_callout_service_nzd === 'object' &&
-        Object.keys(feesObj.after_hours_callout_service_nzd).length > 0
+        Object.values(feesObj.after_hours_callout_service_nzd).some(v => typeof v === 'number' && Number.isFinite(v) && v > 0)
       );
 
       if (countryCode === 'NZ' && hasNzCalloutData && sources.length > 0) {
@@ -1071,7 +1374,7 @@ class PassportRulesEngine {
     // Overseas / Consular channel
     const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
     const feesObj = serviceObj?.fees || {};
-    const sources = this.collectServiceSources(pack, serviceObj);
+    const sources = this.collectConsularSources(pack, serviceObj);
 
     const hasCodifiedConsularFees = this.hasActualConsularFeeSchedule(feesObj);
     const hasConsularGuidance = this.hasConsularGuidance(pack, serviceObj);

@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_14'), `Stylesheet href must contain ?v=20261019_14 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_15'), `Stylesheet href must contain ?v=20261019_15 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_14'), `Local script ${srcMatch[1]} must contain ?v=20261019_14 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_15'), `Local script ${srcMatch[1]} must contain ?v=20261019_15 cache-busting query string`);
     }
   });
 });
@@ -2478,6 +2478,392 @@ runTest('Phase 4.3.6 Evidence Integrity, Country-Allowlist Bypass Removal, and R
   assert.strictEqual(countries.filter(c => c.portal_status === 'verified').length, 27);
   assert.strictEqual(countries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 0);
   assert.strictEqual(countries.filter(c => c.portal_status === 'official_source_needs_research').length, 222);
+});
+
+// 24. Phase 4.3.7 Source-to-Claim Evidence Binding & Strict Fee Schema Validation (Fixtures A–I)
+runTest('Phase 4.3.7 Source-to-Claim Evidence Binding & Strict Fee Schema Validation (Fixtures A–I)', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // --- SCENARIO A: Generic Pack Sources (Urgent Route Fallback) ---
+  // Pack with valid base first_passport, urgent fee defined (tatkaal_surcharge: 2000),
+  // but ONLY generic pack URL (no urgent/tatkaal keyword in URL or title, no urgent source URL)
+  const packGenericOnly = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [{ url: 'https://passportindia.gov.in', page_title: 'National Passport Portal', checked_at: '2026-10-18', publisher: 'MEA' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [{ url: 'https://passportindia.gov.in', page_title: 'National Passport Portal' }],
+        fees: {
+          currency: 'INR',
+          standard: 1500,
+          tatkaal_surcharge: 2000 // urgent surcharge present
+        },
+        documents: [{ document_name: 'Proof of Citizenship' }],
+        eligibility: [{ rule: 'Citizen' }],
+        steps: [{ step: 'Visit center' }]
+      }
+    }
+  };
+  const engineGenericOnly = new PassportRulesEngine({ IN: packGenericOnly });
+  const resGenericUrgent = engineGenericOnly.evaluate({
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(
+    resGenericUrgent.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Scenario A: Pack with only generic authority URL and no urgent source must fall back to general_guidance'
+  );
+  assert.strictEqual(resGenericUrgent.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false);
+  assert.strictEqual(resGenericUrgent.serviceCoverage.status, 'general_guidance');
+  assert(resGenericUrgent.readinessScore <= 75, 'Score must be capped <= 75 for general_guidance');
+  assert.notStrictEqual(resGenericUrgent.statusLabel, 'PREPARED');
+
+  // --- SCENARIO B: Missing Consular Sources ---
+  // Pack with consular jurisdiction entry, but stripped consular sources (only domestic URL)
+  const noConsularSourcesPack = {
+    country_code: 'MX',
+    country_name: 'Mexico',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    official_portal_url: 'https://domestic.gov.mx',
+    sources: [{ url: 'https://domestic.gov.mx', page_title: 'Domestic Passport Service', checked_at: '2026-10-19', publisher: 'SRE' }],
+    jurisdictions: [
+      { name: 'Consular Section Overseas', application_channel: 'consular' } // BARE JURISDICTION WITHOUT SOURCE URL
+    ],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [{ url: 'https://domestic.gov.mx', page_title: 'Domestic Passport Service' }],
+        fees: {
+          currency: 'USD',
+          consular_overseas_usd: { standard: { validity_1_year: 44, validity_3_year: 101 } }
+        },
+        documents: [{ document_name: 'Birth Certificate' }],
+        eligibility: [{ rule: 'Citizen' }],
+        steps: [{ step: 'Visit domestic office' }]
+      }
+    }
+  };
+  const engineNoConsularSources = new PassportRulesEngine({ MX: noConsularSourcesPack });
+  const resNoConsularSources = engineNoConsularSources.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'first_passport',
+    urgency: 'standard'
+  });
+  assert.strictEqual(
+    resNoConsularSources.serviceCoverage.dimensions.channel.status,
+    'general_guidance',
+    'Scenario B: Consular jurisdiction without traceable consular source must receive general_guidance'
+  );
+  assert.strictEqual(resNoConsularSources.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, false);
+
+  // --- SCENARIO C: Invalid Consular Fee Objects ---
+  // Must reject: 1) empty {}, 2) placeholder { status: 'pending' }, 3) string amounts, 4) empty nested { standard: {} }
+  const invalidConsularCases = [
+    { desc: 'empty object', fees: { currency: 'USD', consular_overseas_usd: {} } },
+    { desc: 'placeholder object', fees: { currency: 'USD', consular_overseas_usd: { status: 'pending' } } },
+    { desc: 'string amounts', fees: { currency: 'USD', diaspora_overseas_usd: { booklet_32_pages_5_year: '150' } } },
+    { desc: 'empty nested standard', fees: { currency: 'USD', consular_overseas_usd: { standard: {} } } }
+  ];
+
+  invalidConsularCases.forEach(({ desc, fees }) => {
+    const pack = {
+      country_code: 'MX',
+      country_name: 'Mexico',
+      rule_pack_status: 'verified',
+      authority_name: 'SRE',
+      official_portal_url: 'https://embamex.sre.gob.mx/consular',
+      sources: [{ url: 'https://embamex.sre.gob.mx/consular', page_title: 'SRE Consular Services', checked_at: '2026-10-19', publisher: 'SRE' }],
+      jurisdictions: [{ application_channel: 'consular', name: 'Consular Missions', source_url: 'https://embamex.sre.gob.mx/consular' }],
+      services: {
+        first_passport: {
+          availability_status: 'available',
+          sources: [{ url: 'https://embamex.sre.gob.mx/consular', page_title: 'SRE Consular Services' }],
+          fees,
+          documents: [{ document_name: 'Acta' }],
+          eligibility: [{ rule: 'Mexicano' }],
+          steps: [{ step: 'Cita consular' }]
+        }
+      }
+    };
+    const e = new PassportRulesEngine({ MX: pack });
+    const res = e.evaluate({ countryCode: 'MX', location: 'abroad', service: 'first_passport' });
+    assert.notStrictEqual(
+      res.serviceCoverage.dimensions.channel.status,
+      'verified',
+      `Scenario C: Consular channel must NOT be verified with ${desc}`
+    );
+  });
+
+  // --- SCENARIO D: Malformed Emergency Fees ---
+  // MX with non-numeric surcharge schedule e.g. { validity_3_year: { total_payable: "131" } }
+  const mxMalformedEmergPack = {
+    country_code: 'MX',
+    country_name: 'Mexico',
+    rule_pack_status: 'verified',
+    authority_name: 'SRE',
+    sources: [{ url: 'https://embamex.sre.gob.mx/consular-emergency', page_title: 'Consular Emergency Type E', checked_at: '2026-10-19', publisher: 'SRE' }],
+    jurisdictions: [{ application_channel: 'consular' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: {
+          currency: 'USD',
+          consular_overseas_usd: {
+            emergency_surcharge_schedule: {
+              validity_3_year: { total_payable: '131' } // STRING INSTEAD OF NUMBER
+            }
+          }
+        },
+        documents: [{ document_name: 'Acta' }],
+        eligibility: [{ rule: 'Mexicano' }]
+      }
+    }
+  };
+  const engineMxMalformed = new PassportRulesEngine({ MX: mxMalformedEmergPack });
+  const resMxMalformed = engineMxMalformed.evaluate({
+    countryCode: 'MX',
+    location: 'abroad',
+    service: 'emergency_travel',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(
+    resMxMalformed.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Scenario D: MX with non-numeric emergency surcharge must fall back to general_guidance'
+  );
+  assert.strictEqual(resMxMalformed.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false);
+
+  // NZ with string callout fee e.g. { adult_10_year: "1001" }
+  const nzMalformedCalloutPack = {
+    country_code: 'NZ',
+    country_name: 'New Zealand',
+    rule_pack_status: 'verified',
+    authority_name: 'DIA',
+    sources: [{ url: 'https://passports.govt.nz/passport-costs', page_title: 'After-Hours Emergency Callout Service', checked_at: '2026-10-19', publisher: 'DIA' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: {
+          currency: 'NZD',
+          after_hours_callout_service_nzd: {
+            adult_10_year: '1001' // STRING INSTEAD OF NUMBER
+          }
+        },
+        documents: [{ document_name: 'Birth Cert' }],
+        eligibility: [{ rule: 'NZ Citizen' }]
+      }
+    }
+  };
+  const engineNzMalformed = new PassportRulesEngine({ NZ: nzMalformedCalloutPack });
+  const resNzMalformed = engineNzMalformed.evaluate({
+    countryCode: 'NZ',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(
+    resNzMalformed.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Scenario D: NZ with string callout fee must fall back to general_guidance'
+  );
+  assert.strictEqual(resNzMalformed.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false);
+
+  // --- SCENARIO E: Source Metadata Integrity ---
+  // Pack with empty URL "", title without URL, non-URL strings
+  const invalidSourcesPack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [
+      { page_title: 'Official Portal Without URL' },
+      'Ministry of External Affairs',
+      { url: '' }
+    ],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [
+          { page_title: 'Portal Without URL' },
+          'Not A Valid URL',
+          { url: '' }
+        ],
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Citizenship Evidence' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const engineInvalidSources = new PassportRulesEngine({ IN: invalidSourcesPack });
+  const resInvalidSources = engineInvalidSources.evaluate({
+    countryCode: 'IN',
+    location: 'inside',
+    service: 'first_passport'
+  });
+  assert.strictEqual(
+    resInvalidSources.serviceCoverage.dimensions.service.status,
+    'general_guidance',
+    'Scenario E: Object with only invalid/placeholder sources must receive general_guidance'
+  );
+  assert.strictEqual(resInvalidSources.serviceCoverage.dimensions.service.evidence.hasSupportingEvidence, false);
+  assert(resInvalidSources.serviceCoverage.dimensions.service.evidence.sources.length === 0, 'No invalid sources should be returned');
+
+  // --- SCENARIO F: Dynamic verifiedFields Accuracy ---
+  const noStepsServicePack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Seva',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA', page_title: 'Passport Seva', checked_at: '2026-10-18' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+        // NO steps!
+      }
+    }
+  };
+  const engineNoSteps = new PassportRulesEngine({ IN: noStepsServicePack });
+  const resNoSteps = engineNoSteps.evaluate({
+    countryCode: 'IN',
+    location: 'inside',
+    service: 'first_passport'
+  });
+  assert.strictEqual(resNoSteps.serviceCoverage.dimensions.service.status, 'verified');
+  const vFields = resNoSteps.serviceCoverage.dimensions.service.evidence.verifiedFields;
+  assert(!vFields.includes('steps'), 'Scenario F: verifiedFields must NOT include steps when steps are absent');
+  assert(vFields.includes('eligibility') && vFields.includes('documents') && vFields.includes('fees'));
+
+  // --- SCENARIO G: Preserve Previous Phase 4.3.6 Bypass Tests ---
+  // Production India with Tatkaal evaluates to partial route
+  const prodInTatkaal = engine.evaluate({
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(prodInTatkaal.serviceCoverage.dimensions.urgency.status, 'partial', 'IN urgent route must be partial with authentic Tatkaal source');
+  assert(prodInTatkaal.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('tatkaalPassports')), 'Must include Tatkaal source URL');
+
+  // Production Mexico emergency evaluates to partial route with Art. 20 LFD
+  const prodMxEmerg = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'emergency_travel',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(prodMxEmerg.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(prodMxEmerg.serviceCoverage.dimensions.urgency.summary.includes('Art. 20 LFD'));
+
+  // Production New Zealand emergency evaluates to partial route with callout citation
+  const prodNzEmerg = engine.evaluate({
+    countryCode: 'NZ',
+    countryName: 'New Zealand',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(prodNzEmerg.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(prodNzEmerg.serviceCoverage.dimensions.urgency.summary.includes('after-hours callout'));
+
+  // --- SCENARIO H: Score Caps & PREPARED Prohibition ---
+  [resGenericUrgent, resNoConsularSources, resMxMalformed, resNzMalformed, resInvalidSources].forEach(res => {
+    assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Non-verified status must NEVER be PREPARED');
+    assert(res.readinessScore <= 80, 'Non-verified status score must be capped <= 80%');
+  });
+
+  // --- SCENARIO I: Statutory Preservations ---
+  // Malaysia Immigration Department staff: 10-year replacement fees RM 200 / RM 500 / RM 1,000
+  const myStaffTiers = [
+    { tier: 'first_loss', amount: 200 },
+    { tier: 'second_loss', amount: 500 },
+    { tier: 'third_loss', amount: 1000 }
+  ];
+  myStaffTiers.forEach(({ tier, amount }) => {
+    const res = engine.evaluate({
+      countryCode: 'MY',
+      countryName: 'Malaysia',
+      location: 'inside',
+      service: 'lost_stolen',
+      applicantCategory: 'immigration_officers_staff',
+      validity: '10_year',
+      lossTier: tier
+    });
+    const feeItem = res.checklist.find(c => c.id === 'official_fee_payment');
+    assert.strictEqual(feeItem.feeStatus, 'verified_statutory');
+    assert.strictEqual(feeItem.feeRecord.total_replacement_fee, amount);
+    assert(feeItem.details.includes(`RM ${amount}`));
+    assert(!feeItem.details.includes('calculated difference'));
+  });
+
+  // Malaysia JIM staff 5-year replacement -> not_eligible
+  const myStaff5yrRep = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '5_year',
+    lossTier: 'first_loss'
+  });
+  const myStaff5yrFee = myStaff5yrRep.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(myStaff5yrFee.feeStatus, 'not_eligible');
+  assert.strictEqual(myStaff5yrFee.feeRecord.status, 'not_eligible');
+
+  // Malaysia JIM staff 10-year original issuance -> RM 0
+  const myStaff10yrOrig = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'first_passport',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '10_year'
+  });
+  const myStaff10OrigFee = myStaff10yrOrig.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(myStaff10OrigFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(myStaff10OrigFee.feeRecord.amount, 0);
+
+  // Indonesia minor-under-17 marital status confirmation
+  const idMinorUnknown = engine.evaluate({
+    countryCode: 'ID',
+    countryName: 'Indonesia',
+    location: 'inside',
+    service: 'first_passport',
+    ageExact: 16
+  });
+  assert.strictEqual(idMinorUnknown.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required');
+  assert(idMinorUnknown.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'));
+
+  // All 249 directory entries & dynamic counts (27 verified / 0 linked / 222 needs research)
+  const countriesFinal = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
+  assert.strictEqual(countriesFinal.length, 249);
+  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'verified').length, 27);
+  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 0);
+  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'official_source_needs_research').length, 222);
 });
 
 console.log('\n====================================================');

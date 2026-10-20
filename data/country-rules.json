@@ -157,6 +157,12 @@
             "publisher": "Ministry of External Affairs, India",
             "page_title": "Passport Seva Official Portal",
             "checked_at": "2026-10-18"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+            "publisher": "Ministry of External Affairs, India",
+            "page_title": "Tatkaal Passport Scheme Guidelines & Surcharge Schedule",
+            "checked_at": "2026-10-18"
           }
         ]
       },
@@ -347,6 +353,12 @@
         "publisher": "Ministry of External Affairs, Government of India",
         "page_title": "Passport Seva Official Portal",
         "checked_at": "2026-10-18"
+      },
+      {
+        "url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+        "publisher": "Ministry of External Affairs, Government of India",
+        "page_title": "Tatkaal Passport Scheme Guidelines & Surcharge Schedule",
+        "checked_at": "2026-10-18"
       }
     ]
   },
@@ -489,6 +501,12 @@
             "publisher": "U.S. Department of State",
             "page_title": "U.S. Passports",
             "checked_at": "2026-10-18"
+          },
+          {
+            "url": "https://travel.state.gov/content/travel/en/passports/get-fast.html",
+            "publisher": "U.S. Department of State",
+            "page_title": "Get My U.S. Passport Fast - Expedited Service",
+            "checked_at": "2026-10-18"
           }
         ]
       },
@@ -619,6 +637,12 @@
         "url": "https://travel.state.gov/en/passports.html",
         "publisher": "U.S. Department of State, Bureau of Consular Affairs",
         "page_title": "U.S. Passport Information",
+        "checked_at": "2026-10-18"
+      },
+      {
+        "url": "https://travel.state.gov/content/travel/en/passports/get-fast.html",
+        "publisher": "U.S. Department of State, Bureau of Consular Affairs",
+        "page_title": "Get My U.S. Passport Fast - Expedited Service",
         "checked_at": "2026-10-18"
       }
     ]
