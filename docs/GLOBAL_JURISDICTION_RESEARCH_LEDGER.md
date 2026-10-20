@@ -42,7 +42,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BY** | BLR | Belarus | Sovereign State | ДГиМ МВД Республики Беларусь (`mvd.gov.by` / `nalog.gov.by`) | `primary_sources_audited` | Налоговый кодекс & Указ № 107 (1 БВ = 45 BYN): Паспорт 1996 г. (10-yr) 1 БВ (45 BYN; дети <14 бесплатно первый раз); ID-карта 1,5 БВ (67,50 BYN); Биометрический паспорт (10-yr) 2 БВ (90 BYN; дети <14, пенсионеры 1,5 БВ) (DIRECT). Ускорение: 15 дней +1 БВ, 7 дней +2 БВ. Оплата ЕРИП. ⚠️ Указ № 278: выдача за рубежом ЗАПРЕЩЕНА; граждане обязаны обращаться лично в ОГиМ в Беларуси. |
 | **BE** | BEL | Belgium | Sovereign State | SPF Affaires étrangères / Communes belges | `primary_sources_audited` | Primary source audited (Batch 4). Base federal tariffs: Adult 18+ (7-yr) €65 standard (€240 urgent, €350 superurgente); Minor <18 (5-yr) €35 standard (€210 urgent, €320 superurgente); plus municipal tax. Consular adult €75 standard / €210 urgent. eID required; ICAO photo. |
 | **BZ** | BLZ | Belize | Sovereign State | Dept. of Border Management & Immigration, MFAFTI (`immigration.gov.bz`) | `primary_sources_audited` | Belize Electronic Passport System (BEPS): Adult 16+ (10-yr) BZ$ 200.00; Minor <16 (5-yr) BZ$ 150.00; 24-hr expedite +BZ$ 300.00; 48-hr expedite +BZ$ 130.00; 5-day emergency +BZ$ 100.00; Lost replacement penalty +BZ$ 200.00 (DIRECT). Social Security Card (SSB) + Vital Statistics birth cert + Form 3A Recommender mandatory; in-person biometrics. |
-| **BJ** | BEN | Benin | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BJ** | BEN | Benin | Sovereign State | Direction de l'Émigration et de l'Immigration (DEI), Police Républicaine / ANIP (`dei.gouv.bj` / `epasseport.service-public.bj`) | `primary_sources_audited` | Décret N° 2021-390: Passeport ordinaire biométrique (6-yr validity across all ages): 30 000 FCFA; Procédure VIP/Urgent (48–72h): 130 000 FCFA (DIRECT). Online payment via Mobile Money / Treasury card on epasseport.service-public.bj. Certificat d'Identification Personnelle (CIP) with NPI + Acte de naissance sécurisé (ANIP) strictly mandatory; in-person biometrics at DEI Cotonou. |
 | **BM** | BMU | Bermuda | Territory / Special Region | HMPO / Dept of Immigration Bermuda (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **BT** | BTN | Bhutan | Sovereign State | Passport Div., Ministry of Foreign Affairs & External Trade (`mfa.gov.bt`) | `primary_sources_audited` | MFAET statutory fees: Adult 18+ (10-yr) Nu. 1,000; Minor <18 (5-yr) Nu. 800; Lost/damaged replacement fine: Nu. 5,000 penalty + standard booklet fee (Nu. 6,000 adult / Nu. 5,800 minor) (DIRECT). Citizenship Identity Card (CID) + Security Clearance Certificate (SCC) mandatory; G2C online portal (citizenservices.gov.bt) or Passport Division Thimphu. |
 | **BO** | BOL | Bolivia | Sovereign State | Dirección General de Migración (DIGEMIG), MinGob (`migracion.gob.bo`) | `primary_sources_audited` | Ley N° 370 & DS N° 1923: Pasaporte electrónico ordinario (5-yr) 155 UFV + 200 Bs (~563–585 Bs depending on daily UFV rate) (DIRECT). Payment authorized at DIGEMIG counter then deposited at Banco Unión / QR. Cédula de Identidad (CI SEGIP) + Certificado de sufragio OEP mandatory; in-person biometrics; parental presence for minors; FELCC / Interpol cert for lost documents. |
@@ -63,7 +63,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CF** | CAF | Central African Republic | Sovereign State | Direction de l'Émigration & Immigration, Min. de l'Intérieur (`interieur.gouv.cf`) | `primary_sources_audited` | Décret CEMAC: Standard biometric passport (5-yr) 50 000 FCFA; Urgent fast-track processing 90 000 FCFA (DIRECT). Fee paid via Ecobank deposit receipt. Original birth certificate + Certificat de nationalité centrafricaine + CNI mandatory; in-person biometrics at Centre de Demande des Passeports (SEDOSEC), Bangui. |
 | **TD** | TCD | Chad | Sovereign State | Agence Nationale des Titres Sécurisés (ANATS) (`anats.td`) | `primary_sources_audited` | Arrêté interministériel: Standard CEMAC biometric passport (5-yr) 60 000 FCFA (DIRECT). Turnaround ~7–15 days. Numéro National d'Identification (NNI) + CNI biométrique (or NNI receipt) + Acte de naissance sécurisé + Certificat de nationalité mandatory; in-person biometrics at ANATS CAU centers in N'Djamena and provinces. |
 | **CL** | CHL | Chile | Sovereign State | Servicio de Registro Civil e Identificación (SRCeI) | `primary_sources_audited` | Primary source audited (Batch 2). New single-format biometric passport (polycarbonate, 48 pages): $69.660 CLP nationwide (10-year validity). Cédula de Identidad mandatory prerequisite; parental consent required for under 18; delivery in 6-8 business days. |
-| **CN** | CHN | China | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CN** | CHN | China | Sovereign State | National Immigration Administration (国家移民管理局 - NIA) / MPS (`nia.gov.cn` / `s.nia.gov.cn`) | `primary_sources_audited` | Ordinary passport (普通护照, NDRC/MOF No. 914): 120 CNY; 10-yr validity (adults 16+), 5-yr (minors <16) (DIRECT). Endorsement (加注) free (0 CNY). Lost replacement standard 120 CNY. Turnaround 7 working days (domicile hukou) / 20 days (cross-province nationwide "全国通办"); urgent within 5 days for verified humanitarian/business grounds. Resident ID Card (身份证) mandatory; biometrics at Exit-Entry Service Halls; s.nia.gov.cn appointment. Strictly distinguished from SAR passports and EEP. |
 | **CX** | CXR | Christmas Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **CC** | CCK | Cocos (Keeling) Islands | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **CO** | COL | Colombia | Sovereign State | Ministerio de Relaciones Exteriores (Cancillería) | `primary_sources_audited` | Primary source audited (Batch 2). 2026 statutory fees in Bogotá: Ordinario (32-pg) $190.000 COP ($111k base + $79k timbre); Ejecutivo (48-pg) $323.000 COP; Emergencia $192.000 COP. Departamentos: plus local taxes ($250k-$350k total). Abroad: USD 94 / EUR 68. Cédula de Ciudadanía mandatory. |
@@ -183,7 +183,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **QA** | QAT | Qatar | Sovereign State | Nationality & Travel Documents Dept., MOI — `https://portal.moi.gov.qa/` | `primary_sources_audited` | Standard Qatari passport (new/renewal): QAR 100. Travel Document: QAR 400. Qatar ID (citizens): QAR 50. Online via portal.moi.gov.qa or Metrash2 app. QID + Family Book (Kitab al-A'ila) mandatory. Applicable only to Qatari citizens (not expatriate residents). |
 | **CG** | COG | Republic of the Congo | Sovereign State | Direction Générale de la Surveillance du Territoire (DGST) (`interieur.gouv.cg`) | `primary_sources_audited` | Décret CEMAC: Standard biometric passport (5-yr) 60 000 FCFA (DIRECT). Consular fee abroad ~EUR 120 / USD $140. Non-prorogable. Copie intégrale d'acte de naissance congolais + Carte Nationale d'Identité (CNI) + Certificat de nationalité congolaise + Casier judiciaire mandatory; in-person biometrics at DGST Emigration Brazzaville or Pointe-Noire. |
 | **RO** | ROU | Romania | Sovereign State | Direcția Generală de Pașapoarte (DGP) / Ministerul Afacerilor Interne | `primary_sources_audited` | Primary source audited (Batch 3). Revised August 1, 2025 tariff: Pașaport simplu electronic 265 RON (TVA inclus) across all ages (10-yr for 18+, 5-yr for 12-18, 3-yr for <12); Temporar 265 RON. Carte de Identitate mandatory prerequisite; Ghișeul.ro / CEC Bank; delivery in 5 working days. |
-| **RU** | RUS | Russia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **RU** | RUS | Russia | Sovereign State | Main Directorate for Migration Affairs (ГУВМ МВД России) / MFA (`мвд.рф` / `gosuslugi.ru` / `kdmid.ru`) | `primary_sources_audited` | Foreign travel passport (заграничный паспорт, Art. 333.28 Tax Code rev. July 1, 2024): 10-yr Biometric 6,000 RUB (adult 14+) / 3,000 RUB (child <14); 5-yr Classical 2,000 RUB (adult 14+) / 1,000 RUB (child <14) (DIRECT). Kaliningrad residents 0 RUB. Turnaround: 1 mo (domicile) / 3 mo (temporary stay); urgent 3 days for medical/bereavement. Internal passport (внутренний паспорт) mandatory prerequisite; citizens may hold two valid passports concurrently; biometrics at OVM MVD / MFC. |
 | **RW** | RWA | Rwanda | Sovereign State | DGIE & IremboGov — `https://www.migration.gov.rw/` / `https://support.irembo.gov.rw/` | `primary_sources_audited` | Ministerial Order No. 06/01: Ordinary e-passport: Adult 10-yr 100,000 RWF; Adult 5-yr 75,000 RWF; Minor <16 (2–5 yr) 25,000 RWF (DIRECT). Service 15k RWF; Diplomatic 50k RWF. National ID (Indangamuntu) for 16+ or Child ID for <16 mandatory; Irembo online application & payment; in-person biometrics at DGIE or embassy. |
 | **RE** | REU | Réunion | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **BL** | BLM | Saint Barthélemy | Territory / Special Region | Collectivité de Saint-Barthélemy (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -216,10 +216,10 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SY** | SYR | Syria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TW** | TWN | Taiwan | Territory / Special Region | Bureau of Consular Affairs (BOCA) / Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 5). BOCA statutory tariffs: Adult 14+ (10-yr) NT$1,300; Minor <14 (5-yr) NT$900; Expedited +NT$300 (1 day), +NT$600 (2 days), +NT$900 (3 days). Consular overseas: USD 45 adult / USD 31 minor. National ID card (身分證) required; military status review for males 19-36. |
 | **TJ** | TJK | Tajikistan | Sovereign State | Consular Dept. MFA (`consular.tj` / `mfa.tj`) & Passport Service MIA (`vkd.tj`) | `primary_sources_audited` | Presidential Decree & Government Resolution: Standard ~15 days: Adult 16+ (10-yr) US$ 75.00 + 40 TJS; Minor <16 (5-yr) US$ 25.00 + 40 TJS (payable in TJS at NBT rate). Urgent: 7 days (+100% = US$ 150) / 3 days (+200% = US$ 225) (DIRECT). Domestic biometric ID card (16+) + military ID (males 18–27) + birth cert mandatory; in-person biometrics. |
-| **TZ** | TZA | Tanzania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TZ** | TZA | Tanzania | Sovereign State | Immigration Department (Idara ya Uhamiaji), Ministry of Home Affairs (`immigration.go.tz` / `eservices.immigration.go.tz`) | `primary_sources_audited` | Passports Act Cap 42 & EAC e-Passport: Application form fee TZS 20,000 + Booklet issuance fee TZS 130,000 = Standard Ordinary 50-pg e-Passport total TZS 150,000 (DIRECT). 10-yr validity (adults 18+), 5-yr (minors <18). Lost replacement penalty TZS 100,000 + 150,000 booklet = TZS 250,000. Paid strictly via GePG Control Number (mobile money / bank). NIDA National ID Number (NIN) + RITA birth certificate mandatory; biometrics at Immigration offices. |
 | **TH** | THA | Thailand | Sovereign State | Department of Consular Affairs, Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 1). MFA Consular Regulations: Regular 5-year 1,000 THB; 10-year (adult 20+ only) 1,500 THB; Same-day urgent surcharge +2,000 THB (total 3,000 / 3,500 THB); EMS delivery 40 THB. Thai National ID Card mandatory; Parental consent required for under 20. |
-| **TL** | TLS | Timor-Leste | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TG** | TGO | Togo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TL** | TLS | Timor-Leste | Sovereign State | Direção Nacional de Registos e Notariado (DNRN), Min. da Justiça (`mj.gov.tl` / `balkaununiku.gov.tl`) | `primary_sources_audited` | Decreto-Lei N.º 34/2016: Passaporte Comum Electrónico (5-yr validity across all ages): USD $50.00 standard (10 working days); Urgente (2–3 days): USD $100.00 (DIRECT). Replacement for loss: USD $50.00. Paid via BNCTL bank deposit. Bilhete de Identidade (BI timorense) or Certidão de Batismo/Nascimento + Atestado de Residência mandatory; in-person biometrics at Balcão Único / DNRN Dili. |
+| **TG** | TGO | Togo | Sovereign State | Direction Générale de la Documentation Nationale (DGDN), MSPC (`service-public.gouv.tg` / `dgdn.gouv.tg`) | `primary_sources_audited` | Décret N° 2014-149/PR: Passeport ordinaire biométrique (5-yr validity): 30 000 FCFA standard (2–3 weeks); VIP/Express counter Lomé fast-track (48–72h): 50 000–60 000 FCFA (DIRECT). Paid via bank deposit (UTB/BTCI/Ecobank) or T-Money/Flooz for Treasury receipt. Original Certificat de Nationalité Togolaise + legalized birth extract + CNI mandatory; in-person biometrics at DGDN Lomé or Kara. |
 | **TK** | TKL | Tokelau | Territory / Special Region | Tokelau Administration / NZ DIA (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **TO** | TON | Tonga | Sovereign State | Immigration Department, Ministry of Foreign Affairs (`foreignaffairs.gov.to`) | `primary_sources_audited` | Tonga Passport Regulations (Cap. 62): Adult 16+ 10-year passport TOP$ 250.00; Adult 16+ 5-year passport TOP$ 150.00; Minor <16 (5-year) TOP$ 100.00 (DIRECT). Ministry of Justice Birth Certificate + Form 1 + certification by Town Officer ('Ofisa Kolo)/District Officer/Minister of Religion mandatory; in-person biometrics at Immigration Dept Nuku'alofa. |
 | **TT** | TTO | Trinidad and Tobago | Sovereign State | Immigration Division, Ministry of Homeland/National Security (`nationalsecurity.gov.tt`) | `primary_sources_audited` | Immigration Regulations statutory fees: Ordinary 32-page passport (adults 16–59, 10-yr) TTD $500; 48-page business TTD $700; Children <16 (5-yr) TTD $500 (under-2 first issue FREE); Seniors 60+ FREE ($0 TTD); Expedited surcharge +TTD $600; Lost/stolen/mutilated penalty TTD $2,000 (DIRECT). Computerized RGD Birth Certificate with PIN + National ID card (EBC) mandatory; appointment via appointments.gov.tt. |
@@ -5993,5 +5993,261 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 
 ---
 
+## Section 28 — Batch 26 Research Dossiers: China (CN), Russia (RU), Benin (BJ), Togo (TG), Tanzania (TZ), Timor-Leste (TL)
 
+*Batch 26 research completed: 2026-10-21. Primary statutory dossiers established from official legislation (Passport Law of the PRC & NDRC/MOF Joint Notice No. [2019] 914, Russian Federal Law No. 114-FZ & Tax Code Art. 333.28 rev. July 1, 2024 via Law No. 539-FZ, Beninese Décret N° 2021-390 & Loi N° 2017-08 ANIP, Togolese Décret N° 2014-149/PR & Code de la nationalité, Tanzanian Passports and Travel Documents Act Cap 42 & Passports Regs 2004 with GePG integration, Timorese Decreto-Lei N.º 2/2004 & Decreto-Lei N.º 34/2016 Passaporte Electrónico), administering national authorities (China NIA / MPS, Russia GUVM MVD / MFA, Benin DEI / ANIP, Togo DGDN / MSPC, Tanzania Immigration Dept / MOHA, Timor-Leste DNRN / Ministério da Justiça), and official electronic service platforms (`nia.gov.cn`, `s.nia.gov.cn`, `мвд.рф`, `gosuslugi.ru`, `pravo.gov.ru`, `dei.gouv.bj`, `epasseport.service-public.bj`, `service-public.bj`, `dgdn.gouv.tg`, `service-public.gouv.tg`, `immigration.go.tz`, `eservices.immigration.go.tz`, `mj.gov.tl`, `balkaununiku.gov.tl`).*
 
+---
+
+### 28.1 China (CN / CHN) — National Immigration Administration (国家移民管理局 - NIA)
+
+- **Administering Authority:** National Immigration Administration (国家移民管理局 - NIA), Ministry of Public Security of the People's Republic of China (中华人民共和国公安部); Consular: Department of Consular Affairs, Ministry of Foreign Affairs (外交部领事司).
+- **Primary Portals:**
+  - NIA Official Portal: `https://www.nia.gov.cn/`
+  - NIA Government Service Platform: `https://s.nia.gov.cn/`
+  - Ministry of Public Security: `https://www.mps.gov.cn/`
+  - Consular Services Portal: `http://cs.mfa.gov.cn/`
+- **Statutory Framework:**
+  - Passport Law of the People's Republic of China (《中华人民共和国护照法》, adopted at the 21st Meeting of the Standing Committee of the 10th National People's Congress on April 29, 2006, effective January 1, 2007)
+  - Exit and Entry Administration Law of the People's Republic of China (《中华人民共和国出境入境管理法》, effective July 1, 2013)
+  - Joint Notice of the National Development and Reform Commission and Ministry of Finance on Reducing Exit-Entry Document Charging Rates (国家发展改革委 财政部关于降低部分行政事业性收费标准的通知, 发改价格〔2019〕914号, reducing ordinary passport fee from 160 CNY to 120 CNY effective July 1, 2019)
+- **Document Scope & Strict Distinctions:**
+  - Standard Ordinary Passport (中华人民共和国普通护照).
+  - Explicit distinction: Does NOT apply to Diplomatic Passports (外交护照), Service/Official Passports (公务护照), Hong Kong SAR Passports (香港特别行政区护照), Macao SAR Passports (澳门特别行政区护照), Exit-Entry Permits for Travelling to and from Hong Kong and Macao (往来港澳通行证 - EEP), Mainland Travel Permits for Taiwan Residents (台湾居民来往大陆通行证 - 台胞证), or Mainland Travel Permits for Hong Kong and Macao Residents (港澳居民来往内地通行证 - 回乡证).
+- **Validity by Age Category:**
+  - **Adults and youth aged 16 and older:** **10 years** validity (Article 7, Passport Law).
+  - **Minors under 16 years of age:** **5 years** validity.
+- **Domestic Fee Schedule (in Chinese Yuan Renminbi — CNY):**
+  - **Ordinary Passport initial issuance / renewal / replacement:** **120 CNY** (人民币 120元) per booklet (NDRC/MOF No. [2019] 914).
+  - **Passport Endorsement (加注):** **Free of charge (0 CNY)** (formerly 20 CNY, fee eliminated under national administrative fee reforms).
+  - **Lost or Damaged Passport Replacement:** Standard statutory fee of **120 CNY** (no additional punitive surcharge; replacement follows standard booklet rate upon submission of loss declaration).
+  - **Turnaround:**
+    - Standard domestic application at registered permanent residence (*hukou* 户籍地): Within **7 working days** (or up to 10 working days in specific autonomous regions).
+    - Cross-province application (异地办理 - nationwide "全国通办" policy effective April 1, 2019): Within **20 calendar days**.
+    - Expedited processing (加急办理): Within **5 working days** (statutory fast-track available strictly for verified humanitarian or urgent business reasons: overseas bereavement/critical illness, urgent overseas medical treatment, commencement of academic term, urgent business negotiations, or disaster relief; NO expedited surcharge is levied by law).
+  - **Payment Channels:** Cashless payment via WeChat Pay, Alipay, UnionPay bank cards, or designated bank revenue counters upon issuance of non-tax revenue electronic payment barcode.
+  - **Evidence confidence: `DIRECT`** — established from `nia.gov.cn`, `s.nia.gov.cn`, and NDRC/MOF No. 914.
+- **Consular Fee Schedule (via PRC Embassies and Consulates abroad):**
+  - Standard ordinary passport issuance/renewal abroad: Statutory equivalent of **18 USD** (or 16 EUR / local currency equivalent, reduced from 25 USD under MFA consular fee reductions).
+  - Managed electronically via the official **China Consular Affairs App (中国领事 APP)** with biometric verification, online document upload, and postal submission or in-person interview.
+  - **Evidence confidence: `DIRECT`** — verified via `cs.mfa.gov.cn`.
+- **Civil Identity & Document Checklists:**
+  - **Adult Citizens (16+):**
+    - Resident Identity Card of the People's Republic of China (中华人民共和国居民身份证); or Temporary Resident Identity Card (临时居民身份证) if ID is currently undergoing renewal.
+    - Application Form for Chinese Citizen Exit-Entry Documents (中国公民出入境证件申请表), auto-generated via self-service kiosk or pre-filled online.
+    - Previous passport booklet (if renewing) presented for physical invalidation and cancellation stamp.
+  - **Minor Citizens (<16):**
+    - Minor's Resident ID Card (if issued) or Household Register (居民户口簿 - Hukou).
+    - Original Birth Medical Certificate (出生医学证明) or proof of legal guardianship.
+    - Accompanying parent or legal guardian's Resident Identity Card and written consent declaration.
+  - **Designated State Personnel (国家工作人员):**
+    - Civil servants, military personnel, and senior SOE officials registered under the Exit-Entry Control List must submit a formal Institutional Overseas Travel Approval Letter (关于同意申办出入境证件的函) issued by their supervising personnel/cadre organization.
+  - **Biometrics:** Mandatory on-site digital photograph capture complying with GB/T 35649-2017 standards, dual thumb/index fingerprint scanning (fingerprint capture from age 16+), and digital signature capture at the Exit-Entry Reception Hall.
+  - **Lost/Stolen/Damaged:** Submission of formal Lost Passport Declaration Statement (护照损毁/遗失确认书); invalidation published immediately across national border control databases.
+
+---
+
+### 28.2 Russia (RU / RUS) — Main Directorate for Migration Affairs (ГУВМ МВД России)
+
+- **Administering Authority:** Main Directorate for Migration Affairs, Ministry of Internal Affairs of the Russian Federation (Главное управление по вопросам миграции МВД России - ГУВМ МВД РФ); Consular: Consular Department, Ministry of Foreign Affairs of the Russian Federation (Консульский департамент МИД РФ).
+- **Primary Portals:**
+  - Ministry of Internal Affairs Official Portal: `https://мвд.рф/` (`https://мвд.рф/deljatelnost/emigration/issue_passport`)
+  - Federal Public Services Portal (Gosuslugi): `https://www.gosuslugi.ru/`
+  - MFA Consular Information Portal: `https://kdmid.ru/`
+  - Official Statutory Internet-Portal of Legal Information: `http://pravo.gov.ru/`
+- **Statutory Framework:**
+  - Federal Law No. 114-FZ of August 15, 1996 "On the Procedure for Exit from the Russian Federation and Entry into the Russian Federation" (Федеральный закон № 114-ФЗ «О порядке выезда из Российской Федерации и въезда в Российскую Федерацию»)
+  - Tax Code of the Russian Federation, Part Two, Article 333.28 (Налоговый кодекс РФ, Ч. 2, ст. 333.28 — Размеры государственной пошлины за совершение действий, связанных с оформлением документов для выезда из Российской Федерации)
+  - Federal Law No. 539-FZ of November 27, 2023 (amending Article 333.28 of the Tax Code, legislating comprehensive state duty tariff increases effective **July 1, 2024**)
+- **Critical Document Regimes & Distinction:**
+  - **Foreign Travel Passport (Заграничный паспорт / загранпаспорт):** Document used strictly for international travel and border crossing.
+  - **Strict Domestic Distinction:** This document is legally and functionally distinct from the **Internal Passport of a Citizen of the Russian Federation (Внутренний паспорт гражданина РФ)**, which serves as the mandatory primary domestic identity document and cannot be used for global travel (except to CIS reciprocal states: Belarus, Kazakhstan, Kyrgyzstan, Armenia, Abkhazia, South Ossetia).
+- **Statutory Fee Schedule (State Duty / Госпошлина, Effective July 1, 2024):**
+  1. **New Generation Biometric Passport with Electronic Chip (Биометрический загранпаспорт нового поколения, 10-year validity, 46 pages):**
+     - Adults and minors aged 14 and older: **6,000 RUB** (state duty raised from 5,000 RUB to 6,000 RUB effective July 1, 2024 per Law No. 539-FZ).
+     - Children under 14 years of age: **3,000 RUB** (state duty raised from 2,500 RUB to 3,000 RUB effective July 1, 2024).
+     - Biometrics: Contactless microchip containing cryptographic biometric facial template and digitized fingerprints of two index fingers (captured from age 12+).
+  2. **Old Generation Non-Biometric Passport (Загранпаспорт старого образца, 5-year validity, 36 pages):**
+     - Adults and minors aged 14 and older: **2,000 RUB**.
+     - Children under 14 years of age: **1,000 RUB**.
+     - Note: Does not contain an electronic chip; applicant supplies 3 physical photos (35x45 mm).
+  - **Statutory Exemptions:** Residents of Kaliningrad Oblast are fully exempt from passport state duty (**0 RUB**) under Article 333.29 of the Tax Code.
+  - **Holding Two Passports Concurrently:** Under Article 11 of Federal Law No. 114-FZ, any citizen has the statutory right to hold **two valid foreign passports simultaneously**, provided the second passport issued is a 10-year biometric passport.
+  - **Turnaround:**
+    - Lodged at registered place of domicile (*по месту жительства* / permanent registration): Within **1 month** (30 calendar days).
+    - Lodged at place of temporary stay or factual residence (*по месту пребывания или фактического проживания*): Within **3 months** (reduced from 4 months in 2018).
+    - Citizens with authorized access to state secrets or classified information: Up to **3 months**.
+    - Urgent emergency procedure (emergency medical treatment abroad, critical illness or death of close relative): Within **3 working days** (issued exclusively as a 5-year non-biometric passport).
+  - **Evidence confidence: `DIRECT`** — verified via `pravo.gov.ru`, `gosuslugi.ru`, and `мвд.рф`.
+- **Consular Fee Schedule (via Russian Embassies and Consulates abroad):**
+  - Consular tariff (Tarif konsulskikh sborov): 10-year biometric passport: **USD $90.00** (adult 14+) / **USD $50.00** (child <14); 5-year non-biometric passport: **USD $35.00** (adult 14+) / **USD $15.00** (child <14).
+  - **Evidence confidence: `DIRECT`** — established from `kdmid.ru`.
+- **Civil Identity & Document Checklists:**
+  - Electronic application submitted via the Gosuslugi portal or paper application at an MFC (*МФЦ "Мои Документы"*) or territorial Migration Department (ОВМ МВД).
+  - Internal Passport of a Citizen of the Russian Federation (Паспорт гражданина РФ) for all applicants aged 14+.
+  - For children under 14: Birth Certificate (*Свидетельство о рождении*) with mandatory stamp or certificate confirming Russian citizenship (per Presidential Decree No. 889).
+  - Military registration document: Military ID card (*военный билет*) with record of completed military service / unfitness, or electronic military registry notification for male citizens aged 18 to 30.
+  - Current or expired previous foreign travel passport (if any).
+  - State duty payment receipt (paid via Gosuslugi payment gateway, Sberbank, or government treasury portal).
+  - Biometrics: Live biometric photo capture in specialized photo cabin (KAB-DOK) and digital fingerprint scan on-site.
+
+---
+
+### 28.3 Benin (BJ / BEN) — Direction de l'Émigration et de l'Immigration (DEI)
+
+- **Administering Authority:** Direction de l'Émigration et de l'Immigration (DEI), Police Républicaine, Ministère de l'Intérieur et de la Sécurité Publique (MISP), République du Bénin; in technical collaboration with Agence Nationale d'Identification des Personnes (ANIP).
+- **Primary Portals:**
+  - DEI Official Portal: `https://dei.gouv.bj/`
+  - E-Passport Online Application Service: `https://epasseport.service-public.bj/`
+  - National Public Services Portal: `https://service-public.bj/`
+  - ANIP Portal (Civil Identity): `https://anip.bj/`
+- **Statutory Framework:**
+  - Loi N° 2017-08 du 19 juin 2017 portant identification des personnes physiques en République du Bénin
+  - Décret N° 2021-390 du 14 juillet 2021 fixant les modalités de délivrance du passeport ordinaire biométrique en République du Bénin
+  - Loi de Finances portant fixation des droits de chancellerie et des taxes sur les passeports
+- **Document Validity:**
+  - Standard Ordinary Biometric Passport (Passeport ordinaire biométrique) has a statutory validity of **6 years** across all applicant categories (both adults and minors).
+- **Domestic Fee Schedule (in West African CFA Francs — XOF / FCFA):**
+  - **Standard Ordinary Biometric Passport Issuance / Renewal:** **30 000 FCFA** (trente mille francs CFA).
+  - **Procédure VIP / Express (Expedited fast-track service):** **130 000 FCFA** (cent trente mille francs CFA; delivery within 48 to 72 hours).
+  - **Turnaround:**
+    - Standard routine procedure: **7 to 15 working days** following biometric enrollment.
+    - VIP / Express procedure: **48 to 72 hours**.
+  - **Payment Channels:** Strictly digital online payment through the `epasseport.service-public.bj` portal using Mobile Money (MTN MoMo, Moov Money) or Treasury debit/credit bank card (Visa/Mastercard).
+  - **Appointment Booking:** Automated digital appointment scheduling integrated into the online payment slip generation on `epasseport.service-public.bj`.
+  - **Evidence confidence: `DIRECT`** — verified via `dei.gouv.bj` and `epasseport.service-public.bj`.
+- **Consular Fee Schedule (via Beninese Diplomatic and Consular Missions abroad):**
+  - Consular passport issuance / renewal: Equivalent of **30 000 to 50 000 FCFA** plus consular administrative processing fee (e.g., ~60 to 90 EUR in Western Europe). Digital pre-enrollment via ANIP/DEI diaspora portal.
+  - **Evidence confidence: `DIRECT`** — established from `service-public.bj`.
+- **Civil Identity & Document Checklists:**
+  - **Certificat d'Identification Personnelle (CIP):** Issued by ANIP, bearing the unique Personal Identification Number (Numéro Personnel d'Identification - NPI). Strictly mandatory pre-condition; passport cannot be requested without a valid CIP.
+  - **Acte de Naissance Sécurisé:** Secure digitized birth certificate issued by ANIP.
+  - Proof of profession (Attestation de travail, diplôme, registre de commerce RCCM, or carte professionnelle).
+  - Previous passport (for renewal or renewal due to expiration/exhaustion of pages).
+  - For minors (under 18): CIP and secure birth certificate of the child, valid CIP copies of both parents, and legalized Parental Authorization (*Autorisation parentale légalisée*).
+  - In case of loss or theft: Certificate of Loss (*Certificat de perte*) issued by the Police Républicaine.
+  - **Biometrics:** Mandatory in-person enrollment at the DEI headquarters (Direction de l'Émigration et de l'Immigration, Quartier Haie Vive, Cotonou) or designated regional centers; includes live ICAO facial capture, 10-finger digital fingerprint scan, and digital signature.
+
+---
+
+### 28.4 Togo (TG / TGO) — Direction Générale de la Documentation Nationale (DGDN)
+
+- **Administering Authority:** Direction Générale de la Documentation Nationale (DGDN), Ministère de la Sécurité et de la Protection Civile (MSPC), République Togolaise; Consular: Ministère des Affaires Étrangères, de l'Intégration Régionale et des Togolais de l'Extérieur (MAETRTE).
+- **Primary Portals:**
+  - DGDN Official Portal: `https://dgdn.gouv.tg/`
+  - Portal Service Public Togo: `https://service-public.gouv.tg/` (`https://service-public.gouv.tg/service/demande-de-passeport-ordinaire/`)
+  - Ministère de la Sécurité et de la Protection Civile: `https://securite.gouv.tg/`
+  - MAETRTE: `https://diplomatie.gouv.tg/`
+- **Statutory Framework:**
+  - Décret N° 2014-149/PR portant fixation des droits de délivrance du passeport ordinaire et autres documents de voyage en République Togolaise
+  - Loi N° 61-27 du 18 septembre 1961 portant Code de la nationalité togolaise, modifiée
+  - Arrêté interministériel fixant les modalités pratiques de recueil des données biométriques pour le passeport électronique
+- **Document Validity:**
+  - Standard Ordinary Biometric Electronic Passport (Passeport ordinaire biométrique) has a statutory validity of **5 years** across all categories.
+- **Domestic Fee Schedule (in West African CFA Francs — XOF / FCFA):**
+  - **Standard Ordinary Passport Issuance / Renewal:** **30 000 FCFA** (trente mille francs CFA).
+  - **Accelerated VIP / Express Track:** Fast-track delivery at DGDN headquarters in Lomé available within 48 to 72 hours for an additional statutory/counter processing surcharge totaling **50 000 to 60 000 FCFA**.
+  - **Turnaround:**
+    - Standard domestic processing: **2 to 3 weeks** (15 to 21 calendar days).
+    - Express processing: **48 to 72 hours**.
+  - **Payment Channels:** Payment executed via designated partner commercial banks (Union Togolaise de Banque - UTB, BTCI, Ecobank) or mobile payment services (T-Money, Flooz) producing an official Treasury Payment Receipt (*Quittance de paiement du Trésor public*).
+  - **Evidence confidence: `DIRECT`** — established from `service-public.gouv.tg` and `dgdn.gouv.tg`.
+- **Consular Fee Schedule (via Togolese Embassies abroad):**
+  - Consular issuance fee: **50 000 FCFA** equivalent (~75 to 80 EUR / USD $85.00). Turnaround: 4 to 8 weeks depending on diplomatic dispatch to Lomé for booklet personalization.
+  - **Evidence confidence: `DIRECT`** — verified via `diplomatie.gouv.tg`.
+- **Civil Identity & Document Checklists:**
+  - **Certificat de Nationalité Togolaise:** Original duplicate (*volet 2*) or legalized copy of the Certificate of Togolese Nationality. Essential prerequisite establishing sovereignty and citizenship.
+  - **Extrait d'Acte de Naissance Légalisé:** Original legalized birth certificate extract.
+  - **Carte Nationale d'Identité (CNI)** or valid professional identity card.
+  - Proof of profession (Attestation d'employeur, diplôme, or inscription au registre de commerce).
+  - Two (2) recent identical passport-size color photographs (35x45 mm, white background).
+  - Original Treasury payment receipt (*Quittance de 30 000 FCFA*).
+  - For minors (under 18): Minor's nationality certificate and birth extract, father's and mother's CNI/nationality documents, and formal notarized parental authorization (*Autorisation parentale légalisée*).
+  - For renewal: Previous passport booklet submitted for cancellation. In case of loss: Police Loss Certificate (*Déclaration de perte de la Police ou de la Gendarmerie*) and a formal handwritten request addressed to the Director General of DGDN.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph, fingerprint scanning, and electronic signature) at the DGDN Headquarters in Lomé (Cité OUA, quartier GTA) or regional documentation service in Kara.
+
+---
+
+### 28.5 Tanzania (TZ / TZA) — Immigration Department (Idara ya Uhamiaji)
+
+- **Administering Authority:** Immigration Department (Idara ya Uhamiaji), Ministry of Home Affairs (Wizara ya Mambo ya Ndani ya Nchi), The United Republic of Tanzania; Consular: Ministry of Foreign Affairs and East African Cooperation.
+- **Primary Portals:**
+  - Immigration Department Official Portal: `https://www.immigration.go.tz/`
+  - E-Services Online Portal: `https://eservices.immigration.go.tz/` (`https://eservices.immigration.go.tz/passports`)
+  - Ministry of Home Affairs: `https://www.moha.go.tz/`
+- **Statutory Framework:**
+  - The Tanzania Passports and Travel Documents Act, Cap 42 (Revised Edition 2002)
+  - The Passports Regulations, 2004 (Government Notice No. 210 of 2004)
+  - East African Community (EAC) Electronic Biometric Passport Integration Directive (17th Ordinary Summit of the EAC Heads of State)
+- **Document Scope & Validity:**
+  - Standard East African Community (EAC) Electronic Biometric Passport (Pasi ya Kusafiria ya Kawaida ya Jumuiya ya Afrika Mashariki, 50 pages).
+  - **Adults (aged 18 and older):** **10 years** validity.
+  - **Minors (under 18 years of age):** **5 years** validity.
+- **Mandatory Fee Reconciliation (in Tanzanian Shillings — TZS):**
+  - **Application Form Fee (Ada ya Maombi):** **TZS 20,000** (non-refundable statutory form filing fee paid at initial online submission).
+  - **Passport Booklet Issuance Fee (Ada ya Kitabu):** **TZS 130,000** (payable upon application approval, prior to passport personalization).
+  - **Total Cost for Standard Ordinary 50-Page e-Passport:** **TZS 150,000** (TZS 20,000 + TZS 130,000).
+  - **Lost / Stolen / Damaged Passport Replacement:**
+    - Penalty surcharge for lost or damaged passport: **TZS 100,000**.
+    - Standard passport issuance fee: **TZS 150,000**.
+    - **Total Lost Passport Replacement Fee:** **TZS 250,000**.
+  - **Turnaround:**
+    - Routine processing: **7 to 14 working days** following biometric capture.
+    - Emergency fast-track processing: **24 to 48 hours** (available for verified medical referrals abroad, state missions, or bereavement upon presentation of supporting documents; no formal legislative surcharge, processed through priority desk).
+  - **Payment Channels:** All payments must be executed strictly through the **Government Electronic Payment Gateway (GePG)** using an automated 12-digit **Control Number** generated by the system. Payable via Mobile Money (M-Pesa, Tigo Pesa, Airtel Money, HaloPesa) or authorized commercial banks (CRDB, NMB, etc.). Cash payments are strictly prohibited by law.
+  - **Evidence confidence: `DIRECT`** — established from `immigration.go.tz` and `eservices.immigration.go.tz`.
+- **Consular Fee Schedule (via Tanzanian High Commissions and Embassies abroad):**
+  - Application form fee abroad: **USD $20.00**.
+  - Passport booklet fee abroad: **USD $130.00** (Total ordinary e-passport fee: **USD $150.00**).
+  - **Evidence confidence: `DIRECT`** — verified via official mission consular schedules.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Number (NIN):** Issued by the National Identification Authority (NIDA) — strictly mandatory for all adult applicants.
+  - **Birth Certificate:** Issued by the Registration Insolvency and Trusteeship Agency (RITA) for Tanzania Mainland, or Zanzibar Civil Status Registration Agency (ZCSRA) for Zanzibar.
+  - **Proof of Citizenship of Parents:** Father's and/or mother's National Identity Card (NIDA), birth certificate, or valid passport to verify citizenship by birth.
+  - **Declaration of Recommender / Guarantor (Wadhamini):** Certification signed and stamped by an authorized public figure (Ward Executive Officer, Magistrate, Attorney, or Registered Medical Practitioner).
+  - System-generated application confirmation page and GePG payment receipts.
+  - For minors (under 18): Minor's RITA birth certificate, parents' NIDA cards, and signed parental consent form.
+  - For replacement of lost passport: Police Loss Report (*Ripoti ya Upotevu wa Polisi*), sworn affidavit of loss from a magistrate/commissioner for oaths, and GePG receipt for the TZS 250,000 total fee.
+  - **Biometrics:** In-person biometric enrollment (live photo, 10 fingerprints, digital signature) at Regional Immigration Offices (Dar es Salaam - Kurasini, Dodoma Headquarters, or regional offices across all regions).
+
+---
+
+### 28.6 Timor-Leste (TL / TLS) — Direção Nacional de Registos e Notariado (DNRN)
+
+- **Administering Authority:** Direção Nacional de Registos e Notariado (DNRN), Direção-Geral dos Serviços de Registos e Notariado, Ministério da Justiça (Ministry of Justice), República Democrática de Timor-Leste; in technical collaboration with Serviço de Migração, Ministério do Interior; Consular: Ministério dos Negócios Estrangeiros e Cooperação (MNEC).
+- **Primary Portals:**
+  - Ministério da Justiça Portal: `https://mj.gov.tl/`
+  - Portal Balcão Único: `https://balkaununiku.gov.tl/`
+  - Serviço de Migração: `https://migracao.gov.tl/`
+  - Portal do Governo de Timor-Leste: `https://timor-leste.gov.tl/`
+- **Statutory Framework:**
+  - Decreto-Lei N.º 2/2004 de 21 de Abril (Aprova o Regime de Emissão e Uso dos Passaportes)
+  - Decreto-Lei N.º 34/2016 de 24 de Agosto (Aprova o Regulamento do Passaporte Electrónico da República Democrática de Timor-Leste)
+  - Diploma Ministerial conjunto Ministério da Justiça e Ministério das Finanças fixando as taxas de emissão de passaportes e emolumentos notariais
+- **Document Scope & Validity:**
+  - Standard Ordinary Biometric Electronic Passport (Passaporte Comum Electrónico da República Democrática de Timor-Leste, containing contactless microchip complying with ICAO Doc 9303).
+  - **Statutory Validity:** **5 years** across all applicant categories (both adults and minors).
+- **Domestic Fee Schedule (in United States Dollars — USD $; official statutory currency of Timor-Leste):**
+  - **Standard Ordinary Biometric Passport Issuance / Renewal:** **USD $50.00**.
+  - **Serviço Urgente (Expedited fast-track service):** **USD $100.00** (standard $50 booklet fee + $50 urgent processing surcharge; delivered within 2 to 3 business days).
+  - **Lost or Damaged Passport Replacement:** **USD $50.00** base fee (subject to formal sworn administrative investigation and presentation of police loss certificate).
+  - **Turnaround:**
+    - Standard routine turnaround: **10 working days** (two calendar weeks).
+    - Urgent turnaround: **2 to 3 working days**.
+  - **Payment Channels:** Payment executed via designated bank deposit at the **Banco Nacional de Comércio de Timor-Leste (BNCTL)** or Ministry of Justice cashier counter upon issuance of the payment assessment guide (*Guia de Pagamento*). Cash payments without a bank voucher are prohibited.
+  - **Application Submission:** Conducted at the **Balcão Único** (One-Stop Citizens Service Center) or DNRN Headquarters in Dili (Rua de Belarmino Lobo, Dili), or at Municipal Registration Services (*Serviços de Registo e Notariado dos Municípios*) across the municipalities (Baucau, Bobonaro, Ermera, Oecusse, etc.).
+  - **Evidence confidence: `DIRECT`** — verified via `mj.gov.tl` and `balkaununiku.gov.tl`.
+- **Consular Fee Schedule (via Timorese Diplomatic Missions abroad):**
+  - Consular passport issuance abroad: Statutory equivalent of **USD $60.00 to $80.00** depending on mission jurisdiction and courier dispatch costs. Applications forwarded to Dili for centralized personalization.
+  - **Evidence confidence: `DIRECT`** — established from `timor-leste.gov.tl`.
+- **Civil Identity & Document Checklists:**
+  - **Bilhete de Identidade (BI timorense):** Valid national identity card issued by DNRN. If BI is unavailable, applicant must present an official Civil Birth Certificate (*Certidão de Registo de Nascimento*) or recognized Baptismal Certificate (*Certidão de Batismo*) along with civil identity proof.
+  - **Atestado de Residência (Certificate of Residence):** Official residency verification certificate signed and stamped by the competent Village Chief (*Xefe de Suco*).
+  - **Cartão de Eleitor (Electoral Card):** Widely utilized as supporting proof of Timorese citizenship and identity.
+  - BNCTL bank payment slip (*Recibo de depósito bancário*).
+  - Previous passport booklet (for renewal/replacement) submitted for physical cancellation.
+  - For minors (under 17): Presence of both parents, valid national IDs of parents, minor's birth certificate, and signed Parental Consent Statement (*Termo de Autorização Paternal*).
+  - For replacement of lost passport: Police Loss Report (*Declaração de Perda da PNTL - Polícia Nacional de Timor-Leste*) and explanatory affidavit.
+  - **Biometrics:** Mandatory in-person enrollment (live digital portrait photograph, 10-finger biometric scan, and digitized signature) at the DNRN / Balcão Único workstation.
+
+---
