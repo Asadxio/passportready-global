@@ -57,36 +57,90 @@ class PassportRulesEngine {
           'Application lodging channels and authority appointment procedures'
         ],
         officialSourceUrl: pack ? pack.official_portal_url : null,
-        rulePackKey: null
+        rulePackKey: null,
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['country rule pack research']
+        }
       };
     }
 
     switch (service) {
       case 'first_passport': {
-        const hasServiceObj = !!(pack.services && pack.services.first_passport);
+        const serviceObj = pack.services && pack.services.first_passport;
+        const hasValidServiceObj = !!(
+          serviceObj &&
+          serviceObj.availability_status !== 'unavailable' &&
+          serviceObj.fees &&
+          typeof serviceObj.fees === 'object' &&
+          Object.keys(serviceObj.fees).length > 0 &&
+          ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
+           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0))
+        );
+
+        if (hasValidServiceObj) {
+          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+          return {
+            dimension: 'service',
+            key: 'first_passport',
+            name: this.formatServiceName('first_passport'),
+            status: 'verified',
+            label: 'Verified Statutory Rules',
+            badgeClass: 'status-verified',
+            isVerified: true,
+            summary: `Fully verified country-specific first-time passport rules, mandatory citizenship evidence, and statutory fee schedules for ${countryName}.`,
+            supportedChecks: [
+              'Mandatory civil birth and citizenship proof requirements',
+              'Official statutory fee schedule and payment channels',
+              'Domestic and consular lodging jurisdiction guidance'
+            ],
+            missingChecks: [],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'first_passport',
+            evidence: {
+              hasSupportingEvidence: true,
+              sources,
+              verifiedFields: ['eligibility', 'documents', 'fees', 'steps']
+            }
+          };
+        }
+
+        // Required first_passport service object or evidence is missing in rule pack
         return {
           dimension: 'service',
           key: 'first_passport',
           name: this.formatServiceName('first_passport'),
-          status: 'verified',
-          label: 'Verified Statutory Rules',
-          badgeClass: 'status-verified',
-          isVerified: true,
-          summary: `Fully verified country-specific first-time passport rules, mandatory citizenship evidence, and statutory fee schedules for ${countryName}.`,
-          supportedChecks: [
-            'Mandatory civil birth and citizenship proof requirements',
-            'Official statutory fee schedule and payment channels',
-            'Domestic and consular lodging jurisdiction guidance'
+          status: 'general_guidance',
+          label: 'General Preparation Guidance',
+          badgeClass: 'status-needs-research',
+          isVerified: false,
+          summary: `The country pack for ${countryName} is marked verified, but required first-time passport service definitions or documentary fee evidence are missing. Baseline guidance applies.`,
+          supportedChecks: ['Baseline international travel document preparation standards'],
+          missingChecks: [
+            'Verified first-time passport service object (eligibility and document checklist)',
+            'Official statutory fee schedule and accepted payment channels'
           ],
-          missingChecks: [],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: 'first_passport'
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: false,
+            sources: [],
+            missingEvidence: ['services.first_passport definition', 'statutory fee schedule', 'mandatory citizenship evidence checklist']
+          }
         };
       }
 
       case 'renewal_reissue': {
-        const hasServiceObj = !!(pack.services && pack.services.renewal_reissue);
-        if (hasServiceObj) {
+        const serviceObj = pack.services && pack.services.renewal_reissue;
+        const hasValidServiceObj = !!(
+          serviceObj &&
+          serviceObj.availability_status !== 'unavailable' &&
+          ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
+           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0))
+        );
+
+        if (hasValidServiceObj) {
+          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
           return {
             dimension: 'service',
             key: 'renewal_reissue',
@@ -103,7 +157,12 @@ class PassportRulesEngine {
             ],
             missingChecks: [],
             officialSourceUrl: pack.official_portal_url,
-            rulePackKey: 'renewal_reissue'
+            rulePackKey: 'renewal_reissue',
+            evidence: {
+              hasSupportingEvidence: true,
+              sources,
+              verifiedFields: ['eligibility', 'documents', 'steps']
+            }
           };
         }
         return {
@@ -121,13 +180,26 @@ class PassportRulesEngine {
             'Dedicated renewal fee schedule and processing timeframes'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: false,
+            missingEvidence: ['services.renewal_reissue definition', 'dedicated renewal document checklist']
+          }
         };
       }
 
       case 'lost_stolen': {
-        const hasServiceObj = !!(pack.services && pack.services.lost_stolen);
-        if (hasServiceObj) {
+        const serviceObj = pack.services && pack.services.lost_stolen;
+        const hasValidServiceObj = !!(
+          serviceObj &&
+          serviceObj.availability_status !== 'unavailable' &&
+          ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
+           (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) ||
+           serviceObj.fees)
+        );
+
+        if (hasValidServiceObj) {
+          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
           return {
             dimension: 'service',
             key: 'lost_stolen',
@@ -144,7 +216,12 @@ class PassportRulesEngine {
             ],
             missingChecks: [],
             officialSourceUrl: pack.official_portal_url,
-            rulePackKey: 'lost_stolen'
+            rulePackKey: 'lost_stolen',
+            evidence: {
+              hasSupportingEvidence: true,
+              sources,
+              verifiedFields: ['documents', 'steps', 'replacement_penalties']
+            }
           };
         }
 
@@ -169,7 +246,12 @@ class PassportRulesEngine {
             'Official replacement application forms and investigation interview procedures'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: hasStatutoryNotice,
+            isPartial: hasStatutoryNotice,
+            missingEvidence: ['dedicated replacement fee table', 'formal investigation workflow']
+          }
         };
       }
 
@@ -197,13 +279,26 @@ class PassportRulesEngine {
             'Authority-specific physical damage threshold assessment criteria'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: hasCodifiedPenalty,
+            isPartial: hasCodifiedPenalty,
+            missingEvidence: hasCodifiedPenalty ? ['standalone damaged booklet replacement workflow'] : ['statutory damage penalty schedule']
+          }
         };
       }
 
       case 'name_correction': {
-        const hasServiceObj = !!(pack.services && pack.services.name_correction);
-        if (hasServiceObj) {
+        const serviceObj = pack.services && pack.services.name_correction;
+        const hasValidServiceObj = !!(
+          serviceObj &&
+          serviceObj.availability_status !== 'unavailable' &&
+          ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
+           (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0))
+        );
+
+        if (hasValidServiceObj) {
+          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
           return {
             dimension: 'service',
             key: 'name_correction',
@@ -220,7 +315,12 @@ class PassportRulesEngine {
             ],
             missingChecks: [],
             officialSourceUrl: pack.official_portal_url,
-            rulePackKey: 'name_correction'
+            rulePackKey: 'name_correction',
+            evidence: {
+              hasSupportingEvidence: true,
+              sources,
+              verifiedFields: ['documents', 'steps', 'gazette_rules']
+            }
           };
         }
         return {
@@ -238,13 +338,25 @@ class PassportRulesEngine {
             'Official name correction application forms and statutory fees'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: false,
+            missingEvidence: ['services.name_correction definition', 'statutory gazette rules']
+          }
         };
       }
 
       case 'minor_child': {
-        const hasServiceObj = !!(pack.services && pack.services.minor_child);
-        if (hasServiceObj) {
+        const serviceObj = pack.services && pack.services.minor_child;
+        const hasValidServiceObj = !!(
+          serviceObj &&
+          serviceObj.availability_status !== 'unavailable' &&
+          ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
+           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0))
+        );
+
+        if (hasValidServiceObj) {
+          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
           return {
             dimension: 'service',
             key: 'minor_child',
@@ -261,7 +373,12 @@ class PassportRulesEngine {
             ],
             missingChecks: [],
             officialSourceUrl: pack.official_portal_url,
-            rulePackKey: 'minor_child'
+            rulePackKey: 'minor_child',
+            evidence: {
+              hasSupportingEvidence: true,
+              sources,
+              verifiedFields: ['parental_consent', 'documents', 'child_validity']
+            }
           };
         }
         return {
@@ -282,7 +399,12 @@ class PassportRulesEngine {
             'Country-specific minor fee tiers (where distinct from general tables)'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: true,
+            isPartial: true,
+            missingEvidence: ['standalone minor service object', 'dedicated minor fee tiers']
+          }
         };
       }
 
@@ -310,7 +432,12 @@ class PassportRulesEngine {
             'Service-specific expedited exclusion criteria (e.g. complex name changes, replacement of lost records)'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: hasUrgentSchedule,
+            isPartial: hasUrgentSchedule,
+            missingEvidence: hasUrgentSchedule ? ['daily appointment quota availability'] : ['expedited fee schedule']
+          }
         };
       }
 
@@ -334,7 +461,12 @@ class PassportRulesEngine {
               'Non-consular domestic emergency exceptions'
             ],
             officialSourceUrl: pack.official_portal_url,
-            rulePackKey: 'emergency_passport'
+            rulePackKey: 'emergency_passport',
+            evidence: {
+              hasSupportingEvidence: true,
+              isPartial: true,
+              citation: 'Art. 20 Ley Federal de Derechos (LFD) + Pasaporte de Emergencia Tipo E'
+            }
           };
         }
         return {
@@ -353,7 +485,11 @@ class PassportRulesEngine {
             'Transit country and airline acceptance limitations (most ETCs are valid only for direct travel home)'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: false,
+            missingEvidence: ['country-specific ETC application procedures and fees']
+          }
         };
       }
 
@@ -373,7 +509,11 @@ class PassportRulesEngine {
             'Statutory fee schedule and official payment channels'
           ],
           officialSourceUrl: pack.official_portal_url,
-          rulePackKey: null
+          rulePackKey: null,
+          evidence: {
+            hasSupportingEvidence: false,
+            missingEvidence: ['dedicated service pack']
+          }
         };
     }
   }
@@ -393,31 +533,87 @@ class PassportRulesEngine {
         isVerified: false,
         summary: `Urgency processing standards and timeframes for ${countryName} are awaiting official research.`,
         supportedChecks: [],
-        missingChecks: ['Official processing timeframes and expedited slot availability']
+        missingChecks: ['Official processing timeframes and expedited slot availability'],
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['official route research']
+        }
       };
     }
 
     if (urgency === 'standard') {
+      const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
+      const hasStandardEvidence = !!(
+        (serviceObj && Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) ||
+        (serviceObj && serviceObj.processing_times && (serviceObj.processing_times.normal_days || serviceObj.processing_times.standard_days)) ||
+        (pack.processing_times && (pack.processing_times.normal_days || pack.processing_times.standard_days))
+      );
+
+      if (hasStandardEvidence) {
+        const timeEvidence = (serviceObj?.processing_times?.normal_days || serviceObj?.processing_times?.standard_days || pack.processing_times?.normal_days || pack.processing_times?.standard_days);
+        const supportedChecks = [
+          'Routine appointment and lodging procedures',
+          timeEvidence ? `Documented routine processing baseline: ${timeEvidence}` : 'Standard statutory processing timeframe baseline'
+        ];
+        const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+        return {
+          dimension: 'urgency',
+          key: 'standard',
+          name: this.formatUrgencyName('standard'),
+          status: 'verified',
+          label: 'Standard Processing Verified',
+          badgeClass: 'status-verified',
+          isVerified: true,
+          summary: `Standard routine processing timeframes and regular appointment procedures are verified for ${countryName}.`,
+          supportedChecks,
+          missingChecks: [],
+          evidence: {
+            hasSupportingEvidence: true,
+            timeframe: timeEvidence || 'Documented in authority filing procedures',
+            sources
+          }
+        };
+      }
+
+      // No standard processing evidence in pack
       return {
         dimension: 'urgency',
         key: 'standard',
         name: this.formatUrgencyName('standard'),
-        status: 'verified',
-        label: 'Standard Processing Verified',
-        badgeClass: 'status-verified',
-        isVerified: true,
-        summary: `Standard routine processing timeframes and regular appointment procedures are verified for ${countryName}.`,
-        supportedChecks: [
-          'Standard statutory processing timeframe baseline',
-          'Routine appointment booking procedures'
+        status: 'general_guidance',
+        label: 'General Standard Processing Guidance',
+        badgeClass: 'status-needs-research',
+        isVerified: false,
+        summary: `Standard routine processing procedures or timeframe evidence are not codified for ${countryName}.`,
+        supportedChecks: ['General routine document submission advice'],
+        missingChecks: [
+          'Official statutory processing timeframe evidence',
+          'Standard lodging appointment procedures'
         ],
-        missingChecks: []
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['routine application filing steps', 'statutory processing timeframe documentation']
+        }
       };
     }
 
     if (urgency === 'urgent') {
-      const hasUrgentSchedule = ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode);
-      if (hasUrgentSchedule) {
+      const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
+      const feesObj = serviceObj?.fees || {};
+      const hasUrgentFeeEvidence = !!(
+        feesObj.tatkaal_surcharge ||
+        feesObj.urgent_service_nzd ||
+        feesObj.urgent_appointment_service_eur ||
+        feesObj.standard_domestic_lkr?.all_countries_urgent_one_day ||
+        feesObj.express_same_day_surcharge ||
+        feesObj.standard_domestic_npr?.urgent_34_pages_dop_kathmandu ||
+        (countryCode === 'MX' && feesObj.standard_domestic_mxn) ||
+        (countryCode === 'US' && (feesObj.expedited_service_usd || feesObj.standard_fees)) ||
+        ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode)
+      );
+
+      if (hasUrgentFeeEvidence && ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode)) {
+        const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
         return {
           dimension: 'urgency',
           key: 'urgent',
@@ -434,7 +630,12 @@ class PassportRulesEngine {
           missingChecks: [
             'Daily expedited appointment slot availability and booking procedures',
             'Service-specific expedited exclusion criteria (e.g. complex name changes, replacement of lost records)'
-          ]
+          ],
+          evidence: {
+            hasSupportingEvidence: true,
+            isPartial: true,
+            sources
+          }
         };
       }
       return {
@@ -450,7 +651,11 @@ class PassportRulesEngine {
         missingChecks: [
           'Country-specific expedited appointment booking procedures',
           'Official expedited fee schedule and surcharge validation'
-        ]
+        ],
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['statutory expedited fee schedule', 'fast-track appointment booking rules']
+        }
       };
     }
 
@@ -472,7 +677,12 @@ class PassportRulesEngine {
           missingChecks: [
             'Local consular post Emergency Type E physical booklet stock availability',
             'Non-consular domestic emergency exceptions'
-          ]
+          ],
+          evidence: {
+            hasSupportingEvidence: true,
+            isPartial: true,
+            citation: 'Art. 20 Ley Federal de Derechos (LFD) + Pasaporte de Emergencia Tipo E'
+          }
         };
       }
       if (countryCode === 'NZ') {
@@ -491,7 +701,12 @@ class PassportRulesEngine {
           ],
           missingChecks: [
             'Direct DIA duty officer dispatch and location availability confirmation'
-          ]
+          ],
+          evidence: {
+            hasSupportingEvidence: true,
+            isPartial: true,
+            citation: 'passports.govt.nz/passport-costs After-Hours Callout Service'
+          }
         };
       }
       return {
@@ -507,7 +722,11 @@ class PassportRulesEngine {
         missingChecks: [
           'Direct authority emergency hotline contact and appointment booking procedures',
           'Emergency fee surcharge or temporary booklet fee validation'
-        ]
+        ],
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['statutory emergency callout fees', 'direct consular emergency dispatch procedures']
+        }
       };
     }
 
@@ -521,7 +740,10 @@ class PassportRulesEngine {
       isVerified: false,
       summary: `Urgency route ${urgency} is not separately modeled for ${countryName}.`,
       supportedChecks: [],
-      missingChecks: ['Official route verification']
+      missingChecks: ['Official route verification'],
+      evidence: {
+        hasSupportingEvidence: false
+      }
     };
   }
 
@@ -540,31 +762,83 @@ class PassportRulesEngine {
         isVerified: false,
         summary: `Application channel procedures for ${countryName} are awaiting official research.`,
         supportedChecks: [],
-        missingChecks: ['Application lodging channels and authority appointment procedures']
+        missingChecks: ['Application lodging channels and authority appointment procedures'],
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['channel research']
+        }
       };
     }
 
     if (location === 'inside') {
+      const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
+      const hasDomesticEvidence = !!(
+        pack.authority_name &&
+        (
+          (serviceObj && serviceObj.fees && typeof serviceObj.fees === 'object' && Object.keys(serviceObj.fees).length > 0) ||
+          (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => j.application_channel === 'domestic' || (j.name && j.name.toLowerCase().includes('domestic')))) ||
+          (serviceObj && Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0)
+        )
+      );
+
+      if (hasDomesticEvidence) {
+        const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+        return {
+          dimension: 'channel',
+          key: 'inside',
+          name: this.formatChannelName('inside'),
+          status: 'verified',
+          label: 'Domestic Lodgement Verified',
+          badgeClass: 'status-verified',
+          isVerified: true,
+          summary: `Domestic application procedures, statutory authority lodging channels, and domestic fee schedules are verified for ${countryName}.`,
+          supportedChecks: [
+            'Domestic application lodging channels and authority centers',
+            'Domestic statutory fee schedules and local payment methods'
+          ],
+          missingChecks: [],
+          evidence: {
+            hasSupportingEvidence: true,
+            authority: pack.authority_name,
+            sources
+          }
+        };
+      }
+
+      // No domestic evidence in pack
       return {
         dimension: 'channel',
         key: 'inside',
         name: this.formatChannelName('inside'),
-        status: 'verified',
-        label: 'Domestic Lodgement Verified',
-        badgeClass: 'status-verified',
-        isVerified: true,
-        summary: `Domestic application procedures, statutory authority lodging channels, and domestic fee schedules are verified for ${countryName}.`,
-        supportedChecks: [
-          'Domestic application lodging channels and authority centers',
-          'Domestic statutory fee schedules and local payment methods'
+        status: 'general_guidance',
+        label: 'General Domestic Lodgement Guidance',
+        badgeClass: 'status-needs-research',
+        isVerified: false,
+        summary: `Domestic competent authority filing procedures or domestic fee evidence are not codified for ${countryName}.`,
+        supportedChecks: ['General domestic application guidance'],
+        missingChecks: [
+          'Competent domestic passport issuing authority',
+          'Domestic lodging channels and accepted local payment methods'
         ],
-        missingChecks: []
+        evidence: {
+          hasSupportingEvidence: false,
+          missingEvidence: ['competent authority designation', 'domestic statutory fee schedule', 'domestic filing procedures']
+        }
       };
     }
 
     // Overseas / Consular channel
-    const hasFullyVerifiedConsular = ['MX', 'NG', 'NP'].includes(countryCode);
-    if (hasFullyVerifiedConsular) {
+    const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
+    const feesObj = serviceObj?.fees || {};
+    const hasCodifiedConsularFees = !!(
+      feesObj.consular_overseas_usd ||
+      feesObj.diaspora_overseas_usd ||
+      feesObj.standard_overseas_usd ||
+      (['MX', 'NG', 'NP'].includes(countryCode) && feesObj)
+    );
+
+    if (hasCodifiedConsularFees && ['MX', 'NG', 'NP'].includes(countryCode)) {
+      const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
       return {
         dimension: 'channel',
         key: 'abroad',
@@ -578,27 +852,68 @@ class PassportRulesEngine {
           'Official overseas consular fee schedule and accepted currency',
           'Diplomatic mission lodging requirements and identity verification'
         ],
-        missingChecks: []
+        missingChecks: [],
+        evidence: {
+          hasSupportingEvidence: true,
+          feeSchedule: 'Codified foreign currency consular fee table',
+          sources
+        }
       };
     }
 
+    // Has consular guidance/jurisdiction in pack?
+    const hasConsularGuidance = !!(
+      (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => j && (j.application_channel === 'consular' || (j.name && (j.name.toLowerCase().includes('consular') || j.name.toLowerCase().includes('embassy')))))) ||
+      (Array.isArray(pack.sources) && pack.sources.some(s => s && s.url && (s.url.includes('consular') || s.url.includes('embassy') || s.url.includes('diplomatic')))) ||
+      (pack.services?.first_passport?.steps && pack.services.first_passport.steps.some(st => st && st.step && (st.step.toLowerCase().includes('embassy') || st.step.toLowerCase().includes('consulate')))) ||
+      (['AE', 'AU', 'BD', 'BR', 'CA', 'DE', 'ES', 'FR', 'GB', 'ID', 'IE', 'IN', 'IT', 'JP', 'KE', 'LK', 'MX', 'MY', 'NG', 'NP', 'NZ', 'PH', 'PK', 'SA', 'SG', 'US', 'ZA'].includes(countryCode) && pack.rule_pack_status === 'verified')
+    );
+
+    if (hasConsularGuidance) {
+      return {
+        dimension: 'channel',
+        key: 'abroad',
+        name: this.formatChannelName('abroad'),
+        status: 'partial',
+        label: 'Partial Consular Channel Coverage',
+        badgeClass: 'status-linked',
+        isVerified: false,
+        summary: `Consular jurisdiction and overseas filing requirements are verified for ${countryName}, but local host-currency fees, mission-specific appointment systems, or consular service partner procedures require direct mission confirmation.`,
+        supportedChecks: [
+          'Consular jurisdiction and host-country lawful residence proof requirements',
+          'General diplomatic mission application standards'
+        ],
+        missingChecks: [
+          'Local mission payment currency, banking methods, and consular surcharges',
+          'Embassy or outsourced service partner (e.g. VFS/BLS/TLS) appointment booking procedures'
+        ],
+        evidence: {
+          hasSupportingEvidence: true,
+          isPartial: true,
+          missingEvidence: ['local host-currency fee schedule', 'mission-specific booking partner procedures']
+        }
+      };
+    }
+
+    // Completely uncodified consular channel in pack
     return {
       dimension: 'channel',
       key: 'abroad',
       name: this.formatChannelName('abroad'),
-      status: 'partial',
-      label: 'Partial Consular Channel Coverage',
-      badgeClass: 'status-linked',
+      status: 'general_guidance',
+      label: 'General Consular Guidance',
+      badgeClass: 'status-needs-research',
       isVerified: false,
-      summary: `Consular jurisdiction and overseas filing requirements are verified for ${countryName}, but local host-currency fees, mission-specific appointment systems, or consular service partner procedures require direct mission confirmation.`,
-      supportedChecks: [
-        'Consular jurisdiction and host-country lawful residence proof requirements',
-        'General diplomatic mission application standards'
-      ],
+      summary: `Dedicated overseas consular filing procedures are not codified for ${countryName}.`,
+      supportedChecks: ['General overseas travel document guidance'],
       missingChecks: [
-        'Local mission payment currency, banking methods, and consular surcharges',
-        'Embassy or outsourced service partner (e.g. VFS/BLS/TLS) appointment booking procedures'
-      ]
+        'Consular jurisdiction and diplomatic mission lodging rules',
+        'Consular fee schedule and accepted host-currency payments'
+      ],
+      evidence: {
+        hasSupportingEvidence: false,
+        missingEvidence: ['consular lodging procedures', 'diplomatic mission fee schedule']
+      }
     };
   }
 
@@ -674,6 +989,12 @@ class PassportRulesEngine {
       missingChecks: Array.from(missingSet),
       officialSourceUrl: pack ? pack.official_portal_url : null,
       rulePackKey: baseService.rulePackKey,
+      evidence: {
+        hasSupportingEvidence: isFullyVerified,
+        service: baseService.evidence,
+        urgency: processingRoute.evidence,
+        channel: applicationChannel.evidence
+      },
       dimensions: {
         service: baseService,
         urgency: processingRoute,

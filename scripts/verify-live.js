@@ -26,13 +26,13 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_12"/g) || []);
-  console.log('Scripts with ?v=20261019_12:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_12');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_13"/g) || []);
+  console.log('Scripts with ?v=20261019_13:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_13');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_12"/g) || []);
-  console.log('CSS with ?v=20261019_12:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_12');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_13"/g) || []);
+  console.log('CSS with ?v=20261019_13:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_13');
 
   // Service coverage card check
   assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
@@ -54,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_12');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_13');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -72,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_12');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_13');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -224,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_12');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_13');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -359,13 +359,14 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_12');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_13');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
 
-  // Verify Phase 4.3.4 UI safeguards in live app.js
+  // Verify Phase 4.3.4 & Phase 4.3.5 UI safeguards in live app.js
   assert(appJsRes.body.includes('resServiceCoverageCard'), 'Live app.js must render into resServiceCoverageCard');
   assert(appJsRes.body.includes('Multi-Dimensional Coverage') && appJsRes.body.includes('Service Verification Audit'), 'Live app.js must include Multi-Dimensional Coverage and Service Verification Audit');
+  assert(appJsRes.body.includes('Official Evidence Linked'), 'Live app.js must include evidence linkage indicators');
   assert(appJsRes.body.includes('Readiness score reflects document preparation completeness only'), 'Live app.js must include issuance disclaimer');
   assert(appJsRes.body.includes("badgeEl.className = 'status-pill status-verified'"), 'Live app.js must restrict status-verified to PREPARED');
 
@@ -599,7 +600,52 @@ async function verifyLive() {
     assert(res.readinessScore <= 80, 'Incomplete effective coverage readinessScore must be capped at <= 80%');
   });
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3 & PHASE 4.3.4 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 9. Checking Live Phase 4.3.5 Evidence-Linked Coverage Audit across Dimensions ---');
+  // 9.1 India first passport standard inside -> full evidence link
+  assert.strictEqual(liveInFull.serviceCoverage.evidence.hasSupportingEvidence, true, 'Live IN full coverage must have supporting evidence');
+  assert.strictEqual(liveInFull.serviceCoverage.dimensions.service.evidence.hasSupportingEvidence, true, 'Live IN service must have supporting evidence');
+  assert.strictEqual(liveInFull.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, true, 'Live IN route must have supporting evidence');
+  assert.strictEqual(liveInFull.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, true, 'Live IN channel must have supporting evidence');
+
+  // 9.2 Isolated fixture: verified pack with missing first_passport service object
+  const liveMalformedPack = { country_code: 'XX', country_name: 'Testland', rule_pack_status: 'verified', authority_name: 'Auth', services: {} };
+  const liveFixtureEngine = new PassportRulesEngine({ XX: liveMalformedPack });
+  const liveMissingService = liveFixtureEngine.evaluate({ countryCode: 'XX', service: 'first_passport' });
+  assert.strictEqual(liveMissingService.serviceCoverage.dimensions.service.status, 'general_guidance', 'Live engine: Missing first_passport must receive general_guidance');
+  assert.strictEqual(liveMissingService.serviceCoverage.dimensions.service.evidence.hasSupportingEvidence, false);
+  assert.notStrictEqual(liveMissingService.statusLabel, 'PREPARED');
+  assert(liveMissingService.readinessScore <= 75);
+
+  // 9.3 Isolated fixture: standard route with no routine application steps or processing times
+  const liveNoStepsPack = { country_code: 'YY', country_name: 'NoStepsLand', rule_pack_status: 'verified', authority_name: 'Auth', services: { first_passport: { availability_status: 'available', fees: { std: 50 }, documents: [{ document_name: 'Doc' }] } } };
+  const liveYYEngine = new PassportRulesEngine({ YY: liveNoStepsPack });
+  const liveNoSteps = liveYYEngine.evaluate({ countryCode: 'YY', service: 'first_passport', urgency: 'standard' });
+  assert.strictEqual(liveNoSteps.serviceCoverage.dimensions.urgency.status, 'general_guidance', 'Live engine: Standard processing without routine steps or timeframe evidence must receive general_guidance');
+  assert.strictEqual(liveNoSteps.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false);
+  assert.notStrictEqual(liveNoSteps.statusLabel, 'PREPARED');
+
+  // 9.4 Isolated fixture: domestic channel without authority or fees
+  const liveNoDomesticPack = { country_code: 'ZZ', country_name: 'NoDomesticLand', rule_pack_status: 'verified', services: { first_passport: { availability_status: 'available', fees: {}, documents: [] } } };
+  const liveZZEngine = new PassportRulesEngine({ ZZ: liveNoDomesticPack });
+  const liveNoDomestic = liveZZEngine.evaluate({ countryCode: 'ZZ', location: 'inside' });
+  assert.strictEqual(liveNoDomestic.serviceCoverage.dimensions.channel.status, 'general_guidance', 'Live engine: Domestic channel without authority/fees must receive general_guidance');
+  assert.strictEqual(liveNoDomestic.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, false);
+
+  // 9.5 Isolated fixture: overseas channel without consular guidance or jurisdiction
+  const liveNoConsularPack = { country_code: 'WW', country_name: 'NoConsularLand', rule_pack_status: 'verified', authority_name: 'Auth', jurisdictions: [{ application_channel: 'domestic' }], services: { first_passport: { availability_status: 'available', fees: { std: 50 }, documents: [{ document_name: 'Doc' }], steps: [{ step: 'Step 1' }] } } };
+  const liveWWEngine = new PassportRulesEngine({ WW: liveNoConsularPack });
+  const liveNoConsular = liveWWEngine.evaluate({ countryCode: 'WW', location: 'abroad', service: 'first_passport' });
+  assert.strictEqual(liveNoConsular.serviceCoverage.dimensions.channel.status, 'general_guidance', 'Live engine: Overseas without consular guidance must receive general_guidance');
+  assert.strictEqual(liveNoConsular.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, false);
+
+  // 9.6 Live dimension-specific evidence safeguards
+  assert.strictEqual(liveDeUrgent.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false, 'DE urgent route has no dedicated evidence');
+  assert.strictEqual(liveUsEmergencyUrgency.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false, 'US emergency route has no dedicated evidence');
+  assert.strictEqual(liveMxAbroad.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, true, 'MX abroad channel has codified consular fee evidence');
+  assert.strictEqual(liveNgAbroad.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, true, 'NG abroad channel has codified diaspora fee evidence');
+  assert.strictEqual(liveJpAbroad.serviceCoverage.dimensions.channel.evidence.isPartial, true, 'JP abroad channel has partial evidence');
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4 & PHASE 4.3.5 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

@@ -414,16 +414,19 @@
               <div style="font-size:11px;color:#64748b;font-weight:600">Base Service</div>
               <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(serviceDim.name || 'Base Service')}</div>
               <span class="status-pill ${serviceDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(serviceDim.label || 'Verified')}</span>
+              ${serviceDim.evidence?.hasSupportingEvidence && !serviceDim.evidence?.isPartial ? '<div style="font-size:10px;color:#166534;margin-top:4px">✓ Official Evidence Linked</div>' : (serviceDim.status === 'awaiting_research' ? '<div style="font-size:10px;color:#64748b;margin-top:4px">⌛ Awaiting Primary Research</div>' : '<div style="font-size:10px;color:#b45309;margin-top:4px">⚠ Direct Confirmation Required</div>')}
             </div>
             <div>
               <div style="font-size:11px;color:#64748b;font-weight:600">Processing Route</div>
               <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(urgencyDim.name || 'Processing Route')}</div>
               <span class="status-pill ${urgencyDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(urgencyDim.label || 'Verified')}</span>
+              ${urgencyDim.evidence?.hasSupportingEvidence && !urgencyDim.evidence?.isPartial ? '<div style="font-size:10px;color:#166534;margin-top:4px">✓ Official Evidence Linked</div>' : (urgencyDim.status === 'awaiting_research' ? '<div style="font-size:10px;color:#64748b;margin-top:4px">⌛ Awaiting Primary Research</div>' : '<div style="font-size:10px;color:#b45309;margin-top:4px">⚠ Direct Confirmation Required</div>')}
             </div>
             <div>
               <div style="font-size:11px;color:#64748b;font-weight:600">Lodgement Channel</div>
               <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(channelDim.name || 'Lodgement Channel')}</div>
               <span class="status-pill ${channelDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(channelDim.label || 'Verified')}</span>
+              ${channelDim.evidence?.hasSupportingEvidence && !channelDim.evidence?.isPartial ? '<div style="font-size:10px;color:#166534;margin-top:4px">✓ Official Evidence Linked</div>' : (channelDim.status === 'awaiting_research' ? '<div style="font-size:10px;color:#64748b;margin-top:4px">⌛ Awaiting Primary Research</div>' : '<div style="font-size:10px;color:#b45309;margin-top:4px">⚠ Direct Confirmation Required</div>')}
             </div>
           </div>
 
