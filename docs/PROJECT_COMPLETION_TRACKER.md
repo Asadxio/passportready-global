@@ -3,8 +3,8 @@
 **Project:** PassportReady — "Check Before You Apply"<br>
 **Live Production Deployment:** [https://passport.myoss.in/](https://passport.myoss.in/)<br>
 **GitHub Repository:** [Asadxio/passportready-global](https://github.com/Asadxio/passportready-global)<br>
-**Active Working Branch:** `feat/end-to-end-completion`<br>
-**Base `main` Commit:** `277e14074e0179149694708b15aeb62b0a72893c`<br>
+**Active Working Branch:** `feat/global-jurisdiction-research-batch-1`<br>
+**Base `main` Commit:** `e0a7e3e3c93c8b9b2ec0e59374ff31eb640ec750`<br>
 **Current Asset Cache-Buster:** `?v=20261020_01`<br>
 **Created:** 2026-10-20
 
@@ -23,7 +23,8 @@
 | **Phase G** | `TASK-G1` | Privacy, Performance, A11y & SEO | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None | Full test suite expansion & negative testing (Phase H) |
 | **Phase H** | `TASK-H1` | Automated Testing & Independent Verification | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None | Documentation & operational runbooks (Phase I) |
 | **Phase I** | `TASK-I1` | Documentation & Operational Readiness | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None | Final release gating & launch audit (Phase J) |
-| **Phase J** | `TASK-J1` | Final Release-Readiness Assessment | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | Formal Human Approval | READY FOR PR REVIEW (Not Ready for Global Launch until 222 jurisdictions researched) |
+| **Phase J** | `TASK-J1` | Final Release-Readiness Assessment | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | Formal Human Approval | PR #1 Merged into main (Run #38 passed); Proceed to Phase K |
+| **Phase K** | `TASK-K1` | Global Jurisdiction Completion — Batch 1 (NL, AT, CH, PT, KR, TH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Proceed to Batch 2 Research |
 
 ---
 
@@ -234,4 +235,27 @@
   - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
   - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
 - **Approval Requirements:** Formal human authorization required for merging `feat/end-to-end-completion` to `main` and deploying to production.
-- **Next Actionable Task:** Present comprehensive final repository reconciliation and release gate report for human review.
+- **Next Actionable Task:** PR #1 merged into `main` (Run #38 succeeded, live production healthy). Branch `feat/global-jurisdiction-research-batch-1` created to execute full global jurisdiction research.
+
+---
+
+### Phase K: Full Global Jurisdiction Completion — Batch 1 (NL, AT, CH, PT, KR, TH)
+- **Task ID:** `TASK-K1`
+- **Scope & Acceptance Criteria:**
+  - Synchronize local repository with `origin/main` following PR #1 merge (Run #38).
+  - Verify live deployment at `https://passport.myoss.in/` using `node scripts/verify-live.js`.
+  - Conduct primary statutory research for Batch 1 jurisdictions: Netherlands (`NL`), Austria (`AT`), Switzerland (`CH`), Portugal (`PT`), South Korea (`KR`), and Thailand (`TH`).
+  - Document claim-level evidence across base fees, expedited tariffs, civil identity requirements, and domestic vs consular variations.
+  - Update `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md` (status to `primary_sources_audited` and full Section 3 research dossiers).
+  - Update `docs/SOURCE_AUDIT_REGISTER.md` (Section 4 claim register with exact URLs and confidence levels).
+  - Maintain 100% test passage in `test/validate.js` and live verification.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 3 Batch 1 dossiers for NL, AT, CH, PT, KR, TH.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 4 claim audit table with 18 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with branch, base commit, and Phase K deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Next Actionable Task:** Batch 2 Official Source Research for next priority sovereign nations (e.g., Argentina `AR`, Chile `CL`, Colombia `CO`, Poland `PL`, Greece `GR`, Türkiye `TR`).
