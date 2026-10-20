@@ -60,8 +60,8 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KH** | KHM | Cambodia | Sovereign State | General Dept. of Identification (GDI), Ministry of Interior (`gdi.gov.kh`) | `primary_sources_audited` | Joint Inter-Ministerial Prakas (MoI & MEF): Standard ~20 days: Adult 6+ (10-yr) US$ 100; Child <6 (5-yr) US$ 80; Urgent 10-day tier: US$ 150; Urgent 1-day tier: US$ 200 (DIRECT). Khmer National ID Card (15+) + Family/Residence Book + Birth Certificate mandatory; in-person biometrics at GDI Phnom Penh or provincial centers. |
 | **CM** | CMR | Cameroon | Sovereign State | DGSN / PASSCAM — `https://www.passcam.cm/` | `primary_sources_audited` | Presidential Decree No. 2021/347: Biometric passport (5-yr) 110,000 XAF (DIRECT). Paid exclusively online via mobile money / credit card on passcam.cm during pre-enrollment. Turnaround guaranteed 48 hours domestic. CNI + Birth Certificate mandatory; in-person biometrics at local police centers or foreign missions. |
 | **KY** | CYM | Cayman Islands | Territory / Special Region | Workforce Opportunities & Residency Cayman (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **CF** | CAF | Central African Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TD** | TCD | Chad | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CF** | CAF | Central African Republic | Sovereign State | Direction de l'Émigration & Immigration, Min. de l'Intérieur (`interieur.gouv.cf`) | `primary_sources_audited` | Décret CEMAC: Standard biometric passport (5-yr) 50 000 FCFA; Urgent fast-track processing 90 000 FCFA (DIRECT). Fee paid via Ecobank deposit receipt. Original birth certificate + Certificat de nationalité centrafricaine + CNI mandatory; in-person biometrics at Centre de Demande des Passeports (SEDOSEC), Bangui. |
+| **TD** | TCD | Chad | Sovereign State | Agence Nationale des Titres Sécurisés (ANATS) (`anats.td`) | `primary_sources_audited` | Arrêté interministériel: Standard CEMAC biometric passport (5-yr) 60 000 FCFA (DIRECT). Turnaround ~7–15 days. Numéro National d'Identification (NNI) + CNI biométrique (or NNI receipt) + Acte de naissance sécurisé + Certificat de nationalité mandatory; in-person biometrics at ANATS CAU centers in N'Djamena and provinces. |
 | **CL** | CHL | Chile | Sovereign State | Servicio de Registro Civil e Identificación (SRCeI) | `primary_sources_audited` | Primary source audited (Batch 2). New single-format biometric passport (polycarbonate, 48 pages): $69.660 CLP nationwide (10-year validity). Cédula de Identidad mandatory prerequisite; parental consent required for under 18; delivery in 6-8 business days. |
 | **CN** | CHN | China | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CX** | CXR | Christmas Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
@@ -76,7 +76,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CY** | CYP | Cyprus | Sovereign State | Civil Registry & Migration Dept. (`moi.gov.cy/crmd`) / `gov.cy` | `primary_sources_audited` | CRMD statutory fees: Adult 18+ (10-yr) €70.00; Minor <18 (5-yr) €45.00; Accelerated fast-track surcharge +€50.00 (total €120 adult / €95 minor); Lost/damaged replacement doubles to €140 adult / €90 minor (DIRECT). Cypriot ID card (Δελτίο Ταυτότητας) mandatory; parental consent for minors; biometric capture at District Administration Offices or Citizen Service Centres (KEP). |
 | **CZ** | CZE | Czechia | Sovereign State | Ministerstvo vnitra ČR (MVČR) / Obecní úřady (ORP) | `primary_sources_audited` | Primary source audited (Batch 3). Zákon o cestovních dokladech: Standard (30 days) Adult (15+) 600 CZK (10-yr), Child (<15) 100 CZK (5-yr); Fast (5 days) 3,000 / 1,000 CZK; Super-fast (24 hrs at MVČR Na Pankráci) 6,000 / 2,000 CZK. Občanský průkaz required; photo taken on-site. |
 | **CI** | CIV | Côte d’Ivoire | Sovereign State | ONECI & SNEDAI Group — `https://snedai.com/` / `https://www.monpasseport.ci/` | `primary_sources_audited` | Domestic biometric passport (5-yr) 40,000 XOF (bank or mobile money); Diaspora passport 115 EUR (DIRECT). CNI / Attestation ONECI + Birth Certificate (<3mo) + Nationality Certificate mandatory. Mandatory online pre-enrollment via monpasseport.ci; biometric enrollment at SNEDAI centers or foreign embassies. |
-| **CD** | COD | Democratic Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CD** | COD | Democratic Republic of the Congo | Sovereign State | Ministère des Affaires Étrangères (`diplomatie.gouv.cd` / `passeport.gouv.cd`) | `primary_sources_audited` | Arrêté interministériel: Standard biometric passport (5-yr) USD $75.00 (reduced from $99.00 with new-generation passport rollout) (DIRECT). Payment via partner banks (Equity BCDC) or online. Carte d'électeur (National ID) + Acte de naissance + Certificat de nationalité congolaise + Formulaire F3 mandatory; in-person biometrics at Kinshasa capture centre or provincial sites. |
 | **DK** | DNK | Denmark | Sovereign State | Borgerservice (Kommunerne) / Rigspolitiet | `primary_sources_audited` | Primary source audited (Batch 4). Passbekendtgørelsen 2026: Adult 18-66 (10-yr) 894 DKK; Pensioner 67+ 382 DKK; Youth 12-17 (5-yr) 182 DKK; Child <12 150 DKK. Lost/damaged without previous pass: DOUBLE FEE (1,788 DKK adult). CPR number / Sundhedskort required; photo/biometrics at Borgerservice. |
 | **DJ** | DJI | Djibouti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DM** | DMA | Dominica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -84,7 +84,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **EC** | ECU | Ecuador | Sovereign State | Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC) | `primary_sources_audited` | Primary source audited (Batch 3). DIGERCIC statutory fees: Standard biometric passport $90.00 USD (10-yr for 18+, 5-yr for minors); Seniors (65+) $45.00 USD (50% discount); Disabled (30%+) $0.00 (exempt). Cédula de Identidad mandatory prerequisite; parental presence for minors under 18. |
 | **EG** | EGY | Egypt | Sovereign State | Passports, Immigration & Nationality Administration / Ministry of Interior | `primary_sources_audited` | Primary source audited (Batch 5). Law No. 7/2024 & Decree 470/2024: Standard machine-readable passport (7-yr) 1,110 EGP; Urgent service 1,450-1,600 EGP (24-48 hrs); VIP same-day 1,850 EGP; Consular $110 USD. National ID card (15+) or birth cert (<15) + military status certificate required. |
 | **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **GQ** | GNQ | Equatorial Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GQ** | GNQ | Equatorial Guinea | Sovereign State | Min. de Seguridad Nacional / CNEDOGE (`guineaecuatorialpress.com` / `cnedoge.gq`) | `primary_sources_audited` | Ley de Documentos de Viaje: Standard CEMAC biometric passport (5-yr) ~50.000 FCFA (consular rate ~32.00 € to 60.00 €) (DIRECT). Turnaround ~1–2 weeks. Documento Nacional de Identidad (DNI) + Certificado Literal de Nacimiento + Certificado de Antecedentes Penales mandatory; in-person biometrics at CNEDOGE centers in Malabo and Bata. |
 | **ER** | ERI | Eritrea | Sovereign State | Ministry of Foreign Affairs (consular) / Ministry of Interior (domestic) — `https://www.embassyeritrea.org/` | `primary_sources_audited` | Consular (overseas) fees DIRECT: First/lost adult USD 200; renewal adult USD 100; minor USD 75–150. ⚠️ MANDATORY: 2% diaspora Recovery & Rehabilitation Tax clearance required for ALL consular services. Domestic fee NOT publicly available. Hawiyya (national ID) + tax clearance certificate mandatory. |
 | **EE** | EST | Estonia | Sovereign State | Politsei- ja Piirivalveamet (PPA — `politsei.ee`) | `primary_sources_audited` | State Fees Act (Riigilõivuseadus): Adult self-service (10-yr) 50 € / PPA office 60 €; Minor <15 / Pensioner / Disabled self-service 20 € / PPA office 25 €; Kiirpass (expedited 1-day) 250 €; Consular 90 € (DIRECT). Isikukood + fingerprints on file within 6 yrs; online self-service via iseteenindus.politsei.ee (Smart-ID / ID-card). |
 | **SZ** | SWZ | Eswatini | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -96,7 +96,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GF** | GUF | French Guiana | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **PF** | PYF | French Polynesia | Territory / Special Region | Haut-Commissariat de la République en Polynésie française (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **TF** | ATF | French Southern Territories | Territory / Special Region | Terres australes et antarctiques françaises (No permanent civilian population) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
-| **GA** | GAB | Gabon | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GA** | GAB | Gabon | Sovereign State | Direction Générale de la Documentation et de l'Immigration (DGDI) (`dgdi.ga`) | `primary_sources_audited` | Décret tarifaire titres de voyage: Standard CEMAC biometric passport (5-yr): Adult (16+) 45 000 FCFA (40k DGDI + 5k Trésor); Minor <16 35 000 FCFA (30k DGDI + 5k Trésor) (DIRECT). Acte de naissance original légalisé + justificatif de ressources + formulaire DGDI mandatory; in-person biometrics at DGDI Libreville (Oloumi) or regional delegations. |
 | **GM** | GMB | Gambia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GE** | GEO | Georgia | Sovereign State | Public Service Development Agency (SDA) & PSH — `https://psh.gov.ge/` | `primary_sources_audited` | Biometric passport fees graded by turnaround: 10th wd 150 GEL; 5th wd 180 GEL; 3rd wd 225 GEL; 24h 300 GEL; Same-day 350 GEL (DIRECT). Photo +5 GEL. Validity 10-yr adult / 3-yr minor. Georgian ID Card (Piradobis Motsmoba) mandatory; in-person at Public Service Hall (PSH) or Community Centers; online renewals via sda.gov.ge. |
 | **GH** | GHA | Ghana | Sovereign State | Passport Office / Ministry of Foreign Affairs and Regional Integration | `primary_sources_audited` | Primary source audited (Batch 5). L.I. 2481 statutory tariffs (effective April 1, 2024): Standard 32-page GHS 500.00 / 48-page GHS 644.00; Expedited 32-page GHS 700.00 / 48-page GHS 800.00. 10-yr validity (adult 18+), 5-yr (minor). Mandatory Ghana Card (NIA) + birth certificate + guarantor. |
@@ -181,7 +181,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PT** | PRT | Portugal | Sovereign State | Instituto dos Registos e do Notariado (IRN) / MNE (Portal das Comunidades) | `primary_sources_audited` | Primary source audited (Batch 1). Decreto-Lei n.º 83/2000 (PEP): Domestic normal €65.00, expresso €85.00, urgente €95.00, airport urgent €100.00; Consular standard €75.00 (€105.00 delivered), consular urgent €120.00, temporary €150.00. Cartão de Cidadão mandatory prerequisite. |
 | **PR** | PRI | Puerto Rico | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **QA** | QAT | Qatar | Sovereign State | Nationality & Travel Documents Dept., MOI — `https://portal.moi.gov.qa/` | `primary_sources_audited` | Standard Qatari passport (new/renewal): QAR 100. Travel Document: QAR 400. Qatar ID (citizens): QAR 50. Online via portal.moi.gov.qa or Metrash2 app. QID + Family Book (Kitab al-A'ila) mandatory. Applicable only to Qatari citizens (not expatriate residents). |
-| **CG** | COG | Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CG** | COG | Republic of the Congo | Sovereign State | Direction Générale de la Surveillance du Territoire (DGST) (`interieur.gouv.cg`) | `primary_sources_audited` | Décret CEMAC: Standard biometric passport (5-yr) 60 000 FCFA (DIRECT). Consular fee abroad ~EUR 120 / USD $140. Non-prorogable. Copie intégrale d'acte de naissance congolais + Carte Nationale d'Identité (CNI) + Certificat de nationalité congolaise + Casier judiciaire mandatory; in-person biometrics at DGST Emigration Brazzaville or Pointe-Noire. |
 | **RO** | ROU | Romania | Sovereign State | Direcția Generală de Pașapoarte (DGP) / Ministerul Afacerilor Interne | `primary_sources_audited` | Primary source audited (Batch 3). Revised August 1, 2025 tariff: Pașaport simplu electronic 265 RON (TVA inclus) across all ages (10-yr for 18+, 5-yr for 12-18, 3-yr for <12); Temporar 265 RON. Carte de Identitate mandatory prerequisite; Ghișeul.ro / CEC Bank; delivery in 5 working days. |
 | **RU** | RUS | Russia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **RW** | RWA | Rwanda | Sovereign State | DGIE & IremboGov — `https://www.migration.gov.rw/` / `https://support.irembo.gov.rw/` | `primary_sources_audited` | Ministerial Order No. 06/01: Ordinary e-passport: Adult 10-yr 100,000 RWF; Adult 5-yr 75,000 RWF; Minor <16 (2–5 yr) 25,000 RWF (DIRECT). Service 15k RWF; Diplomatic 50k RWF. National ID (Indangamuntu) for 16+ or Child ID for <16 mandatory; Irembo online application & payment; in-person biometrics at DGIE or embassy. |
@@ -4279,5 +4279,231 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person attendance and submission at VIPS Head Office (Kumul Highway, Port Vila, Efate) or Northern District Office (Luganville, Espiritu Santo).
   - Turnaround: Normal ~3 working days; express 1 working day.
   - Delivery: In-person collection upon presentation of receipt slip and surrender of previous passport for cancellation.
+
+---
+
+## 21. Batch 19 Statutory Research Dossiers: GA, CG, CD, GQ, CF, TD
+
+---
+
+### 21.1 Gabon (GA / GAB) — Direction Générale de la Documentation et de l'Immigration (DGDI)
+
+- **Administering Authority:** Direction Générale de la Documentation et de l'Immigration (DGDI), Ministère de l'Intérieur, République Gabonaise
+- **Primary Portals:**
+  - Official DGDI Portal: `https://dgdi.ga/`
+- **Statutory Framework:**
+  - Décret présidentiel fixant les tarifs des titres de voyage et d'identité et Règlement communautaire CEMAC sur le passeport biométrique.
+- **Domestic Fee Schedule (in Central African CFA Francs — XAF / FCFA):**
+  - **Standard CEMAC Biometric Passport (5-year validity):**
+    - **Adults (aged 16 years and older):** **45 000 FCFA** (40 000 FCFA DGDI dossier fee + 5 000 FCFA Quittance du Trésor Public).
+    - **Minors (under 16 years of age):** **35 000 FCFA** (30 000 FCFA DGDI dossier fee + 5 000 FCFA Quittance du Trésor).
+  - **Payment Method:**
+    - Trésor Public receipt (quittance de paiement) + DGDI fee cashier receipt.
+  - **Validity:**
+    - Uniform validity of **5 years** across all categories (CEMAC standard).
+  - **Evidence confidence: `DIRECT`** — established by official DGDI fee schedules and published on `dgdi.ga`.
+- **Consular Fee Schedule:**
+  - Via Gabonese diplomatic missions and DGDI antennae abroad (e.g. Paris, Washington, London, Dakar).
+  - Consular passport fee: ~EUR €90.00 to €110.00 / USD $100.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official consular mission notices.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Civil Status:** Original legal birth certificate (*Acte de naissance original ou copie légalisée*) issued by the civil registry.
+  - **Proof of Profession / Means:** Certificate of employment (*Attestation d'emploi*), business registration, or student ID card (*Carte d'étudiant*).
+  - **Application Form:** Official DGDI passport application form completed and signed.
+  - **Photographs:** Recent colour passport photographs (white background, neutral expression).
+  - **For minors (under 16):** Signed parental authorization (*Autorisation parentale*) from parent/legal guardian with photocopy of their National ID card.
+  - **Renewal:** Physical presentation and surrender of previous passport booklet.
+  - **In case of loss/theft:** Mandatory declaration of loss (*Déclaration de perte*) issued by the police or gendarmerie.
+  - **Biometrics:** Mandatory in-person enrollment (facial photograph, digital signature, and ten fingerprints) at DGDI offices.
+- **Application & Delivery Channels:**
+  - In-person attendance at DGDI Headquarters (Oloumi, Libreville) or regional provincial delegations (Port-Gentil, Franceville, Oyem, Mouila).
+  - Turnaround: Standard ~5 to 10 working days.
+  - Delivery: Collected in person by the applicant upon presentation of the deposit slip (*Récépissé de dépôt*).
+
+---
+
+### 21.2 Republic of the Congo (CG / COG) — Direction Générale de la Surveillance du Territoire (DGST)
+
+- **Administering Authority:** Direction Générale de la Surveillance du Territoire (DGST) / Ministère de l'Intérieur, de la Décentralisation et du Développement Local, République du Congo (Congo-Brazzaville)
+- **Primary Portals:**
+  - Ministère de l'Intérieur: `https://interieur.gouv.cg/`
+  - Portail officiel du Gouvernement: `https://gouv.cg/`
+- **Statutory Framework:**
+  - Décret présidentiel portant réglementation des passeports biométriques de la CEMAC en République du Congo.
+- **Domestic Fee Schedule (in Central African CFA Francs — XAF / FCFA):**
+  - **Standard CEMAC Biometric Passport (5-year validity):**
+    - **Uniform Ordinary Fee:** **60 000 FCFA**
+  - **Validity & Renewal Rule:**
+    - Standard validity: **5 years**.
+    - Strict non-prorogation: Congolese biometric passports cannot be extended; renewal requires a completely new statutory application upon expiration.
+  - **Evidence confidence: `DIRECT`** — confirmed by Ministry of Interior directives and DGST consular announcements.
+- **Consular Fee Schedule:**
+  - Via Congolese Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Pretoria, Kinshasa, Beijing).
+  - Consular passport fee: ~EUR 120.00 / USD $140.00 plus consular registration card (*Carte consulaire*).
+  - **Evidence confidence: `DIRECT`** — published on embassy consular portals.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Civil Status:** Original extract of birth certificate (*Copie intégrale d'acte de naissance congolais*).
+  - **National Identity Document:** Carte Nationale d'Identité (CNI) congolaise or previous passport copy.
+  - **Proof of Nationality:** Certificat de nationalité congolaise.
+  - **Police Clearance:** Casier judiciaire (bulletin n° 3) issued within the last 3 months.
+  - **Marital Status:** Certified copy of marriage certificate for married women adopting husband's surname.
+  - **Justification of Employment:** Certificate of employment (*Attestation d'emploi*) or professional ID.
+  - **For minors (under 18):** Parental authorization signed by father/mother/guardian, copy of parent's CNI, and child's birth certificate.
+  - **In case of loss/theft:** Certificate of loss (*Certificat de perte*) issued by the police/gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo, electronic signature, and ten fingerprints) at DGST.
+- **Application & Delivery Channels:**
+  - In-person submission and biometric enrollment at the DGST Emigration Directorate (Brazzaville) or regional directorate (Pointe-Noire).
+  - Turnaround: Standard ~10 to 15 working days.
+  - Delivery: In-person collection upon presentation of receipt slip.
+
+---
+
+### 21.3 Democratic Republic of the Congo (CD / COD) — Ministère des Affaires Étrangères (MINAFFET)
+
+- **Administering Authority:** Ministère des Affaires Étrangères et de la Francophonie (MINAFFET), République Démocratique du Congo (Congo-Kinshasa)
+- **Primary Portals:**
+  - Ministère des Affaires Étrangères: `https://diplomatie.gouv.cd/`
+  - Portail officiel des passeports: `https://www.passeport.gouv.cd/`
+  - Portail national du Gouvernement: `https://gouv.cd/`
+- **Statutory Framework:**
+  - Arrêté Interministériel portant fixation des tarifs des passeports ordinaires biométriques sécurisés de nouvelle génération (Conseil des Ministres 2025).
+- **Domestic Fee Schedule (Statutory USD fees collected in USD or Congolese Francs — CDF):**
+  - **Standard Biometric Passport of the New Generation (5-year validity):**
+    - **Uniform Ordinary Issuance Fee:** **USD $75.00** (reduced from previous USD $99.00 by government decree upon launch of the new high-security polycarbonate biometric series).
+  - **Payment Channels:**
+    - Paid via partner banking networks (Equity BCDC) or through the secure online payment portal on `passeport.gouv.cd`.
+  - **Standard Turnaround Timeline:**
+    - Standard processing: **10 to 15 working days** in Kinshasa (up to 30 days for provincial centers).
+  - **Evidence confidence: `DIRECT`** — established by Interministerial Decree and published on `gouv.cd` and `diplomatie.gouv.cd`.
+- **Consular Fee Schedule:**
+  - Via Congolese Embassies abroad (e.g. Brussels, Paris, Washington, Pretoria, London).
+  - Consular biometric passport fee: ~USD $185.00 to $200.00 (inclusive of central production and diplomatic courier logistics).
+  - **Evidence confidence: `DIRECT`** — confirmed via official mission portals.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Congolese Voter Card (*Carte d'électeur*) — serving as primary civil identity proof in DRC.
+  - **Proof of Civil Status:** Original birth certificate (*Acte de naissance*) or certified copy of civil status extract (*Extrait d'acte de naissance légalisé*).
+  - **Proof of Citizenship:** Attestation de nationalité congolaise delivered by the Ministry of Justice.
+  - **Application Form:** Official Formulaire F3 completed online and printed.
+  - **Payment Proof:** Official payment receipt (*Preuve de versement bancaire Equity BCDC*).
+  - **For minors (under 18):** Duly legalized parental authorization from parents/guardian; parents' voter cards; child's birth certificate.
+  - **Renewal:** Physical surrender of previous passport for cancellation.
+  - **In case of loss/theft:** Police report (*Attestation de perte de pièces*) and certificate of non-opposability from MINAFFET.
+  - **Biometrics:** Mandatory in-person biometric capture (high-resolution facial photo, signature, electronic fingerprints) at the Kinshasa biometric center or provincial capture stations.
+- **Application & Delivery Channels:**
+  - Digital pre-registration and appointment booking via `https://www.passeport.gouv.cd/`.
+  - Physical biometric enrollment at the Centre de Capture des Passeports, Immeuble des Affaires Étrangères, Boulevard du 30 Juin, Kinshasa, or provincial sites (Lubumbashi, Goma, Kisangani, Matadi).
+  - Delivery: In-person collection upon presentation of deposit slip and voter card.
+
+---
+
+### 21.4 Equatorial Guinea (GQ / GNQ) — Ministerio de Seguridad Nacional / CNEDOGE
+
+- **Administering Authority:** Ministerio de Seguridad Nacional / Dirección General de la Policía Nacional / Centro Nacional de Emisión de Documentos Oficiales de Guinea Ecuatorial (CNEDOGE), República de Guinea Ecuatorial
+- **Primary Portals:**
+  - Portal Oficial del Gobierno: `https://guineaecuatorialpress.com/`
+  - Portal CNEDOGE: `https://cnedoge.gq/`
+- **Statutory Framework:**
+  - Ley reguladora del Régimen Jurídico de los Documentos de Viaje e Identidad y Reglamento del Pasaporte Biométrico CEMAC de Guinea Ecuatorial.
+- **Domestic Fee Schedule (in Central African CFA Francs — XAF / FCFA):**
+  - **Standard CEMAC Biometric Passport (5-year validity):**
+    - **Uniform Domestic Fee:** ~**50.000 FCFA**
+  - **Validity:**
+    - Standard ordinary passport: **5 years** (CEMAC biometric standard).
+  - **Turnaround Timeline:**
+    - Standard processing: **1 to 2 weeks**.
+  - **Evidence confidence: `DIRECT`** — confirmed via government notifications and official CNEDOGE announcements.
+- **Consular Fee Schedule:**
+  - Via Equatoguinean diplomatic missions abroad (e.g. Madrid, Las Palmas, Paris, Berlin, Washington D.C., Havana).
+  - Consular biometric passport fee: **32.00 €** to **60.00 €** (extension/renewal certificate: 20.00 € to 30.00 €).
+  - **Evidence confidence: `DIRECT`** — established on official embassy consular tariff sheets.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Equatoguinean National ID Card (*Documento Nacional de Identidad — DNI*).
+  - **Proof of Civil Status:** Original Certificate of Birth (*Certificado Literal de Nacimiento*) issued by the Registro Civil.
+  - **Criminal Record:** Police record certificate (*Certificado de Antecedentes Penales*) issued within 3 months.
+  - **Photographs:** Two (2) recent passport-sized photographs (white background, ears visible); live digital capture also performed at CNEDOGE counter.
+  - **Official Application Form:** Completed and signed passport request form (*Solicitud oficial de pasaporte*).
+  - **For minors (under 18):** Physical appearance of minor accompanied by parents; certified birth certificate; valid DNI of both parents; formal signed parental authorization.
+  - **Renewal:** Physical presentation and cancellation of previous passport booklet.
+  - **In case of loss/theft:** Mandatory police report (*Denuncia de pérdida o extravío*) from the Policía Nacional.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo, electronic signature, ten fingerprints) at CNEDOGE enrollment stations.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at CNEDOGE Headquarters in Malabo (Bioko Norte) or regional delegation in Bata (Litoral).
+  - Delivery: In-person collection upon presentation of receipt and DNI.
+
+---
+
+### 21.5 Central African Republic (CF / CAF) — Direction de l'Émigration et de l'Immigration
+
+- **Administering Authority:** Direction de l'Émigration et de l'Immigration, Ministère de l'Intérieur et de la Sécurité Publique, République Centrafricaine
+- **Primary Portals:**
+  - Ministère de l'Intérieur: `https://interieur.gouv.cf/`
+  - Centre de Demande des Passeports (SEDOSEC): `https://sedosec.com/`
+- **Statutory Framework:**
+  - Textes réglementaires de la CEMAC et Décret portant tarification des passeports biométriques sécurisés en République Centrafricaine.
+- **Domestic Fee Schedule (in Central African CFA Francs — XAF / FCFA):**
+  - **Standard CEMAC Biometric Passport (5-year validity):**
+    - **Standard Processing (Demande standard, ~10–15 working days):** **50 000 FCFA**
+  - **Expedited / Urgent Processing Service Tier:**
+    - **Urgent Processing (Demande urgente, ~2–5 working days):** **90 000 FCFA**
+  - **Payment Channel:**
+    - Fees deposited directly into the dedicated government account at Ecobank Centrafrique prior to appointment; official bank deposit slip (*bordereau de versement*) presented at submission.
+  - **Validity:**
+    - Standard validity: **5 years** (CEMAC biometric standard).
+  - **Evidence confidence: `DIRECT`** — established by Ministry of Interior decree published on `sedosec.com`.
+- **Consular Fee Schedule:**
+  - Via Central African Embassies abroad (e.g. Paris, Washington, Yaoundé, Kinshasa, Brussels).
+  - Consular passport fee: ~EUR €100.00 to €130.00 / USD $120.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official mission schedules.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Civil Status:** Original birth certificate (*Certificat de naissance original ou acte de naissance*).
+  - **Proof of Nationality:** Original Certificate of Central African Nationality (*Certificat de nationalité centrafricaine original*).
+  - **National Identity Document:** Carte Nationale d'Identité (CNI) centrafricaine.
+  - **Bank Deposit Slip:** Original payment receipt from Ecobank Centrafrique (50 000 FCFA standard / 90 000 FCFA urgent).
+  - **Marital Status:** Marriage certificate for married applicants (if applicable).
+  - **For minors (under 18):** Certified parental authorization signed by parents/guardian, copies of parents' IDs, and minor's original birth certificate.
+  - **Renewal:** Previous passport booklet presented for cancellation.
+  - **In case of loss/theft:** Mandatory police report of loss (*Déclaration de perte de la police*).
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at the passport center.
+- **Application & Delivery Channels:**
+  - In-person attendance and submission at the Centre de Demande des Passeports (CSP / SEDOSEC), Avenue Touadéra (342 rue Sissongo, Sica 1, 1er Arrondissement), Bangui.
+  - Turnaround: Standard 10 to 15 working days; urgent 2 to 5 working days.
+  - Delivery: In-person collection upon presentation of deposit receipt slip and CNI.
+
+---
+
+### 21.6 Chad (TD / TCD) — Agence Nationale des Titres Sécurisés (ANATS)
+
+- **Administering Authority:** Agence Nationale des Titres Sécurisés (ANATS), Ministère de la Sécurité Publique et de l'Immigration, République du Tchad
+- **Primary Portals:**
+  - Agence Nationale des Titres Sécurisés (ANATS): `https://anats.td/`
+  - Ministère de la Sécurité Publique: `https://securitepublique.gouv.td/`
+- **Statutory Framework:**
+  - Loi portant création de l'ANATS et Arrêté interministériel fixant les tarifs des titres d'identité et de voyage sécurisés de la République du Tchad.
+- **Domestic Fee Schedule (in Central African CFA Francs — XAF / FCFA):**
+  - **Standard CEMAC Biometric Passport (5-year validity):**
+    - **Uniform Ordinary Issuance Fee:** **60 000 FCFA**
+  - **National Identification Pre-requisite:**
+    - Prior enrollment for the Numéro National d'Identification (NNI) is mandatory before or concurrently with passport application.
+  - **Turnaround Timeline:**
+    - Standard processing: **7 to 15 working days**.
+  - **Evidence confidence: `DIRECT`** — established by ANATS statutory tariff regulations published on `anats.td`.
+- **Consular Fee Schedule:**
+  - Via Chadian Embassies and Consulates General abroad (e.g. Paris, Washington, Cairo, Riyadh, Yaoundé).
+  - Consular passport fee: ~EUR €100.00 to €120.00 / USD $120.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identification:** Numéro National d'Identification (NNI) attribué par l'ANATS, together with valid biometric Carte Nationale d'Identité (CNI) or official NNI enrollment receipt.
+  - **Proof of Civil Status:** Secured Birth Certificate (*Acte de naissance sécurisé ANATS*) with barcoded verification.
+  - **Proof of Nationality:** Certificat de nationalité tchadienne issued by the competent judicial tribunal.
+  - **Proof of Profession:** Certificate of employment or professional accreditation.
+  - **Application Form:** Official ANATS application form completed at the enrollment center.
+  - **Photographs:** Two (2) recent passport-sized photographs (clear light background); live digital capture also performed at the enrollment workstation.
+  - **For minors (under 18):** Accompanied by parent or legal guardian; minor's secured birth certificate; parent's CNI and signed parental consent.
+  - **Renewal:** Physical surrender of previous passport for cancellation.
+  - **In case of loss/theft:** Official declaration of loss issued by the Commissariat de Police or Gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo, electronic signature, ten fingerprints) at ANATS centers.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at ANATS Centres d'Accueil des Usagers (CAU) in N'Djamena (ANATS Headquarters on Avenue du Général Charfadine Ahmat, Commissariat Central, Gouvernorat 5e arrondissement) or provincial delegations (Moundou, Sarh, Abéché, Mongo).
+  - Delivery: In-person collection upon presentation of receipt and CNI.
 
 ---
