@@ -163,6 +163,12 @@
             "publisher": "Ministry of External Affairs, India",
             "page_title": "Tatkaal Passport Scheme Guidelines & Surcharge Schedule",
             "checked_at": "2026-10-18"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Passport Fee Structure and Payment Guidelines",
+            "checked_at": "2026-10-20"
           }
         ]
       },
@@ -360,6 +366,9 @@
         "page_title": "Tatkaal Passport Scheme Guidelines & Surcharge Schedule",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "passportindia.gov.in"
     ]
   },
   "US": {
@@ -507,6 +516,12 @@
             "publisher": "U.S. Department of State",
             "page_title": "Get My U.S. Passport Fast - Expedited Service",
             "checked_at": "2026-10-18"
+          },
+          {
+            "url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+            "publisher": "U.S. Department of State - Bureau of Consular Affairs",
+            "page_title": "Passport Fees - Bureau of Consular Affairs",
+            "checked_at": "2026-10-20"
           }
         ]
       },
@@ -645,6 +660,10 @@
         "page_title": "Get My U.S. Passport Fast - Expedited Service",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "travel.state.gov",
+      "state.gov"
     ]
   },
   "GB": {
@@ -821,6 +840,9 @@
         "page_title": "Passports, Travel and Living Abroad",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "gov.uk"
     ]
   },
   "CA": {
@@ -1000,6 +1022,9 @@
         "page_title": "Canadian Passports and Travel Documents",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "canada.ca"
     ]
   },
   "AU": {
@@ -1180,6 +1205,9 @@
         "page_title": "Australian Passport Office",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "passports.gov.au"
     ]
   },
   "PK": {
@@ -1348,6 +1376,9 @@
         "page_title": "Official Passport Services",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "dgip.gov.pk"
     ]
   },
   "BD": {
@@ -1483,6 +1514,9 @@
         "page_title": "Bangladesh e-Passport",
         "checked_at": "2026-10-18"
       }
+    ],
+    "trusted_domains": [
+      "epassport.gov.bd"
     ]
   },
   "DE": {
@@ -1725,6 +1759,10 @@
         "page_title": "Biometrischer Reisepass",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "auswaertiges-amt.de",
+      "bmi.bund.de"
     ]
   },
   "AE": {
@@ -1890,6 +1928,10 @@
         "page_title": "ICP Passport Services",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "icp.gov.ae",
+      "mofa.gov.ae"
     ]
   },
   "PH": {
@@ -2120,6 +2162,10 @@
         "page_title": "Consular Services Guidelines",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "passport.gov.ph",
+      "dfa.gov.ph"
     ]
   },
   "FR": {
@@ -2313,6 +2359,11 @@
         "page_title": "Passeport d'un citoyen français",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "ants.gouv.fr",
+      "service-public.fr",
+      "impots.gouv.fr"
     ]
   },
   "SA": {
@@ -2487,6 +2538,10 @@
         "page_title": "Al-Jawazat Passport Portal",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "absher.sa",
+      "mofa.gov.sa"
     ]
   },
   "JP": {
@@ -2798,6 +2853,9 @@
         "page_title": "Passport Issuance and Renewal Guidance",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "mofa.go.jp"
     ]
   },
   "MX": {
@@ -3565,6 +3623,10 @@
         "page_title": "Pasaportes Ordinarios y de Emergencia Tipo E",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "gob.mx",
+      "sre.gob.mx"
     ]
   },
   "BR": {
@@ -3805,6 +3867,9 @@
         "page_title": "Passaporte Brasileiro",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "gov.br"
     ]
   },
   "ZA": {
@@ -4005,6 +4070,10 @@
         "page_title": "South African Travel Documents",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "dha.gov.za",
+      "dirco.gov.za"
     ]
   },
   "NG": {
@@ -4306,6 +4375,9 @@
         "page_title": "Official Passport Application Portal",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "immigration.gov.ng"
     ]
   },
   "IT": {
@@ -4537,6 +4609,10 @@
         "page_title": "Passaporto Elettronico e Documenti di Viaggio",
         "checked_at": "2026-10-19"
       }
+    ],
+    "trusted_domains": [
+      "poliziadistato.it",
+      "esteri.it"
     ]
   },
   "IE": {
@@ -4899,7 +4975,10 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "dfa.ie"
+    ]
   },
   "KE": {
     "country_code": "KE",
@@ -5271,7 +5350,11 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "immigration.go.ke",
+      "ecitizen.go.ke"
+    ]
   },
   "MY": {
     "country_code": "MY",
@@ -6717,7 +6800,10 @@
           ]
         }
       }
-    }
+    },
+    "trusted_domains": [
+      "imi.gov.my"
+    ]
   },
   "NP": {
     "country_code": "NP",
@@ -7069,7 +7155,10 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "nepalpassport.gov.np"
+    ]
   },
   "NZ": {
     "country_code": "NZ",
@@ -7416,7 +7505,10 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "passports.govt.nz"
+    ]
   },
   "SG": {
     "country_code": "SG",
@@ -7729,7 +7821,11 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "ica.gov.sg",
+      "mfa.gov.sg"
+    ]
   },
   "ES": {
     "country_code": "ES",
@@ -8018,7 +8114,12 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "mir.es",
+      "citapreviadnie.es",
+      "exteriores.gob.es"
+    ]
   },
   "LK": {
     "country_code": "LK",
@@ -8415,7 +8516,10 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "immigration.gov.lk"
+    ]
   },
   "ID": {
     "country_code": "ID",
@@ -8876,6 +8980,9 @@
           }
         ]
       }
-    }
+    },
+    "trusted_domains": [
+      "imigrasi.go.id"
+    ]
   }
 }
