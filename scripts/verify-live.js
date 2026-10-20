@@ -1456,7 +1456,7 @@ async function verifyLive() {
   const initialLiveIn = [...PassportRulesEngine.getTrustedOfficialDomains('IN')];
   try { PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.IN.push('hacked.example'); } catch (e) {}
   try { PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.HACK = ['hacked.example']; } catch (e) {}
-  assert.deepStrictEqual(PassportRulesEngine.getTrustedOfficialDomains('IN'), initialLiveIn, 'Live engine: AUTHORITATIVE_OFFICIAL_DOMAINS immutable');
+  assert.deepStrictEqual([...PassportRulesEngine.getTrustedOfficialDomains('IN')], initialLiveIn, 'Live engine: AUTHORITATIVE_OFFICIAL_DOMAINS immutable');
 
   // 13.8 Live Fixture 8: Official but unrelated endpoint rejection
   console.log('[13.8 Live Fixture 8: Official but Unrelated Endpoint Rejection]');
