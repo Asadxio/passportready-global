@@ -44,7 +44,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BZ** | BLZ | Belize | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BJ** | BEN | Benin | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BM** | BMU | Bermuda | Territory / Special Region | HMPO / Dept of Immigration Bermuda (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **BT** | BTN | Bhutan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BT** | BTN | Bhutan | Sovereign State | Passport Div., Ministry of Foreign Affairs & External Trade (`mfa.gov.bt`) | `primary_sources_audited` | MFAET statutory fees: Adult 18+ (10-yr) Nu. 1,000; Minor <18 (5-yr) Nu. 800; Lost/damaged replacement fine: Nu. 5,000 penalty + standard booklet fee (Nu. 6,000 adult / Nu. 5,800 minor) (DIRECT). Citizenship Identity Card (CID) + Security Clearance Certificate (SCC) mandatory; G2C online portal (citizenservices.gov.bt) or Passport Division Thimphu. |
 | **BO** | BOL | Bolivia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BQ** | BES | Bonaire, Sint Eustatius and Saba | Territory / Special Region | Rijksdienst Caribisch Nederland (Bonaire, Sint Eustatius, Saba - Dutch Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **BA** | BIH | Bosnia and Herzegovina | Sovereign State | IDDEEA & Cantonal/Entity Ministries of Interior (MUP) — `https://www.iddeea.gov.ba/` | `primary_sources_audited` | Council of Ministers Decision: Adults 18+ (10-yr) 50 BAM; Minors 3–18 (5-yr) 40 BAM; Children <3: 30 BAM (DIRECT). Urgent processing (72h without justification): +200 BAM surcharge (total 250 BAM). BiH Electronic ID Card (Lična karta) mandatory; in-person at competent Cantonal MUP / MUP RS. |
@@ -57,7 +57,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BF** | BFA | Burkina Faso | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BI** | BDI | Burundi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CV** | CPV | Cabo Verde | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **KH** | KHM | Cambodia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KH** | KHM | Cambodia | Sovereign State | General Dept. of Identification (GDI), Ministry of Interior (`gdi.gov.kh`) | `primary_sources_audited` | Joint Inter-Ministerial Prakas (MoI & MEF): Standard ~20 days: Adult 6+ (10-yr) US$ 100; Child <6 (5-yr) US$ 80; Urgent 10-day tier: US$ 150; Urgent 1-day tier: US$ 200 (DIRECT). Khmer National ID Card (15+) + Family/Residence Book + Birth Certificate mandatory; in-person biometrics at GDI Phnom Penh or provincial centers. |
 | **CM** | CMR | Cameroon | Sovereign State | DGSN / PASSCAM — `https://www.passcam.cm/` | `primary_sources_audited` | Presidential Decree No. 2021/347: Biometric passport (5-yr) 110,000 XAF (DIRECT). Paid exclusively online via mobile money / credit card on passcam.cm during pre-enrollment. Turnaround guaranteed 48 hours domestic. CNI + Birth Certificate mandatory; in-person biometrics at local police centers or foreign missions. |
 | **KY** | CYM | Cayman Islands | Territory / Special Region | Workforce Opportunities & Residency Cayman (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **CF** | CAF | Central African Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -127,7 +127,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KZ** | KAZ | Kazakhstan | Sovereign State | Committee of Administrative Police, MIA — `https://egov.kz/` | `primary_sources_audited` | State duty: 8 MCI (adult, 2024: KZT 29,536; 2025: KZT 31,456); 4 MCI (child <16, 2024: KZT 14,768). MCI-based fee per Tax Code Ch.74 and annual Budget Law. Identity Card (Kualiyet) mandatory. PSC (ЦОН) in-person biometrics. Online via egov.kz. |
 | **KI** | KIR | Kiribati | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **KW** | KWT | Kuwait | Sovereign State | General Directorate of Nationality & Travel Documents, MOI — `https://www.moi.gov.kw/` | `primary_sources_audited` | Ministerial Decision No. 1769: Standard passport issue/renewal/replacement KWD 100 (DIRECT); airport emergency (Res. 180): KWD 13 (5-yr) / KWD 16 (10-yr). Validity 10-yr (age 30+) / 5-yr (<30). Original Nationality Certificate + Civil ID mandatory. Sahel app or MOI centers. Strictly for Kuwaiti citizens (Bidoon receive Article 17 travel doc under separate restrictions). |
-| **KG** | KGZ | Kyrgyzstan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KG** | KGZ | Kyrgyzstan | Sovereign State | Dept. of Population Registration, Ministry of Digital Development (`digital.gov.kg`) | `primary_sources_audited` | DRN / Infocom tariffs: Standard 18 days: First-time/renewal 2,981 KGS; Name/address change 3,081 KGS; Lost replacement 3,181 KGS (DIRECT). Urgent tiers: 8 days (2,720–2,920 KGS surcharge); 4 days (3,302–3,502 KGS); 2 days (3,808–4,008 KGS); 3 hours (Bishkek 10,363–10,563 KGS). National ID-card with chip + PIN mandatory; Public Service Centers (ЦОН). |
 | **LA** | LAO | Laos | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LV** | LVA | Latvia | Sovereign State | Pilsonības un migrācijas lietu pārvalde (PMLP — `pmlp.gov.lv`) | `primary_sources_audited` | Valsts nodeva statutory tariff: Standard 10 working days: Adult (10-yr) 50.00 EUR; Children <20 / Pensioners / Disabled 25.00 EUR; Urgent 2 working days: Adult 75.00 EUR / Reduced 45.00 EUR (DIRECT). Personas kods + eID card mandatory; biometrics at PMLP territorial divisions or via latvija.lv. |
 | **LB** | LBN | Lebanon | Sovereign State | General Directorate of General Security (Sûreté Générale) — `https://www.general-security.gov.lb/` | `primary_sources_audited` | General Security official fee: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000 (DIRECT). Fast-track surcharges apply. Ikhraj Qayd Fardi (<3mo) or Biometric ID Card mandatory; Moukhtar-certified photos; in-person at General Security regional bureau. Quota appointment system applies due to high demand. Consular USD 300/600 (PARTIAL). |
@@ -140,7 +140,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MO** | MAC | Macao | Territory / Special Region | Identification Services Bureau DSI Macau (Macao SAR Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
 | **MG** | MDG | Madagascar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MW** | MWI | Malawi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MV** | MDV | Maldives | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MV** | MDV | Maldives | Sovereign State | Maldives Immigration, Ministry of Homeland Security (`immigration.gov.mv`) | `primary_sources_audited` | Maldives Immigration statutory tariffs: Electronic Passport 32-page (5-yr) MVR 1,000; 48-page frequent traveler MVR 1,500; Non-electronic (under 10 or abroad) MVR 600; Lost/damaged valid passport penalty: up to MVR 2,000 (DIRECT). National Identity Card (DNR ID) mandatory; 100% digital submission via IMUGA portal (imuga.immigration.gov.mv). |
 | **ML** | MLI | Mali | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MT** | MLT | Malta | Sovereign State | Identità (Passport Office — `identita.gov.mt`) | `primary_sources_audited` | Passports Regulations statutory tariff: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent (4 hours): €160.00 adult / €80.00 minor; Lost replacement supplement: +€15.00 (DIRECT). Form A + Maltese ID Card + recommender endorsement; appointments via passportbooking.identita.gov.mt. |
 | **MH** | MHL | Marshall Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -151,7 +151,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **FM** | FSM | Micronesia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MD** | MDA | Moldova | Sovereign State | Agenția Servicii Publice (ASP — `asp.gov.md`) | `primary_sources_audited` | ASP statutory tariffs: Standard 20-working-day fee transitioning from 650 MDL to 790 MDL effective Oct 2026 under new European-standard biometric booklet model (DIRECT; discrepancy between media release and legacy service card documented). Faster tiers: 10 days, 5 days, 1 day, same-day. Buletin de identitate (ID) mandatory for 16+; biometrics at ASP multifunctional centers or via MDelivery. |
 | **MC** | MCO | Monaco | Sovereign State | Direction de la Sûreté Publique (`gouv.mc` / `monservicepublic.gouv.mc`) | `primary_sources_audited` | Ordonnance Souveraine n° 8.459 du 15 janvier 2021: Adult 18+ (10-yr) 90.00 €; Minor 3–17 (5-yr) 60.00 €; Child <3 (3-yr) 30.00 € (DIRECT). Payment strictly in cash or cheque to Trésorerie Générale des Finances (cards not accepted). Monegasque nationality + Carte d'identité monégasque mandatory; biometrics (prints 12+) at Sûreté Publique. |
-| **MN** | MNG | Mongolia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MN** | MNG | Mongolia | Sovereign State | General Authority for State Registration (GASR / УБЕГ — `burtgel.gov.mn`) | `primary_sources_audited` | Law on State Registration of Civil Status: Electronic chip-embedded passport (48-pg, 10-yr adult / 5-yr minor): 82,800 MNT standard (~5 days Ulaanbaatar / ~15 days aimags) (DIRECT). Civil Identity Card (Иргэний үнэмлэх) + registration number mandatory; digital application via E-Mongolia (e-mongolia.mn) or GASR one-stop service kiosks (Gerege). |
 | **ME** | MNE | Montenegro | Sovereign State | Ministarstvo unutrašnjih poslova (MUP — `gov.me`) | `primary_sources_audited` | MUP statutory fees (per reform & Law on Admin Fees): Adult 21+ (10-yr) 33.00 € (8 € booklet + 25 € admin tax; reduced from 40 €); Minor <21 (exempt from admin tax) 8.00 € (DIRECT). Legacy/unreformed cards quoting 50 € resolved. Biometric ID card (Biometrijska lična karta) mandatory; in-person biometrics at MUP regional branch; 15 working days turnaround. |
 | **MS** | MSR | Montserrat | Territory / Special Region | Immigration Department Montserrat (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **MA** | MAR | Morocco | Sovereign State | Ministère de l'Intérieur / Direction Générale de la Sûreté Nationale | `primary_sources_audited` | Primary source audited (Batch 5). Code général des impôts statutory tariff: e-Timbre fiscal 500 DH (16-digit code via passeport.ma); 5-year validity (adults and minors); 3-year (<3 yrs). Mandatory CNIE for adults; parental presence + birth certificate for minors. Submission at local Annexe administrative. |
@@ -215,7 +215,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CH** | CHE | Switzerland | Sovereign State | Bundesamt für Polizei (fedpol) / Kantonale Passbüros | `primary_sources_audited` | Primary source audited (Batch 1). Ausweisgesetz (AwG) / VAwG: Pass 10 Adult (18+) CHF 145.00 (CHF 140 fee + CHF 5 porto), Child (<18) CHF 65.00 (CHF 60 fee + CHF 5 porto); Kombiangebot Adult CHF 158.00 / Child CHF 78.00; Notpass CHF 100.00 (centre) / CHF 150.00 (airport). Biometrics at cantonal centre mandatory. |
 | **SY** | SYR | Syria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TW** | TWN | Taiwan | Territory / Special Region | Bureau of Consular Affairs (BOCA) / Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 5). BOCA statutory tariffs: Adult 14+ (10-yr) NT$1,300; Minor <14 (5-yr) NT$900; Expedited +NT$300 (1 day), +NT$600 (2 days), +NT$900 (3 days). Consular overseas: USD 45 adult / USD 31 minor. National ID card (身分證) required; military status review for males 19-36. |
-| **TJ** | TJK | Tajikistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TJ** | TJK | Tajikistan | Sovereign State | Consular Dept. MFA (`consular.tj` / `mfa.tj`) & Passport Service MIA (`vkd.tj`) | `primary_sources_audited` | Presidential Decree & Government Resolution: Standard ~15 days: Adult 16+ (10-yr) US$ 75.00 + 40 TJS; Minor <16 (5-yr) US$ 25.00 + 40 TJS (payable in TJS at NBT rate). Urgent: 7 days (+100% = US$ 150) / 3 days (+200% = US$ 225) (DIRECT). Domestic biometric ID card (16+) + military ID (males 18–27) + birth cert mandatory; in-person biometrics. |
 | **TZ** | TZA | Tanzania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TH** | THA | Thailand | Sovereign State | Department of Consular Affairs, Ministry of Foreign Affairs | `primary_sources_audited` | Primary source audited (Batch 1). MFA Consular Regulations: Regular 5-year 1,000 THB; 10-year (adult 20+ only) 1,500 THB; Same-day urgent surcharge +2,000 THB (total 3,000 / 3,500 THB); EMS delivery 40 THB. Thai National ID Card mandatory; Parental consent required for under 20. |
 | **TL** | TLS | Timor-Leste | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -3563,5 +3563,232 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person attendance at the Ufficio Stato Civile (Via 28 Luglio n. 196, Borgo Maggiore, San Marino).
   - Processing: Standard ~10–15 business days; urgent procedure 3 business days.
   - Delivery: Collected in person at the Civil Status Office upon presentation of identity document and application receipt.
+
+---
+
+
+## 18. Batch 16 — Central Asia, South Asia & Southeast Asia Sovereign States (KG, TJ, MN, BT, MV, KH)
+
+### 18.1 Kyrgyzstan (KG / KGZ) — Департамент регистрации населения (Минцифры КР)
+
+- **Administering Authority:** Департамент регистрации населения при Министерстве цифрового развития Кыргызской Республики (DRN / Ministry of Digital Development) and ГУ "Кызмат" (State Institution "Kyzmat", formerly ГП "Инфоком")
+- **Primary Portals:**
+  - Official Ministry of Digital Development Portal: `https://digital.gov.kg/`
+  - Tunduk State Electronic Services Portal: `https://tunduk.gov.kg/` / `https://portal.tunduk.kg/`
+- **Statutory Framework:**
+  - Положение об общегражданском паспорте гражданина Кыргызской Республики образца 2020 года and Government Decrees on tariffs of the State Institution "Kyzmat".
+- **Domestic Fee Schedule (in Kyrgyz Soms — KGS):**
+  - **Standard Manufacturing Timeline (up to 18 working days):**
+    - **First-time issuance or renewal upon expiration (34-page booklet):** **2,981 KGS**
+    - **Exchange due to change of personal data (FIO) or residence:** **3,081 KGS**
+    - **Replacement of lost or damaged passport:** **3,181 KGS**
+  - **Expedited Manufacturing Tiers (Urgent / Срочное изготовление):**
+    - **8 working days:** Surcharge of **2,720–2,920 KGS**
+    - **4 working days:** Surcharge of **3,302–3,502 KGS**
+    - **2 working days:** Surcharge of **3,808–4,008 KGS**
+    - **3 hours (Super-urgent, Bishkek Central PSCs only):** Total fee **10,363–10,563 KGS** (available if submitted during morning intake hours).
+  - **Validity:**
+    - Citizens aged 16 and over: **10 years**
+    - Children under 16 years: **3 years** (or up to attaining age 16).
+  - **Evidence confidence: `DIRECT`** — established by Ministry of Digital Development decrees and confirmed on `digital.gov.kg`.
+- **Consular Fee Schedule:**
+  - Via Diplomatic Missions and Consular Posts of the Kyrgyz Republic abroad.
+  - Standard consular fee: ~USD $40–$50 plus diplomatic delivery and manufacturing charges.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular tariffs apply.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Valid ID-паспорт гражданина КР (smart card with chip) with Personal Identification Number (ПИН / PIN).
+  - **Birth Certificate:** Original birth certificate (*Свидетельство о рождении*) for minors.
+  - **For minors (under 18):** Notarized consent of both parents; presence of parents with valid ID-cards.
+  - **Renewal:** Presentation and surrender of previous passport booklet for invalidation.
+  - **In case of loss/theft:** Certificate of loss issued by the internal affairs bodies (МВД) / registration in the Unified Register.
+  - **Biometrics:** Digital facial photograph, electronic signature, and ten fingerprints captured live on-site.
+- **Application & Delivery Channels:**
+  - In-person attendance at any Public Service Center (*Центр обслуживания населения - ЦОН*) across Kyrgyzstan.
+  - Pre-booking available via the "Early Booking" module on `portal.tunduk.kg` or mobile app.
+  - Delivery: Collected in person at the ЦОН upon presentation of application slip and national ID.
+
+---
+
+### 18.2 Tajikistan (TJ / TJK) — Хадамоти шиносномавӣ (ВКД) & Сарраёсати консулӣ (ВКХ)
+
+- **Administering Authority:** Хадамоти шиносномавию бақайдгирии Вазорати корҳои дохилӣ (Passport and Registration Service of the Ministry of Internal Affairs - MIA) and Сарраёсати консулии Вазорати корҳои хориҷӣ (Main Consular Department, Ministry of Foreign Affairs - MFA), Republic of Tajikistan
+- **Primary Portals:**
+  - Ministry of Foreign Affairs Consular Portal: `https://consular.tj/`
+  - Ministry of Foreign Affairs Official Portal: `https://mfa.tj/`
+  - Ministry of Internal Affairs Official Portal: `https://vkd.tj/`
+- **Statutory Framework:**
+  - Қонуни Ҷумҳурии Тоҷикистон «Дар бораи ҳуҷҷатҳои тасдиқкунандаи шахсият» (Law on Identification Documents) and Government Decrees on state duties and consular fees for biometric travel passports.
+- **Domestic Fee Schedule (Statutory USD fees payable in Tajik Somoni — TJS at NBT rate):**
+  - **Standard Timeline (up to 15 working days):**
+    - **Adults (aged 16+, 10-year validity):** **USD $75.00** state duty + **40 TJS** administrative service fee.
+    - **Minors (under 16 years, 5-year validity):** **USD $25.00** state duty + **40 TJS** administrative service fee.
+  - **Expedited Processing Tiers (Urgent / Таъҷилӣ):**
+    - **Within 7 working days:** 100% surcharge on state duty = **USD $150.00** + 40 TJS.
+    - **Within 3 working days:** 200% surcharge on state duty = **USD $225.00** + 40 TJS.
+  - **Validity:**
+    - Persons aged 16 and over: **10 years**
+    - Minors aged 1 to 16: **5 years**
+    - Infants under 1 year: **2 years**
+  - **Evidence confidence: `DIRECT`** — established by Government resolutions and verified on `mfa.tj` and `consular.tj`.
+- **Consular Fee Schedule:**
+  - Via Embassies and Consulates-General of Tajikistan abroad (e.g. Moscow, Berlin, London, Washington).
+  - Consular state fee: USD $75.00 (adult) / USD $25.00 (minor), or EUR equivalent (€100–€120 depending on consular region).
+  - **Evidence confidence: `DIRECT`** — published on `consular.tj`.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Valid Domestic Smart Identity Card (*Шиносномаи шаҳрванди ҶТ бо микрочип*) for citizens aged 16+.
+  - **Birth Certificate:** Original birth certificate (*Шаҳодатнома дар бораи таваллуд*) for minors.
+  - **Military ID / Clearance:** Military registration book (*Билети ҳарбӣ*) or certificate of deferment/clearance from military commissariat for males aged 18–27.
+  - **For minors (under 18):** Notarized written consent from both parents authorizing passport issuance and foreign travel.
+  - **Renewal:** Submission and surrender of the previous passport for physical cancellation.
+  - **In case of loss/theft:** Certificate from police authorities (*Маълумотномаи ШВКД*) confirming report of loss.
+  - **Biometrics:** Electronic facial image, digital signature, and ten fingerprints captured at MIA Passport Service centers or MFA Consular Department.
+- **Application & Delivery Channels:**
+  - In-person attendance at regional Passport and Registration Service branches of the MIA or the MFA Main Consular Department in Dushanbe.
+  - Delivery: Collected in person upon presentation of application receipt and identity verification.
+
+---
+
+### 18.3 Mongolia (MN / MNG) — Улсын бүртгэлийн ерөнхий газар (УБЕГ)
+
+- **Administering Authority:** Улсын бүртгэлийн ерөнхий газар (General Authority for State Registration - GASR), Ministry of Justice and Home Affairs, Government of Mongolia
+- **Primary Portals:**
+  - Official GASR Portal: `https://burtgel.gov.mn/`
+  - E-Mongolia Integrated Public Services Portal: `https://e-mongolia.mn/`
+- **Statutory Framework:**
+  - Иргэний улсын бүртгэлийн тухай хууль (Law on State Registration of Civil Status) and Government resolutions on electronic passport issuance.
+- **Domestic Fee Schedule (in Mongolian Tögrög — MNT):**
+  - **Electronic Chip-Embedded Passport (Цахим гадаад паспорт, 48 pages):**
+    - **Standard Statutory Issuance Fee:** **82,800 MNT** (inclusive of booklet fee, state stamp duty, and personalisation charges).
+    - **Processing Deadlines:** Standard **5 working days** in Ulaanbaatar; **15 working days** in rural aimags.
+    - **Urgency Policy:** Under updated GASR regulations, standard electronic passports are processed uniformly within 5 business days; separate private expedited surcharges were eliminated to standardize equitable turnaround.
+    - **Lost / Damaged Replacement:** Standard fee of 82,800 MNT plus administrative fine under the Law on Violations (*Зөрчлийн тухай хууль*).
+  - **Validity:**
+    - Citizens aged 16 and over: **10 years**
+    - Children under 16 years: **5 years**
+  - **Evidence confidence: `DIRECT`** — established by Law on State Registration and published on `burtgel.gov.mn` and `e-mongolia.mn`.
+- **Consular Fee Schedule:**
+  - Via Diplomatic Missions and Consulates of Mongolia abroad.
+  - Standard consular electronic passport fee: ~USD $60.00–$75.00 (plus diplomatic pouch transmission fee).
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular tariffs apply.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Valid Mongolian Civil Identity Card (*Иргэний үнэмлэх*) with citizen registration number (*Регистрийн дугаар*).
+  - **Birth Certificate:** Original birth certificate (*Төрсний гэрчилгээ*) for children under 16.
+  - **For minors (under 16):** Application submitted by parents/legal guardians; parent's identity card and consent required.
+  - **Biometrics:** Digital biometric facial photograph, digital signature, and electronic fingerprint verification.
+- **Application & Delivery Channels:**
+  - Online application via the **E-Mongolia** portal (`e-mongolia.mn`) for citizens with established digital identity and active biometrics.
+  - In-person attendance at GASR branch offices, One-Stop Public Service Centers, or self-service "Gerege Systems" kiosk machines across Mongolia.
+  - Delivery: Collected in person at the registration office or delivered via postal courier across Ulaanbaatar.
+
+---
+
+### 18.4 Bhutan (BT / BTN) — Passport Division, MFAET
+
+- **Administering Authority:** Passport Division, Department of Protocol and Consular Services, Ministry of Foreign Affairs and External Trade (MFAET), Royal Government of Bhutan
+- **Primary Portals:**
+  - Official MFAET Portal: `https://www.mfa.gov.bt/`
+  - G2C Citizen Services Portal: `https://www.citizenservices.gov.bt/`
+- **Statutory Framework:**
+  - Rules and Regulations on the Issuance of Bhutanese Travel Documents and Executive Orders of the Ministry of Foreign Affairs and External Trade.
+- **Domestic Fee Schedule (in Bhutanese Ngultrum — BTN / Nu.):**
+  - **Standard Ordinary Passport (32 pages):**
+    - **Adults (aged 18 and over, 10-year validity):** **Nu. 1,000/-**
+    - **Minors (under 18 years, 5-year validity):** **Nu. 800/-**
+  - **Lost / Damaged Passport Statutory Penalties:**
+    - Statutory fine/penalty for replacing a lost or damaged valid passport: **Nu. 5,000/-**
+    - Total replacement cost: **Nu. 6,000/-** for adults / **Nu. 5,800/-** for minors (penalty + base booklet fee).
+  - **Turnaround:** Standard issuance takes approximately **3 to 5 working days** from biometric verification.
+  - **Validity:**
+    - Adults (18+): **10 years**
+    - Minors (under 18): **5 years**
+  - **Evidence confidence: `DIRECT`** — established by MFAET regulations and verified on `mfa.gov.bt`.
+- **Consular Fee Schedule:**
+  - Handled via Royal Bhutanese Embassies and Consulates abroad (e.g. New Delhi, Bangkok, New York, Brussels).
+  - Standard overseas passport fee: Nu. 1,000/- (or local equivalent in USD/EUR/THB/INR) plus consular handling and courier charges.
+  - **Evidence confidence: `DIRECT`** — published on MFAET consular pages.
+- **Civil Identity & Document Checklists:**
+  - **Citizenship ID Card:** Valid Citizenship Identity Card (CID card) for citizens aged 18+.
+  - **Security Clearance:** Valid Security Clearance Certificate (SCC) issued by the Royal Bhutan Police (verified automatically via the online G2C portal).
+  - **For minors (under 18):** Birth Registration Certificate / Health Card; valid CID cards of parents; written consent of parents or legal guardians.
+  - **Renewal:** Submission and surrender of the previous passport for physical invalidation.
+  - **In case of loss/theft:** Mandatory Police Report / First Information Report (FIR) from the Royal Bhutan Police and lost passport declaration.
+  - **Biometrics:** Digital photograph, electronic signature, and ten fingerprints captured at the Passport Division in Thimphu.
+- **Application & Delivery Channels:**
+  - Online application submission via the G2C Citizen Services Portal (`citizenservices.gov.bt`).
+  - In-person attendance for biometric capture and document verification at the Passport Division (MFAET, Thimphu).
+  - Delivery: Collected in person at the Passport Division or delivered via Bhutan Post.
+
+---
+
+### 18.5 Maldives (MV / MDV) — Maldives Immigration
+
+- **Administering Authority:** Maldives Immigration (Divehi Raajjeyge Immigration), Ministry of Homeland Security and Technology, Republic of Maldives
+- **Primary Portals:**
+  - Official Maldives Immigration Portal: `https://immigration.gov.mv/`
+  - IMUGA Electronic Passport Portal: `https://imuga.immigration.gov.mv/`
+- **Statutory Framework:**
+  - Maldives Immigration Act (Law No. 1/2007) and Maldives Passport Regulations.
+- **Domestic Fee Schedule (in Maldivian Rufiyaa — MVR):**
+  - **Standard Electronic Passport (32 pages, 5-year validity):** **MVR 1,000.00**
+  - **Frequent Traveler Electronic Passport (48 pages, 5-year validity):** **MVR 1,500.00**
+  - **Non-Electronic Passport (for children under 10 or overseas emergency applications):** **MVR 600.00**
+  - **Lost / Damaged Passport Replacement Penalties:**
+    - Replacement of valid lost passport: Penalty of up to **MVR 2,000.00** assessed by the review committee following police report investigation.
+    - Replacement of damaged passport: Fixed penalty of **MVR 2,000.00**.
+    - If the lost passport has already expired, no penalty applies (standard fee only).
+  - **Validity:**
+    - Standard ordinary electronic passport: **5 years** for all applicants.
+  - **Evidence confidence: `DIRECT`** — established by Maldives Immigration regulations and published on `immigration.gov.mv`.
+- **Consular Fee Schedule:**
+  - Via Maldivian Diplomatic Missions abroad (e.g. Colombo, London, New Delhi, Kuala Lumpur).
+  - Non-electronic passport fee abroad: MVR 600.00 (or equivalent in USD/GBP).
+  - **Evidence confidence: `DIRECT`** — published on official mission portals.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Valid National Identity Card issued by the Department of National Registration (DNR ID Card) in original physical form.
+  - **Photographs:** High-resolution digital passport photo meeting ICAO specifications uploaded via IMUGA.
+  - **For minors (under 18):** Birth certificate; DNR identity card; written consent of parents or legal guardians.
+  - **Renewal:** Previous passport booklet details; physical old passport surrendered upon collection of the new booklet.
+  - **In case of loss/theft:** Formal police report issued by Maldives Police Service (MPS) stating circumstances of loss.
+- **Application & Delivery Channels:**
+  - 100% digital application and online payment via the **IMUGA portal** (`imuga.immigration.gov.mv`).
+  - Turnaround: Typically issued within **2 to 3 working days**.
+  - Delivery: Collected in person at the Maldives Immigration Headquarters (Velaanaage, Malé) or designated regional immigration offices in Addu, Kulhudhuffushi, Fuvahmulah, etc.
+
+---
+
+### 18.6 Cambodia (KH / KHM) — General Department of Identification (GDI)
+
+- **Administering Authority:** General Department of Identification (GDI - អគ្គនាយកដ្ឋានអត្តសញ្ញាណកម្ម), Ministry of Interior (MoI), Royal Government of Cambodia
+- **Primary Portals:**
+  - Official GDI Portal: `https://gdi.gov.kh/`
+  - Ministry of Interior Portal: `https://interior.gov.kh/`
+- **Statutory Framework:**
+  - Joint Inter-Ministerial Prakas of the Ministry of Interior and Ministry of Economy and Finance on Public Administrative Service Fees.
+- **Domestic Fee Schedule (Statutory USD fees collected in USD or Cambodian Riel — KHR):**
+  - **Standard Processing Timeline (~20 working days):**
+    - **Adults and Children aged 6 and older (10-year validity):** **US$ 100.00**
+    - **Children under 6 years (5-year validity):** **US$ 80.00**
+  - **Expedited / Urgent Processing Tiers:**
+    - **10 working days:** **US$ 150.00**
+    - **1 working day (super-urgent):** **US$ 200.00**
+  - **Validity:**
+    - Persons aged 6 and older: **10 years**
+    - Children under 6 years: **5 years**
+  - **Evidence confidence: `DIRECT`** — established by Joint Inter-Ministerial Prakas and confirmed on GDI platforms.
+- **Consular Fee Schedule:**
+  - Via Royal Cambodian Embassies and Consulates abroad (e.g. Bangkok, Paris, Washington, Seoul).
+  - Consular passport issuance/renewal: ~USD $120.00–$150.00 inclusive of diplomatic courier fees.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular regulations apply.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Valid Cambodian National Identity Card (*Khmer ID Card / អត្តសញ្ញាណប័ណ្ណសញ្ជាតិខ្មែរ*) for citizens aged 15+.
+  - **Civil Registry Documents:** Original Birth Certificate (*សំបុត្រកំណើត*); Family Record Book (*សៀវភៅគ្រួសារ*) or Residence Book (*សៀវភៅស្នាក់នៅ*).
+  - **For minors (under 18):** Presence of child accompanied by parents with valid Khmer ID cards; certified birth certificate.
+  - **Renewal:** Submission and surrender of previous passport for cancellation.
+  - **In case of loss/theft:** Official certificate of loss issued by the local commune/sangkat police authority.
+  - **Biometrics:** High-resolution facial photograph, electronic signature, and ten fingerprints captured at GDI passport offices.
+- **Application & Delivery Channels:**
+  - In-person attendance at the GDI Passport Issuance Department (Khan Chbar Ampov, Phnom Penh) or provincial branches (Battambang, Siem Reap, Banteay Meanchey, Koh Kong).
+  - Processing: Standard ~20 working days; expedited 10 days or 1 day.
+  - Delivery: Collected in person at the application office upon presentation of receipt slip.
 
 ---
