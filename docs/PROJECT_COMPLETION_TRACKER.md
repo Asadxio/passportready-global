@@ -37,6 +37,7 @@
 | **Phase U** | `TASK-U1` | Global Jurisdiction Completion — Batch 11 (SN, CI, CM, UG, RW, MU) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 11 complete; Proceed to Batch 12 |
 | **Phase V** | `TASK-V1` | Global Jurisdiction Completion — Batch 12 (BW, NA, ZM, ZW, AO, MZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 12 complete; Proceed to Batch 13 |
 | **Phase W** | `TASK-W1` | Global Jurisdiction Completion — Batch 13 (CR, PA, DO, GT, JM, TT) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 13 complete; Proceed to Batch 14 |
+| **Phase X** | `TASK-X1` | Global Jurisdiction Completion — Batch 14 (EE, LV, LT, LU, MT, CY) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 14 complete; Proceed to Batch 15 |
 
 ---
 
@@ -559,3 +560,27 @@
   - **JM:** PICA statutory fees confirmed DIRECT from `pica.gov.jm` and `passport.pica.gov.jm`: Adult Regular (10-yr) JMD $6,500; Minor Regular (5-yr) JMD $4,000; Adult Expedited (Same Day) JMD $16,500 / Next Day JMD $11,500 / 3-Day JMD $9,500; Minor Expedited Same Day JMD $9,000; Lost/Damaged Replacement Adult JMD $21,500 / Minor JMD $12,000. RGD Birth Certificate with PIN + Government Photo ID mandatory; adult online renewal via `passport.pica.gov.jm`.
   - **TT:** Immigration Regulations (Chap 18:01) statutory fees confirmed DIRECT from `nationalsecurity.gov.tt` and `appointments.gov.tt`: Ordinary 32-page passport (adults 16–59, 10-yr) TTD $500; 48-page business TTD $700; Children <16 (5-yr) TTD $500 (under-2 first issue FREE); Seniors 60+ FREE ($0 TTD); Expedited surcharge +TTD $600; Lost/stolen/mutilated penalty TTD $2,000. Computerized RGD Birth Certificate with PIN + National ID card (EBC) mandatory; legal-size form (8½" x 14"); appointment via `appointments.gov.tt`.
 - **Next Actionable Task:** Batch 14 Official Source Research (suggested cohort: Baltic & European EU/EEA sovereign states: e.g. Estonia EE, Latvia LV, Lithuania LT, Luxembourg LU, Malta MT, Cyprus CY).
+
+
+---
+
+### Phase X: Global Jurisdiction Completion — Batch 14 (EE, LV, LT, LU, MT, CY)
+- **Task ID:** `TASK-X1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Estonia (EE), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), and Cyprus (CY). All 6 Baltic and European EU/EEA sovereign jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers authored in Section 16 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit entries written in Section 17 of `SOURCE_AUDIT_REGISTER.md`. All statutory tariffs, state duty laws (Riigilõivuseadus, Valsts nodeva, Valstybės rinkliava), self-service digital platforms (iseteenindus, MIGRIS, latvija.lv, CY Login), expedited/kiirpass/urgent same-day frameworks, age and disability concession scales, and national civil ID prerequisites confirmed with `DIRECT` confidence from official acts, decrees, and ministry portals.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 16 Batch 14 dossiers for EE, LV, LT, LU, MT, CY.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 17 claim audit table with 18 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase X deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **EE:** State Fees Act (Riigilõivuseadus) confirmed DIRECT on `politsei.ee`: Adult self-service (10-yr) 50.00 €; in-person PPA office 60.00 €; children <15, old-age pensioners, and disabled persons 20.00 € (self-service) / 25.00 € (office); expedited Kiirpass (1 working day, collected in Tallinn) 250.00 €; consular 90.00 €. Isikukood + fingerprints on file within 6 years; online submission via `iseteenindus.politsei.ee` (Smart-ID / ID-card).
+  - **LV:** Cabinet of Ministers Valsts nodeva regulations confirmed DIRECT on `pmlp.gov.lv`: Standard timeline (10 working days): Adult (20+, 10-yr) 50.00 EUR; reduced (children/youth <20, pensioners, disabled) 25.00 EUR; urgent (steidzamības kārtībā — 2 working days): Adult 75.00 EUR / Reduced 45.00 EUR. Personas kods + eID card mandatory; biometrics captured at PMLP territorial divisions.
+  - **LT:** Republic of Lithuania Law on Passports and state fee resolution confirmed DIRECT on `migracija.lt`: Standard timeline (1 month, bendra tvarka): Adult (16+, 10-yr) 50.00 Eur; children <18: 25.00 Eur (50% reduction); pensioners: 10.00 Eur (80% reduction); urgent (5 working days): 100.00 Eur; super urgent same day (Vilnius): 200.00 Eur. Asmens kodas + eID card mandatory; pre-application and booking via MIGRIS (`migracija.lt`).
+  - **LU:** Grand-Ducal Regulations and MAEE BPVL tariff confirmed DIRECT on `guichet.public.lu`: Standard procedure (7 working days): Age 4+ (5-yr) 50.00 € / Minors <4 (2-yr) 30.00 €; fast-track urgent (3 working days): Age 4+ 150.00 € / Minors <4 90.00 €. Advance bank transfer proof to BPVL account + 13-digit Matricule mandatory; applications via local commune (Biergeramt) or BPVL Luxembourg City.
+  - **MT:** Passports Act (Chap 61) and Passports Regulations confirmed DIRECT on `identita.gov.mt`: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent service (4 hours): €160.00 adult / €80.00 minor; lost replacement supplement +€15.00. Form A + Maltese ID card + Section 7 recommender endorsement; appointments via `passportbooking.identita.gov.mt`.
+  - **CY:** Civil Registry Law and Passports Regulations confirmed DIRECT on `moi.gov.cy/crmd` and `gov.cy`: Standard biometric passport: Adult 18+ (10-yr) €70.00; Minor <18 (5-yr) €45.00; fast-track accelerated surcharge +€50.00 (total €120 adult / €95 minor, 48–72h); lost/damaged replacement fee doubles to €140 adult / €90 minor. Cypriot ID card (Δελτίο Ταυτότητας) mandatory; parental consent via CY Login; biometrics at District Administration Offices or Citizen Service Centres (KEP).
+- **Next Actionable Task:** Batch 15 Official Source Research (suggested cohort: Western Balkans & Eastern European sovereign nations: e.g. North Macedonia MK, Moldova MD, Montenegro ME, Kosovo XK, or Asian/Pacific sovereign cohort).

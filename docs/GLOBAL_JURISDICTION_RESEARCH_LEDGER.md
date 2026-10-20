@@ -73,7 +73,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **HR** | HRV | Croatia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CU** | CUB | Cuba | Sovereign State | MINREX (cubaminrex.cu) — domestic: MININT/DIIE | `primary_sources_audited` | Domestic: CUP 2,500 (PARTIAL). Consular via MINREX Res. 37/2026: Adult USD/EUR 200; Minor USD/EUR 160; Provisional USD/EUR 120 (DIRECT). Carné de Identidad mandatory. In-person DIIE enrollment. Emigration controls may apply to "regulated" professionals. |
 | **CW** | CUW | Curaçao | Territory / Special Region | Cabinet of the Governor of Curaçao (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
-| **CY** | CYP | Cyprus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CY** | CYP | Cyprus | Sovereign State | Civil Registry & Migration Dept. (`moi.gov.cy/crmd`) / `gov.cy` | `primary_sources_audited` | CRMD statutory fees: Adult 18+ (10-yr) €70.00; Minor <18 (5-yr) €45.00; Accelerated fast-track surcharge +€50.00 (total €120 adult / €95 minor); Lost/damaged replacement doubles to €140 adult / €90 minor (DIRECT). Cypriot ID card (Δελτίο Ταυτότητας) mandatory; parental consent for minors; biometric capture at District Administration Offices or Citizen Service Centres (KEP). |
 | **CZ** | CZE | Czechia | Sovereign State | Ministerstvo vnitra ČR (MVČR) / Obecní úřady (ORP) | `primary_sources_audited` | Primary source audited (Batch 3). Zákon o cestovních dokladech: Standard (30 days) Adult (15+) 600 CZK (10-yr), Child (<15) 100 CZK (5-yr); Fast (5 days) 3,000 / 1,000 CZK; Super-fast (24 hrs at MVČR Na Pankráci) 6,000 / 2,000 CZK. Občanský průkaz required; photo taken on-site. |
 | **CI** | CIV | Côte d’Ivoire | Sovereign State | ONECI & SNEDAI Group — `https://snedai.com/` / `https://www.monpasseport.ci/` | `primary_sources_audited` | Domestic biometric passport (5-yr) 40,000 XOF (bank or mobile money); Diaspora passport 115 EUR (DIRECT). CNI / Attestation ONECI + Birth Certificate (<3mo) + Nationality Certificate mandatory. Mandatory online pre-enrollment via monpasseport.ci; biometric enrollment at SNEDAI centers or foreign embassies. |
 | **CD** | COD | Democratic Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -86,7 +86,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GQ** | GNQ | Equatorial Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ER** | ERI | Eritrea | Sovereign State | Ministry of Foreign Affairs (consular) / Ministry of Interior (domestic) — `https://www.embassyeritrea.org/` | `primary_sources_audited` | Consular (overseas) fees DIRECT: First/lost adult USD 200; renewal adult USD 100; minor USD 75–150. ⚠️ MANDATORY: 2% diaspora Recovery & Rehabilitation Tax clearance required for ALL consular services. Domestic fee NOT publicly available. Hawiyya (national ID) + tax clearance certificate mandatory. |
-| **EE** | EST | Estonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **EE** | EST | Estonia | Sovereign State | Politsei- ja Piirivalveamet (PPA — `politsei.ee`) | `primary_sources_audited` | State Fees Act (Riigilõivuseadus): Adult self-service (10-yr) 50 € / PPA office 60 €; Minor <15 / Pensioner / Disabled self-service 20 € / PPA office 25 €; Kiirpass (expedited 1-day) 250 €; Consular 90 € (DIRECT). Isikukood + fingerprints on file within 6 yrs; online self-service via iseteenindus.politsei.ee (Smart-ID / ID-card). |
 | **SZ** | SWZ | Eswatini | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ET** | ETH | Ethiopia | Sovereign State | Immigration and Citizenship Service (ICS) — `https://www.ics.gov.et/` | `primary_sources_audited` | Reg. 550/2024 (eff. Aug 7, 2024): New passport ETB 5,000 standard / ETB 20,000 urgent-5d / ETB 25,000 urgent-2d. Lost replacement ETB 13,000. In-person at ICS offices; Digital Invea system. Fayda biometric ID required. |
 | **FK** | FLK | Falkland Islands (Malvinas) | Territory / Special Region | Customs & Immigration Falkland Islands (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -129,20 +129,20 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KW** | KWT | Kuwait | Sovereign State | General Directorate of Nationality & Travel Documents, MOI — `https://www.moi.gov.kw/` | `primary_sources_audited` | Ministerial Decision No. 1769: Standard passport issue/renewal/replacement KWD 100 (DIRECT); airport emergency (Res. 180): KWD 13 (5-yr) / KWD 16 (10-yr). Validity 10-yr (age 30+) / 5-yr (<30). Original Nationality Certificate + Civil ID mandatory. Sahel app or MOI centers. Strictly for Kuwaiti citizens (Bidoon receive Article 17 travel doc under separate restrictions). |
 | **KG** | KGZ | Kyrgyzstan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LA** | LAO | Laos | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **LV** | LVA | Latvia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LV** | LVA | Latvia | Sovereign State | Pilsonības un migrācijas lietu pārvalde (PMLP — `pmlp.gov.lv`) | `primary_sources_audited` | Valsts nodeva statutory tariff: Standard 10 working days: Adult (10-yr) 50.00 EUR; Children <20 / Pensioners / Disabled 25.00 EUR; Urgent 2 working days: Adult 75.00 EUR / Reduced 45.00 EUR (DIRECT). Personas kods + eID card mandatory; biometrics at PMLP territorial divisions or via latvija.lv. |
 | **LB** | LBN | Lebanon | Sovereign State | General Directorate of General Security (Sûreté Générale) — `https://www.general-security.gov.lb/` | `primary_sources_audited` | General Security official fee: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000 (DIRECT). Fast-track surcharges apply. Ikhraj Qayd Fardi (<3mo) or Biometric ID Card mandatory; Moukhtar-certified photos; in-person at General Security regional bureau. Quota appointment system applies due to high demand. Consular USD 300/600 (PARTIAL). |
 | **LS** | LSO | Lesotho | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LR** | LBR | Liberia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LY** | LBY | Libya | Sovereign State | Passports, Nationality & Foreigners Affairs Authority (GNU) — `https://ejraat.gov.ly/` | `primary_sources_audited` | Standard passport LYD 50.50 (DIRECT); lost/damaged replacement LYD 1,000 (eff. late 2024, DIRECT). ⚠️ Dual-government political split; GNU-aligned services primarily in Tripoli. Service availability varies by region and security conditions. |
 | **LI** | LIE | Liechtenstein | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **LT** | LTU | Lithuania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **LU** | LUX | Luxembourg | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LT** | LTU | Lithuania | Sovereign State | Migracijos departamentas prie VRM (MIGRIS — `migracija.lt`) | `primary_sources_audited` | Valstybės rinkliava tariff: Standard 1 month: Adult (10-yr) 50 Eur; Child <18: 25 Eur (50% reduction); Pensioner: 10 Eur (80% reduction); Urgent 5 working days: 100 Eur; Same day (Vilnius): 200 Eur (DIRECT). Asmens kodas + eID card mandatory; digital application/booking via MIGRIS (migracija.lt). |
+| **LU** | LUX | Luxembourg | Sovereign State | Bureau des passeports / MAEE (`guichet.public.lu`) | `primary_sources_audited` | BPVL statutory tariff: Standard 7 days: Age 4+ (5-yr) 50 € / Minors <4 (2-yr) 30 €; Urgent 3 days: Age 4+ 150 € / Minors <4 90 € (DIRECT). 13-digit national identification number (Matricule) + proof of bank transfer payment mandatory; application via commune (Biergeramt) or BPVL Luxembourg City. |
 | **MO** | MAC | Macao | Territory / Special Region | Identification Services Bureau DSI Macau (Macao SAR Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
 | **MG** | MDG | Madagascar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MW** | MWI | Malawi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MV** | MDV | Maldives | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ML** | MLI | Mali | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MT** | MLT | Malta | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MT** | MLT | Malta | Sovereign State | Identità (Passport Office — `identita.gov.mt`) | `primary_sources_audited` | Passports Regulations statutory tariff: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent (4 hours): €160.00 adult / €80.00 minor; Lost replacement supplement: +€15.00 (DIRECT). Form A + Maltese ID Card + recommender endorsement; appointments via passportbooking.identita.gov.mt. |
 | **MH** | MHL | Marshall Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MQ** | MTQ | Martinique | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **MR** | MRT | Mauritania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -3062,5 +3062,252 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person attendance for document verification and biometrics at Immigration Division offices (Port of Spain, San Fernando, Tobago, Sangre Grande, Chaguanas, Point Fortin).
   - Processing: Standard ~4–8 weeks; expedited ~1–2 weeks.
   - Delivery: Collected in person at the office of application upon return of receipt voucher.
+
+---
+
+
+## 16. Batch 14 — Baltic & European Sovereign States (EE, LV, LT, LU, MT, CY)
+
+### 16.1 Estonia (EE / EST) — Politsei- ja Piirivalveamet (PPA)
+
+- **Administering Authority:** Politsei- ja Piirivalveamet (PPA - Police and Border Guard Board), Siseministeerium (Ministry of the Interior), Republic of Estonia
+- **Primary Portals:**
+  - Official PPA Portal: `https://www.politsei.ee/`
+  - PPA Self-Service Portal (Iseteenindus): `https://iseteenindus.politsei.ee/`
+  - State Portal: `https://www.eesti.ee/`
+- **Statutory Framework:**
+  - Riigilõivuseadus (State Fees Act) and Isikut tõendavate dokumentide seadus (Identity Documents Act).
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Via Self-Service Portal (`iseteenindus.politsei.ee`):**
+    - **Adult (15+, 10-year validity):** **50.00 €**
+    - **Children (<15), Old-Age Pensioners, and Persons with Disabilities:** **20.00 €**
+  - **Via PPA Customer Service Office (In-Person):**
+    - **Adult (15+, 10-year validity):** **60.00 €**
+    - **Children (<15), Old-Age Pensioners, and Persons with Disabilities:** **25.00 €**
+  - **Expedited Service (Kiirpass):**
+    - **All applicants:** **250.00 €** (Issued within 1 working day; collected strictly in Tallinn at Tammsaare or Pinna customer service offices).
+  - **Combined Application (Passport + ID-Card ordered together in self-service):**
+    - Adult combo: **75.00 €** (savings over separate orders).
+  - **Validity:** **10 years** for persons aged 15 and over; **5 years** for children under 15.
+  - **Evidence confidence: `DIRECT`** — established by Riigilõivuseadus and published on `politsei.ee`.
+- **Consular Fee Schedule:**
+  - Applied via Estonian Foreign Missions abroad: Standard passport fee is **90.00 €** (or €100 for non-residents).
+  - **Evidence confidence: `DIRECT`** — statutory consular tariff under Riigilõivuseadus.
+- **Civil Identity & Document Checklists:**
+  - **Isikukood:** Estonian Personal Identification Code (mandatory for all applicants).
+  - **Digital Document Photo:** Standard biometric headshot uploaded digitally meeting PPA automated specifications.
+  - **Biometrics:** Fingerprints must be on file and captured within the past 6 years. If fingerprints have expired, applicants must use a free PPA digital photo/fingerprint kiosk prior to self-service submission.
+  - **For minors (<15):** Application submitted by parent/guardian via self-service; first-time issuance requires birth certificate if not registered in Estonian Population Register.
+  - **In-person attendance:** Required for first-time passport applications without valid biometrics on file; renewals for citizens with valid biometrics are fully electronic via Smart-ID, Mobile-ID, or ID-Card reader.
+- **Application & Delivery Channels:**
+  - Self-service submission via `iseteenindus.politsei.ee` (available 24/7).
+  - In-person attendance at PPA service offices (Tallinn, Tartu, Pärnu, Narva, and regional bureaus).
+  - Processing: Standard up to 30 calendar days; expedited (Kiirpass) 1 working day.
+  - Delivery: Collected in person at chosen PPA office or delivered to an Omniva parcel locker within Estonia (for renewals where identity was established previously).
+
+---
+
+### 16.2 Latvia (LV / LVA) — Pilsonības un migrācijas lietu pārvalde (PMLP)
+
+- **Administering Authority:** Pilsonības un migrācijas lietu pārvalde (PMLP - Office of Citizenship and Migration Affairs), Iekšlietu ministrija (Ministry of the Interior), Republic of Latvia
+- **Primary Portals:**
+  - Official PMLP Portal: `https://www.pmlp.gov.lv/`
+  - Latvija.lv State Administration Services Portal: `https://www.latvija.lv/`
+- **Statutory Framework:**
+  - Personu apliecinošu dokumentu likums (Law on Personal Identification Documents) and Cabinet of Ministers Regulations on State Fee for Issuance of Personal Identification Documents.
+- **Domestic Fee Schedule (Valsts nodeva, in Euros — EUR):**
+  - **Standard Timeline (within 10 working days):**
+    - **Adult (aged 20+):** **50.00 EUR** (10-year validity).
+    - **Reduced Fee (Children & Youth under 20, State Pensioners, Group I or II Disabled):** **25.00 EUR**
+  - **Urgent Timeline (Steidzamības kārtībā — within 2 working days):**
+    - **Adult (aged 20+):** **75.00 EUR**
+    - **Reduced Fee (Children & Youth under 20, Pensioners, Disabled):** **45.00 EUR**
+  - **Validity:**
+    - Persons aged 20 and over: **10 years**
+    - Youth aged 5 to 20: **5 years**
+    - Children under 5: **2 years**
+  - **Evidence confidence: `DIRECT`** — established by Cabinet of Ministers regulations and verified on `pmlp.gov.lv`.
+- **Consular Fee Schedule:**
+  - Via Latvian Embassies and Consulates overseas.
+  - Consular state fee: 50.00 EUR + diplomatic consular fee (typically ~40–60 EUR surcharge).
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular charges apply.
+- **Civil Identity & Document Checklists:**
+  - **Personas kods:** Latvian Personal Identity Code.
+  - **Identification Document:** Valid Latvian eID card (personu apliecība) or previous passport (must be submitted for cancellation).
+  - **Birth Certificate:** Required for children applying for their first passport if data is not fully cross-referenced in the Population Register (*Fizisko personu reģistrs*).
+  - **Biometrics:** High-resolution digital photo, digital signature, and two fingerprints captured live on-site during the appointment at a PMLP customer service desk.
+  - **For minors (under 15):** Accompanied by at least one parent presenting a valid identity document and proof of parenthood.
+  - **Lost / Stolen Passports:** Written explanation and formal declaration of loss submitted to PMLP or State Police (*Valsts policija*).
+- **Application & Delivery Channels:**
+  - In-person attendance at any PMLP territorial division across Latvia (Riga, Daugavpils, Liepāja, Jelgava, Valmiera, Ventspils, etc.).
+  - Advance queue booking available online via `Qticket` / `latvija.lv` or walk-in queue tickets where permitted.
+  - Processing: Standard 10 working days; urgent 2 working days.
+  - Delivery: Collected in person at the PMLP division where the application was submitted upon presentation of an identity document.
+
+---
+
+### 16.3 Lithuania (LT / LTU) — Migracijos departamentas prie VRM
+
+- **Administering Authority:** Migracijos departamentas prie Lietuvos Respublikos vidaus reikalų ministerijos (Migration Department under the Ministry of the Interior), Republic of Lithuania
+- **Primary Portals:**
+  - Official Migration Department / MIGRIS Portal: `https://www.migracija.lt/`
+  - E-Government Gateway: `https://www.epaslaugos.lt/`
+- **Statutory Framework:**
+  - Lietuvos Respublikos paso įstatymas (Republic of Lithuania Law on Passports) and Government Resolution on State Fees (Valstybės rinkliava).
+- **Domestic Fee Schedule (Valstybės rinkliava, Payment Code 5740, in Euros — EUR):**
+  - **Standard Procedure (Bendra tvarka — issued within 1 month):**
+    - **Standard Adult (16+):** **50.00 Eur** (10-year validity).
+    - **Children (under 18 years):** **25.00 Eur** (50% statutory reduction).
+    - **Old-Age Pensioners and Persons with Severe Disabilities:** **10.00 Eur** (80% statutory reduction).
+  - **Urgent Procedure (Skubos tvarka — issued within 5 working days):**
+    - **All applicants:** **100.00 Eur** (no concessions or reductions apply).
+  - **Super Urgent Procedure (Tą pačią darbo dieną — same working day):**
+    - **All applicants:** **200.00 Eur** (application submitted before designated morning cutoff at Vilnius Migration Division, Vytenio g. 18; no reductions apply).
+  - **Validity:**
+    - Persons aged 16 and over: **10 years**
+    - Children aged 5 to 15: **5 years**
+    - Children under 5: **2 years**
+  - **Evidence confidence: `DIRECT`** — established by Lithuanian Government resolution and confirmed on `migracija.lt`.
+- **Consular Fee Schedule:**
+  - Via Lithuanian Diplomatic Missions and Consulates abroad.
+  - Consular state fee: 100.00 Eur (standard) / consular emergency travel document 30.00 Eur.
+  - **Evidence confidence: `DIRECT`** — statutory consular tariff.
+- **Civil Identity & Document Checklists:**
+  - **Asmens kodas:** Lithuanian Personal Code.
+  - **Identity Document:** Valid Asmens tapatybės kortelė (ATK / eID card) or previously issued passport.
+  - **Biometrics:** Digital facial photograph, signature (from age 14), and fingerprints (from age 12) captured directly at Migration Department offices.
+  - **For minors (under 16):** Application submitted by one parent with valid identity document; minor child must be present if aged 1 or over for facial photograph capture.
+  - **Lost / Stolen:** Loss notification filed online via MIGRIS or declared at the customer service desk.
+- **Application & Delivery Channels:**
+  - Online pre-application and visit reservation via MIGRIS (`https://www.migracija.lt/`).
+  - In-person attendance at any Migration Department regional division across Lithuania (Vilnius, Kaunas, Klaipėda, Šiauliai, Panevėžys, etc.).
+  - Payment: Settled online via MIGRIS / e-banking or on-site by debit/credit card.
+  - Delivery: Collected in person or delivered via secure courier across Lithuania for an additional courier fee.
+
+---
+
+### 16.4 Luxembourg (LU / LUX) — Bureau des passeports, visas et légalisations (BPVL)
+
+- **Administering Authority:** Bureau des passeports, visas et légalisations (BPVL), Ministère des Affaires étrangères et européennes (MAEE), Grand-Duché de Luxembourg
+- **Primary Portals:**
+  - Guichet.lu Citizenship Portal: `https://guichet.public.lu/en/citoyens/citoyennete/titres-voyage/passeport/`
+  - MAEE Government Portal: `https://maee.gouvernement.lu/`
+- **Statutory Framework:**
+  - Loi modifiée du 14 avril 1934 sur les passeports and Grand-Ducal Regulations on passport fees.
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Standard Procedure (delivered within ~7 working days):**
+    - **Applicants aged 4 and over (5-year validity):** **50.00 €**
+    - **Minors under 4 years of age (2-year validity):** **30.00 €**
+  - **Fast-Track / Urgent Procedure (Procédure accélérée — delivered within ~3 working days):**
+    - **Applicants aged 4 and over:** **150.00 €**
+    - **Minors under 4 years of age:** **90.00 €**
+  - **Validity:**
+    - Persons aged 4 and over: **5 years** (Note: Luxembourg ordinary biometric passports have a statutory 5-year maximum validity for adults and older children).
+    - Children under 4: **2 years**
+  - **Evidence confidence: `DIRECT`** — established by Grand-Ducal regulations and verified on `guichet.public.lu`.
+- **Consular Fee Schedule:**
+  - Via Luxembourg Embassies and Consulates abroad.
+  - Standard passport: 50.00 € + diplomatic postal/courier fee; Urgent: 150.00 € + courier.
+  - **Evidence confidence: `DIRECT`** — published on MAEE official consular pages.
+- **Civil Identity & Document Checklists:**
+  - **Matricule:** 13-digit Luxembourg National Identification Number (*numéro d'identification nationale*).
+  - **Identity Document:** Valid Luxembourg Carte d'identité or previous passport (must be presented for cancellation).
+  - **Proof of Payment:** Bank transfer receipt confirming advance payment of the exact statutory fee into the Bureau des passeports account (mandatory prerequisite at application time).
+  - **Photographs:** Recent compliant passport photograph meeting ICAO biometric criteria.
+  - **For minors (under 18):** Signature and presence of parent(s) exercising parental authority with valid identification.
+  - **In case of loss/theft:** Official certificate of loss or theft issued by the Grand-Ducal Police (*Police grand-ducale*).
+- **Application & Delivery Channels:**
+  - Residents apply through their local municipal office (*Commune / Biergeramt*).
+  - Non-resident Luxembourg citizens apply in person at the BPVL (6, rue de l'Ancien Athénée, Luxembourg City) or via diplomatic missions.
+  - Processing: Standard 7 business days; urgent 3 business days.
+  - Delivery: Collected in person at the communal administration or BPVL office.
+
+---
+
+### 16.5 Malta (MT / MLT) — Identità (Passport Office)
+
+- **Administering Authority:** Identità (formerly Identity Malta Agency - Passport Office), Ministry for Home Affairs, Security, Reforms and Equality, Republic of Malta
+- **Primary Portals:**
+  - Official Identità Portal: `https://identita.gov.mt/`
+  - Identità Passport Appointment Booking: `https://passportbooking.identita.gov.mt/`
+  - Servizz.gov Central Service Portal: `https://www.servizz.gov.mt/`
+- **Statutory Framework:**
+  - The Passports Act (Chapter 61 of the Laws of Malta) and Passports Regulations.
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Standard Service (delivered within ~4 working days):**
+    - **Adults (aged 16+, 10-year validity):**
+      - **Low Season (September to March):** **€70.00**
+      - **High Season (April to August):** **€80.00**
+    - **Minors (aged 10 to 15, 5-year validity):** **€40.00**
+    - **Children (under 10 years, 2-year validity):** **€16.00**
+  - **Urgent Service (Ready within 4 working hours):**
+    - **Adults (aged 16+):** **€160.00**
+    - **Minors (aged 10 to 15):** **€80.00**
+    - **Children (under 10 years):** **€60.00**
+  - **Lost / Stolen / Destroyed Valid Passport Surcharge:**
+    - Additional **€15.00** supplement payable on top of the base standard or urgent fee.
+  - **Validity:**
+    - Adults (16+): **10 years**
+    - Minors (10–15): **5 years**
+    - Children (<10): **2 years**
+  - **Evidence confidence: `DIRECT`** — established by Maltese Passports Regulations and published on `identita.gov.mt`.
+- **Consular Fee Schedule:**
+  - Via Maltese Embassies and High Commissions overseas (e.g. London, Washington, Canberra).
+  - Standard consular passport fee: €70–€80 + diplomatic chancery courier charges.
+  - **Evidence confidence: `PARTIAL`** — mission-specific handling fees apply.
+- **Civil Identity & Document Checklists:**
+  - **Application Form A:** Official *Application for a Maltese Passport* printed and fully completed.
+  - **Identity Card:** Valid Maltese National ID card (or eID).
+  - **Recommender Declaration (Section 7):** Form A must be endorsed by an eligible recommender (e.g. Commonwealth citizen who is a professional: lawyer, doctor, priest, police officer, civil servant) for first-time, minor, or lost passport applications.
+  - **Photographs:** Two (2) identical recent biometric photographs (one endorsed on the reverse by the recommender).
+  - **For minors (under 16):** Consent of both parents (Section 6) accompanied by photocopies of both parents' identity cards; original birth certificate if born abroad.
+  - **Renewal:** Previous passport submitted for physical cancellation.
+  - **In case of loss/theft:** Police report issued by the Malta Police Force + Form A statutory declaration + €15 surcharge.
+  - **Biometrics:** Facial digital photo, digital signature (from age 14), and fingerprints (from age 12) captured on-site.
+- **Application & Delivery Channels:**
+  - Mandatory online appointment booking via `passportbooking.identita.gov.mt`.
+  - In-person submission at Identità Head Office (Onda Building, Aldo Moro Road, Marsa) or Gozo Office (The Tower, Victoria, Gozo).
+  - Processing: Standard ~4 working days; urgent ~4 working hours.
+  - Delivery: Collected in person at the Passport Office upon return of receipt voucher.
+
+---
+
+### 16.6 Cyprus (CY / CYP) — Civil Registry and Migration Department (CRMD)
+
+- **Administering Authority:** Civil Registry and Migration Department (CRMD / Τμήμα Αρχείου Πληθυσμού και Μετανάστευσης), Ministry of Interior, Republic of Cyprus
+- **Primary Portals:**
+  - Official CRMD Portal: `https://www.moi.gov.cy/crmd`
+  - Government Services Portal: `https://www.gov.cy/` (CY Login)
+- **Statutory Framework:**
+  - Civil Registry Law and Passports Regulations of the Republic of Cyprus.
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Standard Biometric Passport:**
+    - **Adults (aged 18+, 10-year validity):** **€70.00**
+    - **Minors (under 18 years, 5-year validity):** **€45.00**
+  - **Fast-Track / Accelerated Service (within 48–72 hours):**
+    - Additional **+€50.00** surcharge (total: **€120.00** for adults / **€95.00** for minors).
+  - **Lost, Stolen, or Damaged Passport Statutory Penalties:**
+    - **First Replacement of Lost/Stolen Passport:** Fee doubles to **€140.00** (adult) / **€90.00** (minor).
+    - **Second and Subsequent Replacements:** Cumulative doubling of fees as established by statutory regulation to deter carelessness and document trafficking.
+  - **Validity:**
+    - Adults (18+): **10 years**
+    - Minors (0–17): **5 years**
+  - **Evidence confidence: `DIRECT`** — established by CRMD regulations and verified on `gov.cy`.
+- **Consular Fee Schedule:**
+  - Via Cypriot Embassies and Consulates-General overseas (e.g. Athens, London, Washington).
+  - Standard adult consular passport: €70.00 + diplomatic dispatch fee.
+  - **Evidence confidence: `DIRECT`** — published on Cypriot diplomatic mission portals.
+- **Civil Identity & Document Checklists:**
+  - **Identity Card (Δελτίο Ταυτότητας):** Valid original Cypriot National ID card (mandatory for all applicants).
+  - **Birth Certificate:** Original birth certificate required for first-time applicants or minors.
+  - **For minors (under 18):** Written consent of both parents submitted in person at the service counter or certified electronically via verified CY Login accounts.
+  - **Renewal:** Submission and physical cancellation of previous passport booklet.
+  - **In case of loss/theft:** Official Certificate of Loss issued by the Cyprus Police (*Αστυνομία Κύπρου*) + sworn affidavit (*Ένορκη Δήλωση*) before a Registrar of the District Court.
+  - **Biometrics:** High-resolution digital photo, digital signature, and two electronic fingerprints (fingerprints and signature mandatory for applicants aged 12 and over; under 12s exempt from fingerprints and signature).
+- **Application & Delivery Channels:**
+  - In-person attendance at District Administration Offices (Nicosia, Limassol, Larnaca, Paphos, Famagusta) or Citizen Service Centres (KEP / ΚΕΠ).
+  - Digital appointment booking / application status tracking via `gov.cy`.
+  - Processing: Standard ~10–15 business days; accelerated 48–72 hours.
+  - Delivery: Collected in person at the service center upon presentation of receipt slip and identity card.
 
 ---
