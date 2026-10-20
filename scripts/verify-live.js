@@ -781,15 +781,19 @@ async function verifyLive() {
     rule_pack_status: 'verified',
     authority_name: 'Passport Seva',
     official_portal_url: 'https://passportindia.gov.in',
-    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA' }],
+    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA', claim_scope: 'portal_navigation' }],
     jurisdictions: [{ application_channel: 'domestic' }],
     services: {
       first_passport: {
         availability_status: 'available',
-        sources: [{ url: 'https://passportindia.gov.in/fees', publisher: 'MEA' }],
+        sources: [
+          { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule', claim_scope: 'fee', publisher: 'MEA' },
+          { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor', claim_scope: 'documents', publisher: 'MEA' },
+          { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms', claim_scope: 'eligibility', publisher: 'MEA' }
+        ],
         fees: { currency: 'INR', standard: 1500 },
-        documents: [{ document_name: 'Aadhaar' }],
-        eligibility: [{ rule: 'Citizen' }]
+        documents: [{ document_name: 'Aadhaar', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor' }],
+        eligibility: [{ rule: 'Citizen', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms' }]
         // NO steps
       }
     }
@@ -1052,14 +1056,18 @@ async function verifyLive() {
     rule_pack_status: 'verified',
     authority_name: 'Passport Seva',
     official_portal_url: 'https://passportindia.gov.in',
-    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA', page_title: 'Passport Seva', checked_at: '2026-10-18' }],
+    sources: [
+      { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule', claim_scope: 'fee', publisher: 'MEA', page_title: 'Fee Schedule', checked_at: '2026-10-18' },
+      { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor', claim_scope: 'documents', publisher: 'MEA', page_title: 'Document Advisor', checked_at: '2026-10-18' },
+      { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms', claim_scope: 'eligibility', publisher: 'MEA', page_title: 'Citizenship Norms', checked_at: '2026-10-18' }
+    ],
     jurisdictions: [{ application_channel: 'domestic' }],
     services: {
       first_passport: {
         availability_status: 'available',
         fees: { currency: 'INR', standard: 1500 },
-        documents: [{ document_name: 'Aadhaar' }],
-        eligibility: [{ rule: 'Citizen' }]
+        documents: [{ document_name: 'Aadhaar', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor' }],
+        eligibility: [{ rule: 'Citizen', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms' }]
       }
     }
   };
@@ -1169,7 +1177,7 @@ async function verifyLive() {
       first_passport: {
         availability_status: 'available',
         fees: { currency: 'INR', standard: 1500 },
-        documents: [{ document_name: 'Aadhaar Card' }],
+        documents: [{ document_name: 'Aadhaar Card', official_source_url: 'https://passportindia.gov.in/documents/checklist' }],
         eligibility: [{ rule: 'Indian Citizen' }]
       }
     }
