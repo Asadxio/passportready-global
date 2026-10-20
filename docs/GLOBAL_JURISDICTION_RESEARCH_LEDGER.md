@@ -58,7 +58,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BI** | BDI | Burundi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CV** | CPV | Cabo Verde | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **KH** | KHM | Cambodia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **CM** | CMR | Cameroon | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CM** | CMR | Cameroon | Sovereign State | DGSN / PASSCAM — `https://www.passcam.cm/` | `primary_sources_audited` | Presidential Decree No. 2021/347: Biometric passport (5-yr) 110,000 XAF (DIRECT). Paid exclusively online via mobile money / credit card on passcam.cm during pre-enrollment. Turnaround guaranteed 48 hours domestic. CNI + Birth Certificate mandatory; in-person biometrics at local police centers or foreign missions. |
 | **KY** | CYM | Cayman Islands | Territory / Special Region | Workforce Opportunities & Residency Cayman (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **CF** | CAF | Central African Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TD** | TCD | Chad | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -75,7 +75,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CW** | CUW | Curaçao | Territory / Special Region | Cabinet of the Governor of Curaçao (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **CY** | CYP | Cyprus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CZ** | CZE | Czechia | Sovereign State | Ministerstvo vnitra ČR (MVČR) / Obecní úřady (ORP) | `primary_sources_audited` | Primary source audited (Batch 3). Zákon o cestovních dokladech: Standard (30 days) Adult (15+) 600 CZK (10-yr), Child (<15) 100 CZK (5-yr); Fast (5 days) 3,000 / 1,000 CZK; Super-fast (24 hrs at MVČR Na Pankráci) 6,000 / 2,000 CZK. Občanský průkaz required; photo taken on-site. |
-| **CI** | CIV | Côte d’Ivoire | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CI** | CIV | Côte d’Ivoire | Sovereign State | ONECI & SNEDAI Group — `https://snedai.com/` / `https://www.monpasseport.ci/` | `primary_sources_audited` | Domestic biometric passport (5-yr) 40,000 XOF (bank or mobile money); Diaspora passport 115 EUR (DIRECT). CNI / Attestation ONECI + Birth Certificate (<3mo) + Nationality Certificate mandatory. Mandatory online pre-enrollment via monpasseport.ci; biometric enrollment at SNEDAI centers or foreign embassies. |
 | **CD** | COD | Democratic Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DK** | DNK | Denmark | Sovereign State | Borgerservice (Kommunerne) / Rigspolitiet | `primary_sources_audited` | Primary source audited (Batch 4). Passbekendtgørelsen 2026: Adult 18-66 (10-yr) 894 DKK; Pensioner 67+ 382 DKK; Youth 12-17 (5-yr) 182 DKK; Child <12 150 DKK. Lost/damaged without previous pass: DOUBLE FEE (1,788 DKK adult). CPR number / Sundhedskort required; photo/biometrics at Borgerservice. |
 | **DJ** | DJI | Djibouti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -146,7 +146,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MH** | MHL | Marshall Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MQ** | MTQ | Martinique | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **MR** | MRT | Mauritania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MU** | MUS | Mauritius | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MU** | MUS | Mauritius | Sovereign State | Passport and Immigration Office (PIO) — `https://passport.govmu.org/` | `primary_sources_audited` | Passports Act regulations: Adults (16–54, 10-yr) MUR 700; Minors (<16, 5-yr) / Seniors (55+) / Disabled: MUR 400 (DIRECT). Lost/damaged penalty: 1st loss MUR 5,000; 2nd loss MUR 15,000; subsequent MUR 15,000. NIC + original birth certificate mandatory; Police loss declaration; Form PF 136 in-person at PIO Port Louis or district divisional HQs. |
 | **YT** | MYT | Mayotte | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **FM** | FSM | Micronesia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MD** | MDA | Moldova | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -184,7 +184,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CG** | COG | Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **RO** | ROU | Romania | Sovereign State | Direcția Generală de Pașapoarte (DGP) / Ministerul Afacerilor Interne | `primary_sources_audited` | Primary source audited (Batch 3). Revised August 1, 2025 tariff: Pașaport simplu electronic 265 RON (TVA inclus) across all ages (10-yr for 18+, 5-yr for 12-18, 3-yr for <12); Temporar 265 RON. Carte de Identitate mandatory prerequisite; Ghișeul.ro / CEC Bank; delivery in 5 working days. |
 | **RU** | RUS | Russia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **RW** | RWA | Rwanda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **RW** | RWA | Rwanda | Sovereign State | DGIE & IremboGov — `https://www.migration.gov.rw/` / `https://support.irembo.gov.rw/` | `primary_sources_audited` | Ministerial Order No. 06/01: Ordinary e-passport: Adult 10-yr 100,000 RWF; Adult 5-yr 75,000 RWF; Minor <16 (2–5 yr) 25,000 RWF (DIRECT). Service 15k RWF; Diplomatic 50k RWF. National ID (Indangamuntu) for 16+ or Child ID for <16 mandatory; Irembo online application & payment; in-person biometrics at DGIE or embassy. |
 | **RE** | REU | Réunion | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **BL** | BLM | Saint Barthélemy | Territory / Special Region | Collectivité de Saint-Barthélemy (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **SH** | SHN | Saint Helena, Ascension and Tristan da Cunha | Territory / Special Region | St Helena Immigration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -196,7 +196,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **WS** | WSM | Samoa | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SM** | SMR | San Marino | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ST** | STP | Sao Tome and Principe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **SN** | SEN | Senegal | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SN** | SEN | Senegal | Sovereign State | Direction Police Étrangers & Titres Voyage (DPETV) — `https://interieur.gouv.sn/` | `primary_sources_audited` | Passeport ordinaire (5-yr) 20,000 XOF (DIRECT). Paid via quittance at Direction de l'Enregistrement, des Domaines et du Timbre (DGID/DEDT). No duplicate issued for loss: requires police loss certificate + new application at 20,000 XOF. CNI biométrique CEDEAO mandatory (15+); parental consent for minors; in-person biometrics at police stations. |
 | **RS** | SRB | Serbia | Sovereign State | Ministry of Internal Affairs (MUP / МУП) — `http://www.mup.gov.rs/` | `primary_sources_audited` | Law on Travel Documents: Standard procedure 3,600 RSD (regular up to 30d, typically 7–10d); Urgent with justified emergency (48h): 3,600 RSD; Expedited without emergency proof (48h): 8,600 RSD (DIRECT). Consular ~64 EUR (PARTIAL). Biometric Lična karta mandatory; uplatnica via eUprava or bank; in-person at local Police Directorate/Station. |
 | **SC** | SYC | Seychelles | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SL** | SLE | Sierra Leone | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -229,7 +229,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TV** | TUV | Tuvalu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TR** | TUR | Türkiye | Sovereign State | Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü (NVİ) / İçişleri Bakanlığı | `primary_sources_audited` | Primary source audited (Batch 2). 2026 NVİ Bordo Pasaport statutory fees: 4-10 yr total 14.761,40 TL (13.410,40 TL harç + 1.351,00 TL defter); 3-yr 10.867,00 TL; 2-yr 8.049,50 TL; 1-yr 5.454,00 TL; Student <25 harçsız (1.351,00 TL defter only). T.C. Kimlik Kartı mandatory; ALO 199 / randevu.nvi.gov.tr. |
 | **VI** | VIR | U.S. Virgin Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
-| **UG** | UGA | Uganda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **UG** | UGA | Uganda | Sovereign State | Directorate of Citizenship & Immigration Control (DCIC) — `https://passports.go.ug/` | `primary_sources_audited` | Ordinary e-passport (48-pg, 10-yr adult) UGX 250,000; Express fast-track +UGX 150,000 (total UGX 400,000) (DIRECT). Lost replacement penalty +UGX 100,000 (total UGX 350,000). NIRA National Identification Number (NIN) + recommender NIN mandatory; online application via passports.go.ug; PRN payment at bank/mobile money; in-person at DCIC Kyambogo or regional centers. |
 | **UA** | UKR | Ukraine | Sovereign State | State Migration Service (ДМСУ) — `https://dmsu.gov.ua/` | `primary_sources_audited` | International biometric passport: UAH 958 standard (20 wd) / UAH 1,598 urgent (7 wd) — eff. April 1, 2024. ⚠️ WARTIME: Males 18–60 generally barred from leaving Ukraine under martial law (May 2024). Overseas passport delivery suspended for military-age males. Ukrainian ID card mandatory; Diia portal application; CNAP in-person biometrics. |
 | **UM** | UMI | United States Minor Outlying Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UY** | URY | Uruguay | Sovereign State | Dirección Nacional de Identificación Civil (DNIC) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 3). DNIC tariffs: Trámite común Adult 18+ (10-yr) $ 5.630 UYU ($ 5.455 pasaporte + $ 175 antecedentes); Minor (<18) $ 5.455 UYU (5-yr); Trámite urgente $ 12.114 UYU ($ 10.712 + $ 1.402). Cédula de Identidad original mandatory; parental consent for minors under 18. |
@@ -2380,5 +2380,248 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person appointment at designated IdentiTek municipal service offices (or Albanian consular posts abroad) for biometric enrollment.
   - Delivery: Collected in person at the IdentiTek office upon presentation of receipt.
   - Overseas: Via Albanian Embassies and Consulates equipped with biometric stations.
+
+---
+
+---
+
+## Section 13 — Batch 11 Primary Statutory Research Dossiers: SN, CI, CM, UG, RW, MU
+
+*Batch 11 research executed: 2026-10-20. Sourced directly from official interior ministries, immigration directorates, presidential decrees, and designated national concessionaire portals for Sub-Saharan Africa and Indian Ocean sovereign nations. All statutory tariffs, adult/minor criteria, domestic vs diaspora routes, penalty scales for lost documents, and civil identity prerequisites are bound to exact source URLs.*
+
+---
+
+### 13.1 Senegal (SN / SEN) — Direction de la Police des Étrangers et des Titres de Voyage (DPETV)
+
+- **Administering Authority:** Direction de la Police des Étrangers et des Titres de Voyage (DPETV), Ministère de l'Intérieur et de la Sécurité Publique, République du Sénégal
+- **Primary Portals:**
+  - Official Ministry Portal: `https://interieur.gouv.sn/services/services-aux-usagers/passeport-ordinaire`
+  - Directorate General of Taxes & Estates (DGID / DEDT): `https://dgid.sn/`
+- **Statutory Framework:**
+  - Code Général des Impôts and Ministry of Interior regulations governing ordinary biometric passport issuance.
+- **Domestic Fee Schedule (via Quittance DEDT):**
+  - **Standard Ordinary Biometric Passport (Passeport Ordinaire, 5-year validity):** **20,000 XOF (CFA)**
+  - **Payment Route:** Paid directly to the tax and domain administration (*Direction de l'Enregistrement, des Domaines et du Timbre / DEDT - DGID*), which issues the mandatory physical payment receipt (*quittance de paiement*).
+  - **Validity:** **5 years** for all ordinary biometric passports (adults and minors).
+  - **Lost, Stolen, or Damaged Passports:** No duplicate (*duplicata*) is issued. Loss requires reporting to a police station or gendarmerie brigade to obtain an official loss certificate (*certificat ou attestation de perte*), followed by a standard full application with a new **20,000 XOF** quittance.
+  - **Evidence confidence: `DIRECT`** — confirmed directly from `interieur.gouv.sn` official portal.
+- **Consular Fee Schedule:**
+  - Via Senegalese Embassies and Consulates-General overseas (e.g. Paris, Milan, New York, Casablanca, Dakar liaison).
+  - Fees collected in local currency (e.g. 30.50 EUR to 50 EUR chancery rate depending on host country mission decree).
+  - **Evidence confidence: `PARTIAL`** — consular collection schedules vary by bilateral mission orders.
+- **Civil Identity & Document Checklists:**
+  - **National Biometric Identity Card (CNI Biométrique CEDEAO):** Mandatory for all adult applicants and minors aged 15 and older (original plus certified copy).
+  - **Payment Receipt (Quittance DEDT):** Original receipt issued by DGID/DEDT proving payment of 20,000 XOF.
+  - **Previous passport:** Must be surrendered for physical cancellation on renewal.
+  - **In case of loss:** Original *Certificat ou attestation de perte* from Police/Gendarmerie.
+  - **For minors (under 18):**
+    - Certified true copy of Birth Certificate (*Extrait d'acte de naissance*);
+    - Formal Parental Authorization (*Autorisation parentale*) signed by father, mother, or legal guardian;
+    - Copy of national identity document of the consenting parent;
+    - *Certificat de prise en charge* if applicable.
+  - **Biometrics:** Live facial photograph, digital fingerprints, and signature captured in-person at police stations or DPETV centers.
+- **Application & Delivery Channels:**
+  - Payment of statutory fee at DGID/DEDT office.
+  - In-person attendance and biometric enrollment at local police stations (*commissariats de police*) or DPETV regional branches.
+  - Online appointment booking required in Dakar urban district.
+  - Delivery: Collected in person at the police station upon presentation of the deposit voucher (*récépissé de dépôt*).
+  - Overseas: Via Senegalese diplomatic and consular missions.
+
+---
+
+### 13.2 Côte d'Ivoire (CI / CIV) — ONECI & SNEDAI Group
+
+- **Administering Authority:** Office National de l'État Civil et de l'Identification (ONECI), Ministère de l'Intérieur et de la Sécurité, in partnership with operational biometric concessionaire **SNEDAI Group**
+- **Primary Portals:**
+  - Domestic Procedure: `https://snedai.com/passeport-en-cote-divoire/`
+  - Pre-enrollment & Payment Portal: `https://www.monpasseport.ci/`
+  - Diaspora Procedure: `https://snedai.com/passeport-pour-la-diaspora/`
+- **Statutory Framework:**
+  - Law on Identity Documents of the Republic of Côte d'Ivoire and Public-Private Partnership concession agreements between the Ivorian State and SNEDAI Group.
+- **Domestic Fee Schedule (within Côte d'Ivoire):**
+  - **Standard Ordinary Biometric Passport (5-year validity):** **40,000 XOF (CFA)**
+  - **Payment Method:** Paid during the online pre-enrollment phase via approved partner commercial banks (BACI, Ecobank, NSIA, Banque Atlantique, BGFI Bank) or via integrated mobile payment services (Orange Money, MTN MoMo, Wave, Moov Money).
+  - **Evidence confidence: `DIRECT`** — confirmed directly from `snedai.com` and `monpasseport.ci`.
+- **Diaspora Fee Schedule (Ivorians living abroad):**
+  - **Standard Consular Biometric Passport (5-year validity):** **115 EUR** (breakdown: 100 EUR passport statutory fee + 10 EUR appointment fee + 5 EUR platform/banking fee; referenced as approx. 115.50 EUR in select regional missions).
+  - **Payment Method:** Online payment by credit or debit card on the SNEDAI diaspora portal.
+  - **Evidence confidence: `DIRECT`** — confirmed on `snedai.com/passeport-pour-la-diaspora/` and Ministry of Foreign Affairs consular circulars (`diplomatie.gouv.ci`).
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (CNI) or ONECI Identity Attestation (Attestation d'Identité):** Mandatory proof of adult citizenship.
+  - **Original Birth Certificate (Extrait d'acte de naissance):** Legalized or issued within the last 3 months.
+  - **Certificate of Ivorian Nationality (Certificat de nationalité ivoirienne):** Required for first-time applicants and replacement of lost documents.
+  - **Pre-enrollment and Payment Receipt (Fiche de pré-enrôlement et récépissé de paiement):** Printed from `monpasseport.ci`.
+  - **In case of loss:** Police loss report (*Certificat de déclaration de perte*) and certified copy of lost passport bio-page if available.
+  - **For minors (under 18):**
+    - Birth certificate of the child;
+    - Parental authorization (*Autorisation parentale*) signed by the legal guardian;
+    - CNI / passport of the consenting parent;
+    - Certificate of nationality of the minor.
+  - **Biometrics:** Live facial photo, digital fingerprints, and signature captured in-person at SNEDAI enrollment centers.
+- **Application & Delivery Channels:**
+  - Mandatory online pre-enrollment and payment at `https://www.monpasseport.ci/` (domestic) or `https://snedai.com/` (diaspora).
+  - Appointment scheduling and in-person biometric capture at SNEDAI centers (Abidjan: Plateau, Cocody, Marcory; regional branches in Bouaké, Korhogo, etc.) or Ivorian embassies/consulates abroad.
+  - Delivery: Collected in person at the enrollment center upon presentation of the deposit voucher.
+
+---
+
+### 13.3 Cameroon (CM / CMR) — General Delegation for National Security (DGSN / PassCam)
+
+- **Administering Authority:** Délégation Générale à la Sûreté Nationale (DGSN / General Delegation for National Security), Presidency of the Republic of Cameroon
+- **Primary Portals:**
+  - Official PASSCAM Portal: `https://www.passcam.cm/index.php/en/passports`
+  - Local Enrollment Centers: `https://www.passcam.cm/en/local-enrolment-centers`
+- **Statutory Framework:**
+  - Presidential Decree No. 2021/347 of June 17, 2021, establishing the terms and conditions for the issuance of national biometric passports and launching the modernized PASSCAM system.
+- **Domestic Fee Schedule:**
+  - **Standard Biometric Passport (5-year validity):** **110,000 XAF (CFA)**
+  - **Payment Mode:** Paid exclusively online during pre-enrollment on `passcam.cm` via integrated mobile money services (MTN Mobile Money, Orange Money, Express Union, Yoomee) or via international credit/debit cards.
+  - **Turnaround Guarantee:** Produced and delivered within **48 hours** following physical enrollment inside Cameroon.
+  - **Evidence confidence: `DIRECT`** — established by Presidential Decree No. 2021/347 and confirmed on `passcam.cm`.
+- **Consular Fee Schedule (Diaspora):**
+  - Applications from abroad must also be pre-enrolled and paid online on `passcam.cm` at the statutory rate of **110,000 XAF** (converted to foreign currency equivalent at payment gateway, approx. 168 EUR / 185 USD).
+  - Biometric enrollment is conducted at Cameroonian diplomatic missions equipped with PASSCAM kits (e.g. Paris, Washington, London, Berlin, Pretoria, Dubai). Passports are printed centrally in Yaoundé and dispatched via diplomatic courier.
+  - **Evidence confidence: `DIRECT`** — unified statutory pricing under Presidential Decree 2021/347 applies worldwide via `passcam.cm`.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (Carte Nationale d'Identité — CNI):** Original valid CNI plus certified copy.
+  - **Birth Certificate (Acte de naissance):** Certified true copy issued by municipal civil status registry.
+  - **Online Pre-enrollment Receipt and Payment Voucher:** Generated with QR code upon online payment at `passcam.cm`.
+  - **Proof of Profession:** Official employment letter, student ID, or business registration document.
+  - **Previous passport:** Surrendered for physical cancellation on renewal.
+  - **In case of loss/theft:** Police loss report (*Certificat de perte*) and explanation letter to the DGSN.
+  - **For minors (under 21):** Legalized parental authorization from the father or mother with parent's CNI.
+  - **Biometrics:** Digital photograph, ten rolled fingerprints, and digital signature captured on PASSCAM biometric desks.
+- **Application & Delivery Channels:**
+  - Mandatory online registration, document upload, fee payment, and appointment booking at `https://www.passcam.cm/`.
+  - In-person attendance for biometric capture at selected enrollment centers (DGSN centers in Yaoundé, Douala, provincial capitals, or foreign missions).
+  - Delivery: Delivered to the enrollment center within 48 hours for local collection; tracked via SMS/email notifications.
+
+---
+
+### 13.4 Uganda (UG / UGA) — Directorate of Citizenship and Immigration Control (DCIC)
+
+- **Administering Authority:** Directorate of Citizenship and Immigration Control (DCIC), Ministry of Internal Affairs, Republic of Uganda
+- **Primary Portals:**
+  - DCIC Passport Application Portal: `https://passports.go.ug/`
+  - Ministry Immigration Authority: `https://www.immigration.go.ug/index.php/node/119`
+- **Statutory Framework:**
+  - Uganda Citizenship and Immigration Control Act (Cap 66) and Ministry of Internal Affairs passport statutory fee regulations.
+- **Domestic Fee Schedule (in Ugandan Shillings — UGX):**
+  - **Ordinary Biometric e-Passport (48-page booklet, 10-year validity for adults):** **UGX 250,000**
+  - **Express / Fast-Track Processing Fee:** Additional **+UGX 150,000** surcharge (Total: **UGX 400,000**)
+  - **Official / Service Passport:** UGX 400,000 (strictly authorized public officers)
+  - **Diplomatic Passport:** UGX 500,000 (qualifying dignitaries only)
+  - **Lost / Damaged Passport Replacement:** Standard passport fee + **UGX 100,000 penalty fee** (Total: **UGX 350,000** for ordinary replacement) + Police loss report and statutory declaration / affidavit.
+  - **Processing Turnaround:** Standard ordinary ~10 working days; Express fast-track ~2 working days after biometric enrollment.
+  - **Evidence confidence: `DIRECT`** — confirmed directly from `passports.go.ug` and `immigration.go.ug`.
+- **Consular Fee Schedule:**
+  - Via Ugandan High Commissions and Embassies abroad (e.g. London, Washington, Ottawa, Abu Dhabi, Pretoria).
+  - Consular application uses `passports.go.ug` with bank payment advice; consular chancery handling fees may apply.
+  - **Evidence confidence: `PARTIAL`** — core booklet fee UGX 250,000 is standardized; foreign mission courier/chancery charges vary.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Number (NIN) & National ID Card:** Issued by the National Identification and Registration Authority (NIRA); compulsory for all adult Ugandan citizens.
+  - **Recommender's Details:** National ID card of a reputable Ugandan citizen who certifies the applicant's citizenship and identity.
+  - **Payment Advice Form (PRN):** Generated from `passports.go.ug` and paid through authorized commercial banks (Stanbic, DFCU, Absa, PostBank) or mobile money (URA portal).
+  - **Previous passport:** Required for renewal or replacement.
+  - **For minors (under 18):**
+    - Child's birth certificate issued by NIRA;
+    - Parents' National ID cards (both mother and father);
+    - Written consent letter signed by both parents;
+    - In-person attendance of the child and at least one parent.
+  - **Biometrics:** Live facial photo, digital fingerprints, and digital signature captured at DCIC enrollment stations.
+- **Application & Delivery Channels:**
+  - Complete electronic application at `https://passports.go.ug/`.
+  - Generate payment registration number (PRN) and pay at bank or mobile money.
+  - Schedule appointment date and time on the portal.
+  - Attend in-person appointment at DCIC Headquarters (Kyambogo/Kampala), regional centers (Mbarara, Gulu, Mbale), or diplomatic missions abroad.
+  - Delivery: Collected in person upon biometric verification and presentation of original National ID.
+
+---
+
+### 13.5 Rwanda (RW / RWA) — Directorate General of Immigration and Emigration (DGIE) & IremboGov
+
+- **Administering Authority:** Directorate General of Immigration and Emigration (DGIE / Direction Générale de l'Immigration et de l'Émigration), Ministry of Interior, Republic of Rwanda
+- **Primary Portals:**
+  - DGIE Official Portal: `https://www.migration.gov.rw/our-services/e-passport-1`
+  - IremboGov National Services Portal: `https://support.irembo.gov.rw/`
+- **Statutory Framework:**
+  - Ministerial Order No. 06/01 of 29/05/2019 establishing regulations governing Rwandan passports and travel documents (EAC electronic biometric passports).
+- **Domestic Fee Schedule (in Rwandan Francs — RWF):**
+  - **Adult Ordinary e-Passport (10-Year Validity, 50-page booklet):** **100,000 RWF** (for citizens aged 18 and older)
+  - **Adult Ordinary e-Passport (5-Year Validity, 50-page booklet):** **75,000 RWF** (optional shorter validity for adults)
+  - **Minor Ordinary e-Passport (2-Year to 5-Year Validity, 30-page booklet):** **25,000 RWF** (for children under 16)
+  - **Service Passport:** 15,000 RWF (5-year validity, for official government assignments)
+  - **Diplomatic Passport:** 50,000 RWF (5-year validity)
+  - **Conflict Resolution on Older Figures:** Older fees of 50,000 RWF were for legacy national paper booklets. Since June 2019, Rwanda migrated exclusively to the East African Community (EAC) biometric e-passport with statutory tiers 100,000 RWF / 75,000 RWF / 25,000 RWF.
+  - **Lost, Stolen, or Damaged Replacement:** Standard fee applied following Police loss investigation report and certificate from the Rwanda National Police.
+  - **Evidence confidence: `DIRECT`** — established by Ministerial Order No. 06/01 and confirmed on `migration.gov.rw` and `irembo.gov.rw`.
+- **Consular Fee Schedule (Diaspora):**
+  - Rwandan diaspora citizens apply via `irembo.gov.rw` selecting the embassy/high commission of residence (e.g. Washington, London, Nairobi, Brussels, Beijing).
+  - Fees are paid online via Irembo in RWF or foreign currency equivalent. Biometric capture takes place at the embassy.
+  - **Evidence confidence: `DIRECT`** — unified fee structure via `irembo.gov.rw`.
+- **Civil Identity & Document Checklists:**
+  - **Rwandan National Identity Card (Indangamuntu):** Mandatory for all adult citizens aged 18+ and minors 16–18.
+  - **Citizen Application Number (Child ID):** Mandatory for minors under 16, generated from the National Identification Agency (NIDA).
+  - **Proof of Payment:** Electronic billing receipt generated by IremboGov (MTN Mobile Money, Airtel Money, Bank of Kigali, or Visa/MasterCard).
+  - **Previous passport:** Surrendered for physical cancellation on renewal.
+  - **In case of loss:** Certificate of loss issued by the Rwanda National Police.
+  - **For minors (under 18):**
+    - Certified copy of birth certificate;
+    - Recommendation letter / parental consent signed by both parents;
+    - Copies of parents' National Identity Cards.
+  - **Biometrics:** Digital facial photograph, iris scan, and ten fingerprints captured at DGIE stations.
+- **Application & Delivery Channels:**
+  - Submit application online at **IremboGov** (`www.irembo.gov.rw`).
+  - Receive SMS/email notification with appointment details from DGIE.
+  - Attend in-person biometric capture at DGIE headquarters in Kigali, district migration offices, or Rwandan embassies abroad.
+  - Processing: Standard 4 business days in Rwanda.
+  - Delivery: Collected in person or dispatched via registered postal courier.
+
+---
+
+### 13.6 Mauritius (MU / MUS) — Passport and Immigration Office (PIO)
+
+- **Administering Authority:** Passport and Immigration Office (PIO), Mauritius Police Force, Prime Minister's Office, Republic of Mauritius
+- **Primary Portals:**
+  - PIO Application Guide & Fees: `https://passport.govmu.org/passport/?page_id=773`
+  - Required Documents (New Passport): `https://passport.govmu.org/passport/?page_id=761`
+  - Passport Renewal Guide: `https://passport.govmu.org/passport/?page_id=792`
+  - Lost, Stolen or Damaged Passports: `https://passport.govmu.org/passport/?page_id=766`
+  - Citizens Living Abroad: `https://passport.govmu.org/passport/?page_id=794`
+- **Statutory Framework:**
+  - Passports Act 1969 and Passports Regulations (as amended), Government of Mauritius.
+- **Domestic Fee Schedule (in Mauritian Rupees — MUR):**
+  - **Standard Passport (New / Renewal):**
+    - Adults & young persons (16 to 54 years, 10-year validity): **MUR 700**
+    - Minors (under 16 years, 5-year validity): **MUR 400**
+    - Senior Citizens (aged 55 and above): **MUR 400**
+    - Persons with Disabilities: **MUR 400** (supported by a disability card/certificate from the Ministry of Social Security)
+  - **Lost, Stolen, or Damaged Passport Statutory Penalty Tiers:**
+    - First loss / damage: **MUR 5,000**
+    - Second loss / damage: **MUR 15,000**
+    - Every subsequent loss / damage: Cumulative **MUR 15,000**
+  - **Evidence confidence: `DIRECT`** — statutory fee regulations confirmed directly from `passport.govmu.org`.
+- **Consular Fee Schedule (Citizens Living Abroad):**
+  - Mauritian citizens residing overseas must submit application Form **PF 136** through the nearest Mauritian Embassy, High Commission, or honorary consulate.
+  - Consular applicant fee: Equivalent statutory fee (MUR 700 / MUR 400 / penalty tiers) plus diplomatic bag / postal courier transmission fee (typically ~MUR 300 to MUR 600 equivalent in local currency).
+  - **Evidence confidence: `DIRECT`** — confirmed on `passport.govmu.org/passport/?page_id=794`.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (NIC):** Mandatory for all Mauritian citizens aged 18 and older.
+  - **Original Birth Certificate:** Bearing the applicant's national identity number and civil status barcode.
+  - **Marriage Certificate:** Required for married female applicants wishing to adopt their spouse's surname.
+  - **Certificate of Mauritian Citizenship:** Required for naturalized citizens or citizens registered by descent.
+  - **Previous passport:** Must be produced for cancellation on renewal.
+  - **In case of loss/theft:** Mandatory immediate report to a local Police Station; original *Declaration of Lost / Stolen Certificate* from Police must be attached.
+  - **For minors (under 16):**
+    - Birth certificate of the minor;
+    - NIC cards of both parents;
+    - Marriage certificate of parents;
+    - Written consent of both parents on application form PF 136.
+  - **Photographs:** Two identical recent color passport-sized photos (ICAO compliant, matte finish, light background) taken within 3 months.
+- **Application & Delivery Channels:**
+  - In-person application submission at the Passport and Immigration Office headquarters (Sterling House, Lislet Geoffroy Street, Port Louis) or district police divisional headquarters (Rose Hill, Curepipe, Flacq, Piton, Souillac).
+  - Processing: Standard 4–5 working days (domestic).
+  - Delivery: Collected in person at the office of application upon biometric verification and presentation of the application receipt.
+  - Overseas: Processed via Mauritian diplomatic missions and transmitted to Port Louis.
 
 ---

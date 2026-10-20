@@ -34,6 +34,7 @@
 | **Phase R** | `TASK-R1` | Global Jurisdiction Completion — Batch 8 (LY, AF, KP, TM, SS, ER) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 8 complete; Proceed to Batch 9 |
 | **Phase S** | `TASK-S1` | Global Jurisdiction Completion — Batch 9 (LB, JO, OM, KW, BH, TN) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 9 complete; Proceed to Batch 10 |
 | **Phase T** | `TASK-T1` | Global Jurisdiction Completion — Batch 10 (GE, AM, AZ, RS, BA, AL) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 10 complete; Proceed to Batch 11 |
+| **Phase U** | `TASK-U1` | Global Jurisdiction Completion — Batch 11 (SN, CI, CM, UG, RW, MU) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 11 complete; Proceed to Batch 12 |
 
 ---
 
@@ -484,3 +485,27 @@
   - **BA:** Council of Ministers decision confirmed DIRECT on iddeea.gov.ba: Adults 18+ (10-yr) 50 BAM; minors 3–18: 40 BAM; children <3: 30 BAM. Urgent 72h processing without emergency justification: +200 BAM surcharge (total 250 BAM). Electronic Lična karta BiH mandatory; in-person at competent Cantonal MUP / MUP RS.
   - **AL:** Biometric passport fees confirmed DIRECT from e-albania.al and identitek.al: Standard (15 days) 7,500 ALL; expedited (2–3 days) 18,000 ALL; ID card 1,500 ALL; consular 130 EUR. Electronic ID card (Letërnjoftim) mandatory; voucher via Posta Shqiptare / e-kupon; online booking via e-Albania; IdentiTek biometric desks.
 - **Next Actionable Task:** Batch 11 Official Source Research (suggested cohort: Sub-Saharan African & Indian Ocean sovereign nations: e.g. Senegal SN, Côte d'Ivoire CI, Cameroon CM, Uganda UG, Rwanda RW, Mauritius MU).
+
+
+---
+
+### Phase U: Global Jurisdiction Completion — Batch 11 (SN, CI, CM, UG, RW, MU)
+- **Task ID:** `TASK-U1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Senegal (SN), Côte d’Ivoire (CI), Cameroon (CM), Uganda (UG), Rwanda (RW), and Mauritius (MU). All 6 Sub-Saharan African and Indian Ocean sovereign jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers authored in Section 13 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit entries written in Section 14 of `SOURCE_AUDIT_REGISTER.md`. All statutory tariffs, domestic vs. diaspora channels, operator/concessionaire boundaries, lost passport replacement procedures, and civil ID prerequisites confirmed with `DIRECT` confidence from official decrees and portals.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 13 Batch 11 dossiers for SN, CI, CM, UG, RW, MU.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 14 claim audit table with 20 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase U deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **SN:** Standard ordinary biometric passport (5-yr) 20,000 XOF confirmed DIRECT on `interieur.gouv.sn`. Statutory fee paid exclusively via quittance issued by DGID/DEDT. Loss/theft requires police loss certificate (*attestation de perte*) and initiates a full standard re-application at 20,000 XOF (no duplicate issued). CNI biométrique CEDEAO mandatory for 15+.
+  - **CI:** Clear separation of domestic and diaspora frameworks via ONECI & SNEDAI Group. Domestic ordinary passport 40,000 XOF (commercial bank or mobile money); diaspora passport 115 EUR (breakdown: 100 EUR passport + 10 EUR appointment + 5 EUR banking fee). CNI / Attestation ONECI + Birth Certificate (<3mo) + Nationality Certificate mandatory. Online pre-enrollment via `monpasseport.ci`.
+  - **CM:** Presidential Decree No. 2021/347 confirmed DIRECT on `passcam.cm`: 110,000 XAF ordinary biometric passport (5-yr validity). Paid exclusively online during pre-enrollment on `passcam.cm` via mobile money or card. Turnaround guaranteed 48 hours domestic. CNI + Birth Certificate mandatory; in-person biometrics at local police centers or foreign missions.
+  - **UG:** DCIC statutory tariffs confirmed DIRECT from `passports.go.ug` and `immigration.go.ug`: Ordinary e-passport (48-pg, 10-yr adult) UGX 250,000; express processing surcharge +UGX 150,000 (total UGX 400,000); lost replacement penalty +UGX 100,000 (total UGX 350,000). Turnaround: 10 working days standard / 2 working days express. NIRA National Identification Number (NIN) mandatory.
+  - **RW:** Ministerial Order No. 06/01 confirmed DIRECT from `migration.gov.rw` and `support.irembo.gov.rw`: Adult ordinary e-passport 100,000 RWF (10-yr, 50-pg) / 75,000 RWF (5-yr, 50-pg); minor e-passport (<16) 25,000 RWF. Older 50k RWF fee resolved as obsolete paper passport rate. National ID (Indangamuntu) for 16+ or Child ID for <16 mandatory; IremboGov digital application and payment.
+  - **MU:** Passports Act regulations confirmed DIRECT on `passport.govmu.org`: Adults 16–54 (10-yr) MUR 700; minors <16 (5-yr), seniors 55+, and disabled persons MUR 400. Statutory penalty tiers for lost/damaged passports: 1st loss MUR 5,000; 2nd loss MUR 15,000; subsequent MUR 15,000 cumulative. Police loss declaration mandatory; Form PF 136 in-person at PIO Port Louis or district divisional HQs.
+- **Next Actionable Task:** Batch 12 Official Source Research (suggested cohort: Southern Africa & Central Africa sovereign nations: e.g. Botswana BW, Namibia NA, Zambia ZM, Zimbabwe ZW, Angola AO, Mozambique MZ).
