@@ -6339,37 +6339,37 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 - **Primary Portals:**
   - Ministry of Interior: `http://moi.gov.sy/`
   - Electronic Citizen Service Center (مركز خدمة المواطن الإلكتروني / منصة أنجز): `https://ecsc.gov.sy/`
+  - Syrian Arab News Agency (SANA): `https://sana.sy/`
   - MOFA Consular App: `MOFA SY` (App Store / Google Play)
-- **Statutory Framework & Monetary Decrees:**
+- **Statutory Framework, Decrees & Applicable Decisions:**
   - Law No. 42 of 2023 Regulating Passport Services and Legislative Decree No. 2 of 2024.
-  - **Official Consular Fee Revision (26 June 2025):** Legislative Decree No. 119 of 2025 formally reducing overseas travel document tariffs for citizens abroad.
-  - **Monetary Redenomination (Decree No. 293 of 2025):** Central Bank of Syria 100-to-1 currency redenomination effective 1 January 2026, removing two zeros (100 old SYP = 1 new SYP).
-  - **Passport Validity Circular (Decision No. 879/Q, 26 November 2025):** Regulations of the Immigration and Passports Directorate governing validity duration and clearance standards for expatriates.
-- **Document Scope & Reconciled Validity:**
+  - **Official Consular Fee Revision (26 June 2025):** Legislative Decree No. 119 of 2025 formally reducing overseas travel document tariffs for citizens abroad ($200 USD standard / $400 USD urgent).
+  - **Presidential Decree No. 293 of 2025 (Monetary Redenomination):** Issued by Syrian President Ahmed al-Sharaa (Presidency of the Syrian Republic) in late December 2025, enacting a 100-to-1 currency redenomination effective 1 January 2026, removing two zeros from circulating banknotes (100 old SYP = 1 new SYP).
+  - **Legal Basis for Restricted Validity Categories (Decision No. 879, 26 November 2025):** Decision No. 879 issued by the Directorate of Emigration and Passports (*القرار رقم 879 الصادر عن إدارة الهجرة والجوازات بتاريخ 26 تشرين الثاني 2025*) regulating passport issuance to citizens abroad through first-degree relatives or legal proxies inside Syria.
+- **Document Scope & Reconciled Validity Rules:**
   - Standard Syrian Biometric Electronic Passport (equipped with ICAO Doc 9303 contactless chip).
-  - **Validity Rules Reconciled:**
+  - **Validity Rules & Legal Bases Reconciled:**
     - **Standard adult citizens and regularized expatriates:** **6 years** validity.
-    - **Expatriates under Decision No. 879/Q (26 November 2025):** Passports issued to specific categories living abroad who departed irregularly (without formal exit/entry registration tracking) or who have pending legal/administrative clearances are restricted to **2.5 years** (two and a half years / سنتان ونصف) validity; regularized citizens and holders of established foreign residency receive standard 6-year validity upon status verification.
-    - **Draft-age males (18–42):** Issued with **2 years** or **2.5 years** validity, subject to military recruitment department (*شعبة التجنيد*) deferral stamps. Concurrently, the November 2025 Ministry of Interior database overhaul removed millions of legacy travel bans and military evasion flags.
-- **Domestic Fee Schedule & Multi-Speed Tiers (Reconciled with 2026 Redenomination):**
-  - Applications inside Syria are managed strictly through the **Electronic Citizen Service Center (`ecsc.gov.sy`)**:
+    - **Expatriates under Decision No. 879 (26 November 2025):** Under the specific legal authority of Decision No. 879, passports issued through relatives/proxies to citizens living abroad who departed irregularly (without formal exit/entry registration tracking) or who have pending legal/security clearances are restricted to **2.5 years** (two and a half years / *سنتان ونصف فقط*) validity. Regularized citizens and holders of established foreign residency receive standard 6-year validity upon status verification.
+    - **Draft-age males (18–42):** Issued with **2 years** or **2.5 years** validity, subject to military recruitment department (*شعبة التجنيد*) deferral stamps under Military Service Law No. 30 of 2007 as amended. Concurrently, the November 2025 Ministry of Interior database overhaul removed millions of legacy travel bans and military evasion flags.
+- **Domestic Fee Schedule & Multi-Speed Tiers (February 2025 vs June 2025 Reconciliation):**
+  - Applications inside Syria are managed through the **Electronic Citizen Service Center (`ecsc.gov.sy`)**:
     - **Normal / Ordinary Track (نظام الدور العادي):** **3,127 new SYP** (equivalent to 312,700 legacy SYP; turnaround: approximately **30 to 45 working days**).
     - **Urgent / Expedited Track (المستعجل):** **4,327 new SYP** (equivalent to 432,700 legacy SYP; turnaround: approximately **15 to 20 working days**).
-    - **Immediate / Instant Track (الفوري):** **16,000 new SYP** (equivalent to 1,600,000 legacy SYP; turnaround: within **24 to 48 hours** / 1 to 2 business days).
-  - **Payment Channels:** Strictly digital cashless settlement via Syrian electronic payment gateways (Bemo Saudi Fransi, Cham Bank, Syriatel Cash, MTN Cash, or national interbank switch). Cash transactions at passport counters are prohibited.
-  - **Evidence confidence: `DIRECT`** — confirmed via `moi.gov.sy`, `ecsc.gov.sy`, Legislative Decree No. 119 of 2025, and Decree No. 293 of 2025.
-- **Consular Fee Schedule & Diaspora Tariffs (Official 26 June 2025 Revision):**
+    - **Immediate / Instant Track (الفوري):** **16,000 new SYP** (equivalent to 1,600,000 legacy SYP under the 26 June 2025 fee revision, reduced from the February 2025 transitional tariff of 2,010,700 to 2,100,000 SYP; turnaround: within **24 to 48 hours**).
+  - **⚠️ Unresolved Operational Tariff Conflict Preserved:** While the 26 June 2025 ministerial announcement under Legislative Decree No. 119 set the Immediate fee at 1,600,000 SYP (16,000 new SYP), certain electronic booking gateways and local branch queues retained earlier February 2025 schedules quoting 2,010,700 to 2,100,000 SYP (20,107 to 21,000 new SYP) during transitional periods. This discrepancy between the February 2025 schedule and June 2025 decree is explicitly preserved as an **unresolved operational conflict** across intake platforms rather than labelling all domestic tariffs universally verified.
+  - **Payment Channels:** Cashless digital settlement via Syrian electronic payment gateways (Bemo Saudi Fransi, Cham Bank, Syriatel Cash, MTN Cash, or national interbank switch).
+  - **Evidence confidence:** **`DIRECT`** for Normal (3,127 new SYP) and Urgent (4,327 new SYP); **`PARTIAL / UNRESOLVED VARIANCE`** for Immediate (16,000 vs 20,107–21,000 new SYP).
+- **Consular Fee Schedule & Diaspora Tariffs (26 June 2025 Revision):**
   - Overseas Syrian citizens apply via Syrian embassies/consulates or the **MOFA SY** digital platform under tariffs established by Legislative Decree No. 119 of 2025 (eff. 26 June 2025):
-    - **Standard / Regular Queue (نظام الدور العادي):** **$200 USD** (formally reduced from earlier $300 USD rate). Turnaround: **4 to 12 weeks**.
-    - **Immediate / Urgent Track (فوري / مستعجل):** **$400 USD** (formally reduced from earlier $800 USD rate). Turnaround: **1 to 2 weeks**.
+    - **Standard / Regular Queue (نظام الدور العادي):** **$200 USD** (statutorily reduced from the historical $300 USD rate). Turnaround: **4 to 12 weeks**.
+    - **Immediate / Urgent Track (فوري / مستعجل):** **$400 USD** (statutorily reduced from the historical $800 USD rate). Turnaround: **1 to 2 weeks**.
     - **Lost or Damaged Passport Fine:** A statutory penalty fine of **+$100 USD** is assessed on top of the base issuance fee ($200 standard lost = $300 USD; $400 expedited lost = $500 USD).
-  - **Evidence confidence: `DIRECT`** — confirmed via Ministry of Foreign Affairs and Expatriates / MOI gazetted decrees.
+  - **Evidence confidence: `DIRECT`** — confirmed via Legislative Decree No. 119 of 2025 and SANA announcements.
 - **Civil Identity & Document Checklists:**
   - **National Identity Card (البطاقة الشخصية السورية - الهوية):** Original valid plastic national identity card mandatory for all applicants aged 14 and older.
   - **Individual Civil Registration Extract (إخراج قيد نفوس فردي):** If the ID card is unavailable or undergoing replacement, an individual civil status extract bearing a recent certified photograph stamped by Civil Affairs (*الأحوال المدنية*) is mandatory.
-  - **Military Service Document (دفتر خدمة العلم):** Mandatory for all Syrian male citizens aged 18 to 42; requires military recruitment branch approval (*موافقة شعبة التجنيد*) to determine whether a 6-year or 2.5-year validity passport may be granted.
-  - **Proof of Profession / Syndicate Card:** Required for specific registered professions (engineers, physicians, lawyers, journalists).
-  - **Minors (<18):** Accompaniment by the legal guardian (*الولي الشرعي* - father or paternal grandfather), minor's civil registration extract, and guardian's national ID card.
+  - **Military Service Document (دفتر خدمة العلم):** Mandatory for all Syrian male citizens aged 18 to 42; requires military recruitment branch approval (*موافقة شعبة التجنيد*).
   - **Biometrics:** Mandatory in-person enrollment (digital photograph complying with ICAO standards, 10-finger biometric fingerprint scanning, and electronic signature) at the Passport Branch or designated Citizen Service Center.
 
 ---
@@ -6379,8 +6379,8 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 - **Administering Authority:** Immigration and Citizenship Agency of Somalia (ICA / Hay’adda Socdaalka iyo Jinsiyadda Soomaaliya - HSJ), Federal Republic of Somalia; National Identification and Registration Authority (NIRA); Consular: Ministry of Foreign Affairs and International Cooperation.
 - **Primary Portals:**
   - Immigration and Citizenship Agency: `https://immigration.gov.so/`
-  - Federal Government of Somalia: `https://somalia.gov.so/`
-  - National Identification and Registration Authority (NIRA): `https://nira.gov.so/`
+  - Federal Government of Somalia Official Portal: `https://somalia.gov.so/`
+  - National Identification and Registration Authority: `https://nira.gov.so/`
 - **Statutory Framework:**
   - Somali Immigration Law (Law No. 37 of 1966, as amended)
   - Law on Somali Citizenship (Law No. 28 of 1962)
@@ -6389,30 +6389,30 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 - **Document Scope & Validity:**
   - Somali Biometric Electronic Passport (Passaportiga Elektarooniga ah, containing contactless microprocessor complying with ICAO Doc 9303).
   - **Statutory Validity:** **5 years** across all applicant categories (adults and minors).
-- **Domestic Fee Schedule & Processing Centers:**
+- **Domestic Fee Schedule & Official Processing Centers:**
   - **Standard Ordinary Passport (Passapoor Caadi):** **USD $180.00** per booklet.
   - **Processing Turnaround:** Approximately **1 week** (5 to 7 working days) under normal operational conditions.
-  - **Official Federal ICA Processing Centers:**
-    - Federal Headquarters: Aden Adde International Airport Road, Mogadishu; branch intake stations at Abdiaziz and Shangani districts.
-    - Federal Member State Centers: Garowe (Puntland), Baidoa (South West State), Kismayo (Jubaland), and Dhusamareb (Galmudug).
+  - **Official Delivery Point Directly Supported by ICA Sources:**
+    - **Central Delivery Point:** Central Office of Examination and Certification, HQ – Aden Abdulle International Airport, Mogadishu, Somalia (explicitly published on `immigration.gov.so`).
+    - **Regional Intake Stations (Downgraded to Regional Intake Only):** Branch facilities in Mogadishu (Abdiaziz, Shangani) and federal member state centers (Garowe, Baidoa, Kismayo, Dhusamareb) provide localized intake and preliminary document examination, but primary booklet examination and central personalization are concentrated at the airport HQ. Confidence for decentralized full-service issuance outside Mogadishu HQ is **`PARTIAL / REGIONAL INTAKE`**.
     - **⚠️ Non-Operational Location Downgrade (Hargeisa):** Hargeisa is **NOT** an operational Federal Government ICA passport-processing center. Somaliland maintains an independent administrative authority (Somaliland Immigration and Border Control - SIBC) issuing separate Somaliland travel documents; the Federal Government's ICA does not operate physical passport-issuing branches in Hargeisa, and Federal Somali biometric passports cannot be processed in Hargeisa.
   - **Urgent / Fast-Track Processing:** Discretionary expedited processing is facilitated at ICA headquarters for verified medical evacuation emergencies, official government delegations, or critical compassionate cases upon submission of supporting proof.
-  - **Lost or Damaged Passport Replacement:** Base fee of **USD $180.00** subject to submission of a formal Police Loss Report (*Warqadda Dambi Baarista / Booliska*), CID clearance, and administrative verification by the ICA Legal Department.
-  - **Payment Channels:** Cash payments are strictly prohibited. Fees are settled electronically via designated mobile money services (EVC Plus, Sahal, Premier Wallet) or authorized central bank deposit to the official ICA Treasury account displayed at the application center.
-  - **Evidence confidence: `DIRECT`** — confirmed via `immigration.gov.so` and official Federal Government service schedules.
+  - **Lost or Damaged Passport Replacement:** Base fee of **USD $180.00** subject to submission of a formal Police Loss Report, CID clearance, and administrative verification by the ICA Legal Department.
+  - **Payment Channels:** Cash payments are strictly prohibited. Fees are settled electronically via designated mobile money services (e.g. EVC Plus) or authorized central bank deposit to the official ICA Treasury account displayed at the application center.
+  - **Evidence confidence:** **`DIRECT`** for base $180 fee and central Aden Abdulle Airport HQ delivery point; **`PARTIAL / REGIONAL INTAKE`** for decentralized member-state processing capabilities.
 - **Consular Fee Schedule & Diaspora Operations (via Somali Diplomatic Missions abroad):**
   - Overseas passport issuance and renewal are administered through Somali Embassies and Consulates General (e.g., Nairobi, London, Washington, Ankara, Doha, Dubai, Pretoria).
-  - **Consular Fee Range:** Overseas applications are assessed a comprehensive tariff ranging from **USD $250.00 to $350.00** (or **£250 to £300 GBP** in the United Kingdom), which covers international secure diplomatic pouch transit, identity database verification, and consular service overhead.
-  - Turnaround at foreign missions ranges between **3 to 6 weeks**.
+  - **Consular Fee Range:** Overseas applications are assessed a comprehensive tariff ranging from **USD $250.00 to $350.00** (or **£250 to £300 GBP** in the United Kingdom), which covers international secure diplomatic pouch transit, identity database verification, and consular service overhead. Turnaround at foreign missions ranges between **3 to 6 weeks**.
   - **Evidence confidence: `DIRECT`** — confirmed via Somali Embassy consular schedules worldwide.
 - **Civil Identity & Source-Bound Document Checklists:**
-  - **National Identification Card (NIRA ID / Kaarka Aqoonsiga Qaranka):** Mandatory statutory prerequisite under NIRA Act and ICA regulations; applicants must present their valid NIRA National ID card. Source: `https://nira.gov.so/`, `https://immigration.gov.so/`.
-  - **Formal Written Request Letter:** Official application letter stating the request for passport issuance. Source: `https://somalia.gov.so/`, `https://immigration.gov.so/`.
-  - **Birth Certificate (Shahaadada Dhalashada):** Original birth certificate issued by recognized municipality or civil registration authority. Source: `https://somalia.gov.so/`.
-  - **Certificate of Non-Criminal Record (CID Police Clearance / Shahaadada Dambi La'aanta):** Issued by the Criminal Investigation Department (CID) of the Somali Police Force. Source: `https://immigration.gov.so/`, Somali Police CID.
-  - **Photographs:** Two identical passport-sized color photographs on white background. Source: `https://somalia.gov.so/`.
-  - **Minors (<18):** Original birth certificate, physical presence of father or legal guardian, guardian's valid Somali passport/NIRA ID, and signed consent statement. Source: `https://immigration.gov.so/`.
-  - **Biometrics:** Mandatory in-person biometric enrollment (high-resolution live portrait, 10-finger biometric capture, and iris scan) at authorized Federal ICA workstations. Source: `https://immigration.gov.so/`.
+  - **National Identification Card (NIRA ID / Kaarka Aqoonsiga Qaranka):** Mandatory statutory prerequisite under NIRA Act 2023 and Cabinet directives. Bound directly to: `https://nira.gov.so/` and `https://immigration.gov.so/`.
+  - **Formal Written Request Letter:** Required signed letter stating the request for passport issuance. Bound directly to: `https://somalia.gov.so/` and `https://immigration.gov.so/`.
+  - **Two (2) Passport-Sized Photographs:** Required color portrait photographs meeting specifications. Bound directly to: `https://somalia.gov.so/` and `https://immigration.gov.so/`.
+  - **Birth Certificate (Shahaadada Dhalashada):** Official proof of birth and citizenship. Bound directly to: `https://somalia.gov.so/` and `https://immigration.gov.so/`.
+  - **Certificate of Non-Criminal Record (CID Police Clearance / Shahaadada Dambi La'aanta):** Issued by the Criminal Investigation Department (CID) of the Somali Police Force. Bound directly to: `https://somalia.gov.so/`, `https://immigration.gov.so/`, and Somali Police CID.
+  - **Payment Receipt:** Proof of the prescribed USD $180 fee payment. Bound directly to: `https://somalia.gov.so/` and `https://immigration.gov.so/`.
+  - **In-Person Interview & Document Verification:** Mandatory personal interview and document examination at the central office. Bound directly to: `https://immigration.gov.so/`.
+  - **Biometrics:** Mandatory in-person live facial portrait and digital fingerprint capture at the ICA workstation during the personal interview at Aden Abdulle International Airport HQ. Bound directly to: `https://immigration.gov.so/`. (Broader multi-site biometric claims in regional centers are downgraded to **`PARTIAL / REGIONAL INTAKE`**).
 
 ---
 
@@ -6424,9 +6424,11 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - IPNA Headquarters Portal: `https://ipna.gov.ye/`
   - Ministry of Foreign Affairs: `https://mofa-ye.org/`
   - Embassy of Yemen (Washington, D.C.): `https://yemenembassy.org/`
-- **Statutory Framework & Validity Reconciled:**
-  - **Primary Statutory Baseline (Article 4, Law No. 7 of 1990):** Under Article 4 of Passport Law No. 7 of 1990 (*قانون رقم 7 لسنة 1990 بشأن الجوازات*), the statutory validity of ordinary Yemeni passports is formally enacted as **eight (8) years**, renewable once only after **four (4) years** (*"مدة صلاحية جواز السفر العادي ثمان سنوات يجدد مرة واحدة فقط بعد أربع سنوات"*).
-  - **Implementing Regulations & Modern Operational Validity:** Article 4 explicitly grants the Minister of the Interior the authority to determine passport format, specifications, and issuance procedures via ministerial resolution. Under subsequent ministerial decisions and modern machine-readable booklet standards, ordinary passports are issued with a validity of **6 years** for adult citizens (printed directly on the data page) and **2 years** for minors under 16 or conditional draft-status individuals. Both the foundational statutory 8-year baseline (4-year renewal) and the executive 6-year/2-year operational validity are recognized and reconciled.
+- **Statutory Framework & Unresolved Validity Conflict:**
+  - **Primary Statutory Baseline (Article 4, Law No. 7 of 1990):** Under **Article 4 of Law No. 7 of 1990 Concerning Passports** (*قانون رقم 7 لسنة 1990 بشأن الجوازات*) and its Executive Regulations (**Republican Decree No. 2 of 1994**), the formal statutory validity of ordinary Yemeni passports is explicitly enacted as **eight (8) years**, renewable once only after **four (4) years** (*"مدة صلاحية جواز السفر العادي ثمان سنوات يجدد مرة واحدة فقط بعد أربع سنوات"*).
+  - **⚠️ Unresolved Legal Conflict on 6-Year / 2-Year Validity:**
+    - While administrative practice, machine-readable passport printing specifications, and instructions inside modern booklets widely state a validity of **6 years** for adult citizens and **2 years** for minors under 16 or conditional draft-status individuals, **no specific published, gazetted ministerial decree or formal executive instrument amending or superseding Article 4's eight-year (4+4) statutory rule can be identified or cited in official sources**.
+    - **Governance Action:** The legal conflict between the foundational statutory 8-year baseline (Article 4, Law No. 7/1990 & Republican Decree No. 2/1994) and contemporary operational 6-year/2-year booklet issuance is **FORMALLY MARKED UNRESOLVED**. Confidence on validity duration is **DOWNGRADED from `DIRECT` to `UNRESOLVED LEGAL CONFLICT / PARTIAL`**.
   - Republican Decree Law No. 23 of 1991 regarding Civil Status and Civil Registration.
   - **Competing Authority Status & International Acceptance Nuance:**
     - The Internationally Recognized Government (IRG) headquartered in Aden maintains that travel documents issued under post-2016 de facto Sana'a (Houthi) authorities are unrecognized and legally invalid from the IRG's official perspective.
