@@ -2751,7 +2751,7 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "LKA",
     "numeric": "144",
     "official_name": "Democratic Socialist Republic of Sri Lanka",
-    "authority_url": "http://www.immigration.gov.lk/",
+    "authority_url": "https://www.immigration.gov.lk/",
     "authority_label": "Department of Immigration and Emigration",
     "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",

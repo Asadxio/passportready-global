@@ -4008,7 +4008,7 @@ window.RULE_PACKS = {
       {
         "name": "Consular Services (South African High Commissions & Embassies abroad)",
         "application_channel": "consular",
-        "source_url": "http://www.dirco.gov.za/"
+        "source_url": "https://www.dirco.gov.za/"
       }
     ],
     "age_bands": [
@@ -7874,9 +7874,9 @@ window.RULE_PACKS = {
         },
         "sources": [
           {
-            "url": "https://www.ica.gov.sg/",
+            "url": "https://www.ica.gov.sg/enter-transit-depart/more-information/singapore-citizenship/singapore-passport",
             "publisher": "Immigration & Checkpoints Authority, Singapore",
-            "page_title": "Passport Fees & Penalties",
+            "page_title": "Apply for or Renew Singapore Passport",
             "checked_at": "2026-10-19",
             "claims": [
               "fee",

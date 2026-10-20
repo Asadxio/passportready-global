@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_17'), `Stylesheet href must contain ?v=20261019_17 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261020_01'), `Stylesheet href must contain ?v=20261020_01 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_17'), `Local script ${srcMatch[1]} must contain ?v=20261019_17 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261020_01'), `Local script ${srcMatch[1]} must contain ?v=20261020_01 cache-busting query string`);
     }
   });
 });
@@ -3178,15 +3178,14 @@ runTest('Phase 4.3.9 Official Domain-Trust Independence, Generic-Homepage Disall
   assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('portal2.passportindia.gov.in', 'IN'), true, 'Approved dot-rooted subdomain must pass');
   assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('passportindia.gov.in', 'IN'), true, 'Approved root domain must pass');
 
-  // Reject insecure HTTP by default
+  // Reject insecure HTTP by default; source-level allow_insecure_http metadata CANNOT self-authorize
   assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('http://passportindia.gov.in/feeSchedule', 'IN'), false, 'Fixture B: Insecure HTTP must be rejected by default');
-  // Documented, reviewed HTTP exception succeeds
-  const reviewedHttpSource = {
+  const unapprovedHttpSource = {
     url: 'http://passportindia.gov.in/feeSchedule',
     allow_insecure_http: true,
-    review_rationale: 'Legacy government portal gateway verified in 2026'
+    review_rationale: 'Legacy government portal gateway claimed in 2026'
   };
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('http://passportindia.gov.in/feeSchedule', 'IN', null, reviewedHttpSource), true, 'Fixture B: Documented reviewed HTTP exception must be accepted');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('http://passportindia.gov.in/feeSchedule', 'IN', null, unapprovedHttpSource), false, 'Fixture B: Unapproved HTTP source with metadata must be rejected');
 
   // --- FIXTURE C: Generic Homepage Fee-Record Bypass ---
   // A trusted official root URL with fee record metadata (amount, official_replacement_amount, applicant_category)
@@ -3356,6 +3355,273 @@ runTest('Phase 4.3.9 Official Domain-Trust Independence, Generic-Homepage Disall
     assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Negative fixture must NEVER be marked PREPARED');
     assert(res.readinessScore <= 80, 'Negative fixture score must be capped <= 80%');
   });
+});
+
+// 27. Phase 4.3.10 Exception Authorization Hardening & Final Evidence Integrity Audit (Fixtures 1–10)
+runTest('Phase 4.3.10 Exception Authorization Hardening & Final Evidence Integrity Audit (Fixtures 1–10)', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // --- FIXTURE 1: Fake homepage_claim_exception on unapproved homepage ---
+  // A generic homepage with self-authorizing metadata must be rejected
+  const fakeHomepageSource = {
+    url: 'https://passportindia.gov.in/',
+    homepage_claim_exception: true,
+    exception_rationale: 'Primary official portal for statutory passport checklists and fee schedules'
+  };
+  ['fee', 'documents', 'eligibility', 'steps', 'urgent', 'consular', 'emergency'].forEach(claim => {
+    assert.strictEqual(
+      engine.isClaimRelevantSource(fakeHomepageSource, claim, 'IN'),
+      false,
+      `Fixture 1: Fake homepage exception on root must reject claim '${claim}'`
+    );
+  });
+  // Pack relying solely on fake homepage exception must fall back to general_guidance
+  const packFakeHome = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    official_portal_url: 'https://passportindia.gov.in/',
+    sources: [fakeHomepageSource],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [fakeHomepageSource],
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const resFakeHome = new PassportRulesEngine({ IN: packFakeHome }).evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(resFakeHome.serviceCoverage.dimensions.service.status, 'general_guidance', 'Fixture 1: Fake homepage exception pack must be general_guidance');
+  assert(resFakeHome.readinessScore <= 75, 'Fixture 1: Score must cap <= 75%');
+  assert.notStrictEqual(resFakeHome.statusLabel, 'PREPARED', 'Fixture 1: Must not be PREPARED');
+
+  // --- FIXTURE 2: Approved central homepage exception for the wrong claim ---
+  // NZ portal https://www.passports.govt.nz/ is approved for documents, eligibility, steps - NOT for fee!
+  const nzApprovedHome = {
+    url: 'https://www.passports.govt.nz/'
+  };
+  assert.strictEqual(
+    engine.isClaimRelevantSource(nzApprovedHome, 'fee', 'NZ'),
+    false,
+    'Fixture 2: Approved NZ homepage exception must be rejected for fee claim'
+  );
+  assert.strictEqual(
+    engine.isClaimRelevantSource(nzApprovedHome, 'urgent', 'NZ'),
+    false,
+    'Fixture 2: Approved NZ homepage exception must be rejected for urgent claim'
+  );
+  assert.strictEqual(
+    engine.isClaimRelevantSource(nzApprovedHome, 'emergency', 'NZ'),
+    false,
+    'Fixture 2: Approved NZ homepage exception must be rejected for emergency claim'
+  );
+
+  // --- FIXTURE 3: Approved central homepage exception for exact permitted claims ---
+  assert.strictEqual(
+    engine.isClaimRelevantSource(nzApprovedHome, 'documents', 'NZ'),
+    true,
+    'Fixture 3: Approved NZ homepage exception must be accepted for documents claim'
+  );
+  assert.strictEqual(
+    engine.isClaimRelevantSource(nzApprovedHome, 'eligibility', 'NZ'),
+    true,
+    'Fixture 3: Approved NZ homepage exception must be accepted for eligibility claim'
+  );
+  assert.strictEqual(
+    engine.isClaimRelevantSource(nzApprovedHome, 'steps', 'NZ'),
+    true,
+    'Fixture 3: Approved NZ homepage exception must be accepted for steps claim'
+  );
+
+  // AU portal https://www.passports.gov.au/ is approved for fee, documents, eligibility, steps
+  const auApprovedHome = { url: 'https://www.passports.gov.au/' };
+  assert.strictEqual(engine.isClaimRelevantSource(auApprovedHome, 'fee', 'AU'), true, 'Fixture 3: AU approved homepage accepted for fee');
+  assert.strictEqual(engine.isClaimRelevantSource(auApprovedHome, 'documents', 'AU'), true, 'Fixture 3: AU approved homepage accepted for documents');
+  assert.strictEqual(engine.isClaimRelevantSource(auApprovedHome, 'urgent', 'AU'), false, 'Fixture 3: AU approved homepage rejected for unapproved urgent claim');
+
+  // --- FIXTURE 4: HTTP source with source-object allow_insecure_http: true and fake rationale ---
+  const fakeHttpSource = {
+    url: 'http://passportindia.gov.in/feeSchedule',
+    allow_insecure_http: true,
+    review_rationale: 'Legacy portal claimed verified in 2026'
+  };
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl(fakeHttpSource.url, 'IN', null, fakeHttpSource),
+    false,
+    'Fixture 4: HTTP source with metadata allow_insecure_http must be rejected'
+  );
+  assert.strictEqual(
+    engine.isClaimRelevantSource(fakeHttpSource, 'fee', 'IN'),
+    false,
+    'Fixture 4: Insecure HTTP source must not substantiate claims'
+  );
+
+  // URL Credentials and Non-Standard Port Rejection
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl('https://admin:secret@travel.state.gov/passports', 'US'),
+    false,
+    'Fixture 4: URL with userinfo/credentials must be rejected'
+  );
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl('https://travel.state.gov:8443/passports', 'US'),
+    false,
+    'Fixture 4: URL with non-standard port 8443 must be rejected'
+  );
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl('https://travel.state.gov:443/passports', 'US'),
+    true,
+    'Fixture 4: Standard HTTPS port 443 must be accepted'
+  );
+
+  // --- FIXTURE 5: HTTP source with centrally approved exception ---
+  const approvedHttpUrl = 'http://www.immigration.gov.lk/legacy-fee-bulletin';
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl(approvedHttpUrl, 'LK', null, null, 'fee'),
+    true,
+    'Fixture 5: Centrally approved HTTP exception must be accepted for fee claim'
+  );
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl(approvedHttpUrl, 'LK', null, null, 'documents'),
+    false,
+    'Fixture 5: Centrally approved HTTP exception must be rejected for outside scope claim (documents)'
+  );
+  assert.strictEqual(
+    PassportRulesEngine.isTrustedOfficialUrl(approvedHttpUrl, 'IN', null, null, 'fee'),
+    false,
+    'Fixture 5: Centrally approved HTTP exception must be rejected for different country'
+  );
+
+  // --- FIXTURE 6: Unapproved HTTPS hostname added to pack.trusted_domains ---
+  const packAttacker = {
+    country_code: 'IN',
+    trusted_domains: ['attacker-portal.org', 'passportindia.gov.in']
+  };
+  const trustedForAttacker = PassportRulesEngine.getTrustedOfficialDomains('IN', packAttacker);
+  assert(!trustedForAttacker.includes('attacker-portal.org'), 'Fixture 6: pack.trusted_domains must not inject unapproved root');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('attacker-portal.org', 'IN', packAttacker), false);
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('https://attacker-portal.org/fees', 'IN', packAttacker), false);
+
+  // --- FIXTURE 7: Attempted runtime mutation of authoritative domain map ---
+  const initialInDomains = [...PassportRulesEngine.getTrustedOfficialDomains('IN')];
+  try {
+    PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.IN.push('mutated-domain.com');
+  } catch (e) {
+    // Expected in strict mode / frozen object
+  }
+  try {
+    PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.ATTACKER = ['attacker.com'];
+  } catch (e) {
+    // Expected in strict mode / frozen object
+  }
+  try {
+    delete PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.IN;
+  } catch (e) {
+    // Expected in strict mode / frozen object
+  }
+  assert.deepStrictEqual(PassportRulesEngine.getTrustedOfficialDomains('IN'), initialInDomains, 'Fixture 7: AUTHORITATIVE_OFFICIAL_DOMAINS must remain immutable');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('mutated-domain.com', 'IN'), false, 'Fixture 7: Mutated domain must not be trusted');
+  assert.deepStrictEqual(PassportRulesEngine.getTrustedOfficialDomains('ATTACKER'), [], 'Fixture 7: Injected country must not exist');
+
+  // --- FIXTURE 8: Official but unrelated endpoint incorrectly labeled ---
+  const unrelatedLegalWarning = {
+    url: 'https://travel.state.gov/content/travel/en/legal/travel-warnings.html',
+    claims: ['fee', 'documents', 'eligibility', 'urgent', 'consular', 'emergency'],
+    claim_scope: 'fee',
+    page_title: 'Travel Advisories and Legal Warnings'
+  };
+  const unrelatedPrivacy = {
+    url: 'https://passportindia.gov.in/AppOnlineProject/online/privacyPolicy.html',
+    claims: ['fee', 'documents', 'eligibility', 'urgent', 'consular', 'emergency'],
+    claim_scope: 'fee',
+    page_title: 'Portal Privacy Policy'
+  };
+  const unrelatedTraffic = {
+    url: 'https://www.gov.uk/browse/driving/highway-code-penalties',
+    claims: ['fee'],
+    claim_scope: 'fee',
+    page_title: 'Highway Code Penalties'
+  };
+
+  ['fee', 'documents', 'eligibility', 'urgent', 'consular', 'emergency'].forEach(c => {
+    assert.strictEqual(engine.isClaimRelevantSource(unrelatedLegalWarning, c, 'US'), false, `Fixture 8: Unrelated legal warning must not receive '${c}' claim`);
+    assert.strictEqual(engine.isClaimRelevantSource(unrelatedPrivacy, c, 'IN'), false, `Fixture 8: Unrelated privacy policy must not receive '${c}' claim`);
+  });
+  assert.strictEqual(engine.isClaimRelevantSource(unrelatedTraffic, 'fee', 'GB'), false, 'Fixture 8: Traffic penalties must not receive fee claim');
+
+  // Pack with only unrelated endpoints must receive general_guidance and capped score
+  const packUnrelatedOnly = {
+    country_code: 'US',
+    country_name: 'United States',
+    rule_pack_status: 'verified',
+    official_portal_url: 'https://travel.state.gov/passports',
+    sources: [unrelatedLegalWarning],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [unrelatedLegalWarning],
+        fees: { currency: 'USD', standard: 130 },
+        documents: [{ document_name: 'Birth Certificate' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const resUnrelated = new PassportRulesEngine({ US: packUnrelatedOnly }).evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(resUnrelated.serviceCoverage.dimensions.service.status, 'general_guidance', 'Fixture 8: Pack with only unrelated endpoints must be general_guidance');
+  assert.strictEqual(resUnrelated.serviceCoverage.dimensions.service.evidence.verifiedFields.length, 0, 'Fixture 8: No fields verified');
+  assert(resUnrelated.readinessScore <= 75, 'Fixture 8: Score must cap <= 75%');
+  assert.notStrictEqual(resUnrelated.statusLabel, 'PREPARED', 'Fixture 8: Status must not be PREPARED');
+
+  // --- FIXTURE 9: Preservation of Verified Statutory Regressions ---
+  // India Tatkaal
+  const inTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(inTatkaal.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(inTatkaal.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('tatkaalPassports')));
+
+  // US Expedited
+  const usExpedite = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(usExpedite.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(usExpedite.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('travel.state.gov')));
+
+  // Mexico Emergency & Art. 20 LFD +30%
+  const mxEmergency = engine.evaluate({ countryCode: 'MX', location: 'abroad', service: 'emergency_travel', urgency: 'emergency' });
+  assert.strictEqual(mxEmergency.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(mxEmergency.serviceCoverage.dimensions.urgency.summary.includes('Art. 20 LFD'));
+  assert(mxEmergency.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'));
+
+  // New Zealand Callout
+  const nzCallout = engine.evaluate({ countryCode: 'NZ', location: 'inside', service: 'first_passport', urgency: 'emergency' });
+  assert.strictEqual(nzCallout.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(nzCallout.serviceCoverage.dimensions.urgency.summary.includes('after-hours callout'));
+
+  // Malaysia JIM Staff 10-yr Replacement Tiers
+  const myStaff10yr1 = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss' });
+  assert.strictEqual(myStaff10yr1.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 200);
+  const myStaff10yr2 = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'second_loss' });
+  assert.strictEqual(myStaff10yr2.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 500);
+  const myStaff10yr3 = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'third_loss' });
+  assert.strictEqual(myStaff10yr3.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 1000);
+  const myStaff5yrIneligible = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '5_year', lossTier: 'first_loss' });
+  assert.strictEqual(myStaff5yrIneligible.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'not_eligible');
+  const myStaffOrigGratis = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'first_passport', applicantCategory: 'immigration_officers_staff', validity: '10_year' });
+  assert.strictEqual(myStaffOrigGratis.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0);
+
+  // Indonesia Under-17 Marital Status Exception
+  const idMinorMarital = engine.evaluate({ countryCode: 'ID', location: 'inside', service: 'first_passport', ageExact: 16 });
+  assert.strictEqual(idMinorMarital.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required');
+  assert(idMinorMarital.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'));
+
+  // --- FIXTURE 10: Strict Directory Counts ---
+  const allCountries = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
+  assert.strictEqual(allCountries.length, 249, 'Total countries must be exactly 249');
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'verified').length, 27, 'Verified countries must be exactly 27');
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 0, 'Linked countries must be exactly 0');
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 222, 'Research countries must be exactly 222');
 });
 
 console.log('\n====================================================');

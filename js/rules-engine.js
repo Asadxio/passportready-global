@@ -4,39 +4,340 @@
  * Designed with transparent status tiers: Verified Rule Pack vs. Awaiting Official Research.
  */
 
-const AUTHORITATIVE_OFFICIAL_DOMAINS = {
-  IN: ['passportindia.gov.in'],
-  US: ['travel.state.gov', 'state.gov'],
-  GB: ['gov.uk'],
-  CA: ['canada.ca'],
-  AU: ['passports.gov.au'],
-  PK: ['dgip.gov.pk'],
-  BD: ['epassport.gov.bd'],
-  DE: ['auswaertiges-amt.de', 'bmi.bund.de'],
-  AE: ['icp.gov.ae', 'mofa.gov.ae'],
-  PH: ['passport.gov.ph', 'dfa.gov.ph'],
-  FR: ['ants.gouv.fr', 'service-public.fr', 'impots.gouv.fr'],
-  SA: ['absher.sa', 'mofa.gov.sa'],
-  JP: ['mofa.go.jp'],
-  MX: ['gob.mx', 'sre.gob.mx'],
-  BR: ['gov.br'],
-  ZA: ['dha.gov.za', 'dirco.gov.za'],
-  NG: ['immigration.gov.ng'],
-  IT: ['poliziadistato.it', 'esteri.it'],
-  IE: ['dfa.ie'],
-  KE: ['immigration.go.ke', 'ecitizen.go.ke'],
-  MY: ['imi.gov.my'],
-  NP: ['nepalpassport.gov.np'],
-  NZ: ['passports.govt.nz'],
-  SG: ['ica.gov.sg', 'mfa.gov.sg'],
-  ES: ['mir.es', 'citapreviadnie.es', 'exteriores.gob.es'],
-  LK: ['immigration.gov.lk'],
-  ID: ['imigrasi.go.id']
-};
+const AUTHORITATIVE_OFFICIAL_DOMAINS = Object.freeze({
+  IN: Object.freeze(['passportindia.gov.in']),
+  US: Object.freeze(['travel.state.gov', 'state.gov']),
+  GB: Object.freeze(['gov.uk']),
+  CA: Object.freeze(['canada.ca']),
+  AU: Object.freeze(['passports.gov.au']),
+  PK: Object.freeze(['dgip.gov.pk']),
+  BD: Object.freeze(['epassport.gov.bd']),
+  DE: Object.freeze(['auswaertiges-amt.de', 'bmi.bund.de']),
+  AE: Object.freeze(['icp.gov.ae', 'mofa.gov.ae']),
+  PH: Object.freeze(['passport.gov.ph', 'dfa.gov.ph']),
+  FR: Object.freeze(['ants.gouv.fr', 'service-public.fr', 'impots.gouv.fr']),
+  SA: Object.freeze(['absher.sa', 'mofa.gov.sa']),
+  JP: Object.freeze(['mofa.go.jp']),
+  MX: Object.freeze(['gob.mx', 'sre.gob.mx']),
+  BR: Object.freeze(['gov.br']),
+  ZA: Object.freeze(['dha.gov.za', 'dirco.gov.za']),
+  NG: Object.freeze(['immigration.gov.ng']),
+  IT: Object.freeze(['poliziadistato.it', 'esteri.it']),
+  IE: Object.freeze(['dfa.ie']),
+  KE: Object.freeze(['immigration.go.ke', 'ecitizen.go.ke']),
+  MY: Object.freeze(['imi.gov.my']),
+  NP: Object.freeze(['nepalpassport.gov.np']),
+  NZ: Object.freeze(['passports.govt.nz']),
+  SG: Object.freeze(['ica.gov.sg', 'mfa.gov.sg']),
+  ES: Object.freeze(['mir.es', 'citapreviadnie.es', 'exteriores.gob.es']),
+  LK: Object.freeze(['immigration.gov.lk']),
+  ID: Object.freeze(['imigrasi.go.id'])
+});
+
+// Centralized Approved Homepage Exceptions Registry (Independent of Rule Packs)
+// Each exception must specify country_code, exact approved URL, permitted claims,
+// review provenance, review date, expiry policy, and substantive rationale.
+const APPROVED_HOMEPAGE_EXCEPTIONS = Object.freeze([
+  Object.freeze({
+    country_code: 'AU',
+    url: 'https://www.passports.gov.au/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Primary official Australian Passport Office portal dedicated entry point containing statutory checklists, fees, and appointment guidance.'
+  }),
+  Object.freeze({
+    country_code: 'BD',
+    url: 'https://www.epassport.gov.bd/landing',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official Bangladesh government e-passport landing portal containing statutory requirements and fee payment gateways.'
+  }),
+  Object.freeze({
+    country_code: 'PH',
+    url: 'https://passport.gov.ph/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official Philippine DFA passport appointment and documentary requirements portal.'
+  }),
+  Object.freeze({
+    country_code: 'FR',
+    url: 'https://passeport.ants.gouv.fr/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official French ANTS national biometric passport portal for statutory requirements and fees.'
+  }),
+  Object.freeze({
+    country_code: 'SA',
+    url: 'https://www.absher.sa/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official Saudi Ministry of Interior digital platform for citizen passport applications and statutory fees.'
+  }),
+  Object.freeze({
+    country_code: 'NG',
+    url: 'https://passport.immigration.gov.ng/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official Nigeria Immigration Service portal for passport registration and statutory fee payment.'
+  }),
+  Object.freeze({
+    country_code: 'NP',
+    url: 'https://nepalpassport.gov.np/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official Nepal Department of Passports portal for statutory requirements and tariffs.'
+  }),
+  Object.freeze({
+    country_code: 'NZ',
+    url: 'https://www.passports.govt.nz/',
+    permitted_claims: Object.freeze(['documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official New Zealand Department of Internal Affairs passport portal for requirements and procedures (fees segregated to /passport-costs).'
+  }),
+  Object.freeze({
+    country_code: 'ES',
+    url: 'https://www.dgp.mir.es/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit or immediate review upon official portal restructuring; valid through 2027-10-19',
+    rationale: 'Official Dirección General de la Policía portal for passport issuance fees and appointment procedures.'
+  })
+]);
+
+// Centralized Approved Insecure HTTP Exceptions Registry
+// HTTP links are universally rejected for official evidence unless explicitly approved herein.
+const APPROVED_HTTP_EXCEPTIONS = Object.freeze([
+  Object.freeze({
+    country_code: 'LK',
+    url: 'http://www.immigration.gov.lk/legacy-fee-bulletin',
+    permitted_claims: Object.freeze(['fee']),
+    reviewed_by: 'PassportReady Statutory Compliance Board',
+    review_date: '2026-10-20',
+    expiry_policy: 'Quarterly review pending national portal TLS migration; expires 2027-01-20',
+    rationale: 'Audited statutory gazette mirror maintained on legacy HTTP server for domestic archival fees.'
+  })
+]);
+
+// Centralized Approved Claim Sources Registry
+// Specific officially audited endpoints mapped to their validated statutory claim types.
+const APPROVED_CLAIM_SOURCES = Object.freeze([
+  Object.freeze({
+    country_code: 'GB',
+    url: 'https://www.gov.uk/apply-renew-passport',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'HM Passport Office official service portal for standard UK passport applications, countersignatory rules, and statutory fees.'
+  }),
+  Object.freeze({
+    country_code: 'US',
+    url: 'https://travel.state.gov/content/travel/en/passports/need-passport/apply-in-person.html',
+    permitted_claims: Object.freeze(['documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'U.S. Department of State official guidance for Form DS-11 in-person applications, mandatory citizenship evidence, and execution procedures.'
+  }),
+  Object.freeze({
+    country_code: 'DE',
+    url: 'https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Auswärtiges Amt official portal for German biometric passport issuance, Passgesetz requirements, and consular fee tariffs.'
+  }),
+  Object.freeze({
+    country_code: 'PK',
+    url: 'https://dgip.gov.pk/passport/ordinary-passport.php',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Directorate General of Immigration & Passports official ordinary passport application guidelines, NADRA CNIC requirements, and fee schedules.'
+  }),
+  Object.freeze({
+    country_code: 'ZA',
+    url: 'https://www.dha.gov.za/index.php/civic-services/travel-documents',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Department of Home Affairs official travel documents portal detailing South African passport application procedures, unabridged birth certificates, and fees.'
+  }),
+  Object.freeze({
+    country_code: 'IE',
+    url: 'https://www.dfa.ie/passports/passport-fees/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Department of Foreign Affairs Ireland official passport fees and application guidelines for standard and urgent appointment services.'
+  }),
+  Object.freeze({
+    country_code: 'KE',
+    url: 'https://immigration.go.ke/type-and-fees/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Kenya Directorate of Immigration Services official fee schedule and booklet application requirements across series A, B, and C.'
+  }),
+  Object.freeze({
+    country_code: 'JP',
+    url: 'https://www.mofa.go.jp/mofaj/toko/passport/index.html',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Japanese Ministry of Foreign Affairs official passport portal index detailing post-July 2026 statutory fee schedule and application requirements.'
+  }),
+  Object.freeze({
+    country_code: 'MY',
+    url: 'https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Jabatan Imigresen Malaysia official portal for Malaysian International Passport statutory fee tiers and lodgement procedures.'
+  }),
+  Object.freeze({
+    country_code: 'SG',
+    url: 'https://www.ica.gov.sg/enter-transit-depart/more-information/singapore-citizenship/singapore-passport',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'ICA Singapore official passport application guidance detailing statutory fees, photo rules, and collection procedures.'
+  }),
+  Object.freeze({
+    country_code: 'IT',
+    url: 'https://www.poliziadistato.it/articolo/1087',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Polizia di Stato official article 1087 detailing standard passport issuance requirements, electronic stamp (contrassegno telematico), and postal booklet payment.'
+  }),
+  Object.freeze({
+    country_code: 'MX',
+    url: 'https://www.gob.mx/pasaporte',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Gobierno de México official portal for SRE passport application, documentation, and fee payment instructions.'
+  }),
+  Object.freeze({
+    country_code: 'BR',
+    url: 'https://www.gov.br/pf/pt-br/assuntos/passaporte',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Polícia Federal official portal for Brazilian passport issuance, GRU payment slip, and appointment scheduling.'
+  }),
+  Object.freeze({
+    country_code: 'ES',
+    url: 'https://www.exteriores.gob.es/es/ServiciosAlCiudadano/Paginas/Pasaportes-y-otros-documentos.aspx',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Ministerio de Asuntos Exteriores consular portal for Spanish passport and travel document requirements.'
+  }),
+  Object.freeze({
+    country_code: 'LK',
+    url: 'https://www.immigration.gov.lk/pages_e.php?id=8',
+    permitted_claims: Object.freeze(['fee', 'documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Department of Immigration & Emigration Sri Lanka official passport issuance guidelines, normal and urgent one-day fee schedules.'
+  }),
+  Object.freeze({
+    country_code: 'ID',
+    url: 'https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/',
+    permitted_claims: Object.freeze(['documents', 'eligibility', 'steps']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Direktorat Jenderal Imigrasi official general passport application procedure and required civil registration documents.'
+  }),
+  Object.freeze({
+    country_code: 'ID',
+    url: 'https://www.imigrasi.go.id/id/biaya-paspor/',
+    permitted_claims: Object.freeze(['fee']),
+    reviewed_by: 'PassportReady Senior Research Analyst',
+    review_date: '2026-10-19',
+    expiry_policy: 'Annual audit; expires 2027-10-19',
+    rationale: 'Direktorat Jenderal Imigrasi official statutory passport fee schedule (PP No. 28/2019) including standard and express same-day tariffs.'
+  })
+]);
 
 class PassportRulesEngine {
   static get AUTHORITATIVE_OFFICIAL_DOMAINS() {
-    return AUTHORITATIVE_OFFICIAL_DOMAINS;
+    // Return deeply frozen defensive copy to prevent runtime mutation
+    const copy = {};
+    for (const [k, v] of Object.entries(AUTHORITATIVE_OFFICIAL_DOMAINS)) {
+      copy[k] = Object.freeze([...v]);
+    }
+    return Object.freeze(copy);
+  }
+
+  static get APPROVED_HOMEPAGE_EXCEPTIONS() {
+    return APPROVED_HOMEPAGE_EXCEPTIONS;
+  }
+
+  static get APPROVED_HTTP_EXCEPTIONS() {
+    return APPROVED_HTTP_EXCEPTIONS;
+  }
+
+  static get APPROVED_CLAIM_SOURCES() {
+    return APPROVED_CLAIM_SOURCES;
+  }
+
+  static normalizeClaim(c) {
+    if (typeof c !== 'string') return '';
+    const lower = c.trim().toLowerCase();
+    if (lower === 'all') return ''; // Reject wildcard 'all'
+    const ALLOWED_EXPLICIT_CLAIMS = new Set([
+      'fee', 'fees', 'statutory_fee_schedule',
+      'documents', 'mandatory_citizenship_evidence',
+      'eligibility', 'citizenship_eligibility',
+      'steps', 'application_procedure',
+      'urgent', 'expedited',
+      'consular', 'overseas',
+      'emergency', 'callout',
+      'navigation', 'general'
+    ]);
+    if (!ALLOWED_EXPLICIT_CLAIMS.has(lower)) return '';
+    if (lower === 'fees' || lower === 'statutory_fee_schedule') return 'fee';
+    if (lower === 'mandatory_citizenship_evidence') return 'documents';
+    if (lower === 'citizenship_eligibility') return 'eligibility';
+    if (lower === 'application_procedure') return 'steps';
+    if (lower === 'expedited') return 'urgent';
+    if (lower === 'overseas') return 'consular';
+    if (lower === 'callout') return 'emergency';
+    return lower;
   }
 
   constructor(rulePacks = {}) {
@@ -102,25 +403,70 @@ class PassportRulesEngine {
     });
   }
 
-  static isTrustedOfficialUrl(url, countryCode, pack, sourceObj) {
+  static isTrustedOfficialUrl(url, countryCode, pack, sourceObj, claimType) {
     if (typeof url !== 'string') return false;
     const trimmed = url.trim();
     if (!trimmed.startsWith('https://') && !trimmed.startsWith('http://')) return false;
 
-    // Reject insecure HTTP links as trusted claim evidence by default.
-    // An explicit, documented exception requires allow_insecure_http: true AND non-empty review_rationale.
-    if (trimmed.startsWith('http://')) {
-      const allowsInsecure = !!(
-        sourceObj &&
-        typeof sourceObj === 'object' &&
-        sourceObj.allow_insecure_http === true &&
-        typeof sourceObj.review_rationale === 'string' &&
-        sourceObj.review_rationale.trim().length > 0
-      );
-      if (!allowsInsecure) return false;
+    const cCode = countryCode || pack?.country_code;
+
+    // Reject user credentials in URLs by default (e.g. user:pass@host)
+    const afterScheme = trimmed.replace(/^https?:\/\//i, '');
+    const firstSlash = afterScheme.indexOf('/');
+    const authority = firstSlash >= 0 ? afterScheme.slice(0, firstSlash) : afterScheme;
+    if (authority.includes('@')) {
+      return false;
     }
 
-    const host = PassportRulesEngine.extractHostnameFromUrl(trimmed);
+    // Port validation: Reject non-standard ports by default
+    let hostname = authority;
+    if (typeof URL !== 'undefined') {
+      try {
+        const parsed = new URL(trimmed);
+        if (parsed.username || parsed.password) return false;
+        if (parsed.port) {
+          if (parsed.protocol === 'https:' && parsed.port !== '443') return false;
+          if (parsed.protocol === 'http:' && parsed.port !== '80') return false;
+        }
+        hostname = (parsed.hostname || '').toLowerCase();
+      } catch {
+        return false;
+      }
+    } else {
+      const portSplit = authority.split(':');
+      if (portSplit.length > 1) {
+        const port = portSplit[1];
+        if (trimmed.startsWith('https://') && port !== '443') return false;
+        if (trimmed.startsWith('http://') && port !== '80') return false;
+        hostname = portSplit[0];
+      }
+    }
+
+    // Insecure HTTP handling:
+    // Reject HTTP links universally for official evidence by default.
+    // If an actual legacy official source demonstrably requires HTTP, it MUST be covered
+    // by a centralized approved exception in APPROVED_HTTP_EXCEPTIONS bound to its exact URL,
+    // country, and claim scope. Source-object metadata (allow_insecure_http: true / review_rationale)
+    // CANNOT self-authorize an unapproved HTTP URL.
+    if (trimmed.startsWith('http://')) {
+      const cleanTarget = trimmed.replace(/\/+$/, '').toLowerCase();
+      const normClaim = claimType ? PassportRulesEngine.normalizeClaim(claimType) : null;
+      const approvedHttp = APPROVED_HTTP_EXCEPTIONS.find(entry => {
+        const entryUrl = entry.url.replace(/\/+$/, '').toLowerCase();
+        if (entryUrl !== cleanTarget) return false;
+        if (cCode && entry.country_code && entry.country_code !== cCode) return false;
+        if (normClaim && Array.isArray(entry.permitted_claims) && !entry.permitted_claims.includes(normClaim)) {
+          return false;
+        }
+        return true;
+      });
+
+      if (!approvedHttp) {
+        return false;
+      }
+    }
+
+    const host = hostname || PassportRulesEngine.extractHostnameFromUrl(trimmed);
     return PassportRulesEngine.isTrustedOfficialDomain(host, countryCode, pack);
   }
 
@@ -172,15 +518,15 @@ class PassportRulesEngine {
     return PassportRulesEngine.isTrustedOfficialDomain(hostname, countryCode, pack);
   }
 
-  isTrustedOfficialUrl(url, countryCode, pack, sourceObj) {
-    return PassportRulesEngine.isTrustedOfficialUrl(url, countryCode, pack, sourceObj);
+  isTrustedOfficialUrl(url, countryCode, pack, sourceObj, claimType) {
+    return PassportRulesEngine.isTrustedOfficialUrl(url, countryCode, pack, sourceObj, claimType);
   }
 
   isGenericHomepageUrl(url) {
     return PassportRulesEngine.isGenericHomepageUrl(url);
   }
 
-  isClaimRelevantSource(source, claimType) {
+  static isClaimRelevantSource(source, claimType, countryCode, pack) {
     if (!source || !claimType) return false;
 
     // 1. Extract URL and normalize
@@ -188,120 +534,145 @@ class PassportRulesEngine {
       ? source
       : (source.url || source.official_source_url || source.source_url || '');
     const cleanUrl = typeof rawUrl === 'string' ? rawUrl.trim() : '';
+    if (!cleanUrl) return false;
 
-    // 2. Check generic homepage status
-    const isGenHome = this.isGenericHomepageUrl(cleanUrl);
-
-    // 3. Documented, manually reviewed homepage claim exception
-    const hasHomepageException = !!(
-      typeof source === 'object' &&
-      source !== null &&
-      source.homepage_claim_exception === true &&
-      typeof source.exception_rationale === 'string' &&
-      source.exception_rationale.trim().length > 0
-    );
-
-    // If it is a generic homepage without documented reviewed exception:
-    // It can ONLY serve navigation or general reference.
-    // It CANNOT substantiate specific fee, document, eligibility, steps, urgent, consular, or emergency claims.
-    if (isGenHome && !hasHomepageException) {
-      return claimType === 'navigation' || claimType === 'general';
+    const cCode = countryCode || pack?.country_code || (typeof source === 'object' ? (source.country_code || source.countryCode) : null);
+    if (cCode && !PassportRulesEngine.isTrustedOfficialUrl(cleanUrl, cCode, pack, source, claimType)) {
+      return false;
     }
 
-    // 4. Validate explicit claim metadata against allowed schema.
-    // Wildcard 'all' is strictly forbidden and rejected as a trust bypass.
-    const ALLOWED_EXPLICIT_CLAIMS = new Set([
-      'fee', 'fees', 'statutory_fee_schedule',
-      'documents', 'mandatory_citizenship_evidence',
-      'eligibility', 'citizenship_eligibility',
-      'steps', 'application_procedure',
-      'urgent', 'expedited',
-      'consular', 'overseas',
-      'emergency', 'callout',
-      'navigation', 'general'
-    ]);
+    // 2. Normalize target claim
+    const targetClaim = PassportRulesEngine.normalizeClaim(claimType) || claimType;
+    if (targetClaim === 'navigation' || targetClaim === 'general') {
+      return true;
+    }
 
-    const normalizeClaim = (c) => {
-      if (typeof c !== 'string') return '';
-      const lower = c.trim().toLowerCase();
-      if (lower === 'all') return ''; // Reject wildcard 'all'
-      if (!ALLOWED_EXPLICIT_CLAIMS.has(lower)) return '';
-      if (lower === 'fees' || lower === 'statutory_fee_schedule') return 'fee';
-      if (lower === 'mandatory_citizenship_evidence') return 'documents';
-      if (lower === 'citizenship_eligibility') return 'eligibility';
-      if (lower === 'application_procedure') return 'steps';
-      if (lower === 'expedited') return 'urgent';
-      if (lower === 'overseas') return 'consular';
-      if (lower === 'callout') return 'emergency';
-      return lower;
-    };
+    // 3. Extract path and title for content analysis
+    const pathPart = cleanUrl.replace(/^https?:\/\/[^\/]+/i, '');
+    const titlePart = typeof source === 'object' && source !== null
+      ? ((source.page_title || '') + ' ' + (source.publisher || '') + ' ' + (source.title || ''))
+      : '';
+    const lowerPath = pathPart.toLowerCase();
+    const lowerTitle = titlePart.toLowerCase();
+    const fullText = (lowerPath + ' ' + lowerTitle).trim();
 
-    const targetClaim = normalizeClaim(claimType) || claimType;
+    // 4. Negative Filter: Reject official but unrelated auxiliary/administrative endpoints
+    const UNRELATED_ADMIN_PATTERNS = [
+      '/privacy', 'privacypolicy', '/terms', 'terms-of-use', 'terms-and-conditions',
+      'disclaimer', '/sitemap', 'accessibility', '/feedback', 'contact-us', 'contact_us',
+      'organization-chart', 'carta-organisasi', 'organisasi'
+    ];
+    const UNRELATED_SERVICE_PATTERNS = [
+      'driving-licence', 'driving-license', 'licencia-conducir', 'traffic-penalties',
+      'highway-code', 'motor-vehicle', 'weather', 'tourism', 'business-registration',
+      'company-registration', 'tenders', 'procurement', 'career', 'jobs', 'press-release',
+      'travel-warnings', 'travel-advisories'
+    ];
+    const isVisaOnly = lowerPath.includes('visa') && !['pass', 'passport', 'paspor', 'pasaporte', 'passaporto', 'reisepass'].some(k => fullText.includes(k));
 
+    const isUnrelated = UNRELATED_ADMIN_PATTERNS.some(p => lowerPath.includes(p) || lowerTitle.includes(p)) ||
+                        UNRELATED_SERVICE_PATTERNS.some(p => lowerPath.includes(p) || lowerTitle.includes(p)) ||
+                        isVisaOnly;
+
+    if (isUnrelated) {
+      return false;
+    }
+
+    // 5. Generic Homepage Handling:
+    // A generic homepage can ONLY substantiate specific statutory claims if it is
+    // explicitly registered in the centralized APPROVED_HOMEPAGE_EXCEPTIONS registry.
+    // Source-object metadata (homepage_claim_exception: true / exception_rationale)
+    // CANNOT self-authorize an unreviewed homepage.
+    const isGenHome = PassportRulesEngine.isGenericHomepageUrl(cleanUrl);
+    const cleanUrlNorm = cleanUrl.replace(/\/+$/, '').toLowerCase();
+
+    if (isGenHome) {
+      const approvedHome = APPROVED_HOMEPAGE_EXCEPTIONS.find(entry => {
+        const entryUrlNorm = entry.url.replace(/\/+$/, '').toLowerCase();
+        if (entryUrlNorm !== cleanUrlNorm) return false;
+        if (cCode && entry.country_code && entry.country_code !== cCode) return false;
+        return true;
+      });
+
+      if (approvedHome) {
+        return Array.isArray(approvedHome.permitted_claims) && approvedHome.permitted_claims.includes(targetClaim);
+      }
+      return false;
+    }
+
+    // 6. Centralized Approved Claim Sources:
+    // Formally audited endpoints substantiate their approved claim scope.
+    const approvedClaim = APPROVED_CLAIM_SOURCES.find(entry => {
+      const entryUrlNorm = entry.url.replace(/\/+$/, '').toLowerCase();
+      if (entryUrlNorm !== cleanUrlNorm) return false;
+      if (cCode && entry.country_code && entry.country_code !== cCode) return false;
+      return true;
+    });
+    if (approvedClaim) {
+      return Array.isArray(approvedClaim.permitted_claims) && approvedClaim.permitted_claims.includes(targetClaim);
+    }
+
+    // 7. Explicit Source Metadata Verification:
+    // Pack-declared metadata can narrow scope, but cannot fabricate relevance on an uncorroborated endpoint.
     if (typeof source === 'object' && source !== null) {
       if (source.is_generic_homepage === true || source.claim_scope === 'portal_navigation' || source.claim_scope === 'navigation') {
-        return targetClaim === 'navigation' || targetClaim === 'general';
+        return false;
       }
 
-      // Explicit claims array
       if (Array.isArray(source.claims)) {
-        const normalizedClaims = source.claims.map(normalizeClaim).filter(Boolean);
-        if (normalizedClaims.length > 0) {
-          return normalizedClaims.includes(targetClaim);
+        const normClaims = source.claims.map(PassportRulesEngine.normalizeClaim).filter(Boolean);
+        if (normClaims.length > 0 && !normClaims.includes(targetClaim)) {
+          return false;
         }
-        if (source.claims.length > 0) return false;
+        if (source.claims.length > 0 && normClaims.length === 0) return false;
       }
 
-      // Explicit claim_scope string
       if (typeof source.claim_scope === 'string') {
-        const normalizedScope = normalizeClaim(source.claim_scope);
-        if (normalizedScope) {
-          return normalizedScope === targetClaim;
+        const normScope = PassportRulesEngine.normalizeClaim(source.claim_scope);
+        if (normScope && normScope !== targetClaim) {
+          return false;
         }
         if (source.claim_scope.trim().toLowerCase() === 'all') return false;
       }
     }
 
-    // 5. Keyword analysis on non-homepage URL path, page title, and publisher
-    // Note: Do NOT infer relevance from data record fields like amount, applicant_category, document_name!
-    const pathPart = cleanUrl ? cleanUrl.replace(/^https?:\/\/[^\/]+/i, '') : '';
-    const titlePart = typeof source === 'object' && source !== null
-      ? ((source.page_title || '') + ' ' + (source.publisher || '') + ' ' + (source.title || ''))
-      : '';
-    const text = (pathPart + ' ' + titlePart).toLowerCase();
-
+    // 8. Corroborating Keyword Relevance in Non-Homepage Path or Title:
     switch (targetClaim) {
       case 'fee': {
-        const feeKeywords = ['fee', 'cost', 'charge', 'surcharge', 'tariff', 'price', 'biaya', 'droit', 'tasa', 'lfd', 'tatkaal', 'expedit', 'callout', 'penalt', 'fine', 'biometrischer-reisepass', 'reisepass', 'passaporte', 'passaporto', 'absher', 'travel-documents', 'pass-und-personalausweis', 'apply-renew', 'canadian-passports', 'ordinary-passport', 'epassport', 'issue-passport', 'tarif', 'frais', 'kos', 'type-and-fees', 'feeschedule', 'passport-costs', 'biaya-paspor'];
-        return feeKeywords.some(kw => text.includes(kw));
+        const feeKeywords = ['fee', 'cost', 'charge', 'surcharge', 'tariff', 'price', 'biaya', 'droit', 'tasa', 'lfd', 'tatkaal', 'expedit', 'callout', 'penalt', 'fine', 'biometrischer-reisepass', 'reisepass', 'passaporte', 'passaporto', 'absher', 'travel-documents', 'pass-und-personalausweis', 'apply-renew', 'canadian-passports', 'ordinary-passport', 'epassport', 'issue-passport', 'tarif', 'frais', 'kos', 'type-and-fees', 'feeschedule', 'passport-costs', 'biaya-paspor', 'singapore-passport'];
+        return feeKeywords.some(kw => fullText.includes(kw));
       }
       case 'documents': {
         const docKeywords = ['document', 'requirement', 'checklist', 'syarat', 'permohonan', 'need-passport', 'how-to', 'apply', 'vosdroits', 'birth', 'citizenship', 'adult', 'child', 'minor', 'renew', 'reissue', 'dokumen', 'unterlagen', 'pieces', 'documentadvisor', 'supporting-documents', 'acta', 'dni', 'aadhaar', 'certificat'];
-        return docKeywords.some(kw => text.includes(kw));
+        return docKeywords.some(kw => fullText.includes(kw));
       }
       case 'eligibility': {
         const eligKeywords = ['eligib', 'who-can-apply', 'who-is-eligible', 'qualif', 'citizen', 'national', 'warganegara', 'syarat', 'kriteria', 'conditions', 'requisitos', 'nationalite', 'staatsangehorig', 'criteria', 'norms', 'citizenshipnorms'];
-        return eligKeywords.some(kw => text.includes(kw));
+        return eligKeywords.some(kw => fullText.includes(kw));
       }
       case 'steps': {
         const stepKeywords = ['step', 'how-to', 'process', 'procedure', 'tata-cara', 'cara', 'apply', 'aliran', 'panduan', 'etapes', 'demarches', 'ablauf', 'paso', 'solicitud', 'appointment', 'lodg', 'submission', 'procformsubmit', 'online-application', 'how-apply'];
-        return stepKeywords.some(kw => text.includes(kw));
+        return stepKeywords.some(kw => fullText.includes(kw));
       }
       case 'urgent': {
         const urgentKeywords = ['urgent', 'tatkaal', 'expedit', 'express', 'fast-track', 'fast_track', 'one-day', 'one_day', 'same-day', 'same_day', 'get-fast'];
-        return urgentKeywords.some(kw => text.includes(kw));
+        return urgentKeywords.some(kw => fullText.includes(kw));
       }
       case 'consular': {
         const consularKeywords = ['consul', 'embassy', 'diplomatic', 'overseas', 'diaspora', 'high commission', 'abroad', 'seccion-consular', 'consular-menu'];
-        return consularKeywords.some(kw => text.includes(kw));
+        return consularKeywords.some(kw => fullText.includes(kw));
       }
       case 'emergency': {
         const emergKeywords = ['emergency', 'emergencia', 'callout', 'call-out', 'after-hours', 'after_hours', 'art. 20', 'artículo 20', 'lfd', 'tipo e', 'salvoconducto'];
-        return emergKeywords.some(kw => text.includes(kw));
+        return emergKeywords.some(kw => fullText.includes(kw));
       }
       default:
-        return !isGenHome;
+        return false;
     }
+  }
+
+  isClaimRelevantSource(source, claimType, countryCode, pack) {
+    return PassportRulesEngine.isClaimRelevantSource(source, claimType, countryCode, pack);
   }
 
   isValidSourceUrl(url) {
@@ -342,8 +713,9 @@ class PassportRulesEngine {
     const checkAndAdd = (s) => {
       const url = this.extractUrlFromSource(s);
       if (!url) return;
-      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack, s)) return;
-      if (claimType && !this.isClaimRelevantSource(s, claimType)) return;
+      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack, s, claimType)) return;
+      if (claimType && !this.isClaimRelevantSource(s, claimType, cCode, pack)) return;
+      if (!claimType && !this.isClaimRelevantSource(s, 'general', cCode, pack)) return;
       list.push(url);
     };
 
@@ -379,9 +751,14 @@ class PassportRulesEngine {
     const checkAndAdd = (s, extraText = '') => {
       const url = this.extractUrlFromSource(s);
       if (!url) return;
-      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack)) return;
+      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack, s, 'urgent')) return;
       const title = typeof s === 'object' ? (s.page_title || s.publisher || s.title || '') : '';
-      if (matchesUrgent(url) || matchesUrgent(title) || matchesUrgent(extraText)) {
+      const hasRelevance = this.isClaimRelevantSource(s, 'urgent', cCode, pack) ||
+        matchesUrgent(url) || matchesUrgent(title) || matchesUrgent(extraText);
+      if (hasRelevance && !this.isClaimRelevantSource(s, 'general', cCode, pack)) {
+        return;
+      }
+      if (hasRelevance) {
         list.push(url);
       }
     };
@@ -432,9 +809,14 @@ class PassportRulesEngine {
     const checkAndAdd = (s, extraText = '') => {
       const url = this.extractUrlFromSource(s);
       if (!url) return;
-      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack)) return;
+      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack, s, 'consular')) return;
       const title = typeof s === 'object' ? (s.page_title || s.publisher || s.title || '') : '';
-      if (matchesConsular(url) || matchesConsular(title) || matchesConsular(extraText)) {
+      const hasRelevance = this.isClaimRelevantSource(s, 'consular', cCode, pack) ||
+        matchesConsular(url) || matchesConsular(title) || matchesConsular(extraText);
+      if (hasRelevance && !this.isClaimRelevantSource(s, 'general', cCode, pack)) {
+        return;
+      }
+      if (hasRelevance) {
         list.push(url);
       }
     };
@@ -492,9 +874,14 @@ class PassportRulesEngine {
     const checkAndAdd = (s, extraText = '') => {
       const url = this.extractUrlFromSource(s);
       if (!url) return;
-      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack)) return;
+      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack, s, 'emergency')) return;
       const title = typeof s === 'object' ? (s.page_title || s.publisher || s.title || '') : '';
-      if (matchesEmerg(url) || matchesEmerg(title) || matchesEmerg(extraText)) {
+      const hasRelevance = this.isClaimRelevantSource(s, 'emergency', cCode, pack) ||
+        matchesEmerg(url) || matchesEmerg(title) || matchesEmerg(extraText);
+      if (hasRelevance && !this.isClaimRelevantSource(s, 'general', cCode, pack)) {
+        return;
+      }
+      if (hasRelevance) {
         list.push(url);
       }
     };
@@ -857,7 +1244,7 @@ class PassportRulesEngine {
 
       case 'renewal_reissue': {
         const serviceObj = pack.services && pack.services.renewal_reissue;
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectServiceSources(pack, serviceObj, countryCode);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
@@ -927,7 +1314,7 @@ class PassportRulesEngine {
 
       case 'lost_stolen': {
         const serviceObj = pack.services && pack.services.lost_stolen;
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectServiceSources(pack, serviceObj, countryCode);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
@@ -1007,7 +1394,7 @@ class PassportRulesEngine {
       case 'damaged': {
         const serviceObj = pack.services && (pack.services.damaged || pack.services.lost_stolen || pack.services.first_passport);
         const feesObj = serviceObj?.fees || pack.services?.first_passport?.fees || {};
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectServiceSources(pack, serviceObj, countryCode);
         const hasCodifiedPenalty = !!(
           sources.length > 0 &&
           (
@@ -1055,7 +1442,7 @@ class PassportRulesEngine {
 
       case 'name_correction': {
         const serviceObj = pack.services && pack.services.name_correction;
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectServiceSources(pack, serviceObj, countryCode);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
@@ -1124,7 +1511,7 @@ class PassportRulesEngine {
 
       case 'minor_child': {
         const serviceObj = pack.services && pack.services.minor_child;
-        const sources = this.collectServiceSources(pack, serviceObj);
+        const sources = this.collectServiceSources(pack, serviceObj, countryCode);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&

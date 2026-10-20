@@ -26,13 +26,13 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_17"/g) || []);
-  console.log('Scripts with ?v=20261019_17:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_17');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261020_01"/g) || []);
+  console.log('Scripts with ?v=20261020_01:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261020_01');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_17"/g) || []);
-  console.log('CSS with ?v=20261019_17:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_17');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261020_01"/g) || []);
+  console.log('CSS with ?v=20261020_01:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261020_01');
 
   // Service coverage card check
   assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
@@ -54,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_17');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261020_01');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -72,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_17');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261020_01');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -224,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_17');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261020_01');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -359,7 +359,7 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_17');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261020_01');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
 
@@ -1401,7 +1401,95 @@ async function verifyLive() {
   assert.strictEqual(liveIdMinorP439.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required');
   assert(liveIdMinorP439.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'));
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5, PHASE 4.3.6, PHASE 4.3.7, PHASE 4.3.8 & PHASE 4.3.9 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 13. Phase 4.3.10 Live VM Exception Authorization Hardening & Final Evidence Integrity Audit ---');
+  // 13.1 Live Fixture 1: Fake homepage exception rejection
+  console.log('[13.1 Live Fixture 1: Fake homepage_claim_exception Rejection]');
+  const liveFakeHome = {
+    url: 'https://passportindia.gov.in/',
+    homepage_claim_exception: true,
+    exception_rationale: 'Self-declared primary portal'
+  };
+  ['fee', 'documents', 'eligibility', 'steps', 'urgent', 'consular', 'emergency'].forEach(c => {
+    assert.strictEqual(liveEngine.isClaimRelevantSource(liveFakeHome, c, 'IN'), false, `Live engine: Fake homepage exception must reject claim '${c}'`);
+  });
+
+  // 13.2 Live Fixture 2: Approved central exception wrong claim rejection
+  console.log('[13.2 Live Fixture 2: Approved Central Exception Wrong Claim Rejection]');
+  const liveNzHome = { url: 'https://www.passports.govt.nz/' };
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveNzHome, 'fee', 'NZ'), false, 'Live engine: NZ approved homepage must reject fee claim');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveNzHome, 'urgent', 'NZ'), false, 'Live engine: NZ approved homepage must reject urgent claim');
+
+  // 13.3 Live Fixture 3: Approved central exception exact scope acceptance
+  console.log('[13.3 Live Fixture 3: Approved Central Exception Exact Scope Acceptance]');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveNzHome, 'documents', 'NZ'), true, 'Live engine: NZ approved homepage must accept documents');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveNzHome, 'eligibility', 'NZ'), true, 'Live engine: NZ approved homepage must accept eligibility');
+  const liveAuHome = { url: 'https://www.passports.gov.au/' };
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveAuHome, 'fee', 'AU'), true, 'Live engine: AU approved homepage must accept fee');
+
+  // 13.4 Live Fixture 4: Insecure HTTP metadata rejection & URL credentials / port rejection
+  console.log('[13.4 Live Fixture 4: Insecure HTTP Metadata & Port / Credentials Rejection]');
+  const liveFakeHttp = {
+    url: 'http://passportindia.gov.in/feeSchedule',
+    allow_insecure_http: true,
+    review_rationale: 'Self-declared legacy HTTP gateway'
+  };
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl(liveFakeHttp.url, 'IN', null, liveFakeHttp), false, 'Live engine: Fake HTTP must be rejected');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveFakeHttp, 'fee', 'IN'), false, 'Live engine: Fake HTTP must not substantiate fee claim');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('https://admin:pass@travel.state.gov/passports', 'US'), false, 'Live engine: URL credentials rejected');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('https://travel.state.gov:8443/passports', 'US'), false, 'Live engine: Non-standard port 8443 rejected');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('https://travel.state.gov:443/passports', 'US'), true, 'Live engine: Standard port 443 accepted');
+
+  // 13.5 Live Fixture 5: Centrally approved HTTP exception acceptance
+  console.log('[13.5 Live Fixture 5: Centrally Approved HTTP Exception]');
+  const liveApprovedHttp = 'http://www.immigration.gov.lk/legacy-fee-bulletin';
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl(liveApprovedHttp, 'LK', null, null, 'fee'), true, 'Live engine: Approved LK HTTP accepted for fee');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl(liveApprovedHttp, 'LK', null, null, 'documents'), false, 'Live engine: Approved LK HTTP rejected for documents');
+
+  // 13.6 Live Fixture 6: Unapproved HTTPS hostname in pack.trusted_domains
+  console.log('[13.6 Live Fixture 6: Unapproved Domain in pack.trusted_domains Rejection]');
+  const livePackAttackerP4310 = { country_code: 'IN', trusted_domains: ['malicious-portal.org', 'passportindia.gov.in'] };
+  assert(!PassportRulesEngine.getTrustedOfficialDomains('IN', livePackAttackerP4310).includes('malicious-portal.org'));
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('malicious-portal.org', 'IN', livePackAttackerP4310), false);
+
+  // 13.7 Live Fixture 7: Authoritative domain registry immutability
+  console.log('[13.7 Live Fixture 7: Authoritative Domain Registry Immutability]');
+  const initialLiveIn = [...PassportRulesEngine.getTrustedOfficialDomains('IN')];
+  try { PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.IN.push('hacked.example'); } catch (e) {}
+  try { PassportRulesEngine.AUTHORITATIVE_OFFICIAL_DOMAINS.HACK = ['hacked.example']; } catch (e) {}
+  assert.deepStrictEqual(PassportRulesEngine.getTrustedOfficialDomains('IN'), initialLiveIn, 'Live engine: AUTHORITATIVE_OFFICIAL_DOMAINS immutable');
+
+  // 13.8 Live Fixture 8: Official but unrelated endpoint rejection
+  console.log('[13.8 Live Fixture 8: Official but Unrelated Endpoint Rejection]');
+  const liveUnrelated = {
+    url: 'https://travel.state.gov/content/travel/en/legal/travel-warnings.html',
+    claims: ['fee', 'documents', 'eligibility', 'urgent', 'consular', 'emergency'],
+    claim_scope: 'fee',
+    page_title: 'Travel Advisories'
+  };
+  ['fee', 'documents', 'eligibility', 'urgent', 'consular', 'emergency'].forEach(c => {
+    assert.strictEqual(liveEngine.isClaimRelevantSource(liveUnrelated, c, 'US'), false, `Live engine: Unrelated endpoint must reject '${c}'`);
+  });
+
+  // 13.9 Live Fixture 9: Preservation of verified statutory regressions
+  console.log('[13.9 Live Fixture 9: Preservation of Verified Statutory Regressions]');
+  const liveInTatkaalP4310 = liveEngine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(liveInTatkaalP4310.serviceCoverage.dimensions.urgency.status, 'partial');
+  const liveUsExpediteP4310 = liveEngine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(liveUsExpediteP4310.serviceCoverage.dimensions.urgency.status, 'partial');
+  const liveMxEmergP4310 = liveEngine.evaluate({ countryCode: 'MX', location: 'abroad', service: 'emergency_travel', urgency: 'emergency' });
+  assert.strictEqual(liveMxEmergP4310.serviceCoverage.dimensions.urgency.status, 'partial');
+  const liveNzCalloutP4310 = liveEngine.evaluate({ countryCode: 'NZ', location: 'inside', service: 'first_passport', urgency: 'emergency' });
+  assert.strictEqual(liveNzCalloutP4310.serviceCoverage.dimensions.urgency.status, 'partial');
+
+  // 13.10 Live Fixture 10: Directory counts preservation
+  console.log('[13.10 Live Fixture 10: Strict Directory Counts Preservation]');
+  assert.strictEqual(cd.length, 249, 'Total directory count must be 249');
+  assert.strictEqual(cdVerified, 27, 'Verified directory count must be 27');
+  assert.strictEqual(cdLinked, 0, 'Linked directory count must be 0');
+  assert.strictEqual(cdResearch, 222, 'Research directory count must be 222');
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5, PHASE 4.3.6, PHASE 4.3.7, PHASE 4.3.8, PHASE 4.3.9 & PHASE 4.3.10 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+
 }
 
 verifyLive().catch(err => {
