@@ -780,11 +780,13 @@ async function verifyLive() {
     country_name: 'India',
     rule_pack_status: 'verified',
     authority_name: 'Passport Seva',
+    official_portal_url: 'https://passportindia.gov.in',
     sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA' }],
     jurisdictions: [{ application_channel: 'domestic' }],
     services: {
       first_passport: {
         availability_status: 'available',
+        sources: [{ url: 'https://passportindia.gov.in/fees', publisher: 'MEA' }],
         fees: { currency: 'INR', standard: 1500 },
         documents: [{ document_name: 'Aadhaar' }],
         eligibility: [{ rule: 'Citizen' }]
@@ -1115,11 +1117,11 @@ async function verifyLive() {
 
   // 11.1 Fixture A: Domain Look-alike Rejection & Unapproved Domain Blocking
   console.log('[11.1 Live Fixture A: Domain Look-alike and Subdomain Integrity]');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('passportindia.gov.in.evil.com', 'IN'), false, 'Live engine must reject domain suffix look-alike');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('fakepassportindia.gov.in', 'IN'), false, 'Live engine must reject domain prefix look-alike');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('tatkaalpassports.com', 'IN'), false, 'Live engine must reject unapproved third-party commercial domain');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('passportindia.gov.in', 'IN'), true, 'Live engine must accept canonical official domain');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('portal2.passportindia.gov.in', 'IN'), true, 'Live engine must accept genuine official subdomain');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('passportindia.gov.in.evil.com', 'IN'), false, 'Live engine must reject domain suffix look-alike');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('fakepassportindia.gov.in', 'IN'), false, 'Live engine must reject domain prefix look-alike');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('tatkaalpassports.com', 'IN'), false, 'Live engine must reject unapproved third-party commercial domain');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('passportindia.gov.in', 'IN'), true, 'Live engine must accept canonical official domain');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('portal2.passportindia.gov.in', 'IN'), true, 'Live engine must accept genuine official subdomain');
 
   // Pack with look-alike domain source URL must be rejected to general_guidance with no_trusted_source
   const liveEvilPack = {
@@ -1150,10 +1152,10 @@ async function verifyLive() {
 
   // 11.2 Fixture B: Generic Authority Homepage Non-Substantiation for Specific Fee Claims
   console.log('[11.2 Live Fixture B: Generic Homepage Claim Separation]');
-  assert.strictEqual(PassportRulesEngine.isGenericHomepageUrl('https://passportindia.gov.in/'), true);
-  assert.strictEqual(PassportRulesEngine.isGenericHomepageUrl('https://passportindia.gov.in/index.html'), true);
-  assert.strictEqual(PassportRulesEngine.isGenericHomepageUrl('https://passportindia.gov.in/landing'), true);
-  assert.strictEqual(PassportRulesEngine.isGenericHomepageUrl('https://passportindia.gov.in/AppOnlineProject/online/feeSchedule'), false);
+  assert.strictEqual(liveEngine.isGenericHomepageUrl('https://passportindia.gov.in/'), true);
+  assert.strictEqual(liveEngine.isGenericHomepageUrl('https://passportindia.gov.in/index.html'), true);
+  assert.strictEqual(liveEngine.isGenericHomepageUrl('https://passportindia.gov.in/landing'), true);
+  assert.strictEqual(liveEngine.isGenericHomepageUrl('https://passportindia.gov.in/AppOnlineProject/online/feeSchedule'), false);
 
   const liveHomepagePack = {
     country_code: 'IN',
@@ -1177,21 +1179,21 @@ async function verifyLive() {
   });
   assert.strictEqual(liveHomepageRes.serviceCoverage.dimensions.service.status, 'partial', 'Live engine: Generic homepage without fee schedule must yield partial status');
   assert(!liveHomepageRes.serviceCoverage.dimensions.service.evidence.verifiedFields.includes('fees'), 'Live engine: verifiedFields must NOT include fees when backed only by homepage');
-  assert.strictEqual(liveHomepageRes.serviceCoverage.dimensions.service.evidence.evidenceLevel, 'valid_syntax_incomplete_claim');
+  assert.strictEqual(liveHomepageRes.serviceCoverage.dimensions.service.evidence.evidenceLevel, 'partial_confirmation');
   assert(liveHomepageRes.readinessScore <= 80, 'Live engine: Score must be capped <= 80%');
 
   // 11.3 Fixture C: Legitimate Non-.gov Official Country Roots Preserved
   console.log('[11.3 Live Fixture C: Non-.gov Authoritative Official Roots]');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('dfa.ie', 'IE'), true, 'Live engine: dfa.ie must be trusted for IE');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('passports.gov.au', 'AU'), true, 'Live engine: passports.gov.au must be trusted for AU');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('passports.govt.nz', 'NZ'), true, 'Live engine: passports.govt.nz must be trusted for NZ');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('canada.ca', 'CA'), true, 'Live engine: canada.ca must be trusted for CA');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('bmi.bund.de', 'DE'), true, 'Live engine: bmi.bund.de must be trusted for DE');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('sre.gob.mx', 'MX'), true, 'Live engine: sre.gob.mx must be trusted for MX');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('gob.mx', 'MX'), true, 'Live engine: gob.mx must be trusted for MX');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('kemenkumham.go.id', 'ID'), true, 'Live engine: kemenkumham.go.id must be trusted for ID');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('imi.gov.my', 'MY'), true, 'Live engine: imi.gov.my must be trusted for MY');
-  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('immigration.gov.lk', 'LK'), true, 'Live engine: immigration.gov.lk must be trusted for LK');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('dfa.ie', 'IE'), true, 'Live engine: dfa.ie must be trusted for IE');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('passports.gov.au', 'AU'), true, 'Live engine: passports.gov.au must be trusted for AU');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('passports.govt.nz', 'NZ'), true, 'Live engine: passports.govt.nz must be trusted for NZ');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('canada.ca', 'CA'), true, 'Live engine: canada.ca must be trusted for CA');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('bmi.bund.de', 'DE'), true, 'Live engine: bmi.bund.de must be trusted for DE');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('sre.gob.mx', 'MX'), true, 'Live engine: sre.gob.mx must be trusted for MX');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('gob.mx', 'MX'), true, 'Live engine: gob.mx must be trusted for MX');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('imigrasi.go.id', 'ID'), true, 'Live engine: imigrasi.go.id must be trusted for ID');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('imi.gov.my', 'MY'), true, 'Live engine: imi.gov.my must be trusted for MY');
+  assert.strictEqual(liveEngine.isTrustedOfficialDomain('immigration.gov.lk', 'LK'), true, 'Live engine: immigration.gov.lk must be trusted for LK');
 
   // 11.4 Fixture D: Strict Fee Schema Validation
   console.log('[11.4 Live Fixture D: Strict Fee Schema Validation]');
@@ -1280,7 +1282,7 @@ async function verifyLive() {
     assert(Array.isArray(pack.sources) && pack.sources.length > 0, `Live pack ${cc} must have sources array`);
     const hasAuthoritativeSource = pack.sources.some(s => {
       const url = typeof s === 'string' ? s : s.url;
-      return url && PassportRulesEngine.isTrustedOfficialUrl(url, cc, pack);
+      return url && liveEngine.isTrustedOfficialUrl(url, cc, pack);
     });
     assert(hasAuthoritativeSource, `Live pack ${cc} must contain at least one trusted official source URL`);
   });
