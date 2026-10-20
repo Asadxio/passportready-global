@@ -256,10 +256,25 @@ window.RULE_PACKS = {
         ],
         "sources": [
           {
-            "url": "https://www.passportindia.gov.in/",
-            "publisher": "Ministry of External Affairs, India",
-            "page_title": "Reissue Rules",
-            "checked_at": "2026-10-18"
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Passport Fee Structure and Payment Guidelines",
+            "claim_scope": "statutory_fee_schedule",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Document Advisor for Fresh / Reissue Passport - Mandatory Proof Checklist",
+            "claim_scope": "mandatory_citizenship_evidence",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Procedure for Submission of Online Application and Biometric Appointment",
+            "claim_scope": "application_procedure",
+            "checked_at": "2026-10-20"
           }
         ]
       },
@@ -315,10 +330,25 @@ window.RULE_PACKS = {
         },
         "sources": [
           {
-            "url": "https://www.passportindia.gov.in/",
-            "publisher": "Ministry of External Affairs, India",
-            "page_title": "Lost Passport Replacement",
-            "checked_at": "2026-10-18"
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Passport Fee Structure and Payment Guidelines",
+            "claim_scope": "statutory_fee_schedule",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Document Advisor for Fresh / Reissue Passport - Mandatory Proof Checklist",
+            "claim_scope": "mandatory_citizenship_evidence",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Procedure for Submission of Online Application and Biometric Appointment",
+            "claim_scope": "application_procedure",
+            "checked_at": "2026-10-20"
           }
         ]
       },
@@ -373,10 +403,18 @@ window.RULE_PACKS = {
         ],
         "sources": [
           {
-            "url": "https://www.passportindia.gov.in/",
-            "publisher": "Ministry of External Affairs, India",
-            "page_title": "Name Change Procedures",
-            "checked_at": "2026-10-18"
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Document Advisor for Fresh / Reissue Passport - Mandatory Proof Checklist",
+            "claim_scope": "mandatory_citizenship_evidence",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Procedure for Submission of Online Application and Biometric Appointment",
+            "claim_scope": "application_procedure",
+            "checked_at": "2026-10-20"
           }
         ]
       }
@@ -622,6 +660,13 @@ window.RULE_PACKS = {
         },
         "sources": [
           {
+            "url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+            "publisher": "U.S. Department of State · Bureau of Consular Affairs",
+            "page_title": "Passport Fees",
+            "claim_scope": "statutory_fee_schedule",
+            "checked_at": "2026-10-20"
+          },
+          {
             "url": "https://travel.state.gov/en/passports/have-passport/renew.html",
             "publisher": "U.S. Department of State",
             "page_title": "Renew by Mail",
@@ -681,10 +726,18 @@ window.RULE_PACKS = {
         ],
         "sources": [
           {
-            "url": "https://travel.state.gov/en/passports/need-passport/under-16.html",
-            "publisher": "U.S. Department of State",
+            "url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+            "publisher": "U.S. Department of State · Bureau of Consular Affairs",
+            "page_title": "Passport Fees",
+            "claim_scope": "statutory_fee_schedule",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://travel.state.gov/content/travel/en/passports/need-passport/under-16.html",
+            "publisher": "U.S. Department of State · Bureau of Consular Affairs",
             "page_title": "Children Under 16",
-            "checked_at": "2026-10-18"
+            "claim_scope": "mandatory_citizenship_evidence",
+            "checked_at": "2026-10-20"
           }
         ]
       }
@@ -9195,7 +9248,8 @@ window.RULE_PACKS = {
       "imigrasi.go.id"
     ]
   }
-};
+}
+;
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { RULE_PACKS: window.RULE_PACKS };

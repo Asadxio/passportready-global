@@ -372,8 +372,11 @@ class PassportRulesEngine {
   }
 
   static getTrustedOfficialDomains(countryCode, pack) {
-    const cCode = countryCode || pack?.country_code;
-    const authoritative = (cCode && AUTHORITATIVE_OFFICIAL_DOMAINS[cCode]) ? AUTHORITATIVE_OFFICIAL_DOMAINS[cCode] : [];
+    const rawCode = countryCode || pack?.country_code;
+    const cCode = typeof rawCode === 'string' ? rawCode.trim().toUpperCase() : null;
+    const authoritative = (cCode && Object.prototype.hasOwnProperty.call(AUTHORITATIVE_OFFICIAL_DOMAINS, cCode) && Array.isArray(AUTHORITATIVE_OFFICIAL_DOMAINS[cCode]))
+      ? AUTHORITATIVE_OFFICIAL_DOMAINS[cCode]
+      : [];
 
     // The central registry is the sole authority for approved country hostnames.
     // Pack-declared domains in pack.trusted_domains CANNOT authorize new unapproved hostnames.
@@ -2310,6 +2313,7 @@ class PassportRulesEngine {
   }
 
   evaluate(profile) {
+    const safeProfile = (profile && typeof profile === 'object' && !Array.isArray(profile)) ? profile : {};
     const {
       countryCode = 'IN',
       countryName = 'India',
@@ -2325,14 +2329,14 @@ class PassportRulesEngine {
       dobMatch = 'yes',
       special = 'none',
       checkedGov = 'yes'
-    } = profile;
+    } = safeProfile;
 
     // Canonical Age Normalization across all stages
-    const rawExactAge = typeof profile.ageExact === 'number' && !isNaN(profile.ageExact)
-      ? profile.ageExact
-      : (typeof profile.applicantAge === 'number' && !isNaN(profile.applicantAge)
-        ? profile.applicantAge
-        : (typeof profile.exactAge === 'number' && !isNaN(profile.exactAge) ? profile.exactAge : null));
+    const rawExactAge = typeof safeProfile.ageExact === 'number' && !isNaN(safeProfile.ageExact)
+      ? safeProfile.ageExact
+      : (typeof safeProfile.applicantAge === 'number' && !isNaN(safeProfile.applicantAge)
+        ? safeProfile.applicantAge
+        : (typeof safeProfile.exactAge === 'number' && !isNaN(safeProfile.exactAge) ? safeProfile.exactAge : null));
 
     let canonicalAgeBand;
     if (rawExactAge !== null) {
@@ -2368,7 +2372,7 @@ class PassportRulesEngine {
     const isSeniorApplicant = canonicalAgeBand === 'senior_60_plus';
     const isAdultApplicant = !isMinorApplicant;
 
-    const pack = this.rulePacks[countryCode] || null;
+    const pack = (this.rulePacks && Object.prototype.hasOwnProperty.call(this.rulePacks, countryCode)) ? this.rulePacks[countryCode] : null;
     const isVerifiedPack = pack && pack.rule_pack_status === 'verified';
     const serviceCoverage = this.determineServiceCoverage(pack, countryCode, service, location, urgency);
 
@@ -2832,9 +2836,9 @@ class PassportRulesEngine {
         if (location === 'inside') {
           // Check if applicant is under 17
           const isUnder17 = canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16';
-          const isMarried = profile.maritalStatus === 'married' || profile.isMarried === true || special === 'married_under_17' || profile.applicantCategory === 'married_under_17';
-          const isSingle = profile.maritalStatus === 'single' || profile.maritalStatus === 'unmarried' || profile.isMarried === false;
-          const maritalStatusKnown = profile.maritalStatus !== undefined || profile.isMarried !== undefined || special === 'married_under_17' || profile.applicantCategory === 'married_under_17';
+          const isMarried = safeProfile.maritalStatus === 'married' || safeProfile.isMarried === true || special === 'married_under_17' || safeProfile.applicantCategory === 'married_under_17';
+          const isSingle = safeProfile.maritalStatus === 'single' || safeProfile.maritalStatus === 'unmarried' || safeProfile.isMarried === false;
+          const maritalStatusKnown = safeProfile.maritalStatus !== undefined || safeProfile.isMarried !== undefined || special === 'married_under_17' || safeProfile.applicantCategory === 'married_under_17';
 
           if (isUnder17) {
             if (isMarried) {
@@ -2947,12 +2951,12 @@ class PassportRulesEngine {
         const isLostOrDamaged = service === 'lost_stolen' || service === 'damaged' || status === 'lost' || status === 'damaged';
         
         // 1. Resolve effective category using canonical age band & special categories
-        const isOku = profile.applicantCategory === 'oku' || profile.applicantCategory === 'oku_under_18' || profile.applicantCategory === 'oku_18_and_older' || profile.applicantCategory === 'oku_18_plus' || profile.isOku === true || (special === 'accessibility' && profile.accessibilityCard === 'oku');
-        const isStudent = profile.applicantCategory === 'students_under_21_degree_abroad' || profile.applicantCategory === 'student_degree_overseas' || profile.applicantCategory === 'student_overseas' || profile.applicantCategory === 'student';
-        const isHajj = profile.applicantCategory === 'hajj_pilgrims' || profile.applicantCategory === 'hajj_pilgrim' || profile.applicantCategory === 'hajj';
-        const isJimStaff = profile.applicantCategory === 'immigration_officers_staff' || profile.applicantCategory === 'jim_staff' || profile.applicantCategory === 'immigration_staff';
-        const isPmdPmr = profile.applicantCategory === 'pmd_pmr_diplomatic_official' || profile.applicantCategory === 'pmd_pmr' || profile.applicantCategory === 'diplomatic_official';
-        const isPmaDep = profile.applicantCategory === 'pma_dependents' || profile.applicantCategory === 'pma_dependent';
+        const isOku = safeProfile.applicantCategory === 'oku' || safeProfile.applicantCategory === 'oku_under_18' || safeProfile.applicantCategory === 'oku_18_and_older' || safeProfile.applicantCategory === 'oku_18_plus' || safeProfile.isOku === true || (special === 'accessibility' && safeProfile.accessibilityCard === 'oku');
+        const isStudent = safeProfile.applicantCategory === 'students_under_21_degree_abroad' || safeProfile.applicantCategory === 'student_degree_overseas' || safeProfile.applicantCategory === 'student_overseas' || safeProfile.applicantCategory === 'student';
+        const isHajj = safeProfile.applicantCategory === 'hajj_pilgrims' || safeProfile.applicantCategory === 'hajj_pilgrim' || safeProfile.applicantCategory === 'hajj';
+        const isJimStaff = safeProfile.applicantCategory === 'immigration_officers_staff' || safeProfile.applicantCategory === 'jim_staff' || safeProfile.applicantCategory === 'immigration_staff';
+        const isPmdPmr = safeProfile.applicantCategory === 'pmd_pmr_diplomatic_official' || safeProfile.applicantCategory === 'pmd_pmr' || safeProfile.applicantCategory === 'diplomatic_official';
+        const isPmaDep = safeProfile.applicantCategory === 'pma_dependents' || safeProfile.applicantCategory === 'pma_dependent';
 
         let categoryKey = 'adult_18_to_59_years';
         if (isJimStaff) {
@@ -2961,9 +2965,9 @@ class PassportRulesEngine {
           categoryKey = 'pmd_pmr_diplomatic_official';
         } else if (isPmaDep) {
           categoryKey = 'pma_dependents';
-        } else if (profile.applicantCategory === 'oku_under_18') {
+        } else if (safeProfile.applicantCategory === 'oku_under_18') {
           categoryKey = 'oku_under_18';
-        } else if (profile.applicantCategory === 'oku_18_and_older' || profile.applicantCategory === 'oku_18_plus') {
+        } else if (safeProfile.applicantCategory === 'oku_18_and_older' || safeProfile.applicantCategory === 'oku_18_plus') {
           categoryKey = 'oku_18_and_older';
         } else if (isOku) {
           if (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16' || canonicalAgeBand === 'age_17') {
@@ -2986,14 +2990,14 @@ class PassportRulesEngine {
         }
 
         // Validity period requested
-        const rawValidity = profile.validity || profile.validityPeriod || profile.selectedValidity;
+        const rawValidity = safeProfile.validity || safeProfile.validityPeriod || safeProfile.selectedValidity;
         let selectedValidity = null;
         if (rawValidity === '5' || rawValidity === 5 || rawValidity === '5_year' || rawValidity === '5_years') selectedValidity = '5_year';
         else if (rawValidity === '10' || rawValidity === 10 || rawValidity === '10_year' || rawValidity === '10_years') selectedValidity = '10_year';
 
         // Loss tier (1st, 2nd, 3rd)
         let lossTier = 'first_loss';
-        const rawLoss = profile.lossTier || profile.replacementLoss || profile.replacementCount;
+        const rawLoss = safeProfile.lossTier || safeProfile.replacementLoss || safeProfile.replacementCount;
         if (rawLoss === 'second' || rawLoss === 'second_loss' || rawLoss === 2 || rawLoss === '2') lossTier = 'second_loss';
         else if (rawLoss === 'third' || rawLoss === 'third_loss' || rawLoss === 3 || rawLoss === '3') lossTier = 'third_loss';
 

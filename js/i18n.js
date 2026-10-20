@@ -153,7 +153,8 @@ const I18N_TRANSLATIONS = {
     tools_mismatch_title: "Name & Date-of-Birth Discrepancy Analyzer",
     tools_mismatch_desc: "Compare Document A (e.g., Birth Certificate / Old Passport) with Document B (e.g., National ID / Educational Certificate).",
 
-    footer_disclaimer: "PassportReady is an independent preparation guide and is not affiliated with any government or passport-issuing authority. We do not issue passports, schedule official appointments, or collect passport numbers. Always verify final requirements and fees on official government portals."
+    footer_disclaimer: "PassportReady is an independent preparation guide and is not affiliated with any government or passport-issuing authority. We do not issue passports, schedule official appointments, or collect passport numbers. Always verify final requirements and fees on official government portals.",
+    translation_disclaimer: "Informative translation — does not replace legally binding official instructions from passport authorities."
   },
 
   hi: {
@@ -304,7 +305,8 @@ const I18N_TRANSLATIONS = {
     tools_mismatch_title: "नाम व जन्मतिथि विसंगति विश्लेषक",
     tools_mismatch_desc: "दस्तावेज़ A (जैसे जन्म प्रमाणपत्र) और दस्तावेज़ B (जैसे आधार या पैन कार्ड) की तुलना करें।",
 
-    footer_disclaimer: "PassportReady एक स्वतंत्र तैयारी गाइड है और किसी भी सरकार या पासपोर्ट प्राधिकरण से संबद्ध नहीं है। हम पासपोर्ट जारी नहीं करते और न ही कोई सरकारी शुल्क लेते हैं। हमेशा आधिकारिक सरकारी पोर्टल पर अंतिम नियमों की पुष्टि करें।"
+    footer_disclaimer: "PassportReady एक स्वतंत्र तैयारी गाइड है और किसी भी सरकार या पासपोर्ट प्राधिकरण से संबद्ध नहीं है। हम पासपोर्ट जारी नहीं करते और न ही कोई सरकारी शुल्क लेते हैं। हमेशा आधिकारिक सरकारी पोर्टल पर अंतिम नियमों की पुष्टि करें।",
+    translation_disclaimer: "सूचनात्मक अनुवाद — पासपोर्ट प्राधिकरणों के कानूनी रूप से बाध्यकारी आधिकारिक निर्देशों का स्थान नहीं लेता है।"
   },
 
   ur: {
@@ -455,7 +457,8 @@ const I18N_TRANSLATIONS = {
     tools_mismatch_title: "نام اور تاریخ پیدائش کے فرق کا تجزیہ",
     tools_mismatch_desc: "دستاویز اے (شناختی کارڈ) اور دستاویز بی (سرٹیفکیٹ یا پرانا پاسپورٹ) کا تقابل کریں۔",
 
-    footer_disclaimer: "PassportReady ایک آزادانہ رہنما پلیٹ فارم ہے اور اس کا کسی بھی حکومت سے کوئی تعلق نہیں ہے۔ ہم پاسپورٹ جاری نہیں کرتے اور نہ ہی کوئی سرکاری فیس لیتے ہیں۔ حتمی معلومات کے لیے ہمیشہ سرکاری ویب سائٹ سے رجوع کریں۔"
+    footer_disclaimer: "PassportReady ایک آزادانہ رہنما پلیٹ فارم ہے اور اس کا کسی بھی حکومت سے کوئی تعلق نہیں ہے۔ ہم پاسپورٹ جاری نہیں کرتے اور نہ ہی کوئی سرکاری فیس لیتے ہیں۔ حتمی معلومات کے لیے ہمیشہ سرکاری ویب سائٹ سے رجوع کریں۔",
+    translation_disclaimer: "معلوماتی ترجمہ — مجاز پاسپورٹ حکام کے قانونی طور پر پابند سرکاری احکامات کا متبادل نہیں ہے۔"
   },
 
   fr: {

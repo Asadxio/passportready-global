@@ -3624,6 +3624,164 @@ runTest('Phase 4.3.10 Exception Authorization Hardening & Final Evidence Integri
   assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 222, 'Research countries must be exactly 222');
 });
 
+// 28. Phase B: End-to-End Security Hardening, Input Validation, CSP & Prototype Pollution Resistance
+runTest('Phase B: Security Hardening, Input Validation, CSP & Prototype Pollution Resistance', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const { PassportTools } = require('../js/tools.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // 1. Safe evaluate() with null, undefined, primitive, or array input
+  const nullEval = engine.evaluate(null);
+  assert(nullEval && typeof nullEval === 'object', 'evaluate(null) must return safe object');
+  assert.strictEqual(nullEval.country.code, 'IN', 'evaluate(null) must default safely to IN');
+
+  const undefEval = engine.evaluate(undefined);
+  assert(undefEval && typeof undefEval === 'object', 'evaluate(undefined) must return safe object');
+
+  const strEval = engine.evaluate('malicious_string');
+  assert(strEval && typeof strEval === 'object', 'evaluate(string) must return safe object');
+
+  const arrEval = engine.evaluate(['malicious_array']);
+  assert(arrEval && typeof arrEval === 'object', 'evaluate(array) must return safe object');
+
+  // 2. Prototype property names as country codes (prevent prototype pollution & crashes)
+  const protoKeys = ['constructor', 'toString', 'valueOf', '__proto__', 'isPrototypeOf', 'propertyIsEnumerable'];
+  protoKeys.forEach(key => {
+    assert.deepStrictEqual(PassportRulesEngine.getTrustedOfficialDomains(key), [], `getTrustedOfficialDomains('${key}') must return empty array`);
+    assert.deepStrictEqual(PassportRulesEngine.getTrustedOfficialDomains(key, { trusted_domains: ['malicious.com'] }), [], `getTrustedOfficialDomains('${key}') with pack must not authorize domains`);
+    assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('example.com', key), false, `isTrustedOfficialDomain with '${key}' must return false`);
+  });
+
+  // 3. CSP and Referrer Policy in index.html
+  const htmlContent = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert(htmlContent.includes('http-equiv="Content-Security-Policy"'), 'index.html must enforce Content-Security-Policy');
+  assert(htmlContent.includes("default-src 'self'"), 'CSP must specify default-src \'self\'');
+  assert(htmlContent.includes("script-src 'self';"), 'CSP must specify strict script-src \'self\' without unsafe-inline');
+  assert(!htmlContent.includes("script-src 'self' 'unsafe-inline'"), 'CSP script-src must not allow unsafe-inline');
+  assert(htmlContent.includes("object-src 'none'"), 'CSP must forbid plugins with object-src \'none\'');
+  assert(htmlContent.includes('name="referrer" content="strict-origin-when-cross-origin"'), 'index.html must enforce strict referrer policy');
+  assert(htmlContent.includes('data-open-modal="methodology"'), 'Methodology button must use declarative data-open-modal');
+
+  // 4. Tools edge cases (NaN / invalid date resilience)
+  const invalidDateRes = PassportTools.evaluateExpiry('not-a-date', '2026-12-31');
+  assert.strictEqual(invalidDateRes.valid, false, 'Invalid date must be rejected');
+  assert.strictEqual(invalidDateRes.error, 'Invalid date format entered.');
+
+  const missingDateRes = PassportTools.evaluateExpiry('', '');
+  assert.strictEqual(missingDateRes.valid, false, 'Missing dates must be rejected');
+
+  const expiredDateRes = PassportTools.evaluateExpiry('2026-01-01', '2026-06-01');
+  assert.strictEqual(expiredDateRes.status, 'EXPIRED_AT_TRAVEL', 'Expired at travel must be flagged');
+});
+
+// 29. Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Edge Case Security Suite
+runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Edge Case Security Suite', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const { PassportTools } = require('../js/tools.js');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // 1. Translation Key Parity & Language Attributes (all 6 languages)
+  const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  const expectedKeyCount = 132;
+  const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
+  assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
+
+  languages.forEach(lang => {
+    assert(I18N_TRANSLATIONS[lang], `Language '${lang}' must exist in I18N_TRANSLATIONS`);
+    const langKeys = Object.keys(I18N_TRANSLATIONS[lang]).sort();
+    assert.strictEqual(langKeys.length, expectedKeyCount, `Language '${lang}' must have exactly ${expectedKeyCount} keys`);
+    assert.deepStrictEqual(langKeys, enKeys, `Language '${lang}' keys must match English keys with 100% parity`);
+    assert(typeof I18N_TRANSLATIONS[lang].translation_disclaimer === 'string' && I18N_TRANSLATIONS[lang].translation_disclaimer.length > 20,
+      `Language '${lang}' must contain substantive translation_disclaimer`);
+  });
+
+  // Text direction verification
+  assert.strictEqual(I18N_TRANSLATIONS.ur.dir, 'rtl', 'Urdu must have dir=rtl');
+  assert.strictEqual(I18N_TRANSLATIONS.ar.dir, 'rtl', 'Arabic must have dir=rtl');
+  assert.strictEqual(I18N_TRANSLATIONS.en.dir, 'ltr', 'English must have dir=ltr');
+  assert.strictEqual(I18N_TRANSLATIONS.hi.dir, 'ltr', 'Hindi must have dir=ltr');
+  assert.strictEqual(I18N_TRANSLATIONS.fr.dir, 'ltr', 'French must have dir=ltr');
+  assert.strictEqual(I18N_TRANSLATIONS.de.dir, 'ltr', 'German must have dir=ltr');
+
+  // 2. UI, Accessibility & Search Engine Metadata
+  const stylesContent = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  assert(stylesContent.includes(':focus-visible'), 'styles.css must include :focus-visible rules');
+  assert(stylesContent.includes('outline: 2px solid var(--forest-base)'), 'styles.css must set high-contrast focus outline');
+  assert(stylesContent.includes('@media print'), 'styles.css must include @media print stylesheet');
+
+  const indexContent = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert(indexContent.includes('role="tab"'), 'index.html must include role="tab" for filter pills');
+  assert(indexContent.includes('aria-selected="true"'), 'index.html must include aria-selected="true" for default active filter');
+  assert(indexContent.includes('role="dialog"'), 'index.html must define modal role="dialog"');
+  assert(indexContent.includes('aria-modal="true"'), 'index.html modal must have aria-modal="true"');
+  assert(indexContent.includes('aria-labelledby="modalTitle"'), 'index.html modal must have aria-labelledby');
+  assert(indexContent.includes('class="skip-link" href="#checker"'), 'index.html must have skip link to #checker');
+
+  const sitemapContent = fs.readFileSync(path.join(__dirname, '..', 'sitemap.xml'), 'utf8');
+  ['https://passport.myoss.in/', 'https://passport.myoss.in/#checker', 'https://passport.myoss.in/#directory', 'https://passport.myoss.in/#guides', 'https://passport.myoss.in/#tools', 'https://passport.myoss.in/#faq'].forEach(loc => {
+    assert(sitemapContent.includes(`<loc>${loc}</loc>`), `sitemap.xml must include ${loc}`);
+  });
+  assert(sitemapContent.includes('<lastmod>2026-10-20</lastmod>'), 'sitemap.xml must have fresh lastmod 2026-10-20');
+
+  const robotsContent = fs.readFileSync(path.join(__dirname, '..', 'robots.txt'), 'utf8');
+  assert(robotsContent.includes('Sitemap: https://passport.myoss.in/sitemap.xml'), 'robots.txt must declare official sitemap');
+
+  // 3. Rules Engine Resilience & Graceful Fallbacks
+  const emptyEngine = new PassportRulesEngine();
+  const unknownCountryEval = emptyEngine.evaluate({ countryCode: 'ZZ', service: 'first_passport' });
+  assert.strictEqual(unknownCountryEval.serviceCoverage.status, 'awaiting_research', 'Unknown country on empty engine must default to awaiting_research');
+  assert(unknownCountryEval.readinessScore <= 70, 'Readiness score for unresearched country must be capped');
+
+  const malformedProfileEval = engine.evaluate({
+    countryCode: 'IN',
+    age: 99999,
+    service: { invalid: true },
+    urgency: ['unsupported'],
+    status: null
+  });
+  assert(malformedProfileEval && typeof malformedProfileEval.readinessScore === 'number', 'Engine must handle malformed profile types safely');
+
+  // 4. PassportTools Boundary & Discrepancy Suite
+  // Exact 6-month and 3-month boundary tests
+  const refDate = '2026-06-01';
+  const over6Months = PassportTools.evaluateExpiry('2026-12-15', refDate);
+  assert.strictEqual(over6Months.valid, true, 'Validity over 180 days must be valid');
+  assert.strictEqual(over6Months.status, 'SUFFICIENT_VALIDITY');
+
+  const under6Months = PassportTools.evaluateExpiry('2026-10-01', refDate);
+  assert.strictEqual(under6Months.valid, false, 'Validity under 180 days must be flagged');
+  assert.strictEqual(under6Months.status, 'LESS_THAN_6_MONTHS');
+
+  const under3Months = PassportTools.evaluateExpiry('2026-07-15', refDate);
+  assert.strictEqual(under3Months.valid, false, 'Validity under 90 days must be flagged high risk');
+  assert.strictEqual(under3Months.status, 'LESS_THAN_3_MONTHS');
+
+  // Discrepancy Analyzer tests
+  const exactMatch = PassportTools.analyzeNameDiscrepancy('John Doe', 'John Doe', '1990-01-01', '1990-01-01');
+  assert.strictEqual(exactMatch.nameStatus, 'EXACT_MATCH');
+  assert.strictEqual(exactMatch.dobStatus, 'MATCH');
+  assert.strictEqual(exactMatch.discrepancyClass, 'NONE');
+
+  const invertedName = PassportTools.analyzeNameDiscrepancy('John Doe', 'Doe John', '1990-01-01', '1990-01-01');
+  assert.strictEqual(invertedName.nameStatus, 'NAME_ORDER_INVERSION');
+  assert.strictEqual(invertedName.discrepancyClass, 'FORMATTING');
+
+  const initialName = PassportTools.analyzeNameDiscrepancy('John Michael Doe', 'John Doe', '1990-01-01', '1990-01-01');
+  assert.strictEqual(initialName.nameStatus, 'INITIALS_OR_MISSING_NAME');
+  assert.strictEqual(initialName.discrepancyClass, 'FORMATTING');
+
+  const spellingDiff = PassportTools.analyzeNameDiscrepancy('Sara Smith', 'Sarah Smith', '1990-01-01', '1990-01-01');
+  assert.strictEqual(spellingDiff.nameStatus, 'SPELLING_DIFFERENCE');
+  assert.strictEqual(spellingDiff.discrepancyClass, 'LEGAL_DISCREPANCY');
+
+  const dobDiff = PassportTools.analyzeNameDiscrepancy('John Doe', 'John Doe', '1990-01-01', '1990-01-02');
+  assert.strictEqual(dobDiff.dobStatus, 'DOB_MISMATCH');
+  assert.strictEqual(dobDiff.discrepancyClass, 'LEGAL_DISCREPANCY');
+});
+
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');

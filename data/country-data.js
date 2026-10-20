@@ -1,6 +1,7 @@
 if (typeof window === 'undefined') {
   var window = {};
 }
+
 window.PASSPORT_COUNTRIES = [
   {
     "name": "Afghanistan",
@@ -2751,7 +2752,7 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "LKA",
     "numeric": "144",
     "official_name": "Democratic Socialist Republic of Sri Lanka",
-    "authority_url": "https://www.immigration.gov.lk/",
+    "authority_url": "http://www.immigration.gov.lk/",
     "authority_label": "Department of Immigration and Emigration",
     "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
@@ -3291,13 +3292,10 @@ window.PASSPORT_COUNTRIES = [
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": []
   }
-];
-if (typeof window !== 'undefined') {
-  window.COUNTRY_DATA = window.PASSPORT_COUNTRIES;
-}
+]
+;
+window.COUNTRY_DATA = window.PASSPORT_COUNTRIES;
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES,
-    COUNTRY_DATA: window.PASSPORT_COUNTRIES
-  };
+  module.exports = { COUNTRY_DATA: window.COUNTRY_DATA, PASSPORT_COUNTRIES: window.PASSPORT_COUNTRIES };
 }

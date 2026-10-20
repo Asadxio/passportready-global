@@ -77,13 +77,41 @@
   function loadSavedState() {
     try {
       const savedLang = localStorage.getItem('passportready_lang');
-      if (savedLang) setLanguage(savedLang);
+      if (savedLang && typeof savedLang === 'string') {
+        const allowedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+        if (allowedLangs.includes(savedLang)) setLanguage(savedLang);
+      }
 
       const savedAnswers = localStorage.getItem('passportready_answers');
-      if (savedAnswers) state.answers = { ...state.answers, ...JSON.parse(savedAnswers) };
+      if (savedAnswers) {
+        const parsed = JSON.parse(savedAnswers);
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          const allowedKeys = [
+            'countryCode', 'countryName', 'location', 'service', 'age', 'ageExact',
+            'urgency', 'status', 'birthProof', 'addressProof', 'citizenshipProof',
+            'nameMatch', 'dobMatch', 'special', 'applicantCategory', 'validity',
+            'lossTier', 'checkedGov'
+          ];
+          for (const key of allowedKeys) {
+            if (Object.prototype.hasOwnProperty.call(parsed, key)) {
+              state.answers[key] = parsed[key];
+            }
+          }
+        }
+      }
 
       const savedChecks = localStorage.getItem('passportready_checks');
-      if (savedChecks) state.checklistChecked = JSON.parse(savedChecks);
+      if (savedChecks) {
+        const parsedChecks = JSON.parse(savedChecks);
+        if (parsedChecks && typeof parsedChecks === 'object' && !Array.isArray(parsedChecks)) {
+          state.checklistChecked = {};
+          for (const [k, v] of Object.entries(parsedChecks)) {
+            if (typeof k === 'string' && typeof v === 'boolean') {
+              state.checklistChecked[k] = v;
+            }
+          }
+        }
+      }
     } catch (e) {}
   }
 
@@ -514,12 +542,21 @@
     const list = document.getElementById('resChecklistItems');
     if (!list) return;
 
+    if (!list.dataset.hasListener) {
+      list.dataset.hasListener = 'true';
+      list.addEventListener('change', (e) => {
+        if (e.target && e.target.dataset && e.target.dataset.checkId) {
+          toggleCheck(e.target.dataset.checkId);
+        }
+      });
+    }
+
     list.innerHTML = items.map((item, idx) => {
       const isChecked = !!state.checklistChecked[item.id];
       return `
         <li class="checklist-item ${isChecked ? 'is-checked' : ''}" data-item-id="${item.id}">
           <label class="check-box-label">
-            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="PassportApp.toggleCheck('${item.id}')">
+            <input type="checkbox" ${isChecked ? 'checked' : ''} data-check-id="${item.id}">
             <span class="custom-check"></span>
           </label>
           <div class="check-text">
@@ -621,7 +658,7 @@
       const statusText = isVerified ? 'VERIFIED' : (isLinked ? 'PORTAL LINKED' : 'AWAITING RESEARCH');
 
       return `
-        <article class="country-card" onclick="PassportApp.selectCountryFromDirectory('${escapeHTML(c.name)}')">
+        <article class="country-card" data-country-code="${c.alpha2}" role="button" tabindex="0">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
             <span class="country-flag">${flagEmoji(c.alpha2)}</span>
             <span class="status-pill ${statusClass}">${statusText}</span>
@@ -637,7 +674,9 @@
     }).join('');
   }
 
-  function selectCountryFromDirectory(countryName) {
+  function selectCountryFromDirectory(countryCodeOrName) {
+    const c = COUNTRY_DATA.find(x => x.alpha2 === countryCodeOrName || x.name === countryCodeOrName);
+    const countryName = c ? c.name : countryCodeOrName;
     const input = document.getElementById('countryInput');
     if (input) input.value = countryName;
     updateCountryHint();
@@ -651,11 +690,35 @@
       searchInput.addEventListener('input', renderCountryDirectory);
     }
 
+    const grid = document.getElementById('countryDirectoryGrid');
+    if (grid && !grid.dataset.hasListener) {
+      grid.dataset.hasListener = 'true';
+      grid.addEventListener('click', (e) => {
+        const card = e.target.closest('.country-card');
+        if (card && card.dataset.countryCode) {
+          selectCountryFromDirectory(card.dataset.countryCode);
+        }
+      });
+      grid.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const card = e.target.closest('.country-card');
+          if (card && card.dataset.countryCode) {
+            e.preventDefault();
+            selectCountryFromDirectory(card.dataset.countryCode);
+          }
+        }
+      });
+    }
+
     const filterBtns = document.querySelectorAll('[data-dir-filter]');
     filterBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
         e.currentTarget.classList.add('active');
+        e.currentTarget.setAttribute('aria-selected', 'true');
         state.directoryFilter = e.currentTarget.dataset.dirFilter;
         renderCountryDirectory();
       });
@@ -735,6 +798,16 @@
     const container = document.getElementById('guidesGrid');
     if (!container || typeof PASSPORT_GUIDES === 'undefined') return;
 
+    if (!container.dataset.hasListener) {
+      container.dataset.hasListener = 'true';
+      container.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-open-guide]');
+        if (btn && btn.dataset.openGuide) {
+          openGuideModal(btn.dataset.openGuide);
+        }
+      });
+    }
+
     container.innerHTML = PASSPORT_GUIDES.map(g => `
       <article class="guide-card">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
@@ -743,7 +816,7 @@
         </div>
         <h3 style="font-size:16px;margin:0 0 6px;letter-spacing:-.3px;color:#0f172a">${escapeHTML(g.title)}</h3>
         <p style="font-size:12px;color:#64748b;margin:0 0 14px;line-height:1.5">${escapeHTML(g.summary)}</p>
-        <button class="btn btn-outline" style="width:100%;font-size:12px;padding:8px" onclick="PassportApp.openGuideModal('${g.id}')">Read Full Guide (${g.readTime}) →</button>
+        <button type="button" class="btn btn-outline" style="width:100%;font-size:12px;padding:8px" data-open-guide="${g.id}">Read Full Guide (${g.readTime}) →</button>
       </article>
     `).join('');
   }
@@ -785,6 +858,12 @@
 
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        modal.classList.remove('open');
+      }
     });
 
     // Links for Legal & Info modals
