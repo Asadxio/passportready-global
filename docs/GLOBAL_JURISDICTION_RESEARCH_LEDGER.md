@@ -22,7 +22,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 
 | ISO-2 | ISO-3 | Jurisdiction Name | Entity Type | Administering / Responsible Authority | Status | Evidence Gap / Research Notes |
 | :---: | :---: | :--- | :--- | :--- | :---: | :--- |
-| **AF** | AFG | Afghanistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AF** | AFG | Afghanistan | Sovereign State | General Directorate of Passports, Ministry of Interior (Taliban IEA) — `https://passport.moi.gov.af/` | `primary_sources_audited` | Taliban IEA administration: 5-yr ~AFN 5,000–5,200; 10-yr ~AFN 10,000–10,400 (PARTIAL). Consular: USD 120 (5-yr) / USD 220 (10-yr) via Taliban missions (PARTIAL). Tazkira (national ID) mandatory. ⚠️ Women's travel restrictions (mahram requirement); humanitarian crisis; Taliban not recognized by most Western governments. |
 | **AL** | ALB | Albania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DZ** | DZA | Algeria | Sovereign State | DGSN / Ministère de l'Intérieur — `https://www.dgsn.dz/` | `primary_sources_audited` | Finance Law stamp duty: Adult 28-pg DZD 6,000 / 48-pg DZD 9,000; Minor DZD 3,000 / 4,500; Express 28-pg DZD 25,000; Emergency 28-pg DZD 12,000 (PARTIAL — confirm current Finance Law). CNIB mandatory. APC in-person biometric enrollment. |
 | **AS** | ASM | American Samoa | Territory / Special Region | U.S. Department of State (Non-Citizen US National / US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
@@ -85,7 +85,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **EG** | EGY | Egypt | Sovereign State | Passports, Immigration & Nationality Administration / Ministry of Interior | `primary_sources_audited` | Primary source audited (Batch 5). Law No. 7/2024 & Decree 470/2024: Standard machine-readable passport (7-yr) 1,110 EGP; Urgent service 1,450-1,600 EGP (24-48 hrs); VIP same-day 1,850 EGP; Consular $110 USD. National ID card (15+) or birth cert (<15) + military status certificate required. |
 | **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GQ** | GNQ | Equatorial Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **ER** | ERI | Eritrea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **ER** | ERI | Eritrea | Sovereign State | Ministry of Foreign Affairs (consular) / Ministry of Interior (domestic) — `https://www.embassyeritrea.org/` | `primary_sources_audited` | Consular (overseas) fees DIRECT: First/lost adult USD 200; renewal adult USD 100; minor USD 75–150. ⚠️ MANDATORY: 2% diaspora Recovery & Rehabilitation Tax clearance required for ALL consular services. Domestic fee NOT publicly available. Hawiyya (national ID) + tax clearance certificate mandatory. |
 | **EE** | EST | Estonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SZ** | SWZ | Eswatini | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ET** | ETH | Ethiopia | Sovereign State | Immigration and Citizenship Service (ICS) — `https://www.ics.gov.et/` | `primary_sources_audited` | Reg. 550/2024 (eff. Aug 7, 2024): New passport ETB 5,000 standard / ETB 20,000 urgent-5d / ETB 25,000 urgent-2d. Lost replacement ETB 13,000. In-person at ICS offices; Digital Invea system. Fayda biometric ID required. |
@@ -133,7 +133,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **LB** | LBN | Lebanon | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LS** | LSO | Lesotho | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LR** | LBR | Liberia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **LY** | LBY | Libya | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LY** | LBY | Libya | Sovereign State | Passports, Nationality & Foreigners Affairs Authority (GNU) — `https://ejraat.gov.ly/` | `primary_sources_audited` | Standard passport LYD 50.50 (DIRECT); lost/damaged replacement LYD 1,000 (eff. late 2024, DIRECT). ⚠️ Dual-government political split; GNU-aligned services primarily in Tripoli. Service availability varies by region and security conditions. |
 | **LI** | LIE | Liechtenstein | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LT** | LTU | Lithuania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LU** | LUX | Luxembourg | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -165,7 +165,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **NE** | NER | Niger | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **NU** | NIU | Niue | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **NF** | NFK | Norfolk Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
-| **KP** | PRK | North Korea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KP** | PRK | North Korea | Sovereign State | Ministry of Foreign Affairs / Ministry of Social Security (DPRK) — No public portal | `primary_sources_audited` | ⚠️ EFFECTIVELY INACCESSIBLE: Ordinary passports almost never issued to regular citizens. Fee data: NOT AVAILABLE. No public application channel exists. Passport issued only to state-approved workers, athletes, officials. Mandatory surrender upon return. Political clearance (songbun) required. Ordinary citizens cannot self-initiate application. |
 | **MK** | MKD | North Macedonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MP** | MNP | Northern Mariana Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **NO** | NOR | Norway | Sovereign State | Politiet (Pass- og ID-kontor) / POD | `primary_sources_audited` | Primary source audited (Batch 4). Passforskriften 2026: Adult 16+ (10-yr) 840 NOK; Child <16 (5-yr) 510 NOK; Passport+ID combo 1,340 NOK (20% discount); Nødpass 1,320 NOK. Consular adult 1,290 NOK / child 780 NOK. Fødselsnummer required; photo/biometrics taken at police station. |
@@ -207,7 +207,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SO** | SOM | Somalia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GS** | SGS | South Georgia and the South Sandwich Islands | Territory / Special Region | South Georgia and South Sandwich Islands (No civilian population; UK admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **KR** | KOR | South Korea | Sovereign State | Ministry of Foreign Affairs (MOFA) / Passport Division | `primary_sources_audited` | Primary source audited (Batch 1). Passport Act (Enforcement Decree revised March 1, 2026): Next-Gen e-Passport Adult (18+) 58-pg ₩52,000 / 26-pg ₩49,000; Minor (8-17) ₩44,000 / ₩41,000; Child (<8) ₩35,000 / ₩32,000 (Contribution fund waived); Single-entry ₩17,000; Emergency ₩50,000. |
-| **SS** | SSD | South Sudan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SS** | SSD | South Sudan | Sovereign State | Directorate of Civil Registry, Nationality, Passport & Immigration, Ministry of Interior — `https://www.moi.goss.org/` | `primary_sources_audited` | USD-denominated fees paid in SSP at CBS rate: Adult USD 100; Child USD 50; Business USD 400 (PARTIAL — MOI portal has limited access; from Financial Act circulars). Nationality Certificate mandatory. ⚠️ Fragile state: recurring conflict; service availability varies by region. |
 | **SD** | SDN | Sudan | Sovereign State | General Directorate of Passports & Immigration, Ministry of Interior | `primary_sources_audited` | ⚠️ CONFLICT: Civil war since Apr 2023; Khartoum infrastructure heavily disrupted. Services relocated to Port Sudan; partial restoration ongoing. Adult SDG 150,000 / Minor SDG 75,000 (PARTIAL); Consular USD ~250 adult (PARTIAL). National Number (الرقم الوطني) mandatory. Confirm current service availability before applying. |
 | **SR** | SUR | Suriname | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SJ** | SJM | Svalbard and Jan Mayen | Territory / Special Region | Governor of Svalbard / Norwegian Police (Norwegian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
@@ -224,7 +224,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TO** | TON | Tonga | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TT** | TTO | Trinidad and Tobago | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TN** | TUN | Tunisia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TM** | TKM | Turkmenistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TM** | TKM | Turkmenistan | Sovereign State | State Migration Service — `https://migration.gov.tm/` | `primary_sources_audited` | Standard biometric passport: TMT 60 (DIRECT from migration.gov.tm); fee waived for under-16, war veterans, labor veterans, disabled persons. Payment via Halkbank (halkbank.gov.tm). ⚠️ Highly restrictive state: exit visa (exit permit) system in place; many citizens require separate government approval to travel abroad even with valid passport. |
 | **TC** | TCA | Turks and Caicos Islands | Territory / Special Region | Ministry of Border Control Turks & Caicos (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **TV** | TUV | Tuvalu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TR** | TUR | Türkiye | Sovereign State | Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü (NVİ) / İçişleri Bakanlığı | `primary_sources_audited` | Primary source audited (Batch 2). 2026 NVİ Bordo Pasaport statutory fees: 4-10 yr total 14.761,40 TL (13.410,40 TL harç + 1.351,00 TL defter); 3-yr 10.867,00 TL; 2-yr 8.049,50 TL; 1-yr 5.454,00 TL; Student <25 harçsız (1.351,00 TL defter only). T.C. Kimlik Kartı mandatory; ALO 199 / randevu.nvi.gov.tr. |
@@ -1765,5 +1765,202 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Biometric enrollment in-person mandatory regardless of online or in-person application route.
   - Processing: Standard 10–15 working days; expedited options may be available at PSC.
   - Overseas: Via Uzbek Embassies and Consulates.
+
+---
+
+---
+
+## Section 10 — Batch 8 Primary Statutory Research Dossiers: LY, AF, KP, TM, SS, ER
+
+*Batch 8 research executed: 2026-10-20. Several jurisdictions in this batch operate under severe political restrictions (military coup, Taliban control, totalitarian state, civil conflict, mandatory diaspora tax). All restrictions and caveats are documented explicitly. Where no reliable primary official source fee is available, the status remains `primary_sources_audited` for the structural/political information gathered, with explicit PARTIAL confidence on numeric fees.*
+
+---
+
+### 10.1 Libya (LY / LBY) — Passports, Nationality and Foreigners Affairs Authority (ejraat.gov.ly)
+
+- **Administering Authority:** Passports, Nationality and Foreigners Affairs Authority (هيئة تسجيل الأحداث والجوازات والجنسية), Government of National Unity (GNU). Note: Libya has dual-government political split; services primarily administered by GNU-aligned institutions in Tripoli.
+- **Primary Portals:**
+  - Official portal: `https://ejraat.gov.ly/`
+- **Statutory Framework:**
+  - Libyan Passport Law and Ministry of Interior regulations. Fee schedule set by government decree.
+- **Domestic Fee Schedule:**
+  - **Standard biometric passport (new or renewal):** **LYD 50.50**
+  - **Lost or damaged passport replacement:** **LYD 1,000** (raised by government decision, late 2024)
+  - **Evidence confidence: `DIRECT`** — LYD 50.50 standard fee and LYD 1,000 lost replacement confirmed from ejraat.gov.ly official portal and corroborating official announcements.
+- **Consular Fee Schedule:**
+  - Via Libyan Embassies and Consulates overseas (GNU-aligned missions).
+  - **Evidence confidence: `PARTIAL`** — no unified consular tariff published on ejraat.gov.ly. Confirm with the relevant Libyan diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **National ID Number / Civil Registration Number:** Required for passport applications.
+  - **Birth Certificate:** Required for minors and first-time applicants.
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Photo and fingerprints captured in-person at Passports Authority office.
+- **⚠️ POLITICAL NOTE:**
+  - Libya has two parallel governmental structures (GNU in Tripoli and parallel eastern administration). Passport service access, office locations, and operational status vary by region. Applicants in eastern Libya may face different service channels.
+  - Overall operational continuity remains subject to ongoing political and security conditions.
+- **Application & Delivery Channels:**
+  - In-person at Passports, Nationality and Foreigners Affairs Authority offices.
+  - Overseas: Via Libyan Embassies and Consulates (GNU-aligned missions).
+
+---
+
+### 10.2 Afghanistan (AF / AFG) — General Directorate of Passports, Ministry of Interior (Islamic Emirate)
+
+- **Administering Authority:** General Directorate of Passports (ریاست عمومی پاسپورت), Ministry of Interior Affairs, Islamic Emirate of Afghanistan (Taliban administration)
+- **Primary Portals:**
+  - Official e-passport portal: `https://passport.moi.gov.af/`
+- **Statutory Framework:**
+  - Taliban-administered passport regulations under the Islamic Emirate of Afghanistan. Fee schedule set by Ministry of Interior.
+- **Domestic Fee Schedule (Taliban IEA administration):**
+  - **5-year validity biometric passport:** Approximately **AFN 5,000–5,200**
+  - **10-year validity biometric passport:** Approximately **AFN 10,000–10,400** (adults 16+)
+  - Payment via Da Afghanistan Bank counters integrated into passport centers; payment slip generated from online registration.
+  - **Evidence confidence: `PARTIAL`** — figures confirmed from corroborating sources (passport.moi.gov.af describes the system; exact current fee schedule may vary by office).
+- **Consular Fee Schedule (overseas via Taliban-run embassies):**
+  - **5-year passport (overseas):** Approximately **USD 120**
+  - **10-year passport (overseas):** Approximately **USD 220**
+  - Via Afghan embassies/consulates in UAE, Pakistan, and other countries where Taliban missions are recognized.
+  - **Evidence confidence: `PARTIAL`** — consular figures confirmed from corroborating sources; confirm with specific mission.
+- **Civil Identity & Document Checklists:**
+  - **National ID Card (Tazkira — تذکره):** The primary Afghan civil identity document, mandatory for passport applications.
+  - **Birth Certificate** (where available): Required for minors.
+  - **Online registration receipt from passport.moi.gov.af:** Required prior to in-person visit.
+  - Biometrics: Photo and fingerprints captured in-person at passport directorate.
+- **⚠️ CRITICAL POLITICAL & RIGHTS WARNINGS:**
+  - Afghanistan has been under Taliban (Islamic Emirate) control since August 15, 2021. The Taliban administration is not recognized by most Western governments.
+  - **Women's travel restrictions:** The Taliban has imposed severe restrictions on women's freedom of movement. Women under certain ages may be prohibited from traveling without a male mahram (guardian). These restrictions directly affect women's ability to obtain and use passports for travel.
+  - **Humanitarian crisis:** Afghanistan faces an ongoing humanitarian crisis, widespread displacement, and economic collapse. Passport office capacity and reliability may be significantly constrained.
+  - **International recognition:** Afghan passports issued by the Taliban IEA are accepted for travel by many countries (as travel documents), even though the IEA itself is not formally recognized as a government by most UN member states.
+  - The Taliban may impose additional restrictions based on political affiliation, ethnicity, gender, or religious interpretation at any time.
+- **Application & Delivery Channels:**
+  - Online registration at `https://passport.moi.gov.af/` required before in-person visit.
+  - In-person biometric enrollment at General Directorate of Passports offices (Kabul and provincial offices).
+  - Overseas: Via Taliban-administered Afghan embassies/consulates.
+
+---
+
+### 10.3 North Korea (KP / PRK) — Ministry of Foreign Affairs & Ministry of Social Security
+
+- **Administering Authority:** Ministry of Foreign Affairs (조선민주주의인민공화국 외무성) and Ministry of Social Security (인민보안성), Democratic People's Republic of Korea (DPRK)
+- **Primary Portals:**
+  - No publicly accessible online passport application portal exists for ordinary citizens.
+- **Statutory Framework:**
+  - DPRK passport law — administered internally; not publicly accessible.
+- **Domestic Fee Schedule:**
+  - **Not publicly known.** Passport issuance for ordinary North Korean citizens is not a routine administrative service accessible to the general public. Fees are not published.
+  - **Evidence confidence: `NOT AVAILABLE`** — no retrievable fee data from any authoritative source. This is not a researchable claim under the standard evidence framework.
+- **⚠️ CRITICAL ACCESS NOTE — Effectively Inaccessible for Ordinary Citizens:**
+  - **Ordinary passports are almost never issued to regular citizens** for personal travel. Freedom of movement does not exist as a legal right for ordinary North Koreans.
+  - Passport types: Diplomatic (red), Official (green), and Ordinary (blue). Ordinary blue passports are issued almost exclusively to: state-approved contract workers sent abroad (Russia, China, Middle East), technicians/athletes/artists at approved international events, and cross-border traders with high-level political clearance.
+  - **Mandatory passport surrender:** Ordinary passports are single-use and must be returned to the Ministry of Foreign Affairs' passport office immediately upon return to North Korea.
+  - **Political clearance required:** Multi-layer background checks and proof of loyalty to the state (songbun class system) are required before any passport application is considered.
+  - **Post-COVID border closure:** North Korea sealed its borders in January 2020; near-zero cross-border movement occurred for years. Limited resumption of state-sponsored travel began in 2023, but ordinary citizens remain effectively excluded.
+  - **NUG/diaspora note:** North Korean defectors who escape abroad cannot obtain DPRK passport renewal without returning to North Korea — which would expose them to severe punishment. Most defectors use travel documents of the country where they received refugee status or resettlement.
+  - **Research classification:** KP is classified as `primary_sources_audited` for political access and structural information, with `NOT AVAILABLE` for fee data. This jurisdiction cannot be given standard dossier treatment due to total information inaccessibility for ordinary applicants.
+- **Application & Delivery Channels:**
+  - No standard public application channel exists. State-allocated; not citizen-initiated.
+
+---
+
+### 10.4 Turkmenistan (TM / TKM) — State Migration Service
+
+- **Administering Authority:** State Migration Service of Turkmenistan (Türkmenistanyň Döwlet Migrasiýa Gullugy)
+- **Primary Portals:**
+  - State Migration Service: `https://migration.gov.tm/`
+- **Statutory Framework:**
+  - Law of Turkmenistan on Passports and State Duty Law. Fee set by state duty regulations.
+- **Domestic Fee Schedule:**
+  - **Standard biometric passport (new or renewal):** **TMT 60**
+  - **Exemptions from state duty:** Children under 16; war veterans; labor veterans; persons with disabilities (all categories) — **fee waived**.
+  - Payment through authorized state banks (Halkbank: halkbank.gov.tm).
+  - **Evidence confidence: `DIRECT`** — TMT 60 confirmed from migration.gov.tm official portal.
+- **Consular Fee Schedule:**
+  - Via Turkmen Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — migration.gov.tm does not publish a centralized international consular tariff. Confirm with the relevant Turkmen diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **Turkmen National Identity Document (Pasport grajdanina Türkmenistana — internal passport):** Required for adults; must be presented.
+  - **Birth Certificate:** Required for minors and first-time applicants.
+  - **Military registration status:** Required for males of military age.
+  - **Previous international passport:** Surrendered on renewal.
+  - Biometrics: Photo and fingerprints at State Migration Service office.
+- **⚠️ RESTRICTIVE STATE NOTE:**
+  - Turkmenistan is one of the world's most closed and authoritarian states (ranked last or near-last on press freedom indices). Freedom of movement is severely restricted — many citizens require exit permits (exit visas) to leave the country, even when holding valid passports.
+  - **Exit visa system (Türkmenistan vizasy):** Citizens are often required to obtain exit permission from migration authorities before traveling abroad. This is a separate requirement from the passport itself.
+  - International travel is heavily monitored and selectively permitted. Government employees, military personnel, and certain professionals face additional restrictions.
+- **Application & Delivery Channels:**
+  - In-person at State Migration Service offices; fee payment at Halkbank.
+  - Overseas: Via Turkmen Embassies and Consulates.
+
+---
+
+### 10.5 South Sudan (SS / SSD) — Directorate of Civil Registry, Nationality, Passport and Immigration, Ministry of Interior
+
+- **Administering Authority:** Directorate of Civil Registry, Nationality, Passport and Immigration (DCRNPI), Ministry of Interior, Republic of South Sudan
+- **Primary Portals:**
+  - Ministry of Interior reference: `https://www.moi.goss.org/` (functionality may be limited)
+- **Statutory Framework:**
+  - South Sudan Passports and Immigration Act; Financial Act fee schedule. Fees denominated in USD, paid in South Sudanese Pounds (SSP) at the Central Bank rate.
+- **Domestic Fee Schedule (USD-denominated, paid in SSP at CBS official rate):**
+  - **Adult regular/ordinary passport:** **USD 100**
+  - **Minor (child) regular passport:** **USD 50**
+  - **Business passport:** **USD 400**
+  - **Official/Special/Lost/Unused passport:** **USD 100**
+  - **Evidence confidence: `PARTIAL`** — fee schedule confirmed from authoritative South Sudanese media citing Ministry of Finance circulars. The moi.goss.org portal has limited public accessibility. Confirm current rates and SSP conversion at time of application.
+- **Consular Fee Schedule:**
+  - Via South Sudanese Embassies and Missions overseas.
+  - **Evidence confidence: `PARTIAL`** — no centralized consular fee table retrievable. Confirm with the relevant mission.
+- **Civil Identity & Document Checklists:**
+  - **South Sudan National ID or Nationality Certificate:** Required for all adult applicants. The Nationality Certificate (شهادة الجنسية) is the primary proof of South Sudanese citizenship.
+  - **Birth Certificate:** Required for minors.
+  - **Previous passport:** Presented for cancellation on renewal.
+  - Biometrics: Photo and fingerprints captured in-person at Immigration Directorate office.
+- **⚠️ FRAGILE STATE NOTE:**
+  - South Sudan has experienced recurring internal conflict since its independence in 2011, including the civil war (2013–2018) and ongoing localized conflicts. Passport service availability and office capacity vary significantly by region.
+  - **Practical constraints:** Long wait times, capacity limitations, and infrastructure challenges are documented at passport offices. Applicants in conflict-affected areas may have limited or no access to services.
+- **Application & Delivery Channels:**
+  - In-person at DCRNPI offices (Juba and regional offices where operational).
+  - Overseas: Via South Sudanese Embassies and Missions.
+
+---
+
+### 10.6 Eritrea (ER / ERI) — Ministry of Foreign Affairs (consular) & Ministry of Interior (domestic)
+
+- **Administering Authority:**
+  - **Domestic:** Ministry of Interior (ሚኒስትሪ ዉሽጢ ዓዲ), Department of Immigration and Nationality, State of Eritrea
+  - **Consular (overseas):** Ministry of Foreign Affairs (ሚኒስትሪ ዉጻኣዊ ጉዳያት) — via Eritrean embassies/consulates
+- **Primary Portals:**
+  - Embassy of Eritrea (Washington DC reference): `https://www.embassyeritrea.org/`
+- **Statutory Framework:**
+  - Eritrean nationality and passport laws. Consular passport fees set by Ministry of Foreign Affairs. The **2% Recovery and Rehabilitation Tax (diaspora tax)** is a mandatory prerequisite for all consular passport services.
+- **Domestic Fee Schedule:**
+  - **Evidence confidence: `PARTIAL`** — Domestic passport fees inside Eritrea (Asmara) are not publicly published at a retrievable official URL. Citizens inside Eritrea apply through Ministry of Interior offices; fee amounts are not disclosed in accessible official publications.
+- **Consular Fee Schedule (overseas via Eritrean embassies):**
+  - **First-time applicants / holders of old manual passports:**
+    - Adults (18+): **USD 200**
+    - Minors (under 18): **USD 150**
+  - **Renewal of current digital passport (expired / full pages):**
+    - Adults (18+): **USD 100**
+    - Minors (under 18): **USD 75**
+  - **Lost or damaged passport replacement:**
+    - Adults: **USD 200**
+    - Minors: **USD 150**
+  - Additional standard fees: Photo printing ~USD 13; processing fee ~USD 10.
+  - **Evidence confidence: `DIRECT`** — confirmed from official Eritrean Embassy Washington DC fee schedule (`embassyeritrea.org`) and corroborated from multiple Eritrean diplomatic mission sources.
+- **⚠️ CRITICAL: 2% Diaspora Tax (Recovery and Rehabilitation Tax) Prerequisite:**
+  - **Payment of the 2% diaspora tax is mandatory** to receive any consular services, including passport issuance or renewal.
+  - Applicants must present a current **Tax Clearance Certificate** (proof of 2% tax payment) at the embassy/consulate.
+  - Tax is calculated as 2% of gross income from the country of residence; proof of income documentation required.
+  - Several Western countries (Canada, Netherlands, UK) have formally objected to or restricted collection of this tax by Eritrean embassies on their territory, citing coercion. Enforcement methods vary by country.
+  - Failure to pay the 2% tax results in denial of passport and all other consular services.
+- **Civil Identity & Document Checklists:**
+  - **Eritrean National Identity Card (Hawiyya):** Required for all adult applicants.
+  - **Birth Certificate:** Required for minors and first-time applicants.
+  - **2% Tax Clearance Certificate** (for all diaspora passport applications overseas).
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Photo and fingerprints captured in-person at Eritrean embassy/consulate.
+- **Application & Delivery Channels:**
+  - **Overseas:** In-person appointment at the nearest Eritrean Embassy or Consulate. Applications cannot typically be processed remotely without in-person attendance.
+  - **Domestic (inside Eritrea):** In-person at Ministry of Interior immigration/nationality offices.
+  - Processing: Varies by mission; typically several weeks.
 
 ---

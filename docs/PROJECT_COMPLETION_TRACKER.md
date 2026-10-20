@@ -31,6 +31,7 @@
 | **Phase O** | `TASK-O1` | Global Jurisdiction Completion — Batch 5 (TW, IL, EG, MA, VN, GH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 5 complete; Proceed to Batch 6 |
 | **Phase P** | `TASK-P1` | Global Jurisdiction Completion — Batch 6 (ET, IR, KZ, UA, IQ, QA) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 6 complete; Proceed to Batch 7 |
 | **Phase Q** | `TASK-Q1` | Global Jurisdiction Completion — Batch 7 (DZ, VE, CU, MM, SD, UZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 7 complete; Proceed to Batch 8 |
+| **Phase R** | `TASK-R1` | Global Jurisdiction Completion — Batch 8 (LY, AF, KP, TM, SS, ER) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 8 complete; Proceed to Batch 9 |
 
 ---
 
@@ -409,3 +410,27 @@
   - **SD:** ⚠️ CONFLICT: Civil war since April 2023. Services relocated to Port Sudan; partial Khartoum restoration from 2025. SDG 150,000 adult (PARTIAL — central portal disrupted). USD ~250 consular (PARTIAL). Travel ban restrictions lifted per Sovereign Council directive.
   - **UZ:** BHM-based fee (1 BHM = UZS 340,000 in 2024) confirmed DIRECT from my.gov.uz. 10% online discount to ≈UZS 306,000. Guvohnoma (biometric ID card) mandatory since 2019 reform. Annual BHM revision means fee changes each year.
 - **Next Actionable Task:** Batch 8 Official Source Research (suggested: Libya LY, Afghanistan AF, North Korea KP-status-note, Turkmenistan TM, South Sudan SS, Eritrea ER — note: some high-conflict/closed-access jurisdictions may require `partial_guidance` classification rather than full `primary_sources_audited`).
+
+
+---
+
+### Phase R: Global Jurisdiction Completion — Batch 8 (LY, AF, KP, TM, SS, ER)
+- **Task ID:** `TASK-R1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Libya (LY), Afghanistan (AF), North Korea (KP), Turkmenistan (TM), South Sudan (SS), and Eritrea (ER). Each jurisdiction upgraded to `primary_sources_audited`. Full dossiers in Section 10 of GLOBAL_JURISDICTION_RESEARCH_LEDGER.md. Claim rows in Section 11 of SOURCE_AUDIT_REGISTER.md. Special access and human-rights conditions (dual administration, Taliban rule & mahram rules, totalitarian border closure & passport inaccessibility, exit permits, fragile state economics, and mandatory 2% diaspora tax clearance) are documented with rigorous evidence-level distinctions.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 10 Batch 8 dossiers for LY, AF, KP, TM, SS, ER.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 11 claim audit table with 16 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase R deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **LY:** Standard passport LYD 50.50 confirmed DIRECT from ejraat.gov.ly; lost/damaged penalty raised to LYD 1,000 (late 2024, DIRECT). Dual-government administrative division noted.
+  - **AF:** Taliban IEA domestic rates ~AFN 5,000–5,200 (5-yr) / ~AFN 10,000–10,400 (10-yr, PARTIAL). Consular USD 120 / USD 220. Mandatory Tazkira national ID; online registration via passport.moi.gov.af. Severe restrictions on women's travel (mahram requirement) documented.
+  - **KP:** Ordinary passports effectively inaccessible to regular citizens for personal travel. Fee data: NOT AVAILABLE (not published / state-allocated privilege only). Mandatory surrender upon return. Documented under human rights and geopolitical analysis.
+  - **TM:** Standard biometric passport TMT 60 confirmed DIRECT from migration.gov.tm; statutory fee waiver for minors under 16, war/labor veterans, and disabled persons. Separate exit visa / permit requirements documented.
+  - **SS:** Financial Act fees USD 100 adult / USD 50 minor payable in SSP at Central Bank official rate (PARTIAL). Nationality Certificate mandatory. Regional infrastructure fragility documented.
+  - **ER:** Consular fees confirmed DIRECT from Eritrean diplomatic schedules (USD 100 adult renewal, USD 200 first-time/lost, USD 75/150 minor). Mandatory prerequisite: 2% diaspora Recovery and Rehabilitation Tax clearance certificate required for all consular services.
+- **Next Actionable Task:** Batch 9 Official Source Research (suggested: Lebanon LB, Jordan JO, Oman OM, Kuwait KW, Bahrain BH, Tunisia TN).
