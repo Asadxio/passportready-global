@@ -70,18 +70,80 @@ class PassportRulesEngine {
     return location === 'abroad' ? 'Consular / Overseas Application' : 'Domestic Application';
   }
 
-  getTrustedOfficialDomains(countryCode, pack) {
-    const list = [];
-    if (countryCode && AUTHORITATIVE_OFFICIAL_DOMAINS[countryCode]) {
-      list.push(...AUTHORITATIVE_OFFICIAL_DOMAINS[countryCode]);
+  static getTrustedOfficialDomains(countryCode, pack) {
+    const cCode = countryCode || pack?.country_code;
+    const authoritative = (cCode && AUTHORITATIVE_OFFICIAL_DOMAINS[cCode]) ? AUTHORITATIVE_OFFICIAL_DOMAINS[cCode] : [];
+
+    // The central registry is the sole authority for approved country hostnames.
+    // Pack-declared domains in pack.trusted_domains CANNOT authorize new unapproved hostnames.
+    // Only pack-declared domains that match or are genuine dot-rooted subdomains of an approved central registry domain are preserved.
+    if (!pack || !Array.isArray(pack.trusted_domains)) {
+      return authoritative;
     }
-    if (pack && Array.isArray(pack.trusted_domains)) {
-      list.push(...pack.trusted_domains);
-    }
-    return Array.from(new Set(list.map(d => typeof d === 'string' ? d.trim().toLowerCase() : '').filter(Boolean)));
+
+    const validatedFromPack = pack.trusted_domains.filter(domain => {
+      if (typeof domain !== 'string') return false;
+      const clean = domain.trim().toLowerCase();
+      return authoritative.some(auth => clean === auth || clean.endsWith('.' + auth));
+    });
+
+    return Array.from(new Set([...authoritative, ...validatedFromPack].map(d => d.trim().toLowerCase()).filter(Boolean)));
   }
 
-  extractHostnameFromUrl(url) {
+  static isTrustedOfficialDomain(hostname, countryCode, pack) {
+    if (!hostname || typeof hostname !== 'string') return false;
+    const cleanHost = hostname.trim().toLowerCase();
+    const trustedDomains = PassportRulesEngine.getTrustedOfficialDomains(countryCode, pack);
+    if (!Array.isArray(trustedDomains) || trustedDomains.length === 0) return false;
+
+    return trustedDomains.some(trusted => {
+      const cleanTrusted = trusted.trim().toLowerCase();
+      return cleanHost === cleanTrusted || cleanHost.endsWith('.' + cleanTrusted);
+    });
+  }
+
+  static isTrustedOfficialUrl(url, countryCode, pack, sourceObj) {
+    if (typeof url !== 'string') return false;
+    const trimmed = url.trim();
+    if (!trimmed.startsWith('https://') && !trimmed.startsWith('http://')) return false;
+
+    // Reject insecure HTTP links as trusted claim evidence by default.
+    // An explicit, documented exception requires allow_insecure_http: true AND non-empty review_rationale.
+    if (trimmed.startsWith('http://')) {
+      const allowsInsecure = !!(
+        sourceObj &&
+        typeof sourceObj === 'object' &&
+        sourceObj.allow_insecure_http === true &&
+        typeof sourceObj.review_rationale === 'string' &&
+        sourceObj.review_rationale.trim().length > 0
+      );
+      if (!allowsInsecure) return false;
+    }
+
+    const host = PassportRulesEngine.extractHostnameFromUrl(trimmed);
+    return PassportRulesEngine.isTrustedOfficialDomain(host, countryCode, pack);
+  }
+
+  static isGenericHomepageUrl(url) {
+    if (typeof url !== 'string') return false;
+    try {
+      let pathname = '';
+      if (typeof URL !== 'undefined') {
+        const parsed = new URL(url);
+        pathname = parsed.pathname;
+      } else {
+        const afterProto = url.startsWith('https://') ? url.slice(8) : url.slice(7);
+        const slashIdx = afterProto.indexOf('/');
+        pathname = slashIdx >= 0 ? afterProto.slice(slashIdx) : '/';
+      }
+      const cleanPath = pathname.replace(/\/+$/, '').toLowerCase();
+      return cleanPath === '' || cleanPath === '/index.html' || cleanPath === '/index.htm' || cleanPath === '/index.php' || cleanPath === '/en' || cleanPath === '/landing' || cleanPath === '/home';
+    } catch {
+      return false;
+    }
+  }
+
+  static extractHostnameFromUrl(url) {
     if (typeof url !== 'string') return null;
     const trimmed = url.trim();
     if (!trimmed.startsWith('https://') && !trimmed.startsWith('http://')) return null;
@@ -98,89 +160,139 @@ class PassportRulesEngine {
     return hostPart ? hostPart.toLowerCase() : null;
   }
 
-  isTrustedOfficialDomain(hostname, countryCode, pack) {
-    if (!hostname || typeof hostname !== 'string') return false;
-    const cleanHost = hostname.trim().toLowerCase();
-    const trustedDomains = this.getTrustedOfficialDomains(countryCode, pack);
-    if (!Array.isArray(trustedDomains) || trustedDomains.length === 0) return false;
-
-    return trustedDomains.some(trusted => {
-      const cleanTrusted = trusted.trim().toLowerCase();
-      if (cleanHost === cleanTrusted) return true;
-      if (cleanHost.endsWith('.' + cleanTrusted)) return true;
-      return false;
-    });
+  getTrustedOfficialDomains(countryCode, pack) {
+    return PassportRulesEngine.getTrustedOfficialDomains(countryCode, pack);
   }
 
-  isTrustedOfficialUrl(url, countryCode, pack) {
-    if (!this.isValidSourceUrl(url)) return false;
-    const host = this.extractHostnameFromUrl(url);
-    return this.isTrustedOfficialDomain(host, countryCode, pack);
+  extractHostnameFromUrl(url) {
+    return PassportRulesEngine.extractHostnameFromUrl(url);
+  }
+
+  isTrustedOfficialDomain(hostname, countryCode, pack) {
+    return PassportRulesEngine.isTrustedOfficialDomain(hostname, countryCode, pack);
+  }
+
+  isTrustedOfficialUrl(url, countryCode, pack, sourceObj) {
+    return PassportRulesEngine.isTrustedOfficialUrl(url, countryCode, pack, sourceObj);
   }
 
   isGenericHomepageUrl(url) {
-    if (typeof url !== 'string') return false;
-    try {
-      let pathname = '';
-      if (typeof URL !== 'undefined') {
-        const parsed = new URL(url);
-        pathname = parsed.pathname;
-      } else {
-        const afterProto = url.startsWith('https://') ? url.slice(8) : url.slice(7);
-        const slashIdx = afterProto.indexOf('/');
-        pathname = slashIdx >= 0 ? afterProto.slice(slashIdx) : '/';
-      }
-      const cleanPath = pathname.replace(/\/+$/, '').toLowerCase();
-      return cleanPath === '' || cleanPath === '/index.html' || cleanPath === '/index.htm' || cleanPath === '/index.php' || cleanPath === '/en' || cleanPath === '/landing';
-    } catch {
-      return false;
-    }
+    return PassportRulesEngine.isGenericHomepageUrl(url);
   }
 
   isClaimRelevantSource(source, claimType) {
-    if (!source) return false;
-    const url = typeof source === 'string' ? source : (source.url || source.official_source_url || source.source_url || '');
-    const title = typeof source === 'object' ? (source.page_title || source.publisher || source.title || source.document_name || '') : '';
-    const text = (url + ' ' + title).toLowerCase();
+    if (!source || !claimType) return false;
 
-    // Explicit claim scope on source metadata
-    if (typeof source === 'object') {
+    // 1. Extract URL and normalize
+    const rawUrl = typeof source === 'string'
+      ? source
+      : (source.url || source.official_source_url || source.source_url || '');
+    const cleanUrl = typeof rawUrl === 'string' ? rawUrl.trim() : '';
+
+    // 2. Check generic homepage status
+    const isGenHome = this.isGenericHomepageUrl(cleanUrl);
+
+    // 3. Documented, manually reviewed homepage claim exception
+    const hasHomepageException = !!(
+      typeof source === 'object' &&
+      source !== null &&
+      source.homepage_claim_exception === true &&
+      typeof source.exception_rationale === 'string' &&
+      source.exception_rationale.trim().length > 0
+    );
+
+    // If it is a generic homepage without documented reviewed exception:
+    // It can ONLY serve navigation or general reference.
+    // It CANNOT substantiate specific fee, document, eligibility, steps, urgent, consular, or emergency claims.
+    if (isGenHome && !hasHomepageException) {
+      return claimType === 'navigation' || claimType === 'general';
+    }
+
+    // 4. Validate explicit claim metadata against allowed schema.
+    // Wildcard 'all' is strictly forbidden and rejected as a trust bypass.
+    const ALLOWED_EXPLICIT_CLAIMS = new Set([
+      'fee', 'fees', 'statutory_fee_schedule',
+      'documents', 'mandatory_citizenship_evidence',
+      'eligibility', 'citizenship_eligibility',
+      'steps', 'application_procedure',
+      'urgent', 'expedited',
+      'consular', 'overseas',
+      'emergency', 'callout',
+      'navigation', 'general'
+    ]);
+
+    const normalizeClaim = (c) => {
+      if (typeof c !== 'string') return '';
+      const lower = c.trim().toLowerCase();
+      if (lower === 'all') return ''; // Reject wildcard 'all'
+      if (!ALLOWED_EXPLICIT_CLAIMS.has(lower)) return '';
+      if (lower === 'fees' || lower === 'statutory_fee_schedule') return 'fee';
+      if (lower === 'mandatory_citizenship_evidence') return 'documents';
+      if (lower === 'citizenship_eligibility') return 'eligibility';
+      if (lower === 'application_procedure') return 'steps';
+      if (lower === 'expedited') return 'urgent';
+      if (lower === 'overseas') return 'consular';
+      if (lower === 'callout') return 'emergency';
+      return lower;
+    };
+
+    const targetClaim = normalizeClaim(claimType) || claimType;
+
+    if (typeof source === 'object' && source !== null) {
       if (source.is_generic_homepage === true || source.claim_scope === 'portal_navigation' || source.claim_scope === 'navigation') {
-        return claimType === 'navigation' || claimType === 'general';
+        return targetClaim === 'navigation' || targetClaim === 'general';
       }
+
+      // Explicit claims array
       if (Array.isArray(source.claims)) {
-        if (source.claims.includes(claimType) || source.claims.includes('all')) return true;
-        if (!source.claims.includes(claimType) && claimType !== 'all') return false;
+        const normalizedClaims = source.claims.map(normalizeClaim).filter(Boolean);
+        if (normalizedClaims.length > 0) {
+          return normalizedClaims.includes(targetClaim);
+        }
+        if (source.claims.length > 0) return false;
       }
-      if (source.claim_scope && typeof source.claim_scope === 'string') {
-        if (source.claim_scope === claimType || source.claim_scope === 'all') return true;
-        if (source.claim_scope !== claimType && claimType !== 'all') return false;
+
+      // Explicit claim_scope string
+      if (typeof source.claim_scope === 'string') {
+        const normalizedScope = normalizeClaim(source.claim_scope);
+        if (normalizedScope) {
+          return normalizedScope === targetClaim;
+        }
+        if (source.claim_scope.trim().toLowerCase() === 'all') return false;
       }
     }
 
-    switch (claimType) {
+    // 5. Keyword analysis on non-homepage URL path, page title, and publisher
+    // Note: Do NOT infer relevance from data record fields like amount, applicant_category, document_name!
+    const pathPart = cleanUrl ? cleanUrl.replace(/^https?:\/\/[^\/]+/i, '') : '';
+    const titlePart = typeof source === 'object' && source !== null
+      ? ((source.page_title || '') + ' ' + (source.publisher || '') + ' ' + (source.title || ''))
+      : '';
+    const text = (pathPart + ' ' + titlePart).toLowerCase();
+
+    switch (targetClaim) {
       case 'fee': {
-        if (typeof source === 'object' && (source.amount !== undefined || source.official_replacement_amount !== undefined || source.applicant_category !== undefined)) {
-          return true;
-        }
-        const feeKeywords = ['fee', 'cost', 'charge', 'surcharge', 'tariff', 'price', 'biaya', 'droit', 'tasa', 'lfd', 'tatkaal', 'expedit', 'callout', 'penalt', 'fine', 'biometrischer-reisepass', 'reisepass', 'passaporte', 'passaporto', 'absher', 'travel-documents', 'pass-und-personalausweis', 'apply-renew', 'canadian-passports', 'ordinary-passport', 'epassport', 'issue-passport', 'passports.gov.au', 'passport.gov.ph', 'passport seva'];
-        if (feeKeywords.some(kw => text.includes(kw))) return true;
-        return false;
+        const feeKeywords = ['fee', 'cost', 'charge', 'surcharge', 'tariff', 'price', 'biaya', 'droit', 'tasa', 'lfd', 'tatkaal', 'expedit', 'callout', 'penalt', 'fine', 'biometrischer-reisepass', 'reisepass', 'passaporte', 'passaporto', 'absher', 'travel-documents', 'pass-und-personalausweis', 'apply-renew', 'canadian-passports', 'ordinary-passport', 'epassport', 'issue-passport', 'tarif', 'frais', 'kos', 'type-and-fees', 'feeschedule', 'passport-costs', 'biaya-paspor'];
+        return feeKeywords.some(kw => text.includes(kw));
       }
       case 'documents': {
-        if (typeof source === 'object' && (source.document_name !== undefined || source.required !== undefined || source.document_type !== undefined)) {
-          return true;
-        }
-        const docKeywords = ['document', 'requirement', 'checklist', 'syarat', 'permohonan', 'need-passport', 'how-to', 'apply', 'vosdroits', 'birth', 'citizenship', 'adult', 'child', 'minor', 'renew', 'reissue', 'passport seva'];
-        if (docKeywords.some(kw => text.includes(kw))) return true;
-        return !this.isGenericHomepageUrl(url);
+        const docKeywords = ['document', 'requirement', 'checklist', 'syarat', 'permohonan', 'need-passport', 'how-to', 'apply', 'vosdroits', 'birth', 'citizenship', 'adult', 'child', 'minor', 'renew', 'reissue', 'dokumen', 'unterlagen', 'pieces', 'documentadvisor', 'supporting-documents', 'acta', 'dni', 'aadhaar', 'certificat'];
+        return docKeywords.some(kw => text.includes(kw));
+      }
+      case 'eligibility': {
+        const eligKeywords = ['eligib', 'who-can-apply', 'who-is-eligible', 'qualif', 'citizen', 'national', 'warganegara', 'syarat', 'kriteria', 'conditions', 'requisitos', 'nationalite', 'staatsangehorig', 'criteria', 'norms', 'citizenshipnorms'];
+        return eligKeywords.some(kw => text.includes(kw));
+      }
+      case 'steps': {
+        const stepKeywords = ['step', 'how-to', 'process', 'procedure', 'tata-cara', 'cara', 'apply', 'aliran', 'panduan', 'etapes', 'demarches', 'ablauf', 'paso', 'solicitud', 'appointment', 'lodg', 'submission', 'procformsubmit', 'online-application', 'how-apply'];
+        return stepKeywords.some(kw => text.includes(kw));
       }
       case 'urgent': {
-        const urgentKeywords = ['urgent', 'tatkaal', 'expedit', 'express', 'fast-track', 'fast_track', 'one-day', 'one_day', 'same-day', 'same_day'];
+        const urgentKeywords = ['urgent', 'tatkaal', 'expedit', 'express', 'fast-track', 'fast_track', 'one-day', 'one_day', 'same-day', 'same_day', 'get-fast'];
         return urgentKeywords.some(kw => text.includes(kw));
       }
       case 'consular': {
-        const consularKeywords = ['consul', 'embassy', 'diplomatic', 'overseas', 'diaspora', 'high commission', 'abroad'];
+        const consularKeywords = ['consul', 'embassy', 'diplomatic', 'overseas', 'diaspora', 'high commission', 'abroad', 'seccion-consular', 'consular-menu'];
         return consularKeywords.some(kw => text.includes(kw));
       }
       case 'emergency': {
@@ -188,7 +300,7 @@ class PassportRulesEngine {
         return emergKeywords.some(kw => text.includes(kw));
       }
       default:
-        return !this.isGenericHomepageUrl(url);
+        return !isGenHome;
     }
   }
 
@@ -230,7 +342,7 @@ class PassportRulesEngine {
     const checkAndAdd = (s) => {
       const url = this.extractUrlFromSource(s);
       if (!url) return;
-      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack)) return;
+      if (cCode && !this.isTrustedOfficialUrl(url, cCode, pack, s)) return;
       if (claimType && !this.isClaimRelevantSource(s, claimType)) return;
       list.push(url);
     };
@@ -241,13 +353,13 @@ class PassportRulesEngine {
     if (pack && Array.isArray(pack.sources)) {
       pack.sources.forEach(checkAndAdd);
     }
-    if (serviceObj?.documents && Array.isArray(serviceObj.documents)) {
+    if ((!claimType || claimType === 'documents') && serviceObj?.documents && Array.isArray(serviceObj.documents)) {
       serviceObj.documents.forEach(checkAndAdd);
     }
-    if (serviceObj?.steps && Array.isArray(serviceObj.steps)) {
+    if ((!claimType || claimType === 'steps') && serviceObj?.steps && Array.isArray(serviceObj.steps)) {
       serviceObj.steps.forEach(checkAndAdd);
     }
-    if (serviceObj?.fees?.fee_records && Array.isArray(serviceObj.fees.fee_records)) {
+    if ((!claimType || claimType === 'fee') && serviceObj?.fees?.fee_records && Array.isArray(serviceObj.fees.fee_records)) {
       serviceObj.fees.fee_records.forEach(checkAndAdd);
     }
     return Array.from(new Set(list));
@@ -648,16 +760,18 @@ class PassportRulesEngine {
         const sources = this.collectServiceSources(pack, serviceObj, countryCode);
         const feeSources = this.collectServiceSources(pack, serviceObj, countryCode, 'fee');
         const docSources = this.collectServiceSources(pack, serviceObj, countryCode, 'documents');
+        const eligibilitySources = this.collectServiceSources(pack, serviceObj, countryCode, 'eligibility');
+        const stepSources = this.collectServiceSources(pack, serviceObj, countryCode, 'steps');
 
         const hasEligibility = !!(Array.isArray(serviceObj?.eligibility) && serviceObj.eligibility.length > 0);
         const hasDocuments = !!(Array.isArray(serviceObj?.documents) && serviceObj.documents.length > 0);
         const hasFeesData = !!(serviceObj?.fees && typeof serviceObj.fees === 'object' && Object.keys(serviceObj.fees).length > 0);
         const hasSteps = !!(Array.isArray(serviceObj?.steps) && serviceObj.steps.length > 0);
 
-        const hasEligibilityEvidence = !!(hasEligibility && sources.length > 0);
+        const hasEligibilityEvidence = !!(hasEligibility && eligibilitySources.length > 0);
         const hasDocumentsEvidence = !!(hasDocuments && docSources.length > 0);
         const hasFeesEvidence = !!(hasFeesData && feeSources.length > 0);
-        const hasStepsEvidence = !!(hasSteps && sources.length > 0);
+        const hasStepsEvidence = !!(hasSteps && stepSources.length > 0);
 
         const verifiedFields = [];
         if (hasEligibilityEvidence) verifiedFields.push('eligibility');

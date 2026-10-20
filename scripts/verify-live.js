@@ -26,13 +26,13 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_16"/g) || []);
-  console.log('Scripts with ?v=20261019_16:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_16');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_17"/g) || []);
+  console.log('Scripts with ?v=20261019_17:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_17');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_16"/g) || []);
-  console.log('CSS with ?v=20261019_16:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_16');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_17"/g) || []);
+  console.log('CSS with ?v=20261019_17:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_17');
 
   // Service coverage card check
   assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
@@ -54,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_16');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_17');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -72,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_16');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_17');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -224,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_16');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_17');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -359,7 +359,7 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_16');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_17');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
 
@@ -1295,7 +1295,105 @@ async function verifyLive() {
   assert(appJsRes.body.includes('no_trusted_source'), 'Live app.js must handle no_trusted_source evidence level');
   assert(appJsRes.body.includes('awaiting_primary_research'), 'Live app.js must handle awaiting_primary_research evidence level');
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5, PHASE 4.3.6, PHASE 4.3.7 & PHASE 4.3.8 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 12. Phase 4.3.9 Live VM Domain-Trust Independence & Claim-Evidence Auditing ---');
+  // 12.1 Fixture A: Domain-trust independence from pack.trusted_domains
+  console.log('[12.1 Live Fixture A: Official Domain Allowlist Independence]');
+  const livePackAttacker = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    official_portal_url: 'https://attacker.example/portal',
+    trusted_domains: ['attacker.example', 'passportindia.gov.in'],
+    sources: [
+      { url: 'https://attacker.example/fee', publisher: 'Attacker Authority', claim_scope: 'fee' }
+    ],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [{ url: 'https://attacker.example/fee', claim_scope: 'fee' }],
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const liveTrustedForAttacker = PassportRulesEngine.getTrustedOfficialDomains('IN', livePackAttacker);
+  assert(!liveTrustedForAttacker.includes('attacker.example'), 'Live engine: getTrustedOfficialDomains must not authorize unapproved attacker domain');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('attacker.example', 'IN', livePackAttacker), false, 'Live engine: isTrustedOfficialDomain must reject self-authorized domain');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('https://attacker.example/fee', 'IN', livePackAttacker), false, 'Live engine: isTrustedOfficialUrl must reject URL on unapproved domain');
+
+  const liveEngineAttacker = new PassportRulesEngine({ IN: livePackAttacker });
+  const liveResAttacker = liveEngineAttacker.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(liveResAttacker.serviceCoverage.dimensions.service.status, 'general_guidance', 'Live engine: Self-authorized domain must fall back to general_guidance');
+  assert.strictEqual(liveResAttacker.serviceCoverage.dimensions.service.evidence.evidenceLevel, 'no_trusted_source');
+  assert(liveResAttacker.readinessScore <= 75, 'Live engine: Score must cap <= 75%');
+  assert.notStrictEqual(liveResAttacker.statusLabel, 'PREPARED');
+
+  // 12.2 Fixture B: Look-alike and Insecure HTTP Rejection
+  console.log('[12.2 Live Fixture B: Look-alike and Insecure HTTP Rejection]');
+  const liveLookalikes = [
+    'passportindia.gov.in.evil.com',
+    'fakepassportindia.gov.in',
+    'expresspassportindia.com',
+    'tatkaalpassports.com',
+    'consular-services-online.org',
+    'travel.state.gov.phishing.net'
+  ];
+  liveLookalikes.forEach(host => {
+    assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain(host, 'IN'), false, `Live engine: Hostname ${host} must be rejected`);
+    assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl(`https://${host}/fees`, 'IN'), false, `Live engine: URL https://${host}/fees must be rejected`);
+  });
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('http://passportindia.gov.in/feeSchedule', 'IN'), false, 'Live engine: HTTP must be rejected by default');
+
+  // 12.3 Fixture C: Generic Homepage Fee-Record Disallowance
+  console.log('[12.3 Live Fixture C: Generic Homepage Fee-Record Disallowance]');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/', amount: 1500 }, 'fee'), false, 'Live engine: Root URL with amount must NOT substantiate fee');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/', official_replacement_amount: 2000 }, 'fee'), false, 'Live engine: Root URL with official_replacement_amount must NOT substantiate fee');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/', applicant_category: 'tatkaal' }, 'fee'), false, 'Live engine: Root URL with applicant_category must NOT substantiate fee');
+
+  // 12.4 Fixture D: Generic Homepage Document-Record Disallowance
+  console.log('[12.4 Live Fixture D: Generic Homepage Document-Record Disallowance]');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/', document_name: 'Aadhaar' }, 'documents'), false, 'Live engine: Root URL with document_name must NOT substantiate documents');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/index.html', document_name: 'Aadhaar' }, 'documents'), false, 'Live engine: /index.html with document_name must NOT substantiate documents');
+
+  // 12.5 Fixture E: Cross-Claim Evidence Contamination Prevention
+  console.log('[12.5 Live Fixture E: Cross-Claim Evidence Contamination Prevention]');
+  const liveFeeOnlySource = {
+    url: 'https://passportindia.gov.in/AppOnlineProject/online/feeSchedule',
+    page_title: 'Fee Schedule'
+  };
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveFeeOnlySource, 'fee'), true, 'Live engine: Fee URL must substantiate fee');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveFeeOnlySource, 'eligibility'), false, 'Live engine: Fee URL must NOT substantiate eligibility');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveFeeOnlySource, 'documents'), false, 'Live engine: Fee URL must NOT substantiate documents');
+  assert.strictEqual(liveEngine.isClaimRelevantSource(liveFeeOnlySource, 'steps'), false, 'Live engine: Fee URL must NOT substantiate steps');
+
+  // 12.6 Fixture F: Explicit Wildcard 'all' Disallowance
+  console.log('[12.6 Live Fixture F: Explicit Wildcard all Disallowance]');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/', claims: ['all'] }, 'fee'), false, 'Live engine: claims: ["all"] on root must be rejected');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/', claim_scope: 'all' }, 'documents'), false, 'Live engine: claim_scope: "all" on root must be rejected');
+  assert.strictEqual(liveEngine.isClaimRelevantSource({ url: 'https://passportindia.gov.in/fees', claims: ['all'] }, 'documents'), false, 'Live engine: claims: ["all"] on /fees must NOT substantiate documents');
+
+  // 12.7 Fixture G: Live Positive Controls
+  console.log('[12.7 Live Fixture G: Live Positive Controls]');
+  const liveInTatkaalP439 = liveEngine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(liveInTatkaalP439.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(liveInTatkaalP439.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('tatkaalPassports')));
+
+  const liveUsExpediteP439 = liveEngine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(liveUsExpediteP439.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(liveUsExpediteP439.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('travel.state.gov')));
+
+  // 12.8 Fixture H: Preservation Across Jurisdictions
+  console.log('[12.8 Live Fixture H: Preservation Across Jurisdictions]');
+  const liveMyStaffP439 = liveEngine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss' });
+  assert.strictEqual(liveMyStaffP439.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 200);
+
+  const liveIdMinorP439 = liveEngine.evaluate({ countryCode: 'ID', location: 'inside', service: 'first_passport', ageExact: 16 });
+  assert.strictEqual(liveIdMinorP439.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required');
+  assert(liveIdMinorP439.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'));
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5, PHASE 4.3.6, PHASE 4.3.7, PHASE 4.3.8 & PHASE 4.3.9 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

@@ -52,39 +52,39 @@
         "eligibility": [
           {
             "rule": "Must be a citizen of India by birth, descent, registration, or naturalization.",
-            "source_url": "https://www.passportindia.gov.in/",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms",
             "last_reviewed": "2026-10-18"
           },
           {
             "rule": "Minors require parental consent through Annexure D/C.",
-            "source_url": "https://www.passportindia.gov.in/",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms",
             "last_reviewed": "2026-10-18"
           }
         ],
         "steps": [
           {
             "step": "Register and create an account on Passport Seva Online Portal (passportindia.gov.in).",
-            "source_url": "https://www.passportindia.gov.in/"
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit"
           },
           {
             "step": "Fill out Form for Fresh Passport online and submit.",
-            "source_url": "https://www.passportindia.gov.in/"
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit"
           },
           {
             "step": "Pay the application fee online (SBI / NetBanking / UPI / Credit/Debit) and schedule appointment at nearest PSK or Post Office PSK (POPSK).",
-            "source_url": "https://www.passportindia.gov.in/"
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit"
           },
           {
             "step": "Attend in-person appointment with original supporting documents for biometric capture and document verification.",
-            "source_url": "https://www.passportindia.gov.in/"
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit"
           },
           {
             "step": "Undergo police verification at your local police jurisdiction.",
-            "source_url": "https://www.passportindia.gov.in/"
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit"
           },
           {
             "step": "Receive passport delivered by India Post Speed Post.",
-            "source_url": "https://www.passportindia.gov.in/"
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit"
           }
         ],
         "documents": [
@@ -101,7 +101,7 @@
             ],
             "original_or_copy": "Original + self-attested photocopy",
             "translation_or_legalisation": "English or Hindi official translation if in regional language",
-            "source_url": "https://www.passportindia.gov.in/",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
             "last_reviewed": "2026-10-18"
           },
           {
@@ -117,7 +117,7 @@
             ],
             "original_or_copy": "Original + self-attested photocopy",
             "translation_or_legalisation": "Standard government language",
-            "source_url": "https://www.passportindia.gov.in/",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
             "last_reviewed": "2026-10-18"
           },
           {
@@ -132,7 +132,7 @@
             ],
             "original_or_copy": "Original + photocopy",
             "translation_or_legalisation": "Recognized educational board certificate",
-            "source_url": "https://www.passportindia.gov.in/",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
             "last_reviewed": "2026-10-18"
           }
         ],
@@ -154,20 +154,44 @@
         "sources": [
           {
             "url": "https://www.passportindia.gov.in/",
-            "publisher": "Ministry of External Affairs, India",
+            "publisher": "Ministry of External Affairs, Government of India",
             "page_title": "Passport Seva Official Portal",
+            "claim_scope": "portal_navigation",
             "checked_at": "2026-10-18"
           },
           {
             "url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
-            "publisher": "Ministry of External Affairs, India",
+            "publisher": "Ministry of External Affairs, Government of India",
             "page_title": "Tatkaal Passport Scheme Guidelines & Surcharge Schedule",
+            "claim_scope": "urgent",
             "checked_at": "2026-10-18"
           },
           {
             "url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
             "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
             "page_title": "Passport Fee Structure and Payment Guidelines",
+            "claim_scope": "statutory_fee_schedule",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Document Advisor for Fresh / Reissue Passport - Mandatory Proof Checklist",
+            "claim_scope": "mandatory_citizenship_evidence",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/procFormSubmit",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Procedure for Submission of Online Application and Biometric Appointment",
+            "claim_scope": "application_procedure",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms",
+            "publisher": "Passport Seva, Ministry of External Affairs, Government of India",
+            "page_title": "Citizenship Norms and Eligibility Criteria for Indian Passports",
+            "claim_scope": "citizenship_eligibility",
             "checked_at": "2026-10-20"
           }
         ]
@@ -463,7 +487,7 @@
             ],
             "original_or_copy": "Original or certified copy + 1 black and white photocopy",
             "translation_or_legalisation": "Certified English translation if foreign document",
-            "source_url": "https://travel.state.gov/",
+            "source_url": "https://travel.state.gov/content/travel/en/passports/need-passport/apply-in-person.html",
             "last_reviewed": "2026-10-18"
           },
           {
@@ -479,7 +503,7 @@
             ],
             "original_or_copy": "Original shown in person + photocopy of front and back on plain 8.5x11 paper",
             "translation_or_legalisation": "Not applicable",
-            "source_url": "https://travel.state.gov/",
+            "source_url": "https://travel.state.gov/content/travel/en/passports/need-passport/apply-in-person.html",
             "last_reviewed": "2026-10-18"
           }
         ],
@@ -508,19 +532,33 @@
           {
             "url": "https://travel.state.gov/en/passports.html",
             "publisher": "U.S. Department of State",
-            "page_title": "U.S. Passports",
+            "page_title": "U.S. Passports - Bureau of Consular Affairs",
+            "claim_scope": "portal_navigation",
             "checked_at": "2026-10-18"
           },
           {
             "url": "https://travel.state.gov/content/travel/en/passports/get-fast.html",
             "publisher": "U.S. Department of State",
             "page_title": "Get My U.S. Passport Fast - Expedited Service",
+            "claim_scope": "urgent",
             "checked_at": "2026-10-18"
           },
           {
             "url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
             "publisher": "U.S. Department of State - Bureau of Consular Affairs",
             "page_title": "Passport Fees - Bureau of Consular Affairs",
+            "claim_scope": "statutory_fee_schedule",
+            "checked_at": "2026-10-20"
+          },
+          {
+            "url": "https://travel.state.gov/content/travel/en/passports/need-passport/apply-in-person.html",
+            "publisher": "U.S. Department of State - Bureau of Consular Affairs",
+            "page_title": "How to Apply in Person for a U.S. Passport - Documents, Steps & Eligibility",
+            "claims": [
+              "documents",
+              "eligibility",
+              "steps"
+            ],
             "checked_at": "2026-10-20"
           }
         ]
@@ -784,7 +822,13 @@
             "url": "https://www.gov.uk/apply-renew-passport",
             "publisher": "HM Passport Office, UK Government",
             "page_title": "Apply Online for a UK Passport",
-            "checked_at": "2026-10-18"
+            "checked_at": "2026-10-18",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -1153,7 +1197,15 @@
             "url": "https://www.passports.gov.au/",
             "publisher": "Australian Passport Office, DFAT",
             "page_title": "Australian Passports",
-            "checked_at": "2026-10-18"
+            "checked_at": "2026-10-18",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Primary official Australian Passport Office portal for statutory passport checklists and fee schedules",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -1324,7 +1376,13 @@
             "url": "https://dgip.gov.pk/passport/ordinary-passport.php",
             "publisher": "DGIP Pakistan",
             "page_title": "Ordinary Passport Services",
-            "checked_at": "2026-10-18"
+            "checked_at": "2026-10-18",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -1502,7 +1560,15 @@
             "url": "https://www.epassport.gov.bd/landing",
             "publisher": "Department of Immigration and Passports, Bangladesh",
             "page_title": "e-Passport Portal",
-            "checked_at": "2026-10-18"
+            "checked_at": "2026-10-18",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official Bangladesh government e-passport portal for document requirements and statutory fees",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       }
@@ -1652,7 +1718,13 @@
             "url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis",
             "publisher": "Auswärtiges Amt (Federal Foreign Office)",
             "page_title": "German Passport and ID Card Services",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -2068,7 +2140,15 @@
             "url": "https://passport.gov.ph/",
             "publisher": "Department of Foreign Affairs, Republic of the Philippines",
             "page_title": "Official Passport Appointment System",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official Philippine DFA passport appointment and documentary requirements portal",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -2301,7 +2381,15 @@
             "url": "https://passeport.ants.gouv.fr/",
             "publisher": "Agence Nationale des Titres Sécurisés (ANTS)",
             "page_title": "Démarches Passeport",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official French ANTS national biometric passport portal for statutory requirements and fees",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -2482,7 +2570,15 @@
             "url": "https://www.absher.sa/",
             "publisher": "Ministry of Interior, Kingdom of Saudi Arabia",
             "page_title": "Absher Electronic Passport Services",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official Saudi Ministry of Interior digital platform for citizen passport applications and statutory fees",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -2748,7 +2844,13 @@
             "url": "https://www.mofa.go.jp/mofaj/toko/passport/index.html",
             "publisher": "Ministry of Foreign Affairs (Domestic Consular Services)",
             "page_title": "Passport Issuance and Renewal Guidance",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -3354,7 +3456,13 @@
             "url": "https://www.gob.mx/pasaporte",
             "publisher": "Secretaría de Relaciones Exteriores (SRE)",
             "page_title": "Trámite de Pasaporte Mexicano - Costos 2026",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           },
           {
             "url": "https://www.gob.mx/sre/acciones-y-programas/costo-del-pasaporte",
@@ -3776,7 +3884,13 @@
             "url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
             "publisher": "Polícia Federal do Brasil",
             "page_title": "Obter Passaporte Ordinário",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -3986,7 +4100,13 @@
             "url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
             "publisher": "Department of Home Affairs, South Africa",
             "page_title": "Passports and Travel Documents",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -4283,7 +4403,15 @@
             "url": "https://passport.immigration.gov.ng/",
             "publisher": "Nigeria Immigration Service (NIS)",
             "page_title": "Official Passport Application Portal",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official Nigeria Immigration Service portal for passport registration and statutory fee payment",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -4515,7 +4643,13 @@
             "url": "https://www.poliziadistato.it/articolo/1087",
             "publisher": "Polizia di Stato",
             "page_title": "Il Passaporto per i cittadini maggiorenni",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -4842,7 +4976,13 @@
             "url": "https://www.dfa.ie/passports/passport-fees/",
             "publisher": "Department of Foreign Affairs, Ireland",
             "page_title": "Passport Fees",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -5196,7 +5336,13 @@
             "url": "https://immigration.go.ke/type-and-fees/",
             "publisher": "Directorate of Immigration Services Kenya",
             "page_title": "Passport Service Fees",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -6144,7 +6290,13 @@
             "url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
             "publisher": "Jabatan Imigresen Malaysia",
             "page_title": "Malaysian International Passport",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -7013,7 +7165,15 @@
             "url": "https://nepalpassport.gov.np/",
             "publisher": "Department of Passports, Nepal",
             "page_title": "Passport Fees and Tariffs",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official Nepal Department of Passports portal for statutory requirements and tariffs",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -7191,7 +7351,14 @@
         "url": "https://www.passports.govt.nz/",
         "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
         "page_title": "Online Passport Application Portal",
-        "checked_at": "2026-10-19"
+        "checked_at": "2026-10-19",
+        "homepage_claim_exception": true,
+        "exception_rationale": "Official New Zealand Department of Internal Affairs passport portal for requirements and procedures",
+        "claims": [
+          "documents",
+          "eligibility",
+          "steps"
+        ]
       }
     ],
     "services": {
@@ -7375,7 +7542,8 @@
             "url": "https://www.passports.govt.nz/passport-costs",
             "publisher": "Te Tari Taiwhenua Department of Internal Affairs",
             "page_title": "Passport Costs",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claim_scope": "statutory_fee_schedule"
           }
         ]
       },
@@ -7556,7 +7724,13 @@
         "url": "https://www.ica.gov.sg/enter-transit-depart/more-information/singapore-citizenship/singapore-passport",
         "publisher": "Immigration & Checkpoints Authority, Singapore",
         "page_title": "Apply for or Renew Singapore Passport",
-        "checked_at": "2026-10-19"
+        "checked_at": "2026-10-19",
+        "claims": [
+          "fee",
+          "documents",
+          "eligibility",
+          "steps"
+        ]
       }
     ],
     "services": {
@@ -7699,7 +7873,13 @@
             "url": "https://www.ica.gov.sg/",
             "publisher": "Immigration & Checkpoints Authority, Singapore",
             "page_title": "Passport Fees & Penalties",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -7885,7 +8065,13 @@
         "url": "https://www.exteriores.gob.es/es/ServiciosAlCiudadano/Paginas/Pasaportes-y-otros-documentos.aspx",
         "publisher": "Ministerio de Asuntos Exteriores, Unión Europea y Cooperación (MAEC)",
         "page_title": "Pasaportes y Salvoconductos en el Exterior",
-        "checked_at": "2026-10-19"
+        "checked_at": "2026-10-19",
+        "claims": [
+          "fee",
+          "documents",
+          "eligibility",
+          "steps"
+        ]
       }
     ],
     "services": {
@@ -7989,7 +8175,15 @@
             "url": "https://www.dgp.mir.es/",
             "publisher": "Policía Nacional, España",
             "page_title": "Tasa de Expedición del Pasaporte",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "homepage_claim_exception": true,
+            "exception_rationale": "Official Dirección General de la Policía portal for passport issuance fees and appointment procedures",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -8344,7 +8538,13 @@
             "url": "https://www.immigration.gov.lk/pages_e.php?id=8",
             "publisher": "Department of Immigration and Emigration Sri Lanka",
             "page_title": "Passport Fees and Processing Services",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claims": [
+              "fee",
+              "documents",
+              "eligibility",
+              "steps"
+            ]
           }
         ]
       },
@@ -8560,7 +8760,12 @@
         "url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-untuk-masyarakat-secara-umum/",
         "publisher": "Direktorat Jenderal Imigrasi",
         "page_title": "Permohonan Paspor Baru Umum",
-        "checked_at": "2026-10-19"
+        "checked_at": "2026-10-19",
+        "claims": [
+          "documents",
+          "eligibility",
+          "steps"
+        ]
       },
       {
         "url": "https://www.imigrasi.go.id/id/permohonan-paspor-baru-anak/",
@@ -8801,7 +9006,8 @@
             "url": "https://www.imigrasi.go.id/id/biaya-paspor/",
             "publisher": "Direktorat Jenderal Imigrasi",
             "page_title": "Tarif Paspor dan Layanan Keimigrasian",
-            "checked_at": "2026-10-19"
+            "checked_at": "2026-10-19",
+            "claim_scope": "statutory_fee_schedule"
           }
         ]
       },

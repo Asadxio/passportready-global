@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_16'), `Stylesheet href must contain ?v=20261019_16 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_17'), `Stylesheet href must contain ?v=20261019_17 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_16'), `Local script ${srcMatch[1]} must contain ?v=20261019_16 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_17'), `Local script ${srcMatch[1]} must contain ?v=20261019_17 cache-busting query string`);
     }
   });
 });
@@ -2267,15 +2267,19 @@ runTest('Phase 4.3.6 Evidence Integrity, Country-Allowlist Bypass Removal, and R
     rule_pack_status: 'verified',
     authority_name: 'Passport Seva',
     official_portal_url: 'https://passportindia.gov.in',
-    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA' }],
+    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA', claim_scope: 'portal_navigation' }],
     jurisdictions: [{ application_channel: 'domestic' }],
     services: {
       first_passport: {
         availability_status: 'available',
-        sources: [{ url: 'https://passportindia.gov.in/fees', publisher: 'MEA' }],
+        sources: [
+          { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule', claim_scope: 'fee', publisher: 'MEA' },
+          { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor', claim_scope: 'documents', publisher: 'MEA' },
+          { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms', claim_scope: 'eligibility', publisher: 'MEA' }
+        ],
         fees: { currency: 'INR', standard: 1500 },
-        documents: [{ document_name: 'Aadhaar Card' }],
-        eligibility: [{ rule: 'Indian Citizen' }]
+        documents: [{ document_name: 'Aadhaar Card', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor' }],
+        eligibility: [{ rule: 'Indian Citizen', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms' }]
         // NO steps!
       }
     }
@@ -2733,14 +2737,18 @@ runTest('Phase 4.3.7 Source-to-Claim Evidence Binding & Strict Fee Schema Valida
     rule_pack_status: 'verified',
     authority_name: 'Passport Seva',
     official_portal_url: 'https://passportindia.gov.in',
-    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA', page_title: 'Passport Seva', checked_at: '2026-10-18' }],
+    sources: [
+      { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule', claim_scope: 'fee', publisher: 'MEA', page_title: 'Fee Schedule', checked_at: '2026-10-18' },
+      { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor', claim_scope: 'documents', publisher: 'MEA', page_title: 'Document Advisor', checked_at: '2026-10-18' },
+      { url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms', claim_scope: 'eligibility', publisher: 'MEA', page_title: 'Citizenship Norms', checked_at: '2026-10-18' }
+    ],
     jurisdictions: [{ application_channel: 'domestic' }],
     services: {
       first_passport: {
         availability_status: 'available',
         fees: { currency: 'INR', standard: 1500 },
-        documents: [{ document_name: 'Aadhaar' }],
-        eligibility: [{ rule: 'Citizen' }]
+        documents: [{ document_name: 'Aadhaar', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/documentAdvisor' }],
+        eligibility: [{ rule: 'Citizen', source_url: 'https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms' }]
         // NO steps!
       }
     }
@@ -3103,6 +3111,250 @@ runTest('Phase 4.3.8 Official Source Trust, Fee Schema Integrity & Claim-Level E
   [resGenUrg, resEvilUrg, resDocsOnly, resFeesOnly].forEach(res => {
     assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Non-verified evaluation must NEVER be marked PREPARED');
     assert(res.readinessScore <= 80, 'Score must be capped <= 80%');
+  });
+});
+
+// 26. Phase 4.3.9 Official Domain-Trust Independence, Generic-Homepage Disallowance & Claim-Evidence Binding (Fixtures A–H)
+runTest('Phase 4.3.9 Official Domain-Trust Independence, Generic-Homepage Disallowance & Claim-Evidence Binding (Fixtures A–H)', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // --- FIXTURE A: Self-authorized trusted domain ---
+  // A pack cannot self-authorize a new unapproved domain in pack.trusted_domains
+  const packWithAttacker = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    official_portal_url: 'https://attacker.example/portal',
+    trusted_domains: ['attacker.example', 'passportindia.gov.in'],
+    sources: [
+      { url: 'https://attacker.example/fee', publisher: 'Attacker Authority', claim_scope: 'fee' },
+      { url: 'https://attacker.example/docs', publisher: 'Attacker Authority', claim_scope: 'documents' },
+      { url: 'https://attacker.example/elig', publisher: 'Attacker Authority', claim_scope: 'eligibility' }
+    ],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [
+          { url: 'https://attacker.example/fee', claim_scope: 'fee' },
+          { url: 'https://attacker.example/docs', claim_scope: 'documents' },
+          { url: 'https://attacker.example/elig', claim_scope: 'eligibility' }
+        ],
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const trustedDomains = PassportRulesEngine.getTrustedOfficialDomains('IN', packWithAttacker);
+  assert(!trustedDomains.includes('attacker.example'), 'Fixture A: attacker.example must not be authorized in getTrustedOfficialDomains');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('attacker.example', 'IN', packWithAttacker), false, 'Fixture A: isTrustedOfficialDomain must reject self-authorized domain');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('https://attacker.example/fee', 'IN', packWithAttacker), false, 'Fixture A: isTrustedOfficialUrl must reject URL from self-authorized domain');
+
+  const engineAttacker = new PassportRulesEngine({ IN: packWithAttacker });
+  const resAttacker = engineAttacker.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(resAttacker.serviceCoverage.dimensions.service.status, 'general_guidance', 'Fixture A: Self-authorized domain pack must fall back to general_guidance');
+  assert.strictEqual(resAttacker.serviceCoverage.dimensions.service.evidence.evidenceLevel, 'no_trusted_source');
+  assert(resAttacker.readinessScore <= 75, 'Fixture A: Score must be capped <= 75%');
+  assert.notStrictEqual(resAttacker.statusLabel, 'PREPARED', 'Fixture A: Readiness label must NOT be PREPARED');
+
+  // --- FIXTURE B: Look-alike and Unapproved Domains ---
+  const lookalikes = [
+    'passportindia.gov.in.evil.com',
+    'fakepassportindia.gov.in',
+    'expresspassportindia.com',
+    'tatkaalpassports.com',
+    'consular-services-online.org',
+    'travel.state.gov.phishing.net',
+    'www.passportindia.gov.in.attacker.org'
+  ];
+  lookalikes.forEach(host => {
+    assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain(host, 'IN'), false, `Fixture B: Hostname ${host} must be rejected`);
+    assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl(`https://${host}/passport`, 'IN'), false, `Fixture B: URL https://${host}/passport must be rejected`);
+  });
+  // Approved subdomains must still succeed
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('portal2.passportindia.gov.in', 'IN'), true, 'Approved dot-rooted subdomain must pass');
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialDomain('passportindia.gov.in', 'IN'), true, 'Approved root domain must pass');
+
+  // Reject insecure HTTP by default
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('http://passportindia.gov.in/feeSchedule', 'IN'), false, 'Fixture B: Insecure HTTP must be rejected by default');
+  // Documented, reviewed HTTP exception succeeds
+  const reviewedHttpSource = {
+    url: 'http://passportindia.gov.in/feeSchedule',
+    allow_insecure_http: true,
+    review_rationale: 'Legacy government portal gateway verified in 2026'
+  };
+  assert.strictEqual(PassportRulesEngine.isTrustedOfficialUrl('http://passportindia.gov.in/feeSchedule', 'IN', null, reviewedHttpSource), true, 'Fixture B: Documented reviewed HTTP exception must be accepted');
+
+  // --- FIXTURE C: Generic Homepage Fee-Record Bypass ---
+  // A trusted official root URL with fee record metadata (amount, official_replacement_amount, applicant_category)
+  const genericSourceWithAmount = {
+    url: 'https://passportindia.gov.in/',
+    amount: 1500
+  };
+  const genericSourceWithReplacement = {
+    url: 'https://passportindia.gov.in/',
+    official_replacement_amount: 2000
+  };
+  const genericSourceWithCategory = {
+    url: 'https://passportindia.gov.in/',
+    applicant_category: 'tatkaal'
+  };
+  assert.strictEqual(engine.isClaimRelevantSource(genericSourceWithAmount, 'fee'), false, 'Fixture C: Root URL with amount must NOT substantiate fee claim');
+  assert.strictEqual(engine.isClaimRelevantSource(genericSourceWithReplacement, 'fee'), false, 'Fixture C: Root URL with official_replacement_amount must NOT substantiate fee claim');
+  assert.strictEqual(engine.isClaimRelevantSource(genericSourceWithCategory, 'fee'), false, 'Fixture C: Root URL with applicant_category must NOT substantiate fee claim');
+
+  // Pack with only generic root source + fee data
+  const packRootOnly = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    official_portal_url: 'https://passportindia.gov.in/',
+    sources: [{ url: 'https://passportindia.gov.in/', page_title: 'Official Portal' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'INR', standard: 1500, fee_records: [{ amount: 1500, url: 'https://passportindia.gov.in/' }] },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const resRootOnly = new PassportRulesEngine({ IN: packRootOnly }).evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(resRootOnly.serviceCoverage.dimensions.service.status, 'general_guidance', 'Fixture C: Root only pack must be general_guidance');
+  assert(!resRootOnly.serviceCoverage.dimensions.service.evidence.verifiedFields.includes('fees'), 'Fixture C: Fees must NOT be verified from root URL');
+  assert(resRootOnly.readinessScore <= 75, 'Fixture C: Score must cap <= 75%');
+  assert.notStrictEqual(resRootOnly.statusLabel, 'PREPARED', 'Fixture C: Status must NOT be PREPARED');
+
+  // --- FIXTURE D: Generic Homepage Document-Record Bypass ---
+  const docOnRoot = {
+    document_name: 'Birth Certificate',
+    url: 'https://passportindia.gov.in/'
+  };
+  const docOnIndexPath = {
+    document_name: 'Citizenship Evidence',
+    url: 'https://passportindia.gov.in/index.html'
+  };
+  assert.strictEqual(engine.isClaimRelevantSource(docOnRoot, 'documents'), false, 'Fixture D: Document on root URL must NOT substantiate documents claim');
+  assert.strictEqual(engine.isClaimRelevantSource(docOnIndexPath, 'documents'), false, 'Fixture D: Document on /index.html must NOT substantiate documents claim');
+
+  // --- FIXTURE E: Cross-Claim Evidence Contamination ---
+  // Pack with ONLY a fee-specific URL: Fee evidence cannot automatically verify eligibility or steps
+  const feeOnlySource = {
+    url: 'https://passportindia.gov.in/AppOnlineProject/online/feeSchedule',
+    page_title: 'Passport Fee Structure and Payment Guidelines'
+  };
+  assert.strictEqual(engine.isClaimRelevantSource(feeOnlySource, 'fee'), true, 'Fixture E: Fee schedule URL must substantiate fee');
+  assert.strictEqual(engine.isClaimRelevantSource(feeOnlySource, 'eligibility'), false, 'Fixture E: Fee schedule URL must NOT substantiate eligibility');
+  assert.strictEqual(engine.isClaimRelevantSource(feeOnlySource, 'steps'), false, 'Fixture E: Fee schedule URL must NOT substantiate steps');
+  assert.strictEqual(engine.isClaimRelevantSource(feeOnlySource, 'documents'), false, 'Fixture E: Fee schedule URL must NOT substantiate documents');
+
+  const packFeeOnlyCross = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [feeOnlySource],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [feeOnlySource],
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }],
+        steps: [{ step: 'Apply online' }]
+      }
+    }
+  };
+  const resFeeCross = new PassportRulesEngine({ IN: packFeeOnlyCross }).evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(resFeeCross.serviceCoverage.dimensions.service.status, 'partial', 'Fixture E: Fee-only evidence must yield partial coverage');
+  assert(resFeeCross.serviceCoverage.dimensions.service.evidence.verifiedFields.includes('fees'), 'Fixture E: verifiedFields must include fees');
+  assert(!resFeeCross.serviceCoverage.dimensions.service.evidence.verifiedFields.includes('eligibility'), 'Fixture E: verifiedFields must NOT include eligibility');
+  assert(!resFeeCross.serviceCoverage.dimensions.service.evidence.verifiedFields.includes('documents'), 'Fixture E: verifiedFields must NOT include documents');
+  assert(!resFeeCross.serviceCoverage.dimensions.service.evidence.verifiedFields.includes('steps'), 'Fixture E: verifiedFields must NOT include steps');
+  assert(resFeeCross.readinessScore <= 80, 'Fixture E: Readiness score must cap <= 80% for partial');
+  assert.notStrictEqual(resFeeCross.statusLabel, 'PREPARED', 'Fixture E: Status must NOT be PREPARED');
+
+  // --- FIXTURE F: Explicit Metadata Bypass ---
+  // Broad wildcard 'all' cannot bypass claim-specific evidence checks
+  const wildcardAllClaims = {
+    url: 'https://passportindia.gov.in/',
+    claims: ['all']
+  };
+  const wildcardAllScope = {
+    url: 'https://passportindia.gov.in/',
+    claim_scope: 'all'
+  };
+  const nonHomeWildcard = {
+    url: 'https://passportindia.gov.in/fees',
+    claims: ['all']
+  };
+  assert.strictEqual(engine.isClaimRelevantSource(wildcardAllClaims, 'fee'), false, 'Fixture F: claims: ["all"] on root must be rejected');
+  assert.strictEqual(engine.isClaimRelevantSource(wildcardAllScope, 'documents'), false, 'Fixture F: claim_scope: "all" on root must be rejected');
+  assert.strictEqual(engine.isClaimRelevantSource(nonHomeWildcard, 'documents'), false, 'Fixture F: claims: ["all"] on /fees must not substantiate documents');
+
+  // --- FIXTURE G: Positive Controls ---
+  // India Tatkaal retains partial route status with trusted source
+  const inTatkaalPos = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(inTatkaalPos.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(inTatkaalPos.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('tatkaalPassports')));
+
+  // US Expedited retains partial route status with trusted source
+  const usExpeditePos = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  assert.strictEqual(usExpeditePos.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(usExpeditePos.serviceCoverage.dimensions.urgency.evidence.sources.some(s => s.includes('travel.state.gov')));
+
+  // Mexico consular & emergency schedule with Art. 20 LFD retains partial route status
+  const mxEmergPos = engine.evaluate({ countryCode: 'MX', location: 'abroad', service: 'emergency_travel', urgency: 'emergency' });
+  assert.strictEqual(mxEmergPos.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(mxEmergPos.serviceCoverage.dimensions.urgency.summary.includes('Art. 20 LFD'));
+
+  // New Zealand after-hours callout retains partial route status
+  const nzEmergPos = engine.evaluate({ countryCode: 'NZ', location: 'inside', service: 'first_passport', urgency: 'emergency' });
+  assert.strictEqual(nzEmergPos.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert(nzEmergPos.serviceCoverage.dimensions.urgency.summary.includes('after-hours callout'));
+
+  // --- FIXTURE H: Preservation ---
+  // Malaysia JIM staff eligibility and replacement fee tiers
+  const myStaff1 = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'first_loss' });
+  assert.strictEqual(myStaff1.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 200);
+
+  const myStaff2 = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'second_loss' });
+  assert.strictEqual(myStaff2.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 500);
+
+  const myStaff3 = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '10_year', lossTier: 'third_loss' });
+  assert.strictEqual(myStaff3.checklist.find(c => c.id === 'official_fee_payment').feeRecord.total_replacement_fee, 1000);
+
+  const myStaff5yr = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'lost_stolen', applicantCategory: 'immigration_officers_staff', validity: '5_year', lossTier: 'first_loss' });
+  assert.strictEqual(myStaff5yr.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'not_eligible');
+
+  const myStaffOrig = engine.evaluate({ countryCode: 'MY', location: 'inside', service: 'first_passport', applicantCategory: 'immigration_officers_staff', validity: '10_year' });
+  assert.strictEqual(myStaffOrig.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 0);
+
+  // Indonesia under-17 marital-status confirmation
+  const idMinor = engine.evaluate({ countryCode: 'ID', location: 'inside', service: 'first_passport', ageExact: 16 });
+  assert.strictEqual(idMinor.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required');
+  assert(idMinor.flags.some(f => f.code === 'INDONESIA_MARITAL_STATUS_CONFIRMATION'));
+
+  // Mexico Emergency Type E & Art. 20 LFD +30%
+  const mxEmergencyPolicy = engine.evaluate({ countryCode: 'MX', location: 'abroad', service: 'first_passport', age: 'adult', urgency: 'emergency' });
+  assert(mxEmergencyPolicy.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'));
+
+  // 249 Directory counts: 27 verified / 0 linked / 222 research
+  const allCountries = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
+  assert.strictEqual(allCountries.length, 249);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'verified').length, 27);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 0);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 222);
+
+  // Negative fixtures readiness score cap and PREPARED label protection
+  [resAttacker, resRootOnly, resFeeCross].forEach(res => {
+    assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Negative fixture must NEVER be marked PREPARED');
+    assert(res.readinessScore <= 80, 'Negative fixture score must be capped <= 80%');
   });
 });
 
