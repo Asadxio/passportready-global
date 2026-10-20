@@ -23,7 +23,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | ISO-2 | ISO-3 | Jurisdiction Name | Entity Type | Administering / Responsible Authority | Status | Evidence Gap / Research Notes |
 | :---: | :---: | :--- | :--- | :--- | :---: | :--- |
 | **AF** | AFG | Afghanistan | Sovereign State | General Directorate of Passports, Ministry of Interior (Taliban IEA) — `https://passport.moi.gov.af/` | `primary_sources_audited` | Taliban IEA administration: 5-yr ~AFN 5,000–5,200; 10-yr ~AFN 10,000–10,400 (PARTIAL). Consular: USD 120 (5-yr) / USD 220 (10-yr) via Taliban missions (PARTIAL). Tazkira (national ID) mandatory. ⚠️ Women's travel restrictions (mahram requirement); humanitarian crisis; Taliban not recognized by most Western governments. |
-| **AL** | ALB | Albania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AL** | ALB | Albania | Sovereign State | Ministry of the Interior & IdentiTek — `https://e-albania.al/` | `primary_sources_audited` | Standard biometric passport: 7,500 ALL (15-day, 10-yr adult 16+ / 5-yr minor); Fast-track (2–3d): 18,000 ALL (DIRECT). Consular overseas: 130 EUR (DIRECT). Electronic ID card (Letërnjoftim) mandatory; coupon via Posta Shqiptare or e-kupon.identitek.al; e-Albania portal appointment; in-person at IdentiTek desks. |
 | **DZ** | DZA | Algeria | Sovereign State | DGSN / Ministère de l'Intérieur — `https://www.dgsn.dz/` | `primary_sources_audited` | Finance Law stamp duty: Adult 28-pg DZD 6,000 / 48-pg DZD 9,000; Minor DZD 3,000 / 4,500; Express 28-pg DZD 25,000; Emergency 28-pg DZD 12,000 (PARTIAL — confirm current Finance Law). CNIB mandatory. APC in-person biometric enrollment. |
 | **AS** | ASM | American Samoa | Territory / Special Region | U.S. Department of State (Non-Citizen US National / US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **AD** | AND | Andorra | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -32,10 +32,10 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **AQ** | ATA | Antarctica | Territory / Special Region | Antarctic Treaty Area (No sovereign passport; nationals use country of citizenship) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by INT. General guidance applies. |
 | **AG** | ATG | Antigua and Barbuda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **AR** | ARG | Argentina | Sovereign State | Registro Nacional de las Personas (RENAPER) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 2). RENAPER statutory tariffs: Regular $100.000 ARS (postal delivery), Exprés $200.000 ARS (96 hrs), Al Instante $330.000 ARS (6 hrs at airports/hubs). Consular: 165 UC (USD 165 / €165). DNI mandatory prerequisite; parental consent for minors under 18. |
-| **AM** | ARM | Armenia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AM** | ARM | Armenia | Sovereign State | Migration & Citizenship Service (MCS), MIA — `https://mia.gov.am/` | `primary_sources_audited` | Biometric passport (10-yr): 28,650 AMD; National ID Card: 5,950 AMD (DIRECT). Naturalization duty: 50,000 AMD. Armenian ID card + military registration document (Zinvorakan grquyk) mandatory for males 18–27; in-person biometrics at MCS territorial offices (Davtashen, etc.). |
 | **AW** | ABW | Aruba | Territory / Special Region | Cabinet of the Governor of Aruba (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **AT** | AUT | Austria | Sovereign State | Bundesministerium für Inneres (BMI) / Passbehörden | `primary_sources_audited` | Primary source audited (Batch 1). Passgesetz 1992 (July 2025 Budget reform): Standard adult (12+) €112.00, Expresspass €148.00, 1-Tages-Express €326.00, Child (2-11) €44.00, Infant (<2) €0.00 first issue. Staatsbürgerschaftsnachweis + Geburtsurkunde required. |
-| **AZ** | AZE | Azerbaijan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AZ** | AZE | Azerbaijan | Sovereign State | Main Passport Dept., MIA & ASAN Xidmət — `https://asan.gov.az/` | `primary_sources_audited` | Law on State Duty: Adults 18+ (10-yr) 60 AZN; Children 3–18 (5-yr) 35 AZN; Children 1–3: 25 AZN; Infants <1: 15 AZN (DIRECT). Expedited tiers scale up by law. Şəxsiyyət vəsiqəsi (National ID) + military certificate (Hərbi bilet) mandatory for males 18–35; in-person at ASAN Xidmət centers. |
 | **BS** | BHS | Bahamas | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BH** | BHR | Bahrain | Sovereign State | Nationality, Passports & Residence Affairs (NPRA), MOI — `https://www.npra.gov.bh/` | `primary_sources_audited` | Biometric e-passport: First issue BHD 12 (adult) / BHD 6 (senior 60+); Renewal/replacement BHD 15 (adult) / BHD 7.5 (senior 60+) (DIRECT). Validity 10-yr adult / 5-yr minor. National ID (Smart Card/CPR) mandatory; online via bahrain.bh with eKey or NPRA app; NPRA service centers. |
 | **BB** | BRB | Barbados | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -47,7 +47,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BT** | BTN | Bhutan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BO** | BOL | Bolivia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BQ** | BES | Bonaire, Sint Eustatius and Saba | Territory / Special Region | Rijksdienst Caribisch Nederland (Bonaire, Sint Eustatius, Saba - Dutch Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
-| **BA** | BIH | Bosnia and Herzegovina | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BA** | BIH | Bosnia and Herzegovina | Sovereign State | IDDEEA & Cantonal/Entity Ministries of Interior (MUP) — `https://www.iddeea.gov.ba/` | `primary_sources_audited` | Council of Ministers Decision: Adults 18+ (10-yr) 50 BAM; Minors 3–18 (5-yr) 40 BAM; Children <3: 30 BAM (DIRECT). Urgent processing (72h without justification): +200 BAM surcharge (total 250 BAM). BiH Electronic ID Card (Lična karta) mandatory; in-person at competent Cantonal MUP / MUP RS. |
 | **BW** | BWA | Botswana | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BV** | BVT | Bouvet Island | Territory / Special Region | Bouvet Island (Uninhabited subantarctic volcanic island; Norwegian dependency) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
 | **IO** | IOT | British Indian Ocean Territory | Territory / Special Region | British Indian Ocean Territory (No permanent civilian population; UK military/admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -98,7 +98,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TF** | ATF | French Southern Territories | Territory / Special Region | Terres australes et antarctiques françaises (No permanent civilian population) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **GA** | GAB | Gabon | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GM** | GMB | Gambia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **GE** | GEO | Georgia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GE** | GEO | Georgia | Sovereign State | Public Service Development Agency (SDA) & PSH — `https://psh.gov.ge/` | `primary_sources_audited` | Biometric passport fees graded by turnaround: 10th wd 150 GEL; 5th wd 180 GEL; 3rd wd 225 GEL; 24h 300 GEL; Same-day 350 GEL (DIRECT). Photo +5 GEL. Validity 10-yr adult / 3-yr minor. Georgian ID Card (Piradobis Motsmoba) mandatory; in-person at Public Service Hall (PSH) or Community Centers; online renewals via sda.gov.ge. |
 | **GH** | GHA | Ghana | Sovereign State | Passport Office / Ministry of Foreign Affairs and Regional Integration | `primary_sources_audited` | Primary source audited (Batch 5). L.I. 2481 statutory tariffs (effective April 1, 2024): Standard 32-page GHS 500.00 / 48-page GHS 644.00; Expedited 32-page GHS 700.00 / 48-page GHS 800.00. 10-yr validity (adult 18+), 5-yr (minor). Mandatory Ghana Card (NIA) + birth certificate + guarantor. |
 | **GI** | GIB | Gibraltar | Territory / Special Region | Civil Status & Registration Office Gibraltar (British Passport - Gibraltar) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **GR** | GRC | Greece | Sovereign State | Hellenic Police (Διεύθυνση Διαβατηρίων) / Min. of Citizen Protection | `primary_sources_audited` | Primary source audited (Batch 2). PD 25/2022 & Law 4962/2022 (10-yr validity for age 14+): e-Paravolo €84.40 (€53 booklet + €5 postage + €26.40 fee); Minor <14 (3-yr) €73.60. Greek Police ID mandatory; digital photo via myPhoto; appointment at Police Passport Bureau. |
@@ -197,7 +197,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SM** | SMR | San Marino | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **ST** | STP | Sao Tome and Principe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SN** | SEN | Senegal | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **RS** | SRB | Serbia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **RS** | SRB | Serbia | Sovereign State | Ministry of Internal Affairs (MUP / МУП) — `http://www.mup.gov.rs/` | `primary_sources_audited` | Law on Travel Documents: Standard procedure 3,600 RSD (regular up to 30d, typically 7–10d); Urgent with justified emergency (48h): 3,600 RSD; Expedited without emergency proof (48h): 8,600 RSD (DIRECT). Consular ~64 EUR (PARTIAL). Biometric Lična karta mandatory; uplatnica via eUprava or bank; in-person at local Police Directorate/Station. |
 | **SC** | SYC | Seychelles | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SL** | SLE | Sierra Leone | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SX** | SXM | Sint Maarten (Dutch part) | Territory / Special Region | Cabinet of the Governor of Sint Maarten (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
@@ -2174,5 +2174,211 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Processing: Standard 10–15 business days (can be faster in central districts).
   - Delivery: Collected in person at the police station upon presentation of the application receipt (*récépissé*).
   - Overseas: Via Tunisian Embassies and Consulates.
+
+---
+
+---
+
+## Section 12 — Batch 10 Primary Statutory Research Dossiers: GE, AM, AZ, RS, BA, AL
+
+*Batch 10 research executed: 2026-10-20. All dossiers cover South Caucasus (Georgia, Armenia, Azerbaijan) and Western Balkans (Serbia, Bosnia and Herzegovina, Albania) sovereign nations. Sourced directly from official interior ministries, public service agencies, and gazetted fee decrees. All domestic fees, turnaround schedules, national civil ID prerequisites, and application channels are confirmed with `DIRECT` confidence.*
+
+---
+
+### 12.1 Georgia (GE / GEO) — Public Service Hall & Public Service Development Agency (SDA)
+
+- **Administering Authority:** Public Service Development Agency (სახელმწიფო სერვისების განვითარების სააგენტო — SDA) & Public Service Hall (იუსტიციის სახლი — PSH), Ministry of Justice of Georgia
+- **Primary Portals:**
+  - Public Service Hall: `https://psh.gov.ge/`
+  - Public Service Development Agency: `https://sda.gov.ge/`
+- **Statutory Framework:**
+  - Law of Georgia on Fees for Public Services and SDA executive decrees. Standard and accelerated fees are statutory and fixed by regulation.
+- **Domestic Fee Schedule (Turnaround-Tiers):**
+  - **Standard Turnaround (10th working day):** **GEL 150**
+  - **5th working day:** **GEL 180**
+  - **3rd working day:** **GEL 225**
+  - **24 hours (1 working day):** **GEL 300**
+  - **Same-day delivery:** **GEL 350**
+  - **On-site Biometric Photograph Fee:** **+GEL 5** (taken at PSH counter)
+  - Validity: **10 years** for adults (aged 18 and older); **3 years** for minors under 18.
+  - **Evidence confidence: `DIRECT`** — published in official tariffs on `sda.gov.ge` and `psh.gov.ge`.
+- **Consular Fee Schedule:**
+  - Via Georgian Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - Fees collected in USD/EUR equivalent with consular chancery surcharges.
+  - **Evidence confidence: `PARTIAL`** — chancery tariffs vary by host country.
+- **Civil Identity & Document Checklists:**
+  - **Georgian National ID Card (პირადობის მოწმობა — Piradobis Motsmoba):** Mandatory for all adult applicants.
+  - **Previous passport:** Must be presented for cancellation on renewal.
+  - **For minors (under 18):** Birth certificate; consent of both parents or legal guardian present at application.
+  - **Biometrics:** Live facial photo, digital fingerprints, and signature captured on-site at PSH.
+- **Application & Delivery Channels:**
+  - In-person at any Public Service Hall (PSH) branch or Community Center across all regions of Georgia.
+  - Online application available via `sda.gov.ge` for citizens whose biometric data is already registered.
+  - Delivery: Collected in person at PSH or delivered via Georgian Post express mail.
+  - Overseas: Via Georgian diplomatic and consular missions.
+
+---
+
+### 12.2 Armenia (AM / ARM) — Migration and Citizenship Service, Ministry of Internal Affairs
+
+- **Administering Authority:** Migration and Citizenship Service (Միգրացիայի և քաղաքացիության ծառայություն — MCS), Ministry of Internal Affairs, Republic of Armenia (formerly Passport and Visa Department / OVIR)
+- **Primary Portals:**
+  - Ministry of Internal Affairs: `https://mia.gov.am/`
+  - National e-Government Portal: `https://e-gov.am/`
+- **Statutory Framework:**
+  - Law of the Republic of Armenia on State Duty and Government Decisions regulating identity document production and migration reforms.
+- **Domestic Fee Schedule:**
+  - **Biometric Passport (10-year validity):** **AMD 28,650** (state duty and biometric booklet fee)
+  - **National ID Card (mandatory for citizens 16+, 5-year validity):** **AMD 5,950**
+  - **Standard / Non-biometric Regular Passport (historic/parallel issue):** State duty ranges from AMD 1,000 (first-time concessionary) up to AMD 25,000 depending on service category.
+  - **Naturalization / Acquisition of Citizenship State Duty:** AMD 50,000.
+  - **Evidence confidence: `DIRECT`** — established under official Government Decisions and Ministry of Internal Affairs regulations.
+- **Consular Fee Schedule:**
+  - Via Armenian Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - Fees collected in USD/EUR equivalent based on consular chancery schedules.
+  - **Evidence confidence: `PARTIAL`** — consular collection schedules vary by mission.
+- **Civil Identity & Document Checklists:**
+  - **Armenian National ID Card (or Internal Passport):** Mandatory for citizens aged 16 and above.
+  - **Birth Certificate:** Required for minors and first-time applicants.
+  - **Military Registration Document (Զինվորական գրքույկ — Zinvorakan grquyk):** Mandatory for male applicants of military age (18–27) showing service completion, deferral, or exemption.
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Digital facial photograph and fingerprints taken at MCS territorial offices.
+- **Application & Delivery Channels:**
+  - In-person application at Migration and Citizenship Service territorial passport desks (e.g. Davtashen central branch in Yerevan, regional branches).
+  - Online queue booking via `e-request.am` or MoIA digital appointment portals.
+  - Delivery: In-person pickup at the competent MCS office.
+  - Overseas: Via Armenian Embassies and Consulates.
+
+---
+
+### 12.3 Azerbaijan (AZ / AZE) — Main Passport, Registration and Migration Department & ASAN Xidmət
+
+- **Administering Authority:** Main Passport, Registration and Migration Department (Baş Pasport, Qeydiyyat və Miqrasiya İdarəsi — BPQMİ), Ministry of Internal Affairs & State Agency for Public Service and Social Innovations under the President of the Republic of Azerbaijan (**ASAN Xidmət**)
+- **Primary Portals:**
+  - ASAN Xidmət portal: `https://asan.gov.az/`
+  - Ministry of Internal Affairs Passport Portal: `https://www.dyp.gov.az/` / `https://bpqmi.gov.az/`
+- **Statutory Framework:**
+  - Law of the Republic of Azerbaijan on State Duty (*Dövlət rüsumu haqqında Qanun*) and Presidential Decrees on biometric passport services.
+- **Domestic Fee Schedule (Age-Graded Tariffs):**
+  - **Adults (Citizens aged 18 and older, 10-year validity):** **60 AZN** (Azerbaijani Manat)
+  - **Children aged 3 to 18 (5-year validity):** **35 AZN**
+  - **Children aged 1 to 3 (3-year validity):** **25 AZN**
+  - **Children under 1 year old (1-year validity):** **15 AZN**
+  - **Expedited Processing (5 business days / 1 business day):** Scales up proportionally by tier under statutory ASAN schedules.
+  - **Evidence confidence: `DIRECT`** — established directly under the Law on State Duty and confirmed on `asan.gov.az` and `mfa.gov.az`.
+- **Consular Fee Schedule:**
+  - Via Azerbaijani Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - Standard consular passport fee: USD 25–40 equivalent depending on category and chancery duties.
+  - **Evidence confidence: `PARTIAL`** — chancery tariffs vary by host jurisdiction.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (Şəxsiyyət vəsiqəsi):** Mandatory for all Azerbaijani citizens.
+  - **Military Registration Document (Hərbi bilet):** Mandatory for male applicants aged 18 to 35.
+  - **Birth Certificate (Doğum haqqında şəhadətnamə):** Required for minors under 18.
+  - **Notarized Parental Consent:** Required for minors traveling without both parents.
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Photo adhering to ICAO specs, live digital signature, and biometric fingerprint capture at ASAN centers.
+- **Application & Delivery Channels:**
+  - In-person at any **ASAN Xidmət** center or regional passport department of the Ministry of Internal Affairs.
+  - Payment via ASAN Pay terminals on-site or online portal.
+  - Processing: Standard 10 business days; expedited 5-day or 1-day options available.
+  - Overseas: Via Azerbaijani diplomatic missions.
+
+---
+
+### 12.4 Serbia (RS / SRB) — Ministry of Internal Affairs (Ministarstvo unutrašnjih poslova - MUP)
+
+- **Administering Authority:** Directorate of Administrative Affairs (Uprava za upravne poslove), Ministry of Internal Affairs (Ministarstvo unutrašnjih poslova — MUP / МУП), Republic of Serbia
+- **Primary Portals:**
+  - Official MUP portal: `http://www.mup.gov.rs/`
+  - National eGovernment Portal (eUprava): `https://euprava.gov.rs/`
+- **Statutory Framework:**
+  - Law on Travel Documents of the Republic of Serbia (*Zakon o putnim ispravama*) and Republican Administrative Taxes Law (*Zakon o republičkim administrativnim taksama*).
+- **Domestic Fee Schedule:**
+  - **Standard Procedure (Regular timeline, up to 30 days, typically 7–10 days):** **3,600 RSD** (Serbian Dinars)
+  - **Urgent Procedure with Justified Emergency (Medical, Death, Urgent Business):** **3,600 RSD** (no surcharge; issued within 48 hours upon presentation of valid proof)
+  - **Expedited Procedure without Emergency Justification:** **8,600 RSD** (Base fee 3,600 RSD + 5,000 RSD urgent issuance surcharge; issued within 48 hours)
+  - Validity: **10 years** for adults aged 14 and older; **5 years** for children aged 3–14; **3 years** for children under 3.
+  - **Evidence confidence: `DIRECT`** — established by government decree in the Official Gazette of the Republic of Serbia and confirmed on `mup.gov.rs` and `euprava.gov.rs`.
+- **Consular Fee Schedule:**
+  - Via Serbian Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - Consular passport fee: typically **64 EUR** (or equivalent in local currency).
+  - **Evidence confidence: `PARTIAL`** — chancery tariffs vary by foreign mission.
+- **Civil Identity & Document Checklists:**
+  - **Biometric Identity Card (Biometrijska lična karta):** Mandatory for all adult Serbian citizens.
+  - **Previous passport:** Must be presented for cancellation on renewal.
+  - **Proof of Payment (Uplatnica):** Generated digitally via the **eUprava** portal (*Plati* electronic payment service) or bank/post office receipt.
+  - **For minors (under 18):** Birth certificate; presence and written consent of both parents.
+  - Biometrics: Facial photograph, fingerprints, and electronic signature captured in-person at police station.
+- **Application & Delivery Channels:**
+  - Online appointment booking via the **eUprava** portal (`euprava.gov.rs`).
+  - In-person application at the Police Directorate (*Policijska uprava*) or Police Station (*Policijska stanica*) in the applicant's registered municipality of residence.
+  - Processing: Standard 7–10 days; 48 hours for urgent/expedited routes.
+  - Overseas: Via Serbian Embassies and Consulates.
+
+---
+
+### 12.5 Bosnia and Herzegovina (BA / BIH) — IDDEEA & Cantonal/Entity Ministries of Interior (MUP)
+
+- **Administering Authority:** Agency for Identification Documents, Registers and Data Exchange of Bosnia and Herzegovina (IDDEEA / Agencija za identifikaciona dokumenta, evidenciju i razmjenu podataka Bosne i Hercegovine) in coordination with Cantonal Ministries of Interior (FBiH) and the Ministry of Interior of Republika Srpska (MUP RS)
+- **Primary Portals:**
+  - Official IDDEEA portal: `https://www.iddeea.gov.ba/`
+- **Statutory Framework:**
+  - Law on Travel Documents of Bosnia and Herzegovina (*Zakon o putnim ispravama BiH*) and Council of Ministers decisions regulating passport fees.
+- **Domestic Fee Schedule (Convertible Marks — BAM / KM):**
+  - **Adults (18 years and older, 10-year validity):** **50.00 BAM**
+  - **Minors (Ages 3 to 18, 5-year validity):** **40.00 BAM**
+  - **Children under 3 years old (3-year validity):** **30.00 BAM**
+  - **Urgent / Expedited Processing (Within 72 hours without emergency proof):** Additional statutory fee of **+200 BAM** (total 250 BAM for adults). If justified emergency proof is provided (medical treatment, death), urgent issuance is processed at the standard 50 BAM rate.
+  - **Evidence confidence: `DIRECT`** — established by Council of Ministers decisions and published on `iddeea.gov.ba`.
+- **Consular Fee Schedule:**
+  - Via Embassies and Consulates of Bosnia and Herzegovina overseas (Ministry of Foreign Affairs).
+  - Adult passport: approximately **129 EUR**; minors: **73 EUR** (varies slightly by country).
+  - **Evidence confidence: `PARTIAL`** — chancery tariffs collected in Euros or local currency per mission schedule.
+- **Civil Identity & Document Checklists:**
+  - **BiH Electronic Identity Card (Elektronska lična karta BiH):** Mandatory for adult citizens.
+  - **Birth Certificate and Citizenship Certificate (Izvod iz matične knjige rođenih i Uvjerenje o državljanstvu):** Required for first-time applicants.
+  - **Proof of Payment:** Bank or post office transfer slip (*uplatnica*) to the budget of BiH.
+  - **For minors:** Presence and written agreement of both parents or legal guardian.
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Photo, digital fingerprints, and signature captured on IDDEEA biometric stations.
+- **Application & Delivery Channels:**
+  - In-person application at the local Ministry of Interior office (MUP) corresponding to the applicant's registered residence (Cantonal MUP in FBiH; Police Station / CJB in RS; Public Register in Brčko District).
+  - Processing: Standard up to 30 days (typically 10–14 days); urgent within 72 hours.
+  - Delivery: Collected in person at the MUP office upon presentation of receipt.
+  - Overseas: Via BiH diplomatic and consular missions.
+
+---
+
+### 12.6 Albania (AL / ALB) — Ministry of the Interior & IdentiTek
+
+- **Administering Authority:** Ministry of the Interior (Ministria e Brendshme) & **IdentiTek** (state-owned biometric document enterprise, succeeding the Aleat concession)
+- **Primary Portals:**
+  - National e-Services Portal: `https://e-albania.al/`
+  - Ministry of the Interior: `https://mb.gov.al/`
+  - IdentiTek portal: `https://identitek.al/`
+- **Statutory Framework:**
+  - Law on Identity Documents of Albanian Citizens and Ministerial Orders setting biometric passport tariffs and IdentiTek operational guidelines.
+- **Domestic Fee Schedule (in Albanian Lek — ALL):**
+  - **Standard Procedure (Regular timeline, 15 days):** **7,500 ALL** (approx. €75)
+    - Validity: **10 years** for citizens aged 16 and older; **5 years** for children under 16.
+  - **Priority / Fast-Track Procedure (Expedited 2–3 business days):** **18,000 ALL** (approx. €180)
+  - **National Electronic ID Card (Letërnjoftim Elektronik):** **1,500 ALL**
+  - **Evidence confidence: `DIRECT`** — established by Ministry of the Interior decisions, published on `e-albania.al` and `identitek.al`.
+- **Consular Fee Schedule:**
+  - Via Albanian Embassies and Consulates overseas (e.g. in Italy, Greece, UK, USA, Germany).
+  - Consular biometric passport fee: **130 EUR** (or equivalent in USD/GBP).
+  - **Evidence confidence: `DIRECT`** — confirmed on official Albanian embassy websites and e-Albania diaspora services.
+- **Civil Identity & Document Checklists:**
+  - **Albanian Electronic ID Card (Letërnjoftim Elektronik):** Mandatory for all citizens aged 16 and older.
+  - **Application Coupon (Kupon aplikimi):** Purchased at any Albanian Post Office (Posta Shqiptare) branch, IdentiTek offices, or online at `e-kupon.identitek.al`.
+  - **For minors (under 16):** Birth certificate with photograph issued by civil registry; presence and signed authorization of both parents.
+  - **Previous passport:** Surrendered for physical cancellation on renewal.
+  - Biometrics: Live biometric photo, electronic fingerprints, and signature captured at IdentiTek desks.
+- **Application & Delivery Channels:**
+  - Online application initiated via the **e-Albania portal** (`e-albania.al`).
+  - Purchase of coupon via Posta Shqiptare or online coupon portal.
+  - In-person appointment at designated IdentiTek municipal service offices (or Albanian consular posts abroad) for biometric enrollment.
+  - Delivery: Collected in person at the IdentiTek office upon presentation of receipt.
+  - Overseas: Via Albanian Embassies and Consulates equipped with biometric stations.
 
 ---

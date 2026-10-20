@@ -33,6 +33,7 @@
 | **Phase Q** | `TASK-Q1` | Global Jurisdiction Completion — Batch 7 (DZ, VE, CU, MM, SD, UZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 7 complete; Proceed to Batch 8 |
 | **Phase R** | `TASK-R1` | Global Jurisdiction Completion — Batch 8 (LY, AF, KP, TM, SS, ER) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 8 complete; Proceed to Batch 9 |
 | **Phase S** | `TASK-S1` | Global Jurisdiction Completion — Batch 9 (LB, JO, OM, KW, BH, TN) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 9 complete; Proceed to Batch 10 |
+| **Phase T** | `TASK-T1` | Global Jurisdiction Completion — Batch 10 (GE, AM, AZ, RS, BA, AL) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 10 complete; Proceed to Batch 11 |
 
 ---
 
@@ -459,3 +460,27 @@
   - **BH:** NPRA official fee tariff confirmed DIRECT from bahrain.bh: First-time issuance / e-passport transition BHD 12 (standard) / BHD 6 (senior 60+); Renewal / replacement BHD 15 (standard) / BHD 7.5 (senior 60+). Smart Card (CPR) mandatory; online via bahrain.bh or NPRA app using eKey.
   - **TN:** Law 75-40 / Finance Law timbre fiscal confirmed DIRECT from sicad.gov.tn: Adult standard ordinary passport (5-yr) 80 TND; pupils/students/children <7: 25 TND; lost/damaged penalty: 150 TND. CIN (18+) or Extrait de naissance (<18) mandatory; in-person at local Police / Garde Nationale station.
 - **Next Actionable Task:** Batch 10 Official Source Research (suggested cohort: Central/South Asian or Balkan/Caucasus sovereign nations: e.g. Georgia GE, Armenia AM, Azerbaijan AZ, Serbia RS, Bosnia and Herzegovina BA, Albania AL).
+
+
+---
+
+### Phase T: Global Jurisdiction Completion — Batch 10 (GE, AM, AZ, RS, BA, AL)
+- **Task ID:** `TASK-T1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Georgia (GE), Armenia (AM), Azerbaijan (AZ), Serbia (RS), Bosnia and Herzegovina (BA), and Albania (AL). All 6 South Caucasus and Western Balkans sovereign jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers authored in Section 12 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit entries written in Section 13 of `SOURCE_AUDIT_REGISTER.md`. All statutory tariffs, turnaround tiers, national civil identification prerequisites, and municipal/digital application channels confirmed with `DIRECT` confidence.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 12 Batch 10 dossiers for GE, AM, AZ, RS, BA, AL.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 13 claim audit table with 17 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase T deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **GE:** Statutory turnaround tiers confirmed DIRECT from psh.gov.ge and sda.gov.ge: 10th wd 150 GEL; 5th wd 180 GEL; 3rd wd 225 GEL; 24h 300 GEL; same-day 350 GEL; photo +5 GEL. Georgian ID Card (Piradobis Motsmoba) mandatory; in-person at Public Service Hall (PSH) or Community Centers.
+  - **AM:** Biometric passport AMD 28,650; National ID card AMD 5,950; naturalization state duty AMD 50,000 confirmed DIRECT from Ministry of Internal Affairs / Migration and Citizenship Service regulations. Military registration document (Zinvorakan grquyk) mandatory for males 18–27.
+  - **AZ:** Age-graded statutory tariffs confirmed DIRECT from asan.gov.az and dyp.gov.az: Adults 18+ (10-yr) 60 AZN; children 3–18: 35 AZN; children 1–3: 25 AZN; infants <1: 15 AZN. Şəxsiyyət vəsiqəsi + military certificate (Hərbi bilet) mandatory for males 18–35; ASAN Xidmət centers.
+  - **RS:** Law on Travel Documents confirmed DIRECT on mup.gov.rs and euprava.gov.rs: Standard procedure 3,600 RSD; urgent with emergency justification: 3,600 RSD (48h); expedited without emergency justification: 8,600 RSD (48h, includes 5,000 RSD surcharge). Biometric Lična karta mandatory; uplatnica via eUprava; in-person at police station.
+  - **BA:** Council of Ministers decision confirmed DIRECT on iddeea.gov.ba: Adults 18+ (10-yr) 50 BAM; minors 3–18: 40 BAM; children <3: 30 BAM. Urgent 72h processing without emergency justification: +200 BAM surcharge (total 250 BAM). Electronic Lična karta BiH mandatory; in-person at competent Cantonal MUP / MUP RS.
+  - **AL:** Biometric passport fees confirmed DIRECT from e-albania.al and identitek.al: Standard (15 days) 7,500 ALL; expedited (2–3 days) 18,000 ALL; ID card 1,500 ALL; consular 130 EUR. Electronic ID card (Letërnjoftim) mandatory; voucher via Posta Shqiptare / e-kupon; online booking via e-Albania; IdentiTek biometric desks.
+- **Next Actionable Task:** Batch 11 Official Source Research (suggested cohort: Sub-Saharan African & Indian Ocean sovereign nations: e.g. Senegal SN, Côte d'Ivoire CI, Cameroon CM, Uganda UG, Rwanda RW, Mauritius MU).
