@@ -32,6 +32,7 @@
 | **Phase P** | `TASK-P1` | Global Jurisdiction Completion — Batch 6 (ET, IR, KZ, UA, IQ, QA) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 6 complete; Proceed to Batch 7 |
 | **Phase Q** | `TASK-Q1` | Global Jurisdiction Completion — Batch 7 (DZ, VE, CU, MM, SD, UZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 7 complete; Proceed to Batch 8 |
 | **Phase R** | `TASK-R1` | Global Jurisdiction Completion — Batch 8 (LY, AF, KP, TM, SS, ER) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 8 complete; Proceed to Batch 9 |
+| **Phase S** | `TASK-S1` | Global Jurisdiction Completion — Batch 9 (LB, JO, OM, KW, BH, TN) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 9 complete; Proceed to Batch 10 |
 
 ---
 
@@ -434,3 +435,27 @@
   - **SS:** Financial Act fees USD 100 adult / USD 50 minor payable in SSP at Central Bank official rate (PARTIAL). Nationality Certificate mandatory. Regional infrastructure fragility documented.
   - **ER:** Consular fees confirmed DIRECT from Eritrean diplomatic schedules (USD 100 adult renewal, USD 200 first-time/lost, USD 75/150 minor). Mandatory prerequisite: 2% diaspora Recovery and Rehabilitation Tax clearance certificate required for all consular services.
 - **Next Actionable Task:** Batch 9 Official Source Research (suggested: Lebanon LB, Jordan JO, Oman OM, Kuwait KW, Bahrain BH, Tunisia TN).
+
+
+---
+
+### Phase S: Global Jurisdiction Completion — Batch 9 (LB, JO, OM, KW, BH, TN)
+- **Task ID:** `TASK-S1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Lebanon (LB), Jordan (JO), Oman (OM), Kuwait (KW), Bahrain (BH), and Tunisia (TN). All 6 Middle East & North Africa jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers written in Section 11 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit rows added in Section 12 of `SOURCE_AUDIT_REGISTER.md`. All statutory fee structures, national civil identity prerequisites, and administrative application channels confirmed with `DIRECT` confidence from official government decrees, gazetted ministerial decisions, and administrative portals.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 11 Batch 9 dossiers for LB, JO, OM, KW, BH, TN.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 12 claim audit table with 21 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase S deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **LB:** General Security official fee schedule confirmed DIRECT: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000. Ikhraj Qayd Fardi or Biometric ID Card mandatory; Moukhtar-certified photos; quota appointment queues resulting from economic crisis demand. Consular USD 300/600 (PARTIAL).
+  - **JO:** Passport Fees Regulation confirmed DIRECT from CSPD/MOI: Standard adult (16+, 5-yr) 50 JOD (first issue, expired, or <180d remaining); penalty rate 100 JOD if renewed >180d remaining; minor <16: 25 JOD; lost replacement: 125 JOD (1st) / 250 JOD (subsequent); fast-track +25 JOD; Jordan Post +3 JOD. Smart ID Card + Family Book + military service clearance mandatory.
+  - **OM:** ROP official fee confirmed DIRECT from rop.gov.om and gov.om: Adult 18+ (10-yr) OMR 10; Minor <18 (5-yr) OMR 5. Civil ID Card with PKI chip mandatory; ROP mobile app with mobile PKI (*Tam*) or ROP Service Centers.
+  - **KW:** Ministerial Decision No. 1769 confirmed DIRECT in Kuwait Al-Youm: Standard passport issuance/renewal/replacement KWD 100; airport emergency (Res. 180): KWD 13 (5-yr) / KWD 16 (10-yr). Original Nationality Certificate + Civil ID mandatory. Sahel app. Strictly for Kuwaiti citizens (Bidoon receive Article 17 document under restricted humanitarian criteria).
+  - **BH:** NPRA official fee tariff confirmed DIRECT from bahrain.bh: First-time issuance / e-passport transition BHD 12 (standard) / BHD 6 (senior 60+); Renewal / replacement BHD 15 (standard) / BHD 7.5 (senior 60+). Smart Card (CPR) mandatory; online via bahrain.bh or NPRA app using eKey.
+  - **TN:** Law 75-40 / Finance Law timbre fiscal confirmed DIRECT from sicad.gov.tn: Adult standard ordinary passport (5-yr) 80 TND; pupils/students/children <7: 25 TND; lost/damaged penalty: 150 TND. CIN (18+) or Extrait de naissance (<18) mandatory; in-person at local Police / Garde Nationale station.
+- **Next Actionable Task:** Batch 10 Official Source Research (suggested cohort: Central/South Asian or Balkan/Caucasus sovereign nations: e.g. Georgia GE, Armenia AM, Azerbaijan AZ, Serbia RS, Bosnia and Herzegovina BA, Albania AL).

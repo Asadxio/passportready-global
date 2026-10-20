@@ -37,7 +37,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **AT** | AUT | Austria | Sovereign State | Bundesministerium für Inneres (BMI) / Passbehörden | `primary_sources_audited` | Primary source audited (Batch 1). Passgesetz 1992 (July 2025 Budget reform): Standard adult (12+) €112.00, Expresspass €148.00, 1-Tages-Express €326.00, Child (2-11) €44.00, Infant (<2) €0.00 first issue. Staatsbürgerschaftsnachweis + Geburtsurkunde required. |
 | **AZ** | AZE | Azerbaijan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BS** | BHS | Bahamas | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **BH** | BHR | Bahrain | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BH** | BHR | Bahrain | Sovereign State | Nationality, Passports & Residence Affairs (NPRA), MOI — `https://www.npra.gov.bh/` | `primary_sources_audited` | Biometric e-passport: First issue BHD 12 (adult) / BHD 6 (senior 60+); Renewal/replacement BHD 15 (adult) / BHD 7.5 (senior 60+) (DIRECT). Validity 10-yr adult / 5-yr minor. National ID (Smart Card/CPR) mandatory; online via bahrain.bh with eKey or NPRA app; NPRA service centers. |
 | **BB** | BRB | Barbados | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BY** | BLR | Belarus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BE** | BEL | Belgium | Sovereign State | SPF Affaires étrangères / Communes belges | `primary_sources_audited` | Primary source audited (Batch 4). Base federal tariffs: Adult 18+ (7-yr) €65 standard (€240 urgent, €350 superurgente); Minor <18 (5-yr) €35 standard (€210 urgent, €320 superurgente); plus municipal tax. Consular adult €75 standard / €210 urgent. eID required; ICAO photo. |
@@ -123,14 +123,14 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **IL** | ISR | Israel | Sovereign State | Population and Immigration Authority (PIBA / רשות האוכלוסין וההגירה) | `primary_sources_audited` | Primary source audited (Batch 5). Biometric passport (10-yr adult, 5-yr minor): Winter online NIS 185 (adult) / NIS 110 (minor); Summer online NIS 290 / NIS 145; Branch NIS 315 / NIS 165; Airport emergency NIS 825 / NIS 435. Biometric travel document (Laissez-Passer) distinct: NIS 100-150. Teudat Zehut required. |
 | **JM** | JAM | Jamaica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **JE** | JEY | Jersey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **JO** | JOR | Jordan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **JO** | JOR | Jordan | Sovereign State | Civil Status & Passports Dept. (CSPD), MOI — `https://cspd.gov.jo/` | `primary_sources_audited` | Passport Fees Regulation: Standard adult (16+, 5-yr) 50 JOD (new/expired/<180d remaining); renewal >180d remaining: 100 JOD; minor <16: 25 JOD; full pages: 20 JOD; lost: 125 JOD (1st) / 250 JOD (subsequent) (DIRECT). Fast-track +25 JOD; Jordan Post +3 JOD. Smart ID Card + Family Book mandatory; Sanad app or CSPD directorate offices. |
 | **KZ** | KAZ | Kazakhstan | Sovereign State | Committee of Administrative Police, MIA — `https://egov.kz/` | `primary_sources_audited` | State duty: 8 MCI (adult, 2024: KZT 29,536; 2025: KZT 31,456); 4 MCI (child <16, 2024: KZT 14,768). MCI-based fee per Tax Code Ch.74 and annual Budget Law. Identity Card (Kualiyet) mandatory. PSC (ЦОН) in-person biometrics. Online via egov.kz. |
 | **KI** | KIR | Kiribati | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **KW** | KWT | Kuwait | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KW** | KWT | Kuwait | Sovereign State | General Directorate of Nationality & Travel Documents, MOI — `https://www.moi.gov.kw/` | `primary_sources_audited` | Ministerial Decision No. 1769: Standard passport issue/renewal/replacement KWD 100 (DIRECT); airport emergency (Res. 180): KWD 13 (5-yr) / KWD 16 (10-yr). Validity 10-yr (age 30+) / 5-yr (<30). Original Nationality Certificate + Civil ID mandatory. Sahel app or MOI centers. Strictly for Kuwaiti citizens (Bidoon receive Article 17 travel doc under separate restrictions). |
 | **KG** | KGZ | Kyrgyzstan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LA** | LAO | Laos | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LV** | LVA | Latvia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **LB** | LBN | Lebanon | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LB** | LBN | Lebanon | Sovereign State | General Directorate of General Security (Sûreté Générale) — `https://www.general-security.gov.lb/` | `primary_sources_audited` | General Security official fee: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000 (DIRECT). Fast-track surcharges apply. Ikhraj Qayd Fardi (<3mo) or Biometric ID Card mandatory; Moukhtar-certified photos; in-person at General Security regional bureau. Quota appointment system applies due to high demand. Consular USD 300/600 (PARTIAL). |
 | **LS** | LSO | Lesotho | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LR** | LBR | Liberia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LY** | LBY | Libya | Sovereign State | Passports, Nationality & Foreigners Affairs Authority (GNU) — `https://ejraat.gov.ly/` | `primary_sources_audited` | Standard passport LYD 50.50 (DIRECT); lost/damaged replacement LYD 1,000 (eff. late 2024, DIRECT). ⚠️ Dual-government political split; GNU-aligned services primarily in Tripoli. Service availability varies by region and security conditions. |
@@ -169,7 +169,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MK** | MKD | North Macedonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MP** | MNP | Northern Mariana Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **NO** | NOR | Norway | Sovereign State | Politiet (Pass- og ID-kontor) / POD | `primary_sources_audited` | Primary source audited (Batch 4). Passforskriften 2026: Adult 16+ (10-yr) 840 NOK; Child <16 (5-yr) 510 NOK; Passport+ID combo 1,340 NOK (20% discount); Nødpass 1,320 NOK. Consular adult 1,290 NOK / child 780 NOK. Fødselsnummer required; photo/biometrics taken at police station. |
-| **OM** | OMN | Oman | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **OM** | OMN | Oman | Sovereign State | Directorate General of Passports & Civil Status, ROP — `https://www.rop.gov.om/` | `primary_sources_audited` | ROP official fee: Adult 18+ (10-yr) OMR 10; Minor <18 (5-yr) OMR 5 (DIRECT). Civil ID Card with PKI chip mandatory; guardian presence for minors; online via ROP app/portal using PKI or in-person at ROP service centers across wilayats. |
 | **PW** | PLW | Palau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PS** | PSE | Palestine | Territory / Special Region | Palestinian Authority Ministry of Interior (Palestinian Authority Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by PS. General guidance applies. |
 | **PA** | PAN | Panama | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -223,7 +223,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TK** | TKL | Tokelau | Territory / Special Region | Tokelau Administration / NZ DIA (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **TO** | TON | Tonga | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TT** | TTO | Trinidad and Tobago | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TN** | TUN | Tunisia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TN** | TUN | Tunisia | Sovereign State | Direction Générale de la Police Nationale, Ministère de l'Intérieur — `https://www.interieur.gov.tn/` | `primary_sources_audited` | Law 75-40 / Finance Law (timbre fiscal): Adult (5-yr) 80 TND; Pupils/Students/Children <7: 25 TND; Lost/damaged replacement: 150 TND (DIRECT from sicad.gov.tn). Consular chancery rate ~50 EUR (PARTIAL). CIN (18+) or Extrait de naissance (<18) mandatory; in-person at local Police / Garde Nationale station. |
 | **TM** | TKM | Turkmenistan | Sovereign State | State Migration Service — `https://migration.gov.tm/` | `primary_sources_audited` | Standard biometric passport: TMT 60 (DIRECT from migration.gov.tm); fee waived for under-16, war veterans, labor veterans, disabled persons. Payment via Halkbank (halkbank.gov.tm). ⚠️ Highly restrictive state: exit visa (exit permit) system in place; many citizens require separate government approval to travel abroad even with valid passport. |
 | **TC** | TCA | Turks and Caicos Islands | Territory / Special Region | Ministry of Border Control Turks & Caicos (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **TV** | TUV | Tuvalu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -1962,5 +1962,217 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - **Overseas:** In-person appointment at the nearest Eritrean Embassy or Consulate. Applications cannot typically be processed remotely without in-person attendance.
   - **Domestic (inside Eritrea):** In-person at Ministry of Interior immigration/nationality offices.
   - Processing: Varies by mission; typically several weeks.
+
+---
+
+---
+
+## Section 11 — Batch 9 Primary Statutory Research Dossiers: LB, JO, OM, KW, BH, TN
+
+*Batch 9 research executed: 2026-10-20. All dossiers cover Middle East & North Africa (Levant, Gulf Cooperation Council, and Maghreb) sovereign nations. Sourced directly from official government portals, interior ministries, and gazetted decrees. Statutory fee schedules, national identity prerequisites, and consular scope are documented with claim-level precision.*
+
+---
+
+### 11.1 Lebanon (LB / LBN) — Directorate General of General Security (Sûreté Générale)
+
+- **Administering Authority:** Directorate General of General Security (المديرية العامة للأمن العام — Sûreté Générale), Ministry of Interior and Municipalities, Lebanese Republic
+- **Primary Portals:**
+  - Official General Security portal: `https://www.general-security.gov.lb/`
+- **Statutory Framework:**
+  - Lebanese Passports Law and General Security fee decrees. Fees set by government fiscal legislation and General Security executive orders.
+- **Domestic Fee Schedule:**
+  - **5-Year Validity Biometric Passport:** **LBP 6,000,000** (Lebanese Pounds)
+  - **10-Year Validity Biometric Passport:** **LBP 10,000,000** (Lebanese Pounds)
+  - **Expedited / Urgent Processing (Fast-Track Service):** Surcharges apply above base fee through General Security central centers.
+  - Validity: 10 years for adults (18+); 5 years for minors (under 18).
+  - **Evidence confidence: `DIRECT`** — fee schedule officially enacted by General Security decree and published across official Lebanese administrative channels.
+- **Consular Fee Schedule:**
+  - Via Lebanese Embassies and Consulates overseas (Ministry of Foreign Affairs and Emigrants).
+  - Denominated in USD/EUR (typically USD 300 for 5-yr, USD 600 for 10-yr consular biometric passports depending on mission chancery rate).
+  - **Evidence confidence: `PARTIAL`** — consular fees vary by country and are subject to embassy-level chancery notices.
+- **Civil Identity & Document Checklists:**
+  - **Individual Civil Status Record (إخراج قيد فردي — Ikhraj Qayd Fardi):** Issued within the last 3 months, OR the modern Lebanese Biometric Identity Card (بطاقة الهوية اللبنانية البيومترية).
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - **2 recent passport photos (4×4.3 cm):** Certified by a local Moukhtar (mayor/notary).
+  - **For minors (under 18):** In-person consent of both parents or a legal guardianship deed (*Hujjat Wisaya*) certified by a religious court.
+  - **Biometrics:** Live facial photo, digital fingerprints, and electronic signature captured in-person at General Security regional bureaus.
+- **⚠️ ECONOMIC CONTEXT NOTE:**
+  - Following the severe Lebanese financial crisis and currency devaluation since 2019, nominal LBP passport fees were significantly raised to reflect real administrative costs. High demand previously led to an online quota/appointment booking queue, which has been managed through phased appointment slots.
+- **Application & Delivery Channels:**
+  - In-person submission and biometric enrollment at the General Security regional center corresponding to the applicant's civil registration locality.
+  - Urgent/fast-track processing at General Security headquarters (Adlieh/Beirut).
+  - Delivery: Picked up in person or via LibanPost.
+  - Overseas: Via Lebanese diplomatic and consular missions.
+
+---
+
+### 11.2 Jordan (JO / JOR) — Civil Status and Passports Department (CSPD)
+
+- **Administering Authority:** Civil Status and Passports Department (دائرة الأحوال المدنية والجوازات — CSPD), Ministry of Interior, Hashemite Kingdom of Jordan
+- **Primary Portals:**
+  - Official CSPD portal: `https://cspd.gov.jo/`
+  - National Digital Portal (Sanad): `https://sanad.jo/`
+- **Statutory Framework:**
+  - Passport Fees Regulation (*نظام رسوم جوازات السفر*) and Jordanian Passports Law No. 2 of 1969 (and subsequent amendments).
+- **Domestic Fee Schedule (Passport Fees Regulation):**
+  - **Standard Ordinary Passport (Adults 16+, 5-year validity):**
+    - First-time issuance, OR renewal of expired passport, OR renewal when remaining validity is **less than 180 days**: **50 JOD**
+    - Renewal when remaining validity is **more than 180 days**: **100 JOD** (penalty fee for early renewal)
+  - **Minors (Under 16 years old):** **25 JOD**
+  - **Renewal due to Exhausted/Full Visa Pages:** **20 JOD**
+  - **Damaged Passport Replacement:** **100 JOD**
+  - **Lost Passport Replacement:**
+    - First time: **125 JOD**
+    - Subsequent occurrences: **250 JOD**
+  - **Fast-Track / Urgent Processing:** Additional **+25 JOD** surcharge inside CSPD offices.
+  - **Courier Delivery (Jordan Post):** **+3 JOD**.
+  - **Evidence confidence: `DIRECT`** — established directly under the Passport Fees Regulation and confirmed across CSPD and Ministry of Interior communications.
+- **Consular Fee Schedule:**
+  - Via Jordanian Embassies and Consulates overseas.
+  - Consular ordinary passport renewal: typically **100 JOD** (or local currency equivalent in USD/EUR/SAR).
+  - **Evidence confidence: `PARTIAL`** — consular chancery collections vary slightly by mission and banking fees.
+- **Civil Identity & Document Checklists:**
+  - **Smart Identity Card (بطاقة الأحوال المدنية الذكية — Bitaqa Shakhsiya):** Mandatory for all adult Jordanian citizens.
+  - **Family Book (دفتر العائلة — Daftar al-A'ila):** Required for family records and minor applications.
+  - **Military Service Book / Clearance (دفتر خدمة العلم):** Mandatory for Jordanian males of conscription age (clearance stamp or postponement).
+  - **Previous passport:** Must be presented and surrendered on renewal.
+  - **Minors:** Presence and written consent of legal guardian (father or court-appointed legal guardian).
+- **Application & Delivery Channels:**
+  - Online application via the **Sanad app** (`sanad.jo`) or CSPD e-services portal.
+  - In-person application at any CSPD directorate office across Jordanian governorates.
+  - Processing: Standard 1–3 business days (same-day or fast-track available); delivery by Jordan Post or counter collection.
+  - Overseas: Via Jordanian Embassies and Consulates.
+
+---
+
+### 11.3 Oman (OM / OMN) — Directorate General of Passports and Civil Status, Royal Oman Police (ROP)
+
+- **Administering Authority:** Directorate General of Passports and Civil Status (الإدارة العامة للجوازات والأحوال المدنية), Royal Oman Police (شرطة عمان السلطانية — ROP), Sultanate of Oman
+- **Primary Portals:**
+  - Royal Oman Police portal: `https://www.rop.gov.om/`
+  - Unified Government Portal: `https://gov.om/`
+- **Statutory Framework:**
+  - Omani Passport Law (Royal Decree) and ROP executive regulations.
+- **Domestic Fee Schedule:**
+  - **Adults (18 years and above, 10-year validity):** **OMR 10** (issuance or renewal)
+  - **Minors (under 18 years, 5-year validity):** **OMR 5**
+  - **Evidence confidence: `DIRECT`** — confirmed directly from rop.gov.om and the national government portal gov.om.
+- **Consular Fee Schedule:**
+  - Via Omani Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - **Evidence confidence: `PARTIAL`** — consular fees are collected in local currencies at equivalent rates plus chancery overheads; confirm with the specific mission.
+- **Civil Identity & Document Checklists:**
+  - **Omani Civil ID Card (البطاقة الشخصية — Smart ID with PKI electronic chip):** Mandatory for all citizens.
+  - **Birth Certificate:** Required for minors and first-time applicants.
+  - **Guardian Presence:** Minor applicants under 18 must be accompanied by the legal guardian (father).
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Photo, digital fingerprints, and signature captured via the Civil Status national biometric register.
+- **Application & Delivery Channels:**
+  - Digital application via the **ROP mobile application** or online portal using PKI digital authentication (*Tam* mobile PKI or smart card reader).
+  - In-person application at ROP Service Centers (مراكز خدمات الشرطة) located in all wilayats/governorates.
+  - Processing: Typically rapid (often same-day or next-day turnaround due to integrated digital civil registry).
+  - Overseas: Via Omani Embassies and Consulates.
+
+---
+
+### 11.4 Kuwait (KW / KWT) — General Directorate of Nationality and Travel Documents, Ministry of Interior
+
+- **Administering Authority:** General Directorate of Nationality and Travel Documents (الإدارة العامة للجنسية ووثائق السفر), Ministry of Interior, State of Kuwait
+- **Primary Portals:**
+  - Ministry of Interior portal: `https://www.moi.gov.kw/`
+  - Sahel App (Unified Government Application — تطبيق سهل)
+- **Statutory Framework:**
+  - Kuwaiti Passport Law No. 11 of 1962 and amendments; Ministerial Decision No. 1769 setting updated passport fees (published in the Official Gazette *Kuwait Al-Youm*).
+- **Domestic Fee Schedule:**
+  - **Standard Passport Issuance / Renewal / Replacement:** **KWD 100** (under Ministerial Decision No. 1769)
+  - **Immediate / Emergency Airport Passport Service (Kuwait International Airport, Ministerial Resolution No. 180):**
+    - 5-Year Validity: **KWD 13**
+    - 10-Year Validity: **KWD 16**
+  - Validity: **10 years** for citizens aged 30 and above; **5 years** for citizens under 30 and minors.
+  - **Evidence confidence: `DIRECT`** — enacted via Ministerial Decision in Kuwait Al-Youm and published on moi.gov.kw.
+- **Consular Fee Schedule:**
+  - Via Kuwaiti Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - **Evidence confidence: `PARTIAL`** — overseas procedures prioritize issuance of emergency travel documents or processing through diplomatic courier.
+- **Civil Identity & Document Checklists:**
+  - **Original Kuwaiti Nationality Certificate (شهادة الجنسية الكويتية الأصلية):** The foundational document proving Kuwaiti citizenship; mandatory presentation for adult applicants.
+  - **Kuwaiti Civil ID (البطاقة المدنية — PACI):** Mandatory valid civil identification card.
+  - **Previous passport:** Presented for cancellation on renewal.
+  - **Minors:** Legal guardian's presence and consent; birth certificate.
+  - Biometrics: Fingerprints and high-resolution facial capture stored in MoI digital databases.
+- **⚠️ CITIZENSHIP & LEGAL RESTRICTION NOTE:**
+  - Kuwaiti passports are strictly reserved for verified Kuwaiti nationals. Bidoon (stateless residents) are not eligible for standard Kuwaiti passports; they may apply only for Article 17 temporary travel documents under highly restricted humanitarian, educational, or medical criteria (a distinct document with separate legal status).
+- **Application & Delivery Channels:**
+  - Online via the **Sahel application** (تطبيق سهل) or MoI electronic portal.
+  - In-person at Nationality and Travel Documents service centers across governorates.
+  - Self-service electronic passport kiosks (K-Pass) in designated locations.
+  - Airport emergency passport counters at Kuwait International Airport (T4/T1).
+  - Overseas: Via Kuwaiti Embassies and Consulates.
+
+---
+
+### 11.5 Bahrain (BH / BHR) — Nationality, Passports and Residence Affairs (NPRA)
+
+- **Administering Authority:** Nationality, Passports and Residence Affairs (شؤون الجنسية والجوازات والإقامة — NPRA), Ministry of Interior, Kingdom of Bahrain
+- **Primary Portals:**
+  - Official NPRA portal: `https://www.npra.gov.bh/`
+  - National eGovernment Portal: `https://www.bahrain.bh/`
+- **Statutory Framework:**
+  - Bahraini Passport Law of 1975 and executive ministerial orders governing NPRA tariffs.
+- **Domestic Fee Schedule:**
+  - **First-Time Issuance / Transition to New Biometric e-Passport:**
+    - Standard citizens (under 60): **BHD 12**
+    - Senior citizens (aged 60 and above): **BHD 6** (50% discount)
+  - **Passport Renewal / Replacement (after expiry or page exhaustion):**
+    - Standard citizens (under 60): **BHD 15**
+    - Senior citizens (aged 60 and above): **BHD 7.5** (50% discount)
+  - Validity: **10 years** for adults aged 18 and above; **5 years** for minors under 18.
+  - Optional postal delivery (Bahrain Post) or fast-track service incurs minor administrative surcharges.
+  - **Evidence confidence: `DIRECT`** — established under NPRA ministerial tariffs and confirmed across official Bahrain eGovernment portal channels.
+- **Consular Fee Schedule:**
+  - Via Bahraini Embassies and Consulates overseas (Ministry of Foreign Affairs).
+  - **Evidence confidence: `PARTIAL`** — overseas fees are collected in foreign currency equivalents with mission-specific chancery fees.
+- **Civil Identity & Document Checklists:**
+  - **Bahraini Identity Card (بطاقة الهوية — Smart Card / CPR):** Mandatory for all applicants.
+  - **Previous passport:** Required for renewal or replacement.
+  - **Birth Certificate:** Required for minors and first-time issuance.
+  - **Active eKey account (Standard or Advanced):** Required for online submission via `bahrain.bh` or the NPRA app.
+  - **Minors:** Written consent and presence of the legal guardian (father).
+  - Biometrics: Photo adhering to ICAO specs, live digital signature, and biometric fingerprint capture.
+- **Application & Delivery Channels:**
+  - Digital application through the **National Portal** (`bahrain.bh`) or **NPRA Mobile App** via eKey login.
+  - In-person at NPRA customer service centers (Isa Town, Muharraq, Security Complex).
+  - Delivery: Picked up at NPRA branches or delivered via Bahrain Post express mail.
+  - Overseas: Via Bahraini diplomatic and consular missions.
+
+---
+
+### 11.6 Tunisia (TN / TUN) — Direction Générale de la Police Nationale, Ministère de l'Intérieur
+
+- **Administering Authority:** Direction Générale de la Police Nationale (Direction des Frontières et des Étrangers / الإدارة العامة للأمن الوطني), Ministère de l'Intérieur, Republic of Tunisia
+- **Primary Portals:**
+  - Ministère de l'Intérieur: `https://www.interieur.gov.tn/`
+  - National Administrative Information Portal: `http://www.sicad.gov.tn/`
+- **Statutory Framework:**
+  - Law No. 75-40 of May 14, 1975, relating to passports and travel documents (as amended); Finance Laws setting fiscal stamp duties (*droits de timbre fiscal*).
+- **Domestic Fee Schedule (via Fiscal Stamp / Quittance de paiement):**
+  - **Adult Standard Ordinary Passport (5-year validity):** **80 TND** (Tunisian Dinars)
+  - **Pupils, Students, and Children Under 7 Years:** **25 TND** (concessionary rate; requires proof of enrollment or school attendance certificate / *certificat de scolarité*)
+  - **Replacement for Lost, Stolen, or Severely Deteriorated Passport (*Vétuste / Altéré*):** **150 TND** (penalty fee)
+  - **Evidence confidence: `DIRECT`** — statutory fiscal stamp rates confirmed directly on the official administrative portal `sicad.gov.tn` and Ministry of Interior publications.
+- **Consular Fee Schedule:**
+  - Via Tunisian Embassies and Consulates overseas (e.g. in France, Germany, Italy, Gulf, Canada).
+  - Consular chancery passport tariff: approximately **50 EUR** (or equivalent in USD/CAD/SAR) for adult renewal, plus chancery stamps.
+  - **Evidence confidence: `PARTIAL`** — chancery tariffs are regulated by joint decrees of the Ministry of Foreign Affairs and Ministry of Finance.
+- **Civil Identity & Document Checklists:**
+  - **Carte d'Identité Nationale (CIN — بطاقة التعريف الوطنية):** Mandatory for all Tunisian citizens aged 18 and above.
+  - **Birth Certificate (Extrait de naissance / مضمون ولادة):** Required for minors and first-time applicants; must be recently issued.
+  - **4 Biometric Passport Photos:** ICAO format, white background, taken within 6 months.
+  - **Fiscal Stamp (Timbre fiscal):** Quittance of payment (80 TND / 25 TND / 150 TND) purchased from public finance offices (Recette des Finances) or electronic timbre fiscal.
+  - **For Minors (Under 18):** Formal parental authorization (*Autorisation paternelle / ترخيص أبوي*) signed by the legal guardian at a police station or municipality.
+  - **Previous passport:** Must be presented and surrendered for cancellation.
+- **Application & Delivery Channels:**
+  - In-person application at the local Police Station (*Poste de Police*) or National Guard Station (*Poste de la Garde Nationale*) of the applicant's place of residence.
+  - Processing: Standard 10–15 business days (can be faster in central districts).
+  - Delivery: Collected in person at the police station upon presentation of the application receipt (*récépissé*).
+  - Overseas: Via Tunisian Embassies and Consulates.
 
 ---
