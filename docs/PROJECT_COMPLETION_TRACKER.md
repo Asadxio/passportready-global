@@ -26,7 +26,8 @@
 | **Phase J** | `TASK-J1` | Final Release-Readiness Assessment | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | Formal Human Approval | PR #1 Merged into main (Run #38 passed); Proceed to Phase K |
 | **Phase K** | `TASK-K1` | Global Jurisdiction Completion — Batch 1 (NL, AT, CH, PT, KR, TH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 1 complete; Proceed to Phase L |
 | **Phase L** | `TASK-L1` | Global Jurisdiction Completion — Batch 2 (AR, CL, CO, PL, GR, TR) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 2 complete; Proceed to Phase M |
-| **Phase M** | `TASK-M1` | Global Jurisdiction Completion — Batch 3 (PE, EC, UY, CZ, HU, RO) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 3 complete; Proceed to Batch 4 |
+| **Phase M** | `TASK-M1` | Global Jurisdiction Completion — Batch 3 (PE, EC, UY, CZ, HU, RO) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 3 complete; Proceed to Phase N |
+| **Phase N** | `TASK-N1` | Global Jurisdiction Completion — Batch 4 (BE, DK, FI, NO, SE, IS) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 4 complete; Proceed to Batch 5 |
 
 ---
 
@@ -304,4 +305,26 @@
   - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
   - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
 - **Approval Requirements:** None (Feature branch research and documentation)
-- **Next Actionable Task:** Batch 4 Official Source Research for next priority sovereign nations (e.g., Belgium `BE`, Denmark `DK`, Finland `FI`, Norway `NO`, Sweden `SE`, Ireland/Iceland `IS`).
+- **Next Actionable Task:** Batch 3 complete. Proceed to Phase N (Batch 4).
+
+---
+
+### Phase N: Full Global Jurisdiction Completion — Batch 4 (BE, DK, FI, NO, SE, IS)
+- **Task ID:** `TASK-N1`
+- **Scope & Acceptance Criteria:**
+  - Conduct primary statutory research for Batch 4 jurisdictions: Belgium (`BE`), Denmark (`DK`), Finland (`FI`), Norway (`NO`), Sweden (`SE`), and Iceland (`IS`).
+  - Document claim-level evidence across base fees, expedited tariffs, civil identity requirements, and domestic vs consular variations.
+  - Record major statutory reforms & legal rules: Belgium's federal base tariff (€65 adult 7-yr, €35 minor 5-yr, plus communal tax) and €350 superurgente 4h30 service; Denmark's Passbekendtgørelsen 2026 rates (894 DKK adult, 382 DKK pensioner, 182/150 DKK youth/child) and statutory DOUBLE FEE penalty (1,788 DKK) for lost/unreturned passports; Finland's Passilaki 2026 digital discount structure (42 € online vs 48 € counter, 61/67 € pikapassi, 81/87 € express) and electronic photo server system (kuvatunnus); Norway's Jan 1, 2026 Passforskriften fees (840 NOK adult, 510 NOK child, 1,340 NOK combo passport+ID, 1,320 NOK nødpass); Sweden's Passförordningen (500 SEK passport, 400 SEK ID, 980 SEK provisoriskt pass) and Passlagen § 7b 3-passport 5-year statutory ceiling; Iceland's Sýslumenn 2026 fee schedule (19.000 ISK standard, 39.200 ISK fast-track, 7.000 ISK child/senior).
+  - Update `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md` (Section 2 statuses updated to `primary_sources_audited`, Section 6 research dossiers added).
+  - Update `docs/SOURCE_AUDIT_REGISTER.md` (Section 7 claim register with exact URLs and confidence levels).
+  - Maintain 100% test passage in `test/validate.js` and live verification.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 6 Batch 4 dossiers for BE, DK, FI, NO, SE, IS.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 7 claim audit table with 14 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase N deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Next Actionable Task:** Batch 5 Official Source Research for next priority sovereign nations (e.g., Vietnam `VN`, Philippines/Malaysia [already verified], Taiwan `TW`, Israel `IL`, Egypt `EG`, South Africa/Morocco `MA`).

@@ -40,7 +40,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BH** | BHR | Bahrain | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BB** | BRB | Barbados | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BY** | BLR | Belarus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **BE** | BEL | Belgium | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BE** | BEL | Belgium | Sovereign State | SPF Affaires étrangères / Communes belges | `primary_sources_audited` | Primary source audited (Batch 4). Base federal tariffs: Adult 18+ (7-yr) €65 standard (€240 urgent, €350 superurgente); Minor <18 (5-yr) €35 standard (€210 urgent, €320 superurgente); plus municipal tax. Consular adult €75 standard / €210 urgent. eID required; ICAO photo. |
 | **BZ** | BLZ | Belize | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BJ** | BEN | Benin | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BM** | BMU | Bermuda | Territory / Special Region | HMPO / Dept of Immigration Bermuda (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -77,7 +77,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CZ** | CZE | Czechia | Sovereign State | Ministerstvo vnitra ČR (MVČR) / Obecní úřady (ORP) | `primary_sources_audited` | Primary source audited (Batch 3). Zákon o cestovních dokladech: Standard (30 days) Adult (15+) 600 CZK (10-yr), Child (<15) 100 CZK (5-yr); Fast (5 days) 3,000 / 1,000 CZK; Super-fast (24 hrs at MVČR Na Pankráci) 6,000 / 2,000 CZK. Občanský průkaz required; photo taken on-site. |
 | **CI** | CIV | Côte d’Ivoire | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CD** | COD | Democratic Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **DK** | DNK | Denmark | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **DK** | DNK | Denmark | Sovereign State | Borgerservice (Kommunerne) / Rigspolitiet | `primary_sources_audited` | Primary source audited (Batch 4). Passbekendtgørelsen 2026: Adult 18-66 (10-yr) 894 DKK; Pensioner 67+ 382 DKK; Youth 12-17 (5-yr) 182 DKK; Child <12 150 DKK. Lost/damaged without previous pass: DOUBLE FEE (1,788 DKK adult). CPR number / Sundhedskort required; photo/biometrics at Borgerservice. |
 | **DJ** | DJI | Djibouti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DM** | DMA | Dominica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DO** | DOM | Dominican Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -92,7 +92,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **FK** | FLK | Falkland Islands (Malvinas) | Territory / Special Region | Customs & Immigration Falkland Islands (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **FO** | FRO | Faroe Islands | Territory / Special Region | Ríkisumboðið í Føroyum (Kingdom of Denmark Passport - Føroyar cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
 | **FJ** | FJI | Fiji | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **FI** | FIN | Finland | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **FI** | FIN | Finland | Sovereign State | Poliisi (Police of Finland / Lupapalvelut) | `primary_sources_audited` | Primary source audited (Batch 4). Passilaki 2026: Standard (5-yr) 42 € online / 48 € counter; Pikapassi 61 € online / 67 € counter; Express-passi 81 € online / 87 € counter; Temporary 85 €. Consular 175 €. Electronic photo server code (kuvatunnus) + Finnish bank e-identification / police counter. |
 | **GF** | GUF | French Guiana | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **PF** | PYF | French Polynesia | Territory / Special Region | Haut-Commissariat de la République en Polynésie française (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **TF** | ATF | French Southern Territories | Territory / Special Region | Terres australes et antarctiques françaises (No permanent civilian population) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -116,7 +116,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **HN** | HND | Honduras | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **HK** | HKG | Hong Kong | Territory / Special Region | Immigration Department HKSAR (HKSAR Passport for Chinese citizens with permanent residence) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
 | **HU** | HUN | Hungary | Sovereign State | Belügyminisztérium / Kormányablakok | `primary_sources_audited` | Primary source audited (Batch 3). Statutory fees (normál 20 nap): Adult 18+ (10-yr) 17 000 HUF (+2 000 HUF postal delivery); Youth 12-18 (5-yr) 12 500 HUF; Child <12 8 500 HUF. Surcharges: 5-day +19k HUF; 3-day +29k HUF; 24-hr +39k HUF. Személyazonosító igazolvány required; photo taken on-site. |
-| **IS** | ISL | Iceland | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **IS** | ISL | Iceland | Sovereign State | Þjóðskrá Íslands / Sýslumenn | `primary_sources_audited` | Primary source audited (Batch 4). Gjaldskrá sýslumanna (Lög 88/1991): Adult 18-66 (10-yr) 19.000 ISK standard / 39.200 ISK fast-track / 10.500 ISK emergency; Children <18 (5-yr), Seniors 67+, Disabled 7.000 ISK standard / 14.000 ISK fast / 3.500 ISK emergency. Kennitala required; photo on-site. |
 | **IR** | IRN | Iran | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IQ** | IRQ | Iraq | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IM** | IMN | Isle of Man | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -168,7 +168,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KP** | PRK | North Korea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MK** | MKD | North Macedonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MP** | MNP | Northern Mariana Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
-| **NO** | NOR | Norway | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **NO** | NOR | Norway | Sovereign State | Politiet (Pass- og ID-kontor) / POD | `primary_sources_audited` | Primary source audited (Batch 4). Passforskriften 2026: Adult 16+ (10-yr) 840 NOK; Child <16 (5-yr) 510 NOK; Passport+ID combo 1,340 NOK (20% discount); Nødpass 1,320 NOK. Consular adult 1,290 NOK / child 780 NOK. Fødselsnummer required; photo/biometrics taken at police station. |
 | **OM** | OMN | Oman | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PW** | PLW | Palau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PS** | PSE | Palestine | Territory / Special Region | Palestinian Authority Ministry of Interior (Palestinian Authority Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by PS. General guidance applies. |
@@ -211,7 +211,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SD** | SDN | Sudan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SR** | SUR | Suriname | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SJ** | SJM | Svalbard and Jan Mayen | Territory / Special Region | Governor of Svalbard / Norwegian Police (Norwegian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
-| **SE** | SWE | Sweden | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SE** | SWE | Sweden | Sovereign State | Polismyndigheten (Passexpedition) | `primary_sources_audited` | Primary source audited (Batch 4). Passförordningen (1979:664): Regular passport 500 SEK (5-yr validity for 12+, 3-yr for <12); National ID card 400 SEK; Provisoriskt pass 980 SEK (max 72 hrs prior to departure). Consular 1,600 SEK. Max 3 ordinary passports in 5 years per Passlagen § 7b. Photo on-site. |
 | **CH** | CHE | Switzerland | Sovereign State | Bundesamt für Polizei (fedpol) / Kantonale Passbüros | `primary_sources_audited` | Primary source audited (Batch 1). Ausweisgesetz (AwG) / VAwG: Pass 10 Adult (18+) CHF 145.00 (CHF 140 fee + CHF 5 porto), Child (<18) CHF 65.00 (CHF 60 fee + CHF 5 porto); Kombiangebot Adult CHF 158.00 / Child CHF 78.00; Notpass CHF 100.00 (centre) / CHF 150.00 (airport). Biometrics at cantonal centre mandatory. |
 | **SY** | SYR | Syria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TW** | TWN | Taiwan | Territory / Special Region | Bureau of Consular Affairs (BOCA) MOFA (Taiwan Republic of China Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by TW. General guidance applies. |
@@ -874,4 +874,236 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Programare online prealabilă pe platforma oficială a Ministerului Afacerilor Interne: `hub.mai.gov.ro/epasapoarte/programari`.
   - Depunerea cererii se poate face la oricare serviciu public comunitar din țară, indiferent de domiciliul solicitantului.
   - Termen de eliberare: 5 zile lucrătoare; livrare opțională la domiciliu prin Poșta Română (contra sumei de 14,28 lei).
+
+---
+
+## 6. Batch 4 Audited Claim-Level Research Dossiers (6 Jurisdictions)
+
+### 6.1 Belgium (`BE` / `BEL`)
+- **Administering Authority:**
+  - Service Public Fédéral Affaires étrangères, Commerce extérieur et Coopération au Développement (SPF Affaires étrangères / FOD Buitenlandse Zaken); Administrations communales (342 communes en Flandre, 262 en Wallonie, 19 à Bruxelles); Postes consulaires belges à l'étranger.
+- **Primary Official Portals:**
+  - `https://diplomatie.belgium.be/fr/services-aux-citoyens/passeport-belge`
+  - `https://www.belgium.be/fr/famille/identite/passeport`
+- **Statutory Framework:**
+  - *Arrêté royal relatif aux passeports et titres de voyage*; *Réglementation tarifaire fédérale et taxes communales additionnelles*.
+- **Statutory Domestic Tariffs (Federal Base + Communal Discretion):**
+  - **Passeport ordinaire (34 pages):**
+    - **Procédure normale (Délai: 5 jours ouvrables):**
+      - Adulte (18 ans et plus, validité 7 ans): Base fédérale **65,00 €** (plus taxe communale éventuelle, montant habituel entre 65 € et 85 € selon la commune).
+      - Mineur (Moins de 18 ans, validité 5 ans): Base fédérale **35,00 €** (plus taxe communale).
+    - **Procédure urgente (Délai: livraison le jour ouvrable suivant si commandé avant 15h):**
+      - Adulte: Base fédérale **240,00 €** (plus taxe communale).
+      - Mineur: Base fédérale **210,00 €** (plus taxe communale).
+    - **Procédure en très grande urgence / Superurgente (Délai: 4h30, retrait exclusivement au guichet fédéral rue des Colonies 11, 1000 Bruxelles):**
+      - Adulte: **350,00 €**
+      - Mineur: **320,00 €**
+  - **Passeport grand format (66 pages pour grands voyageurs - procédure urgente):**
+    - Adulte: 300,00 € / Mineur: 270,00 € (plus taxe communale).
+- **Statutory Consular Tariffs (Postes diplomatiques et consulaires):**
+  - Adulte (validité 7 ans): 75,00 € (normale) / 210,00 € (urgente).
+  - Mineur (validité 5 ans): 35,00 € (normale) / 210,00 € (urgente).
+  - Passeport provisoire d'urgence (validité 1 an max): 50,00 €.
+- **Civil Identity & Document Checklists:**
+  - **Préalable obligatoire:** Carte d'identité belge (eID pour adultes / Kids-ID pour enfants de moins de 12 ans).
+  - Ancien passeport belge (pour annulation obligatoire s'il est périmé ou remplacement).
+  - 1 photo d'identité couleur conforme aux normes ICAO (format 35x45mm, fond uni blanc/gris clair, visage neutre, bouche fermée, yeux visibles). De nombreuses communes disposent désormais de cabines ou systèmes de prise de vue numériques directs.
+  - **Mineurs (<18 ans):**
+    - Présence physique obligatoire du mineur au guichet, quel que soit son âge.
+    - Accompagnement par l'un des parents chez qui l'enfant est domicilié; en cas de garde partagée, accord écrit de l'autre parent avec copie recto-verso de sa carte d'identité.
+  - **Lost/Stolen:** Déclaration de perte/vol obligatoire auprès de la police locale (attestation de perte/vol) ou signalement immédiat au service *Doc Stop* (00800 2123 2123) pour bloquer immédiatement le document contre l'usurpation d'identité.
+- **Application & Delivery Channels:**
+  - Demande auprès du service population / état civil de la commune de résidence.
+  - Retrait du passeport en personne au guichet communal ou livraison spéciale selon la procédure choisie.
+
+---
+
+### 6.2 Denmark (`DK` / `DNK`)
+- **Administering Authority:**
+  - Borgerservice i landets 98 kommuner; Rigspolitiet; Udenrigsministeriet (danske ambassader og konsulater i udlandet).
+- **Primary Official Portals:**
+  - `https://www.borger.dk/politi-retsvaesen-forsvar/Pas-og-koerekort/Pas`
+  - `https://um.dk/rejse-og-ophold/rejse-til-udlandet/pas-og-visum`
+- **Statutory Framework:**
+  - *Bekendtgørelse om pas m.v. (Pasbekendtgørelsen)*; *Lov om pas til danske statsborgere*.
+- **Statutory Domestic Tariffs (Gældende takster 2026):**
+  - **Personer fra 18 år til folkepensionsalderen (Gyldighed: 10 år):** **894 kr.**
+  - **Personer i folkepensionsalderen (fra 67 år, Gyldighed: 10 år):** **382 kr.**
+  - **Unge 12–17 år (Gyldighed: 5 år):** **182 kr.**
+  - **Børn 0–11 år (Gyldighed: typisk 2 til 5 år):** **150 kr.**
+  - **Fotogebyr (hvis foto tages i Borgerservice):** Ca. **130 kr.** i automat/fotostation.
+  - **DOBBELT GEBYR VED MISTET ELLER BESKADIGET PAS (Straftakst):**
+    - Hvis du ikke afleverer dit seneste pas ved fornyelse, eller hvis det er beskadiget/bortkommet, **fordobles gebyret automatisk ved lov**:
+      - Voksne: **1.788 kr.** (894 kr. x 2)
+      - Folkepensionister: **764 kr.** (382 kr. x 2)
+      - Unge 12–17 år: **364 kr.** (182 kr. x 2)
+      - Børn 0–11 år: **300 kr.** (150 kr. x 2)
+  - **Provisorisk pas / Nødpas (ved akut behov):** Normalt pasgebyr (eller gratis, hvis det udstedes i forlængelse af almindelig pasbestilling til afhentning før rejsen).
+- **Statutory Consular Tariffs (Danske repræsentationer i udlandet):**
+  - Pasgebyr i udlandet: Fast gebyr svarende til ca. 1.200 – 1.450 DKK (i lokal valuta).
+  - Nødpas / provisorisk pas i udlandet: Tillægsgebyr efter Udenrigsministeriets takstregulativ.
+- **Civil Identity & Document Checklists:**
+  - **Sundhedskort (det gule sygesikringsbevis)** med CPR-nummer.
+  - Tidligere pas (hvis det haves; manglende aflevering udløser dobbelt gebyr).
+  - Hvis førstegangspas og intet tidligere pas: Dåbsattest, navneattest eller fødselsattest samt billedlegitimation (f.eks. kørekort).
+  - Fingeraftryk og digital underskrift optages digitalt ved fremmøde.
+  - **Børn og unge under 18 år:**
+    - Barnet skal altid møde personligt op i Borgerservice.
+    - Digitalt samtykke givet af begge forældremyndighedsindehavere via NemID/MitID på `borger.dk`, eller skriftlig samtykkeerklæring medbragt med gyldig legitimation fra begge forældre.
+  - **Lost/Stolen:** Erklæring om bortkommet pas udfyldes digitalt eller direkte i Borgerservice.
+- **Application & Delivery Channels:**
+  - Tidsbestilling online i Borgerservice i en valgfri dansk kommune (frit kommunalt valg).
+  - Leveringstid: Ca. 10–14 hverdage; leveres til Borgerservice eller sendes direkte med sikker post til bopælsadressen.
+
+---
+
+### 6.3 Finland (`FI` / `FIN`)
+- **Administering Authority:**
+  - Poliisi (Police of Finland) / Lupapalvelut; Ulkoministeriö (Ministry for Foreign Affairs of Finland / diplomatic missions).
+- **Primary Official Portals:**
+  - `https://poliisi.fi/passi`
+  - `https://poliisi.fi/passin-hakeminen`
+  - `https://um.fi/passi-ja-henkilokortti-ulkomailla`
+- **Statutory Framework:**
+  - *Passilaki (671/2006)*; *Sisäministeriön asetus poliisin suoritteiden maksullisuudesta*.
+- **Statutory Domestic Tariffs (2026 Poliisin Maksut):**
+  - **Tavallinen passi (Normaalitoimitus 5–8 arkipäivää, voimassaoloaika: 5 vuotta):**
+    - Sähköinen hakemus (Online via Poliisi e-service): **42,00 €**
+    - Poliisiasemalla henkilökohtaisesti vireille pantuna: **48,00 €**
+  - **Pikapassi (Pikatoimitus 1–3 arkipäivää):**
+    - Sähköinen hakemus: **61,00 €**
+    - Poliisiasemalla: **67,00 €**
+  - **Express-passi (Express-toimitus samana tai seuraavana arkiaamuna noutopisteeseen):**
+    - Sähköinen hakemus: **81,00 €**
+    - Poliisiasemalla: **87,00 €**
+  - **Väliaikainen passi (Käsin kirjoitettava hätäpassi äkillisessä tilanteessa):** **85,00 €**
+  - **Sotiemme veteraanit (Veteraanialennus):** 50% alennus perusmaksuista.
+- **Statutory Consular Tariffs (Edustustot ulkomailla):**
+  - Tavallinen passi edustustossa: **175,00 €**
+  - Väliaikainen passi edustustossa: **225,00 €**
+  - Hätäpassi / Emergency Travel Document (kotimatkaa varten): **140,00 €**
+- **Civil Identity & Document Checklists:**
+  - **Suomen kansalaisuus** (väestötietojärjestelmästä tarkistettu).
+  - Voimassa oleva henkilöllisyystodistus (passi tai poliisin myöntämä henkilökortti).
+  - **Sähköinen passikuva:** Valokuvaamo lähettää valokuvan suoraan poliisin valokuvapalvelimeen ja antaa hakijalle **kuvatunnuksen** (kuva saa olla enintään 6 kuukautta vanha).
+  - **Sähköinen asiointi ilman käyntiä poliisiasemalla:** Jos hakijalta on otettu sormenjäljet passia tai henkilökorttia varten enintään 6 vuotta sitten ja nimi ei ole muuttunut, passi voidaan hakea ja maksaa kokonaan verkossa ilman poliisiasemakäyntiä.
+  - **Alaikäiset (<18 vuotta):**
+    - Kaikkien huoltajien suostumus (*huoltajien suostumusasiakirja* tai sähköinen hyväksyntä verkossa).
+    - Alaikäisen on aina oltava henkilökohtaisesti mukana poliisiasemalla, jos käynti vaaditaan.
+  - **Asevelvolliset (17–30-vuotiaat miehet):** Esitettävä sotilaspassi, siviilipalvelustodistus, kutsuntatodistus tai esteettömyystodistus. Passi myönnetään enintään sen vuoden loppuun, jona hakija täyttää 28 vuotta, ellei velvollisuutta ole suoritettu.
+  - **Lost/Stolen:** Katoamisilmoitus poliisille sähköisesti tai palvelupisteessä; kadonnut passi etsintäkuulutetaan ja mitätöidään peruuttamattomasti.
+- **Application & Delivery Channels:**
+  - Sähköinen hakemus poliisin asiointipalvelussa (`asiointi.poliisi.fi`) pankkitunnuksilla tai mobiilivarmenteella.
+  - Nouto: Valmis passi toimitetaan kirjatussa kirjekuoressa hakijan valitsemaan Matkahuollon tai R-kioskin noutopisteeseen seurantakoodilla.
+
+---
+
+### 6.4 Norway (`NO` / `NOR`)
+- **Administering Authority:**
+  - Politiet (Pass- og ID-kontor i politidistriktene); Politidirektoratet (POD); Utenriksdepartementet (UD / norske utenriksstasjoner).
+- **Primary Official Portals:**
+  - `https://www.politiet.no/tjenester/pass-og-id-kort/`
+  - `https://www.regjeringen.no/no/tema/utenrikssaker/reiseinformasjon/pass_id/id2722880/`
+- **Statutory Framework:**
+  - *Passloven (Lov om pass)*; *Passforskriften (Forskrift om pass og nasjonalt ID-kort)*, gebyrer justert per 1. januar 2026.
+- **Statutory Domestic Tariffs (Gjeldende gebyrer per 1. januar 2026):**
+  - **Ordinært pass:**
+    - Voksne og ungdom fra 16 år (Gyldighet: 10 år): **840 kr.**
+    - Barn under 16 år (Gyldighet: 5 år for 5-15 år; 2 år for 0-4 år): **510 kr.**
+  - **Kombinasjonstilbud (Søknad om pass og nasjonalt ID-kort samtidig - 20% rabatt):**
+    - Personer fra 16 år: **1 340 kr.**
+    - Ungdom 10–15 år: **1 080 kr.**
+    - Barn under 10 år: **820 kr.**
+  - **Nasjonalt ID-kort alene:** 840 kr. (fra 10 år) / 510 kr. (under 10 år).
+  - **Nødpass (Uansett alder):** **1 320 kr.** (Utstedes kun ved akutt og uforutsett reisebehov på utvalgte politistasjoner eller Oslo Lufthavn Gardermoen).
+- **Statutory Consular Tariffs (Norske ambassader og generalkonsulater):**
+  - Ordinært pass i utlandet: Voksen **1 290 kr.** / Barn **780 kr.**
+  - Nødpass i utlandet: **1 690 kr.**
+- **Civil Identity & Document Checklists:**
+  - **Norsk statsborgerskap** og gyldig norsk fødselsnummer (11 siffer).
+  - Tidligere pass eller gyldig norsk nasjonalt ID-kort (for makulering og legitimasjon).
+  - **Biometriopptak:** Foto, fingeravtrykk og signatur tas direkte i politiets biometriskranke ved oppmøte (ingen papirfoto godtas for ordinære pass).
+  - **Barn under 18 år:**
+    - Barnet må møte personlig sammen med minst én forelder.
+    - Begge foreldrene med foreldreansvar må gi sitt samtykke. Samtykke kan gis digitalt med BankID på `politiet.no` på forhånd, eller ved personlig oppmøte med gyldig legitimation.
+    - Fødselsattest kreves dersom barnet søker pass for første gang og foreldreansvaret ikke fremgår direkte i Folkeregisteret.
+  - **Lost/Stolen:** Tapsmelding må fylles ut. Ved gjentatte tap av pass kan politiet nekte utstedelse eller ilegge karenstid etter passloven § 5.
+- **Application & Delivery Channels:**
+  - Timebestilling er obligatorisk på `politiet.no` ved et valgfritt pass- og ID-kontor.
+  - Betaling skjer ved oppmøte (bankkort, kredittkort, Apple Pay/Google Pay eller kontanter).
+  - Leveringstid: Ca. 1 uke; passet sendes i posten til folkeregistrert adresse.
+
+---
+
+### 6.5 Sweden (`SE` / `SWE`)
+- **Administering Authority:**
+  - Polismyndigheten (Passexpeditioner i Sveriges 7 polisregioner); Utrikesdepartementet (svenska utlandsmyndigheter).
+- **Primary Official Portals:**
+  - `https://polisen.se/tjanster-tillstand/pass-och-nationellt-id-kort/`
+  - `https://www.regeringen.se/sveriges-regering/utrikesdepartementet/`
+- **Statutory Framework:**
+  - *Passlagen (1978:302)*; *Passförordningen (1979:664)*; *Lag om nationellt identitetskort*.
+  - **Lagstadgad maxgräns (Passlagen 7 b §):** En svensk medborgare kan som huvudregel beviljas högst **tre vanliga pass under en femårsperiod** för att motverka missbruk och illegal handel med resehandlingar.
+- **Statutory Domestic Tariffs:**
+  - **Vanligt pass (Giltighet: 5 år för personer från 12 år; 3 år för barn under 12 år):** **500 SEK**
+  - **Nationellt id-kort (Giltighet: 5 år):** **400 SEK**
+  - **Provisoriskt pass (Nödpass, giltigt enbart för den specifika resan, max 7 månader):** **980 SEK**
+    - Utfärdas tidigast 72 timmar före planerad avresa; personligt besök på särskilda passexpeditioner (observera att Arlanda flygplats inte längre utfärdar provisoriska pass; hänvisning till Norrmalm, Sollentuna m.fl.).
+- **Statutory Consular Tariffs (Svenska ambassader och konsulat i utlandet):**
+  - Vanligt pass utomlands: **1 600 SEK** (eller motsvarande i lokal valuta).
+  - Provisoriskt pass utomlands: **1 800 SEK**.
+  - Utlämningsavgift på honorärkonsulat: 150 SEK.
+- **Civil Identity & Document Checklists:**
+  - **Svenskt medborgarskap** och personnummer/samordningsnummer.
+  - Tidigare pass eller nationellt id-kort (ska medtas för makulering).
+  - Giltig svensk legitimation (pass, nationellt id-kort eller svenskt körkort). Om legitimation saknas måste godkänd intygsgivare (make, sambo, förälder, myndigt barn eller arbetsgivare med giltig ID) följa med och intyga identiteten.
+  - **Foto och biometri:** Fotografering och fingeravtryck tas uteslutande i polisens fotostation vid passexpeditionen.
+  - **Barn under 18 år:**
+    - Barnet måste närvara personligen vid ansökningstillfället.
+    - Skriftligt medgivande från samtliga vårdnadshavare (*Vårdnadshavares medgivande*) på särskild polisblankett med vidimerade ID-kopior, eller personlig närvaro av båda vårdnadshavarna med ID.
+  - **Lost/Stolen:** Anmälan om förlust görs hos polisen; passet spärras omedelbart internationellt i SIS och Interpol.
+- **Application & Delivery Channels:**
+  - Obligatorisk tidsbokning online via `polisen.se`.
+  - Leveranstid: Normalt inom 6 arbetsdagar; sms skickas när passet finns att hämta på vald passexpedition.
+
+---
+
+### 6.6 Iceland (`IS` / `ISL`)
+- **Administering Authority:**
+  - Þjóðskrá Íslands (Registers Iceland); Sýslumenn (District Commissioners across 9 districts in Iceland); Utanríkisráðuneytið (Ministry for Foreign Affairs / diplomatic missions).
+- **Primary Official Portals:**
+  - `https://www.skra.is/folk/vegabref-og-onnor-skilriki/vegabref/`
+  - `https://island.is/vegabref`
+  - `https://www.syslumenn.is/thjonusta/skilriki/vegabref/`
+- **Statutory Framework:**
+  - *Lög um vegabréf nr. 136/1998*; *Lög um aukatekjur ríkissjóðs nr. 88/1991 (með síðari breytingum)*; Reglugerð um vegabréf.
+- **Statutory Domestic Tariffs (Gjaldskrá Þjóðskrár og sýslumanna):**
+  - **Einstaklingar 18–66 ára (Almennt vegabréf, gildistími: 10 ár):**
+    - Almennt gjald (Venjuleg afgreiðsla, 5–8 virkir dagar): **19.000 ISK**
+    - Hraðafgreiðsla (Flýtiafgreiðsla, 1–2 virkir dagar): **39.200 ISK**
+    - Neyðarvegabréf (Neyðartilvik / flugvelli): **10.500 ISK**
+  - **Börn (0–17 ára, gildistími: 5 ár), aldraðir (67 ára og eldri) og öryrkjar:**
+    - Almennt gjald: **7.000 ISK**
+    - Hraðafgreiðsla: **14.000 ISK**
+    - Neyðarvegabréf: **3.500 ISK**
+  - **Nafnskírteini (Persónu- og ferðaskilríki innan EES):**
+    - Einstaklingar 18 ára og eldri: 9.200 ISK (almennt) / 18.400 ISK (hraðafgreiðsla).
+    - Börn, aldraðir og öryrkjar: 4.600 ISK (almennt) / 9.200 ISK (hraðafgreiðsla).
+- **Statutory Consular Tariffs (Sendiráð og ræðismenn Íslands erlendis):**
+  - Vegabréf erlendis (fullorðnir): 24.000 ISK.
+  - Vegabréf erlendis (börn/aldraðir): 11.000 ISK.
+  - Neyðarvegabréf erlendis: 19.000 ISK.
+- **Civil Identity & Document Checklists:**
+  - **Íslenskur ríkisborgararéttur** og skráning í Þjóðskrá með íslenskri kennitölu.
+  - Fyrra vegabréf (ef það er til staðar, til ógildingar) eða gild persónuskilríki (ökuskírteini, nafnskírteini).
+  - **Biometria:** Ljósmynd, fingraför og rafræn undirskrift eru tekin á staðnum hjá embætti sýslumanns við umsókn.
+  - **Börn yngri en 18 ára:**
+    - Barnið verður að mæta sjálft á afgreiðslustað sýslumanns.
+    - Skriflegt samþykki beggja forsjáraðila (*samþykki forsjáraðila*) staðfest með rafrænum skilríkjum á `island.is` eða undirritað á umsóknareyðublaði í viðurvist tveggja vitna.
+  - **Lost/Stolen:** Tilkynna verður tap eða þjófnað vegabréfs til lögreglu eða sýslumanns; viðkomandi vegabréf er tafarlaust skráð ógilt í alþjóðlegum gagnagrunnum.
+- **Application & Delivery Channels:**
+  - Umsókn lögð inn hjá hvaða sýslumannsembætti sem er á landinu, óháð lögheimili.
+  - Prentun fer fram miðlægt hjá Þjóðskrá Íslands í Reykjavík.
+  - Afhending: Sótt hjá sýslumanni eða sent í pósti á viðkomandi afgreiðslustað/heimili.
+
 
