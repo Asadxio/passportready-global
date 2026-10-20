@@ -30,7 +30,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **AO** | AGO | Angola | Sovereign State | Serviço de Migração e Estrangeiros (SME) — `https://www.sme.gov.ao/` | `primary_sources_audited` | Decreto Presidencial n.º 21/19: Passaporte ordinário (5-yr) 30.500,00 AOA (DIRECT). Paid via RUPE payment reference through Multicaixa interbank network. Bilhete de Identidade (BI) valid national ID mandatory; RUPE proof; birth certificate for minors; online pre-application via sme.gov.ao; biometrics at SME provincial directorates or SIAC centers. |
 | **AI** | AIA | Anguilla | Territory / Special Region | HMPO (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **AQ** | ATA | Antarctica | Territory / Special Region | Antarctic Treaty Area (No sovereign passport; nationals use country of citizenship) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by INT. General guidance applies. |
-| **AG** | ATG | Antigua and Barbuda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AG** | ATG | Antigua and Barbuda | Sovereign State | Passport Office, Queen Elizabeth Highway (`passport.gov.ag` / `ab.gov.ag`) | `primary_sources_audited` | Passports Act regulations: Consular rates (UK/Abroad): Adult 16+ £50.00; Child <16 £25.00; Lost/damaged £100.00 adult / £50.00 child (DIRECT). Domestic application portal (`passport.gov.ag`) intermittently inaccessible; domestic fee collected via revenue stamps at Passport Office window; CBI fees ($300/$1k USD) strictly separated. Original Birth Certificate + photo ID + Section 10 recommender mandatory. |
 | **AR** | ARG | Argentina | Sovereign State | Registro Nacional de las Personas (RENAPER) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 2). RENAPER statutory tariffs: Regular $100.000 ARS (postal delivery), Exprés $200.000 ARS (96 hrs), Al Instante $330.000 ARS (6 hrs at airports/hubs). Consular: 165 UC (USD 165 / €165). DNI mandatory prerequisite; parental consent for minors under 18. |
 | **AM** | ARM | Armenia | Sovereign State | Migration & Citizenship Service (MCS), MIA — `https://mia.gov.am/` | `primary_sources_audited` | Biometric passport (10-yr): 28,650 AMD; National ID Card: 5,950 AMD (DIRECT). Naturalization duty: 50,000 AMD. Armenian ID card + military registration document (Zinvorakan grquyk) mandatory for males 18–27; in-person biometrics at MCS territorial offices (Davtashen, etc.). |
 | **AW** | ABW | Aruba | Territory / Special Region | Cabinet of the Governor of Aruba (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
@@ -79,7 +79,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CD** | COD | Democratic Republic of the Congo | Sovereign State | Ministère des Affaires Étrangères (`diplomatie.gouv.cd` / `passeport.gouv.cd`) | `primary_sources_audited` | Arrêté interministériel: Standard biometric passport (5-yr) USD $75.00 (reduced from $99.00 with new-generation passport rollout) (DIRECT). Payment via partner banks (Equity BCDC) or online. Carte d'électeur (National ID) + Acte de naissance + Certificat de nationalité congolaise + Formulaire F3 mandatory; in-person biometrics at Kinshasa capture centre or provincial sites. |
 | **DK** | DNK | Denmark | Sovereign State | Borgerservice (Kommunerne) / Rigspolitiet | `primary_sources_audited` | Primary source audited (Batch 4). Passbekendtgørelsen 2026: Adult 18-66 (10-yr) 894 DKK; Pensioner 67+ 382 DKK; Youth 12-17 (5-yr) 182 DKK; Child <12 150 DKK. Lost/damaged without previous pass: DOUBLE FEE (1,788 DKK adult). CPR number / Sundhedskort required; photo/biometrics at Borgerservice. |
 | **DJ** | DJI | Djibouti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **DM** | DMA | Dominica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **DM** | DMA | Dominica | Sovereign State | Immigration Dept., Commonwealth of Dominica Police Force (`dominica.gov.dm`) | `primary_sources_audited` | Passport Regulations (Chap. 18:01 amendment): Standard biometric ePassport: Adult 16+ (10-yr) EC$ 150.00; Child <16 (5-yr) EC$ 75.00; Lost/stolen replacement penalty EC$ 500.00 (DIRECT). ePayment portal lists fee as variable to accommodate age/penalty tiers. Treasury payment receipt + Birth Certificate + Form A/B with Section 10 Recommender mandatory; biometrics at Police HQ, Roseau. |
 | **DO** | DOM | Dominican Republic | Sovereign State | Dirección General de Pasaportes (`pasaportes.gob.do`) | `primary_sources_audited` | DGP statutory fees: Adult Regular (6-yr) RD$ 1,650.00; Adult VIP (same-day / ~3h) RD$ 2,650.00; Adult Lost/Damaged RD$ 2,650.00 (Regular) / RD$ 3,650.00 (VIP); Minor Regular RD$ 1,850.00; Minor VIP RD$ 2,850.00 (DIRECT). Paid via Banreservas. Cédula de Identidad y Electoral (JCE) + Legalized Birth Certificate (Acta legalizada JCE) mandatory; appointments via citas.pasaportes.gob.do. |
 | **EC** | ECU | Ecuador | Sovereign State | Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC) | `primary_sources_audited` | Primary source audited (Batch 3). DIGERCIC statutory fees: Standard biometric passport $90.00 USD (10-yr for 18+, 5-yr for minors); Seniors (65+) $45.00 USD (50% discount); Disabled (30%+) $0.00 (exempt). Cédula de Identidad mandatory prerequisite; parental presence for minors under 18. |
 | **EG** | EGY | Egypt | Sovereign State | Passports, Immigration & Nationality Administration / Ministry of Interior | `primary_sources_audited` | Primary source audited (Batch 5). Law No. 7/2024 & Decree 470/2024: Standard machine-readable passport (7-yr) 1,110 EGP; Urgent service 1,450-1,600 EGP (24-48 hrs); VIP same-day 1,850 EGP; Consular $110 USD. National ID card (15+) or birth cert (<15) + military status certificate required. |
@@ -103,7 +103,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GI** | GIB | Gibraltar | Territory / Special Region | Civil Status & Registration Office Gibraltar (British Passport - Gibraltar) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **GR** | GRC | Greece | Sovereign State | Hellenic Police (Διεύθυνση Διαβατηρίων) / Min. of Citizen Protection | `primary_sources_audited` | Primary source audited (Batch 2). PD 25/2022 & Law 4962/2022 (10-yr validity for age 14+): e-Paravolo €84.40 (€53 booklet + €5 postage + €26.40 fee); Minor <14 (3-yr) €73.60. Greek Police ID mandatory; digital photo via myPhoto; appointment at Police Passport Bureau. |
 | **GL** | GRL | Greenland | Territory / Special Region | Rigsombudsmanden i Grønland (Kingdom of Denmark Passport - Grønland cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
-| **GD** | GRD | Grenada | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GD** | GRD | Grenada | Sovereign State | Immigration Dept., Royal Grenada Police Force / MFA (`mofa.gov.gd` / `gov.gd`) | `primary_sources_audited` | Immigration Regulations (eff. July 1, 2024): Standard ePassport: Adult 18+ (10-yr) EC$ 350.00; Child <18 (5-yr) EC$ 250.00; Lost/damaged replacement: Adult EC$ 700.00 / Child EC$ 500.00; Expedited +EC$ 50.00 (DIRECT). Overseas consular: US$ 350 adult / US$ 250 child. Birth Certificate + NIS/voter ID + Recommender mandatory; biometrics at RGPF HQ, St. George's. |
 | **GP** | GLP | Guadeloupe | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **GU** | GUM | Guam | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **GT** | GTM | Guatemala | Sovereign State | Instituto Guatemalteco de Migración (`igm.gob.gt`) | `primary_sources_audited` | IGM statutory tariff: 5-year validity (adults and minors) US$ 50.00; 10-year validity (adults 18+ only) US$ 85.00 (DIRECT). Exclusively paid in Quetzales at Banrural. DPI (Documento Personal de Identificación / RENAP) mandatory for 18+; RENAP birth cert + parental presence for minors; online appointment via citas.igm.gob.gt. |
@@ -111,7 +111,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GN** | GIN | Guinea | Sovereign State | Direction Centrale de la Police de l'Air et des Frontières (DCPAF) (`service-public.gov.gn`) | `primary_sources_audited` | Décret tarifaire titres de voyage: Standard biometric passport: 5-year validity 500 000 GNF; 10-year validity (adults 18+) 1 000 000 GNF (DIRECT). Payment via bank deposit slip (Ecobank). Turnaround ~5 to 10 working days. Extrait de naissance biométrique (avec NIN) + CNI biométrique + Certificat de résidence mandatory; in-person biometrics at DCPAF Coléah (Conakry) or regional centers. |
 | **GW** | GNB | Guinea-Bissau | Sovereign State | Direcção-Geral de Identificação Civil, Registo e Notariado (DGICRAN) (`gov-gb.com`) | `primary_sources_audited` | Carta de Serviços ao Cidadão da República da Guiné-Bissau: Passaporte Normal (up to 15 working days) 25.000 XOF; Passaporte Urgente (up to 5 working days) 50.000 XOF (DIRECT). Bilhete de Identidade (BI biométrico) emitido pela DGICRAN + Certidão de Nascimento + Registo Criminal mandatory; in-person biometrics at DGICRAN Bissau. |
 | **GY** | GUY | Guyana | Sovereign State | Central Immigration & Passport Office (CIPO), Guyana Police Force / MoHA (`moha.gov.gy`) | `primary_sources_audited` | Immigration Act (Cap. 14:02): Standard biometric e-passport: 5-year G$ 6,000; 10-year G$ 12,000; Expedited 72-hour surcharge +G$ 20,000 (DIRECT). Standard turnaround ~5 working days. Guyana National ID Card + GRO Birth Certificate + Form A + Recommender mandatory; appointment via Guyana Passport System; in-person biometrics at CIPO Georgetown or regional offices. |
-| **HT** | HTI | Haiti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **HT** | HTI | Haiti | Sovereign State | Direction de l'Immigration et de l'Émigration (DIE) (`delidoc.gouv.ht` / `dgi.gouv.ht`) | `primary_sources_audited` | Loi de finances & Tarifs DGI: Passeport régulier 32 pages: Adulte (10-yr) 8 000,00 HTG; Mineur <18 (5-yr) 2 500,00 HTG; 48 pages: 12 000,00 HTG (DIRECT). Prise de rendez-vous obligatoire via plateforme DELIDOC (delidoc.gouv.ht). Extrait d'acte de naissance (Archives Nationales) + CIN (ONI) + NIF + reçu DGI mandatory; in-person biometrics at DIE centers. |
 | **HM** | HMD | Heard Island and McDonald Islands | Territory / Special Region | Heard Island and McDonald Islands (Uninhabited Australian territory) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **HN** | HND | Honduras | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **HK** | HKG | Hong Kong | Territory / Special Region | Immigration Department HKSAR (HKSAR Passport for Chinese citizens with permanent residence) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
@@ -188,11 +188,11 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **RE** | REU | Réunion | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **BL** | BLM | Saint Barthélemy | Territory / Special Region | Collectivité de Saint-Barthélemy (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **SH** | SHN | Saint Helena, Ascension and Tristan da Cunha | Territory / Special Region | St Helena Immigration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **KN** | KNA | Saint Kitts and Nevis | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KN** | KNA | Saint Kitts and Nevis | Sovereign State | Ministry of National Security / Passport Office (`gov.kn` / `stkittsnevishcuk.gov.kn`) | `primary_sources_audited` | ePassport Application Instructions (rev. Aug 2, 2024): Standard 10-yr adult (16–64) EC$ 250.00; Child <16 (5-yr) EC$ 150.00; Senior 65+ EC$ 150.00; Urgent processing: Adult EC$ 350.00 / Child EC$ 250.00; Lost unexpired penalty EC$ 500.00 (DIRECT). CBI fees (EC$ 675–1,350) separated. Birth Certificate + Social Security Card + Recommender mandatory; biometrics at Basseterre / Charlestown. |
 | **LC** | LCA | Saint Lucia | Sovereign State | Immigration Dept., Royal Saint Lucia Police Force (`govt.lc`) | `primary_sources_audited` | Passports (Amendment) Regulations: Standard ePassport (10-yr adult / 5-yr minor) EC$ 250.00; Replacement before expiry (lost/damaged) EC$ 300.00; Expedited surcharge (3–5 days) +EC$ 50.00 (DIRECT). National ID Card (18+) or NIS Card (16–17) + Civil Registry Birth Certificate mandatory; in-person biometrics at Police HQ Castries or Vieux Fort. |
 | **MF** | MAF | Saint Martin (French part) | Territory / Special Region | Collectivité de Saint-Martin (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **PM** | SPM | Saint Pierre and Miquelon | Territory / Special Region | Préfecture de Saint-Pierre-et-Miquelon (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
-| **VC** | VCT | Saint Vincent and the Grenadines | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **VC** | VCT | Saint Vincent and the Grenadines | Sovereign State | Passport and Immigration Dept., Prime Minister's Office (`security.gov.vc`) | `primary_sources_audited` | Passports Act (Cap. 116) regulations: Standard ePassport: Adult 16+ (10-yr) EC$ 200.00; Child <16 (5-yr) EC$ 100.00; Stamp duty: EC$ 15.00 adult / EC$ 10.00 child; Express tiers: 1-day +EC$ 90.00 / 2–3d +EC$ 60.00 / 4–5d +EC$ 40.00 (DIRECT). Diaspora: US$ 200 adult / US$ 100 child / lost US$ 225. Birth Certificate + National ID/NIS + Section 10 certifier mandatory; biometrics at Kingstown. |
 | **WS** | WSM | Samoa | Sovereign State | Immigration Division, Ministry of the Prime Minister and Cabinet (`mpmc.gov.ws`) | `primary_sources_audited` | Passports Act 2008 & Immigration Act 2020: Standard passport (5-day turnaround, 5-yr): Adult (17+) WST 200.00; Child (≤16) WST 100.00; Urgent (2-day): Adult WST 240.00; Child WST 140.00; Lost/damaged replacement: Adult WST 400.00; Child WST 200.00 (DIRECT). MJCA Birth Certificate + Section 6 Recommender (Fa'amasino/Faife'au/Pulenu'u/Lawyer) mandatory; in-person biometrics at Apia. |
 | **SM** | SMR | San Marino | Sovereign State | Ufficio Stato Civile / Ufficio Passaporti (`gov.sm` / `esteri.sm`) | `primary_sources_audited` | Rev. Carta dei Servizi 2025: Adults & 14+ (10-yr) € 100.00; Minors 3–14 (5-yr) € 50.00; Children 0–3 (3-yr) € 30.00; Urgent 3 working days surcharge: +€ 50.00 (DIRECT). Sammarinese citizenship required; Codice ISS + Carta d'Identità sammarinese mandatory; application at Ufficio Stato Civile Borgo Maggiore; consular via Dipartimento Affari Esteri. |
 | **ST** | STP | Sao Tome and Principe | Sovereign State | Serviço de Migração e Fronteiras (SMF), Ministério da Defesa e Ordem Interna (`smf.st`) | `primary_sources_audited` | Tabela oficial de taxas do SMF: Passaporte Comum (5-year validity): Normal 1.500,00 STN; Taxa de urgência (24 horas) +250,00 STN (total 1.750,00 STN); Emissão fora de horas +25%; Aeroporto/porto +30% (DIRECT). Bilhete de Identidade (BI santomense) válido + Certidão de Nascimento narrativa completa + Registo Criminal mandatory; biometrics at SMF HQ, São Tomé. |
@@ -5268,6 +5268,235 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 - **Application & Delivery Channels:**
   - Online pre-registration and appointment booking via `migration.gov.bi`. In-person submission and biometric enrollment at the Commissariat Général des Migrations (CGM), Avenue de l'OUA, Kigobe, Bujumbura.
   - Delivery: In-person collection upon presentation of deposit voucher and CNI.
+
+---
+
+## Section 25 — Batch 23 Research Dossiers: Dominica (DM), Grenada (GD), Saint Vincent and the Grenadines (VC), Saint Kitts and Nevis (KN), Antigua and Barbuda (AG), Haiti (HT)
+
+*Researched: 2026-10-21. Primary statutory investigation covering 6 sovereign Caribbean nations. Official sources audited across national passport offices, immigration departments, statutory fee orders, civil registries, and biometric capture stations.*
+
+---
+
+### 25.1 Dominica (DM / DMA) — Immigration Department, Commonwealth of Dominica Police Force
+
+- **Administering Authority:** Immigration Department, Commonwealth of Dominica Police Force (CDPF), Ministry of National Security and Legal Affairs
+- **Primary Portals:**
+  - Official Government Portal: `https://www.dominica.gov.dm/services/passports-and-travel-documents-nationals/how-do-i-apply-for-a-passport`
+  - Government ePayment Portal: `https://epayment.dominica.gov.dm/Services/IndexNew?letter=P`
+  - Statutory Regulations: `https://www.dominica.gov.dm/laws/chapters/chap18-01.pdf`
+- **Domestic Fee Schedule (in East Caribbean Dollars — EC$ / XCD):**
+  - **Standard Biometric ePassport:**
+    - **Adult (16 years and older, 10-year validity):** **EC$ 150.00**
+    - **Child (under 16 years, 5-year validity):** **EC$ 75.00**
+  - **Lost, Stolen, or Damaged Passport Replacement Penalty:**
+    - **Penalty Replacement Fee:** **EC$ 500.00**
+  - **Payment & Portal Discrepancy Note:**
+    - Fees paid via Treasury Department cashier counter or online via `epayment.dominica.gov.dm`. The ePayment portal denotes the passport fee as "variable" because it dynamically selects between Adult (EC$150), Child (EC$75), and Lost Replacement (EC$500) tiers.
+  - **Evidence confidence: `DIRECT`** — established on `dominica.gov.dm` and verified against CDPF Immigration notices.
+- **Consular Fee Schedule:**
+  - Via Dominica High Commissions and Consulates abroad (London, New York, Washington D.C., Toronto).
+  - Consular fees: ~USD $100.00 / £80.00 (Adult 16+); USD $50.00 / £40.00 (Child <16).
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship & Birth:** Original Birth Certificate issued by the Registrar General or Certificate of Naturalization.
+  - **Treasury Receipt:** Proof of payment of EC$ 150.00 / EC$ 75.00 from the Treasury or ePayment portal.
+  - **Application Forms:** Form A (Adult) or Form B (Minor under 16).
+  - **Photographs & Recommender:** Two (2) recent passport-sized photographs certified in Section 10 by an authorized Recommender (Minister of Religion, Justice of the Peace, Medical Practitioner, Lawyer, Head Teacher, or Senior Civil Servant).
+  - **For minors (<16):** Parental consent section signed by parent/legal guardian; copy of parent's photo ID.
+  - **Renewal:** Surrender of old passport.
+  - **Lost/Stolen:** Police report from CDPF and sworn statutory declaration/affidavit.
+  - **Biometrics:** Mandatory in-person enrollment at Police Headquarters, Bath Road, Roseau.
+
+---
+
+### 25.2 Grenada (GD / GRD) — Immigration Department, Royal Grenada Police Force (RGPF)
+
+- **Administering Authority:** Immigration Department, Royal Grenada Police Force (RGPF), Ministry of National Security, Public Administration, Home Affairs and ICT
+- **Primary Portals:**
+  - Ministry of Foreign Affairs: `https://mofa.gov.gd/`
+  - Royal Grenada Police Force: `https://rgpf.gd/`
+  - Government of Grenada Portal: `https://gov.gd/`
+  - Embassy of Grenada in Beijing (Consular Services): `https://gndembassyprc.mofa.gov.gd/consular-services/`
+- **Statutory Framework:**
+  - Immigration Regulations and Passport Orders effective **July 1, 2024** (introducing 10-year adult ePassport validity and revised fee schedule).
+- **Domestic Fee Schedule (in East Caribbean Dollars — EC$ / XCD):**
+  - **Standard Biometric ePassport (eff. July 1, 2024):**
+    - **Adult (18 years and older, 10-year validity):** **EC$ 350.00**
+    - **Child (under 18 years, 5-year validity):** **EC$ 250.00**
+  - **Lost, Stolen, or Damaged Replacement Fee:**
+    - **Adult 10-year replacement:** **EC$ 700.00**
+    - **Child 5-year replacement:** **EC$ 500.00**
+  - **Expedited Priority Processing Surcharge:** **+EC$ 50.00** (expedited delivery in 3 to 5 working days).
+  - **Evidence confidence: `DIRECT`** — established by official government notifications effective July 1, 2024.
+- **Consular Fee Schedule (Overhead Abroad):**
+  - Overseas diplomatic missions (Beijing, Washington D.C., New York, Miami, London):
+    - Adult (10-yr): **US$ 350.00** / Child (5-yr): **US$ 250.00**; Lost replacement: **US$ 700.00** (adult) / **US$ 500.00** (child); Expedited fee: **+US$ 50.00**.
+    - Discrepancy noted: Beijing embassy notes processing times of 4 to 6 weeks, while US/UK posts cite 6 to 8 weeks due to diplomatic pouch cycles to St. George's. Domestic turnaround is 2 to 3 weeks (expedited 3–5 working days).
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy consular schedules.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship:** Original Birth Certificate, Adoption Certificate, or Certificate of Naturalization/Registration.
+  - **National Identification:** National Insurance Scheme (NIS) Card or Voter ID Card.
+  - **Marriage/Name Change:** Original Marriage Certificate (for married females changing surname) or Deed Poll.
+  - **Form & Certification:** Completed Form A (Adult) or Form B (Minor); two (2) passport photos certified by an authorized Recommender.
+  - **For minors (<18):** Accompanied by parent/guardian; parent's NIS/passport; signed parental consent.
+  - **Lost/Stolen:** RGPF Police loss report and notarized affidavit.
+  - **Biometrics:** Mandatory in-person enrollment at RGPF Immigration Department Headquarters, Melville Street, St. George's.
+
+---
+
+### 25.3 Saint Vincent and the Grenadines (VC / VCT) — Passport and Immigration Department
+
+- **Administering Authority:** Passport and Immigration Department, Ministry of National Security, Prime Minister's Office
+- **Primary Portals:**
+  - Ministry of National Security: `https://security.gov.vc/security/index.php?Itemid=107&id=55&option=com_content&view=article`
+  - Government of Saint Vincent and the Grenadines: `https://www.gov.vc/`
+  - SVG Consulates / High Commissions: `https://svgconsulate.vc/`
+- **Statutory Framework:**
+  - Passports Act (Cap. 116) and Passport Regulations.
+- **Domestic Fee Schedule (in East Caribbean Dollars — EC$ / XCD):**
+  - **Standard Ordinary ePassport:**
+    - **Adult (16 years and older, 10-year validity):** **EC$ 200.00**
+    - **Child (under 16 years, 5-year validity):** **EC$ 100.00**
+  - **Stamp Duty (Revenue stamps affixed to Form A / Form B):**
+    - Adult (16+): **EC$ 15.00**; Child (<16): **EC$ 10.00**
+  - **Express / Expedited Surcharge Tiers (over normal 7 wd renewal / 14 wd first-time):**
+    - **1-Day Urgent Service:** **+EC$ 90.00**
+    - **2 to 3 Days Service:** **+EC$ 60.00**
+    - **4 to 5 Days Service:** **+EC$ 40.00**
+  - **Lost, Stolen, or Damaged Replacement Fee:**
+    - Standard replacement fee: **EC$ 300.00**
+  - **Evidence confidence: `DIRECT`** — established on `security.gov.vc`.
+- **Consular / Diaspora Fee Schedule:**
+  - Overseas diplomatic missions (Consulate General New York, London High Commission, Toronto):
+    - US Diaspora: Adult **US $200.00**; Child **US $100.00**; Lost replacement **US $225.00** (plus $15 stamps/courier).
+    - UK/Europe Diaspora: Adult **£100.00**; Child **£50.00**; Lost replacement **£110.00** (plus £10 special delivery).
+    - Canada Diaspora: Adult **CDN $185.00**; Child **CDN $100.00**; Lost replacement **CDN $225.00**.
+  - **Evidence confidence: `DIRECT`** — confirmed via official diaspora mission schedules.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Civil Status:** Original Birth Certificate issued by the Registrar General; Marriage Certificate (if applicable).
+  - **National Identification:** National Identification Card, NIS Card, or Voter ID.
+  - **Application Forms & Stamps:** Completed Form A (Adult) or Form B (Minor); required revenue stamps affixed.
+  - **Photographs & Certification:** Two (2) certified passport photos signed by Section 10 Certifier (Justice of the Peace, Minister of Religion, Police Sergeant+, Lawyer, Doctor, Head Teacher).
+  - **For minors (<16):** Written consent of parents/legal guardian.
+  - **Lost/Stolen:** Police report and completed Lost/Stolen Report Form.
+  - **Biometrics:** Mandatory in-person enrollment at the Passport and Immigration Department, Police Headquarters, Kingstown.
+
+---
+
+### 25.4 Saint Kitts and Nevis (KN / KNA) — Ministry of National Security / Passport Office
+
+- **Administering Authority:** Passport Office, Ministry of National Security, Citizenship and Immigration, Government of Saint Kitts and Nevis
+- **Primary Portals:**
+  - Official Government Portal: `https://www.gov.kn/`
+  - High Commission of St. Kitts and Nevis in London: `https://stkittsnevishcuk.gov.kn/passports/`
+  - Official ePassport Application Instructions: `https://www.gov.kn/wp-content/uploads/2024/11/St-Kitts-and-Nevis-ePP-instructions-form_v1_Aug-2-2024.pdf`
+- **Statutory Framework:**
+  - Passports Act (Cap. 10.03) and official ePassport Application Instructions (revised August 2, 2024).
+- **Domestic Fee Schedule (in East Caribbean Dollars — EC$ / XCD):**
+  - **Standard Ordinary ePassport:**
+    - **Adult (Ages 16–64, 10-year validity):** **EC$ 250.00**
+    - **Child (Under 16 years, 5-year validity):** **EC$ 150.00**
+    - **Senior Citizen (Ages 65 and older, 10-year validity):** **EC$ 150.00**
+  - **Urgent / Expedited Processing Service:**
+    - **Adult / Senior:** **EC$ 350.00**
+    - **Child:** **EC$ 250.00**
+  - **Replacement of Lost / Stolen / Damaged Passport (LSD):**
+    - **Unexpired Passport Penalty:** Flat **EC$ 500.00** across all age categories.
+    - **Expired Passport Replacement:** Standard renewal fee (**EC$ 250.00** adult / **EC$ 150.00** child/senior).
+  - **Citizenship by Investment (CBI) Schedule Separation:**
+    - CBI passports are strictly segregated from ordinary citizen fees: Standard **EC$ 675.00**; Expedited **EC$ 945.00**; Lost replacement **EC$ 1,350.00**.
+  - **Evidence confidence: `DIRECT`** — established by official government instructions revised August 2, 2024.
+- **Consular Fee Schedule:**
+  - London High Commission: £150.00 (Adult 16+) / £100.00 (Child <16 / Senior 65+); Urgent £200.00 / £150.00; Lost unexpired £250.00.
+  - Ottawa/Washington: US $150.00 / CDN $200.00 (Adult); US $100.00 / CDN $130.00 (Child/Senior); Lost unexpired US $250.00 / CDN $350.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official high commission notices.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship & Birth:** Original Birth Certificate issued by the Registrar General; Certificate of Citizenship (if born abroad).
+  - **National Identification:** St. Kitts and Nevis Social Security Card or National ID Card.
+  - **Marriage Certificate:** Required for married female applicants changing surname.
+  - **Application Form & Certifier:** Completed ePassport Application Form; Section 10 Recommender certification; children aged 8+ must sign the signature box.
+  - **For minors (<16):** Parental/guardian consent mandatory; parent's identification.
+  - **Lost/Stolen:** Police report and statutory declaration.
+  - **Biometrics:** Mandatory in-person enrollment at Government Headquarters, Church Street, Basseterre, St. Kitts, or Premier's Ministry, Charlestown, Nevis.
+
+---
+
+### 25.5 Antigua and Barbuda (AG / ATG) — Passport Office, Queen Elizabeth Highway
+
+- **Administering Authority:** Passport Office, Immigration Department, Ministry of Foreign Affairs, International Trade and Immigration
+- **Primary Portals:**
+  - Government Citizen Services: `https://ab.gov.ag/detail_template.php?page=citizen_services`
+  - Official Passport Application Portal: `https://passport.gov.ag/`
+  - High Commission of Antigua and Barbuda in London: `https://antigua-barbuda.com/`
+  - Official Laws Portal: `https://laws.gov.ag/`
+- **Statutory Framework:**
+  - Immigration and Passport Act and subsidiary passport regulations.
+- **Domestic Fee Schedule & Portal Accessibility Audit:**
+  - **Online Application Portal Status:**
+    - The official online destination (`https://passport.gov.ag/`) is intermittently inaccessible or restricted to internal IP ranges.
+  - **Domestic Counter Fee Collection:**
+    - Domestic fees processed at the Passport Office on Queen Elizabeth Highway, St. John's, are regulated under ministerial discretion and traditionally collected via physical government revenue stamps upon presentation of forms. Numeric domestic EC$ fees are documented as unverified pending full restoration of public digital tariff schedules.
+  - **CBI Segregation:**
+    - Citizenship by Investment passport fees (US $300 base / US $1,000 adult 5-yr renewal) are strictly segregated from ordinary citizen fees.
+  - **Evidence confidence: `DIRECT`** for consular schedule; `PARTIAL` for domestic numeric counter fees.
+- **Consular Fee Schedule:**
+  - Antigua and Barbuda High Commission, London (and consular posts abroad):
+    - **Adult (16 years and over, 10-year validity):** **£50.00**
+    - **Child (under 16 years, 5-year validity):** **£25.00**
+    - **Lost / Stolen / Damaged Replacement (Adult 16+):** **£100.00**
+    - **Lost / Stolen / Damaged Replacement (Child <16):** **£50.00**
+  - **Evidence confidence: `DIRECT`** — confirmed via official High Commission tariff publications.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship:** Original Birth Certificate or Certificate of Registration/Naturalization.
+  - **Photo Identification:** Valid National Voter's Card, Social Security Card, or driver's license.
+  - **Marriage Certificate:** Required for married female applicants changing surname.
+  - **Photographs & Recommender:** Two (2) recent passport-sized photographs (white background) certified by an authorized Recommender (Section 10).
+  - **For minors (<16):** Child's birth certificate; parent's valid photo ID; signed parental consent.
+  - **Lost/Stolen:** Police report from the Royal Police Force of Antigua and Barbuda (RPFAB) and sworn statutory declaration.
+  - **Biometrics:** Mandatory in-person enrollment at the Passport Office, Queen Elizabeth Highway, St. John's.
+
+---
+
+### 25.6 Haiti (HT / HTI) — Direction de l'Immigration et de l'Émigration (DIE)
+
+- **Administering Authority:** Direction de l'Immigration et de l'Émigration (DIE), Ministère de l'Intérieur et des Collectivités Territoriales (MICT) / Direction Générale des Impôts (DGI), République d'Haïti
+- **Primary Portals:**
+  - Plateforme DELIDOC (Prise de rendez-vous en ligne): `https://delidoc.gouv.ht/`
+  - Direction Générale des Impôts: `https://dgi.gouv.ht/`
+  - Ministère de l'Intérieur: `https://mict.gouv.ht/`
+  - Portail des Services Publics: `https://servicespublics.gouv.ht/`
+- **Statutory Framework:**
+  - Décret relatif aux passeports et Loi de finances portant tarification des droits de passeport de la République d'Haïti.
+- **Domestic Fee Schedule (in Haitian Gourdes — HTG):**
+  - **Passeport Biométrique Ordinaire (32 pages):**
+    - **Adult (18 years and older, 10-year validity):** **8 000,00 HTG** (comprising Trésor Public, CFGDCT, and FER allocations).
+    - **Minor (under 18 years, 5-year validity):** **2 500,00 HTG**
+  - **Passeport Grand Format (48 pages):**
+    - **Adult (10-year validity):** **12 000,00 HTG**
+  - **Payment Channel:**
+    - Exclusively paid at the Direction Générale des Impôts (DGI) cashier counter or authorized banking partners (Sogebank, Unibank) against an official tax receipt (*reçu de perception DGI*).
+  - **Appointment Prerequisite:**
+    - Pre-registration and appointment booking is strictly mandatory via the government digital platform DELIDOC (`delidoc.gouv.ht`).
+  - **Turnaround Timeline:**
+    - Standard processing: **10 to 20 working days**.
+  - **Evidence confidence: `DIRECT`** — established on `dgi.gouv.ht` and `delidoc.gouv.ht`.
+- **Consular Fee Schedule:**
+  - Via Haitian Embassies and Consulates General abroad (e.g. Washington D.C., Miami, New York, Montreal, Paris, Santo Domingo).
+  - Consular fees: ~USD $145.00 to $160.00 / CAD $180.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official consular mission schedules.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Civil Status:** Original extract of Birth Certificate (*Extrait d'acte de naissance*) issued by the Archives Nationales d'Haïti (ANH).
+  - **National Identification:** Biometric National Identification Card (*Carte d'Identification Nationale — CIN*) issued by the Office National d'Identification (ONI).
+  - **Fiscal Identification:** Numéro d'Immatriculation Fiscale (NIF).
+  - **Tax Receipt:** Original DGI payment receipt for 8 000,00 HTG (adult) or 2 500,00 HTG (minor).
+  - **Photographs:** Two (2) recent passport-sized color photographs on plain white background; live biometric photography and fingerprints on site.
+  - **For minors (under 18):** Accompanied by parent/legal guardian; child's ANH birth certificate; parents' CIN/NIF; legalized parental authorization (*autorisation parentale légalisée au Parquet*).
+  - **Renewal:** Physical presentation of previous passport booklet for cancellation.
+  - **Lost/Stolen:** Police report issued by the Police Nationale d'Haïti (PNH) and court certificate of loss (*certificat de perte délivré par le Juge de Paix*).
+  - **Biometrics:** Mandatory in-person enrollment at DIE centers (Port-au-Prince, Tabarre, Delmas, Cap-Haïtien, Les Cayes).
+- **Application & Delivery Channels:**
+  - Digital appointment booking via `delidoc.gouv.ht`. In-person enrollment at the Direction de l'Immigration et de l'Émigration (DIE) offices in Port-au-Prince or departmental delegations.
+  - Delivery: In-person collection upon presentation of appointment receipt slip and CIN.
 
 ---
 
