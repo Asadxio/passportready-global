@@ -6340,32 +6340,34 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - Ministry of Interior: `http://moi.gov.sy/`
   - Electronic Citizen Service Center (مركز خدمة المواطن الإلكتروني / منصة أنجز): `https://ecsc.gov.sy/`
   - MOFA Consular App: `MOFA SY` (App Store / Google Play)
-- **Statutory Framework:**
-  - Law No. 42 of 2023 Regulating Passport Services and Legislative Decree No. 2 of 2024
-  - Law No. 18 of 2017 & Law No. 23 of 2023 fixing consular tariffs for travel documents issued to citizens abroad
-  - Regulatory decisions of the Ministry of Interior introducing the Syrian Biometric Electronic Passport (جواز السفر الإلكتروني السوري)
-- **Document Scope & Validity:**
+- **Statutory Framework & Monetary Decrees:**
+  - Law No. 42 of 2023 Regulating Passport Services and Legislative Decree No. 2 of 2024.
+  - **Official Consular Fee Revision (26 June 2025):** Legislative Decree No. 119 of 2025 formally reducing overseas travel document tariffs for citizens abroad.
+  - **Monetary Redenomination (Decree No. 293 of 2025):** Central Bank of Syria 100-to-1 currency redenomination effective 1 January 2026, removing two zeros (100 old SYP = 1 new SYP).
+  - **Passport Validity Circular (Decision No. 879/Q, 26 November 2025):** Regulations of the Immigration and Passports Directorate governing validity duration and clearance standards for expatriates.
+- **Document Scope & Reconciled Validity:**
   - Standard Syrian Biometric Electronic Passport (equipped with ICAO Doc 9303 contactless chip).
-  - **Statutory Validity:**
-    - **Standard adult citizens and minors:** **6 years** validity.
-    - **Males aged 18 to 42 with unsettled military draft obligations (deferrals for study, family sole provider, or residency abroad):** Issued with **2 years** or **2.5 years** validity, subject to military service recruitment department (*شعبة التجنيد*) approval stamps.
-- **Domestic Fee Schedule & Multi-Speed Tiers (in Syrian Pounds — SYP):**
+  - **Validity Rules Reconciled:**
+    - **Standard adult citizens and regularized expatriates:** **6 years** validity.
+    - **Expatriates under Decision No. 879/Q (26 November 2025):** Passports issued to specific categories living abroad who departed irregularly (without formal exit/entry registration tracking) or who have pending legal/administrative clearances are restricted to **2.5 years** (two and a half years / سنتان ونصف) validity; regularized citizens and holders of established foreign residency receive standard 6-year validity upon status verification.
+    - **Draft-age males (18–42):** Issued with **2 years** or **2.5 years** validity, subject to military recruitment department (*شعبة التجنيد*) deferral stamps. Concurrently, the November 2025 Ministry of Interior database overhaul removed millions of legacy travel bans and military evasion flags.
+- **Domestic Fee Schedule & Multi-Speed Tiers (Reconciled with 2026 Redenomination):**
   - Applications inside Syria are managed strictly through the **Electronic Citizen Service Center (`ecsc.gov.sy`)**:
-    - **Normal / Ordinary Track (نظام الدور العادي):** **312,700 SYP** (turnaround: approximately **30 to 45 working days**).
-    - **Urgent / Expedited Track (المستعجل):** **432,700 SYP** (turnaround: approximately **15 to 20 working days**).
-    - **Immediate / Instant Track (الفوري):** **1,600,000 SYP** (turnaround: within **24 to 48 hours** / 1 to 2 business days; adjusted from earlier transitional tiers up to 2,010,700 SYP).
+    - **Normal / Ordinary Track (نظام الدور العادي):** **3,127 new SYP** (equivalent to 312,700 legacy SYP; turnaround: approximately **30 to 45 working days**).
+    - **Urgent / Expedited Track (المستعجل):** **4,327 new SYP** (equivalent to 432,700 legacy SYP; turnaround: approximately **15 to 20 working days**).
+    - **Immediate / Instant Track (الفوري):** **16,000 new SYP** (equivalent to 1,600,000 legacy SYP; turnaround: within **24 to 48 hours** / 1 to 2 business days).
   - **Payment Channels:** Strictly digital cashless settlement via Syrian electronic payment gateways (Bemo Saudi Fransi, Cham Bank, Syriatel Cash, MTN Cash, or national interbank switch). Cash transactions at passport counters are prohibited.
-  - **Evidence confidence: `DIRECT`** — confirmed via `moi.gov.sy`, `ecsc.gov.sy`, and ministerial gazetted orders.
-- **Consular Fee Schedule & Diaspora Surcharges (via Syrian Diplomatic Missions abroad):**
-  - Overseas Syrian citizens apply via Syrian embassies/consulates or the **MOFA SY** digital platform:
-    - **Standard / Regular Queue (نظام الدور):** **$300 USD** (statutory baseline under Law No. 18 / Law No. 23; certain diplomatic mission circulars quote $200 USD for standard issuance; discrepancy preserved as operational variation). Turnaround: **4 to 12 weeks**.
-    - **Immediate / Expedited Track (فوري / مستعجل):** **$800 USD** (expedited processing within 1 to 2 weeks; certain missions quote $400 USD under selective circulars; discrepancy noted).
-    - **Lost or Damaged Passport Fine:** A statutory penalty fine of **+$100 USD** is assessed on top of the base issuance fee ($300 standard lost = $400 USD; $800 expedited lost = $900 USD).
-  - **Evidence confidence: `DIRECT`** — confirmed via Syrian diplomatic mission fee schedules (e.g., Cairo, Dubai, Muscat, Berlin, Paris).
+  - **Evidence confidence: `DIRECT`** — confirmed via `moi.gov.sy`, `ecsc.gov.sy`, Legislative Decree No. 119 of 2025, and Decree No. 293 of 2025.
+- **Consular Fee Schedule & Diaspora Tariffs (Official 26 June 2025 Revision):**
+  - Overseas Syrian citizens apply via Syrian embassies/consulates or the **MOFA SY** digital platform under tariffs established by Legislative Decree No. 119 of 2025 (eff. 26 June 2025):
+    - **Standard / Regular Queue (نظام الدور العادي):** **$200 USD** (formally reduced from earlier $300 USD rate). Turnaround: **4 to 12 weeks**.
+    - **Immediate / Urgent Track (فوري / مستعجل):** **$400 USD** (formally reduced from earlier $800 USD rate). Turnaround: **1 to 2 weeks**.
+    - **Lost or Damaged Passport Fine:** A statutory penalty fine of **+$100 USD** is assessed on top of the base issuance fee ($200 standard lost = $300 USD; $400 expedited lost = $500 USD).
+  - **Evidence confidence: `DIRECT`** — confirmed via Ministry of Foreign Affairs and Expatriates / MOI gazetted decrees.
 - **Civil Identity & Document Checklists:**
   - **National Identity Card (البطاقة الشخصية السورية - الهوية):** Original valid plastic national identity card mandatory for all applicants aged 14 and older.
   - **Individual Civil Registration Extract (إخراج قيد نفوس فردي):** If the ID card is unavailable or undergoing replacement, an individual civil status extract bearing a recent certified photograph stamped by Civil Affairs (*الأحوال المدنية*) is mandatory.
-  - **Military Service Document (دفتر خدمة العلم):** Mandatory for all Syrian male citizens aged 18 to 42; requires military recruitment branch approval (*موافقة شعبة التجنيد*) to determine whether a 6-year or 2-year validity passport may be granted.
+  - **Military Service Document (دفتر خدمة العلم):** Mandatory for all Syrian male citizens aged 18 to 42; requires military recruitment branch approval (*موافقة شعبة التجنيد*) to determine whether a 6-year or 2.5-year validity passport may be granted.
   - **Proof of Profession / Syndicate Card:** Required for specific registered professions (engineers, physicians, lawyers, journalists).
   - **Minors (<18):** Accompaniment by the legal guardian (*الولي الشرعي* - father or paternal grandfather), minor's civil registration extract, and guardian's national ID card.
   - **Biometrics:** Mandatory in-person enrollment (digital photograph complying with ICAO standards, 10-finger biometric fingerprint scanning, and electronic signature) at the Passport Branch or designated Citizen Service Center.
@@ -6374,7 +6376,7 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 
 ### 29.3 Somalia (SO / SOM) — Immigration and Citizenship Agency (ICA)
 
-- **Administering Authority:** Immigration and Citizenship Agency of Somalia (ICA / Hay’adda Socdaalka iyo Jinsiyadda Soomaaliya - HSJ), Federal Republic of Somalia; Consular: Ministry of Foreign Affairs and International Cooperation.
+- **Administering Authority:** Immigration and Citizenship Agency of Somalia (ICA / Hay’adda Socdaalka iyo Jinsiyadda Soomaaliya - HSJ), Federal Republic of Somalia; National Identification and Registration Authority (NIRA); Consular: Ministry of Foreign Affairs and International Cooperation.
 - **Primary Portals:**
   - Immigration and Citizenship Agency: `https://immigration.gov.so/`
   - Federal Government of Somalia: `https://somalia.gov.so/`
@@ -6382,13 +6384,18 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
 - **Statutory Framework:**
   - Somali Immigration Law (Law No. 37 of 1966, as amended)
   - Law on Somali Citizenship (Law No. 28 of 1962)
+  - National Identification and Registration Authority Act (NIRA Act 2023)
   - Federal Cabinet and ICA Decrees on Electronic Biometric Travel Document Regulations and National ID Integration
 - **Document Scope & Validity:**
   - Somali Biometric Electronic Passport (Passaportiga Elektarooniga ah, containing contactless microprocessor complying with ICAO Doc 9303).
   - **Statutory Validity:** **5 years** across all applicant categories (adults and minors).
-- **Domestic Fee Schedule & Service Delivery Tiers (in United States Dollars — USD $; official currency for federal travel documents):**
+- **Domestic Fee Schedule & Processing Centers:**
   - **Standard Ordinary Passport (Passapoor Caadi):** **USD $180.00** per booklet.
-  - **Processing Turnaround:** Approximately **1 week** (5 to 7 working days) under normal operational conditions at the Aden Adde International Airport ICA Headquarters in Mogadishu or designated federal member state centers.
+  - **Processing Turnaround:** Approximately **1 week** (5 to 7 working days) under normal operational conditions.
+  - **Official Federal ICA Processing Centers:**
+    - Federal Headquarters: Aden Adde International Airport Road, Mogadishu; branch intake stations at Abdiaziz and Shangani districts.
+    - Federal Member State Centers: Garowe (Puntland), Baidoa (South West State), Kismayo (Jubaland), and Dhusamareb (Galmudug).
+    - **⚠️ Non-Operational Location Downgrade (Hargeisa):** Hargeisa is **NOT** an operational Federal Government ICA passport-processing center. Somaliland maintains an independent administrative authority (Somaliland Immigration and Border Control - SIBC) issuing separate Somaliland travel documents; the Federal Government's ICA does not operate physical passport-issuing branches in Hargeisa, and Federal Somali biometric passports cannot be processed in Hargeisa.
   - **Urgent / Fast-Track Processing:** Discretionary expedited processing is facilitated at ICA headquarters for verified medical evacuation emergencies, official government delegations, or critical compassionate cases upon submission of supporting proof.
   - **Lost or Damaged Passport Replacement:** Base fee of **USD $180.00** subject to submission of a formal Police Loss Report (*Warqadda Dambi Baarista / Booliska*), CID clearance, and administrative verification by the ICA Legal Department.
   - **Payment Channels:** Cash payments are strictly prohibited. Fees are settled electronically via designated mobile money services (EVC Plus, Sahal, Premier Wallet) or authorized central bank deposit to the official ICA Treasury account displayed at the application center.
@@ -6398,13 +6405,14 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - **Consular Fee Range:** Overseas applications are assessed a comprehensive tariff ranging from **USD $250.00 to $350.00** (or **£250 to £300 GBP** in the United Kingdom), which covers international secure diplomatic pouch transit, identity database verification, and consular service overhead.
   - Turnaround at foreign missions ranges between **3 to 6 weeks**.
   - **Evidence confidence: `DIRECT`** — confirmed via Somali Embassy consular schedules worldwide.
-- **Civil Identity & Document Checklists:**
-  - **National Identification Card (NIRA ID / Kaarka Aqoonsiga Qaranka):** Mandatory prerequisite following nationwide biometric identity roll-out; applicants must present their NIRA National ID card or register simultaneously at the integrated workstation.
-  - **Birth Certificate (Shahaadada Dhalashada):** Original birth certificate issued by the Ministry of Interior, Federal Affairs and Reconciliation or recognized Benadir Regional Administration / federal member state municipality.
-  - **Certificate of Non-Criminal Record (CID Police Clearance / Shahaadada Dambi La'aanta):** Issued by the Criminal Investigation Department (CID) of the Somali Police Force.
-  - **Photographs:** Two identical passport-sized color photographs on white background.
-  - **Minors (<18):** Original birth certificate, physical presence of father or legal guardian, guardian's valid Somali passport/NIRA ID, and signed consent statement.
-  - **Biometrics:** Mandatory in-person enrollment (high-resolution live portrait, 10 rolled/flat fingerprint biometric capture, and electronic signature) at the ICA workstation.
+- **Civil Identity & Source-Bound Document Checklists:**
+  - **National Identification Card (NIRA ID / Kaarka Aqoonsiga Qaranka):** Mandatory statutory prerequisite under NIRA Act and ICA regulations; applicants must present their valid NIRA National ID card. Source: `https://nira.gov.so/`, `https://immigration.gov.so/`.
+  - **Formal Written Request Letter:** Official application letter stating the request for passport issuance. Source: `https://somalia.gov.so/`, `https://immigration.gov.so/`.
+  - **Birth Certificate (Shahaadada Dhalashada):** Original birth certificate issued by recognized municipality or civil registration authority. Source: `https://somalia.gov.so/`.
+  - **Certificate of Non-Criminal Record (CID Police Clearance / Shahaadada Dambi La'aanta):** Issued by the Criminal Investigation Department (CID) of the Somali Police Force. Source: `https://immigration.gov.so/`, Somali Police CID.
+  - **Photographs:** Two identical passport-sized color photographs on white background. Source: `https://somalia.gov.so/`.
+  - **Minors (<18):** Original birth certificate, physical presence of father or legal guardian, guardian's valid Somali passport/NIRA ID, and signed consent statement. Source: `https://immigration.gov.so/`.
+  - **Biometrics:** Mandatory in-person biometric enrollment (high-resolution live portrait, 10-finger biometric capture, and iris scan) at authorized Federal ICA workstations. Source: `https://immigration.gov.so/`.
 
 ---
 
@@ -6415,18 +6423,14 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - Ministry of Interior (Aden): `https://moi.gov.ye/`
   - IPNA Headquarters Portal: `https://ipna.gov.ye/`
   - Ministry of Foreign Affairs: `https://mofa-ye.org/`
-- **Statutory Framework & Strict Authority Distinction:**
-  - Republican Decree Law No. 7 of 1990 regarding Passports
-  - Republican Decree Law No. 23 of 1991 regarding Civil Status and Civil Registration
-  - Ministerial Decrees and Circulars of the Ministry of Interior governing statutory passport fees and issuance controls.
-  - **⚠️ Crucial Dual Authority & Validity Distinction:**
-    - Internationally recognized and machine-readable/biometric Yemeni passports are **exclusively issued under the authority of the Internationally Recognized Government (IRG) headquartered in the temporary capital of Aden**, and its authorized regional branches (Marib, Mukalla, Seiyun, Taiz, Al-Mahrah, Shabwah) and recognized diplomatic missions.
-    - Passports issued after 2016 by the non-recognized de facto authorities in Sana'a (Houthi administration) are **not recognized internationally** by foreign immigration authorities or for commercial international aviation (excepting special verified flights under UN-supervised humanitarian truces). PassportReady guidance strictly reflects the legally and internationally recognized IRG framework.
-- **Document Scope & Validity:**
-  - Standard Yemeni Machine-Readable Ordinary Passport (ICAO Doc 9303 compliant, dark blue booklet, 48 pages).
-  - **Statutory Validity:**
-    - **Adult citizens (aged 16 and older):** **6 years** validity.
-    - **Minors (<16) and males with draft-age conditional status:** **2 years** or **3 years** validity.
+  - Embassy of Yemen (Washington, D.C.): `https://yemenembassy.org/`
+- **Statutory Framework & Validity Reconciled:**
+  - **Primary Statutory Baseline (Article 4, Law No. 7 of 1990):** Under Article 4 of Passport Law No. 7 of 1990 (*قانون رقم 7 لسنة 1990 بشأن الجوازات*), the statutory validity of ordinary Yemeni passports is formally enacted as **eight (8) years**, renewable once only after **four (4) years** (*"مدة صلاحية جواز السفر العادي ثمان سنوات يجدد مرة واحدة فقط بعد أربع سنوات"*).
+  - **Implementing Regulations & Modern Operational Validity:** Article 4 explicitly grants the Minister of the Interior the authority to determine passport format, specifications, and issuance procedures via ministerial resolution. Under subsequent ministerial decisions and modern machine-readable booklet standards, ordinary passports are issued with a validity of **6 years** for adult citizens (printed directly on the data page) and **2 years** for minors under 16 or conditional draft-status individuals. Both the foundational statutory 8-year baseline (4-year renewal) and the executive 6-year/2-year operational validity are recognized and reconciled.
+  - Republican Decree Law No. 23 of 1991 regarding Civil Status and Civil Registration.
+  - **Competing Authority Status & International Acceptance Nuance:**
+    - The Internationally Recognized Government (IRG) headquartered in Aden maintains that travel documents issued under post-2016 de facto Sana'a (Houthi) authorities are unrecognized and legally invalid from the IRG's official perspective.
+    - However, absolute universal invalidity across all contexts is inaccurate: under UN-brokered truce arrangements (such as the landmark 2022 UN truce), Sana'a-issued travel documents have been accepted on an interim humanitarian basis for commercial passenger flights (specifically Sana'a to Amman, Jordan, and Cairo) for medical patients and students. Major international commercial airlines operating outside humanitarian truce corridors do enforce IRG-issued passport requirements; this distinction is explicitly documented without asserting blanket universal invalidity without evidence.
 - **Domestic Fee Schedule & Official Tariffs (in Yemeni Rials — YER):**
   - **Statutory Baseline Tariff:** The official unified tariff established by Presidential Leadership Council directives and Ministry of Interior regulations is **4,500 YER** to **6,500 YER** (with administrative forms, stamps, and postal delivery bringing total official domestic quittance to approximately **8,000 YER to 9,000 YER**).
   - **⚠️ Anti-Price Gouging & Broker Prohibition:** Due to episodic booklet shortages and high demand, informal brokers and intermediaries have charged 50,000 to 100,000 YER. The Ministry of Interior and IPNA have issued repeated statutory circulars warning that collecting any fee above the official legal tariff is an illegal offense, and applicants are strictly instructed to pay solely at official cashier windows.
@@ -6461,15 +6465,16 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - Passports Act (Cap. 65, Laws of Kiribati)
   - Passports (Amendment) Regulations
   - Immigration Act and National Identity Regulations
-- **Document Scope & Validity:**
+- **Document Scope & Reconciled Validity:**
   - Standard Kiribati Ordinary Passport (Machine-Readable Travel Document complying with ICAO Doc 9303).
-  - **Statutory Validity:** **5 years** across all applicant categories (adults and children).
-- **Domestic Fee Schedule & Multi-Tier Delivery Speeds (in Australian Dollars — AUD $; official legal tender of Kiribati):**
-  - Application and processing tariffs are statutory and codified under Immigration Division fee schedules:
-    - **Regular Processing Tier (10 business days):** **AUD $56.25**.
-    - **Standard Processing Tier (5 business days):** **AUD $84.40**.
-    - **Expedited Processing Tier (3 business days):** **AUD $98.40**.
-    - **Priority Processing Tier (1 business day / 24 hours):** **AUD $112.50**.
+  - **Statutory Validity:** **10 years** for adult ordinary passports under current official Ministry of Foreign Affairs and Immigration (MFAI) guidance (extended from the historical 5-year term to align with international standards and reduce recurring renewal expenses for citizens, overseas seafarers, and seasonal workers; minors may receive shortened terms).
+- **Domestic Fee Schedule & Codified Service Tiers (in Australian Dollars — AUD $; official legal tender of Kiribati):**
+  - Application and processing tariffs are statutory and codified under Immigration Division fee schedules with exact official service-tier terminology:
+    - **Ordinary / Standard Processing Tier (10 business days):** **AUD $56.25**.
+    - **Priority Processing Tier (5 business days):** **AUD $84.40**.
+    - **Priority Processing Tier (3 business days):** **AUD $98.40**.
+    - **Urgent Processing Tier (1 business day / 24 hours):** **AUD $112.50**.
+    - *(Note: Official service schedules designate both the 5-day and 3-day accelerated tracks under the category of "Priority Processing", while the 24-hour service is designated as "Urgent Processing".)*
   - **Lost or Damaged Passport Statutory Penalties:**
     - **First Loss / Damage:** Mandatory statutory fine of **AUD $100.00** + standard passport processing fee.
     - **Second Loss / Damage:** Mandatory statutory fine of **AUD $300.00** + standard passport processing fee.
@@ -6500,7 +6505,7 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - Office of the Attorney General: `https://rmi-moj.org/`
   - Embassy of the Republic of the Marshall Islands in Washington, D.C.: `https://infomarshallislands.com/`
 - **Statutory Framework:**
-  - Title 43 Marshall Islands Revised Code Chapter 1 — The Passport Act 1984 (43 MIRC Ch. 1), as amended
+  - Title 43 Marshall Islands Revised Code Chapter 1 — The Passport Act 1984 (43 MIRC Ch. 1), as amended; and The Passport Act 2020 (Public Law No. 2020-18)
   - Title 43 MIRC Chapter 2 — Citizenship Act
   - Compact of Free Association (COFA) between the United States and the Republic of the Marshall Islands (Public Law 99-239, Public Law 108-188, and 2024 Compact Amendments)
 - **Document Scope & Validity:**
@@ -6509,24 +6514,25 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
     - **Adults and youth aged 13 and older:** **10 years** validity.
     - **Children aged 12 and under:** **5 years** validity.
 - **Domestic & Consular Fee Schedule (in United States Dollars — USD $; official legal tender of the RMI):**
-  - **Standard Passport Issuance / Renewal:**
-    - **Adults and Children aged 13 and above (10-year validity):** **USD $100.00**.
-    - **Children aged 12 and under (5-year validity):** **USD $50.00**.
-    - **Passport with Extra Pages (Extended Booklet):** **USD $150.00**.
-  - **Expedited / Rush Processing Surcharge:** **+USD $50.00** (strictly restricted to verified urgent humanitarian or medical evacuation emergencies upon presentation of a doctor's letter or death certificate).
-  - **Lost or Damaged Passport Replacement (Unexpired Document):**
-    - **Adults (13+):** **USD $200.00** ($100 renewal fee + **$100 statutory penalty fine**).
-    - **Children (12 and under):** **USD $100.00** ($50 renewal fee + **$50 statutory penalty fine**).
-    - Requires submission of a notarized Lost Passport Affidavit and a formal RMI Police Incident Report.
+  - **Standard Passport Issuance / Renewal (Administrative Baseline):**
+    - **Adults and Children aged 13 and above (10-year validity):** **USD $100.00** (`DIRECT`).
+    - **Children aged 12 and under (5-year validity):** **USD $50.00** (`DIRECT`).
+    - **Expedited / Rush Processing Surcharge:** **+USD $50.00** (`DIRECT`; restricted to verified urgent humanitarian or medical evacuation emergencies upon presentation of a doctor's letter or death certificate).
+    - **Lost or Damaged Passport Replacement (Unexpired Document):**
+      - **Adults (13+):** **USD $200.00** ($100 renewal fee + **$100 administrative penalty fine**; `DIRECT`).
+      - **Children (12 and under):** **USD $100.00** ($50 renewal fee + **$50 administrative penalty fine**; `DIRECT`).
+      - Requires submission of a notarized Lost Passport Affidavit and a formal RMI Police Incident Report.
+  - **⚠️ Downgraded / Unverified Items (Extra-Pages Booklet & Turnaround Times):**
+    - **Passport with Extra Pages (Extended Booklet):** Reported as **USD $150.00** in secondary informational compilations (`infomarshallislands.com`), but **NOT** codified in gazetted primary Nitijela acts on `rmiparliament.org`. Formally downgraded to **`UNVERIFIED / ADMINISTRATIVE ESTIMATE`**.
+    - **Processing Turnaround Times:** Reported as **2 to 4 weeks** standard and **3 to 5 business days** rush in embassy guidance sheets, but not codified as a statutory SLA in Title 43 MIRC. Formally downgraded to **`UNVERIFIED / ADMINISTRATIVE ESTIMATE`**.
   - **Payment Channels:** Payable strictly by check, cashier's check, or money order made payable to the **Secretary of Finance**, Ministry of Finance, Majuro. Cash sent by mail is strictly prohibited.
-  - **Evidence confidence: `DIRECT`** — confirmed via 43 MIRC Ch. 1, Nitijela enactments, and official OAG fee schedules.
+  - **Evidence confidence:** **`DIRECT`** for base $100 / $50 fees, rush $50, and lost penalties ($200 / $100); **`UNVERIFIED / ADMINISTRATIVE ESTIMATE`** for $150 extra-pages booklet and turnaround SLA.
 - **Compact of Free Association (COFA) International Travel Context:**
   - Under Section 141 of the Compact of Free Association with the United States, citizens of the Marshall Islands are entitled to travel to, reside in, study, and work in the United States and its territories (Guam, Northern Mariana Islands, American Samoa, Puerto Rico, US Virgin Islands) indefinitely without a US visa as lawful non-immigrants.
   - **⚠️ Mandatory Valid Passport Requirement:** Under US Department of Homeland Security (CBP / USCIS) regulations, RMI citizens traveling under COFA **must present an unexpired, machine-readable/biometric RMI passport** to board flights and be admitted at a US Port of Entry. Expired passports, birth certificates, or affidavits alone are strictly inadmissible for international air travel.
 - **Application Submission Channels (Domestic & Consular Mail-In):**
   - **Domestic:** Submitted in person at the Passport Office, Office of the Attorney General, Capitol Building, Majuro.
   - **Consular / Overseas Mailing:** Because significant numbers of Marshallese citizens reside in the United States (Hawaii, Arkansas, Oklahoma, Washington, Oregon), applications may be lodged through RMI diplomatic missions (Embassy of the Marshall Islands in Washington, D.C.; Consulates General in Honolulu, HI, and Springdale, AR) or mailed directly to the Passport Office, Office of the Attorney General, P.O. Box 890, Majuro, MH 96960, accompanied by certified bank money orders made payable to the Secretary of Finance.
-  - Turnaround: Typically **2 to 4 weeks** domestically; **4 to 8 weeks** for mail-in consular applications depending on postal transit between the US and Majuro.
 - **Civil Identity & Document Checklists:**
   - **Certified Copy of RMI Birth Certificate:** Issued by the Ministry of Health and Human Services Vital Statistics Division or High Court of the Marshall Islands.
   - **Proof of Citizenship & Identity:** Social Security Card (MISSA card) or valid photo ID card.
@@ -6535,4 +6541,3 @@ PassportReady adheres to a strict, mathematically reconciled jurisdiction classi
   - **Minors (<18):** Certified birth certificate showing parental details, physical presence and signatures of both parents on the Parental Consent section, and copies of parents' valid photo IDs.
   - **Biometrics:** Biometric facial photograph and digitized signature captured at the Passport Office Majuro or processed via certified physical cards for mail-in applicants.
 
----
