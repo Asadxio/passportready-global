@@ -69,7 +69,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CO** | COL | Colombia | Sovereign State | Ministerio de Relaciones Exteriores (Cancillería) | `primary_sources_audited` | Primary source audited (Batch 2). 2026 statutory fees in Bogotá: Ordinario (32-pg) $190.000 COP ($111k base + $79k timbre); Ejecutivo (48-pg) $323.000 COP; Emergencia $192.000 COP. Departamentos: plus local taxes ($250k-$350k total). Abroad: USD 94 / EUR 68. Cédula de Ciudadanía mandatory. |
 | **KM** | COM | Comoros | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CK** | COK | Cook Islands | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
-| **CR** | CRI | Costa Rica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CR** | CRI | Costa Rica | Sovereign State | DGME (`migracion.go.cr`) / Banco de Costa Rica (`bancobcr.com`) | `primary_sources_audited` | Ley General de Migración y Extranjería: Pasaporte Biométrico USD $75.00 + CRC ₡250 (timbre de parques nacionales) + BCR banking commission (~$12–$15 USD) + Correos de Costa Rica delivery (~₡5,763 CRC) (DIRECT). Validity: 10-yr adult (18+), 5-yr minor. Cédula de Identidad (TSE) mandatory for 18+; TIM for 12–17; parental presence for minors. Appointment via BCR Punto País or Correos VES. |
 | **HR** | HRV | Croatia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CU** | CUB | Cuba | Sovereign State | MINREX (cubaminrex.cu) — domestic: MININT/DIIE | `primary_sources_audited` | Domestic: CUP 2,500 (PARTIAL). Consular via MINREX Res. 37/2026: Adult USD/EUR 200; Minor USD/EUR 160; Provisional USD/EUR 120 (DIRECT). Carné de Identidad mandatory. In-person DIIE enrollment. Emigration controls may apply to "regulated" professionals. |
 | **CW** | CUW | Curaçao | Territory / Special Region | Cabinet of the Governor of Curaçao (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
@@ -80,7 +80,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **DK** | DNK | Denmark | Sovereign State | Borgerservice (Kommunerne) / Rigspolitiet | `primary_sources_audited` | Primary source audited (Batch 4). Passbekendtgørelsen 2026: Adult 18-66 (10-yr) 894 DKK; Pensioner 67+ 382 DKK; Youth 12-17 (5-yr) 182 DKK; Child <12 150 DKK. Lost/damaged without previous pass: DOUBLE FEE (1,788 DKK adult). CPR number / Sundhedskort required; photo/biometrics at Borgerservice. |
 | **DJ** | DJI | Djibouti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DM** | DMA | Dominica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **DO** | DOM | Dominican Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **DO** | DOM | Dominican Republic | Sovereign State | Dirección General de Pasaportes (`pasaportes.gob.do`) | `primary_sources_audited` | DGP statutory fees: Adult Regular (6-yr) RD$ 1,650.00; Adult VIP (same-day / ~3h) RD$ 2,650.00; Adult Lost/Damaged RD$ 2,650.00 (Regular) / RD$ 3,650.00 (VIP); Minor Regular RD$ 1,850.00; Minor VIP RD$ 2,850.00 (DIRECT). Paid via Banreservas. Cédula de Identidad y Electoral (JCE) + Legalized Birth Certificate (Acta legalizada JCE) mandatory; appointments via citas.pasaportes.gob.do. |
 | **EC** | ECU | Ecuador | Sovereign State | Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC) | `primary_sources_audited` | Primary source audited (Batch 3). DIGERCIC statutory fees: Standard biometric passport $90.00 USD (10-yr for 18+, 5-yr for minors); Seniors (65+) $45.00 USD (50% discount); Disabled (30%+) $0.00 (exempt). Cédula de Identidad mandatory prerequisite; parental presence for minors under 18. |
 | **EG** | EGY | Egypt | Sovereign State | Passports, Immigration & Nationality Administration / Ministry of Interior | `primary_sources_audited` | Primary source audited (Batch 5). Law No. 7/2024 & Decree 470/2024: Standard machine-readable passport (7-yr) 1,110 EGP; Urgent service 1,450-1,600 EGP (24-48 hrs); VIP same-day 1,850 EGP; Consular $110 USD. National ID card (15+) or birth cert (<15) + military status certificate required. |
 | **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -106,7 +106,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GD** | GRD | Grenada | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GP** | GLP | Guadeloupe | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **GU** | GUM | Guam | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
-| **GT** | GTM | Guatemala | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GT** | GTM | Guatemala | Sovereign State | Instituto Guatemalteco de Migración (`igm.gob.gt`) | `primary_sources_audited` | IGM statutory tariff: 5-year validity (adults and minors) US$ 50.00; 10-year validity (adults 18+ only) US$ 85.00 (DIRECT). Exclusively paid in Quetzales at Banrural. DPI (Documento Personal de Identificación / RENAP) mandatory for 18+; RENAP birth cert + parental presence for minors; online appointment via citas.igm.gob.gt. |
 | **GG** | GGY | Guernsey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GN** | GIN | Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GW** | GNB | Guinea-Bissau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -121,7 +121,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **IQ** | IRQ | Iraq | Sovereign State | CCPRD / epp.iq (Ur Gov Portal), Ministry of Interior — `https://epp.iq/` | `primary_sources_audited` | Iraqi electronic passport IQD 91,000 (confirmed by MOI; PM directive fixed price). Biometric National ID (Unified National ID Card) mandatory. In-person biometrics at CCPRD office mandatory. Online pre-application via epp.iq. Consular via mofa.gov.iq missions (PARTIAL for exact fees). |
 | **IM** | IMN | Isle of Man | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IL** | ISR | Israel | Sovereign State | Population and Immigration Authority (PIBA / רשות האוכלוסין וההגירה) | `primary_sources_audited` | Primary source audited (Batch 5). Biometric passport (10-yr adult, 5-yr minor): Winter online NIS 185 (adult) / NIS 110 (minor); Summer online NIS 290 / NIS 145; Branch NIS 315 / NIS 165; Airport emergency NIS 825 / NIS 435. Biometric travel document (Laissez-Passer) distinct: NIS 100-150. Teudat Zehut required. |
-| **JM** | JAM | Jamaica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **JM** | JAM | Jamaica | Sovereign State | Passport, Immigration and Citizenship Agency (`pica.gov.jm`) | `primary_sources_audited` | PICA statutory fees: Adult Regular (10-yr) JMD $6,500; Minor Regular (5-yr) JMD $4,000; Adult Expedited (Same Day) JMD $16,500 / Next Day JMD $11,500 / 3-Day JMD $9,500; Minor Expedited Same Day JMD $9,000; Lost/Damaged Replacement Adult JMD $21,500 / Minor JMD $12,000 (DIRECT). RGD Birth Certificate with PIN + Government Photo ID mandatory; adult online renewal via passport.pica.gov.jm. |
 | **JE** | JEY | Jersey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **JO** | JOR | Jordan | Sovereign State | Civil Status & Passports Dept. (CSPD), MOI — `https://cspd.gov.jo/` | `primary_sources_audited` | Passport Fees Regulation: Standard adult (16+, 5-yr) 50 JOD (new/expired/<180d remaining); renewal >180d remaining: 100 JOD; minor <16: 25 JOD; full pages: 20 JOD; lost: 125 JOD (1st) / 250 JOD (subsequent) (DIRECT). Fast-track +25 JOD; Jordan Post +3 JOD. Smart ID Card + Family Book mandatory; Sanad app or CSPD directorate offices. |
 | **KZ** | KAZ | Kazakhstan | Sovereign State | Committee of Administrative Police, MIA — `https://egov.kz/` | `primary_sources_audited` | State duty: 8 MCI (adult, 2024: KZT 29,536; 2025: KZT 31,456); 4 MCI (child <16, 2024: KZT 14,768). MCI-based fee per Tax Code Ch.74 and annual Budget Law. Identity Card (Kualiyet) mandatory. PSC (ЦОН) in-person biometrics. Online via egov.kz. |
@@ -172,7 +172,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **OM** | OMN | Oman | Sovereign State | Directorate General of Passports & Civil Status, ROP — `https://www.rop.gov.om/` | `primary_sources_audited` | ROP official fee: Adult 18+ (10-yr) OMR 10; Minor <18 (5-yr) OMR 5 (DIRECT). Civil ID Card with PKI chip mandatory; guardian presence for minors; online via ROP app/portal using PKI or in-person at ROP service centers across wilayats. |
 | **PW** | PLW | Palau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PS** | PSE | Palestine | Territory / Special Region | Palestinian Authority Ministry of Interior (Palestinian Authority Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by PS. General guidance applies. |
-| **PA** | PAN | Panama | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **PA** | PAN | Panama | Sovereign State | Autoridad de Pasaportes de Panamá (`apap.gob.pa`) | `primary_sources_audited` | Ley 32 de 2013 / APAP tariff: Ordinary 32-page biometric e-passport B/. 100.00 (USD 100); Senior citizens / retirees (jubilados) / disabled B/. 50.00 (50% statutory discount); Urgent processing surcharge +B/. 75.00 (DIRECT). Validity: 10-yr adult (18+), 5-yr minor. Cédula de Identidad Personal (Tribunal Electoral) + B/. 3.00 fiscal stamps birth cert (unless TE verified); in-person biometrics at APAP regional centers. |
 | **PG** | PNG | Papua New Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PY** | PRY | Paraguay | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PE** | PER | Peru | Sovereign State | Superintendencia Nacional de Migraciones | `primary_sources_audited` | Primary source audited (Batch 3). Ley N° 31678 / DS 004-2024-IN: Pasaporte Electrónico (10-yr validity for 18+) S/ 120.90 PEN (Tributo 01810 Págalo.pe); Teens 12-17 (5-yr) S/ 120.90; Child <12 (3-yr) S/ 120.90. In-person walk-in ticket system (no appointment needed); same-day delivery (~2 hrs). DNI mandatory. |
@@ -222,7 +222,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TG** | TGO | Togo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TK** | TKL | Tokelau | Territory / Special Region | Tokelau Administration / NZ DIA (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **TO** | TON | Tonga | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TT** | TTO | Trinidad and Tobago | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TT** | TTO | Trinidad and Tobago | Sovereign State | Immigration Division, Ministry of Homeland/National Security (`nationalsecurity.gov.tt`) | `primary_sources_audited` | Immigration Regulations statutory fees: Ordinary 32-page passport (adults 16–59, 10-yr) TTD $500; 48-page business TTD $700; Children <16 (5-yr) TTD $500 (under-2 first issue FREE); Seniors 60+ FREE ($0 TTD); Expedited surcharge +TTD $600; Lost/stolen/mutilated penalty TTD $2,000 (DIRECT). Computerized RGD Birth Certificate with PIN + National ID card (EBC) mandatory; appointment via appointments.gov.tt. |
 | **TN** | TUN | Tunisia | Sovereign State | Direction Générale de la Police Nationale, Ministère de l'Intérieur — `https://www.interieur.gov.tn/` | `primary_sources_audited` | Law 75-40 / Finance Law (timbre fiscal): Adult (5-yr) 80 TND; Pupils/Students/Children <7: 25 TND; Lost/damaged replacement: 150 TND (DIRECT from sicad.gov.tn). Consular chancery rate ~50 EUR (PARTIAL). CIN (18+) or Extrait de naissance (<18) mandatory; in-person at local Police / Garde Nationale station. |
 | **TM** | TKM | Turkmenistan | Sovereign State | State Migration Service — `https://migration.gov.tm/` | `primary_sources_audited` | Standard biometric passport: TMT 60 (DIRECT from migration.gov.tm); fee waived for under-16, war veterans, labor veterans, disabled persons. Payment via Halkbank (halkbank.gov.tm). ⚠️ Highly restrictive state: exit visa (exit permit) system in place; many citizens require separate government approval to travel abroad even with valid passport. |
 | **TC** | TCA | Turks and Caicos Islands | Territory / Special Region | Ministry of Border Control Turks & Caicos (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -2837,5 +2837,230 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Processing: Standard ~7–10 working days; urgent ~3–4 working days.
   - Delivery: Collected in person at the SENAMI provincial office upon presentation of receipt slip.
   - Overseas: Via Mozambican diplomatic and consular missions.
+
+---
+
+
+## 15. Batch 13 — Central America & Caribbean Sovereign Nations (CR, PA, DO, GT, JM, TT)
+
+### 15.1 Costa Rica (CR / CRI) — Dirección General de Migración y Extranjería (DGME)
+
+- **Administering Authority:** Dirección General de Migración y Extranjería (DGME), Ministerio de Gobernación y Policía, República de Costa Rica
+- **Primary Portals:**
+  - Official DGME Portal: `https://www.migracion.go.cr/`
+  - Banco de Costa Rica (BCR Punto País): `https://www.bancobcr.com/` (Citas Punto País)
+  - Correos de Costa Rica (Ventanillas Electrónicas de Servicios - VES): `https://correos.go.cr/`
+- **Statutory Framework:**
+  - Ley General de Migración y Extranjería (Ley N° 8764) y Reglamento para la Emisión de Pasaportes.
+  - Implementación del Pasaporte Biométrico Bicentenario (2022 en adelante).
+- **Domestic Fee Schedule:**
+  - **Statutory Issuance Fee (Migración / Ministerio de Hacienda):** **USD $75.00 + CRC ₡250.00** (timbre de parques nacionales). The USD $75.00 is settled in Costa Rican Colones at the official BCCR reference exchange rate on appointment day.
+  - **Banking Commission (BCR Punto País):** Approximately **USD $12.00 to $15.00** (payable in colones).
+  - **Courier Delivery (Correos de Costa Rica):** Approximately **CRC ₡5,763** for secure courier delivery of the manufactured biometric booklet to the applicant's designated address or post office branch.
+  - **Total Estimated Domestic Cost:** ~CRC ₡50,000–₡55,000 colones all-inclusive.
+  - **Validity:** **10 years** for adults (18+); **5 years** for minors (0–17).
+  - **Evidence confidence: `DIRECT`** — established by DGME statutory regulations and verified on BCR and Correos de Costa Rica official booking portals.
+- **Consular Fee Schedule:**
+  - Via Costa Rican Consulates overseas.
+  - Statutory issuance fee: USD $75.00 + consular arancel / diplomatic courier fees.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular handling charges apply.
+- **Civil Identity & Document Checklists:**
+  - **Cédula de Identidad (TSE):** Valid original Costa Rican national identity card issued by the Tribunal Supremo de Elecciones (mandatory for all adult applicants 18+; must be the latest issued version in good condition).
+  - **For minors (12–17 years):** Tarjeta de Identidad de Menor (TIM) issued by the TSE.
+  - **For children (0–11 years):** TSE birth registration number verified electronically in the civil registry database.
+  - **Parental Presence:** Both parents must be physically present with valid original identity cards (Cédula for citizens, DIMEX/valid passport for foreign resident parents). In absence of one parent, a legalized special power of attorney or death certificate/sole custody court ruling is required.
+  - **Renewal:** Presentation and surrender of previous passport for physical invalidation.
+  - **In case of loss/theft:** Formal theft/loss report filed with the Organismo de Investigación Judicial (OIJ) or a notarized sworn declaration (*declaración jurada protocolizada*).
+  - **Biometrics:** Digital facial photo, signature, and ten fingerprints captured live at BCR Punto País, Correos VES, or DGME central migration offices. (Applicants are advised not to wear white or black tops).
+- **Application & Delivery Channels:**
+  - Online appointment scheduling via Banco de Costa Rica (`bancobcr.com` or call center 800-BCRCITA) or Correos de Costa Rica (`correos.go.cr`).
+  - In-person attendance for biometric capture at BCR Punto País agencies or Correos VES centers across Costa Rica.
+  - Centralized personalization by DGME; delivery via Correos de Costa Rica courier within ~8–12 business days.
+
+---
+
+### 15.2 Panama (PA / PAN) — Autoridad de Pasaportes de Panamá (APAP)
+
+- **Administering Authority:** Autoridad de Pasaportes de Panamá (APAP / ANP), República de Panamá
+- **Primary Portals:**
+  - Official APAP Portal: `https://apap.gob.pa/`
+  - Panama Digital Government Portal: `https://www.panamadigital.gob.pa/`
+- **Statutory Framework:**
+  - Ley 32 de 23 de abril de 2013 (crea la Autoridad de Pasaportes de Panamá y regula la emisión de pasaportes electrónicos ordinarios).
+- **Domestic Fee Schedule (in Balboas / US Dollars — B/. / USD, 1:1 parity):**
+  - **Ordinary Biometric Passport (Adults & Minors):** **B/. 100.00** (32-page booklet, standard processing).
+  - **Senior Citizens / Retirees (Jubilados / Tercera Edad 55+ women, 60+ men) & Persons with Disabilities (SENADIS):** **B/. 50.00** (50% statutory legal discount).
+  - **Urgent Processing Surcharge (Trámite de urgencia):** Additional **+B/. 75.00** surcharge (total B/. 175.00 for standard adult; expedited turnaround within hours/same-day).
+  - **Validity:** **10 years** for adults (18+); **5 years** for minors (0–17).
+  - **Evidence confidence: `DIRECT`** — established by Ley 32 de 2013 and confirmed on APAP official portals.
+- **Consular Fee Schedule:**
+  - Handled via Panamanian Embassies and Consulates-General abroad in coordination with APAP.
+  - Ordinary consular fee: USD $100.00 + consular transmission fees (typically $100–$150 USD).
+  - **Evidence confidence: `PARTIAL`** — mission-specific dispatch fees apply.
+- **Civil Identity & Document Checklists:**
+  - **Cédula de Identidad Personal:** Original valid national identity card issued by the Tribunal Electoral (TE) in good physical state.
+  - **Birth Certificate (for first-time applicants):** Certificado de nacimiento habilitado con B/. 3.00 en timbres fiscales (acquired at Banco Nacional), unless identity and filiation are validated directly via online Tribunal Electoral digital query.
+  - **For minors:** Cédula Juvenil (if held, exempts birth certificate and stamps); both parents must be present with valid cédulas. In absence of one parent, a notarized authorization letter (*carta de autorización notariada*) with a copy of their identity card is required.
+  - **Previous passport:** Must be presented for physical cancellation on renewal.
+  - **In case of loss/theft:** Formal report (*denuncia*) presented before the Ministerio Público (Fiscalía de Atención Primaria) or a sworn declaration of loss.
+  - **Biometrics:** Electronic facial photo, live fingerprint scan, and digital signature captured directly at APAP headquarters or provincial delegations.
+- **Application & Delivery Channels:**
+  - In-person attendance at APAP headquarters in Panama City or regional offices (Colón, David/Chiriquí, Chitré/Herrera, Santiago/Veraguas, Penonomé/Coclé, Changuinola/Bocas del Toro).
+  - Turnaround: Regular service issued within 24–48 hours; urgent service within ~2–4 hours.
+  - Payment: Accepted at on-site cashier (cash, card) or via National Bank.
+
+---
+
+### 15.3 Dominican Republic (DO / DOM) — Dirección General de Pasaportes (DGP)
+
+- **Administering Authority:** Dirección General de Pasaportes (DGP), Presidencia / Ministerio de Relaciones Exteriores, República Dominicana
+- **Primary Portals:**
+  - Official DGP Portal: `https://www.pasaportes.gob.do/`
+  - DGP Appointment Portal: `https://citas.pasaportes.gob.do/`
+  - Portal Único del Estado Dominicano: `https://www.gob.do/servicios/emision-de-pasaporte-por-primera-vez-para-mayores-de-edad`
+- **Statutory Framework:**
+  - Ley Orgánica de la Dirección General de Pasaportes y Decretos Presidenciales tarifarios.
+- **Domestic Fee Schedule (in Dominican Pesos — DOP / RD$):**
+  - **Adult First-Time / Renewal (Regular Service):** **RD$ 1,650.00** (delivered in ~6 business days).
+  - **Adult First-Time / Renewal (VIP Service):** **RD$ 2,650.00** (expedited delivery in ~3 hours if submitted before noon).
+  - **Adult Lost / Damaged Passport Replacement (Regular Service):** **RD$ 2,650.00**
+  - **Adult Lost / Damaged Passport Replacement (VIP Service):** **RD$ 3,650.00**
+  - **Minor First-Time / Renewal (Regular Service):** **RD$ 1,850.00**
+  - **Minor First-Time / Renewal (VIP Service):** **RD$ 2,850.00**
+  - **Minor Lost / Damaged Passport Replacement (Regular Service):** **RD$ 2,850.00**
+  - **Minor Lost / Damaged Passport Replacement (VIP Service):** **RD$ 3,850.00**
+  - **Ancillary Fees:** Digital photo fee (in-office capture) RD$ 300.00; parental authorization stamp RD$ 200.00.
+  - **Validity:** **6 years** for Dominican ordinary biometric/machine-readable passports.
+  - **Evidence confidence: `DIRECT`** — established by DGP statutory regulations and verified on official Banreservas and gob.do payment schedules.
+- **Consular Fee Schedule:**
+  - Via Dominican Consulates abroad (e.g. New York, Miami, Madrid).
+  - Consular passport renewal fees range from USD $90.00 to $130.00 / EUR 90.00 to 125.00 depending on consular jurisdiction.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular arancel applies.
+- **Civil Identity & Document Checklists:**
+  - **Cédula de Identidad y Electoral (JCE):** Original valid biometric cédula issued by the Junta Central Electoral (mandatory for all adult applicants 18+).
+  - **Acta de Nacimiento Legalizada:** Original birth certificate issued and legalized by the Junta Central Electoral (with verification barcode/QR code) required for first-time issuance or civil registry rectifications.
+  - **For minors:** Legalized original birth certificate from JCE; Cédulas of both parents; physical presence of both parents or an authentic legalized notarial power of attorney (*Poder Notarial legalizado en Procuraduría General de la República*).
+  - **Renewal:** Presentation and surrender of the previous passport.
+  - **In case of loss/theft:** Official certificate of loss (*Certificación de Pérdida de Pasaporte*) issued by the Policía Nacional and certified by the Fiscalía.
+  - **Biometrics:** High-resolution digital photo, fingerprints, and electronic signature captured in DGP provincial offices or VIP centers.
+- **Application & Delivery Channels:**
+  - Online appointment booking required via `citas.pasaportes.gob.do`.
+  - Payment settled online via Banreservas or at DGP on-site Banreservas cashier desks.
+  - In-person attendance for biometric capture at DGP offices (Sede Central Santo Domingo, Megacentro, Sambil, Santiago, and regional provincial delegations).
+  - Delivery: Regular ~6 working days; VIP ~3 hours (same-day).
+
+---
+
+### 15.4 Guatemala (GT / GTM) — Instituto Guatemalteco de Migración (IGM)
+
+- **Administering Authority:** Instituto Guatemalteco de Migración (IGM), República de Guatemala
+- **Primary Portals:**
+  - Official IGM Portal: `https://igm.gob.gt/`
+  - IGM Online Appointment & Application System: `https://servicios.igm.gob.gt/citasenlinea/`
+- **Statutory Framework:**
+  - Código de Migración (Decreto Número 44-2016 del Congreso de la República de Guatemala) y Acuerdo de Dirección de IGM sobre tarifas de pasaportes ordinarios.
+- **Domestic Fee Schedule (Statutory USD fees payable in Quetzales — GTQ via Banrural):**
+  - **5-Year Ordinary Passport (Adults & Minors):** **US$ 50.00** (payable in GTQ at the official exchange rate of the day at Banrural).
+  - **10-Year Ordinary Passport (Adults 18+ only):** **US$ 85.00** (payable in GTQ at Banrural).
+  - **Validity:** **5 years** (standard, mandatory for minors 0–17) or **10 years** (optional for adults 18+).
+  - **Evidence confidence: `DIRECT`** — established by IGM statutory regulations and confirmed on official Banrural and IGM booking platforms.
+- **Consular Fee Schedule:**
+  - Via Guatemalan Consulates abroad (notably across the United States, Mexico, and Europe).
+  - Consular fees: US$ 65.00 (5-year) / US$ 100.00 (10-year) inclusive of consular processing.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular schedule applies.
+- **Civil Identity & Document Checklists:**
+  - **DPI (Documento Personal de Identificación):** Original valid DPI issued by RENAP (Registro Nacional de las Personas) in good condition, plus a legible photocopy of both sides on a single page (mandatory for adults 18+).
+  - **Appointment Voucher:** Printed and signed appointment confirmation generated via `servicios.igm.gob.gt`.
+  - **Application Form:** Printed and signed form auto-generated upon scheduling.
+  - **Payment Receipt:** Original deposit slip (*boleta de pago*) issued by BANRURAL (valid for 1 year from payment date).
+  - **For minors (under 18):** Original recent Birth Certificate issued by RENAP with verification QR code; valid DPI of both parents; physical presence of both parents or an authentic notarial mandate (*Mandato con representación*) authorizing the minor's passport issuance.
+  - **Renewal:** Presentation and surrender of the previous passport.
+  - **In case of loss/theft:** Formal police report (*denuncia*) lodged before the Policía Nacional Civil (PNC) or Ministerio Público (MP).
+  - **Biometrics:** Facial image capture, iris scan, ten rolled digital fingerprints, and digital signature at IGM issuance centers.
+- **Application & Delivery Channels:**
+  - Online appointment booking required via `https://servicios.igm.gob.gt/citasenlinea/` (or queue-free humanitarian/verified urgency exceptions).
+  - In-person attendance at IGM passport issuance centers (Centro de Emisión Central Zona 4 Ciudad de Guatemala, Petén, Quetzaltenango, Chiquimula, Escuintla, Zacapa).
+  - Delivery: Same-day delivery (often within 45–90 minutes following biometric capture at major emission centers).
+
+---
+
+### 15.5 Jamaica (JM / JAM) — Passport, Immigration and Citizenship Agency (PICA)
+
+- **Administering Authority:** Passport, Immigration and Citizenship Agency (PICA), Ministry of National Security, Government of Jamaica
+- **Primary Portals:**
+  - Official PICA Portal: `https://www.pica.gov.jm/`
+  - PICA Online Adult Passport Renewal System: `https://passport.pica.gov.jm/`
+- **Statutory Framework:**
+  - The Jamaican Passport Act and Passport Regulations.
+- **Domestic Fee Schedule (in Jamaican Dollars — JMD):**
+  - **Regular Passport Service (Standard Processing):**
+    - **Adult (18+, 10-year validity):** **JMD $6,500** (~7 working days in Kingston / ~14 working days in regional outposts).
+    - **Minor (under 18, 5-year validity):** **JMD $4,000** (~7–14 working days).
+  - **Expedited / Rush Services (Kingston Head Office):**
+    - **Same Day Service (applied before 10:00 AM):** Adult **JMD $16,500** / Minor **JMD $9,000**
+    - **Next Working Day Service:** Adult **JMD $11,500** / Minor **JMD $7,000**
+    - **3 Working Days Service:** Adult **JMD $9,500** / Minor **JMD $6,000**
+  - **Expedited Services (Regional Offices / Outposts):**
+    - **5-Day Service:** Adult **JMD $11,500** / Minor **JMD $7,000**
+    - **7-Day Service:** Adult **JMD $9,500** / Minor **JMD $6,000**
+  - **Lost / Stolen / Damaged Passport Replacement:**
+    - Adult Replacement: **JMD $21,500**
+    - Minor Replacement: **JMD $12,000**
+  - **Validity:** **10 years** for adults (18+); **5 years** for minors (under 18).
+  - **Evidence confidence: `DIRECT`** — established by PICA statutory regulations and confirmed on official PICA portal.
+- **Consular Fee Schedule:**
+  - Via Jamaican High Commissions, Embassies, and Consulates-General overseas (e.g. London, New York, Miami, Toronto).
+  - Adult regular passport: USD $120.00 / CAD $140.00 / GBP £90.00; Minor regular: USD $80.00 / CAD $95.00 / GBP £60.00.
+  - **Evidence confidence: `PARTIAL`** — mission-specific diplomatic courier rates apply.
+- **Civil Identity & Document Checklists:**
+  - **Birth Certificate:** Original Birth Certificate issued by the Registrar General's Department (RGD) with Personal Identification Number (PIN).
+  - **Official Photo ID:** Valid government-issued photo identification (Jamaican National Identification Card / Voter ID, Driver's Licence, or current passport).
+  - **Photographs:** Two (2) identical recent passport-sized color photographs (one of which must be certified on the reverse by an authorized certifying official: Justice of the Peace, Minister of Religion, Attorney-at-Law, Medical Practitioner, or Bank Manager). Note: In-person digital photo capture is available at select digital kiosks.
+  - **For minors (under 18):** Written consent signed by parent or legal guardian; valid photo ID of parent; original RGD birth certificate establishing parentage.
+  - **Renewal:** Submission and surrender of the previous passport for physical cancellation.
+  - **In case of loss/theft:** Formal police report issued by the Jamaica Constabulary Force (JCF) + mandatory completion of the PICA lost passport questionnaire and interview.
+  - **Online Adult Renewal:** Available via `passport.pica.gov.jm` for adults renewing machine-readable passports with standard digital photo upload and card payment.
+- **Application & Delivery Channels:**
+  - Digital application via PICA Online Portal (`passport.pica.gov.jm`) for eligible adult renewals.
+  - In-person attendance at PICA Head Office (Kingston) or regional centers (Montego Bay, Mandeville, May Pen, St. Ann's Bay, Portmore).
+  - Delivery: Collected in person or delivered via courier (e.g. DHL/local courier service).
+
+---
+
+### 15.6 Trinidad and Tobago (TT / TTO) — Immigration Division
+
+- **Administering Authority:** Immigration Division, Ministry of Homeland Security / Ministry of National Security, Republic of Trinidad and Tobago
+- **Primary Portals:**
+  - Official Immigration Division Portal: `https://nationalsecurity.gov.tt/divisions/immigrationdivision/`
+  - Official Appointment Scheduling Portal: `https://appointments.gov.tt/`
+- **Statutory Framework:**
+  - The Immigration Act (Chapter 18:01) and Immigration Regulations of the Republic of Trinidad and Tobago.
+- **Domestic Fee Schedule (in Trinidad and Tobago Dollars — TTD):**
+  - **Ordinary 32-Page Machine Readable Passport (Adults 16–59):** **TTD $500.00** (10-year validity).
+  - **Business 48-Page Passport:** **TTD $700.00** (10-year validity).
+  - **Children (under 16 years, 5-year validity):** **TTD $500.00** (First issue for infants under 2 years of age is **FREE / $0 TTD**).
+  - **Senior Citizens (60 years and over):** **FREE / $0 TTD** (statutory exemption for ordinary passports).
+  - **Expedited Service Surcharge:** **+TTD $600.00** (surcharge added to base fee; total TTD $1,100.00 for 32-page passport).
+  - **Lost / Stolen / Mutilated Valid Passport Penalty:** **TTD $2,000.00** (statutory penalty fee assessed during the interview).
+  - **Validity:** **10 years** for persons aged 16 and over; **5 years** for minors under 16.
+  - **Evidence confidence: `DIRECT`** — established by the Immigration Regulations and confirmed on the Ministry of National Security portal.
+- **Consular Fee Schedule:**
+  - Via Trinidad and Tobago High Commissions and Embassies abroad (e.g. London, Washington, Ottawa, Caracas).
+  - Adult 32-page renewal typically USD $85.00–$100.00 / GBP £65.00.
+  - **Evidence confidence: `PARTIAL`** — mission-specific overseas exchange schedules apply.
+- **Civil Identity & Document Checklists:**
+  - **Application Form:** Official passport application form printed strictly on white legal-size copy paper (8½" x 14", double-sided, fit-to-page; forms on letter-size are rejected).
+  - **Birth Certificate:** Computerized Birth Certificate with Personal Identification Number (PIN) issued by the Registrar General's Department (RGD).
+  - **National Identification Card:** Original valid National ID card issued by the Elections and Boundaries Commission (EBC) for applicants aged 15+.
+  - **Photographs:** Two (2) identical recent passport photographs (one endorsed on the reverse by a recommender: Justice of the Peace, Minister of Religion, Police Officer of Gazetted rank, Attorney, or Medical Practitioner).
+  - **For minors (under 16):** Presence and consent of parent or legal guardian with valid national ID card; birth certificate establishing maternity/paternity.
+  - **Renewal:** Submission and surrender of the previous passport.
+  - **In case of loss/theft:** Official police report from the Trinidad and Tobago Police Service (TTPS) + statutory declaration sworn before a Commissioner of Affidavits.
+  - **Payment Methods:** LINX (debit card) accepted on-site at all offices; cash accepted at select offices or via nearby District Revenue Office. Credit cards are strictly not accepted.
+- **Application & Delivery Channels:**
+  - Mandatory online appointment scheduling via `https://appointments.gov.tt/` (free of charge).
+  - In-person attendance for document verification and biometrics at Immigration Division offices (Port of Spain, San Fernando, Tobago, Sangre Grande, Chaguanas, Point Fortin).
+  - Processing: Standard ~4–8 weeks; expedited ~1–2 weeks.
+  - Delivery: Collected in person at the office of application upon return of receipt voucher.
 
 ---

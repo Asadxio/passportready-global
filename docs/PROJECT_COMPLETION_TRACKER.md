@@ -36,6 +36,7 @@
 | **Phase T** | `TASK-T1` | Global Jurisdiction Completion — Batch 10 (GE, AM, AZ, RS, BA, AL) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 10 complete; Proceed to Batch 11 |
 | **Phase U** | `TASK-U1` | Global Jurisdiction Completion — Batch 11 (SN, CI, CM, UG, RW, MU) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 11 complete; Proceed to Batch 12 |
 | **Phase V** | `TASK-V1` | Global Jurisdiction Completion — Batch 12 (BW, NA, ZM, ZW, AO, MZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 12 complete; Proceed to Batch 13 |
+| **Phase W** | `TASK-W1` | Global Jurisdiction Completion — Batch 13 (CR, PA, DO, GT, JM, TT) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 13 complete; Proceed to Batch 14 |
 
 ---
 
@@ -534,3 +535,27 @@
   - **AO:** Decreto Presidencial n.º 21/19 confirmed DIRECT on `sme.gov.ao`: Standard ordinary biometric passport (5-yr) 30.500,00 AOA. Paid via RUPE (Referência Única de Pagamento ao Estado) through Multicaixa interbank network. Bilhete de Identidade (BI) valid national ID mandatory; online pre-application via SME portal; biometrics at SME directorates or SIAC centers.
   - **MZ:** Diploma Ministerial n.º 18/2024 confirmed DIRECT on `agendamento.senami.gov.mz`: Normal biometric passport (5-yr) 2.400,00 MZN; urgent biometric passport 2.775,00 MZN; Emergency Certificate 400 MZN. Bilhete de Identidade (BI) valid national ID mandatory; online appointment booking via `agendamento.senami.gov.mz`; in-person biometrics at SENAMI provincial directorates.
 - **Next Actionable Task:** Batch 13 Official Source Research (suggested cohort: Central America & Caribbean sovereign nations: e.g. Costa Rica CR, Panama PA, Dominican Republic DO, Guatemala GT, Jamaica JM, Trinidad and Tobago TT).
+
+
+---
+
+### Phase W: Global Jurisdiction Completion — Batch 13 (CR, PA, DO, GT, JM, TT)
+- **Task ID:** `TASK-W1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Costa Rica (CR), Panama (PA), Dominican Republic (DO), Guatemala (GT), Jamaica (JM), and Trinidad and Tobago (TT). All 6 Central American and Caribbean sovereign jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers authored in Section 15 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit entries written in Section 16 of `SOURCE_AUDIT_REGISTER.md`. All statutory tariffs, concessionaire/commercial bank collection channels (BCR Punto País, Banrural, Banreservas, ZamPortal), expedited/VIP same-day services, fee waivers for senior citizens and infants, booklet page tiers, lost document penalties, and civil identity prerequisites confirmed with `DIRECT` confidence from official acts, decrees, and government portal sources.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 15 Batch 13 dossiers for CR, PA, DO, GT, JM, TT.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 16 claim audit table with 18 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase W deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **CR:** Ley General de Migración y Extranjería tariffs confirmed DIRECT from `migracion.go.cr`, `bancobcr.com`, and `correos.go.cr`: Biometric passport issuance fee USD $75.00 + CRC ₡250 (timbre de parques nacionales) + BCR banking commission (~$12–$15 USD) + Correos de Costa Rica courier delivery (~CRC ₡5,763). Validity: 10 years adult (18+), 5 years minor. Cédula de Identidad (TSE) mandatory for 18+; TIM for 12–17; parental presence for minors. Appointment via BCR Punto País or Correos VES.
+  - **PA:** Ley 32 de 2013 / APAP statutory fee confirmed DIRECT on `apap.gob.pa` and `panamadigital.gob.pa`: Ordinary 32-page biometric e-passport B/. 100.00 (USD 100.00); senior citizens (55+ F / 60+ M) and disabled persons B/. 50.00 (50% statutory discount); urgent processing surcharge +B/. 75.00 (total B/. 175.00). Validity: 10 years adult (18+), 5 years minor. Cédula de Identidad Personal (Tribunal Electoral) + B/. 3.00 fiscal stamp birth cert (unless TE verified); in-person biometrics at APAP regional delegations.
+  - **DO:** DGP statutory tariff confirmed DIRECT from `pasaportes.gob.do` and `gob.do`: Adult Regular (6-yr) RD$ 1,650.00; Adult VIP (same-day / ~3h) RD$ 2,650.00; Adult Lost/Damaged RD$ 2,650.00 (Regular) / RD$ 3,650.00 (VIP); Minor Regular RD$ 1,850.00; Minor VIP RD$ 2,850.00. Paid via Banreservas. Cédula de Identidad y Electoral (JCE) + Legalized Birth Certificate (Acta legalizada con código QR) mandatory; online appointment via `citas.pasaportes.gob.do`.
+  - **GT:** IGM statutory tariff confirmed DIRECT from `igm.gob.gt` and `servicios.igm.gob.gt`: 5-year validity (adults and minors) US$ 50.00; 10-year validity (adults 18+ only) US$ 85.00. Exclusively paid in Quetzales at Banrural. DPI (Documento Personal de Identificación / RENAP) mandatory for 18+; RENAP birth cert + parental presence for minors; online appointment via `servicios.igm.gob.gt/citasenlinea/`; same-day delivery (~45–90 mins) at IGM centers.
+  - **JM:** PICA statutory fees confirmed DIRECT from `pica.gov.jm` and `passport.pica.gov.jm`: Adult Regular (10-yr) JMD $6,500; Minor Regular (5-yr) JMD $4,000; Adult Expedited (Same Day) JMD $16,500 / Next Day JMD $11,500 / 3-Day JMD $9,500; Minor Expedited Same Day JMD $9,000; Lost/Damaged Replacement Adult JMD $21,500 / Minor JMD $12,000. RGD Birth Certificate with PIN + Government Photo ID mandatory; adult online renewal via `passport.pica.gov.jm`.
+  - **TT:** Immigration Regulations (Chap 18:01) statutory fees confirmed DIRECT from `nationalsecurity.gov.tt` and `appointments.gov.tt`: Ordinary 32-page passport (adults 16–59, 10-yr) TTD $500; 48-page business TTD $700; Children <16 (5-yr) TTD $500 (under-2 first issue FREE); Seniors 60+ FREE ($0 TTD); Expedited surcharge +TTD $600; Lost/stolen/mutilated penalty TTD $2,000. Computerized RGD Birth Certificate with PIN + National ID card (EBC) mandatory; legal-size form (8½" x 14"); appointment via `appointments.gov.tt`.
+- **Next Actionable Task:** Batch 14 Official Source Research (suggested cohort: Baltic & European EU/EEA sovereign states: e.g. Estonia EE, Latvia LV, Lithuania LT, Luxembourg LU, Malta MT, Cyprus CY).
