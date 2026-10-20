@@ -385,6 +385,11 @@
       const countryBadgeClass = isCountryVerified ? 'status-verified' : 'status-needs-research';
       const countryBadgeText = isCountryVerified ? 'VERIFIED COUNTRY PACK' : 'AWAITING RESEARCH';
 
+      const dims = sc.dimensions || {};
+      const serviceDim = dims.service || { name: 'Base Service', label: sc.label, badgeClass: sc.badgeClass };
+      const urgencyDim = dims.urgency || { name: 'Processing Route', label: 'Standard', badgeClass: 'status-verified' };
+      const channelDim = dims.channel || { name: 'Lodgement Channel', label: 'Domestic', badgeClass: 'status-verified' };
+
       const supportedHtml = (sc.supportedChecks && sc.supportedChecks.length > 0)
         ? `<div style="margin-top:10px"><strong style="font-size:12px;color:#166534">✓ Researched Checks Supported:</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#334155;line-height:1.4">${sc.supportedChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
         : '';
@@ -395,13 +400,33 @@
 
       coverageCard.innerHTML = `
         <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:16px;margin-bottom:16px">
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
-            <span style="font-size:12px;font-weight:700;color:var(--slate-dark);text-transform:uppercase;letter-spacing:0.04em">Service Verification Audit</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+            <span style="font-size:12px;font-weight:700;color:var(--slate-dark);text-transform:uppercase;letter-spacing:0.04em">Service Verification Audit · Multi-Dimensional Coverage</span>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
               <span class="status-pill ${countryBadgeClass}">${countryBadgeText}</span>
               <span class="status-pill ${sc.badgeClass}">${escapeHTML(sc.label.toUpperCase())}</span>
             </div>
           </div>
+
+          <!-- Three Dimensions Status Breakdown -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:8px;margin-bottom:12px;background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
+            <div>
+              <div style="font-size:11px;color:#64748b;font-weight:600">Base Service</div>
+              <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(serviceDim.name || 'Base Service')}</div>
+              <span class="status-pill ${serviceDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(serviceDim.label || 'Verified')}</span>
+            </div>
+            <div>
+              <div style="font-size:11px;color:#64748b;font-weight:600">Processing Route</div>
+              <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(urgencyDim.name || 'Processing Route')}</div>
+              <span class="status-pill ${urgencyDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(urgencyDim.label || 'Verified')}</span>
+            </div>
+            <div>
+              <div style="font-size:11px;color:#64748b;font-weight:600">Lodgement Channel</div>
+              <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(channelDim.name || 'Lodgement Channel')}</div>
+              <span class="status-pill ${channelDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(channelDim.label || 'Verified')}</span>
+            </div>
+          </div>
+
           <p style="margin:0;font-size:13px;color:#475569;line-height:1.5">${escapeHTML(sc.summary)}</p>
           ${supportedHtml}
           ${missingHtml}

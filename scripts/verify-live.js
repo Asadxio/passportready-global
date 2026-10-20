@@ -26,13 +26,13 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_11"/g) || []);
-  console.log('Scripts with ?v=20261019_11:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_11');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_12"/g) || []);
+  console.log('Scripts with ?v=20261019_12:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_12');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_11"/g) || []);
-  console.log('CSS with ?v=20261019_11:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_11');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_12"/g) || []);
+  console.log('CSS with ?v=20261019_12:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_12');
 
   // Service coverage card check
   assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
@@ -54,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_11');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_12');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -72,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_11');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_12');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -224,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_11');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_12');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -359,13 +359,13 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_11');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_12');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
 
-  // Verify Phase 4.3.3 UI safeguards in live app.js
+  // Verify Phase 4.3.4 UI safeguards in live app.js
   assert(appJsRes.body.includes('resServiceCoverageCard'), 'Live app.js must render into resServiceCoverageCard');
-  assert(appJsRes.body.includes('Service Verification Audit'), 'Live app.js must include Service Verification Audit');
+  assert(appJsRes.body.includes('Multi-Dimensional Coverage Audit') || appJsRes.body.includes('Coverage Audit'), 'Live app.js must include Multi-Dimensional Coverage Audit');
   assert(appJsRes.body.includes('Readiness score reflects document preparation completeness only'), 'Live app.js must include issuance disclaimer');
   assert(appJsRes.body.includes("badgeEl.className = 'status-pill status-verified'"), 'Live app.js must restrict status-verified to PREPARED');
 
@@ -395,7 +395,7 @@ async function verifyLive() {
   assert.strictEqual(liveCounts.linked, 0, 'Live linked count must be 0');
   assert.strictEqual(liveCounts.needs_research, 222, 'Live needs_research count must be 222');
 
-  console.log('\n--- 7. Checking Live Phase 4.3.3 Service-Level Coverage Status, Score Caps, and Safe Badges ---');
+  console.log('\n--- 7. Checking Live Phase 4.3.3 Base Service Coverage Status, Score Caps, and Safe Badges ---');
   // 7.1 Verified country + verified service (IN first_passport)
   const liveInVerified = liveEngine.evaluate({
     countryCode: 'IN', countryName: 'India', location: 'inside', service: 'first_passport', age: 'adult'
@@ -486,7 +486,120 @@ async function verifyLive() {
   assert.strictEqual(liveMyDamaged.serviceCoverage.status, 'partial', 'Live MY damaged must be partial');
   assert(liveMyDamaged.serviceCoverage.supportedChecks.some(c => c.includes('replacement')), 'Live MY damaged supported checks must note replacement schedule');
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2 & PHASE 4.3.3 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  console.log('\n--- 8. Checking Live Phase 4.3.4 Multi-Dimensional Verification Coverage (Service, Urgency, Channel) ---');
+  // 8.1 IN first_passport + standard + inside -> verified across all 3 dimensions
+  const liveInFull = liveEngine.evaluate({
+    countryCode: 'IN', countryName: 'India', location: 'inside', service: 'first_passport', age: 'adult', urgency: 'standard'
+  });
+  assert(liveInFull.serviceCoverage.dimensions, 'Live IN result must contain 3-dimension breakdown');
+  assert.strictEqual(liveInFull.serviceCoverage.dimensions.service.status, 'verified', 'IN service must be verified');
+  assert.strictEqual(liveInFull.serviceCoverage.dimensions.urgency.status, 'verified', 'IN standard route must be verified');
+  assert.strictEqual(liveInFull.serviceCoverage.dimensions.channel.status, 'verified', 'IN inside channel must be verified');
+  assert.strictEqual(liveInFull.serviceCoverage.status, 'verified', 'Effective status must be verified');
+  assert.strictEqual(liveInFull.serviceCoverage.isFullyVerified, true, 'isFullyVerified must be true');
+  assert.strictEqual(liveInFull.readinessScore, 100, 'Score must reach 100%');
+  assert.strictEqual(liveInFull.statusLabel, 'PREPARED', 'Status must be PREPARED');
+
+  // 8.2 IN first_passport + urgent + inside -> route partial (Tatkaal quotas/exclusions)
+  const liveInTatkaal = liveEngine.evaluate({
+    countryCode: 'IN', countryName: 'India', location: 'inside', service: 'first_passport', age: 'adult', urgency: 'urgent'
+  });
+  assert.strictEqual(liveInTatkaal.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(liveInTatkaal.serviceCoverage.dimensions.urgency.status, 'partial', 'IN urgent route must be partial');
+  assert.strictEqual(liveInTatkaal.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(liveInTatkaal.serviceCoverage.status, 'partial', 'Effective status must be partial');
+  assert.strictEqual(liveInTatkaal.serviceCoverage.isFullyVerified, false);
+  assert(liveInTatkaal.readinessScore <= 80, 'Score must be capped at <= 80%');
+  assert.strictEqual(liveInTatkaal.statusLabel, 'VERIFICATION_RECOMMENDED');
+  assert.notStrictEqual(liveInTatkaal.statusLabel, 'PREPARED');
+  assert(liveInTatkaal.flags.some(f => f.code === 'ROUTE_COVERAGE_PARTIAL'), 'Must emit ROUTE_COVERAGE_PARTIAL flag');
+
+  // 8.3 DE first_passport + urgent + inside -> route general_guidance
+  const liveDeUrgent = liveEngine.evaluate({
+    countryCode: 'DE', countryName: 'Germany', location: 'inside', service: 'first_passport', age: 'adult', urgency: 'urgent'
+  });
+  assert.strictEqual(liveDeUrgent.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(liveDeUrgent.serviceCoverage.dimensions.urgency.status, 'general_guidance', 'DE urgent route must be general_guidance');
+  assert.strictEqual(liveDeUrgent.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(liveDeUrgent.serviceCoverage.status, 'general_guidance');
+  assert(liveDeUrgent.readinessScore <= 75, 'Score must be capped at <= 75%');
+  assert.strictEqual(liveDeUrgent.statusLabel, 'GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(liveDeUrgent.statusLabel, 'PREPARED');
+  assert(liveDeUrgent.flags.some(f => f.code === 'ROUTE_GENERAL_GUIDANCE_ONLY'));
+
+  // 8.4 US first_passport + emergency + inside -> route general_guidance
+  const liveUsEmergencyUrgency = liveEngine.evaluate({
+    countryCode: 'US', countryName: 'United States', location: 'inside', service: 'first_passport', age: 'adult', urgency: 'emergency'
+  });
+  assert.strictEqual(liveUsEmergencyUrgency.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(liveUsEmergencyUrgency.serviceCoverage.dimensions.urgency.status, 'general_guidance', 'US emergency route must be general_guidance');
+  assert.strictEqual(liveUsEmergencyUrgency.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(liveUsEmergencyUrgency.serviceCoverage.status, 'general_guidance');
+  assert(liveUsEmergencyUrgency.readinessScore <= 75);
+  assert.strictEqual(liveUsEmergencyUrgency.statusLabel, 'GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(liveUsEmergencyUrgency.statusLabel, 'PREPARED');
+  assert(liveUsEmergencyUrgency.flags.some(f => f.code === 'ROUTE_GENERAL_GUIDANCE_ONLY'));
+
+  // 8.5 MX first_passport + standard + abroad -> channel verified (consular USD schedule codified)
+  const liveMxAbroad = liveEngine.evaluate({
+    countryCode: 'MX', countryName: 'Mexico', location: 'abroad', service: 'first_passport', age: 'adult', urgency: 'standard'
+  });
+  assert.strictEqual(liveMxAbroad.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(liveMxAbroad.serviceCoverage.dimensions.urgency.status, 'verified');
+  assert.strictEqual(liveMxAbroad.serviceCoverage.dimensions.channel.status, 'verified', 'MX consular channel is verified');
+  assert.strictEqual(liveMxAbroad.serviceCoverage.status, 'verified');
+  assert.strictEqual(liveMxAbroad.statusLabel, 'PREPARED');
+
+  // 8.6 NG first_passport + standard + abroad -> channel verified (diaspora USD schedule codified)
+  const liveNgAbroad = liveEngine.evaluate({
+    countryCode: 'NG', countryName: 'Nigeria', location: 'abroad', service: 'first_passport', age: 'adult', urgency: 'standard'
+  });
+  assert.strictEqual(liveNgAbroad.serviceCoverage.dimensions.channel.status, 'verified', 'NG diaspora channel is verified');
+  assert.strictEqual(liveNgAbroad.serviceCoverage.status, 'verified');
+  assert.strictEqual(liveNgAbroad.statusLabel, 'PREPARED');
+
+  // 8.7 JP first_passport + standard + abroad -> channel partial (MOFA local currency tariff)
+  const liveJpAbroad = liveEngine.evaluate({
+    countryCode: 'JP', countryName: 'Japan', location: 'abroad', service: 'first_passport', age: 'adult', urgency: 'standard'
+  });
+  assert.strictEqual(liveJpAbroad.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(liveJpAbroad.serviceCoverage.dimensions.urgency.status, 'verified');
+  assert.strictEqual(liveJpAbroad.serviceCoverage.dimensions.channel.status, 'partial', 'JP abroad channel must be partial');
+  assert.strictEqual(liveJpAbroad.serviceCoverage.status, 'partial');
+  assert(liveJpAbroad.readinessScore <= 80);
+  assert.strictEqual(liveJpAbroad.statusLabel, 'VERIFICATION_RECOMMENDED');
+  assert.notStrictEqual(liveJpAbroad.statusLabel, 'PREPARED');
+  assert(liveJpAbroad.flags.some(f => f.code === 'CHANNEL_COVERAGE_PARTIAL'));
+
+  // 8.8 US lost_stolen + emergency + inside -> combined status is general_guidance (most restrictive of partial & general_guidance)
+  const liveUsLostEmergency = liveEngine.evaluate({
+    countryCode: 'US', countryName: 'United States', location: 'inside', service: 'lost_stolen', age: 'adult', urgency: 'emergency'
+  });
+  assert.strictEqual(liveUsLostEmergency.serviceCoverage.dimensions.service.status, 'partial');
+  assert.strictEqual(liveUsLostEmergency.serviceCoverage.dimensions.urgency.status, 'general_guidance');
+  assert.strictEqual(liveUsLostEmergency.serviceCoverage.status, 'general_guidance', 'min(partial, general_guidance) must be general_guidance');
+  assert(liveUsLostEmergency.readinessScore <= 75);
+  assert.strictEqual(liveUsLostEmergency.statusLabel, 'GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(liveUsLostEmergency.statusLabel, 'PREPARED');
+
+  // 8.9 MX emergency_travel + emergency + abroad -> partial with Art. 20 LFD citation
+  const liveMxEmergencyAbroad = liveEngine.evaluate({
+    countryCode: 'MX', countryName: 'Mexico', location: 'abroad', service: 'emergency_travel', age: 'adult', urgency: 'emergency'
+  });
+  assert.strictEqual(liveMxEmergencyAbroad.serviceCoverage.dimensions.service.status, 'partial');
+  assert.strictEqual(liveMxEmergencyAbroad.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert.strictEqual(liveMxEmergencyAbroad.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(liveMxEmergencyAbroad.serviceCoverage.status, 'partial');
+  assert(liveMxEmergencyAbroad.serviceCoverage.summary.includes('Art. 20 LFD'));
+  assert(liveMxEmergencyAbroad.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'));
+
+  // 8.10 Prohibition of PREPARED across all non-verified combinations
+  [liveInTatkaal, liveDeUrgent, liveUsEmergencyUrgency, liveJpAbroad, liveUsLostEmergency, liveMxEmergencyAbroad].forEach(res => {
+    assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Incomplete effective coverage must never achieve PREPARED');
+    assert(res.readinessScore <= 80, 'Incomplete effective coverage readinessScore must be capped at <= 80%');
+  });
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3 & PHASE 4.3.4 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {

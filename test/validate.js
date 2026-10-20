@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(styleMatch[1].includes('?v=20261019_11'), `Stylesheet href must contain ?v=20261019_11 (got ${styleMatch[1]})`);
+  assert(styleMatch[1].includes('?v=20261019_12'), `Stylesheet href must contain ?v=20261019_12 (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(srcMatch[1].includes('?v=20261019_11'), `Local script ${srcMatch[1]} must contain ?v=20261019_11 cache-busting query string`);
+      assert(srcMatch[1].includes('?v=20261019_12'), `Local script ${srcMatch[1]} must contain ?v=20261019_12 cache-busting query string`);
     }
   });
 });
@@ -1512,6 +1512,257 @@ runTest('Phase 4.3.3 Service-level coverage status, score protections, and safe 
   assert(appJsCode.includes('Service Verification Audit'), 'app.js must include Service Verification Audit section title');
   assert(appJsCode.includes('Readiness score reflects document preparation completeness only'), 'app.js must include issuance disclaimer');
   assert(appJsCode.includes("badgeEl.className = 'status-pill status-verified'"), 'app.js must assign status-verified ONLY when statusLabel === PREPARED');
+});
+
+// 21. Phase 4.3.4 Multi-Dimensional Coverage (Base Service, Processing Urgency, Application Channel)
+runTest('Phase 4.3.4 Three-dimensional coverage audit, processing urgency and application channel safeguards', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // 1. Verified base service + standard processing + domestic application
+  // (India first passport + standard + inside)
+  const inStd = engine.evaluate({
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  });
+  assert.strictEqual(inStd.serviceCoverage.status, 'verified', 'IN first_passport + standard + inside must be verified');
+  assert.strictEqual(inStd.serviceCoverage.isFullyVerified, true, 'isFullyVerified must be true');
+  assert.strictEqual(inStd.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(inStd.serviceCoverage.dimensions.urgency.status, 'verified');
+  assert.strictEqual(inStd.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(inStd.statusLabel, 'PREPARED', 'Clean verified profile must reach PREPARED');
+  assert.strictEqual(inStd.readinessScore, 100, 'Clean verified profile can reach 100%');
+
+  // 2. Verified base service + partially covered urgent processing
+  // (India first passport + urgent/Tatkaal + inside)
+  const inTatkaal = engine.evaluate({
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(inTatkaal.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(inTatkaal.serviceCoverage.dimensions.urgency.status, 'partial', 'IN urgent processing must be partial (Tatkaal quotas/exclusions vary)');
+  assert.strictEqual(inTatkaal.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(inTatkaal.serviceCoverage.status, 'partial', 'Combined status must be partial when route is partial');
+  assert.strictEqual(inTatkaal.serviceCoverage.isFullyVerified, false, 'isFullyVerified must be false for partial route');
+  assert(inTatkaal.readinessScore <= 80, 'Score must be capped at <= 80% for partial coverage');
+  assert.strictEqual(inTatkaal.statusLabel, 'VERIFICATION_RECOMMENDED', 'Status must be VERIFICATION_RECOMMENDED');
+  assert.notStrictEqual(inTatkaal.statusLabel, 'PREPARED', 'Must NEVER be PREPARED for partial route');
+  assert(inTatkaal.flags.some(f => f.code === 'ROUTE_COVERAGE_PARTIAL'), 'Must emit ROUTE_COVERAGE_PARTIAL flag');
+
+  // NZ Urgent (NZD 494/391 fee verified, but booking/courier depends on post)
+  const nzUrgentRoute = engine.evaluate({
+    countryCode: 'NZ',
+    countryName: 'New Zealand',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(nzUrgentRoute.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert.strictEqual(nzUrgentRoute.serviceCoverage.status, 'partial');
+  assert(nzUrgentRoute.readinessScore <= 80);
+
+  // 3. Verified base service + unsupported emergency processing
+  // (Germany + first passport + urgent/emergency processing where dedicated coverage is not present)
+  const deUrgent = engine.evaluate({
+    countryCode: 'DE',
+    countryName: 'Germany',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(deUrgent.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(deUrgent.serviceCoverage.dimensions.urgency.status, 'general_guidance', 'DE urgent processing must be general_guidance');
+  assert.strictEqual(deUrgent.serviceCoverage.status, 'general_guidance', 'Combined status must be general_guidance');
+  assert(deUrgent.readinessScore <= 75, 'Score must be capped at <= 75%');
+  assert.strictEqual(deUrgent.statusLabel, 'GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(deUrgent.statusLabel, 'PREPARED');
+  assert(deUrgent.flags.some(f => f.code === 'ROUTE_GENERAL_GUIDANCE_ONLY'), 'Must emit ROUTE_GENERAL_GUIDANCE_ONLY');
+
+  // (United States + first passport + emergency urgency)
+  const usEmergencyUrgency = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(usEmergencyUrgency.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(usEmergencyUrgency.serviceCoverage.dimensions.urgency.status, 'general_guidance', 'US emergency route must be general_guidance');
+  assert.strictEqual(usEmergencyUrgency.serviceCoverage.status, 'general_guidance');
+  assert(usEmergencyUrgency.readinessScore <= 75);
+  assert.strictEqual(usEmergencyUrgency.statusLabel, 'GENERAL_GUIDANCE_ONLY');
+  assert.notStrictEqual(usEmergencyUrgency.statusLabel, 'PREPARED');
+  assert(usEmergencyUrgency.flags.some(f => f.code === 'ROUTE_GENERAL_GUIDANCE_ONLY'));
+
+  // 4. Verified service + domestic application
+  const usDomestic = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  });
+  assert.strictEqual(usDomestic.serviceCoverage.dimensions.channel.status, 'verified', 'Domestic channel must be verified');
+  assert.strictEqual(usDomestic.serviceCoverage.status, 'verified');
+  assert.strictEqual(usDomestic.statusLabel, 'PREPARED');
+
+  // 5. Verified service + overseas application where the channel is supported
+  // (Mexico overseas consular USD schedule is fully codified)
+  const mxAbroadStandard = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  });
+  assert.strictEqual(mxAbroadStandard.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(mxAbroadStandard.serviceCoverage.dimensions.urgency.status, 'verified');
+  assert.strictEqual(mxAbroadStandard.serviceCoverage.dimensions.channel.status, 'verified', 'MX consular channel is fully verified');
+  assert.strictEqual(mxAbroadStandard.serviceCoverage.status, 'verified', 'MX first_passport abroad standard must be verified');
+  assert.strictEqual(mxAbroadStandard.statusLabel, 'PREPARED');
+
+  // (Nigeria diaspora overseas USD schedule is fully codified)
+  const ngAbroadStandard = engine.evaluate({
+    countryCode: 'NG',
+    countryName: 'Nigeria',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  });
+  assert.strictEqual(ngAbroadStandard.serviceCoverage.dimensions.channel.status, 'verified', 'NG diaspora channel is fully verified');
+  assert.strictEqual(ngAbroadStandard.serviceCoverage.status, 'verified');
+  assert.strictEqual(ngAbroadStandard.statusLabel, 'PREPARED');
+
+  // 6. Selected application channel whose specific rules are not fully modelled
+  // (Japan overseas: consular fees in local currency under MOFA regulations; domestic ¥8,900/¥9,300 do not apply abroad)
+  const jpAbroad = engine.evaluate({
+    countryCode: 'JP',
+    countryName: 'Japan',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  });
+  assert.strictEqual(jpAbroad.serviceCoverage.dimensions.service.status, 'verified');
+  assert.strictEqual(jpAbroad.serviceCoverage.dimensions.urgency.status, 'verified');
+  assert.strictEqual(jpAbroad.serviceCoverage.dimensions.channel.status, 'partial', 'JP overseas channel must be partial (local currency under MOFA)');
+  assert.strictEqual(jpAbroad.serviceCoverage.status, 'partial', 'Combined status must be partial when channel is partial');
+  assert(jpAbroad.readinessScore <= 80, 'Score must be capped at <= 80%');
+  assert.strictEqual(jpAbroad.statusLabel, 'VERIFICATION_RECOMMENDED');
+  assert.notStrictEqual(jpAbroad.statusLabel, 'PREPARED');
+  assert(jpAbroad.flags.some(f => f.code === 'CHANNEL_COVERAGE_PARTIAL'), 'Must emit CHANNEL_COVERAGE_PARTIAL');
+
+  // (India overseas: VFS/BLS consular with ICWF surcharges not codified in INR tables)
+  const inAbroad = engine.evaluate({
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'abroad',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  });
+  assert.strictEqual(inAbroad.serviceCoverage.dimensions.channel.status, 'partial');
+  assert.strictEqual(inAbroad.serviceCoverage.status, 'partial');
+  assert(inAbroad.readinessScore <= 80);
+
+  // 7. Combined service, processing-route, and channel coverage using most restrictive applicable status
+  // Service: partial (US lost_stolen), Route: general_guidance (emergency), Channel: verified (inside)
+  // Most restrictive = general_guidance
+  const usLostEmergency = engine.evaluate({
+    countryCode: 'US',
+    countryName: 'United States',
+    location: 'inside',
+    service: 'lost_stolen',
+    age: 'adult',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(usLostEmergency.serviceCoverage.dimensions.service.status, 'partial');
+  assert.strictEqual(usLostEmergency.serviceCoverage.dimensions.urgency.status, 'general_guidance');
+  assert.strictEqual(usLostEmergency.serviceCoverage.status, 'general_guidance', 'min(partial, general_guidance) must be general_guidance');
+  assert(usLostEmergency.readinessScore <= 75);
+
+  // Mexico emergency travel: preserving Art. 20 LFD 30% surcharge assertions
+  const mxEmergencyTravel = engine.evaluate({
+    countryCode: 'MX',
+    countryName: 'Mexico',
+    location: 'abroad',
+    service: 'emergency_travel',
+    age: 'adult',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(mxEmergencyTravel.serviceCoverage.dimensions.service.status, 'partial');
+  assert.strictEqual(mxEmergencyTravel.serviceCoverage.dimensions.urgency.status, 'partial');
+  assert.strictEqual(mxEmergencyTravel.serviceCoverage.dimensions.channel.status, 'verified');
+  assert.strictEqual(mxEmergencyTravel.serviceCoverage.status, 'partial');
+  assert(mxEmergencyTravel.serviceCoverage.summary.includes('Art. 20 LFD'));
+  assert(mxEmergencyTravel.flags.some(f => f.code === 'MEXICO_EMERGENCY_APPOINTMENT_POLICY'));
+
+  // 8. Score caps and prohibition of PREPARED for incomplete effective coverage
+  [inTatkaal, deUrgent, usEmergencyUrgency, jpAbroad, usLostEmergency].forEach(res => {
+    assert.notStrictEqual(res.statusLabel, 'PREPARED', 'Incomplete effective coverage must never be PREPARED');
+    assert(res.readinessScore <= 80, 'Incomplete effective coverage score must be <= 80%');
+  });
+
+  // 9. Existing 27-country service mappings and representative unverified-country cases
+  const afRes = engine.evaluate({
+    countryCode: 'AF',
+    countryName: 'Afghanistan',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(afRes.serviceCoverage.status, 'awaiting_research');
+  assert.strictEqual(afRes.serviceCoverage.dimensions.service.status, 'awaiting_research');
+  assert.strictEqual(afRes.serviceCoverage.dimensions.urgency.status, 'awaiting_research');
+  assert.strictEqual(afRes.serviceCoverage.dimensions.channel.status, 'awaiting_research');
+  assert(afRes.readinessScore <= 70);
+
+  // 10. Preservation of Malaysia RM 200 / RM 500 / RM 1,000 replacement assertions
+  const myStaff10 = engine.evaluate({
+    countryCode: 'MY',
+    countryName: 'Malaysia',
+    location: 'inside',
+    service: 'lost_stolen',
+    applicantCategory: 'immigration_officers_staff',
+    validity: '10_year',
+    lossTier: 'first_loss'
+  });
+  const myStaffFee = myStaff10.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(myStaffFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(myStaffFee.feeRecord.total_replacement_fee, 200);
+
+  // 11. Preservation of Indonesia confirmation_required marital-status behaviour
+  const idUnmarried = engine.evaluate({
+    countryCode: 'ID',
+    countryName: 'Indonesia',
+    location: 'inside',
+    service: 'first_passport',
+    ageExact: 16
+  });
+  assert.strictEqual(idUnmarried.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'confirmation_required');
+
+  // 12. Preservation of all Phase 4.3.2 dynamic country-directory counts
+  const countryDataModule = require('../data/country-data.js');
+  const countries = countryDataModule.PASSPORT_COUNTRIES;
+  assert.strictEqual(countries.length, 249);
+  assert.strictEqual(countries.filter(c => c.portal_status === 'verified').length, 27);
+  assert.strictEqual(countries.filter(c => c.portal_status === 'official_source_needs_research').length, 222);
 });
 
 console.log('\n====================================================');

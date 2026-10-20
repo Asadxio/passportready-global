@@ -23,18 +23,32 @@ class PassportRulesEngine {
     return map[service] || service;
   }
 
-  determineServiceCoverage(pack, countryCode, service, location = 'inside', urgency = 'standard') {
+  formatUrgencyName(urgency) {
+    const map = {
+      standard: 'Standard Processing',
+      urgent: 'Urgent / Expedited Processing',
+      emergency: 'Emergency Processing'
+    };
+    return map[urgency] || urgency;
+  }
+
+  formatChannelName(location) {
+    return location === 'abroad' ? 'Consular / Overseas Application' : 'Domestic Application';
+  }
+
+  determineBaseServiceCoverage(pack, countryCode, service) {
     const isVerifiedPack = !!(pack && (pack.rule_pack_status === 'verified' || pack.is_verified === true));
     const countryName = (pack && pack.country_name) || countryCode;
 
     if (!isVerifiedPack) {
       return {
-        service,
-        serviceKey: service,
+        dimension: 'service',
+        key: service,
+        name: this.formatServiceName(service),
         status: 'awaiting_research',
         label: 'Awaiting Detailed Research',
         badgeClass: 'status-needs-research',
-        isFullyVerified: false,
+        isVerified: false,
         summary: `Dedicated service-level research for "${this.formatServiceName(service)}" in ${countryName} is not yet complete. Checklist relies on baseline international standards.`,
         supportedChecks: ['International baseline travel document preparation standards'],
         missingChecks: [
@@ -47,17 +61,17 @@ class PassportRulesEngine {
       };
     }
 
-    // Verified Country Pack: Service-by-Service Audit
     switch (service) {
       case 'first_passport': {
         const hasServiceObj = !!(pack.services && pack.services.first_passport);
         return {
-          service,
-          serviceKey: 'first_passport',
+          dimension: 'service',
+          key: 'first_passport',
+          name: this.formatServiceName('first_passport'),
           status: 'verified',
           label: 'Verified Statutory Rules',
           badgeClass: 'status-verified',
-          isFullyVerified: true,
+          isVerified: true,
           summary: `Fully verified country-specific first-time passport rules, mandatory citizenship evidence, and statutory fee schedules for ${countryName}.`,
           supportedChecks: [
             'Mandatory civil birth and citizenship proof requirements',
@@ -74,12 +88,13 @@ class PassportRulesEngine {
         const hasServiceObj = !!(pack.services && pack.services.renewal_reissue);
         if (hasServiceObj) {
           return {
-            service,
-            serviceKey: 'renewal_reissue',
+            dimension: 'service',
+            key: 'renewal_reissue',
+            name: this.formatServiceName('renewal_reissue'),
             status: 'verified',
             label: 'Verified Statutory Rules',
             badgeClass: 'status-verified',
-            isFullyVerified: true,
+            isVerified: true,
             summary: `Fully verified country-specific renewal and reissue requirements for ${countryName}, including physical passport surrender and expiry threshold checks.`,
             supportedChecks: [
               'Existing passport physical cancellation and surrender rules',
@@ -92,12 +107,13 @@ class PassportRulesEngine {
           };
         }
         return {
-          service,
-          serviceKey: 'renewal_reissue',
+          dimension: 'service',
+          key: 'renewal_reissue',
+          name: this.formatServiceName('renewal_reissue'),
           status: 'general_guidance',
           label: 'General Preparation Guidance',
           badgeClass: 'status-needs-research',
-          isFullyVerified: false,
+          isVerified: false,
           summary: `Although ${countryName} has a verified first-time passport pack, dedicated renewal rules are not yet separately modeled in this rule pack.`,
           supportedChecks: ['General travel document renewal and cancellation standards'],
           missingChecks: [
@@ -113,12 +129,13 @@ class PassportRulesEngine {
         const hasServiceObj = !!(pack.services && pack.services.lost_stolen);
         if (hasServiceObj) {
           return {
-            service,
-            serviceKey: 'lost_stolen',
+            dimension: 'service',
+            key: 'lost_stolen',
+            name: this.formatServiceName('lost_stolen'),
             status: 'verified',
             label: 'Verified Statutory Rules',
             badgeClass: 'status-verified',
-            isFullyVerified: true,
+            isVerified: true,
             summary: `Fully verified country-specific lost/stolen passport replacement procedures for ${countryName}, including police reporting requirements and statutory replacement fee schedules.`,
             supportedChecks: [
               'Official police report / missing certificate requirements',
@@ -133,12 +150,13 @@ class PassportRulesEngine {
 
         const hasStatutoryNotice = ['US', 'PH'].includes(countryCode);
         return {
-          service,
-          serviceKey: 'lost_stolen',
+          dimension: 'service',
+          key: 'lost_stolen',
+          name: this.formatServiceName('lost_stolen'),
           status: hasStatutoryNotice ? 'partial' : 'general_guidance',
           label: hasStatutoryNotice ? 'Partial Service Coverage' : 'General Preparation Guidance',
           badgeClass: hasStatutoryNotice ? 'status-linked' : 'status-needs-research',
-          isFullyVerified: false,
+          isVerified: false,
           summary: hasStatutoryNotice
             ? `Key statutory reporting requirements (such as Form DS-64 / Affidavit of Loss) are codified for ${countryName}, but dedicated replacement fee tables require direct verification.`
             : `Dedicated lost/stolen passport replacement rule packs are not yet codified for ${countryName}. Standard police reporting and identity theft mitigation guidance applies.`,
@@ -158,12 +176,13 @@ class PassportRulesEngine {
       case 'damaged': {
         const hasCodifiedPenalty = ['MY', 'ID', 'KE', 'LK'].includes(countryCode);
         return {
-          service,
-          serviceKey: 'damaged',
+          dimension: 'service',
+          key: 'damaged',
+          name: this.formatServiceName('damaged'),
           status: hasCodifiedPenalty ? 'partial' : 'general_guidance',
           label: hasCodifiedPenalty ? 'Partial Service Coverage' : 'General Preparation Guidance',
           badgeClass: hasCodifiedPenalty ? 'status-linked' : 'status-needs-research',
-          isFullyVerified: false,
+          isVerified: false,
           summary: hasCodifiedPenalty
             ? `Statutory mutilated/damaged passport fine schedules are verified for ${countryName}, but full damaged booklet replacement workflows require official confirmation.`
             : `Dedicated damaged passport rule packs are not yet codified for ${countryName}. General physical booklet inspection and surrender standards apply.`,
@@ -186,12 +205,13 @@ class PassportRulesEngine {
         const hasServiceObj = !!(pack.services && pack.services.name_correction);
         if (hasServiceObj) {
           return {
-            service,
-            serviceKey: 'name_correction',
+            dimension: 'service',
+            key: 'name_correction',
+            name: this.formatServiceName('name_correction'),
             status: 'verified',
             label: 'Verified Statutory Rules',
             badgeClass: 'status-verified',
-            isFullyVerified: true,
+            isVerified: true,
             summary: `Fully verified statutory name correction rules for ${countryName}, including self-declarations for marital surname changes (Annexure E) and official Gazette notifications for major changes.`,
             supportedChecks: [
               'Self-declaration routes for routine marital surname changes (Annexure E)',
@@ -204,12 +224,13 @@ class PassportRulesEngine {
           };
         }
         return {
-          service,
-          serviceKey: 'name_correction',
+          dimension: 'service',
+          key: 'name_correction',
+          name: this.formatServiceName('name_correction'),
           status: 'general_guidance',
           label: 'General Preparation Guidance',
           badgeClass: 'status-needs-research',
-          isFullyVerified: false,
+          isVerified: false,
           summary: `Dedicated name or detail amendment rule packs are not yet codified for ${countryName}. Standard legal name change documentation guidance applies.`,
           supportedChecks: ['Baseline civil proof of legal name change (marriage certificate, deed poll, or court order)'],
           missingChecks: [
@@ -225,12 +246,13 @@ class PassportRulesEngine {
         const hasServiceObj = !!(pack.services && pack.services.minor_child);
         if (hasServiceObj) {
           return {
-            service,
-            serviceKey: 'minor_child',
+            dimension: 'service',
+            key: 'minor_child',
+            name: this.formatServiceName('minor_child'),
             status: 'verified',
             label: 'Verified Statutory Rules',
             badgeClass: 'status-verified',
-            isFullyVerified: true,
+            isVerified: true,
             summary: `Fully verified minor/child passport regulations for ${countryName}, including parental consent mandates, parental appearance rules, and child validity schedules.`,
             supportedChecks: [
               'Parental consent and parental presence statutory mandates',
@@ -243,12 +265,13 @@ class PassportRulesEngine {
           };
         }
         return {
-          service,
-          serviceKey: 'minor_child',
+          dimension: 'service',
+          key: 'minor_child',
+          name: this.formatServiceName('minor_child'),
           status: 'partial',
           label: 'Partial Service Coverage',
           badgeClass: 'status-linked',
-          isFullyVerified: false,
+          isVerified: false,
           summary: `Statutory parental consent and civil birth documentation rules are verified for ${countryName}, but standalone minor service packs are not separately modeled.`,
           supportedChecks: [
             'Statutory parental consent safeguards (e.g. Annexure D/C, US 22 CFR § 51.28)',
@@ -264,14 +287,15 @@ class PassportRulesEngine {
       }
 
       case 'urgent_expedited': {
-        const hasUrgentSchedule = ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN'].includes(countryCode);
+        const hasUrgentSchedule = ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode);
         return {
-          service,
-          serviceKey: 'urgent_expedited',
+          dimension: 'service',
+          key: 'urgent_expedited',
+          name: this.formatServiceName('urgent_expedited'),
           status: hasUrgentSchedule ? 'partial' : 'general_guidance',
           label: hasUrgentSchedule ? 'Partial Service Coverage' : 'General Preparation Guidance',
           badgeClass: hasUrgentSchedule ? 'status-linked' : 'status-needs-research',
-          isFullyVerified: false,
+          isVerified: false,
           summary: hasUrgentSchedule
             ? `Official expedited/urgent fee schedules and surcharge amounts are verified for ${countryName}, but daily booking quotas, appointment availability, and service exclusions vary by post.`
             : `Dedicated expedited processing rule packs are not yet codified for ${countryName}. Standard urgent processing advice applies.`,
@@ -293,8 +317,9 @@ class PassportRulesEngine {
       case 'emergency_travel': {
         if (countryCode === 'MX') {
           return {
-            service,
-            serviceKey: 'emergency_travel',
+            dimension: 'service',
+            key: 'emergency_travel',
+            name: this.formatServiceName('emergency_travel'),
             status: 'partial',
             label: 'Partial Service Coverage',
             badgeClass: 'status-linked',
@@ -313,8 +338,9 @@ class PassportRulesEngine {
           };
         }
         return {
-          service,
-          serviceKey: 'emergency_travel',
+          dimension: 'service',
+          key: 'emergency_travel',
+          name: this.formatServiceName('emergency_travel'),
           status: 'general_guidance',
           label: 'General Preparation Guidance',
           badgeClass: 'status-needs-research',
@@ -333,8 +359,9 @@ class PassportRulesEngine {
 
       default:
         return {
-          service,
-          serviceKey: service,
+          dimension: 'service',
+          key: service,
+          name: this.formatServiceName(service),
           status: 'general_guidance',
           label: 'General Preparation Guidance',
           badgeClass: 'status-needs-research',
@@ -349,6 +376,313 @@ class PassportRulesEngine {
           rulePackKey: null
         };
     }
+  }
+
+  determineProcessingRouteCoverage(pack, countryCode, urgency = 'standard', service = 'first_passport') {
+    const isVerifiedPack = !!(pack && (pack.rule_pack_status === 'verified' || pack.is_verified === true));
+    const countryName = (pack && pack.country_name) || countryCode;
+
+    if (!isVerifiedPack) {
+      return {
+        dimension: 'urgency',
+        key: urgency,
+        name: this.formatUrgencyName(urgency),
+        status: 'awaiting_research',
+        label: 'Awaiting Research',
+        badgeClass: 'status-needs-research',
+        isVerified: false,
+        summary: `Urgency processing standards and timeframes for ${countryName} are awaiting official research.`,
+        supportedChecks: [],
+        missingChecks: ['Official processing timeframes and expedited slot availability']
+      };
+    }
+
+    if (urgency === 'standard') {
+      return {
+        dimension: 'urgency',
+        key: 'standard',
+        name: this.formatUrgencyName('standard'),
+        status: 'verified',
+        label: 'Standard Processing Verified',
+        badgeClass: 'status-verified',
+        isVerified: true,
+        summary: `Standard routine processing timeframes and regular appointment procedures are verified for ${countryName}.`,
+        supportedChecks: [
+          'Standard statutory processing timeframe baseline',
+          'Routine appointment booking procedures'
+        ],
+        missingChecks: []
+      };
+    }
+
+    if (urgency === 'urgent') {
+      const hasUrgentSchedule = ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode);
+      if (hasUrgentSchedule) {
+        return {
+          dimension: 'urgency',
+          key: 'urgent',
+          name: this.formatUrgencyName('urgent'),
+          status: 'partial',
+          label: 'Partial Urgent Route Coverage',
+          badgeClass: 'status-linked',
+          isVerified: false,
+          summary: `Official expedited/urgent fee schedules and surcharge amounts are verified for ${countryName}, but daily booking quotas, appointment availability, and service exclusions vary by post.`,
+          supportedChecks: [
+            'Official statutory expedited fee and surcharge schedule',
+            'Expedited processing timeframe baselines'
+          ],
+          missingChecks: [
+            'Daily expedited appointment slot availability and booking procedures',
+            'Service-specific expedited exclusion criteria (e.g. complex name changes, replacement of lost records)'
+          ]
+        };
+      }
+      return {
+        dimension: 'urgency',
+        key: 'urgent',
+        name: this.formatUrgencyName('urgent'),
+        status: 'general_guidance',
+        label: 'General Urgent Guidance',
+        badgeClass: 'status-needs-research',
+        isVerified: false,
+        summary: `Dedicated expedited processing rule packs are not yet codified for ${countryName}. Standard urgent processing advice applies.`,
+        supportedChecks: ['General expedited preparation guidance'],
+        missingChecks: [
+          'Country-specific expedited appointment booking procedures',
+          'Official expedited fee schedule and surcharge validation'
+        ]
+      };
+    }
+
+    if (urgency === 'emergency') {
+      if (countryCode === 'MX') {
+        return {
+          dimension: 'urgency',
+          key: 'emergency',
+          name: this.formatUrgencyName('emergency'),
+          status: 'partial',
+          label: 'Partial Emergency Route Coverage',
+          badgeClass: 'status-linked',
+          isVerified: false,
+          summary: 'In Mexico, emergency appointments carry a 30% statutory surcharge (Art. 20 LFD) and require documented proof of medical, humanitarian, academic, or work urgency. Emergency Type E passports may be issued upon consular assessment.',
+          supportedChecks: [
+            'Consular emergency appointment 30% surcharge schedule (Art. 20 LFD)',
+            'Emergency Type E Passport validity ceiling (up to 1 year)'
+          ],
+          missingChecks: [
+            'Local consular post Emergency Type E physical booklet stock availability',
+            'Non-consular domestic emergency exceptions'
+          ]
+        };
+      }
+      if (countryCode === 'NZ') {
+        return {
+          dimension: 'urgency',
+          key: 'emergency',
+          name: this.formatUrgencyName('emergency'),
+          status: 'partial',
+          label: 'Partial Emergency Route Coverage',
+          badgeClass: 'status-linked',
+          isVerified: false,
+          summary: 'Official after-hours callout emergency passport fees (NZD 1,001 adult / NZD 898 child) are verified for New Zealand, but callout attendance requires direct telephone coordination with DIA.',
+          supportedChecks: [
+            'Statutory after-hours callout fee schedule (passports.govt.nz)',
+            'Emergency callout availability criteria'
+          ],
+          missingChecks: [
+            'Direct DIA duty officer dispatch and location availability confirmation'
+          ]
+        };
+      }
+      return {
+        dimension: 'urgency',
+        key: 'emergency',
+        name: this.formatUrgencyName('emergency'),
+        status: 'general_guidance',
+        label: 'General Emergency Guidance',
+        badgeClass: 'status-needs-research',
+        isVerified: false,
+        summary: `Dedicated emergency appointment or after-hours callout rule packs are not yet codified for ${countryName}. Emergency travel documents (ETD/ETC) or urgent compassionate appointments require direct authority assessment.`,
+        supportedChecks: ['General international emergency travel documentation standards'],
+        missingChecks: [
+          'Direct authority emergency hotline contact and appointment booking procedures',
+          'Emergency fee surcharge or temporary booklet fee validation'
+        ]
+      };
+    }
+
+    return {
+      dimension: 'urgency',
+      key: urgency,
+      name: this.formatUrgencyName(urgency),
+      status: 'general_guidance',
+      label: 'General Guidance',
+      badgeClass: 'status-needs-research',
+      isVerified: false,
+      summary: `Urgency route ${urgency} is not separately modeled for ${countryName}.`,
+      supportedChecks: [],
+      missingChecks: ['Official route verification']
+    };
+  }
+
+  determineApplicationChannelCoverage(pack, countryCode, location = 'inside', service = 'first_passport') {
+    const isVerifiedPack = !!(pack && (pack.rule_pack_status === 'verified' || pack.is_verified === true));
+    const countryName = (pack && pack.country_name) || countryCode;
+
+    if (!isVerifiedPack) {
+      return {
+        dimension: 'channel',
+        key: location,
+        name: this.formatChannelName(location),
+        status: 'awaiting_research',
+        label: 'Awaiting Research',
+        badgeClass: 'status-needs-research',
+        isVerified: false,
+        summary: `Application channel procedures for ${countryName} are awaiting official research.`,
+        supportedChecks: [],
+        missingChecks: ['Application lodging channels and authority appointment procedures']
+      };
+    }
+
+    if (location === 'inside') {
+      return {
+        dimension: 'channel',
+        key: 'inside',
+        name: this.formatChannelName('inside'),
+        status: 'verified',
+        label: 'Domestic Lodgement Verified',
+        badgeClass: 'status-verified',
+        isVerified: true,
+        summary: `Domestic application procedures, statutory authority lodging channels, and domestic fee schedules are verified for ${countryName}.`,
+        supportedChecks: [
+          'Domestic application lodging channels and authority centers',
+          'Domestic statutory fee schedules and local payment methods'
+        ],
+        missingChecks: []
+      };
+    }
+
+    // Overseas / Consular channel
+    const hasFullyVerifiedConsular = ['MX', 'NG', 'NP'].includes(countryCode);
+    if (hasFullyVerifiedConsular) {
+      return {
+        dimension: 'channel',
+        key: 'abroad',
+        name: this.formatChannelName('abroad'),
+        status: 'verified',
+        label: 'Consular Channel Verified',
+        badgeClass: 'status-verified',
+        isVerified: true,
+        summary: `Official consular fee schedules in foreign currency and overseas diplomatic mission lodging procedures are fully verified for ${countryName}.`,
+        supportedChecks: [
+          'Official overseas consular fee schedule and accepted currency',
+          'Diplomatic mission lodging requirements and identity verification'
+        ],
+        missingChecks: []
+      };
+    }
+
+    return {
+      dimension: 'channel',
+      key: 'abroad',
+      name: this.formatChannelName('abroad'),
+      status: 'partial',
+      label: 'Partial Consular Channel Coverage',
+      badgeClass: 'status-linked',
+      isVerified: false,
+      summary: `Consular jurisdiction and overseas filing requirements are verified for ${countryName}, but local host-currency fees, mission-specific appointment systems, or consular service partner procedures require direct mission confirmation.`,
+      supportedChecks: [
+        'Consular jurisdiction and host-country lawful residence proof requirements',
+        'General diplomatic mission application standards'
+      ],
+      missingChecks: [
+        'Local mission payment currency, banking methods, and consular surcharges',
+        'Embassy or outsourced service partner (e.g. VFS/BLS/TLS) appointment booking procedures'
+      ]
+    };
+  }
+
+  determineServiceCoverage(pack, countryCode, service, location = 'inside', urgency = 'standard') {
+    const isVerifiedPack = !!(pack && (pack.rule_pack_status === 'verified' || pack.is_verified === true));
+    const countryName = (pack && pack.country_name) || countryCode;
+
+    const baseService = this.determineBaseServiceCoverage(pack, countryCode, service);
+    const processingRoute = this.determineProcessingRouteCoverage(pack, countryCode, urgency, service);
+    const applicationChannel = this.determineApplicationChannelCoverage(pack, countryCode, location, service);
+
+    const STATUS_PRIORITY = {
+      awaiting_research: 0,
+      general_guidance: 1,
+      partial: 2,
+      verified: 3
+    };
+
+    const statuses = [baseService.status, processingRoute.status, applicationChannel.status];
+    const effectiveStatus = statuses.reduce((lowest, current) => {
+      const prioCurrent = STATUS_PRIORITY[current] ?? 1;
+      const prioLowest = STATUS_PRIORITY[lowest] ?? 1;
+      return prioCurrent <= prioLowest ? current : lowest;
+    }, 'verified');
+
+    const isFullyVerified = effectiveStatus === 'verified';
+
+    let label = 'Verified Statutory Rules';
+    let badgeClass = 'status-verified';
+    if (effectiveStatus === 'awaiting_research') {
+      label = 'Awaiting Detailed Research';
+      badgeClass = 'status-needs-research';
+    } else if (effectiveStatus === 'general_guidance') {
+      label = 'General Preparation Guidance';
+      badgeClass = 'status-needs-research';
+    } else if (effectiveStatus === 'partial') {
+      label = 'Partial Coverage';
+      badgeClass = 'status-linked';
+    }
+
+    // Build narrative summary reflecting the combined scenario
+    const summaryParts = [baseService.summary];
+    if (processingRoute.status !== 'verified' && processingRoute.summary) {
+      summaryParts.push(processingRoute.summary);
+    }
+    if (applicationChannel.status !== 'verified' && applicationChannel.summary) {
+      summaryParts.push(applicationChannel.summary);
+    }
+    const summary = summaryParts.join(' ');
+
+    // Aggregate deduplicated checks
+    const supportedSet = new Set([
+      ...(baseService.supportedChecks || []),
+      ...(processingRoute.supportedChecks || []),
+      ...(applicationChannel.supportedChecks || [])
+    ]);
+    const missingSet = new Set([
+      ...(baseService.missingChecks || []),
+      ...(processingRoute.missingChecks || []),
+      ...(applicationChannel.missingChecks || [])
+    ]);
+
+    return {
+      service,
+      serviceKey: baseService.key || service,
+      status: effectiveStatus,
+      effectiveStatus,
+      label,
+      badgeClass,
+      isFullyVerified,
+      summary,
+      supportedChecks: Array.from(supportedSet),
+      missingChecks: Array.from(missingSet),
+      officialSourceUrl: pack ? pack.official_portal_url : null,
+      rulePackKey: baseService.rulePackKey,
+      dimensions: {
+        service: baseService,
+        urgency: processingRoute,
+        channel: applicationChannel
+      },
+      baseServiceCoverage: baseService,
+      routeCoverage: processingRoute,
+      channelCoverage: applicationChannel
+    };
   }
 
   evaluate(profile) {
@@ -1419,7 +1753,7 @@ class PassportRulesEngine {
       feeRecord: specificFeeRecord
     });
 
-    // Service-level coverage status and readiness score protections
+    // Dimension-aware coverage status and readiness score protections
     if (serviceCoverage.status === 'awaiting_research') {
       preparationScore = Math.min(70, preparationScore);
       flags.unshift({
@@ -1431,22 +1765,62 @@ class PassportRulesEngine {
       });
     } else if (serviceCoverage.status === 'general_guidance') {
       preparationScore = Math.min(75, preparationScore);
-      flags.unshift({
-        severity: 'warning',
-        code: 'SERVICE_GENERAL_GUIDANCE_ONLY',
-        title: `General Guidance: No Dedicated Country Pack for ${this.formatServiceName(service)}`,
-        message: serviceCoverage.summary,
-        action: `Consult the official portal of ${pack && pack.authority_name ? pack.authority_name : countryName} to confirm specific forms, documentary proof, and fees for this service.`
-      });
+      if (serviceCoverage.dimensions?.service?.status === 'general_guidance') {
+        flags.unshift({
+          severity: 'warning',
+          code: 'SERVICE_GENERAL_GUIDANCE_ONLY',
+          title: `General Guidance: No Dedicated Country Pack for ${this.formatServiceName(service)}`,
+          message: serviceCoverage.dimensions.service.summary,
+          action: `Consult the official portal of ${pack && pack.authority_name ? pack.authority_name : countryName} to confirm specific forms, documentary proof, and fees for this service.`
+        });
+      }
+      if (serviceCoverage.dimensions?.urgency?.status === 'general_guidance') {
+        flags.unshift({
+          severity: 'warning',
+          code: 'ROUTE_GENERAL_GUIDANCE_ONLY',
+          title: `General Guidance: No Dedicated Route for ${this.formatUrgencyName(urgency)}`,
+          message: serviceCoverage.dimensions.urgency.summary,
+          action: `Confirm emergency or urgent processing procedures directly with the official passport authority of ${countryName}.`
+        });
+      }
+      if (serviceCoverage.dimensions?.channel?.status === 'general_guidance') {
+        flags.unshift({
+          severity: 'warning',
+          code: 'CHANNEL_GENERAL_GUIDANCE_ONLY',
+          title: `General Guidance: Overseas Consular Application for ${countryName}`,
+          message: serviceCoverage.dimensions.channel.summary,
+          action: `Check with your accredited embassy or consulate for host-country lodging procedures.`
+        });
+      }
     } else if (serviceCoverage.status === 'partial') {
       preparationScore = Math.min(80, preparationScore);
-      flags.unshift({
-        severity: 'info',
-        code: 'SERVICE_COVERAGE_PARTIAL',
-        title: `Partial Service Coverage: ${this.formatServiceName(service)}`,
-        message: serviceCoverage.summary,
-        action: `Review the specific notices in your checklist and verify final lodgement requirements on the official authority portal.`
-      });
+      if (serviceCoverage.dimensions?.service?.status === 'partial') {
+        flags.unshift({
+          severity: 'info',
+          code: 'SERVICE_COVERAGE_PARTIAL',
+          title: `Partial Service Coverage: ${this.formatServiceName(service)}`,
+          message: serviceCoverage.dimensions.service.summary,
+          action: `Review the specific notices in your checklist and verify final lodgement requirements on the official authority portal.`
+        });
+      }
+      if (serviceCoverage.dimensions?.urgency?.status === 'partial') {
+        flags.unshift({
+          severity: 'info',
+          code: 'ROUTE_COVERAGE_PARTIAL',
+          title: `Partial Processing Route Coverage: ${this.formatUrgencyName(urgency)}`,
+          message: serviceCoverage.dimensions.urgency.summary,
+          action: `Confirm expedited slot availability, quotas, and service exclusions directly with ${countryName} passport authorities.`
+        });
+      }
+      if (serviceCoverage.dimensions?.channel?.status === 'partial') {
+        flags.unshift({
+          severity: 'info',
+          code: 'CHANNEL_COVERAGE_PARTIAL',
+          title: `Partial Channel Coverage: Consular / Overseas Lodgement`,
+          message: serviceCoverage.dimensions.channel.summary,
+          action: `Confirm local consular fees in host currency and submission procedures with your accredited diplomatic mission.`
+        });
+      }
     }
 
     // Calculate final status and preparation completeness
