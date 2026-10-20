@@ -26,7 +26,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **AL** | ALB | Albania | Sovereign State | Ministry of the Interior & IdentiTek — `https://e-albania.al/` | `primary_sources_audited` | Standard biometric passport: 7,500 ALL (15-day, 10-yr adult 16+ / 5-yr minor); Fast-track (2–3d): 18,000 ALL (DIRECT). Consular overseas: 130 EUR (DIRECT). Electronic ID card (Letërnjoftim) mandatory; coupon via Posta Shqiptare or e-kupon.identitek.al; e-Albania portal appointment; in-person at IdentiTek desks. |
 | **DZ** | DZA | Algeria | Sovereign State | DGSN / Ministère de l'Intérieur — `https://www.dgsn.dz/` | `primary_sources_audited` | Finance Law stamp duty: Adult 28-pg DZD 6,000 / 48-pg DZD 9,000; Minor DZD 3,000 / 4,500; Express 28-pg DZD 25,000; Emergency 28-pg DZD 12,000 (PARTIAL — confirm current Finance Law). CNIB mandatory. APC in-person biometric enrollment. |
 | **AS** | ASM | American Samoa | Territory / Special Region | U.S. Department of State (Non-Citizen US National / US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
-| **AD** | AND | Andorra | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AD** | AND | Andorra | Sovereign State | Servei de Tràmits / Ministeri de Justícia i Interior (`tramits.ad` / `govern.ad`) | `primary_sources_audited` | Decret regulador de les taxes d'expedició: Adult 20+ (10-yr) 49,31 €; Menor <20 (5-yr) 32,16 €; Passaport provisional (1-yr) 24,66 € (DIRECT). Paid at Tràmits counter or online via e-tramits.ad. Certificat de nacionalitat andorrana / Llibre de Família mandatory; live photo booth capture on-site; fingerprints & signature mandatory from age 12+; police theft report for replacements. |
 | **AO** | AGO | Angola | Sovereign State | Serviço de Migração e Estrangeiros (SME) — `https://www.sme.gov.ao/` | `primary_sources_audited` | Decreto Presidencial n.º 21/19: Passaporte ordinário (5-yr) 30.500,00 AOA (DIRECT). Paid via RUPE payment reference through Multicaixa interbank network. Bilhete de Identidade (BI) valid national ID mandatory; RUPE proof; birth certificate for minors; online pre-application via sme.gov.ao; biometrics at SME provincial directorates or SIAC centers. |
 | **AI** | AIA | Anguilla | Territory / Special Region | HMPO (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **AQ** | ATA | Antarctica | Territory / Special Region | Antarctic Treaty Area (No sovereign passport; nationals use country of citizenship) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by INT. General guidance applies. |
@@ -45,7 +45,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BJ** | BEN | Benin | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BM** | BMU | Bermuda | Territory / Special Region | HMPO / Dept of Immigration Bermuda (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **BT** | BTN | Bhutan | Sovereign State | Passport Div., Ministry of Foreign Affairs & External Trade (`mfa.gov.bt`) | `primary_sources_audited` | MFAET statutory fees: Adult 18+ (10-yr) Nu. 1,000; Minor <18 (5-yr) Nu. 800; Lost/damaged replacement fine: Nu. 5,000 penalty + standard booklet fee (Nu. 6,000 adult / Nu. 5,800 minor) (DIRECT). Citizenship Identity Card (CID) + Security Clearance Certificate (SCC) mandatory; G2C online portal (citizenservices.gov.bt) or Passport Division Thimphu. |
-| **BO** | BOL | Bolivia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BO** | BOL | Bolivia | Sovereign State | Dirección General de Migración (DIGEMIG), MinGob (`migracion.gob.bo`) | `primary_sources_audited` | Ley N° 370 & DS N° 1923: Pasaporte electrónico ordinario (5-yr) 155 UFV + 200 Bs (~563–585 Bs depending on daily UFV rate) (DIRECT). Payment authorized at DIGEMIG counter then deposited at Banco Unión / QR. Cédula de Identidad (CI SEGIP) + Certificado de sufragio OEP mandatory; in-person biometrics; parental presence for minors; FELCC / Interpol cert for lost documents. |
 | **BQ** | BES | Bonaire, Sint Eustatius and Saba | Territory / Special Region | Rijksdienst Caribisch Nederland (Bonaire, Sint Eustatius, Saba - Dutch Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **BA** | BIH | Bosnia and Herzegovina | Sovereign State | IDDEEA & Cantonal/Entity Ministries of Interior (MUP) — `https://www.iddeea.gov.ba/` | `primary_sources_audited` | Council of Ministers Decision: Adults 18+ (10-yr) 50 BAM; Minors 3–18 (5-yr) 40 BAM; Children <3: 30 BAM (DIRECT). Urgent processing (72h without justification): +200 BAM surcharge (total 250 BAM). BiH Electronic ID Card (Lična karta) mandatory; in-person at competent Cantonal MUP / MUP RS. |
 | **BW** | BWA | Botswana | Sovereign State | Dept. of Civil & National Registration (DCNR) — `https://www.gov.bw/` | `primary_sources_audited` | Passports Act regulations: Adults 16+ (10-yr) BWP 260.00; Minors 0–15 (5-yr) BWP 100.00; Lost/damaged replacement BWP 1,000.00 penalty (DIRECT). National Identity Card (Omang) mandatory for 16+; birth certificate for minors; police report for lost passports; in-person biometrics at DCNR district offices. |
@@ -83,7 +83,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **DO** | DOM | Dominican Republic | Sovereign State | Dirección General de Pasaportes (`pasaportes.gob.do`) | `primary_sources_audited` | DGP statutory fees: Adult Regular (6-yr) RD$ 1,650.00; Adult VIP (same-day / ~3h) RD$ 2,650.00; Adult Lost/Damaged RD$ 2,650.00 (Regular) / RD$ 3,650.00 (VIP); Minor Regular RD$ 1,850.00; Minor VIP RD$ 2,850.00 (DIRECT). Paid via Banreservas. Cédula de Identidad y Electoral (JCE) + Legalized Birth Certificate (Acta legalizada JCE) mandatory; appointments via citas.pasaportes.gob.do. |
 | **EC** | ECU | Ecuador | Sovereign State | Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC) | `primary_sources_audited` | Primary source audited (Batch 3). DIGERCIC statutory fees: Standard biometric passport $90.00 USD (10-yr for 18+, 5-yr for minors); Seniors (65+) $45.00 USD (50% discount); Disabled (30%+) $0.00 (exempt). Cédula de Identidad mandatory prerequisite; parental presence for minors under 18. |
 | **EG** | EGY | Egypt | Sovereign State | Passports, Immigration & Nationality Administration / Ministry of Interior | `primary_sources_audited` | Primary source audited (Batch 5). Law No. 7/2024 & Decree 470/2024: Standard machine-readable passport (7-yr) 1,110 EGP; Urgent service 1,450-1,600 EGP (24-48 hrs); VIP same-day 1,850 EGP; Consular $110 USD. National ID card (15+) or birth cert (<15) + military status certificate required. |
-| **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SV** | SLV | El Salvador | Sovereign State | Dirección General de Migración y Extranjería (DGME) (`migracion.gob.sv`) | `primary_sources_audited` | Ley Especial de Migración y Extranjería: Pasaporte ordinario biométrico (6-year statutory validity for adults & minors) flat USD $25.00 (DIRECT). Consular: USD $40 (Central America) / USD $60 (rest of world). Paid via colecturía or online. DUI original and valid mandatory; walk-in por orden de llegada (turnaround ~20–45 mins); parental presence & birth certificate for minors. |
 | **GQ** | GNQ | Equatorial Guinea | Sovereign State | Min. de Seguridad Nacional / CNEDOGE (`guineaecuatorialpress.com` / `cnedoge.gq`) | `primary_sources_audited` | Ley de Documentos de Viaje: Standard CEMAC biometric passport (5-yr) ~50.000 FCFA (consular rate ~32.00 € to 60.00 €) (DIRECT). Turnaround ~1–2 weeks. Documento Nacional de Identidad (DNI) + Certificado Literal de Nacimiento + Certificado de Antecedentes Penales mandatory; in-person biometrics at CNEDOGE centers in Malabo and Bata. |
 | **ER** | ERI | Eritrea | Sovereign State | Ministry of Foreign Affairs (consular) / Ministry of Interior (domestic) — `https://www.embassyeritrea.org/` | `primary_sources_audited` | Consular (overseas) fees DIRECT: First/lost adult USD 200; renewal adult USD 100; minor USD 75–150. ⚠️ MANDATORY: 2% diaspora Recovery & Rehabilitation Tax clearance required for ALL consular services. Domestic fee NOT publicly available. Hawiyya (national ID) + tax clearance certificate mandatory. |
 | **EE** | EST | Estonia | Sovereign State | Politsei- ja Piirivalveamet (PPA — `politsei.ee`) | `primary_sources_audited` | State Fees Act (Riigilõivuseadus): Adult self-service (10-yr) 50 € / PPA office 60 €; Minor <15 / Pensioner / Disabled self-service 20 € / PPA office 25 €; Kiirpass (expedited 1-day) 250 €; Consular 90 € (DIRECT). Isikukood + fingerprints on file within 6 yrs; online self-service via iseteenindus.politsei.ee (Smart-ID / ID-card). |
@@ -113,7 +113,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GY** | GUY | Guyana | Sovereign State | Central Immigration & Passport Office (CIPO), Guyana Police Force / MoHA (`moha.gov.gy`) | `primary_sources_audited` | Immigration Act (Cap. 14:02): Standard biometric e-passport: 5-year G$ 6,000; 10-year G$ 12,000; Expedited 72-hour surcharge +G$ 20,000 (DIRECT). Standard turnaround ~5 working days. Guyana National ID Card + GRO Birth Certificate + Form A + Recommender mandatory; appointment via Guyana Passport System; in-person biometrics at CIPO Georgetown or regional offices. |
 | **HT** | HTI | Haiti | Sovereign State | Direction de l'Immigration et de l'Émigration (DIE) (`delidoc.gouv.ht` / `dgi.gouv.ht`) | `primary_sources_audited` | Loi de finances & Tarifs DGI: Passeport régulier 32 pages: Adulte (10-yr) 8 000,00 HTG; Mineur <18 (5-yr) 2 500,00 HTG; 48 pages: 12 000,00 HTG (DIRECT). Prise de rendez-vous obligatoire via plateforme DELIDOC (delidoc.gouv.ht). Extrait d'acte de naissance (Archives Nationales) + CIN (ONI) + NIF + reçu DGI mandatory; in-person biometrics at DIE centers. |
 | **HM** | HMD | Heard Island and McDonald Islands | Territory / Special Region | Heard Island and McDonald Islands (Uninhabited Australian territory) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
-| **HN** | HND | Honduras | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **HN** | HND | Honduras | Sovereign State | Instituto Nacional de Migración (INM) (`inm.gob.hn`) | `primary_sources_audited` | Ley de Migración y Extranjería: Pasaporte biométrico 5-year USD $35.00; 10-year (strictly 21+) USD $50.00; Cita de emergencia +USD $20.00 (DIRECT). Paid in lempiras directly at authorized banks (Banrural, Atlántida, Occidente, Ficohsa, etc.) where bank receipt serves as official appointment ticket. DNI original mandatory; birth certificate & both parents' DNIs for minors <21. |
 | **HK** | HKG | Hong Kong | Territory / Special Region | Immigration Department HKSAR (HKSAR Passport for Chinese citizens with permanent residence) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
 | **HU** | HUN | Hungary | Sovereign State | Belügyminisztérium / Kormányablakok | `primary_sources_audited` | Primary source audited (Batch 3). Statutory fees (normál 20 nap): Adult 18+ (10-yr) 17 000 HUF (+2 000 HUF postal delivery); Youth 12-18 (5-yr) 12 500 HUF; Child <12 8 500 HUF. Surcharges: 5-day +19k HUF; 3-day +29k HUF; 24-hr +39k HUF. Személyazonosító igazolvány required; photo taken on-site. |
 | **IS** | ISL | Iceland | Sovereign State | Þjóðskrá Íslands / Sýslumenn | `primary_sources_audited` | Primary source audited (Batch 4). Gjaldskrá sýslumanna (Lög 88/1991): Adult 18-66 (10-yr) 19.000 ISK standard / 39.200 ISK fast-track / 10.500 ISK emergency; Children <18 (5-yr), Seniors 67+, Disabled 7.000 ISK standard / 14.000 ISK fast / 3.500 ISK emergency. Kennitala required; photo on-site. |
@@ -161,7 +161,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **NR** | NRU | Nauru | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **NL** | NLD | Netherlands | Sovereign State | Ministerie van BZK (RvIG) / Ministerie van BZ (NederlandWereldwijd) | `primary_sources_audited` | Primary source audited (Batch 1). Paspoortwet / Paspoortuitvoeringsregeling 2026 municipal caps: Domestic adult (18+) max €88.65, minor (<18) max €67.05, spoedtoeslag max €60.30; Consular adult €169.15, minor €147.40, emergency €60.25; Border desk adult €133.65. |
 | **NC** | NCL | New Caledonia | Territory / Special Region | Haut-Commissariat de la République en Nouvelle-Calédonie (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
-| **NI** | NIC | Nicaragua | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **NI** | NIC | Nicaragua | Sovereign State | Dirección General de Migración y Extranjería (DGME), MINT (`mint.gob.ni` / `tramitesconsulares.mint.gob.ni`) | `primary_sources_audited` | Ley N° 761: Pasaporte ordinario Adult 16+ (10-yr) USD $21.56 (~C$ 789.61 NIO); Minor <16 (5-yr) USD $10.77 (~C$ 394.44 NIO); Jubilados 50% discount; Agilización 24h +$8.62, 48h +$7.18 (DIRECT). Consular portal: USD $50.00. Cédula de identidad nicaragüense + Partida de nacimiento + bank voucher mandatory; biometrics at DGME Central or SERTRAMI offices. |
 | **NE** | NER | Niger | Sovereign State | Direction de la Surveillance du Territoire (DST), DGPN (`interieur.gouv.ne` / `police.gouv.ne`) | `primary_sources_audited` | Décret portant création et tarification du passeport biométrique: Standard biometric passport: Adult 45 000 FCFA; Minors & Students 29 750 FCFA; Hadj 45 000 FCFA (DIRECT). Turnaround ~7 to 15 working days. Carte Nationale d'Identité Biométrique (CNIB) nigérienne + Copie légalisée d'acte de naissance + Certificat de nationalité nigérienne mandatory; in-person biometrics at DST Niamey or regional directorates. |
 | **NU** | NIU | Niue | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **NF** | NFK | Norfolk Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
@@ -174,7 +174,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PS** | PSE | Palestine | Territory / Special Region | Palestinian Authority Ministry of Interior (Palestinian Authority Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by PS. General guidance applies. |
 | **PA** | PAN | Panama | Sovereign State | Autoridad de Pasaportes de Panamá (`apap.gob.pa`) | `primary_sources_audited` | Ley 32 de 2013 / APAP tariff: Ordinary 32-page biometric e-passport B/. 100.00 (USD 100); Senior citizens / retirees (jubilados) / disabled B/. 50.00 (50% statutory discount); Urgent processing surcharge +B/. 75.00 (DIRECT). Validity: 10-yr adult (18+), 5-yr minor. Cédula de Identidad Personal (Tribunal Electoral) + B/. 3.00 fiscal stamps birth cert (unless TE verified); in-person biometrics at APAP regional centers. |
 | **PG** | PNG | Papua New Guinea | Sovereign State | Papua New Guinea Immigration and Citizenship Authority (`ica.gov.pg`) | `primary_sources_audited` | Passports Act & Migration Regs: Standard ordinary passport (5-yr) K100.00; Fast-track express (2 days) K300.00 (K100 base + K200 priority fee); Lost replacement penalty K200.00 (DIRECT). NID Birth Certificate (Civil Registry/NID Office) + Form FA 81 + Section 13 Legal Practitioner/Commissioner certification mandatory; in-person or postal lodgment at ICA Waigani. |
-| **PY** | PRY | Paraguay | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **PY** | PRY | Paraguay | Sovereign State | Departamento de Identificaciones de la Policía Nacional (`identificaciones.gov.py`) | `primary_sources_audited` | Ley N° 222/1993 & aranceles reglamentarios: Pasaporte ordinario (5-yr) 240.000 Gs. (DIRECT). Paid at Identificaciones cashier window. Cédula de Identidad Civil paraguaya vigente + Certificado de Cumplimiento Tributario (C.C.T. / Constancia de no ser contribuyente DNIT) mandatory; biometrics at Sede Central (Boggiani) or regional offices; parental consent for minors. |
 | **PE** | PER | Peru | Sovereign State | Superintendencia Nacional de Migraciones | `primary_sources_audited` | Primary source audited (Batch 3). Ley N° 31678 / DS 004-2024-IN: Pasaporte Electrónico (10-yr validity for 18+) S/ 120.90 PEN (Tributo 01810 Págalo.pe); Teens 12-17 (5-yr) S/ 120.90; Child <12 (3-yr) S/ 120.90. In-person walk-in ticket system (no appointment needed); same-day delivery (~2 hrs). DNI mandatory. |
 | **PN** | PCN | Pitcairn | Territory / Special Region | Pitcairn Island Administration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **PL** | POL | Poland | Sovereign State | MSWiA / Urzędy Wojewódzkie (Wojewoda) | `primary_sources_audited` | Primary source audited (Batch 2). Ustawa o dokumentach paszportowych: Standard adult (10-yr) 140 PLN; Youth 12-18 / students 70 PLN; Child <12 (5-yr) 30 PLN; Senior 70+ 0 PLN; Lost/damaged by fault +200% (420 PLN). PESEL mandatory; in-person electronic counter signature; delivery in ~30 days. |
@@ -5499,4 +5499,235 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Delivery: In-person collection upon presentation of appointment receipt slip and CIN.
 
 ---
+
+## Section 26 — Batch 24 Research Dossiers: Nicaragua (NI), Honduras (HN), El Salvador (SV), Bolivia (BO), Paraguay (PY), Andorra (AD)
+
+*Batch 24 research completed: 2026-10-21. Primary statutory dossiers established from official legislation (Nicaraguan Ley N° 761 General de Migración y Extranjería & Decreto N° 31-2012, Honduran Ley de Migración y Extranjería Decreto N° 208-2003 & INM regulations, Salvadoran Ley Especial de Migración y Extranjería Decreto N° 286, Bolivian Ley N° 370 de Migración & Decreto Supremo N° 1923, Paraguayan Ley N° 222/1993 Orgánica de la Policía Nacional & aranceles reglamentarios, Andorran Llei de la nacionalitat & Decret regulador de les taxes d'expedició dels passaports biomètrics), administering national authorities (Nicaragua DGME / MINT, Honduras INM, El Salvador DGME, Bolivia DIGEMIG / MinGob, Paraguay Departamento de Identificaciones de la Policía Nacional, Andorra Servei de Tràmits del Govern d'Andorra), and government electronic service portals (`mint.gob.ni`, `inm.gob.hn`, `migracion.gob.sv`, `migracion.gob.bo`, `identificaciones.gov.py`, `tramits.ad`).*
+
+---
+
+### 26.1 Nicaragua (NI / NIC) — Dirección General de Migración y Extranjería (DGME), Ministerio del Interior (MINT)
+
+- **Administering Authority:** Dirección General de Migración y Extranjería (DGME), Ministerio del Interior (MINT), República de Nicaragua
+- **Primary Portals:**
+  - Portal de Trámites Consulares / DGME: `https://tramitesconsulares.mint.gob.ni/`
+  - Ministerio del Interior (MINT): `https://mint.gob.ni/`
+  - Portal Oficial DGME: `https://www.migob.gob.ni/`
+- **Statutory Framework:**
+  - Ley N° 761 («Ley General de Migración y Extranjería», La Gaceta Diario Oficial N° 124 y 125, 2011)
+  - Decreto Ejecutivo N° 31-2012 («Reglamento de la Ley General de Migración y Extranjería»)
+  - Resoluciones Ministeriales y Tarifas de Aranceles Migratorios
+- **Domestic Fee Schedule (pegged to USD, payable in Córdoba Oro — NIO at the official Banco Central de Nicaragua exchange rate):**
+  - **Pasaporte Ordinario Biométrico:**
+    - **Adult (16 years and older, 10-year validity):** **USD $21.56** (equivalent to approx. **C$ 789.61 NIO**; statutory base C$ 750.00).
+    - **Minor (under 16 years, 5-year validity):** **USD $10.77** (equivalent to approx. **C$ 394.44 NIO**; statutory base C$ 375.00).
+    - **Senior Citizens / Jubilados (INSS pension cardholders):** **50% statutory discount** (approx. **C$ 375.00 NIO**).
+  - **Trámite de Agilización (Expedited processing surcharges):**
+    - 24-hour delivery: **+USD $8.62** (approx. C$ 315.00 NIO).
+    - 48-hour delivery: **+USD $7.18** (approx. C$ 262.00 NIO).
+    - 72-hour delivery: **+USD $5.74** (approx. C$ 210.00 NIO).
+  - **Formulario de Solicitud de Trámite Migratorio:** C$ 5.00 NIO.
+  - **Turnaround:** Regular service: **8 to 15 working days**; Agilizado: **24, 48, or 72 hours**.
+  - **Payment Channel:** Direct deposit at commercial banks (Banpro, Banco Lafise Bancentro, BDF) with official fiscal receipt, or DGME cashier counter.
+  - **Evidence confidence: `DIRECT`** — confirmed via Ley N° 761 and MINT official publications.
+- **Consular Fee Schedule:**
+  - Via consular platform (`tramitesconsulares.mint.gob.ni`):
+    - Passport booklet fee: **USD $50.00** (plus consular handling / courier fees depending on mission).
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Citizenship & Civil Status:** Original updated Birth Certificate (*Certificado de Nacimiento emitido por el Registro Central de las Personas*) in good condition.
+  - **National Identity Card:** Cédula de Identidad Ciudadana nicaragüense (original and readable photocopy).
+  - **Payment Voucher:** Original bank deposit slip with bank teller stamp.
+  - **For minors (under 16):** Original birth certificate; original and copies of Cédulas of both parents; physical presence of both parents or notarized power of attorney (*Poder Especial / Autorización de Salida y Trámite de Pasaporte*) if one parent is absent or resides abroad (consular authorization).
+  - **Renewal:** Presentation of expiring/expired passport booklet.
+  - **Lost/Stolen/Damaged:** Formal police report (*Denuncia ante la Policía Nacional*) detailing loss/theft; sworn declaration.
+  - **Biometrics:** Mandatory live photo, electronic fingerprint scan, and digital signature at DGME Central Headquarters (Managua) or SERTRAMI (*Servicios de Trámites Migratorios*) offices across all departments.
+
+---
+
+### 26.2 Honduras (HN / HND) — Instituto Nacional de Migración (INM)
+
+- **Administering Authority:** Instituto Nacional de Migración (INM), República de Honduras
+- **Primary Portals:**
+  - Instituto Nacional de Migración: `https://inm.gob.hn/`
+  - Portal de Trámites del Gobierno de Honduras: `https://tramiteshonduras.hn/`
+  - Dirección Nacional de Pasaportes: `https://dnh.gob.hn/`
+- **Statutory Framework:**
+  - Ley de Migración y Extranjería (Decreto Legislativo N° 208-2003)
+  - Reglamento de la Ley de Migración y Extranjería y Acuerdo de Tarifas del INM
+- **Domestic Fee Schedule (denominated in USD, payable in Lempiras — HNL at the prevailing daily bank exchange rate):**
+  - **Pasaporte Electrónico Biométrico:**
+    - **5-year validity (Minors under 21, or Adults 21+ choosing 5-year):** **USD $35.00**
+    - **10-year validity (strictly for Citizens aged 21 and older):** **USD $50.00**
+  - **Cita de Emergencia (Emergency appointment fast-track surcharge):** **+USD $20.00** (e.g., total USD $55.00 for 5-year or USD $70.00 for 10-year).
+  - **Cita Reprogramada (Rescheduling penalty):** **USD $5.00**.
+  - **Turnaround:** Same day or **24 to 48 hours** following in-person appointment.
+  - **Payment & Appointment Channel:** The appointment is purchased directly by paying the fee at authorized commercial banks (Banrural, Banco Atlántida, Banco de Occidente, Banpaís, Banco Ficohsa, Davivienda, Banhcafé, Banco Lafise) upon presenting the citizen's DNI. The printed bank voucher contains the assigned appointment date, time, and INM office location.
+  - **Evidence confidence: `DIRECT`** — established on `inm.gob.hn`.
+- **Consular Fee Schedule:**
+  - Via Honduran Consulates General abroad (e.g. United States, Spain, Central America):
+    - 5-year passport: **USD $60.00**
+    - 10-year passport: **USD $75.00**
+  - **Evidence confidence: `DIRECT`** — verified via official consular tariff registers.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Documento Nacional de Identificación (DNI) original and copy issued by the Registro Nacional de las Personas (RNP).
+  - **Bank Appointment Voucher:** Original official payment receipt from the bank showing appointment details.
+  - **For Adult Married Women wishing to use spouse's surname:** Original Certificación de Acta de Matrimonio issued by RNP.
+  - **For Minors (under 21):**
+    - Original Certificación de Acta de Nacimiento (recent, from RNP).
+    - If aged 18 to 20: Original DNI and copy.
+    - Mandatory presence of both parents with original DNIs and copies.
+    - If one parent absent: Notarized authorization / power of attorney (*Poder Especial*) granted before a Honduran Notary Public or consular authorization if abroad; original death certificate if deceased.
+  - **Renewal:** Previous passport booklet presented for physical cancellation.
+  - **Lost/Stolen:** Police report issued by Dirección Policial de Investigaciones (DPI) and sworn declaration.
+  - **Biometrics:** Mandatory live biometric enrollment (digital photograph, ten-fingerprint scan, and digital signature) at INM passport production centers (Tegucigalpa, San Pedro Sula, La Ceiba, Choluteca, Juticalpa, Santa Rosa de Copán).
+
+---
+
+### 26.3 El Salvador (SV / SLV) — Dirección General de Migración y Extranjería (DGME)
+
+- **Administering Authority:** Dirección General de Migración y Extranjería (DGME), Ministerio de Justicia y Seguridad Pública, Gobierno de El Salvador
+- **Primary Portals:**
+  - Dirección General de Migración y Extranjería: `https://www.migracion.gob.sv/`
+  - Portal de Pasaporte en Línea: `https://pasaporteenlinea.migracion.gob.sv/`
+  - Ministerio de Relaciones Exteriores (Consular): `https://rree.gob.sv/`
+- **Statutory Framework:**
+  - Ley Especial de Migración y Extranjería (Decreto Legislativo N° 286, 2019)
+  - Disposiciones Generales del Presupuesto y Aranceles de Servicios Migratorios
+- **Domestic Fee Schedule (in United States Dollars — USD):**
+  - **Pasaporte Ordinario Biométrico:**
+    - Standard issuance, renewal, or replacement (Adults and Minors): flat **USD $25.00**
+    - Statutory Validity: **6 years** across all categories (both adults and minors).
+  - **Home delivery courier surcharge (via `pasaporteenlinea.migracion.gob.sv`):** approx. **+USD $5.00** (domestic postal delivery).
+  - **Turnaround:** On-the-spot printing at branch office (typically **20 to 45 minutes** from ticket call).
+  - **Payment Channels:** Paid at the DGME branch colecturía via cash, credit/debit card, or Bitcoin, or online through the government electronic payment gateway.
+  - **Evidence confidence: `DIRECT`** — verified on `migracion.gob.sv`.
+- **Consular Fee Schedule:**
+  - Consular issuance via Salvadoran Embassies / Consulates:
+    - Within Central America: **USD $40.00**
+    - Outside Central America (United States, Canada, Europe, Rest of World): **USD $60.00**
+  - **Evidence confidence: `DIRECT`** — confirmed via `rree.gob.sv`.
+- **Civil Identity & Document Checklists:**
+  - **Adult Citizens (18+):**
+    - Documento Único de Identidad (DUI) original, current, and in good physical condition.
+    - Payment receipt of USD $25.00.
+    - Previous passport booklet (if renewing).
+  - **Minor Citizens (under 18):**
+    - Certificación de Partida de Nacimiento original and recent.
+    - Accompanied by both father and mother with their respective current DNIs/DUIs (or valid foreign passports if non-citizens).
+    - If one parent absent: Notarized authorization (*Poder Notarial con facultad expresa*) or consular authorization executed before a Salvadoran Consul.
+  - **Appointment & Lodgment:** Walk-in without mandatory prior appointment (*por orden de llegada*) at all DGME sucursales nationwide (San Salvador Salvador del Mundo, Cascadas, Plaza Mundo Soyapango, Santa Ana, San Miguel, Usulután). Online renewal available for adults residing domestically via `pasaporteenlinea.migracion.gob.sv`.
+  - **Biometrics:** Mandatory live photo, fingerprint capture, and digital signature on-site.
+
+---
+
+### 26.4 Bolivia (BO / BOL) — Dirección General de Migración (DIGEMIG)
+
+- **Administering Authority:** Dirección General de Migración (DIGEMIG), Ministerio de Gobierno, Estado Plurinacional de Bolivia
+- **Primary Portals:**
+  - Dirección General de Migración: `https://migracion.gob.bo/`
+  - Ministerio de Gobierno: `https://mingobierno.gob.bo/`
+  - Cancillería de Bolivia (Consular): `https://cancilleria.gob.bo/`
+- **Statutory Framework:**
+  - Ley N° 370 de Migración (8 de mayo de 2013)
+  - Decreto Supremo N° 1923 (Reglamento de la Ley N° 370)
+  - Resoluciones Ministeriales del Ministerio de Gobierno reguladoras de las tasas migratorias
+- **Domestic Fee Schedule (denominated in Unidades de Fomento de Vivienda — UFV and Bolivianos — BOB):**
+  - **Pasaporte Electrónico Biométrico de Lectura Mecánica con Chip:**
+    - Standard adult ordinary passport (5-year validity): **155 UFV + 200,00 Bs.**
+    - Total approximate cost: **563,00 Bs. to 585,00 Bs.** (fluctuates daily with the official Banco Central de Bolivia UFV index; base statutory 563 Bs).
+  - **Turnaround:** **24 to 72 hours** (typically 2 to 3 working days at departmental capitals).
+  - **Payment Process:** Applicants must first present their documentation at the DIGEMIG verification counter to obtain an official payment authorization slip (*orden de pago*). The fee is then paid at the on-site or adjacent Banco Unión teller window into the fiscal account of the Tesoro General de la Nación (TGN) / Ministerio de Gobierno, or via authorized digital QR payment.
+  - **Evidence confidence: `DIRECT`** — confirmed on `migracion.gob.bo`.
+- **Consular Fee Schedule:**
+  - Consular issuance via Bolivian Embassies and Consulates General (e.g., Argentina, Spain, Chile, United States):
+    - Ordinary electronic passport: **USD $85.00 to $90.00 / EUR €80.00**.
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Identity:** Cédula de Identidad (CI) original and valid, issued by the Servicio General de Identificación Personal (SEGIP).
+  - **Electoral Compliance:** Certificado de Sufragio of the latest national election, or Certificate of Exemption (*Certificado de Exención / Impedimento*) issued by the Órgano Electoral Plurinacional (OEP).
+  - **Formulario de Solicitud de Pasaporte:** Completed online or generated at the intake desk.
+  - **Bank Deposit Voucher:** Original Banco Unión deposit receipt bearing teller stamp and authorization code.
+  - **For Minors (under 18):**
+    - Minor's original CI (SEGIP) and original Birth Certificate.
+    - Physical presence of both parents with original valid CIs.
+    - If one parent absent: Sworn authorization legalized by a Notary Public (*Poder Notariado con autorización expresa*) or court order issued by the Juzgado de la Niñez y Adolescencia.
+  - **Renewal:** Previous passport booklet submitted for cancellation.
+  - **Lost/Stolen:** Prior formal police report filed with the Fuerza Especial de Lucha Contra el Crimen (FELCC) and certification issued by Interpol Bolivia.
+  - **Biometrics:** Mandatory live enrollment (ICAO 9303 compliant photo, ten-fingerprint scan, electronic signature) at DIGEMIG departmental directorates (La Paz, Santa Cruz, Cochabamba, Oruro, Potosí, Chuquisaca, Tarija, Beni, Pando).
+
+---
+
+### 26.5 Paraguay (PY / PRY) — Departamento de Identificaciones de la Policía Nacional
+
+- **Administering Authority:** Departamento de Identificaciones de la Policía Nacional, Ministerio del Interior, República del Paraguay
+- **Primary Portals:**
+  - Departamento de Identificaciones: `https://www.identificaciones.gov.py/`
+  - Dirección Nacional de Migraciones (DNM): `https://www.migraciones.gov.py/`
+  - Ministerio de Relaciones Exteriores: `https://www.mre.gov.py/`
+- **Statutory Framework:**
+  - Ley N° 222/1993 («Orgánica de la Policía Nacional»)
+  - Ley N° 6984/2022 («De Migraciones»)
+  - Decretos del Poder Ejecutivo y Resoluciones de la Comandancia de la Policía Nacional sobre Aranceles Policiales
+- **Domestic Fee Schedule (in Paraguayan Guaraníes — PYG):**
+  - **Pasaporte Policial Ordinario (5-year validity for adults and minors):**
+    - Standard issuance, renewal, or duplicate: **240.000 Gs.** (Guaraníes).
+  - **Turnaround:** **15 to 30 working days** at Central Headquarters (Asunción); up to 45 days at regional departmental offices.
+  - **Payment Channel:** Paid directly at the cashier desk (*Percepción de Aranceles*) inside the Departamento de Identificaciones.
+  - **Evidence confidence: `DIRECT`** — verified via official tariff publications on `identificaciones.gov.py`.
+- **Consular Fee Schedule:**
+  - Via Paraguayan Consulates General abroad (e.g. Buenos Aires, Madrid, São Paulo, Washington, New York):
+    - Consular passport: **USD $55.00 to $65.00 / EUR €55.00**.
+  - **Evidence confidence: `DIRECT`** — confirmed via MRE consular tariff schedules.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Cédula de Identidad Civil paraguaya original and photocopy (must be current and in good state; if expired, national ID must be renewed simultaneously or beforehand).
+  - **Tax Compliance Certificate:** Certificado de Cumplimiento Tributario (C.C.T.) or Constancia de No Ser Contribuyente issued electronically by the Dirección Nacional de Ingresos Tributarios (DNIT / formerly SET).
+  - **Previous Passport:** Required for inspection and cancellation if renewing.
+  - **For Minors (under 18):**
+    - Minor's Cédula de Identidad Civil.
+    - Parents' Cédulas de Identidad Civil.
+    - If accompanied by both parents: Signing of the official authorization book (*Libro de Actas de Autorización para Viajar*) at the Identificaciones desk.
+    - If accompanied by only one parent: Judicial authorization issued by a Juzgado de Paz or Juzgado de la Niñez y la Adolescencia (*Venia de Viaje judicial*).
+  - **Lost/Stolen:** Formal police report (*Denuncia de extravío*) filed at the nearest Comisaría de la Policía Nacional.
+  - **Biometrics:** Mandatory in-person enrollment (biometric photography, ten-print digital fingerprinting, electronic signature capture) at Sede Central (Av. Boggiani y R.I. 3 Ytororó, Asunción) or departmental regional subdivisions (Ciudad del Este, Encarnación, Concepción, etc.).
+
+---
+
+### 26.6 Andorra (AD / AND) — Servei de Tràmits del Govern d'Andorra
+
+- **Administering Authority:** Servei de Tràmits / Ministeri de Justícia i Interior, Govern d'Andorra, Principat d'Andorra
+- **Primary Portals:**
+  - Portal de Tràmits del Govern d'Andorra: `https://www.tramits.ad/`
+  - Seu Electrònica (e-Tràmits): `https://e-tramits.ad/`
+  - Portal Oficial del Govern d'Andorra: `https://www.govern.ad/`
+  - Portal Jurídic del Principat d'Andorra: `https://www.portaljuridicandorra.ad/`
+- **Statutory Framework:**
+  - Llei qualificada de la nacionalitat andorrana (del 5 d'octubre de 1995 i reformes)
+  - Reglament d'expedició dels passaports ordinaris biomètrics del Principat d'Andorra
+  - Decret regulador de les taxes d'expedició dels documents d'identitat i de viatge
+- **Domestic Fee Schedule (in Euros — EUR €):**
+  - **Passaport Ordinari Biomètric:**
+    - **Adults (persons aged 20 years and older, 10-year validity):** **49,31 €**
+    - **Minors (children and youth under 20 years, 5-year validity):** **32,16 €**
+  - **Passaport Provisional d'Urgència (1-year validity):** **24,66 €**
+  - **Turnaround:** Standard statutory resolution up to 60 working days; in practice delivered within **5 to 15 working days**.
+  - **Payment Channel:** Paid directly at the Servei de Tràmits cashier desk (credit/debit card or cash) or online through the e-tramits electronic portal.
+  - **Evidence confidence: `DIRECT`** — retrievable directly from `tramits.ad` and `portaljuridicandorra.ad`.
+- **Consular / Overseas Issuance:**
+  - Available through accredited Embassies of the Principality of Andorra (Madrid, Paris, Brussels) for citizens residing abroad.
+  - Fees identical to domestic tariff (€49,31 / €32,16).
+  - **Evidence confidence: `DIRECT`**.
+- **Civil Identity & Document Checklists:**
+  - **Proof of Andorran Nationality:** Certificat de nacionalitat andorrana or Llibre de Família / Certificat de naixement (*Registre Civil d'Andorra*).
+  - **Form:** Official passport application form (*Sol·licitud d'expedició de passaport ordinari*).
+  - **Previous Document:** Previous Andorran passport for renewal or cancellation.
+  - **Biometric Enrollment & Photographic Requirements:**
+    - Live photography taken directly on-site in the specialized biometric booth at the Servei de Tràmits (exemptions for infants under 6 or persons with physical impediments who must provide one 35x45 mm physical photo on light background).
+    - Fingerprints and digital signature mandatory from age 12 and above (children under 12 and physically incapacitated persons are legally exempt from fingerprinting and signing).
+  - **For Minors (under 20):** Application submitted by legal representative (parents or legal guardians); parents' valid identity documents; proof of legal representation.
+  - **Lost/Stolen/Damaged:** Formal police complaint report (*Denúncia prèvia*) issued by the Cos de Policia d'Andorra.
+  - **Application Location:** Servei de Tràmits del Govern (Edifici Administratiu del Govern, C/ Prat de la Creu 62-64, Andorra la Vella) or participating Comuns (Ordino, Encamp, La Massana, etc.).
+
+---
+
 
