@@ -38,6 +38,7 @@
 | **Phase V** | `TASK-V1` | Global Jurisdiction Completion — Batch 12 (BW, NA, ZM, ZW, AO, MZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 12 complete; Proceed to Batch 13 |
 | **Phase W** | `TASK-W1` | Global Jurisdiction Completion — Batch 13 (CR, PA, DO, GT, JM, TT) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 13 complete; Proceed to Batch 14 |
 | **Phase X** | `TASK-X1` | Global Jurisdiction Completion — Batch 14 (EE, LV, LT, LU, MT, CY) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 14 complete; Proceed to Batch 15 |
+| **Phase Y** | `TASK-Y1` | Global Jurisdiction Completion — Batch 15 (MK, MD, ME, XK, MC, SM) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 15 complete; Proceed to Batch 16 |
 
 ---
 
@@ -584,3 +585,27 @@
   - **MT:** Passports Act (Chap 61) and Passports Regulations confirmed DIRECT on `identita.gov.mt`: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent service (4 hours): €160.00 adult / €80.00 minor; lost replacement supplement +€15.00. Form A + Maltese ID card + Section 7 recommender endorsement; appointments via `passportbooking.identita.gov.mt`.
   - **CY:** Civil Registry Law and Passports Regulations confirmed DIRECT on `moi.gov.cy/crmd` and `gov.cy`: Standard biometric passport: Adult 18+ (10-yr) €70.00; Minor <18 (5-yr) €45.00; fast-track accelerated surcharge +€50.00 (total €120 adult / €95 minor, 48–72h); lost/damaged replacement fee doubles to €140 adult / €90 minor. Cypriot ID card (Δελτίο Ταυτότητας) mandatory; parental consent via CY Login; biometrics at District Administration Offices or Citizen Service Centres (KEP).
 - **Next Actionable Task:** Batch 15 Official Source Research (suggested cohort: Western Balkans & Eastern European sovereign nations: e.g. North Macedonia MK, Moldova MD, Montenegro ME, Kosovo XK, or Asian/Pacific sovereign cohort).
+
+
+---
+
+### Phase Y: Global Jurisdiction Completion — Batch 15 (MK, MD, ME, XK, MC, SM)
+- **Task ID:** `TASK-Y1`
+- **Scope & Acceptance Criteria:** Primary statutory research for North Macedonia (MK), Moldova (MD), Montenegro (ME), Kosovo (XK — Project-Specific Identifier), Monaco (MC), and San Marino (SM). All 6 Southeastern European and European sovereign microstate jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers authored in Section 17 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit entries written in Section 18 of `SOURCE_AUDIT_REGISTER.md`. All statutory tariffs, booklet/administrative tax component splits, urgent/72-hour turnaround surcharges, fee reduction schemes for children and pensioners, civil ID prerequisites, and official gazette loss publication costs confirmed with `DIRECT` confidence from official acts, decrees, and government portal sources.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited`, added Section 2.1 Project-Specific Identifier entry for XK, and authored Section 17 Batch 15 dossiers for MK, MD, ME, XK, MC, SM.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 18 claim audit table with 18 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase Y deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes & Discrepancy Audits:**
+  - **MK:** MVR statutory tariffs confirmed DIRECT from `mvr.gov.mk`: Regular 15-day service: Persons over 27 (10-yr) 2.300 MKD (2.000 booklet + 300 tax); age 4–27 (5-yr) 1.700 MKD (1.500 booklet + 200 tax); under 4 (2-yr) 1.600 MKD (1.500 booklet + 100 tax). Urgent fast-track: Over 27 6.400 MKD / Age 4–27 6.300 MKD / Under 4 6.200 MKD. Lost passport publication in the Official Gazette (*Службен весник*): +75 MKD. Lična karta mandatory; Prespa Agreement constitutional name "Republic of North Macedonia" strictly enforced.
+  - **MD:** ASP statutory tariff transition confirmed DIRECT from `asp.gov.md`: Mandatory discrepancy documented: Government Decision and ASP announcements (2026-07-29 & 2026-09-25) established the new standard 20-working-day fee at **790 MDL** for the new-generation EU-standard biometric booklet circulating from 15 October 2026, while the legacy static service card historically displayed **650 MDL**. Both values and their transition rationale are documented in the audit ledger. Faster tiers (10d, 5d, 1d, same-day) and MDelivery delivery confirmed. Buletin de identitate with IDNP mandatory.
+  - **ME:** MUP statutory fees confirmed DIRECT from `gov.me`: Executive reform announced by DG Baković (Art. 224404) confirmed the statutory decrease of the passport form fee to 8.00 €. Adult total (age 21+, 10-yr) is **33.00 €** (8.00 € form fee + 25.00 € administrative tax under Tariff No. 21). Minors under 21 are exempt from the 25.00 € administrative tax under Article 16 of the Law on Administrative Fees and pay only the **8.00 €** form fee. Legacy/unreformed cards quoting 40.00 € or 50.00 € resolved. Biometrijska lična karta mandatory; 15 working days turnaround.
+  - **XK:** Law No. 03/L-132 and Administrative Instruction MIA No. 06/2018 confirmed DIRECT from `mpb.rks-gov.net` and `gzk.rks-gov.net`: Regular service: Adult 18+ (10-yr) 30.00 €; Minor 0–18 (3-yr / 5-yr) 20.00 €; Pensioner 65+ 15.00 €; Urgent fast-track (72 hours): surcharge +50.00 € (total 80.00 € adult / 70.00 € minor). Letërnjoftim mandatory for 16+; municipal QPD in-person biometrics. Explicitly noted: XK is a project-specific identifier, not an official ISO 3166-1 alpha-2 assignment.
+  - **MC:** Sovereign Ordinance No. 8.459 of 15 January 2021 (Journal de Monaco No. 8526) confirmed DIRECT: Adults (18+, 10-yr) 90.00 €; Minors 3–17 (5-yr) 60.00 €; Children under 3 (3-yr) 30.00 €. Payable strictly in cash or cheque to Trésorerie Générale des Finances (bank cards not accepted at Sûreté Publique counter). Monegasque nationality + Carte d'identité monégasque mandatory; children under 12 exempt from fingerprinting.
+  - **SM:** Legge 81/2004 and Rev. Carta dei Servizi Stato Civile 2025 confirmed DIRECT from `gov.sm`: Adults & 14+ (10-yr) € 100.00; Minors 3–14 (5-yr) € 50.00; Children 0–3 (3-yr) € 30.00; Urgent delivery (3 working days) surcharge: +€ 50.00. Sammarinese citizenship required; Codice ISS + Carta d'Identità sammarinese mandatory; application in person at Ufficio Stato Civile Borgo Maggiore; consular via Dipartimento Affari Esteri.
+- **Next Actionable Task:** Batch 16 Official Source Research (suggested cohort: Central Asian & South Caucasus / Western Asian sovereign nations: e.g. Kyrgyzstan KG, Tajikistan TJ, Mongolia MN, Bhutan BT, Maldives MV, or Latin American/Caribbean cohort).

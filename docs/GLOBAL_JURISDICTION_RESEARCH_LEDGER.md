@@ -149,10 +149,10 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MU** | MUS | Mauritius | Sovereign State | Passport and Immigration Office (PIO) — `https://passport.govmu.org/` | `primary_sources_audited` | Passports Act regulations: Adults (16–54, 10-yr) MUR 700; Minors (<16, 5-yr) / Seniors (55+) / Disabled: MUR 400 (DIRECT). Lost/damaged penalty: 1st loss MUR 5,000; 2nd loss MUR 15,000; subsequent MUR 15,000. NIC + original birth certificate mandatory; Police loss declaration; Form PF 136 in-person at PIO Port Louis or district divisional HQs. |
 | **YT** | MYT | Mayotte | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **FM** | FSM | Micronesia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MD** | MDA | Moldova | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MC** | MCO | Monaco | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MD** | MDA | Moldova | Sovereign State | Agenția Servicii Publice (ASP — `asp.gov.md`) | `primary_sources_audited` | ASP statutory tariffs: Standard 20-working-day fee transitioning from 650 MDL to 790 MDL effective Oct 2026 under new European-standard biometric booklet model (DIRECT; discrepancy between media release and legacy service card documented). Faster tiers: 10 days, 5 days, 1 day, same-day. Buletin de identitate (ID) mandatory for 16+; biometrics at ASP multifunctional centers or via MDelivery. |
+| **MC** | MCO | Monaco | Sovereign State | Direction de la Sûreté Publique (`gouv.mc` / `monservicepublic.gouv.mc`) | `primary_sources_audited` | Ordonnance Souveraine n° 8.459 du 15 janvier 2021: Adult 18+ (10-yr) 90.00 €; Minor 3–17 (5-yr) 60.00 €; Child <3 (3-yr) 30.00 € (DIRECT). Payment strictly in cash or cheque to Trésorerie Générale des Finances (cards not accepted). Monegasque nationality + Carte d'identité monégasque mandatory; biometrics (prints 12+) at Sûreté Publique. |
 | **MN** | MNG | Mongolia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **ME** | MNE | Montenegro | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **ME** | MNE | Montenegro | Sovereign State | Ministarstvo unutrašnjih poslova (MUP — `gov.me`) | `primary_sources_audited` | MUP statutory fees (per reform & Law on Admin Fees): Adult 21+ (10-yr) 33.00 € (8 € booklet + 25 € admin tax; reduced from 40 €); Minor <21 (exempt from admin tax) 8.00 € (DIRECT). Legacy/unreformed cards quoting 50 € resolved. Biometric ID card (Biometrijska lična karta) mandatory; in-person biometrics at MUP regional branch; 15 working days turnaround. |
 | **MS** | MSR | Montserrat | Territory / Special Region | Immigration Department Montserrat (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **MA** | MAR | Morocco | Sovereign State | Ministère de l'Intérieur / Direction Générale de la Sûreté Nationale | `primary_sources_audited` | Primary source audited (Batch 5). Code général des impôts statutory tariff: e-Timbre fiscal 500 DH (16-digit code via passeport.ma); 5-year validity (adults and minors); 3-year (<3 yrs). Mandatory CNIE for adults; parental presence + birth certificate for minors. Submission at local Annexe administrative. |
 | **MZ** | MOZ | Mozambique | Sovereign State | Serviço Nacional de Migração (SENAMI) — `https://agendamento.senami.gov.mz/` | `primary_sources_audited` | Diploma Ministerial n.º 18/2024: Normal biometric passport (5-yr) 2.400,00 MZN; Urgent 2.775,00 MZN; Emergency Certificate 400 MZN (DIRECT). Bilhete de Identidade (BI) mandatory; birth certificate for minors; online appointment booking via agendamento.senami.gov.mz; in-person biometrics at SENAMI provincial directorates. |
@@ -166,7 +166,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **NU** | NIU | Niue | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **NF** | NFK | Norfolk Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **KP** | PRK | North Korea | Sovereign State | Ministry of Foreign Affairs / Ministry of Social Security (DPRK) — No public portal | `primary_sources_audited` | ⚠️ EFFECTIVELY INACCESSIBLE: Ordinary passports almost never issued to regular citizens. Fee data: NOT AVAILABLE. No public application channel exists. Passport issued only to state-approved workers, athletes, officials. Mandatory surrender upon return. Political clearance (songbun) required. Ordinary citizens cannot self-initiate application. |
-| **MK** | MKD | North Macedonia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MK** | MKD | North Macedonia | Sovereign State | Министерство за внатрешни работи (MVR — `mvr.gov.mk`) | `primary_sources_audited` | MVR statutory tariffs: Regular 15 days: Over 27 (10-yr) 2.300 MKD (2.000 booklet + 300 tax); Age 4–27 (5-yr) 1.700 MKD (1.500 booklet + 200 tax); Under 4 (2-yr) 1.600 MKD (1.500 booklet + 100 tax). Urgent fast-track: Over 27 6.400 MKD / Age 4–27 6.300 MKD / Under 4 6.200 MKD. Lost passport gazette publication: +75 MKD (DIRECT). Lična karta mandatory; termin.mvr.gov.mk. |
 | **MP** | MNP | Northern Mariana Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **NO** | NOR | Norway | Sovereign State | Politiet (Pass- og ID-kontor) / POD | `primary_sources_audited` | Primary source audited (Batch 4). Passforskriften 2026: Adult 16+ (10-yr) 840 NOK; Child <16 (5-yr) 510 NOK; Passport+ID combo 1,340 NOK (20% discount); Nødpass 1,320 NOK. Consular adult 1,290 NOK / child 780 NOK. Fødselsnummer required; photo/biometrics taken at police station. |
 | **OM** | OMN | Oman | Sovereign State | Directorate General of Passports & Civil Status, ROP — `https://www.rop.gov.om/` | `primary_sources_audited` | ROP official fee: Adult 18+ (10-yr) OMR 10; Minor <18 (5-yr) OMR 5 (DIRECT). Civil ID Card with PKI chip mandatory; guardian presence for minors; online via ROP app/portal using PKI or in-person at ROP service centers across wilayats. |
@@ -194,7 +194,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PM** | SPM | Saint Pierre and Miquelon | Territory / Special Region | Préfecture de Saint-Pierre-et-Miquelon (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **VC** | VCT | Saint Vincent and the Grenadines | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **WS** | WSM | Samoa | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **SM** | SMR | San Marino | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SM** | SMR | San Marino | Sovereign State | Ufficio Stato Civile / Ufficio Passaporti (`gov.sm` / `esteri.sm`) | `primary_sources_audited` | Rev. Carta dei Servizi 2025: Adults & 14+ (10-yr) € 100.00; Minors 3–14 (5-yr) € 50.00; Children 0–3 (3-yr) € 30.00; Urgent 3 working days surcharge: +€ 50.00 (DIRECT). Sammarinese citizenship required; Codice ISS + Carta d'Identità sammarinese mandatory; application at Ufficio Stato Civile Borgo Maggiore; consular via Dipartimento Affari Esteri. |
 | **ST** | STP | Sao Tome and Principe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SN** | SEN | Senegal | Sovereign State | Direction Police Étrangers & Titres Voyage (DPETV) — `https://interieur.gouv.sn/` | `primary_sources_audited` | Passeport ordinaire (5-yr) 20,000 XOF (DIRECT). Paid via quittance at Direction de l'Enregistrement, des Domaines et du Timbre (DGID/DEDT). No duplicate issued for loss: requires police loss certificate + new application at 20,000 XOF. CNI biométrique CEDEAO mandatory (15+); parental consent for minors; in-person biometrics at police stations. |
 | **RS** | SRB | Serbia | Sovereign State | Ministry of Internal Affairs (MUP / МУП) — `http://www.mup.gov.rs/` | `primary_sources_audited` | Law on Travel Documents: Standard procedure 3,600 RSD (regular up to 30d, typically 7–10d); Urgent with justified emergency (48h): 3,600 RSD; Expedited without emergency proof (48h): 8,600 RSD (DIRECT). Consular ~64 EUR (PARTIAL). Biometric Lična karta mandatory; uplatnica via eUprava or bank; in-person at local Police Directorate/Station. |
@@ -244,6 +244,12 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **ZM** | ZMB | Zambia | Sovereign State | Dept. of National Registration, Passport & Citizenship (DNRPC) — `https://www.gsb.gov.zm/` | `primary_sources_audited` | ZamPortal official tariff: Ordinary 32-pg (10-yr adult) ZMW 320.00; Express 32-pg ZMW 520.00; Ordinary 48-pg ZMW 520.00; Express 48-pg ZMW 720.00; Lost replacement 32-pg ZMW 420.00 (DIRECT). National Registration Card (NRC) green card mandatory for 16+; birth certificate; referee recommendation; in-person biometrics at DNRPC offices. |
 | **ZW** | ZWE | Zimbabwe | Sovereign State | Civil Registry Department — `https://www.zimembassyberlin.gov.zw/` | `primary_sources_audited` | Statutory Instruments under Citizenship of Zimbabwe Act: Ordinary e-passport USD 170 (USD 150 base + USD 20 QR code fee); Emergency/express e-passport (48–72h) USD 250 (DIRECT). Paid strictly in USD cash or designated bank accounts (CBZ). National ID card + original long-form birth certificate mandatory; in-person at Civil Registry e-passport centers. |
 | **AX** | ALA | Åland Islands | Territory / Special Region | Åland Police Authority (Finnish Passport - Åland cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FI. General guidance applies. |
+
+### 2.1 Project-Specific Jurisdiction Addendum (Non-ISO 3166-1 Alpha-2 Assignment)
+
+| Code | Alpha-3 | Jurisdiction Name | Classification | Primary Competent Authority | Research Status | Statutory Evidence Summary & Notes |
+|:---:|:---:|---|---|---|:---:|---|
+| **XK** | XKX | Kosovo | Project-Specific Identifier (Not ISO 3166-1) | Civil Registration Agency (ARC / MPB) — `mpb.rks-gov.net` | `primary_sources_audited` | Law No. 03/L-132 / Admin. Instruction MIA No. 06/2018: Adult 18+ (10-yr) 30.00 €; Minor 0–18 (5-yr / 3-yr) 20.00 €; Pensioner 65+ 15.00 €; Urgent fast-track (72 hrs) surcharge: +50.00 € (total 80.00 € adult / 70.00 € minor) (DIRECT). Letërnjoftim mandatory for 16+; parental consent for minors; police report for lost passports. Note: XK is a user-assigned project identifier, not an official ISO 3166-1 alpha-2 code. |
 
 ---
 
@@ -3309,5 +3315,253 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Digital appointment booking / application status tracking via `gov.cy`.
   - Processing: Standard ~10–15 business days; accelerated 48–72 hours.
   - Delivery: Collected in person at the service center upon presentation of receipt slip and identity card.
+
+---
+
+
+## 17. Batch 15 — Southeastern Europe & Sovereign Microstates (MK, MD, ME, XK, MC, SM)
+
+### 17.1 North Macedonia (MK / MKD) — Министерство за внатрешни работи (МВР)
+
+- **Administering Authority:** Министерство за внатрешни работи (Ministry of Internal Affairs - MVR), Republic of North Macedonia
+- **Primary Portals:**
+  - Official MVR Civil Procedures Portal: `https://mvr.gov.mk/mk-MK/uslugi/gragjanski-postapki`
+  - MVR English Services Portal: `https://mvr.gov.mk/en-GB/uslugi/gragjanski-postapki`
+  - Official Electronic Appointment Scheduling: `https://termin.mvr.gov.mk/`
+- **Statutory Framework:**
+  - Закон за патните исправи на државјаните на Република Северна Македонија (Law on Travel Documents of Citizens of RNM) and Tariff Regulation on Booklet Costs and Administrative Taxes.
+- **Domestic Fee Schedule (in Macedonian Denars — MKD):**
+  - **Regular Procedure (Редовна постапка — turnaround within 15 working days):**
+    - **Persons over 27 years old (10-year validity):** **2.300 MKD** (Booklet/образец 2.000 MKD + administrative tax 300 MKD).
+    - **Persons aged 4 to 27 years (5-year validity):** **1.700 MKD** (Booklet 1.500 MKD + administrative tax 200 MKD).
+    - **Children under 4 years (2-year validity):** **1.600 MKD** (Booklet 1.500 MKD + administrative tax 100 MKD).
+  - **Urgent Procedure (Итна постапка — fast-track turnaround within 48–72 hours):**
+    - **Persons over 27 years old:** **6.400 MKD** (Booklet 6.100 MKD + administrative tax 300 MKD).
+    - **Persons aged 4 to 27 years:** **6.300 MKD** (Booklet 6.100 MKD + administrative tax 200 MKD).
+    - **Children under 4 years:** **6.200 MKD** (Booklet 6.100 MKD + administrative tax 100 MKD).
+  - **Lost / Stolen / Damaged Passport:**
+    - Mandatory statutory announcement/publication in the Official Gazette of the Republic of North Macedonia (*Службен весник на РСМ*): **75 MKD** supplement.
+    - Standard or urgent replacement booklet and administrative tax applied in full.
+  - **Validity:**
+    - Persons aged 27 and older: **10 years**
+    - Persons aged 4 to 27: **5 years**
+    - Children under 4: **2 years**
+  - **Evidence confidence: `DIRECT`** — established by MVR regulations and verified on `mvr.gov.mk`.
+- **Consular Fee Schedule:**
+  - Via Diplomatic and Consular Missions (DCP) of North Macedonia abroad.
+  - Regular biometric passport overseas: €54–€60 (or USD equivalent) depending on age category.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular tariffs apply.
+- **Civil Identity & Document Checklists:**
+  - **Identity Document:** Valid National Identity Card (*Лична карта*) or previously issued passport booklet.
+  - **Birth Certificate / EMBG:** Original birth certificate (*Извод од матична книга на родени*) with Unique Master Citizen Number (*Единствен матичен број на граѓанинот - ЕМБГ*) for first-time applicants.
+  - **Biometrics:** Facial digital photo, signature, and fingerprint scan captured directly at MVR service points.
+  - **For minors (under 18):** Mandatory presence and written consent of both parents with valid identity cards.
+  - **Constitutional Name Compliance:** In accordance with the Prespa Agreement, passports with the former constitutional name ("Republic of Macedonia") expired on 12 February 2024. All issued travel documents carry the constitutional name "Republic of North Macedonia".
+- **Application & Delivery Channels:**
+  - Mandatory electronic appointment booking via `termin.mvr.gov.mk` or dedicated MVR telephone call center.
+  - In-person attendance for biometric capture at MVR regional departments (Skopje, Bitola, Kumanovo, Prilep, Tetovo, Ohrid, etc.).
+  - Delivery: Collected in person at the local MVR department upon return of the application receipt slip.
+
+---
+
+### 17.2 Moldova (MD / MDA) — Agenția Servicii Publice (ASP)
+
+- **Administering Authority:** Agenția Servicii Publice (ASP - Public Services Agency), Guvernul Republicii Moldova
+- **Primary Portals:**
+  - Official ASP Passport Services Card: `https://www.asp.gov.md/ro/servicii/persoane-fizice/acte-identitate/pasaport/155`
+  - ASP Electronic Appointment Portal: `https://programare.asp.gov.md/`
+  - Government Delivery Platform: `https://mdelivery.gov.md/`
+- **Statutory Framework:**
+  - Legea nr. 273/1994 privind actele de identitate din sistemul național de pașapoarte and Government Decisions regulating public service tariffs.
+- **Domestic Fee Schedule (in Moldovan Lei — MDL):**
+  - **Standard Timeline (20 working days):**
+    - **Reformed Statutory Tariff:** **790 MDL** (Approved under Government Decision / ASP media announcement 2026-07-29 & 2026-09-25 coinciding with circulation of the new European-standard biometric model from 15 October 2026).
+    - **Legacy Baseline Tariff:** **650 MDL** (Published historically on static service description card `asp.gov.md/.../155`).
+    - **Documented Discrepancy:** The Government approved an adjustment from 650 MDL to 790 MDL for the new-generation passport with enhanced polycarbonate data page and upgraded anti-forgery features. While news releases and updated tariff registries specify 790 MDL, legacy service portals retained 650 MDL until backend IT completion. Both figures are preserved in this audit register.
+  - **Expedited / Urgent Processing Tiers:**
+    - **10 working days:** ~1,100–1,260 MDL
+    - **5 working days:** ~1,430–1,580 MDL
+    - **1 working day (24 hours):** ~1,710–1,890 MDL
+    - **Same-day service (în ziua adresării):** ~2,000–2,130 MDL (available at designated central multifunctional centers in Chișinău).
+  - **Validity:**
+    - Adults (aged 16+): **10 years**
+    - Children aged 7 to 16: **7 years**
+    - Children under 7: **4 years**
+  - **Evidence confidence: `DIRECT`** — established by Government Decisions and published ASP announcements.
+- **Consular Fee Schedule:**
+  - Via Diplomatic Missions and Consular Offices (MDOC) of the Republic of Moldova abroad.
+  - Standard consular passport fee: ~€50.00–€60.00 base + consular fee and diplomatic pouch dispatch.
+  - **Evidence confidence: `PARTIAL`** — mission-specific diplomatic courier rates apply.
+- **Civil Identity & Document Checklists:**
+  - **Identity Card:** Valid Moldovan Identity Card (*Buletin de identitate*) with accompanying slip (*fișa de însoțire*) for applicants aged 16 and over.
+  - **IDNP:** 13-digit Personal Identification Number (*Numărul de identificare de stat al persoanei fizice - IDNP*).
+  - **Birth Certificate:** Original birth certificate required for minors or first-time applicants.
+  - **For minors (under 18):** Application submitted by a legal representative (parent, guardian); written consent of both parents if required by court or civil registry provisions.
+  - **In case of loss/theft:** Declaration of loss lodged directly with the ASP multifunctional center or police report.
+  - **Biometrics:** Digital facial photo, signature (from age 14), and two fingerprints (from age 12) captured live on-site.
+- **Application & Delivery Channels:**
+  - In-person attendance at any ASP Multifunctional Center (*Centru Multifuncțional*) across Moldova, irrespective of registration address.
+  - Online appointment reservation via `programare.asp.gov.md`.
+  - Delivery: Collected in person or delivered to the applicant's residential address via the state delivery platform MDelivery (`mdelivery.gov.md`).
+
+---
+
+### 17.3 Montenegro (ME / MNE) — Ministarstvo unutrašnjih poslova (MUP)
+
+- **Administering Authority:** Ministarstvo unutrašnjih poslova (Ministry of the Interior - MUP), Vlada Crne Gore
+- **Primary Portals:**
+  - Government of Montenegro Passport Issuance Guide: `https://www.gov.me/en/article/issuance-of-passport`
+  - Travel Documents Framework: `https://www.gov.me/en/article/travel-documents`
+  - MUP Personal Documents Portal: `https://www.gov.me/mup`
+  - Official Payment Instruction Evidence: `https://www.gov.me/dokumenta/d765c42e-bdff-4fc4-b667-dff1001d0722`
+- **Statutory Framework:**
+  - Zakon o putnim ispravama (Law on Travel Documents) and Zakon o administrativnim taksama (Law on Administrative Fees, Article 16 exemption for minors).
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Statutory Components Breakdown:**
+    - **Passport Form Fee (*Naknada za obrazac pasoša*):** **8.00 €** (decreased from the previous €15.00 form fee under the eLK/biometric document reform announced by Director-General Baković).
+    - **Administrative Tax (*Administrativna taksa*):** **25.00 €** (statutory administrative tax under Tariff Number 21).
+  - **Total Statutory Fees by Category:**
+    - **Adults (Citizens aged 21 and older, 10-year validity):** **33.00 €** (8.00 € form fee + 25.00 € administrative tax).
+    - **Children and Young Persons under 21 years:** **8.00 €** (exempt from the 25.00 € administrative tax pursuant to Article 16 of the Law on Administrative Fees; pay only the 8.00 € form fee).
+    - **Reconciled Ambiguity:** Legacy government references and older service portals frequently cited **40.00 €** (€15 form + €25 tax) or **50.00 €** (historical pre-reform total). Official Ministry of Interior executive action (Article 224404) confirmed the statutory decrease of the form fee to €8.00, establishing the current total at **€33.00** for adults and **€8.00** for youth under 21.
+  - **Validity:**
+    - Persons aged 4 and older: **10 years**
+    - Children under 4: **2 years**
+  - **Evidence confidence: `DIRECT`** — established by Law on Travel Documents, Law on Administrative Fees, and MUP executive decisions.
+- **Consular Fee Schedule:**
+  - Via Montenegrin Embassies and Consulates abroad.
+  - Consular passport fee: ~€50–€70 depending on foreign mission chancery regulations.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular charges apply.
+- **Civil Identity & Document Checklists:**
+  - **Identity Card:** Valid Biometric National Identity Card (*Biometrijska lična karta*) for citizens aged 18+.
+  - **JMBG:** Unique Master Citizen Number (*Jedinstveni matični broj građana - JMBG*).
+  - **Proof of Payment:** Bank or post office payment slips for the two designated budget accounts (form fee account and administrative tax account).
+  - **Previous Passport:** Submitted for cancellation upon renewal or collection.
+  - **For minors (under 18):** Application submitted by both parents (or one parent with certified power of attorney from the other); child must be present for live biometric photo.
+  - **Biometrics:** Live photograph, electronic signature, and two fingerprints captured on-site (children under 12 exempt from fingerprints and signature).
+- **Application & Delivery Channels:**
+  - In-person attendance at local branch/regional unit of the Ministry of the Interior (*Područna jedinica ili filijala MUP-a*) according to the applicant's place of residence.
+  - Processing: Standard statutory deadline is **15 working days** from the date of submission.
+  - Delivery: Collected in person at the MUP counter upon return of application certificate.
+
+---
+
+### 17.4 Kosovo (XK / XKX) — Agjencia e Regjistrimit Civil (ARC / MPB)
+
+- **Project Identifier Note:** `XK` is a user-assigned project identifier for Kosovo; it is **NOT** a formally assigned ISO 3166-1 alpha-2 code.
+- **Administering Authority:** Agjencia e Regjistrimit Civil (ARC - Civil Registration Agency), Ministria e Punëve të Brendshme (MPB - Ministry of Internal Affairs), Republic of Kosovo
+- **Primary Portals:**
+  - Official MPB Portal: `https://mpb.rks-gov.net/`
+  - E-Kosova State Portal: `https://ekosova.rks-gov.net/`
+  - Official Legal Gazette of Kosovo: `https://gzk.rks-gov.net/` (Administrative Instruction MIA No. 06/2018: Act ID 17663)
+- **Statutory Framework:**
+  - Ligji Nr. 03/L-132 për Dokumentet e Udhëtimit (Law on Travel Documents) and Administrative Instruction (MIA) No. 06/2018 on Procedures for Equipment with Passports.
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Standard Procedure (delivered within ~15 working days):**
+    - **Adults (aged 18+, 10-year validity):** **30.00 €**
+    - **Minors (under 18 years, 5-year or 3-year validity):** **20.00 €**
+    - **Pensioners (citizens aged 65 and older):** **15.00 €** (50% statutory reduction).
+  - **Urgent Procedure (Procedura e përshpejtuar — ready within 72 working hours):**
+    - Additional statutory surcharge: **+50.00 €** (total: **80.00 €** for adults / **70.00 €** for minors).
+    - Emergency humanitarian or medical cases may be exempted from the urgency surcharge subject to verified health board documentation.
+  - **Validity:**
+    - Adults (18+): **10 years**
+    - Minors aged 3 to 18: **5 years**
+    - Children under 3 years: **3 years**
+  - **Evidence confidence: `DIRECT`** — established by Law No. 03/L-132, Administrative Instruction No. 06/2018, and published ARC fee schedules.
+- **Consular Fee Schedule:**
+  - Via Embassies and Consulates-General of Kosovo abroad (e.g. Berlin, Bern, Vienna, Washington).
+  - Standard adult consular passport: ~60.00 € / Urgent: 110.00 €.
+  - **Evidence confidence: `PARTIAL`** — mission-specific diplomatic regulations apply.
+- **Civil Identity & Document Checklists:**
+  - **Identity Card:** Valid original Letërnjoftim (Kosovo National Identity Card) for citizens aged 16 and over.
+  - **Extract of Civil Status:** Original birth extract (*Ekstrakt i lindjes*) issued by the Civil Status Office.
+  - **For minors (under 18):** Mandatory physical presence of the minor accompanied by both parents with valid identity cards. In case of absence of one parent, a notarized authorization or competent court decision is required.
+  - **Renewal:** Submission and physical cancellation of previous passport booklet.
+  - **In case of loss/theft:** Official Police Report (*Raporti policor*) issued by Kosovo Police confirming notification of loss or theft.
+  - **Biometrics:** Digital photograph, electronic signature, and ten fingerprints captured at Document Equipment Centers (QPD). (Children under 12 exempt from fingerprints and signature).
+- **Application & Delivery Channels:**
+  - In-person attendance at the municipal Document Equipment Center (*Qendra për Pajisje me Dokumente - QPD*) in the applicant's municipality of residence.
+  - Online application tracking via `ekosova.rks-gov.net`.
+  - Delivery: Collected in person at the QPD upon presentation of application coupon and identity verification.
+
+---
+
+### 17.5 Monaco (MC / MCO) — Direction de la Sûreté Publique
+
+- **Administering Authority:** Direction de la Sûreté Publique (Division de Police Administrative), Ministère d'État / Département de l'Intérieur, Principauté de Monaco
+- **Primary Portals:**
+  - Official Government Portal: `https://en.service-public-particuliers.gouv.mc/` / `https://monservicepublic.gouv.mc/`
+  - Journal de Monaco Official Legal Gazette: `https://journaldemonaco.gouv.mc/`
+- **Statutory Framework:**
+  - Ordonnance Souveraine n° 16.584 du 22 décembre 2004 modifiée par l'Ordonnance Souveraine n° 8.459 du 15 janvier 2021 (publiée au *Journal de Monaco* n° 8526 du 19 février 2021).
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Adults (Majeurs, aged 18 and over, 10-year validity):** **90.00 €**
+  - **Minors aged 3 to 17 (Mineurs de 18 ans, 5-year validity):** **60.00 €**
+  - **Children under 3 years (Enfants de moins de 3 ans, 3-year validity):** **30.00 €**
+  - **Payment Modalities:** Payment must be settled strictly in **cash** or by **cheque** payable to *Trésorerie Générale des Finances*. Credit/debit cards are not accepted at the Sûreté Publique cashier counter.
+  - **Validity:**
+    - Adults (18+): **10 years**
+    - Minors (3–17): **5 years**
+    - Children (<3): **3 years**
+  - **Evidence confidence: `DIRECT`** — established by Ordonnance Souveraine n° 8.459 and published on `journaldemonaco.gouv.mc` and `monservicepublic.gouv.mc`.
+- **Consular Fee Schedule:**
+  - Via Monegasque Embassies and Consulates abroad (e.g. Paris, Rome, Washington).
+  - Consular fee mirrors domestic stamp fee (90.00 € adult / 60.00 € minor / 30.00 € child) plus diplomatic postal transmission charges.
+  - **Evidence confidence: `DIRECT`** — established by Sovereign Ordinance.
+- **Civil Identity & Document Checklists:**
+  - **Citizenship Requirement:** Applicant must hold Monegasque nationality (*Nationalité monégasque*). Passports are not issued to non-citizen residents of Monaco (who hold French or foreign national passports).
+  - **National Identity Card:** Valid *Carte d'identité monégasque* in original form.
+  - **Application Form:** Official *Formulaire de demande de passeport* (icharte 01 2023) completed and signed.
+  - **Photographs:** Two (2) recent, identical, non-dematerialized biometric photographs (35x45mm) meeting official standards.
+  - **Previous Passport:** Submitted for cancellation upon renewal.
+  - **For minors:** Application signed by the parent or legal guardian exercising parental authority; child must be present in person for facial verification.
+  - **Biometrics:** Children under 12 are exempt from fingerprint collection. Applicants aged 12 and over provide two biometric fingerprints and digital signature.
+  - **In case of loss/theft:** Official declaration of loss or theft (*Déclaration de perte ou vol*) lodged before the Direction de la Sûreté Publique.
+- **Application & Delivery Channels:**
+  - In-person attendance at the Direction de la Sûreté Publique (Division de Police Administrative, 4 rue Louis Notari, Monaco).
+  - Processing: Standard ~5 to 10 working days.
+  - Delivery: Collected in person at the Sûreté Publique counter by the applicant (or legal guardian for minors) upon return of receipt slip.
+
+---
+
+### 17.6 San Marino (SM / SMR) — Ufficio Stato Civile, Servizi Demografici ed Elettorali
+
+- **Administering Authority:** Ufficio Stato Civile, Servizi Demografici ed Elettorali (Ufficio Passaporti), Dipartimento Affari Istituzionali e Giustizia / Dipartimento Affari Esteri, Repubblica di San Marino
+- **Primary Portals:**
+  - Official Public Administration Portal: `https://www.gov.sm/`
+  - Ministry of Foreign Affairs (Segreteria di Stato Affari Esteri): `https://www.esteri.sm/`
+  - Service Charter (Carta dei Servizi 2025): `https://www.gov.sm/pub2/GovSM/dam/jcr%3A9a27eb14-1b4f-486d-b207-1f3b723b2d06/Rev%20Carta%20dei%20Servizi%20Stato%20Civile,%20Servizi%20Demografici%20ed%20Elettorali%202025.pdf`
+- **Statutory Framework:**
+  - Legge 16 giugno 2004 n. 81 (Norme sull'ordinamento del passaporto) and Rev. Carta dei Servizi Stato Civile, Servizi Demografici ed Elettorali 2025.
+- **Domestic Fee Schedule (in Euros — EUR):**
+  - **Standard Issuance Timeline (~10–15 business days):**
+    - **Adults and Young Persons aged 14 and over (dai 14 anni in poi, 10-year validity):** **€ 100.00**
+    - **Children aged 3 to 14 (da 3 a 14 anni non compiuti, 5-year validity):** **€ 50.00**
+    - **Infants under 3 years (da 0 a 3 anni non compiuti, 3-year validity):** **€ 30.00**
+  - **Urgent Delivery Surcharge (Procedura d'urgenza — delivery in 3 working days):**
+    - Additional **+€ 50.00** supplement (total: **€ 150.00** for adults; **€ 100.00** for children 3–14; **€ 80.00** for infants <3).
+  - **Validity:**
+    - Persons aged 14 and over: **10 years**
+    - Children aged 3 to 14: **5 years**
+    - Children under 3: **3 years**
+  - **Evidence confidence: `DIRECT`** — established by San Marino Law No. 81/2004 and verified in the official 2025 Service Charter (*Carta dei Servizi*).
+- **Consular Fee Schedule:**
+  - Via Diplomatic Missions and Consulates of the Republic of San Marino abroad (coordinated through the Dipartimento Affari Esteri).
+  - Base statutory passport fee + consular administration charges applied by foreign chancelleries.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular charges apply.
+- **Civil Identity & Document Checklists:**
+  - **Citizenship Requirement:** Exclusively available to citizens of the Republic of San Marino (*cittadini sammarinesi*).
+  - **Identification:** San Marino Identity Card (*Carta d'identità sammarinese*) and ISS Social Security Code (*Codice ISS*).
+  - **Application Form:** Official *Dichiarazione sostitutiva di certificazione per il rilascio del passaporto* fully completed, declaring civil status (single, married, widowed, separated, divorced) and absence of disqualifying criminal proceedings.
+  - **Photographs:** Two (2) recent identical biometric photographs (35x45mm) on a light background.
+  - **For minors (under 18):** Written consent of both parents (*assenso di entrambi i genitori*) or legal guardian.
+  - **Renewal:** Presentation and surrender of previous passport for cancellation.
+  - **In case of loss/theft:** Official police report (*denuncia di furto o smarrimento*) lodged before the *Corpo della Gendarmeria*, *Polizia Civile*, or competent foreign police authority.
+  - **Biometrics:** Electronic facial photograph and digital fingerprint acquisition (for applicants aged 12 and over).
+- **Application & Delivery Channels:**
+  - In-person attendance at the Ufficio Stato Civile (Via 28 Luglio n. 196, Borgo Maggiore, San Marino).
+  - Processing: Standard ~10–15 business days; urgent procedure 3 business days.
+  - Delivery: Collected in person at the Civil Status Office upon presentation of identity document and application receipt.
 
 ---
