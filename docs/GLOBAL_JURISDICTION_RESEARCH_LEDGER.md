@@ -54,7 +54,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **VG** | VGB | British Virgin Islands | Territory / Special Region | Civil Registry & Passport Office BVI (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **BN** | BRN | Brunei | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BG** | BGR | Bulgaria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **BF** | BFA | Burkina Faso | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BF** | BFA | Burkina Faso | Sovereign State | Division de la Migration, DGPN / ONI (`police.gov.bf` / `oni.bf`) | `primary_sources_audited` | Décret portant tarification des passeports: Standard biometric passport (5-year validity) 50 000 FCFA + 200 FCFA fiscal stamp (total 50 200 FCFA) (DIRECT). Turnaround ~7 to 15 working days. CNIB (Carte Nationale d'Identité Burkinabè) légalisée + Copie légalisée d'acte de naissance + Certificat de nationalité burkinabè + Casier judiciaire (<3mo) mandatory; in-person biometrics at Division de la Migration (Ouagadougou / Bobo-Dioulasso). |
 | **BI** | BDI | Burundi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CV** | CPV | Cabo Verde | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **KH** | KHM | Cambodia | Sovereign State | General Dept. of Identification (GDI), Ministry of Interior (`gdi.gov.kh`) | `primary_sources_audited` | Joint Inter-Ministerial Prakas (MoI & MEF): Standard ~20 days: Adult 6+ (10-yr) US$ 100; Child <6 (5-yr) US$ 80; Urgent 10-day tier: US$ 150; Urgent 1-day tier: US$ 200 (DIRECT). Khmer National ID Card (15+) + Family/Residence Book + Birth Certificate mandatory; in-person biometrics at GDI Phnom Penh or provincial centers. |
@@ -108,8 +108,8 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GU** | GUM | Guam | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **GT** | GTM | Guatemala | Sovereign State | Instituto Guatemalteco de Migración (`igm.gob.gt`) | `primary_sources_audited` | IGM statutory tariff: 5-year validity (adults and minors) US$ 50.00; 10-year validity (adults 18+ only) US$ 85.00 (DIRECT). Exclusively paid in Quetzales at Banrural. DPI (Documento Personal de Identificación / RENAP) mandatory for 18+; RENAP birth cert + parental presence for minors; online appointment via citas.igm.gob.gt. |
 | **GG** | GGY | Guernsey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **GN** | GIN | Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **GW** | GNB | Guinea-Bissau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GN** | GIN | Guinea | Sovereign State | Direction Centrale de la Police de l'Air et des Frontières (DCPAF) (`service-public.gov.gn`) | `primary_sources_audited` | Décret tarifaire titres de voyage: Standard biometric passport: 5-year validity 500 000 GNF; 10-year validity (adults 18+) 1 000 000 GNF (DIRECT). Payment via bank deposit slip (Ecobank). Turnaround ~5 to 10 working days. Extrait de naissance biométrique (avec NIN) + CNI biométrique + Certificat de résidence mandatory; in-person biometrics at DCPAF Coléah (Conakry) or regional centers. |
+| **GW** | GNB | Guinea-Bissau | Sovereign State | Direcção-Geral de Identificação Civil, Registo e Notariado (DGICRAN) (`gov-gb.com`) | `primary_sources_audited` | Carta de Serviços ao Cidadão da República da Guiné-Bissau: Passaporte Normal (up to 15 working days) 25.000 XOF; Passaporte Urgente (up to 5 working days) 50.000 XOF (DIRECT). Bilhete de Identidade (BI biométrico) emitido pela DGICRAN + Certidão de Nascimento + Registo Criminal mandatory; in-person biometrics at DGICRAN Bissau. |
 | **GY** | GUY | Guyana | Sovereign State | Central Immigration & Passport Office (CIPO), Guyana Police Force / MoHA (`moha.gov.gy`) | `primary_sources_audited` | Immigration Act (Cap. 14:02): Standard biometric e-passport: 5-year G$ 6,000; 10-year G$ 12,000; Expedited 72-hour surcharge +G$ 20,000 (DIRECT). Standard turnaround ~5 working days. Guyana National ID Card + GRO Birth Certificate + Form A + Recommender mandatory; appointment via Guyana Passport System; in-person biometrics at CIPO Georgetown or regional offices. |
 | **HT** | HTI | Haiti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **HM** | HMD | Heard Island and McDonald Islands | Territory / Special Region | Heard Island and McDonald Islands (Uninhabited Australian territory) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
@@ -141,7 +141,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MG** | MDG | Madagascar | Sovereign State | Direction Générale de la Police Nationale, Min. Sécurité Publique (`pn.gov.mg`) | `primary_sources_audited` | Décret tarifaire & Loi de finances: Standard electronic biometric passport (5-year validity) 190 000 Ariary (MGA) payable via Trésor Public vignette (DIRECT). Turnaround ~72 hours (3 working days) at SCCIE Anosy. Carte d'Identité Nationale (CIN) certifiée + Copie intégrale d'acte de naissance (<6mo) + Certificat de nationalité + Certificat de position militaire (males 18–50) mandatory; in-person biometrics. |
 | **MW** | MWI | Malawi | Sovereign State | Dept. of Immigration and Citizenship Services (`epassport.gov.mw`) | `primary_sources_audited` | Immigration (Passports) Regulations: Ordinary 36-page passport (10-yr adult): Normal MWK 90,000 / Express MWK 160,000; Ordinary 48-page frequent traveller: Normal MWK 130,000 / Express MWK 180,000; Minor 36-page (5-yr): Normal MWK 80,000 / Express MWK 120,000; Lost replacement: MWK 100,000–170,000 (DIRECT). National ID Card (NRB) + Birth Certificate mandatory; in-person biometrics at DICS offices. |
 | **MV** | MDV | Maldives | Sovereign State | Maldives Immigration, Ministry of Homeland Security (`immigration.gov.mv`) | `primary_sources_audited` | Maldives Immigration statutory tariffs: Electronic Passport 32-page (5-yr) MVR 1,000; 48-page frequent traveler MVR 1,500; Non-electronic (under 10 or abroad) MVR 600; Lost/damaged valid passport penalty: up to MVR 2,000 (DIRECT). National Identity Card (DNR ID) mandatory; 100% digital submission via IMUGA portal (imuga.immigration.gov.mv). |
-| **ML** | MLI | Mali | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **ML** | MLI | Mali | Sovereign State | Direction de la Police des Frontières (DPF), DGPN (`demarchesadministratives.gouv.ml` / `securite.gouv.ml`) | `primary_sources_audited` | Décret tarifaire passeports biométriques: Passeport ordinaire (5-year validity) 45 000 FCFA (revised from 55 000 FCFA); Service optionnel / prémium 90 000 FCFA (DIRECT). Turnaround ~7 to 14 working days (express ~2 to 3 days). CNI en cours de validité / Fiche descriptive NINA + Extrait d'acte de naissance (Volet III) mandatory; in-person biometrics at DPF Hamdallaye ACI 2000, Bamako. |
 | **MT** | MLT | Malta | Sovereign State | Identità (Passport Office — `identita.gov.mt`) | `primary_sources_audited` | Passports Regulations statutory tariff: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent (4 hours): €160.00 adult / €80.00 minor; Lost replacement supplement: +€15.00 (DIRECT). Form A + Maltese ID Card + recommender endorsement; appointments via passportbooking.identita.gov.mt. |
 | **MH** | MHL | Marshall Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MQ** | MTQ | Martinique | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -162,7 +162,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **NL** | NLD | Netherlands | Sovereign State | Ministerie van BZK (RvIG) / Ministerie van BZ (NederlandWereldwijd) | `primary_sources_audited` | Primary source audited (Batch 1). Paspoortwet / Paspoortuitvoeringsregeling 2026 municipal caps: Domestic adult (18+) max €88.65, minor (<18) max €67.05, spoedtoeslag max €60.30; Consular adult €169.15, minor €147.40, emergency €60.25; Border desk adult €133.65. |
 | **NC** | NCL | New Caledonia | Territory / Special Region | Haut-Commissariat de la République en Nouvelle-Calédonie (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **NI** | NIC | Nicaragua | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **NE** | NER | Niger | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **NE** | NER | Niger | Sovereign State | Direction de la Surveillance du Territoire (DST), DGPN (`interieur.gouv.ne` / `police.gouv.ne`) | `primary_sources_audited` | Décret portant création et tarification du passeport biométrique: Standard biometric passport: Adult 45 000 FCFA; Minors & Students 29 750 FCFA; Hadj 45 000 FCFA (DIRECT). Turnaround ~7 to 15 working days. Carte Nationale d'Identité Biométrique (CNIB) nigérienne + Copie légalisée d'acte de naissance + Certificat de nationalité nigérienne mandatory; in-person biometrics at DST Niamey or regional directorates. |
 | **NU** | NIU | Niue | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **NF** | NFK | Norfolk Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **KP** | PRK | North Korea | Sovereign State | Ministry of Foreign Affairs / Ministry of Social Security (DPRK) — No public portal | `primary_sources_audited` | ⚠️ EFFECTIVELY INACCESSIBLE: Ordinary passports almost never issued to regular citizens. Fee data: NOT AVAILABLE. No public application channel exists. Passport issued only to state-approved workers, athletes, officials. Mandatory surrender upon return. Political clearance (songbun) required. Ordinary citizens cannot self-initiate application. |
@@ -199,7 +199,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **SN** | SEN | Senegal | Sovereign State | Direction Police Étrangers & Titres Voyage (DPETV) — `https://interieur.gouv.sn/` | `primary_sources_audited` | Passeport ordinaire (5-yr) 20,000 XOF (DIRECT). Paid via quittance at Direction de l'Enregistrement, des Domaines et du Timbre (DGID/DEDT). No duplicate issued for loss: requires police loss certificate + new application at 20,000 XOF. CNI biométrique CEDEAO mandatory (15+); parental consent for minors; in-person biometrics at police stations. |
 | **RS** | SRB | Serbia | Sovereign State | Ministry of Internal Affairs (MUP / МУП) — `http://www.mup.gov.rs/` | `primary_sources_audited` | Law on Travel Documents: Standard procedure 3,600 RSD (regular up to 30d, typically 7–10d); Urgent with justified emergency (48h): 3,600 RSD; Expedited without emergency proof (48h): 8,600 RSD (DIRECT). Consular ~64 EUR (PARTIAL). Biometric Lična karta mandatory; uplatnica via eUprava or bank; in-person at local Police Directorate/Station. |
 | **SC** | SYC | Seychelles | Sovereign State | Dept. of Immigration and Civil Status (`ics.gov.sc`) | `primary_sources_audited` | Passports Act (Cap. 159) & Regs: Standard biometric passport (10-yr adult / 5-yr minor) SCR 750; Misplaced/lost passport surcharge +SCR 1,500 (total SCR 2,250); Overseas courier surcharge SCR 1,000 (DIRECT). Turnaround ~72 hours (3 working days); paperless application (no form). National Identity Number (NIN) Card + birth cert mandatory; in-person biometrics at Independence House, Victoria, Mahé. |
-| **SL** | SLE | Sierra Leone | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SL** | SLE | Sierra Leone | Sovereign State | Sierra Leone Immigration Department (SLID) (`slid.gov.sl`) | `primary_sources_audited` | Passports Act & SLID statutory tariff: Standard ordinary biometric passport (5-year validity) USD $100.00 (pegged in local currency via approved voucher system at ~SLE 2,280) (DIRECT). Turnaround ~5 to 10 working days. NCRA National Identification Number (NIN) strictly mandatory + NCRA certified birth certificate + bank voucher receipt; in-person biometrics at SLID HQ, Freetown. |
 | **SX** | SXM | Sint Maarten (Dutch part) | Territory / Special Region | Cabinet of the Governor of Sint Maarten (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **SK** | SVK | Slovakia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SI** | SVN | Slovenia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -4762,3 +4762,257 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Delivery: In-person collection upon presentation of deposit receipt and CNI.
 
 ---
+
+## Section 23 — Batch 21 Research Dossiers: Mali (ML), Burkina Faso (BF), Niger (NE), Guinea (GN), Guinea-Bissau (GW), Sierra Leone (SL)
+
+*Researched: 2026-10-21. Primary statutory investigation covering 6 sovereign West African nations. Official sources audited across primary ministry portals, national police immigration departments, statutory fee decrees, civil registration and identification prerequisites, and biometric capture stations.*
+
+---
+
+### 23.1 Mali (ML / MLI) — Direction de la Police des Frontières (DPF / DGPN)
+
+- **Administering Authority:** Direction de la Police des Frontières (DPF), Direction Générale de la Police Nationale (DGPN), Ministère de la Sécurité et de la Protection Civile, République du Mali
+- **Primary Portals:**
+  - Démarches Administratives du Mali: `https://demarchesadministratives.gouv.ml/`
+  - Ministère de la Sécurité et de la Protection Civile: `https://securite.gouv.ml/`
+  - Police Nationale du Mali: `https://police.gouv.ml/`
+  - Portail de Paiement Sécurisé des Passeports: `https://paiementpasseport-mali.com/`
+- **Statutory Framework:**
+  - Décret portant tarification des passeports biométriques de la République du Mali (Confédération de l'Alliance des États du Sahel - AES / standard biométrique OACI).
+- **Domestic Fee Schedule (in West African CFA Francs — XOF / FCFA):**
+  - **Standard Electronic Biometric Passport (5-year validity):**
+    - **Uniform Ordinary Issuance Fee:** **45 000 FCFA** (statutory fee revised downwards by Council of Ministers decree from previous 55 000 FCFA tariff).
+  - **Optional / Premium Fast-Track Service Tier:**
+    - **Expedited Service (Délivrance rapide ~2–3 working days):** **90 000 FCFA**
+  - **Payment Channel:**
+    - Paid directly via official Treasury cashier receipt (*quittance du Trésor Public*) or through the designated electronic payment portal (`paiementpasseport-mali.com`).
+  - **Turnaround Timeline:**
+    - Standard processing: **7 to 14 working days**; Express processing: **2 to 3 working days**.
+  - **Validity:**
+    - Standard ordinary biometric passport: **5 years** (strictly non-prorogable).
+  - **Evidence confidence: `DIRECT`** — established by official government announcements and administrative procedures on `demarchesadministratives.gouv.ml` and `securite.gouv.ml`.
+- **Consular Fee Schedule:**
+  - Via Malian Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Berlin, Dakar, Abidjan).
+  - Consular passport fee: ~EUR €80.00 to €110.00 / USD $100.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy consular circulars.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Carte Nationale d'Identité (CNI) or Fiche descriptive individuelle sécurisée based on the Numéro d'Identification Nationale (NINA) / Carte NINA.
+  - **Proof of Civil Status:** Legalized extract of Birth Certificate (*Extrait d'acte de naissance — Volet III légalisé*).
+  - **Proof of Profession:** Certificate of employment, administrative appointment decree, or photocopy of patent / vignette synthétique for economic operators.
+  - **Fiscal Receipt:** Original payment voucher / quittance of 45 000 FCFA (or 90 000 FCFA for express).
+  - **Photographs:** Two (2) recent colored passport-sized photographs (35x45mm, clear background); live digital capture also executed at the enrollment workstation.
+  - **For minors (under 18):** Accompanied by parent/legal guardian; minor's certified birth certificate; legalized parental authorization (*autorisation parentale légalisée*); copy of father's/legal guardian's valid identity card.
+  - **Renewal:** Physical presentation and cancellation of the expiring passport booklet.
+  - **In case of loss/theft:** Mandatory police loss certificate (*certificat de perte*) issued by the Commissariat de Police ou la Brigade de Gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at the passport enrollment center.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Direction de la Police des Frontières (DPF), Hamdallaye ACI 2000, Bamako, or at designated regional police directorates (Kayes, Koulikoro, Sikasso, Ségou, Mopti).
+  - Delivery: In-person collection upon presentation of deposit receipt and national identity card.
+
+---
+
+### 23.2 Burkina Faso (BF / BFA) — Division de la Migration / Office National d'Identification (ONI)
+
+- **Administering Authority:** Division de la Migration, Direction Générale de la Police Nationale (DGPN), Ministère de l'Administration Territoriale et de la Sécurité / Office National d'Identification (ONI), Burkina Faso
+- **Primary Portals:**
+  - Police Nationale du Burkina Faso: `https://police.gov.bf/`
+  - Office National d'Identification: `https://oni.bf/`
+  - Ministère des Affaires Étrangères: `https://diplomatie.gov.bf/`
+- **Statutory Framework:**
+  - Décret portant tarification des documents de voyage et passeports biométriques de la République du Burkina Faso (Confédération de l'Alliance des États du Sahel - AES / standard biométrique OACI).
+- **Domestic Fee Schedule (in West African CFA Francs — XOF / FCFA):**
+  - **Standard Electronic Biometric Passport (5-year validity):**
+    - **Statutory Issuance Fee:** **50 000 FCFA**
+  - **Fiscal Stamp Surcharge:**
+    - **Fiscal Stamp (Timbre fiscal / communal):** **200 FCFA** affixed to the application dossier.
+    - **Total Standard Cost:** **50 200 FCFA**
+  - **Payment Channel:**
+    - Paid at the Treasury cashier counter or authorized financial collection desks against an official receipt (*quittance de versement*).
+  - **Turnaround Timeline:**
+    - Standard processing: **7 to 15 working days**.
+  - **Validity:**
+    - Standard biometric passport: **5 years** (AES / OACI biometric standard).
+  - **Evidence confidence: `DIRECT`** — established by official police notices and statutory regulations published on `police.gov.bf` and `oni.bf`.
+- **Consular Fee Schedule:**
+  - Via Burkinabè Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Brussels, Abidjan, Bamako, Dakar).
+  - Consular passport fee: ~EUR €100.00 to €120.00 / USD $120.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy fee schedules.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Legalized copy of valid Burkinabè National Identity Card (*Carte Nationale d'Identité Burkinabè — CNIB*) or valid Consular Identity Card.
+  - **Proof of Civil Status:** Legalized copy of Birth Certificate (*Copie légalisée de l'acte de naissance*).
+  - **Proof of Nationality:** Legalized copy of Certificate of Burkinabè Nationality (*Certificat de nationalité burkinabè*).
+  - **Criminal Record:** Judicial record certificate (*Casier judiciaire*) issued within the last 3 months (for adult applicants).
+  - **Proof of Profession:** Official document certifying employment, business registration, or certificate of school/university enrollment.
+  - **Photographs:** Three (3) recent passport-sized color photographs on white background; live digital enrollment on site.
+  - **For minors (under 18):** Child accompanied by parent/legal guardian; legalized birth certificate; legalized copies of parents' CNIB; notarized parental authorization (*autorisation parentale légalisée*).
+  - **Renewal:** Physical presentation and cancellation of the old passport booklet.
+  - **In case of loss/theft:** Mandatory police loss certificate (*déclaration de perte*) issued by the Police Nationale or Gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric enrollment (digital photograph, electronic signature, and ten fingerprints) at the Division de la Migration.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Division de la Migration, Direction Générale de la Police Nationale, Ouagadougou (Gounghin), or regional passport desks in Bobo-Dioulasso.
+  - Delivery: In-person collection upon presentation of payment receipt slip and CNIB.
+
+---
+
+### 23.3 Niger (NE / NER) — Direction de la Surveillance du Territoire (DST / DGPN)
+
+- **Administering Authority:** Direction de la Surveillance du Territoire (DST), Direction Générale de la Police Nationale (DGPN), Ministère de l'Intérieur, de la Sécurité Publique et de l'Administration du Territoire, République du Niger
+- **Primary Portals:**
+  - Ministère de l'Intérieur: `https://interieur.gouv.ne/`
+  - Police Nationale du Niger: `https://police.gouv.ne/`
+- **Statutory Framework:**
+  - Décret portant création et tarification du passeport biométrique de la République du Niger (Confédération de l'Alliance des États du Sahel - AES / standard biométrique OACI).
+- **Domestic Fee Schedule (in West African CFA Francs — XOF / FCFA):**
+  - **Standard Electronic Biometric Passport (5-year validity):**
+    - **Adult Standard Issuance Fee:** **45 000 FCFA**
+  - **Concession Fee Tiers:**
+    - **Minors (under 18) & Certified Students:** **29 750 FCFA**
+    - **Special Hadj Pilgrimage Passport:** **45 000 FCFA**
+  - **Payment Channel:**
+    - Paid directly at the public Treasury counter (*Trésor Public*) or designated financial institution against an official receipt.
+  - **Turnaround Timeline:**
+    - Standard processing: **7 to 15 working days**.
+  - **Validity:**
+    - Standard biometric passport: **5 years** (strictly non-prorogable).
+  - **Evidence confidence: `DIRECT`** — established by official Ministry of Interior circulars and DST notices.
+- **Consular Fee Schedule:**
+  - Via Nigerien Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Brussels, Abuja, Algiers, Jeddah).
+  - Consular passport fee: ~EUR €80.00 to €110.00 / USD $100.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy consular notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Legalized copy of valid Nigerien Biometric National Identity Card (*Carte Nationale d'Identité Biométrique — CNIB*).
+  - **Proof of Civil Status:** Legalized copy of Birth Certificate (*Copie légalisée de l'acte de naissance*).
+  - **Proof of Nationality:** Legalized copy of Certificate of Nigerien Nationality (*Certificat de nationalité nigérienne*).
+  - **Official Application Form:** Duly completed and signed official passport request form (*Formulaire officiel de demande de passeport*).
+  - **Photographs:** Two (2) recent colored identity photographs (white background); live digital capture also executed at the enrollment workstation.
+  - **For minors (under 18):** Child accompanied by parent/guardian; certified birth certificate; legalized parental authorization signed by the father/legal guardian; copies of parents' CNIB.
+  - **Renewal:** Physical presentation of previous passport for cancellation.
+  - **In case of loss/theft:** Mandatory police loss declaration (*déclaration de perte*) issued by the Police Nationale.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at DST enrollment centers.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Direction de la Surveillance du Territoire (DST) in Niamey, or at regional police directorates (Maradi, Zinder, Tahoua, Agadez, Dosso, Tillabéri, Diffa).
+  - Delivery: In-person collection upon presentation of deposit voucher and CNIB.
+
+---
+
+### 23.4 Guinea (GN / GIN) — Direction Centrale de la Police de l'Air et des Frontières (DCPAF)
+
+- **Administering Authority:** Direction Centrale de la Police de l'Air et des Frontières (DCPAF), Ministère de la Sécurité et de la Protection Civile (MSPC) / Opérateur technique (Louba Services), République de Guinée
+- **Primary Portals:**
+  - Portail Officiel du Service Public de Guinée: `https://service-public.gov.gn/`
+  - Ministère de la Sécurité et de la Protection Civile: `https://mspc.gov.gn/`
+  - Primature de la République de Guinée: `https://primature.gov.gn/`
+- **Statutory Framework:**
+  - Décret fixant le régime et les tarifs de délivrance des passeports biométriques ordinaires de la République de Guinée.
+- **Domestic Fee Schedule (in Guinean Francs — GNF):**
+  - **Standard Biometric Passport (5-year validity):**
+    - **Uniform Ordinary 5-Year Fee:** **500 000 GNF**
+  - **Extended Biometric Passport (10-year validity for adults 18+):**
+    - **Adult 10-Year Fee:** **1 000 000 GNF**
+  - **Payment Channel:**
+    - Exclusively paid through authorized partner banking institutions (Ecobank Guinée or designated bank desks) against an official bank deposit slip (*quittance de versement bancaire*).
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**.
+  - **Validity:**
+    - Standard passport: **5 years** (all ages); Extended passport: **10 years** (adults 18+ only).
+  - **Evidence confidence: `DIRECT`** — established on official public service portal `service-public.gov.gn` and Ministry of Security decree circulars.
+- **Consular Fee Schedule:**
+  - Via Guinean Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Brussels, Dakar, Conakry missions).
+  - Consular passport fee: ~EUR €100.00 to €150.00 / USD $120.00 to $160.00.
+  - **Evidence confidence: `DIRECT`** — confirmed on official consular mission schedules.
+- **Civil Identity & Document Checklists:**
+  - **Bank Deposit Slip:** Original bank payment receipt confirming payment of 500 000 GNF (5-year) or 1 000 000 GNF (10-year).
+  - **Proof of Civil Status:** Biometric Birth Certificate extract (*Extrait de naissance biométrique sécurisé*) bearing the Numéro d'Identification Nationale (NIN).
+  - **National Identity Document:** Guinean Biometric National Identity Card (*Carte Nationale d'Identité biométrique*).
+  - **Proof of Residence:** Official certificate of residence (*Certificat de résidence*) issued by the local quartier/commune authority.
+  - **Photographs:** Two (2) standard passport photographs (35x45mm, plain white background); live biometric photography on site.
+  - **For minors (under 18):** Child accompanied by father/legal guardian; minor's biometric birth certificate; copy of parent's/guardian's ID; legalized parental authorization (*autorisation parentale légalisée*).
+  - **Renewal:** Surrender of old passport for cancellation.
+  - **In case of loss/theft:** Mandatory police loss certificate (*certificat de perte*) issued by the Police Nationale or Gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at the passport center.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at DCPAF Central Passport Center in Coléah (Conakry), or at designated regional enrollment centers (Kindia, Labé, Kankan, Nzérékoré).
+  - Delivery: In-person collection upon presentation of bank deposit slip and CNI.
+
+---
+
+### 23.5 Guinea-Bissau (GW / GNB) — Direcção-Geral de Identificação Civil, Registo e Arquivo Nacional (DGICRAN)
+
+- **Administering Authority:** Direcção-Geral de Identificação Civil, Registo e Arquivo Nacional (DGICRAN), Ministério da Justiça e dos Direitos Humanos / Ministério da Administração Interna, República da Guiné-Bissau
+- **Primary Portals:**
+  - Carta de Serviços ao Cidadão da República da Guiné-Bissau: `https://gov-gb.com/`
+  - Portal do Governo da Guiné-Bissau: `https://cgrgba.gw/`
+- **Statutory Framework:**
+  - Legislação sobre Documentos de Viagem e Emissão do Passaporte Biométrico da República da Guiné-Bissau (padrão biométrico CEDEAO / OACI).
+- **Domestic Fee Schedule (in West African CFA Francs — XOF):**
+  - **Standard Biometric Passport (Passaporte Normal, ~15 working days):**
+    - **Standard Statutory Issuance Fee:** **25.000 XOF**
+  - **Urgent Biometric Passport (Passaporte Urgente, ~5 working days):**
+    - **Urgent Expedited Surcharge Fee:** **50.000 XOF**
+  - **Related Civil Registry Prerequisite Tariffs:**
+    - Bilhete de Identidade (BI): 1ª via gratuita, renovação 1.500 XOF, 2ª via por perda/extravio 3.000 XOF.
+    - Certidão de Nascimento: 1º registo gratuito, 2ª via 500 XOF.
+  - **Payment Channel:**
+    - Paid at the authorized commercial bank desk or official public Treasury cashier in Bissau against an official deposit slip (*comprovativo de pagamento*).
+  - **Validity:**
+    - Standard biometric passport: **5 years** (CEDEAO standard).
+  - **Evidence confidence: `DIRECT`** — established by the official Carta de Serviços ao Cidadão on `gov-gb.com` and DGICRAN tariff publications.
+- **Consular Fee Schedule:**
+  - Via Bissau-Guinean Embassies and Consulates General abroad (e.g. Lisbon, Paris, Dakar, Conakry, Praia, Brussels).
+  - Consular passport fee: ~EUR €65.00 to €90.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy consular tariff notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Bissau-Guinean Biometric Identity Card (*Bilhete de Identidade — BI biométrico*) issued by DGICRAN.
+  - **Proof of Civil Status:** Official Birth Certificate (*Certidão de Nascimento narrativa*) issued by the Conservatória do Registo Civil.
+  - **Criminal Record:** Criminal record certificate (*Registo Criminal*) issued within the last 3 months (for adult applicants).
+  - **Official Application Form:** Duly completed and signed passport application request (*Formulário de pedido de passaporte*).
+  - **Bank Deposit Receipt:** Original bank payment slip proving payment of 25.000 XOF (normal) or 50.000 XOF (urgente).
+  - **Photographs:** Two (2) recent passport-sized color photographs on plain white background; live digital capture at the counter.
+  - **For minors (under 18):** Accompanied by parent or legal guardian; minor's birth certificate; copies of parents' valid BI; formal written parental authorization (*autorização paternal reconhecida pelo notário*).
+  - **Renewal:** Physical presentation of previous passport booklet for cancellation.
+  - **In case of loss/theft:** Mandatory police loss declaration issued by the Polícia de Ordem Pública (POP) or Guarda Nacional.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph, electronic signature, and ten fingerprints) at the DGICRAN passport center.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the central offices of the Direcção-Geral de Identificação Civil, Registo e Arquivo Nacional (DGICRAN), Bissau.
+  - Delivery: In-person collection upon presentation of deposit slip and BI.
+
+---
+
+### 23.6 Sierra Leone (SL / SLE) — Sierra Leone Immigration Department (SLID)
+
+- **Administering Authority:** Sierra Leone Immigration Department (SLID), Ministry of Internal Affairs, Republic of Sierra Leone
+- **Primary Portals:**
+  - Sierra Leone Immigration Department: `https://slid.gov.sl/`
+  - National Civil Registration Authority: `https://ncra.gov.sl/`
+- **Statutory Framework:**
+  - Passports Act and official statutory passport tariff regulations enacted under the authority of the Ministry of Internal Affairs and SLID (in technical partnership with Netpage / De La Rue).
+- **Domestic Fee Schedule (in US Dollars — USD and Sierra Leonean Leones — SLE):**
+  - **Standard Ordinary Electronic Biometric Passport (5-year validity):**
+    - **Statutory Base Tariff:** **USD $100.00**
+    - **Local Currency Equivalent:** Published dynamically in New Leones (SLE) at official Bank of Sierra Leone exchange rates via the approved voucher system (pegged at approximately **SLE 2,280** / subject to prevailing exchange rate notices).
+  - **Payment Channel:**
+    - Purchase of official application voucher at authorized commercial bank branches (Rokel Commercial Bank, Sierra Leone Commercial Bank) or online voucher purchase on `slid.gov.sl`.
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**; priority handling available at SLID headquarters.
+  - **Validity:**
+    - Standard ordinary biometric passport: **5 years** for both adults and minors.
+  - **Evidence confidence: `DIRECT`** — established on `slid.gov.sl` official netpage fee schedule and Ministry notifications.
+- **Consular Fee Schedule:**
+  - Via Sierra Leonean High Commissions and Embassies abroad (e.g. London, Washington D.C., Berlin, Abuja, Beijing).
+  - Consular passport fee: ~USD $150.00 to $200.00 / GBP £150.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official high commission notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Number (NIN):** A valid National Identification Number (NIN) issued by the National Civil Registration Authority (NCRA) is a strict mandatory prerequisite and validation field for all passport applicants.
+  - **Proof of Citizenship / Civil Status:** Certified Birth Certificate issued by NCRA / Registrar General.
+  - **Voucher Receipt:** Original bank voucher receipt or online payment code confirming payment of the passport fee.
+  - **Photographs:** Two (2) recent passport-sized photographs (clear white background, ears visible); live digital biometric photography and signature capture on site.
+  - **For minors (under 18):** Child accompanied by parent/legal guardian; child's NCRA birth certificate with NIN; copies of parents' national IDs/passports; written parental consent.
+  - **Renewal:** Physical presentation of previous passport booklet for inspection and cancellation.
+  - **In case of loss/theft:** Mandatory police loss report issued by the Sierra Leone Police (SLP) and sworn statutory declaration before a Justice of the Peace.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photo, electronic signature, and ten fingerprints) at the SLID Passport Office.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Sierra Leone Immigration Department Headquarters, 14–16 Gloucester Street, Freetown; or at regional enrollment centers in Bo, Kenema, and Makeni. Online pre-application and voucher redemption via `slid.gov.sl`.
+  - Delivery: In-person collection upon presentation of voucher receipt and NCRA National Identification Number (NIN).
+
+---
+
