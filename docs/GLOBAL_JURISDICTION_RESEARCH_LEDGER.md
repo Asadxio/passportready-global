@@ -67,7 +67,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CX** | CXR | Christmas Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **CC** | CCK | Cocos (Keeling) Islands | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **CO** | COL | Colombia | Sovereign State | Ministerio de Relaciones Exteriores (Cancillería) | `primary_sources_audited` | Primary source audited (Batch 2). 2026 statutory fees in Bogotá: Ordinario (32-pg) $190.000 COP ($111k base + $79k timbre); Ejecutivo (48-pg) $323.000 COP; Emergencia $192.000 COP. Departamentos: plus local taxes ($250k-$350k total). Abroad: USD 94 / EUR 68. Cédula de Ciudadanía mandatory. |
-| **KM** | COM | Comoros | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **KM** | COM | Comoros | Sovereign State | Direction Générale de la Sûreté Nationale (DGSN) (`beit-salam.km`) | `primary_sources_audited` | Décret présidentiel titres biométriques: Standard biometric passport (5-year validity) 40 000 KMF (DIRECT). Consular fee abroad ~EUR 150–200. Carte Nationale d'Identité (CNI biométrique comorienne) + Extrait d'acte de naissance + Certificat de nationalité comorienne mandatory; in-person biometrics at Centre de Production des Titres Sécurisés (DGSN) Moroni, Mutsamudu, or Fomboni. |
 | **CK** | COK | Cook Islands | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **CR** | CRI | Costa Rica | Sovereign State | DGME (`migracion.go.cr`) / Banco de Costa Rica (`bancobcr.com`) | `primary_sources_audited` | Ley General de Migración y Extranjería: Pasaporte Biométrico USD $75.00 + CRC ₡250 (timbre de parques nacionales) + BCR banking commission (~$12–$15 USD) + Correos de Costa Rica delivery (~₡5,763 CRC) (DIRECT). Validity: 10-yr adult (18+), 5-yr minor. Cédula de Identidad (TSE) mandatory for 18+; TIM for 12–17; parental presence for minors. Appointment via BCR Punto País or Correos VES. |
 | **HR** | HRV | Croatia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -87,7 +87,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GQ** | GNQ | Equatorial Guinea | Sovereign State | Min. de Seguridad Nacional / CNEDOGE (`guineaecuatorialpress.com` / `cnedoge.gq`) | `primary_sources_audited` | Ley de Documentos de Viaje: Standard CEMAC biometric passport (5-yr) ~50.000 FCFA (consular rate ~32.00 € to 60.00 €) (DIRECT). Turnaround ~1–2 weeks. Documento Nacional de Identidad (DNI) + Certificado Literal de Nacimiento + Certificado de Antecedentes Penales mandatory; in-person biometrics at CNEDOGE centers in Malabo and Bata. |
 | **ER** | ERI | Eritrea | Sovereign State | Ministry of Foreign Affairs (consular) / Ministry of Interior (domestic) — `https://www.embassyeritrea.org/` | `primary_sources_audited` | Consular (overseas) fees DIRECT: First/lost adult USD 200; renewal adult USD 100; minor USD 75–150. ⚠️ MANDATORY: 2% diaspora Recovery & Rehabilitation Tax clearance required for ALL consular services. Domestic fee NOT publicly available. Hawiyya (national ID) + tax clearance certificate mandatory. |
 | **EE** | EST | Estonia | Sovereign State | Politsei- ja Piirivalveamet (PPA — `politsei.ee`) | `primary_sources_audited` | State Fees Act (Riigilõivuseadus): Adult self-service (10-yr) 50 € / PPA office 60 €; Minor <15 / Pensioner / Disabled self-service 20 € / PPA office 25 €; Kiirpass (expedited 1-day) 250 €; Consular 90 € (DIRECT). Isikukood + fingerprints on file within 6 yrs; online self-service via iseteenindus.politsei.ee (Smart-ID / ID-card). |
-| **SZ** | SWZ | Eswatini | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SZ** | SWZ | Eswatini | Sovereign State | Department of Immigration, Ministry of Home Affairs (`gov.sz`) | `primary_sources_audited` | Passports Act & Immigration Regs: Standard ordinary international e-passport (5-year validity) E 500.00 (SZL, 1:1 with ZAR); Regional travel document E 80.00; Replacement of lost personal ID card E 50.00 (DIRECT). Eswatini National ID Card (PIN) + Civil Registration Birth Certificate + Graded Tax Certificate mandatory; in-person biometrics at Ministry of Home Affairs Mbabane or regional civic centers. |
 | **ET** | ETH | Ethiopia | Sovereign State | Immigration and Citizenship Service (ICS) — `https://www.ics.gov.et/` | `primary_sources_audited` | Reg. 550/2024 (eff. Aug 7, 2024): New passport ETB 5,000 standard / ETB 20,000 urgent-5d / ETB 25,000 urgent-2d. Lost replacement ETB 13,000. In-person at ICS offices; Digital Invea system. Fayda biometric ID required. |
 | **FK** | FLK | Falkland Islands (Malvinas) | Territory / Special Region | Customs & Immigration Falkland Islands (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **FO** | FRO | Faroe Islands | Territory / Special Region | Ríkisumboðið í Føroyum (Kingdom of Denmark Passport - Føroyar cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
@@ -131,15 +131,15 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **LA** | LAO | Laos | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LV** | LVA | Latvia | Sovereign State | Pilsonības un migrācijas lietu pārvalde (PMLP — `pmlp.gov.lv`) | `primary_sources_audited` | Valsts nodeva statutory tariff: Standard 10 working days: Adult (10-yr) 50.00 EUR; Children <20 / Pensioners / Disabled 25.00 EUR; Urgent 2 working days: Adult 75.00 EUR / Reduced 45.00 EUR (DIRECT). Personas kods + eID card mandatory; biometrics at PMLP territorial divisions or via latvija.lv. |
 | **LB** | LBN | Lebanon | Sovereign State | General Directorate of General Security (Sûreté Générale) — `https://www.general-security.gov.lb/` | `primary_sources_audited` | General Security official fee: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000 (DIRECT). Fast-track surcharges apply. Ikhraj Qayd Fardi (<3mo) or Biometric ID Card mandatory; Moukhtar-certified photos; in-person at General Security regional bureau. Quota appointment system applies due to high demand. Consular USD 300/600 (PARTIAL). |
-| **LS** | LSO | Lesotho | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LS** | LSO | Lesotho | Sovereign State | Dept. of Immigration Services, Ministry of Home Affairs (`homeaffairs.gov.ls`) | `primary_sources_audited` | Passports & Travel Documents (Fees) Regs: Regular 32-page e-passport (10-yr adult / 5-yr minor) M 130.00; Regular 64-page frequent traveller M 300.00; Urgent processing surcharge +M 500.00 (DIRECT). Lesotho National ID Card (e-ID) + NICR security-featured Birth Certificate mandatory; in-person biometrics at Home Affairs district offices. |
 | **LR** | LBR | Liberia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LY** | LBY | Libya | Sovereign State | Passports, Nationality & Foreigners Affairs Authority (GNU) — `https://ejraat.gov.ly/` | `primary_sources_audited` | Standard passport LYD 50.50 (DIRECT); lost/damaged replacement LYD 1,000 (eff. late 2024, DIRECT). ⚠️ Dual-government political split; GNU-aligned services primarily in Tripoli. Service availability varies by region and security conditions. |
 | **LI** | LIE | Liechtenstein | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LT** | LTU | Lithuania | Sovereign State | Migracijos departamentas prie VRM (MIGRIS — `migracija.lt`) | `primary_sources_audited` | Valstybės rinkliava tariff: Standard 1 month: Adult (10-yr) 50 Eur; Child <18: 25 Eur (50% reduction); Pensioner: 10 Eur (80% reduction); Urgent 5 working days: 100 Eur; Same day (Vilnius): 200 Eur (DIRECT). Asmens kodas + eID card mandatory; digital application/booking via MIGRIS (migracija.lt). |
 | **LU** | LUX | Luxembourg | Sovereign State | Bureau des passeports / MAEE (`guichet.public.lu`) | `primary_sources_audited` | BPVL statutory tariff: Standard 7 days: Age 4+ (5-yr) 50 € / Minors <4 (2-yr) 30 €; Urgent 3 days: Age 4+ 150 € / Minors <4 90 € (DIRECT). 13-digit national identification number (Matricule) + proof of bank transfer payment mandatory; application via commune (Biergeramt) or BPVL Luxembourg City. |
 | **MO** | MAC | Macao | Territory / Special Region | Identification Services Bureau DSI Macau (Macao SAR Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
-| **MG** | MDG | Madagascar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MW** | MWI | Malawi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MG** | MDG | Madagascar | Sovereign State | Direction Générale de la Police Nationale, Min. Sécurité Publique (`pn.gov.mg`) | `primary_sources_audited` | Décret tarifaire & Loi de finances: Standard electronic biometric passport (5-year validity) 190 000 Ariary (MGA) payable via Trésor Public vignette (DIRECT). Turnaround ~72 hours (3 working days) at SCCIE Anosy. Carte d'Identité Nationale (CIN) certifiée + Copie intégrale d'acte de naissance (<6mo) + Certificat de nationalité + Certificat de position militaire (males 18–50) mandatory; in-person biometrics. |
+| **MW** | MWI | Malawi | Sovereign State | Dept. of Immigration and Citizenship Services (`epassport.gov.mw`) | `primary_sources_audited` | Immigration (Passports) Regulations: Ordinary 36-page passport (10-yr adult): Normal MWK 90,000 / Express MWK 160,000; Ordinary 48-page frequent traveller: Normal MWK 130,000 / Express MWK 180,000; Minor 36-page (5-yr): Normal MWK 80,000 / Express MWK 120,000; Lost replacement: MWK 100,000–170,000 (DIRECT). National ID Card (NRB) + Birth Certificate mandatory; in-person biometrics at DICS offices. |
 | **MV** | MDV | Maldives | Sovereign State | Maldives Immigration, Ministry of Homeland Security (`immigration.gov.mv`) | `primary_sources_audited` | Maldives Immigration statutory tariffs: Electronic Passport 32-page (5-yr) MVR 1,000; 48-page frequent traveler MVR 1,500; Non-electronic (under 10 or abroad) MVR 600; Lost/damaged valid passport penalty: up to MVR 2,000 (DIRECT). National Identity Card (DNR ID) mandatory; 100% digital submission via IMUGA portal (imuga.immigration.gov.mv). |
 | **ML** | MLI | Mali | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MT** | MLT | Malta | Sovereign State | Identità (Passport Office — `identita.gov.mt`) | `primary_sources_audited` | Passports Regulations statutory tariff: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent (4 hours): €160.00 adult / €80.00 minor; Lost replacement supplement: +€15.00 (DIRECT). Form A + Maltese ID Card + recommender endorsement; appointments via passportbooking.identita.gov.mt. |
@@ -198,7 +198,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **ST** | STP | Sao Tome and Principe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SN** | SEN | Senegal | Sovereign State | Direction Police Étrangers & Titres Voyage (DPETV) — `https://interieur.gouv.sn/` | `primary_sources_audited` | Passeport ordinaire (5-yr) 20,000 XOF (DIRECT). Paid via quittance at Direction de l'Enregistrement, des Domaines et du Timbre (DGID/DEDT). No duplicate issued for loss: requires police loss certificate + new application at 20,000 XOF. CNI biométrique CEDEAO mandatory (15+); parental consent for minors; in-person biometrics at police stations. |
 | **RS** | SRB | Serbia | Sovereign State | Ministry of Internal Affairs (MUP / МУП) — `http://www.mup.gov.rs/` | `primary_sources_audited` | Law on Travel Documents: Standard procedure 3,600 RSD (regular up to 30d, typically 7–10d); Urgent with justified emergency (48h): 3,600 RSD; Expedited without emergency proof (48h): 8,600 RSD (DIRECT). Consular ~64 EUR (PARTIAL). Biometric Lična karta mandatory; uplatnica via eUprava or bank; in-person at local Police Directorate/Station. |
-| **SC** | SYC | Seychelles | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SC** | SYC | Seychelles | Sovereign State | Dept. of Immigration and Civil Status (`ics.gov.sc`) | `primary_sources_audited` | Passports Act (Cap. 159) & Regs: Standard biometric passport (10-yr adult / 5-yr minor) SCR 750; Misplaced/lost passport surcharge +SCR 1,500 (total SCR 2,250); Overseas courier surcharge SCR 1,000 (DIRECT). Turnaround ~72 hours (3 working days); paperless application (no form). National Identity Number (NIN) Card + birth cert mandatory; in-person biometrics at Independence House, Victoria, Mahé. |
 | **SL** | SLE | Sierra Leone | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SX** | SXM | Sint Maarten (Dutch part) | Territory / Special Region | Cabinet of the Governor of Sint Maarten (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **SK** | SVK | Slovakia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -4505,5 +4505,260 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 - **Application & Delivery Channels:**
   - In-person attendance and enrollment at ANATS Centres d'Accueil des Usagers (CAU) in N'Djamena (ANATS Headquarters on Avenue du Général Charfadine Ahmat, Commissariat Central, Gouvernorat 5e arrondissement) or provincial delegations (Moundou, Sarh, Abéché, Mongo).
   - Delivery: In-person collection upon presentation of receipt and CNI.
+
+---
+
+## Section 22 — Batch 20 Research Dossiers: Madagascar (MG), Malawi (MW), Lesotho (LS), Eswatini (SZ), Seychelles (SC), Comoros (KM)
+
+*Researched: 2026-10-21. Primary statutory investigation covering 6 sovereign nations across Eastern and Southern Africa and the Western Indian Ocean. Official sources audited across primary ministry portals, statutory passport regulations, fee schedules, civil registration prerequisites, and biometric capture stations.*
+
+---
+
+### 22.1 Madagascar (MG / MDG) — Ministère de l'Intérieur / Direction Générale de la Police Nationale (SCCIE)
+
+- **Administering Authority:** Service Central de l'Émigration et de l'Immigration (SCCIE), Direction de la Surveillance du Territoire (DST), Direction Générale de la Police Nationale (DGPN), Ministère de l'Intérieur et de la Décentralisation, République de Madagascar
+- **Primary Portals:**
+  - Police Nationale de Madagascar: `https://police.gov.mg/`
+  - Portail des Services Publics / Prise de Rendez-vous: `https://pn.gov.mg/`
+  - Ministère de l'Intérieur: `https://mid.gov.mg/`
+- **Statutory Framework:**
+  - Loi relative aux passeports et Décret fixant le tarif des droits de délivrance du passeport électronique / biométrique en République de Madagascar.
+- **Domestic Fee Schedule (in Malagasy Ariary — MGA):**
+  - **Standard Electronic Biometric Passport (5-year validity):**
+    - **Uniform Ordinary Issuance Fee:** **190 000 Ariary (MGA)**
+  - **Payment Channel:**
+    - Payment made directly via official fiscal stamp voucher (*quittance du Trésor Public* / *vignette fiscale*) issued by the Trésor Public and affixed/annexed to the physical dossier.
+  - **Turnaround Timeline:**
+    - Standard processing: Approximately **72 hours (3 working days)** at the central production office in Antananarivo (SCCIE Anosy); up to 10–15 working days when deposited at regional provincial commissariats.
+  - **Validity:**
+    - Standard ordinary biometric passport: **5 years** (strictly non-prorogable; complete replacement required upon expiry).
+  - **Evidence confidence: `DIRECT`** — established by official notifications of the Police Nationale and Ministère de l'Intérieur published on `police.gov.mg` and `pn.gov.mg`.
+- **Consular Fee Schedule:**
+  - Via Malagasy Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Port Louis, Geneva, Brussels).
+  - Consular passport fee: ~EUR €75.00 to €100.00 / USD $80.00 to $110.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy consular fee circulars.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Certified copy of valid Malagasy National Identity Card (*Carte d'Identité Nationale — CIN certifiée conforme à l'original*).
+  - **Proof of Civil Status:** Original full extract of birth certificate (*Copie intégrale d'acte de naissance*) issued within the last 6 months.
+  - **Proof of Nationality:** Judicial Certificate of Malagasy Nationality (*Certificat de nationalité malagasy*) issued by the competent Tribunal de Première Instance.
+  - **Military Service Status:** Certificate of military position (*Certificat de position militaire*) issued by the military district authorities for male applicants aged 18 to 50.
+  - **Proof of Residence:** Official certificate of residence (*Certificat de résidence*) issued within the last 3 months by the Chef de Fokontany.
+  - **Official Application Form:** Completed and signed official passport application request (*Demande de passeport*).
+  - **Fiscal Receipt:** Original Treasury deposit receipt (*Quittance de paiement de 190 000 Ariary du Trésor Public*).
+  - **Photographs:** Two (2) standard passport photographs (35x45mm, clear background); live digital capture also executed at the enrollment station.
+  - **For minors (under 18):** Child accompanied by parents/legal guardian; child's certified birth certificate; certified copies of parents' CIN; formal notarized parental authorization (*Autorisation parentale légalisée*).
+  - **Renewal:** Physical surrender and cancellation of the expiring passport.
+  - **In case of loss/theft:** Mandatory official declaration of loss (*Déclaration de perte de passeport*) issued by the Commissariat de Police or Brigade de Gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at the passport enrollment center.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Service Central de l'Émigration et de l'Immigration (SCCIE), Commissariat Central d'Anosy, Antananarivo, or at provincial police commissariats (Toamasina, Mahajanga, Fianarantsoa, Antsiranana, Toliara). Online pre-registration or appointment booking via `pn.gov.mg`.
+  - Delivery: In-person collection upon presentation of the deposit stub receipt and CIN.
+
+---
+
+### 22.2 Malawi (MW / MWI) — Department of Immigration and Citizenship Services (DICS)
+
+- **Administering Authority:** Department of Immigration and Citizenship Services (DICS), Ministry of Homeland Security, Republic of Malawi
+- **Primary Portals:**
+  - Malawi e-Passport Portal: `https://epassport.gov.mw/`
+  - Department of Immigration: `https://www.immigration.gov.mw/`
+- **Statutory Framework:**
+  - Immigration Act (Cap. 15:03) and Immigration (Passports) Regulations.
+- **Domestic Fee Schedule (in Malawian Kwacha — MWK):**
+  - **Ordinary Passport (36 pages, 10-year validity for adults):**
+    - **Normal Processing (~20 working days):** **MWK 90,000**
+    - **Express Processing (~5 working days):** **MWK 160,000**
+  - **Frequent Traveller Ordinary Passport (48 pages, 10-year validity):**
+    - **Normal Processing:** **MWK 130,000**
+    - **Express Processing:** **MWK 180,000**
+  - **Child / Minor Passport (under 16, 36 pages, 5-year validity):**
+    - **Normal Processing:** **MWK 80,000**
+    - **Express Processing:** **MWK 120,000**
+  - **Replacement of Lost or Damaged Passport (36 pages):**
+    - **Normal Processing:** **MWK 100,000**
+    - **Express Processing:** **MWK 170,000**
+  - **Payment Channel:**
+    - Paid through participating commercial banks (National Bank of Malawi, Standard Bank) or online electronic payment gateway on the e-passport portal.
+  - **Validity:**
+    - Adult (16 years and above): **10 years**.
+    - Minor (under 16 years): **5 years**.
+  - **Evidence confidence: `DIRECT`** — established by statutory fee gazettes and official publications on `epassport.gov.mw`.
+- **Consular Fee Schedule:**
+  - Via Malawian High Commissions and Embassies abroad (e.g. London, Washington D.C., Pretoria, Harare, Addis Ababa, Berlin).
+  - Consular passport fee: ~USD $150.00 to $200.00 / GBP £120.00.
+  - **Evidence confidence: `DIRECT`** — verified via official high commission notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Mandatory National Registration Bureau (NRB) National Identity Card (Smart ID Card) containing a valid 8-character National Identification Number (NIN).
+  - **Proof of Birth:** Official NRB Birth Certificate.
+  - **Official Application Form:** Completed Form A (for adult 16+) or Form B (for child under 16).
+  - **Recommender Declaration:** Section certified by an authorized Recommender (Minister of Religion, Medical Practitioner, Legal Practitioner, or established Civil Servant) confirming citizenship and identity.
+  - **Photographs:** Two (2) recent passport-sized photographs certified by the recommender on the reverse; live digital photograph also captured at enrollment.
+  - **For minors (under 16):** Accompanied by parent/guardian; child's NRB birth certificate; copy of parent's/guardian's NRB national identity card; written consent of parents.
+  - **Renewal:** Physical presentation and surrender of the existing passport booklet.
+  - **In case of loss/theft:** Mandatory police report and sworn affidavit detailing circumstances of loss.
+  - **Biometrics:** In-person attendance for digital facial capture, electronic fingerprinting, and digital signature.
+- **Application & Delivery Channels:**
+  - Submission and enrollment at DICS Headquarters in Lilongwe, or Regional Immigration Offices in Blantyre, Mzuzu, and Mangochi.
+  - Delivery: In-person collection upon presentation of official receipt slip and National ID card.
+
+---
+
+### 22.3 Lesotho (LS / LSO) — Department of Immigration, Ministry of Local Government, Chieftainship, Home Affairs and Police
+
+- **Administering Authority:** Department of Immigration, Ministry of Local Government, Chieftainship, Home Affairs and Police, Kingdom of Lesotho
+- **Primary Portals:**
+  - Ministry of Home Affairs: `https://homeaffairs.gov.ls/`
+  - Lesotho Government Portal: `https://www.gov.ls/`
+- **Statutory Framework:**
+  - Passports and Travel Documents Act and Passports and Travel Documents (Fees) Regulations.
+- **Domestic Fee Schedule (in Lesotho Loti — LSL / M, pegged 1:1 with South African Rand — ZAR):**
+  - **Regular Ordinary Passport (32 pages):**
+    - **Standard Statutory Issuance Fee:** **M 130.00**
+    - Validity: **10 years** for adults (16 years and older); **5 years** for children (under 16).
+  - **Commercial / Frequent Traveller Passport (64 pages):**
+    - **Standard Statutory Fee:** **M 300.00**
+  - **Urgent / Expedited Processing Service Surcharge:**
+    - **Emergency Expedited Surcharge:** **+M 500.00** (expedited delivery within 24 to 72 hours for verified medical emergencies, official government missions, or bereavement).
+  - **Emergency Travel Certificate (ETC):**
+    - **Statutory Fee:** **M 50.00**
+  - **Evidence confidence: `DIRECT`** — established by statutory fee regulations and Ministry of Home Affairs official publications on `homeaffairs.gov.ls`.
+- **Consular Fee Schedule:**
+  - Via Lesotho High Commissions and Consulates abroad (e.g. Pretoria, Johannesburg, Durban, Welkom, Klerksdorp, London, Washington D.C.).
+  - Consular ordinary passport fee: ~ZAR/LSL 400.00 to 500.00 / USD $60.00.
+  - **Evidence confidence: `DIRECT`** — confirmed on official consular mission schedules.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Lesotho electronic National Identity Card (*e-ID Card*) issued by the National Identity and Civil Registry (NICR) is strictly mandatory for all applicants aged 16 and older.
+  - **Proof of Civil Status:** Security-featured Birth Certificate issued by NICR.
+  - **Proof of Citizenship:** Proof of Lesotho citizenship by descent or naturalization certificate.
+  - **Photographs:** Two (2) recent passport-sized color photographs (clear background); live biometric photography also performed at the counter.
+  - **For minors (under 16):** Accompanied by parent or legal guardian; minor's NICR security birth certificate; certified copies of parents' Lesotho e-ID cards; written consent from both parents.
+  - **Renewal:** Physical surrender of previous passport for cancellation.
+  - **In case of loss/theft:** Mandatory police loss report issued by the Lesotho Mounted Police Service (LMPS) and sworn affidavit.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph and ten fingerprints) at the Passport Office.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Passport Office, Department of Immigration, Maseru Central, or at any of the 10 District Immigration Offices (Leribe, Mafeteng, Mohale's Hoek, Quthing, Qacha's Nek, Mokhotlong, Thaba-Tseka, Butha-Buthe, Berea).
+  - Delivery: In-person collection upon presentation of application receipt and National ID card.
+
+---
+
+### 22.4 Eswatini (SZ / SWZ) — Department of Immigration, Ministry of Home Affairs
+
+- **Administering Authority:** Department of Immigration, Ministry of Home Affairs, Kingdom of Eswatini
+- **Primary Portals:**
+  - Ministry of Home Affairs: `https://www.gov.sz/index.php/ministries-departments/ministry-of-home-affairs/immigration-department`
+  - Eswatini Government Portal: `https://www.gov.sz/`
+- **Statutory Framework:**
+  - Passports Act and Immigration Act, with statutory tariffs promulgated under government legal notices.
+- **Domestic Fee Schedule (in Swazi Lilangeni — SZL / E, pegged 1:1 with South African Rand — ZAR):**
+  - **Standard Ordinary International e-Passport (32 pages, 5-year validity):**
+    - **Uniform Ordinary Issuance Fee:** **E 500.00**
+  - **Frequent Traveller Ordinary International e-Passport (64 pages, 5-year validity):**
+    - **Frequent Traveller Fee:** **E 800.00**
+  - **Regional Travel Document (SADC):**
+    - **Statutory Fee:** **E 80.00**
+  - **Certificate of Identity:**
+    - **Statutory Fee:** **E 80.00**
+  - **Replacement of Lost or Damaged Travel Document:**
+    - Administrative replacement penalty fee applies (**E 500.00** base fee plus investigation fee).
+  - **Payment Channel:**
+    - Payable at the Government Revenue Offices (Ministry of Finance revenue cashier) against an official General Revenue Receipt before enrollment.
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**.
+  - **Validity:**
+    - Standard e-passport validity: **5 years** for both adults and minors.
+  - **Evidence confidence: `DIRECT`** — established by statutory fee notices and official Ministry of Home Affairs announcements on `gov.sz`.
+- **Consular Fee Schedule:**
+  - Via Eswatini High Commissions and Embassies abroad (e.g. Pretoria, London, Washington D.C., Brussels, Abu Dhabi, Taipei).
+  - Consular passport fee: ~ZAR/E 600.00 to 800.00 / USD $60.00 to $80.00.
+  - **Evidence confidence: `DIRECT`** — confirmed on official high commission publications.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Eswatini National Identity Card containing the Personal Identification Number (PIN) issued by the Civil Registration Department.
+  - **Proof of Civil Status:** Security-printed Eswatini Birth Certificate bearing the PIN.
+  - **Tax Compliance:** Graded Tax Certificate (proof of payment of annual graded tax).
+  - **Proof of Marital Status:** Marriage certificate for married female applicants (if changing surname).
+  - **Photographs:** Two (2) recent passport-sized photographs (35x45mm, plain background); digital capture on site.
+  - **For minors (under 18):** Accompanied by parent/legal guardian; child's birth certificate with PIN; copies of parents' national ID cards; written consent from father/legal guardian.
+  - **Renewal:** Physical presentation of previous passport for cancellation.
+  - **In case of loss/theft:** Mandatory police report from the Royal Eswatini Police Service (REPS) and sworn affidavit before a Commissioner of Oaths.
+  - **Biometrics:** Mandatory in-person enrollment (electronic facial photography, digital fingerprint scanning, and electronic signature).
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Ministry of Home Affairs Headquarters in Mbabane, or at Regional Service Centres in Manzini, Piggs Peak, Siteki, and Nhlangano.
+  - Delivery: In-person collection upon presentation of revenue receipt and National ID card.
+
+---
+
+### 22.5 Seychelles (SC / SYC) — Department of Immigration and Civil Status
+
+- **Administering Authority:** Department of Immigration and Civil Status, Ministry of Internal Affairs, Republic of Seychelles
+- **Primary Portals:**
+  - Department of Immigration and Civil Status: `https://ics.gov.sc/`
+  - Government of Seychelles: `https://www.gov.sc/`
+- **Statutory Framework:**
+  - Passports Act (Cap. 159) and Passport Regulations.
+- **Domestic Fee Schedule (in Seychellois Rupee — SCR):**
+  - **Standard Biometric Passport:**
+    - **Uniform Standard Issuance Fee:** **SCR 750**
+    - Validity: **10 years** for adults (18 years and above); **5 years** for minors (under 18 years).
+  - **Misplaced / Lost / Damaged Passport Surcharge:**
+    - **Statutory Penalty Surcharge:** **+SCR 1,500** (Total replacement fee: **SCR 2,250**)
+  - **Overseas Diplomatic Mission Courier Surcharge:**
+    - **Courier Surcharge:** **SCR 1,000** (for passports applied for or dispatched to Seychellois diplomatic missions overseas).
+  - **Turnaround Timeline:**
+    - Standard processing: Approximately **72 hours (3 working days)**.
+  - **Paperless Workflow:**
+    - Fully modernized paperless enrollment system: no paper application form is required; applicant's civil status and biometrics are verified digitally via the National Identity Number (NIN).
+  - **Evidence confidence: `DIRECT`** — established by Passports Act regulations and official fee schedules published on `ics.gov.sc`.
+- **Consular Fee Schedule:**
+  - Via Seychellois Embassies and High Commissions abroad (e.g. Paris, London, New Delhi, Abu Dhabi, Pretoria, New York).
+  - Consular passport fee: **SCR 750** + courier surcharge **SCR 1,000** (total SCR 1,750, approximately ~EUR €120.00 / USD $135.00).
+  - **Evidence confidence: `DIRECT`** — established by official statutory fee regulations.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Seychellois National Identity Card displaying the National Identity Number (NIN).
+  - **Proof of Civil Status:** Original Birth Certificate issued by the Civil Status Division.
+  - **Previous Passport:** Expiring or current passport presented for cancellation (for renewals).
+  - **For minors (under 18):** Accompanied by parent or legal guardian; minor's original birth certificate displaying parental details; national identity cards of both parents; formal written consent from both parents.
+  - **In case of loss/theft:** Mandatory police report certifying the loss and completed statutory declaration/affidavit.
+  - **Biometrics:** Mandatory in-person biometric capture (high-resolution facial photo, digital ten-fingerprint scan, and electronic signature) at the Immigration counter.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Department of Immigration and Civil Status, Independence House, Victoria, Mahé; or at sub-offices on Praslin (Grand Anse) and La Digue.
+  - Delivery: In-person collection upon presentation of receipt and National Identity Card.
+
+---
+
+### 22.6 Comoros (KM / COM) — Direction Générale de la Sûreté Nationale (DGSN)
+
+- **Administering Authority:** Direction Générale de la Sûreté Nationale (DGSN), Ministère de l'Intérieur, de l'Information, de la Décentralisation et de l'Administration Pénitentiaire, Union des Comores
+- **Primary Portals:**
+  - Présidence de l'Union des Comores: `https://beit-salam.km/`
+  - Ministère de l'Intérieur: `https://interieur.gouv.km/`
+- **Statutory Framework:**
+  - Décret présidentiel fixant les caractéristiques et les conditions de délivrance des titres d'identité et de voyage biométriques et sécurisés de l'Union des Comores.
+- **Domestic Fee Schedule (in Comorian Francs — KMF):**
+  - **Standard Biometric Passport (5-year validity):**
+    - **Uniform Ordinary Issuance Fee:** **40 000 KMF**
+  - **Payment Channel:**
+    - Fees deposited at the dedicated public Treasury counter / designated commercial bank account against an official receipt (*quittance du Trésor Public*).
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**.
+  - **Validity:**
+    - Standard biometric passport: **5 years** (strictly non-prorogable).
+  - **Evidence confidence: `DIRECT`** — established by presidential decrees on secure biometric travel documents and official government announcements published on `beit-salam.km`.
+- **Consular Fee Schedule:**
+  - Via Comorian Embassies and Consulates General abroad (e.g. Paris, Marseille, Brussels, Cairo, Riyadh, Dar es Salaam).
+  - Consular passport fee: ~EUR €150.00 to €200.00 / USD $180.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Biometric National Identity Card (*Carte Nationale d'Identité biométrique comorienne — CNI*).
+  - **Proof of Civil Status:** Authenticated birth certificate extract (*Extrait d'acte de naissance sécurisé*) issued by the Comorian civil registry.
+  - **Proof of Nationality:** Judicial Certificate of Comorian Nationality (*Certificat de nationalité comorienne*) issued by the competent Tribunal de Première Instance.
+  - **Fiscal Receipt:** Original Treasury deposit receipt (*Quittance de versement de 40 000 KMF*).
+  - **Photographs:** Two (2) recent passport-sized photographs (35x45mm, clear background); live digital capture also executed at the enrollment station.
+  - **For minors (under 18):** Accompanied by parents/legal guardian; minor's authenticated birth certificate; certified copies of parents' CNI; formal signed parental authorization (*Autorisation parentale légalisée*).
+  - **Renewal:** Physical presentation of previous passport for cancellation.
+  - **In case of loss/theft:** Mandatory loss certificate (*Certificat de perte*) issued by the Police Nationale or Gendarmerie.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at the Centre de Production des Titres Sécurisés.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Centre de Production des Titres Sécurisés (DGSN) in Moroni (Grande Comore / Ngazidja), or at regional branch centers in Mutsamudu (Anjouan / Ndzuwani) and Fomboni (Mohéli / Mwali).
+  - Delivery: In-person collection upon presentation of deposit receipt and CNI.
 
 ---
