@@ -74,14 +74,14 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CU** | CUB | Cuba | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CW** | CUW | Curaçao | Territory / Special Region | Cabinet of the Governor of Curaçao (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **CY** | CYP | Cyprus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **CZ** | CZE | Czechia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CZ** | CZE | Czechia | Sovereign State | Ministerstvo vnitra ČR (MVČR) / Obecní úřady (ORP) | `primary_sources_audited` | Primary source audited (Batch 3). Zákon o cestovních dokladech: Standard (30 days) Adult (15+) 600 CZK (10-yr), Child (<15) 100 CZK (5-yr); Fast (5 days) 3,000 / 1,000 CZK; Super-fast (24 hrs at MVČR Na Pankráci) 6,000 / 2,000 CZK. Občanský průkaz required; photo taken on-site. |
 | **CI** | CIV | Côte d’Ivoire | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CD** | COD | Democratic Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DK** | DNK | Denmark | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DJ** | DJI | Djibouti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DM** | DMA | Dominica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **DO** | DOM | Dominican Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **EC** | ECU | Ecuador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **EC** | ECU | Ecuador | Sovereign State | Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC) | `primary_sources_audited` | Primary source audited (Batch 3). DIGERCIC statutory fees: Standard biometric passport $90.00 USD (10-yr for 18+, 5-yr for minors); Seniors (65+) $45.00 USD (50% discount); Disabled (30%+) $0.00 (exempt). Cédula de Identidad mandatory prerequisite; parental presence for minors under 18. |
 | **EG** | EGY | Egypt | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SV** | SLV | El Salvador | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GQ** | GNQ | Equatorial Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -115,7 +115,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **HM** | HMD | Heard Island and McDonald Islands | Territory / Special Region | Heard Island and McDonald Islands (Uninhabited Australian territory) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **HN** | HND | Honduras | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **HK** | HKG | Hong Kong | Territory / Special Region | Immigration Department HKSAR (HKSAR Passport for Chinese citizens with permanent residence) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by CN. General guidance applies. |
-| **HU** | HUN | Hungary | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **HU** | HUN | Hungary | Sovereign State | Belügyminisztérium / Kormányablakok | `primary_sources_audited` | Primary source audited (Batch 3). Statutory fees (normál 20 nap): Adult 18+ (10-yr) 17 000 HUF (+2 000 HUF postal delivery); Youth 12-18 (5-yr) 12 500 HUF; Child <12 8 500 HUF. Surcharges: 5-day +19k HUF; 3-day +29k HUF; 24-hr +39k HUF. Személyazonosító igazolvány required; photo taken on-site. |
 | **IS** | ISL | Iceland | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IR** | IRN | Iran | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **IQ** | IRQ | Iraq | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -175,14 +175,14 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PA** | PAN | Panama | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PG** | PNG | Papua New Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PY** | PRY | Paraguay | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **PE** | PER | Peru | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **PE** | PER | Peru | Sovereign State | Superintendencia Nacional de Migraciones | `primary_sources_audited` | Primary source audited (Batch 3). Ley N° 31678 / DS 004-2024-IN: Pasaporte Electrónico (10-yr validity for 18+) S/ 120.90 PEN (Tributo 01810 Págalo.pe); Teens 12-17 (5-yr) S/ 120.90; Child <12 (3-yr) S/ 120.90. In-person walk-in ticket system (no appointment needed); same-day delivery (~2 hrs). DNI mandatory. |
 | **PN** | PCN | Pitcairn | Territory / Special Region | Pitcairn Island Administration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **PL** | POL | Poland | Sovereign State | MSWiA / Urzędy Wojewódzkie (Wojewoda) | `primary_sources_audited` | Primary source audited (Batch 2). Ustawa o dokumentach paszportowych: Standard adult (10-yr) 140 PLN; Youth 12-18 / students 70 PLN; Child <12 (5-yr) 30 PLN; Senior 70+ 0 PLN; Lost/damaged by fault +200% (420 PLN). PESEL mandatory; in-person electronic counter signature; delivery in ~30 days. |
 | **PT** | PRT | Portugal | Sovereign State | Instituto dos Registos e do Notariado (IRN) / MNE (Portal das Comunidades) | `primary_sources_audited` | Primary source audited (Batch 1). Decreto-Lei n.º 83/2000 (PEP): Domestic normal €65.00, expresso €85.00, urgente €95.00, airport urgent €100.00; Consular standard €75.00 (€105.00 delivered), consular urgent €120.00, temporary €150.00. Cartão de Cidadão mandatory prerequisite. |
 | **PR** | PRI | Puerto Rico | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **QA** | QAT | Qatar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CG** | COG | Republic of the Congo | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **RO** | ROU | Romania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **RO** | ROU | Romania | Sovereign State | Direcția Generală de Pașapoarte (DGP) / Ministerul Afacerilor Interne | `primary_sources_audited` | Primary source audited (Batch 3). Revised August 1, 2025 tariff: Pașaport simplu electronic 265 RON (TVA inclus) across all ages (10-yr for 18+, 5-yr for 12-18, 3-yr for <12); Temporar 265 RON. Carte de Identitate mandatory prerequisite; Ghișeul.ro / CEC Bank; delivery in 5 working days. |
 | **RU** | RUS | Russia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **RW** | RWA | Rwanda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **RE** | REU | Réunion | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -232,7 +232,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **UG** | UGA | Uganda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UA** | UKR | Ukraine | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UM** | UMI | United States Minor Outlying Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **UY** | URY | Uruguay | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **UY** | URY | Uruguay | Sovereign State | Dirección Nacional de Identificación Civil (DNIC) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 3). DNIC tariffs: Trámite común Adult 18+ (10-yr) $ 5.630 UYU ($ 5.455 pasaporte + $ 175 antecedentes); Minor (<18) $ 5.455 UYU (5-yr); Trámite urgente $ 12.114 UYU ($ 10.712 + $ 1.402). Cédula de Identidad original mandatory; parental consent for minors under 18. |
 | **UZ** | UZB | Uzbekistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **VU** | VUT | Vanuatu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **VA** | VAT | Vatican City | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -647,4 +647,231 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Appointment booking via `randevu.nvi.gov.tr`, e-Devlet portal, or ALO 199 call center.
   - In-person application at any District Population and Citizenship Directorate (*İlçe Nüfus Müdürlüğü*).
   - Central printing by NVİ; delivered directly to the citizen's residential address by PTT Kargo within 3 to 7 business days.
+
+---
+
+## 5. Batch 3 Audited Claim-Level Research Dossiers (6 Jurisdictions)
+
+### 5.1 Peru (`PE` / `PER`)
+- **Administering Authority:**
+  - Superintendencia Nacional de Migraciones (MIGRACIONES), organismo técnico especializado adscrito al Ministerio del Interior; representaciones consulares del Perú en el exterior dependientes del Ministerio de Relaciones Exteriores (RREE).
+- **Primary Official Portals:**
+  - `https://www.gob.pe/migraciones`
+  - `https://www.gob.pe/institucion/migraciones/noticias`
+  - `https://pagalo.pe/`
+- **Statutory Framework:**
+  - *Decreto Legislativo N° 1350 (Ley de Migraciones)* y su Reglamento (*Decreto Supremo N° 007-2017-IN*); *Ley N° 31678* y *Decreto Supremo N° 004-2024-IN*, que oficializó la vigencia de 10 años para los pasaportes electrónicos de ciudadanos mayores de 18 años.
+- **Statutory Domestic Tariffs:**
+  - **Pasaporte Electrónico Ordinario (Mayores de 18 años, vigencia 10 años):** S/ 120.90 PEN
+    - Código de pago en Págalo.pe / Banco de la Nación: **Tributo 01810**.
+  - **Pasaporte Electrónico para Adolescentes (12 a 17 años, vigencia 5 años):** S/ 120.90 PEN
+  - **Pasaporte Electrónico para Niños (Menores de 12 años, vigencia 3 años):** S/ 120.90 PEN
+  - **Pasaporte Especial / Diplomático:** Regulado por Cancillería.
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - **Pasaporte Biométrico Consular:** 70 Unidades Consulares (USD 70.00 en las Américas; €70.00 en Europa).
+  - **Salvoconducto Consular (Viaje único de regreso):** Gratuito ($0 / USD 0) o tarifa nominal (10 UC) según causal humanitaria.
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** Documento Nacional de Identidad (DNI) original, vigente y en buen estado físico, sin multas electorales pendientes.
+  - Comprobante de pago del tributo 01810 (S/ 120.90 PEN).
+  - Pasaporte anterior (si lo tiene, para su anulación física).
+  - **Menores de edad (<18):**
+    - Presencia obligatoria del menor acompañado de al menos uno de sus padres con DNI original y vigente.
+    - Si el padre o madre acompañante es extranjero: Pasaporte extranjero vigente o Carné de Extranjería / Permiso Temporal de Permanencia (PTP).
+    - Si el menor asiste con apoderado: Poder especial otorgado por escritura pública o poder consular legalizado.
+  - **Lost/Stolen:** Se realiza la anulación directa del pasaporte anterior en el sistema de Migraciones al momento del trámite; no se exige presentar denuncia policial previa para la expedición de un nuevo ejemplar.
+- **Application & Delivery Channels:**
+  - **Modalidad de atención presencial:** Atención por orden de llegada con ticket en sedes de Migraciones a nivel nacional (el requisito restrictivo de citas previas por internet fue eliminado).
+  - Captura biométrica integral en la sede (fotografía facial ICAO, huellas dactilares y firma digital).
+  - **Entrega inmediata:** El pasaporte se personaliza y entrega el mismo día en la sede donde se realiza el trámite (plazo habitual de entrega: aproximadamente 1 a 2 horas).
+
+---
+
+### 5.2 Ecuador (`EC` / `ECU`)
+- **Administering Authority:**
+  - Dirección General de Registro Civil, Identificación y Cedulación (DIGERCIC), entidad adscrita al Ministerio de Telecomunicaciones y de la Sociedad de la Información; Consulados del Ecuador adscritos al Ministerio de Relaciones Exteriores y Movilidad Humana.
+- **Primary Official Portals:**
+  - `https://www.registrocivil.gob.ec/`
+  - `https://www.gob.ec/dgrcic/tramites/emision-pasaporte-ordinario`
+  - `https://servicios.registrocivil.gob.ec/`
+- **Statutory Framework:**
+  - *Ley Orgánica de Gestión de la Identidad y Datos Civiles (LOGIDC)*; Resoluciones tarifarias anuales de la DIGERCIC; *Ley Orgánica de Discapacidades* y *Ley del Anciano*.
+- **Statutory Domestic Tariffs (Currency: USD - US Dollar):**
+  - **Pasaporte Ordinario Biométrico (Público General):** $90.00 USD
+    - Vigencia: 10 años para personas de 18 años en adelante; 5 años para menores de 18 años.
+  - **Adultos Mayores (Personas de 65 años o más):** $45.00 USD (50% de descuento legal por tercera edad).
+  - **Personas con Discapacidad (30% o superior calificada):** $0.00 USD (Exoneración total / Gratuito per Ley de Discapacidades).
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - Pasaporte Ordinario Consular: USD 90.00 (más aranceles de gestión y envío consular, habitualmente USD 130.00 a USD 150.00 en consulados en EE.UU. y Europa).
+  - Pasaporte de Emergencia Consular: USD 50.00.
+  - Salvoconducto / Documento de Viaje: USD 15.00 a USD 25.00.
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** Cédula de Identidad original vigente (física o digital).
+  - Comprobante de pago original ($90.00 USD) cancelado a través de la Agencia Virtual del Registro Civil o bancos recaudadores autorizados (Banco del Pacífico, corresponsales bancarios).
+  - Pasaporte anterior en físico para invalidación (en caso de renovación).
+  - **Menores de 18 años:**
+    - Cédula de Identidad original del menor.
+    - Presencia obligatoria de ambos progenitores con sus respectivas cédulas vigentes.
+    - Si uno o ambos progenitores están ausentes: Poder especial notariado o consular que autorice expresamente la emisión del pasaporte, o sentencia judicial ejecutoriada de patria potestad exclusiva.
+  - **Lost/Stolen:** Presentación de la constancia digital o física del *Formulario de Documentos Extraviados* registrado previamente en el portal web del Consejo de la Judicatura.
+- **Application & Delivery Channels:**
+  - Agendamiento de turno previo en la Agencia Virtual de la DIGERCIC (`servicios.registrocivil.gob.ec`).
+  - Turnos prioritarios sin cita para grupos vulnerables (adultos mayores, embarazadas, personas con discapacidad).
+  - Captura biométrica en agencia; entrega en el mismo día o dentro de las 24 a 48 horas en agencias provinciales.
+
+---
+
+### 5.3 Uruguay (`UY` / `URY`)
+- **Administering Authority:**
+  - Dirección Nacional de Identificación Civil (DNIC), Ministerio del Interior; Direcciones Consulares del Ministerio de Relaciones Exteriores (MRREE).
+- **Primary Official Portals:**
+  - `https://www.gub.uy/tramites/obtencion-pasaporte-comun-primera-vez`
+  - `https://www.gub.uy/ministerio-interior/`
+  - `https://dnic.minterior.gub.uy/`
+- **Statutory Framework:**
+  - *Decreto N° 129/014 (Reglamento de Pasaportes)* modificado por *Decreto N° 240/018*; Leyes presupuestales del Ministerio del Interior y decretos fijadores de tasas de antecedentes y pasaportes.
+- **Statutory Domestic Tariffs:**
+  - **Trámite Común (Adultos 18+, vigencia 10 años):** Total **$ 5.630 UYU**
+    - Arancel de libreta de pasaporte: $ 5.455 UYU
+    - Certificado de Antecedentes Judiciales (obligatorio por ley para mayores de edad): $ 175 UYU
+  - **Trámite Común para Menores (<18 años, vigencia 5 años):** Total **$ 5.455 UYU** (exentos de antecedentes judiciales).
+  - **Trámite Urgente (Adultos 18+):** Total **$ 12.114 UYU**
+    - Arancel de libreta urgente: $ 10.712 UYU
+    - Certificado de Antecedentes Judiciales urgente: $ 1.402 UYU
+  - **Trámite Urgente para Menores (<18 años):** Total **$ 10.712 UYU**.
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - Pasaporte Común en el Exterior: 100 Unidades Consulares / USD 100.00 (o equivalente en moneda local).
+  - Pasaporte de Emergencia Consular: 50 Unidades Consulares / USD 50.00.
+  - Título de Identidad y Viaje: 36 Unidades Consulares.
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** Cédula de Identidad uruguaya original, vigente y en perfecto estado de conservación.
+  - Credencial Cívica (exigible para ciudadanos mayores de 18 años inscritos en el Registro Cívico Nacional).
+  - Para ciudadanos legales: Carta de Ciudadanía legal con constancia de tres años de expedida.
+  - **Menores de 18 años:**
+    - Cédula de Identidad del menor.
+    - Presencia obligatoria de ambos padres provistos de sus respectivas Cédulas de Identidad vigentes.
+    - Si uno de los padres no comparece: Permiso de menor tramitado previamente ante la Dirección Nacional de Migración o poder notarial específico con facultades para tramitar pasaporte.
+  - **Lost/Stolen:** Constancia de denuncia policial de extravío o hurto registrada en el Sistema de Gestión de Seguridad Pública (SGSP).
+- **Application & Delivery Channels:**
+  - Reserva de día y hora a través de la plataforma web de Trámites en Línea del Estado uruguayo (`gub.uy`) o redes de cobranza (Abitab / Redpagos).
+  - Captura biométrica (foto digital, huellas dactilares) en oficinas centrales (Montevideo) o jefaturas departamentales de la DNIC.
+  - Entrega: 10 a 15 días hábiles en modalidad común; en el día o 48 horas en modalidad urgente.
+
+---
+
+### 5.4 Czechia (`CZ` / `CZE`)
+- **Administering Authority:**
+  - Ministerstvo vnitra České republiky (MVČR); Obecní úřady obcí s rozšířenou působností (ORP - 205 municipal authorities across Czechia); v Praze úřady městských částí Praha 1 až 22; Zastupitelské úřady ČR v zahraničí (Ministerstvo zahraničních věcí - MZV).
+- **Primary Official Portals:**
+  - `https://www.mvcr.cz/clanek/osobni-doklady-cestovni-doklady-cestovni-pas.aspx`
+  - `https://portal.gov.cz/sluzby-vs/vydani-cestovniho-pasu-S154`
+- **Statutory Framework:**
+  - *Zákon č. 329/2011 Sb., o cestovních dokladech*; *Zákon č. 634/2004 Sb., o správních poplatcích* (položka 26 sazebníku správních poplatků).
+- **Statutory Domestic Tariffs (Administrative Fees):**
+  - **Standardní lhůta (do 30 dnů):**
+    - Občané starší 15 let (Platnost 10 let): **600 Kč**
+    - Děti mladší 15 let (Platnost 5 let): **100 Kč**
+  - **Zkrácená lhůta (do 5 pracovních dnů):**
+    - Občané starší 15 let: **3 000 Kč** (při podání a převzetí na stejném ORP, případně 2 000 Kč u ORP + 1 000 Kč při převzetí na MVČR)
+    - Děti mladší 15 let: **1 000 Kč** (500 Kč + 500 Kč)
+  - **Expresní lhůta (do 24 hodin pracovního dne):**
+    - Občané starší 15 let: **6 000 Kč**
+    - Děti mladší 15 let: **2 000 Kč**
+    - *Podmínka:* Vyzvednutí pasu vystaveného do 24 hodin je možné **výhradně na pracovišti Ministerstva vnitra v Praze (Na Pankráci 72, Praha 4)**.
+- **Statutory Consular Tariffs (Zastupitelské úřady MZV):**
+  - Cestovní pas standardní (starší 15 let): 1 200 Kč (vydávaný v přepočtu na EUR nebo USD).
+  - Cestovní pas pro dítě do 15 let: 400 Kč.
+  - Cestovní průkaz (náhradní cestovní doklad pro návrat do ČR): 400 Kč.
+- **Civil Identity & Document Checklists:**
+  - **Plnoletí občané:** Platný občanský průkaz (Czech National ID Card) nebo dosavadní cestovní pas; v případě pochybností o státním občanství osvědčení o státním občanství ČR.
+  - **Fotografie:** Není třeba nosit papírovou fotografii; digitální fotografie obličeje a otisky prstů se pořizují přímo na přepážce úřadu.
+  - **Děti mladší 15 let:**
+    - Rodný list dítěte.
+    - Doklad totožnosti zákonného zástupce (občanský průkaz).
+    - Osobní přítomnost dítěte je povinná pro pořízení fotografie a biometrie.
+  - **Mladiství (15 až 18 let):**
+    - Vlastní platný občanský průkaz.
+    - Písemný souhlas zákonného zástupce podepsaný přímo před úředníkem na přepážce (nebo úředně ověřený).
+  - **Lost/Stolen:** Ztrátu nebo odcizení pasu je občan povinen neprodleně nahlásit kterémukoliv obecnímu úřadu obce s rozšířenou působností nebo Policii ČR.
+- **Application & Delivery Channels:**
+  - Žádost lze podat u kteréhokoliv obecního úřadu obce s rozšířenou působností v celé ČR bez ohledu na trvalé bydliště (*územní rozvolněnost*).
+  - Výroba: Centrální personalizace ve Státní tiskárně cenin (STC).
+  - Převzetí: Osobně u úřadu podání nebo za poplatek 100 Kč u jiného vybraného ORP.
+
+---
+
+### 5.5 Hungary (`HU` / `HUN`)
+- **Administering Authority:**
+  - Belügyminisztérium (Ministry of Interior); Kormányablakok (Integrated Government Customer Service Windows across Hungary); Nemzeti Infokommunikációs Szolgáltató Zrt. (NISZ); Konzulátusok és külképviseletek (Külgazdasági és Külügyminisztérium - KKM).
+- **Primary Official Portals:**
+  - `https://magyarorszag.hu/`
+  - `https://kormanyhivatalok.hu/`
+  - `https://nyilvantarto.hu/`
+- **Statutory Framework:**
+  - *1998. évi XII. törvény a külföldre utazásról*; *1990. évi XCIII. törvény az illetékekről*; Kormányrendeletek a konzuli díjakról és igazgatási szolgáltatási pótdíjakról.
+- **Statutory Domestic Tariffs (Normál Eljárás, max. 20 nap):**
+  - **Felnőtt útlevél (18 év felettiek, érvényesség: 10 év):** **17 000 Ft** (A korábbi 5 éves felnőtt konstrukció megszűnt; 18 év felett egységesen 10 éves okmány igényelhető).
+  - **Fiatalkorú útlevél (12 és 18 év közöttiek, érvényesség: 5 év):** **12 500 Ft**
+  - **Gyermek útlevél (6 és 12 év közöttiek, érvényesség: 5 év):** **8 500 Ft**
+  - **Kisgyermek útlevél (6 év alatti gyermekek, érvényesség: 3 év):** **8 500 Ft**
+  - **Kézbesítési költség:** Postai házhozszállítás igénylése esetén **+2 000 Ft** kezelési/postaköltség adódik hozzá.
+- **Gyorsított Eljárási Pótdíjak (Igazgatási Szolgáltatási Pótdíj):**
+  - **Soron kívüli eljárás (5 napon belül):** Alapdíj + **19 000 Ft** pótdíj
+  - **Sürgősségi eljárás (3 napon belül):** Alapdíj + **29 000 Ft** pótdíj
+  - **Azonnali eljárás (24 órán belül):** Alapdíj + **39 000 Ft** pótdíj (Kizárólag a Központi Okmányirodában / Budapesten vehető át).
+- **Statutory Consular Tariffs (Külképviseletek KKM):**
+  - Felnőtt magánútlevél (10 éves érvényességgel): kb. 90 EUR (vagy helyi pénznemnek megfelelő konzuli díj).
+  - Kiskorú magánútlevél (5 éves): kb. 50 EUR.
+  - Ideiglenes útlevél (hazatérésre): 30 EUR.
+- **Civil Identity & Document Checklists:**
+  - **Személyazonosság igazolása:** Érvényes állandó személyazonosító igazolvány (Személyi igazolvány), vezetői engedély vagy korábbi útlevél.
+  - Lakcímet igazoló hatósági igazolvány (Lakcímkártya).
+  - **Biometria:** Fénykép, ujjnyomat és elektronikus aláírás rögzítése közvetlenül a Kormányablak digitális pultjánál történik.
+  - **Kiskorúak (<18 év):**
+    - Mindkét szülő (törvényes képviselő) személyes jelenléte és érvényes okmánya kötelező.
+    - Ha az egyik szülő nincs jelen: Közjegyző, gyámhatóság vagy más kormányablak előtt tett, teljes bizonyító erejű hozzájáruló nyilatkozat (*Szülői hozzájáruló nyilatkozat*).
+    - Gyermek születési anyakönyvi kivonata.
+  - **Lost/Stolen:** Az útlevél elvesztését, megsemmisülését vagy ellopását haladéktalanul be kell jelenteni a hatóságnál vagy a rendőrségen jegyzőkönyv felvétele mellett.
+- **Application & Delivery Channels:**
+  - Kérelem benyújtása személyesen bármely magyarországi Kormányablakban (időpontfoglalás a Központi Időpontfoglaló Rendszerben / `magyarorszag.hu`).
+  - Átvétel: Postai úton a lakcímre küldve vagy személyesen a választott Kormányablakban / Központi Okmányirodában.
+
+---
+
+### 5.6 Romania (`RO` / `ROU`)
+- **Administering Authority:**
+  - Direcția Generală de Pașapoarte (DGP) din cadrul Ministerului Afacerilor Interne (MAI); Serviciile Publice Comunitare pentru Eliberarea și Evidența Pașapoartelor Simple (SPCEEPS) din fiecare județ și municipiul București; Departamentul Consular din cadrul Ministerului Afacerilor Externe (MAE).
+- **Primary Official Portals:**
+  - `https://pasapoarte.mai.gov.ro/`
+  - `https://hub.mai.gov.ro/epasapoarte/programari`
+  - `https://www.ghiseul.ro/`
+- **Statutory Framework:**
+  - *Legea nr. 248/2005 privind regimul liberei circulații a cetățenilor români în străinătate*, cu modificările și completările ulterioare; *Ordinul MAI privind modificarea tarifelor de emitere a documentelor de călătorie*, intrat în vigoare la **1 august 2025** (stabilind noul tarif unitar de 265 lei).
+- **Statutory Domestic Tariffs (Actualizat de la 1 August 2025 – 2026):**
+  - **Pașaport Simplu Electronic (Contravaloare unică):** **265 Lei (TVA inclus)**
+    - Vârsta peste 18 ani: Valabilitate **10 ani**
+    - Vârsta între 12 și 18 ani: Valabilitate **5 ani**
+    - Copii sub 12 ani: Valabilitate **3 ani**
+  - **Pașaport Simplu Temporar (Valabilitate maxim 1 an):** **265 Lei (TVA inclus)** (emis exclusiv pentru motive urgente, obiective, dovedite cu documente justificative).
+  - *Plata taxei:* Se achită exclusiv prin mijloace securizate: online pe Ghiseul.ro (la secțiunea Compania Națională Imprimeria Națională S.A.), prin CEC Bank, sau stațiile SelfPay.
+- **Statutory Consular Tariffs (Misiuni Diplomatice și Oficii Consulare MAE):**
+  - Pașaport Simplu Electronic în străinătate: 59 EUR.
+  - Pașaport Simplu Temporar în străinătate: 20 EUR.
+  - Titlu de Călătorie (pentru reîntoarcerea în România): Gratuit (0 EUR conform reformei serviciilor consulare).
+- **Civil Identity & Document Checklists:**
+  - **Persoane majore (18+):** Carte de Identitate (sau Carte de Identitate Electronică / Carte Provizorie) originală și valabilă.
+  - Pașaportul anterior (dacă există, prezentat pentru anulare).
+  - Dovada achitării taxei de 265 lei (verificată electronic în baza CNP-ului, dar se recomandă prezentarea chitanței).
+  - Preluarea imaginii faciale, amprentelor digitale (2 degete) și semnăturii se realizează direct la ghișeu.
+  - **Minori sub 14 ani:**
+    - Certificatul de naștere al minorului în original.
+    - Documentele de identitate ale ambilor părinți în original.
+    - Prezența ambilor părinți este obligatorie. Dacă un părinte lipsește: Procură specială notarială sau declarație de acord autentificată la notar / consulat, ori hotărâre judecătorească definitivă de exercitare exclusivă a autorității părintești.
+  - **Minori între 14 și 18 ani:**
+    - Cartea de identitate a minorului + Certificatul de naștere original.
+    - Declarația de acord a ambilor părinți dată personal la ghișeu sau prin procură notarială.
+  - **Lost/Stolen:** Se declară la ghișeul de pașapoarte la depunerea cererii, sau la secția de poliție competentă în caz de furt (cu eliberarea adeverinței constatatoare).
+- **Application & Delivery Channels:**
+  - Programare online prealabilă pe platforma oficială a Ministerului Afacerilor Interne: `hub.mai.gov.ro/epasapoarte/programari`.
+  - Depunerea cererii se poate face la oricare serviciu public comunitar din țară, indiferent de domiciliul solicitantului.
+  - Termen de eliberare: 5 zile lucrătoare; livrare opțională la domiciliu prin Poșta Română (contra sumei de 14,28 lei).
 

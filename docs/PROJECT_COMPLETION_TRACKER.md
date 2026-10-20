@@ -25,7 +25,8 @@
 | **Phase I** | `TASK-I1` | Documentation & Operational Readiness | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None | Final release gating & launch audit (Phase J) |
 | **Phase J** | `TASK-J1` | Final Release-Readiness Assessment | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | Formal Human Approval | PR #1 Merged into main (Run #38 passed); Proceed to Phase K |
 | **Phase K** | `TASK-K1` | Global Jurisdiction Completion — Batch 1 (NL, AT, CH, PT, KR, TH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 1 complete; Proceed to Phase L |
-| **Phase L** | `TASK-L1` | Global Jurisdiction Completion — Batch 2 (AR, CL, CO, PL, GR, TR) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 2 complete; Proceed to Batch 3 |
+| **Phase L** | `TASK-L1` | Global Jurisdiction Completion — Batch 2 (AR, CL, CO, PL, GR, TR) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 2 complete; Proceed to Phase M |
+| **Phase M** | `TASK-M1` | Global Jurisdiction Completion — Batch 3 (PE, EC, UY, CZ, HU, RO) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 3 complete; Proceed to Batch 4 |
 
 ---
 
@@ -281,4 +282,26 @@
   - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
   - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
 - **Approval Requirements:** None (Feature branch research and documentation)
-- **Next Actionable Task:** Batch 3 Official Source Research for next priority sovereign nations (e.g., Peru `PE`, Ecuador `EC`, Uruguay `UY`, Czechia `CZ`, Hungary `HU`, Romania `RO`).
+- **Next Actionable Task:** Batch 2 complete. Proceed to Phase M (Batch 3).
+
+---
+
+### Phase M: Full Global Jurisdiction Completion — Batch 3 (PE, EC, UY, CZ, HU, RO)
+- **Task ID:** `TASK-M1`
+- **Scope & Acceptance Criteria:**
+  - Conduct primary statutory research for Batch 3 jurisdictions: Peru (`PE`), Ecuador (`EC`), Uruguay (`UY`), Czechia (`CZ`), Hungary (`HU`), and Romania (`RO`).
+  - Document claim-level evidence across base fees, expedited tariffs, civil identity requirements, and domestic vs consular variations.
+  - Record major statutory reforms: Peru's Ley 31678 10-year validity and walk-in ticket system (S/ 120.90 PEN); Ecuador's DIGERCIC $90.00 USD fee and 50% senior / 100% disability exemptions; Uruguay's DNIC $ 5.630 UYU common fee inclusive of antecedentes judiciales; Czechia's 3-speed administrative fee schedule (600 / 3,000 / 6,000 CZK); Hungary's 17 000 HUF adult fee (10-yr validity) and expedited matrix (+19k/+29k/+39k HUF); Romania's August 1, 2025 revised unified 265 RON tariff.
+  - Update `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md` (Section 2 statuses updated to `primary_sources_audited`, Section 5 research dossiers added).
+  - Update `docs/SOURCE_AUDIT_REGISTER.md` (Section 6 claim register with exact URLs and confidence levels).
+  - Maintain 100% test passage in `test/validate.js` and live verification.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 5 Batch 3 dossiers for PE, EC, UY, CZ, HU, RO.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 6 claim audit table with 14 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase M deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Next Actionable Task:** Batch 4 Official Source Research for next priority sovereign nations (e.g., Belgium `BE`, Denmark `DK`, Finland `FI`, Norway `NO`, Sweden `SE`, Ireland/Iceland `IS`).
