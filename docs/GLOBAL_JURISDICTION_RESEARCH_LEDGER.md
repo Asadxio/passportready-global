@@ -31,7 +31,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **AI** | AIA | Anguilla | Territory / Special Region | HMPO (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **AQ** | ATA | Antarctica | Territory / Special Region | Antarctic Treaty Area (No sovereign passport; nationals use country of citizenship) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by INT. General guidance applies. |
 | **AG** | ATG | Antigua and Barbuda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **AR** | ARG | Argentina | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AR** | ARG | Argentina | Sovereign State | Registro Nacional de las Personas (RENAPER) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 2). RENAPER statutory tariffs: Regular $100.000 ARS (postal delivery), Exprés $200.000 ARS (96 hrs), Al Instante $330.000 ARS (6 hrs at airports/hubs). Consular: 165 UC (USD 165 / €165). DNI mandatory prerequisite; parental consent for minors under 18. |
 | **AM** | ARM | Armenia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **AW** | ABW | Aruba | Territory / Special Region | Cabinet of the Governor of Aruba (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **AT** | AUT | Austria | Sovereign State | Bundesministerium für Inneres (BMI) / Passbehörden | `primary_sources_audited` | Primary source audited (Batch 1). Passgesetz 1992 (July 2025 Budget reform): Standard adult (12+) €112.00, Expresspass €148.00, 1-Tages-Express €326.00, Child (2-11) €44.00, Infant (<2) €0.00 first issue. Staatsbürgerschaftsnachweis + Geburtsurkunde required. |
@@ -62,11 +62,11 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KY** | CYM | Cayman Islands | Territory / Special Region | Workforce Opportunities & Residency Cayman (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **CF** | CAF | Central African Republic | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TD** | TCD | Chad | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **CL** | CHL | Chile | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CL** | CHL | Chile | Sovereign State | Servicio de Registro Civil e Identificación (SRCeI) | `primary_sources_audited` | Primary source audited (Batch 2). New single-format biometric passport (polycarbonate, 48 pages): $69.660 CLP nationwide (10-year validity). Cédula de Identidad mandatory prerequisite; parental consent required for under 18; delivery in 6-8 business days. |
 | **CN** | CHN | China | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CX** | CXR | Christmas Island | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **CC** | CCK | Cocos (Keeling) Islands | Territory / Special Region | Australian Passport Office (Australian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
-| **CO** | COL | Colombia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CO** | COL | Colombia | Sovereign State | Ministerio de Relaciones Exteriores (Cancillería) | `primary_sources_audited` | Primary source audited (Batch 2). 2026 statutory fees in Bogotá: Ordinario (32-pg) $190.000 COP ($111k base + $79k timbre); Ejecutivo (48-pg) $323.000 COP; Emergencia $192.000 COP. Departamentos: plus local taxes ($250k-$350k total). Abroad: USD 94 / EUR 68. Cédula de Ciudadanía mandatory. |
 | **KM** | COM | Comoros | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CK** | COK | Cook Islands | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **CR** | CRI | Costa Rica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -101,7 +101,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GE** | GEO | Georgia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GH** | GHA | Ghana | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GI** | GIB | Gibraltar | Territory / Special Region | Civil Status & Registration Office Gibraltar (British Passport - Gibraltar) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **GR** | GRC | Greece | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GR** | GRC | Greece | Sovereign State | Hellenic Police (Διεύθυνση Διαβατηρίων) / Min. of Citizen Protection | `primary_sources_audited` | Primary source audited (Batch 2). PD 25/2022 & Law 4962/2022 (10-yr validity for age 14+): e-Paravolo €84.40 (€53 booklet + €5 postage + €26.40 fee); Minor <14 (3-yr) €73.60. Greek Police ID mandatory; digital photo via myPhoto; appointment at Police Passport Bureau. |
 | **GL** | GRL | Greenland | Territory / Special Region | Rigsombudsmanden i Grønland (Kingdom of Denmark Passport - Grønland cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by DK. General guidance applies. |
 | **GD** | GRD | Grenada | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GP** | GLP | Guadeloupe | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -177,7 +177,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PY** | PRY | Paraguay | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PE** | PER | Peru | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **PN** | PCN | Pitcairn | Territory / Special Region | Pitcairn Island Administration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
-| **PL** | POL | Poland | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **PL** | POL | Poland | Sovereign State | MSWiA / Urzędy Wojewódzkie (Wojewoda) | `primary_sources_audited` | Primary source audited (Batch 2). Ustawa o dokumentach paszportowych: Standard adult (10-yr) 140 PLN; Youth 12-18 / students 70 PLN; Child <12 (5-yr) 30 PLN; Senior 70+ 0 PLN; Lost/damaged by fault +200% (420 PLN). PESEL mandatory; in-person electronic counter signature; delivery in ~30 days. |
 | **PT** | PRT | Portugal | Sovereign State | Instituto dos Registos e do Notariado (IRN) / MNE (Portal das Comunidades) | `primary_sources_audited` | Primary source audited (Batch 1). Decreto-Lei n.º 83/2000 (PEP): Domestic normal €65.00, expresso €85.00, urgente €95.00, airport urgent €100.00; Consular standard €75.00 (€105.00 delivered), consular urgent €120.00, temporary €150.00. Cartão de Cidadão mandatory prerequisite. |
 | **PR** | PRI | Puerto Rico | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **QA** | QAT | Qatar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -227,7 +227,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **TM** | TKM | Turkmenistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **TC** | TCA | Turks and Caicos Islands | Territory / Special Region | Ministry of Border Control Turks & Caicos (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **TV** | TUV | Tuvalu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **TR** | TUR | Türkiye | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **TR** | TUR | Türkiye | Sovereign State | Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü (NVİ) / İçişleri Bakanlığı | `primary_sources_audited` | Primary source audited (Batch 2). 2026 NVİ Bordo Pasaport statutory fees: 4-10 yr total 14.761,40 TL (13.410,40 TL harç + 1.351,00 TL defter); 3-yr 10.867,00 TL; 2-yr 8.049,50 TL; 1-yr 5.454,00 TL; Student <25 harçsız (1.351,00 TL defter only). T.C. Kimlik Kartı mandatory; ALO 199 / randevu.nvi.gov.tr. |
 | **VI** | VIR | U.S. Virgin Islands | Territory / Special Region | U.S. Department of State (US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **UG** | UGA | Uganda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UA** | UKR | Ukraine | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -442,4 +442,209 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - On-site biometric enrollment (photo, iris scan, 10 fingerprints, electronic signature).
   - Kiosk automated self-service renewal available at select Bangkok centers for adult renewal applicants.
   - Turnaround: 2-3 business days in Bangkok; 3-5 business days in provinces; delivered by EMS post.
+
+---
+
+## 4. Batch 2 Audited Claim-Level Research Dossiers (6 Jurisdictions)
+
+### 4.1 Argentina (`AR` / `ARG`)
+- **Administering Authority:**
+  - Registro Nacional de las Personas (RENAPER), dependiente del Ministerio del Interior; representaciones consulares dependientes del Ministerio de Relaciones Exteriores, Comercio Internacional y Culto (Cancillería).
+- **Primary Official Portals:**
+  - `https://www.argentina.gob.ar/interior/renaper/pasaporte`
+  - `https://www.cancilleria.gob.ar/`
+- **Statutory Framework:**
+  - *Ley N° 17.671 de Identificación, Registro y Clasificación del Potencial Humano Nacional* & Resoluciones vigentes del RENAPER sobre tarifario y aranceles consulares (Decreto N° 266/2000).
+- **Statutory Domestic Tariffs:**
+  - **Pasaporte Regular:** $100.000 ARS (10-year validity for adults 18+, 5-year validity for minors; delivery to residential address via Correo Argentino within approx. 15 business days).
+  - **Pasaporte Exprés:** $200.000 ARS ($100.000 base fee + $100.000 express surcharge; delivery within 96 business hours).
+  - **Pasaporte al Instante:** $330.000 ARS ($100.000 base fee + $230.000 instant issuance surcharge; printed and delivered within 2 to 6 hours exclusively at habilitated international airports, such as Ezeiza, Aeroparque Jorge Newbery, and select regional documentation centers).
+  - **Pasaporte Excepcional para Extranjeros / Apátridas / Refugiados:** $100.000 ARS.
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - **Pasaporte Ordinario Consular:** 165 Unidades Consulares (USD 165.00 in the Americas/Rest of World; €165.00 in Eurozone jurisdictions).
+  - **Pasaporte Provisorio / de Emergencia:** 40 Unidades Consulares (USD 40.00 / €40.00; emergency travel booklet).
+  - **Documento de Viaje / Salvoconducto:** 30 Unidades Consulares (USD 30.00 / €30.00; single-entry return travel).
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** Documento Nacional de Identidad (DNI) digital (tarjeta) original y vigente.
+  - Previous passport (if renewing, to be presented for physical invalidation).
+  - **Minors (<18):**
+    - Minor's DNI.
+    - Certified Copy of Birth Certificate (*Partida de Nacimiento original o copia certificada*).
+    - Presence of both parents with their valid DNIs. If one parent is absent: notarized authorization (*autorización expresa ante escribano público, juez de paz o autoridad consular*) or court decree for sole custody.
+  - **Lost/Stolen:** Submission of theft/loss report (*denuncia de extravío/robo*) issued by local police or civil authority.
+- **Application & Delivery Channels:**
+  - Online appointment booking via *Mi Argentina* platform (`argentina.gob.ar/miargentina`).
+  - Biometric enrollment (digital facial photo, digital fingerprints, signature) at RENAPER documentation centers or provincial civil registry offices (*Registros Civiles*).
+
+---
+
+### 4.2 Chile (`CL` / `CHL`)
+- **Administering Authority:**
+  - Servicio de Registro Civil e Identificación (SRCeI), dependiente del Ministerio de Justicia y Derechos Humanos; Consulados de Chile dependientes del Ministerio de Relaciones Exteriores (Minrel).
+- **Primary Official Portals:**
+  - `https://www.registrocivil.cl/`
+  - `https://www.chileatiende.gob.cl/fichas/3358-obtencion-de-pasaporte`
+  - `https://serviciosconsulares.cl/`
+- **Statutory Framework:**
+  - *Decreto Supremo N° 1.010 de 1989 del Ministerio de Justicia (Reglamento de Pasaportes)*; Ley de Presupuestos del Sector Público y resoluciones de actualización de aranceles del SRCeI.
+  - **New Single Biometric Standard (Enacted late 2024–2026):** Legacy distinction between 32-page and 64-page booklets was retired; Chile transitioned to a single standard 48-page biometric polycarbonate passport.
+- **Statutory Domestic Tariffs:**
+  - **Pasaporte Biométrico Estándar (Formato único de 48 páginas):** $69.660 CLP nationwide (10-year validity).
+  - Note: Tariffs are unified nationally across all SRCeI regional offices.
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - **Pasaporte Consular:** Approx. USD 100 – 110 (converted to local currency equivalent per Consular Tariff Regulations).
+  - **Salvoconduto Consular:** Nominal administrative tariff (approx. USD 10) for single-trip repatriation.
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** Cédula de Identidad chilena vigente y en buen estado.
+  - Previous passport (if renewing, surrendered for cancellation).
+  - **Minors (<18):**
+    - Both parents must accompany the minor with their valid Chilean identity cards.
+    - If one or both parents cannot attend: notarized authorization (*Poder especial ante notario público o autorización de salida del país*) or judicial custody authorization (*autorización judicial*).
+    - Minor's Cédula de Identidad.
+  - **Lost/Stolen:** Constancia de bloqueo temporal por internet (`registrocivil.cl`) o bloqueo definitivo en oficina, además de constancia policial en caso de robo.
+- **Application & Delivery Channels:**
+  - Appointment scheduling online via `registrocivil.cl`.
+  - In-person attendance for biometric capture (digital photo, iris/fingerprint, digital signature) at any civil registry office.
+  - Turnaround: 6 to 8 business days; collection in person with identity verification.
+
+---
+
+### 4.3 Colombia (`CO` / `COL`)
+- **Administering Authority:**
+  - Ministerio de Relaciones Exteriores (Cancillería); Oficinas de Pasaportes en Bogotá (Sedes Calle 53, Calle 100, y Red CADE); Gobernaciones departamentales autorizadas; Consulados de Colombia en el exterior.
+- **Primary Official Portals:**
+  - `https://www.cancilleria.gov.co/tramites_servicios/pasaportes`
+  - `https://www.cancilleria.gov.co/tramites_servicios/pasaportes/costos-medios-pago-agencias`
+- **Statutory Framework:**
+  - *Resolución 6886 de 2021* y resoluciones tarifarias anuales de la Cancillería; *Estatuto Tributario Nacional* (Impuesto de Timbre Nacional, Art. 519 y ss., administrado por la DIAN).
+- **Statutory Domestic Tariffs (2026 Breakdown):**
+  - **Bogotá (Sedes Cancillería - Sin impuestos departamentales):**
+    - **Pasaporte Ordinario (32 páginas, vigencia 10 años):** Total $190.000 COP (Tarifa base Cancillería $111.000 + Impuesto de timbre nacional DIAN $79.000).
+    - **Pasaporte Ejecutivo (48 páginas, vigencia 10 años para viajeros frecuentes):** Total $323.000 COP (Tarifa base Cancillería $244.000 + Impuesto de timbre nacional DIAN $79.000).
+    - **Pasaporte de Emergencia (vigencia 7 meses):** Total $192.000 COP (Tarifa base $192.000; exento de timbre).
+  - **Gobernaciones Departamentales (Fuera de Bogotá):**
+    - Sujeto a dos pagos: Tarifa base nacional + Impuesto departamental / Estampillas fijadas por cada Asamblea Departamental.
+    - Rango total estimado en Gobernaciones: Pasaporte Ordinario entre $250.000 y $350.000 COP; Pasaporte Ejecutivo entre $380.000 y $490.000 COP (según el departamento, p.ej. Antioquia, Valle del Cauca, Cundinamarca).
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - **Pasaporte Ordinario en el Exterior:**
+    - Consulados en Estados Unidos y resto del mundo: USD 94.00
+    - Consulados en la Unión Europea: €68.00
+  - **Pasaporte Ejecutivo en el Exterior:**
+    - Consulados en Estados Unidos y resto del mundo: USD 167.00
+    - Consulados en la Unión Europea: €120.00
+  - **Pasaporte de Emergencia en el Exterior:** USD 123.00 / €86.00
+  - **Pasaporte Exento (Repatriación humanitaria):** Gratuito ($0 / USD 0) bajo resolución consular motivada.
+- **Civil Identity & Document Checklists:**
+  - **Mayores de 18 años:** Cédula de Ciudadanía original (formato digital en policarbonato o amarilla con hologramas). Si está en trámite, contraseña original acompañada del Registro Civil de Nacimiento.
+  - **Menores de 7 años:** Registro Civil de Nacimiento original (copia auténtica para el titular) expedido por Notaría o Registraduría.
+  - **Menores de 7 a 17 años:** Tarjeta de Identidad original + Registro Civil de Nacimiento original.
+  - Acompañamiento obligatorio de uno de los padres con su Cédula de Ciudadanía original. Si ninguno puede asistir, poder especial otorgado ante notario o cónsul facultando a un tercero.
+- **Application & Delivery Channels:**
+  - Agendamiento virtual diario a través de la página oficial de la Cancillería (`cancilleria.gov.co`).
+  - Trámite presencial de captura biométrica.
+  - Entrega: 24 horas hábiles en Bogotá; 48 horas en Gobernaciones; 8 días hábiles en Consulados.
+
+---
+
+### 4.4 Poland (`PL` / `POL`)
+- **Administering Authority:**
+  - Ministerstwo Spraw Wewnętrznych i Administracji (MSWiA); Wydziały Spraw Obywatelskich i Cudzoziemców Urzędów Wojewódzkich (Wojewoda) across 16 voivodeships; Terenowe Punkty Paszportowe; Konsulaty RP.
+- **Primary Official Portals:**
+  - `https://www.gov.pl/web/gov/uzyskaj-paszport`
+  - `https://www.gov.pl/web/mswia`
+- **Statutory Framework:**
+  - *Ustawa z dnia 27 stycznia 2022 r. o dokumentach paszportowych (Dz.U. 2022 poz. 350 z późn. zm.)* & *Rozporządzenie Ministra Spraw Wewnętrznych i Administracji w sprawie opłat za wydanie dokumentu paszportowego*.
+- **Statutory Domestic Tariffs:**
+  - **Paszport Standardowy (Adult 18+, 10-year validity):** 140 PLN
+  - **Opłaty Ulgowe (50% zniżki):**
+    - Młodzież od 12 do 18 lat: 70 PLN (10-year validity)
+    - Uczniowie i studenci (od 18 do 26 lat): 70 PLN
+    - Emeryci, renciści, osoby niepełnosprawne: 70 PLN
+    - Rodzice z Kartą Dużej Rodziny (KDR): 70 PLN
+  - **Paszport Dziecięcy (Child under 12, 5-year validity):** 30 PLN (15 PLN with Karta Dużej Rodziny)
+  - **Paszport Uczący się z KDR (Students under 25 with KDR):** 35 PLN
+  - **Zwolnienie Całkowite (0 PLN / Bezpłatnie):**
+    - Osoby w wieku 70 lat i starsze: 0 PLN
+    - Osoby w placówkach opiekuńczych wyjeżdżające na leczenie: 0 PLN
+  - **Opłata Podwyższona za Utratę / Zniszczenie z winy posiadacza (Lost/Damaged by Fault):** 420 PLN (+200% surcharge over base 140 PLN fee per art. 42 ustawy).
+- **Statutory Consular Tariffs (Overseas Posts):**
+  - Standard Adult Passport abroad: 110 EUR (or USD equivalent).
+  - Minor / Concession passport abroad: 55 EUR.
+  - Temporary Emergency Passport (*Paszport tymczasowy*): 40 EUR.
+- **Civil Identity & Document Checklists:**
+  - Numer PESEL (mandatory prerequisite).
+  - Proof of Polish citizenship (*Obywatelstwo polskie*).
+  - Dowód Osobisty (Polish National ID card) or valid passport for identity verification.
+  - 1 biometric paper photo (35x45mm, high resolution, white background, neutral face, taken within past 6 months).
+  - Minor (<18): Both parents must grant consent (in person with Dowód Osobisty, or electronically via `gov.pl` electronic signature / Profil Zaufany).
+  - No paper application form required: since March 2022, applications are generated electronically at the counter; applicant reviews data on screen and signs with digital stylus.
+- **Application & Delivery Channels:**
+  - Application at any passport point (*Punkt paszportowy*) in Poland regardless of residential registration.
+  - Production centrally by Centrum Personalizacji Dokumentów MSWiA.
+  - Turnaround: Up to 30 days statutory maximum; typically 10 to 14 days; trackable online via `gov.pl`.
+
+---
+
+### 4.5 Greece (`GR` / `GRC`)
+- **Administering Authority:**
+  - Hellenic Police (Ελληνική Αστυνομία) / National Passport Center (Διεύθυνση Διαβατηρίων και Εγγράφων Ασφαλείας), Ministry of Citizen Protection (Υπουργείο Προστασίας του Πολίτη); Consular authorities under the Ministry of Foreign Affairs (Υπουργείο Εξωτερικών).
+- **Primary Official Portals:**
+  - `http://www.passport.gov.gr/`
+  - `https://www.gov.gr/ipiresies/polites-kai-kathemerinoteta/stoikheia-polite-kai-tautopoietika-eggrapha/ekdose-diabateriou`
+- **Statutory Framework:**
+  - *Presidential Decree 25/2022* (Government Gazette A' 66/2022) extending adult passport validity from 5 to 10 years; *Law 4962/2022*; Joint Ministerial Decisions on e-Paravolo fees.
+- **Statutory Domestic Tariffs (e-Paravolo System):**
+  - **Adult Passport (Age 14+, 10-year validity):** Total €84.40 (e-Paravolo code 1862):
+    - Τέλος εντύπου βιβλιαρίου (Booklet printing fee): €53.00
+    - Ταχυδρομικά τέλη (Postage / dispatch fee): €5.00
+    - Ψηφιακό τέλος συναλλαγής / χαρτόσημο (Digital transaction / stamp fee): €26.40
+  - **Minor Passport (Under age 14, 3-year validity):** Total €73.60 (e-Paravolo code 1863):
+    - Booklet fee €53.00 + Postage €5.00 + Stamp fee €15.60.
+  - **Passport Replacement due to Wear / Exhaustion of Pages:** Total €58.00 (Booklet €53.00 + Postage €5.00; stamp duty waived).
+  - **Consular Tariffs Abroad:** €84.40 for 10-year passport (payable in local currency at consular exchange rate).
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** Greek Police Identity Card (Δελτίο Αστυνομικής Ταυτότητας).
+  - 1 biometric photograph (40x60mm, technical specifications of ICAO standard) or digital photograph uploaded via the official **myPhoto** government platform (`myphoto.gov.gr`).
+  - Previous passport (presented for physical cancellation and returned).
+  - **Minors (<18):**
+    - Presence of both parents with their Police ID cards. If one parent is absent: certified written consent (*εξουσιοδότηση*) validated through `gov.gr` or a Greek KEP center.
+  - **Lost/Stolen:** Immediate reporting to Hellenic Police station; certificate of declaration of theft/loss (*Βεβαίωση δήλωσης κλοπής/απώλειας*) must be issued before new passport can be processed.
+- **Application & Delivery Channels:**
+  - Online appointment booking at local Police Passport Bureau (*Γραφείο Διαβατηρίων*).
+  - Biometric capture (fingerprints of index fingers, facial image check, electronic signature).
+  - Turnaround: 3 to 5 business days; passport collected in person from the same bureau upon receipt of SMS notification.
+
+---
+
+### 4.6 Türkiye (`TR` / `TUR`)
+- **Administering Authority:**
+  - Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü (NVİ), Ministry of Interior (İçişleri Bakanlığı); overseas embassies/consulates under the Ministry of Foreign Affairs (Dışişleri Bakanlığı).
+- **Primary Official Portals:**
+  - `https://randevu.nvi.gov.tr/`
+  - `https://www.nvi.gov.tr/`
+  - `https://dijital.gib.gov.tr/`
+- **Statutory Framework:**
+  - *Pasaport Kanunu No. 5682*; *Harçlar Kanunu No. 492* (Tarife 6); *Değerli Kağıtlar Kanunu No. 210*; Annual revaluation rate (*Yeniden Değerleme Oranı*) published in the Official Gazette (*T.C. Resmî Gazete*) by the Ministry of Treasury and Finance (Hazine ve Maliye Bakanlığı).
+- **Statutory Domestic Tariffs (2026 NVİ Regular Maroon / Bordo Pasaport):**
+  - **Fixed Defter Bedeli (Valuable paper booklet fee):** 1.351,00 TL (payable across all validity terms).
+  - **Harç Bedeli (Statutory Passport Duty) & Total Payable:**
+    - **6 Months Validity:** Harç 2.806,50 TL + Defter 1.351,00 TL = **Total 4.157,50 TL**
+    - **1 Year Validity:** Harç 4.103,00 TL + Defter 1.351,00 TL = **Total 5.454,00 TL**
+    - **2 Years Validity:** Harç 6.698,50 TL + Defter 1.351,00 TL = **Total 8.049,50 TL**
+    - **3 Years Validity:** Harç 9.516,00 TL + Defter 1.351,00 TL = **Total 10.867,00 TL**
+    - **4 to 10 Years Validity (Standard Adult 18+):** Harç 13.410,40 TL + Defter 1.351,00 TL = **Total 14.761,40 TL**
+  - **Harçsız Öğrenci Pasaportu (Duty-Free Student Passport for youth under age 25):** Harç 0 TL + Defter 1.351,00 TL = **Total 1.351,00 TL** (Requires valid student certificate / *Öğrenci Belgesi* from e-Devlet or educational institution).
+  - **Special / Service Passports (Yeşil / Gri Pasaport):** Exempt from Harç; applicant pays only Defter Bedeli (1.351,00 TL).
+  - **Validity Rules:** Minors under 18 can obtain a passport for a maximum validity of 5 years. 10-year validity is granted only to adults age 18 and older.
+- **Civil Identity & Document Checklists:**
+  - **Mandatory Prerequisite:** T.C. Kimlik Kartı (Turkish National ID Card) original and valid.
+  - 1 biometric photograph (50x60mm, white background, facial biometric standard, taken within the last 6 months).
+  - Previous passport (if held, presented for cancellation).
+  - Fee payment verification (registered automatically electronically from Dijital Vergi Dairesi / PTT / partner banks into the NVİ system).
+  - **Minors (<18) & Incapacitated Persons:** Parental consent declaration (*Muvafakatname*) from both parents in person at the population directorate or notarized.
+  - **Lost/Stolen:** Loss notification recorded directly in the NVİ central system (*MERNİS*).
+- **Application & Delivery Channels:**
+  - Appointment booking via `randevu.nvi.gov.tr`, e-Devlet portal, or ALO 199 call center.
+  - In-person application at any District Population and Citizenship Directorate (*İlçe Nüfus Müdürlüğü*).
+  - Central printing by NVİ; delivered directly to the citizen's residential address by PTT Kargo within 3 to 7 business days.
 

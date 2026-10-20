@@ -24,7 +24,8 @@
 | **Phase H** | `TASK-H1` | Automated Testing & Independent Verification | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None | Documentation & operational runbooks (Phase I) |
 | **Phase I** | `TASK-I1` | Documentation & Operational Readiness | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None | Final release gating & launch audit (Phase J) |
 | **Phase J** | `TASK-J1` | Final Release-Readiness Assessment | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | Formal Human Approval | PR #1 Merged into main (Run #38 passed); Proceed to Phase K |
-| **Phase K** | `TASK-K1` | Global Jurisdiction Completion — Batch 1 (NL, AT, CH, PT, KR, TH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Proceed to Batch 2 Research |
+| **Phase K** | `TASK-K1` | Global Jurisdiction Completion — Batch 1 (NL, AT, CH, PT, KR, TH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 1 complete; Proceed to Phase L |
+| **Phase L** | `TASK-L1` | Global Jurisdiction Completion — Batch 2 (AR, CL, CO, PL, GR, TR) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 2 complete; Proceed to Batch 3 |
 
 ---
 
@@ -258,4 +259,26 @@
   - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
   - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
 - **Approval Requirements:** None (Feature branch research and documentation)
-- **Next Actionable Task:** Batch 2 Official Source Research for next priority sovereign nations (e.g., Argentina `AR`, Chile `CL`, Colombia `CO`, Poland `PL`, Greece `GR`, Türkiye `TR`).
+- **Next Actionable Task:** Batch 1 complete. Proceed to Phase L (Batch 2).
+
+---
+
+### Phase L: Full Global Jurisdiction Completion — Batch 2 (AR, CL, CO, PL, GR, TR)
+- **Task ID:** `TASK-L1`
+- **Scope & Acceptance Criteria:**
+  - Conduct primary statutory research for Batch 2 jurisdictions: Argentina (`AR`), Chile (`CL`), Colombia (`CO`), Poland (`PL`), Greece (`GR`), and Türkiye (`TR`).
+  - Document claim-level evidence across base fees, expedited tariffs, civil identity requirements, and domestic vs consular variations.
+  - Record major statutory reforms: Chile's retirement of 32/64-page booklets in favor of the unified 48-page biometric passport ($69.660 CLP); Greece's PD 25/2022 10-year validity extension for citizens aged 14+ (€84.40); Türkiye's 2026 NVİ Bordo Pasaport fee schedule (14.761,40 TL for 4-10 yrs); Colombia's Bogotá ($190k COP) vs Gobernaciones dual-tax breakdown.
+  - Update `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md` (Section 2 statuses updated to `primary_sources_audited`, Section 4 research dossiers added).
+  - Update `docs/SOURCE_AUDIT_REGISTER.md` (Section 5 claim register with exact URLs and confidence levels).
+  - Maintain 100% test passage in `test/validate.js` and live verification.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 4 Batch 2 dossiers for AR, CL, CO, PL, GR, TR.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 5 claim audit table with 15 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase L deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Next Actionable Task:** Batch 3 Official Source Research for next priority sovereign nations (e.g., Peru `PE`, Ecuador `EC`, Uruguay `UY`, Czechia `CZ`, Hungary `HU`, Romania `RO`).
