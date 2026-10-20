@@ -1,4 +1,8 @@
-const RULE_PACKS = {
+if (typeof window === 'undefined') {
+  var window = {};
+}
+
+window.RULE_PACKS = {
   "IN": {
     "country_code": "IN",
     "country_name": "India",
@@ -9194,5 +9198,5 @@ const RULE_PACKS = {
 };
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { RULE_PACKS };
+  module.exports = { RULE_PACKS: window.RULE_PACKS };
 }
