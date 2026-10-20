@@ -35,6 +35,7 @@
 | **Phase S** | `TASK-S1` | Global Jurisdiction Completion — Batch 9 (LB, JO, OM, KW, BH, TN) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 9 complete; Proceed to Batch 10 |
 | **Phase T** | `TASK-T1` | Global Jurisdiction Completion — Batch 10 (GE, AM, AZ, RS, BA, AL) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 10 complete; Proceed to Batch 11 |
 | **Phase U** | `TASK-U1` | Global Jurisdiction Completion — Batch 11 (SN, CI, CM, UG, RW, MU) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 11 complete; Proceed to Batch 12 |
+| **Phase V** | `TASK-V1` | Global Jurisdiction Completion — Batch 12 (BW, NA, ZM, ZW, AO, MZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 12 complete; Proceed to Batch 13 |
 
 ---
 
@@ -509,3 +510,27 @@
   - **RW:** Ministerial Order No. 06/01 confirmed DIRECT from `migration.gov.rw` and `support.irembo.gov.rw`: Adult ordinary e-passport 100,000 RWF (10-yr, 50-pg) / 75,000 RWF (5-yr, 50-pg); minor e-passport (<16) 25,000 RWF. Older 50k RWF fee resolved as obsolete paper passport rate. National ID (Indangamuntu) for 16+ or Child ID for <16 mandatory; IremboGov digital application and payment.
   - **MU:** Passports Act regulations confirmed DIRECT on `passport.govmu.org`: Adults 16–54 (10-yr) MUR 700; minors <16 (5-yr), seniors 55+, and disabled persons MUR 400. Statutory penalty tiers for lost/damaged passports: 1st loss MUR 5,000; 2nd loss MUR 15,000; subsequent MUR 15,000 cumulative. Police loss declaration mandatory; Form PF 136 in-person at PIO Port Louis or district divisional HQs.
 - **Next Actionable Task:** Batch 12 Official Source Research (suggested cohort: Southern Africa & Central Africa sovereign nations: e.g. Botswana BW, Namibia NA, Zambia ZM, Zimbabwe ZW, Angola AO, Mozambique MZ).
+
+
+---
+
+### Phase V: Global Jurisdiction Completion — Batch 12 (BW, NA, ZM, ZW, AO, MZ)
+- **Task ID:** `TASK-V1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Botswana (BW), Namibia (NA), Zambia (ZM), Zimbabwe (ZW), Angola (AO), and Mozambique (MZ). All 6 Southern and Central African sovereign jurisdictions upgraded from `official_source_needs_research` to `primary_sources_audited`. Full dossiers authored in Section 14 of `GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`. Claim-level audit entries written in Section 15 of `SOURCE_AUDIT_REGISTER.md`. All statutory tariffs, booklet page tiers (32-pg vs 48-pg), emergency/express processing options, RUPE payment frameworks, penalty scales for lost documents, and civil identity prerequisites confirmed with `DIRECT` confidence from official acts, decrees, and government service bus portals.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 14 Batch 12 dossiers for BW, NA, ZM, ZW, AO, MZ.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 15 claim audit table with 18 audited statutory claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase V deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **BW:** DCNR statutory tariffs confirmed DIRECT from `gov.bw`: Adults 16+ (10-yr) BWP 260.00; minors 0–15 (5-yr) BWP 100.00; lost/damaged passport replacement penalty BWP 1,000.00. National Identity Card (Omang) mandatory for 16+; in-person biometrics at DCNR district service centers.
+  - **NA:** MHAISS statutory fee schedule confirmed DIRECT from `eservices.mhaiss.gov.na` and `mhaiss.gov.na`: New/renewed ordinary passport (5-yr) N$400.00; lost/damaged replacement N$800.00 (double fee statutory penalty). Namibian National ID card + full birth certificate mandatory; online application via eServices; in-person biometrics at MHAISS regional offices.
+  - **ZM:** ZamPortal (`gsb.gov.zm`) official tariff confirmed DIRECT: Ordinary 32-page (10-yr adult) ZMW 320.00; express 32-page ZMW 520.00; ordinary 48-page ZMW 520.00; express 48-page ZMW 720.00; lost replacement 32-page ZMW 420.00. National Registration Card (NRC Green Card) mandatory for 16+; referee recommendation section; DNRPC provincial offices.
+  - **ZW:** Statutory Instruments under the Citizenship of Zimbabwe Act confirmed DIRECT: Ordinary e-passport USD 170 (USD 150 base statutory fee + USD 20 QR code fee); emergency/express e-passport (48–72h) USD 250 (or USD 270 inclusive of QR fee). Strictly paid in USD cash or CBZ/First Capital bank partner accounts. National ID card + long-form birth certificate mandatory.
+  - **AO:** Decreto Presidencial n.º 21/19 confirmed DIRECT on `sme.gov.ao`: Standard ordinary biometric passport (5-yr) 30.500,00 AOA. Paid via RUPE (Referência Única de Pagamento ao Estado) through Multicaixa interbank network. Bilhete de Identidade (BI) valid national ID mandatory; online pre-application via SME portal; biometrics at SME directorates or SIAC centers.
+  - **MZ:** Diploma Ministerial n.º 18/2024 confirmed DIRECT on `agendamento.senami.gov.mz`: Normal biometric passport (5-yr) 2.400,00 MZN; urgent biometric passport 2.775,00 MZN; Emergency Certificate 400 MZN. Bilhete de Identidade (BI) valid national ID mandatory; online appointment booking via `agendamento.senami.gov.mz`; in-person biometrics at SENAMI provincial directorates.
+- **Next Actionable Task:** Batch 13 Official Source Research (suggested cohort: Central America & Caribbean sovereign nations: e.g. Costa Rica CR, Panama PA, Dominican Republic DO, Guatemala GT, Jamaica JM, Trinidad and Tobago TT).

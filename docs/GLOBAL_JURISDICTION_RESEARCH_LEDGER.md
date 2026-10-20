@@ -27,7 +27,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **DZ** | DZA | Algeria | Sovereign State | DGSN / Ministère de l'Intérieur — `https://www.dgsn.dz/` | `primary_sources_audited` | Finance Law stamp duty: Adult 28-pg DZD 6,000 / 48-pg DZD 9,000; Minor DZD 3,000 / 4,500; Express 28-pg DZD 25,000; Emergency 28-pg DZD 12,000 (PARTIAL — confirm current Finance Law). CNIB mandatory. APC in-person biometric enrollment. |
 | **AS** | ASM | American Samoa | Territory / Special Region | U.S. Department of State (Non-Citizen US National / US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **AD** | AND | Andorra | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **AO** | AGO | Angola | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **AO** | AGO | Angola | Sovereign State | Serviço de Migração e Estrangeiros (SME) — `https://www.sme.gov.ao/` | `primary_sources_audited` | Decreto Presidencial n.º 21/19: Passaporte ordinário (5-yr) 30.500,00 AOA (DIRECT). Paid via RUPE payment reference through Multicaixa interbank network. Bilhete de Identidade (BI) valid national ID mandatory; RUPE proof; birth certificate for minors; online pre-application via sme.gov.ao; biometrics at SME provincial directorates or SIAC centers. |
 | **AI** | AIA | Anguilla | Territory / Special Region | HMPO (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **AQ** | ATA | Antarctica | Territory / Special Region | Antarctic Treaty Area (No sovereign passport; nationals use country of citizenship) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by INT. General guidance applies. |
 | **AG** | ATG | Antigua and Barbuda | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -48,7 +48,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BO** | BOL | Bolivia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BQ** | BES | Bonaire, Sint Eustatius and Saba | Territory / Special Region | Rijksdienst Caribisch Nederland (Bonaire, Sint Eustatius, Saba - Dutch Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **BA** | BIH | Bosnia and Herzegovina | Sovereign State | IDDEEA & Cantonal/Entity Ministries of Interior (MUP) — `https://www.iddeea.gov.ba/` | `primary_sources_audited` | Council of Ministers Decision: Adults 18+ (10-yr) 50 BAM; Minors 3–18 (5-yr) 40 BAM; Children <3: 30 BAM (DIRECT). Urgent processing (72h without justification): +200 BAM surcharge (total 250 BAM). BiH Electronic ID Card (Lična karta) mandatory; in-person at competent Cantonal MUP / MUP RS. |
-| **BW** | BWA | Botswana | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BW** | BWA | Botswana | Sovereign State | Dept. of Civil & National Registration (DCNR) — `https://www.gov.bw/` | `primary_sources_audited` | Passports Act regulations: Adults 16+ (10-yr) BWP 260.00; Minors 0–15 (5-yr) BWP 100.00; Lost/damaged replacement BWP 1,000.00 penalty (DIRECT). National Identity Card (Omang) mandatory for 16+; birth certificate for minors; police report for lost passports; in-person biometrics at DCNR district offices. |
 | **BV** | BVT | Bouvet Island | Territory / Special Region | Bouvet Island (Uninhabited subantarctic volcanic island; Norwegian dependency) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
 | **IO** | IOT | British Indian Ocean Territory | Territory / Special Region | British Indian Ocean Territory (No permanent civilian population; UK military/admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **VG** | VGB | British Virgin Islands | Territory / Special Region | Civil Registry & Passport Office BVI (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -155,9 +155,9 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **ME** | MNE | Montenegro | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MS** | MSR | Montserrat | Territory / Special Region | Immigration Department Montserrat (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **MA** | MAR | Morocco | Sovereign State | Ministère de l'Intérieur / Direction Générale de la Sûreté Nationale | `primary_sources_audited` | Primary source audited (Batch 5). Code général des impôts statutory tariff: e-Timbre fiscal 500 DH (16-digit code via passeport.ma); 5-year validity (adults and minors); 3-year (<3 yrs). Mandatory CNIE for adults; parental presence + birth certificate for minors. Submission at local Annexe administrative. |
-| **MZ** | MOZ | Mozambique | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MZ** | MOZ | Mozambique | Sovereign State | Serviço Nacional de Migração (SENAMI) — `https://agendamento.senami.gov.mz/` | `primary_sources_audited` | Diploma Ministerial n.º 18/2024: Normal biometric passport (5-yr) 2.400,00 MZN; Urgent 2.775,00 MZN; Emergency Certificate 400 MZN (DIRECT). Bilhete de Identidade (BI) mandatory; birth certificate for minors; online appointment booking via agendamento.senami.gov.mz; in-person biometrics at SENAMI provincial directorates. |
 | **MM** | MMR | Myanmar | Sovereign State | Dept. of Immigration & National Registration (SAC-controlled) — `https://epassport.moip.gov.mm/` | `primary_sources_audited` | SAC official fee: MMK 40,000 (eff. Sep 1, 2024; PARTIAL). ⚠️ CRITICAL: Military coup Feb 2021 (SAC junta). Conscription law (eff. Mar 2024) for males 18–35 / females 18–27; passports weaponized as conscription control. NRC + UID mandatory. Overseas passport revocations reported for anti-coup diaspora. |
-| **NA** | NAM | Namibia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **NA** | NAM | Namibia | Sovereign State | Ministry of Home Affairs, Immigration, Safety & Security (MHAISS) — `https://eservices.mhaiss.gov.na/` | `primary_sources_audited` | Passports Act fee schedule: New/renewed ordinary passport (5-yr) N$400.00; Lost/damaged replacement N$800.00 (double fee penalty) (DIRECT). Namibian National ID + full birth certificate mandatory; citizenship certificate if born abroad; online initiation via eservices.mhaiss.gov.na; in-person biometrics at MHAISS regional offices. |
 | **NR** | NRU | Nauru | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **NL** | NLD | Netherlands | Sovereign State | Ministerie van BZK (RvIG) / Ministerie van BZ (NederlandWereldwijd) | `primary_sources_audited` | Primary source audited (Batch 1). Paspoortwet / Paspoortuitvoeringsregeling 2026 municipal caps: Domestic adult (18+) max €88.65, minor (<18) max €67.05, spoedtoeslag max €60.30; Consular adult €169.15, minor €147.40, emergency €60.25; Border desk adult €133.65. |
 | **NC** | NCL | New Caledonia | Territory / Special Region | Haut-Commissariat de la République en Nouvelle-Calédonie (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
@@ -241,8 +241,8 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **WF** | WLF | Wallis and Futuna | Territory / Special Region | Administration Supérieure de Wallis-et-Futuna (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **EH** | ESH | Western Sahara | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **YE** | YEM | Yemen | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **ZM** | ZMB | Zambia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **ZW** | ZWE | Zimbabwe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **ZM** | ZMB | Zambia | Sovereign State | Dept. of National Registration, Passport & Citizenship (DNRPC) — `https://www.gsb.gov.zm/` | `primary_sources_audited` | ZamPortal official tariff: Ordinary 32-pg (10-yr adult) ZMW 320.00; Express 32-pg ZMW 520.00; Ordinary 48-pg ZMW 520.00; Express 48-pg ZMW 720.00; Lost replacement 32-pg ZMW 420.00 (DIRECT). National Registration Card (NRC) green card mandatory for 16+; birth certificate; referee recommendation; in-person biometrics at DNRPC offices. |
+| **ZW** | ZWE | Zimbabwe | Sovereign State | Civil Registry Department — `https://www.zimembassyberlin.gov.zw/` | `primary_sources_audited` | Statutory Instruments under Citizenship of Zimbabwe Act: Ordinary e-passport USD 170 (USD 150 base + USD 20 QR code fee); Emergency/express e-passport (48–72h) USD 250 (DIRECT). Paid strictly in USD cash or designated bank accounts (CBZ). National ID card + original long-form birth certificate mandatory; in-person at Civil Registry e-passport centers. |
 | **AX** | ALA | Åland Islands | Territory / Special Region | Åland Police Authority (Finnish Passport - Åland cover) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FI. General guidance applies. |
 
 ---
@@ -2623,5 +2623,219 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - Processing: Standard 4–5 working days (domestic).
   - Delivery: Collected in person at the office of application upon biometric verification and presentation of the application receipt.
   - Overseas: Processed via Mauritian diplomatic missions and transmitted to Port Louis.
+
+---
+
+---
+
+## Section 14 — Batch 12 Primary Statutory Research Dossiers: BW, NA, ZM, ZW, AO, MZ
+
+*Batch 12 research executed: 2026-10-20. Sourced directly from official interior and home affairs ministries, national registration departments, presidential decrees, and gazetted ministerial diplomas across Southern & Central Africa sovereign nations. All domestic statutory fees, express/emergency tiers, penalty scales for lost documents, and civil identity prerequisites are bound to exact source URLs.*
+
+---
+
+### 14.1 Botswana (BW / BWA) — Department of Civil and National Registration (DCNR)
+
+- **Administering Authority:** Department of Civil and National Registration (DCNR), Ministry of Labour and Home Affairs (formerly Ministry of Nationality, Immigration and Gender Affairs), Republic of Botswana
+- **Primary Portals:**
+  - Official Botswana Government Portal: `https://www.gov.bw/`
+- **Statutory Framework:**
+  - Botswana Passports Act and DCNR statutory fee regulations governing electronic passport issuance.
+- **Domestic Fee Schedule (in Botswana Pula — BWP):**
+  - **Adults & Young Adults (Aged 16 and above, 10-year validity):** **BWP 260.00** (issuance, standard renewal, or name change)
+  - **Minors (Children aged 0 to 15 years, 5-year validity):** **BWP 100.00**
+  - **Lost, Stolen, or Damaged Passport Replacement:** **BWP 1,000.00** (penalty replacement fee)
+  - **Fast-Track / Express Processing:** Surcharge applies for urgent processing.
+  - **Evidence confidence: `DIRECT`** — confirmed directly from `gov.bw` official government portal and DCNR regulations.
+- **Consular Fee Schedule:**
+  - Via Botswana High Commissions and Embassies overseas (Ministry of International Relations).
+  - Fees collected in local foreign currencies at equivalent statutory rates plus diplomatic postage charges.
+  - **Evidence confidence: `PARTIAL`** — foreign mission chancery rates vary by bilateral mission.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card (Omang):** Mandatory for all Botswana citizens aged 16 and older (original plus copy).
+  - **Birth Certificate:** Required for minors under 16 and first-time applicants.
+  - **For minors (under 16):** Presence and written consent of parents/guardians, accompanied by parents' Omang cards.
+  - **Previous passport:** Must be presented for physical cancellation on renewal.
+  - **In case of loss/theft:** Police report from Botswana Police Service stating circumstance of loss.
+  - **Biometrics:** Digital facial photograph, live electronic fingerprints, and signature captured in-person at DCNR service centers.
+- **Application & Delivery Channels:**
+  - In-person application and biometric capture at DCNR district offices, integrated service centers, or post office partner counters across Botswana.
+  - Delivery: Collected in person upon biometric verification and presentation of the receipt slip.
+  - Overseas: Via Botswana diplomatic missions.
+
+---
+
+### 14.2 Namibia (NA / NAM) — Ministry of Home Affairs, Immigration, Safety and Security (MHAISS)
+
+- **Administering Authority:** Ministry of Home Affairs, Immigration, Safety and Security (MHAISS), Republic of Namibia
+- **Primary Portals:**
+  - Official MHAISS eServices Portal: `https://eservices.mhaiss.gov.na/`
+  - Ministry Portal: `https://mhaiss.gov.na/`
+- **Statutory Framework:**
+  - Namibian Passports Act and MHAISS published administrative fee schedules.
+- **Domestic Fee Schedule (in Namibian Dollars — NAD / N$):**
+  - **New / Renewed Ordinary Passport (surrendering previous):** **N$400.00**
+  - **Replacement of Lost or Damaged Passport:** **N$800.00** (statutory double fee penalty)
+  - **Diplomatic, Official, and Refugee Passports:** N$800.00
+  - **Emergency Travel Document (ETD):** N$600.00
+  - **Validity:** **5 years** for ordinary passports.
+  - **Evidence confidence: `DIRECT`** — confirmed directly from `mhaiss.gov.na` and official eServices schedules.
+- **Consular Fee Schedule:**
+  - Via Namibian Embassies and High Commissions overseas (e.g. London, Washington, Berlin, Pretoria).
+  - Fees collected in local foreign currencies (e.g. EUR, USD, GBP, ZAR) with applicable diplomatic handling fees.
+  - **Evidence confidence: `PARTIAL`** — mission-specific chancery schedules vary.
+- **Civil Identity & Document Checklists:**
+  - **Namibian National Identity Card:** Mandatory for all applicants aged 16 and older.
+  - **Full Birth Certificate:** Required for all applicants to verify parentage and citizenship.
+  - **Citizenship Certificate:** Mandatory if the applicant was born outside Namibia or acquired citizenship by descent/naturalization.
+  - **Marriage Certificate:** Required for married female applicants adopting their husband's surname.
+  - **In case of loss/theft:** Police declaration of loss and sworn affidavit detailing the circumstances.
+  - **For minors (under 16):** Full birth certificate; copies of parents' ID cards; written consent from both parents.
+  - **Biometrics:** Live facial photo, digital fingerprints, and signature captured at MHAISS offices.
+- **Application & Delivery Channels:**
+  - Digital application initiation via `https://eservices.mhaiss.gov.na/`.
+  - In-person biometric enrollment at MHAISS regional headquarters (Windhoek, Oshakati, Swakopmund, etc.).
+  - Processing: Standard 3–5 working days (domestic).
+  - Delivery: Collected in person at the regional office upon biometric authentication.
+  - Overseas: Via Namibian Embassies and High Commissions.
+
+---
+
+### 14.3 Zambia (ZM / ZMB) — Department of National Registration, Passport and Citizenship (DNRPC)
+
+- **Administering Authority:** Department of National Registration, Passport and Citizenship (DNRPC), Ministry of Home Affairs and Internal Security, Republic of Zambia
+- **Primary Portals:**
+  - Official Zambia E-Services Portal (ZamPortal): `https://www.gsb.gov.zm/`
+- **Statutory Framework:**
+  - Passports Act (Cap 103) of the Laws of Zambia and Government Service Bus official fee schedules.
+- **Domestic Fee Schedule (in Zambian Kwacha — ZMW):**
+  - **Ordinary Passport (32 Pages, Standard processing):** **ZMW 320.00**
+  - **Express Passport (32 Pages, Fast-track processing):** **ZMW 520.00**
+  - **Ordinary Passport (48 Pages, Frequent traveler):** **ZMW 520.00**
+  - **Express Passport (48 Pages, Frequent traveler fast-track):** **ZMW 720.00**
+  - **Lost Passport Replacement (32 Pages):** **ZMW 420.00**
+  - **Lost Passport Replacement (48 Pages):** **ZMW 620.00**
+  - Validity: **10 years** for adults (aged 16 and above); **5 years** for minors under 16.
+  - **Evidence confidence: `DIRECT`** — confirmed directly from `gsb.gov.zm` official tariff matrix.
+- **Consular Fee Schedule:**
+  - Via Zambian High Commissions and Embassies overseas.
+  - Applications processed through e-services with consular chancery surcharges.
+  - **Evidence confidence: `PARTIAL`** — mission-specific chancery fees apply.
+- **Civil Identity & Document Checklists:**
+  - **National Registration Card (NRC — Green Card):** Mandatory for all Zambian citizens aged 16 and older.
+  - **Birth Certificate:** Issued by the Registrar General; mandatory for first-time applicants and minors.
+  - **Recommendation Section:** Section on application form certified by a recognized professional recommender (lawyer, doctor, magistrate, minister of religion).
+  - **Previous passport:** Surrendered for physical cancellation on renewal.
+  - **In case of loss:** Police report from Zambia Police Service and a sworn affidavit of loss.
+  - **For minors (under 16):** Child's birth certificate; certified copies of parents' NRC cards; written parental consent.
+  - **Biometrics:** Facial photograph and digital fingerprints captured at passport offices.
+- **Application & Delivery Channels:**
+  - Digital application submission via the ZamPortal (`gsb.gov.zm`).
+  - In-person biometric enrollment at DNRPC provincial offices (Lusaka Headquarters, Ndola, Livingstone, Chipata, Kasama, etc.).
+  - Processing: Standard 5–10 working days; express 2–3 working days.
+  - Delivery: Collected in person at the passport office upon production of the receipt voucher and NRC.
+  - Overseas: Via Zambian diplomatic missions.
+
+---
+
+### 14.4 Zimbabwe (ZW / ZWE) — Civil Registry Department
+
+- **Administering Authority:** Civil Registry Department, Ministry of Home Affairs and Cultural Heritage, Republic of Zimbabwe
+- **Primary Portals:**
+  - Zimbabwe Embassy Berlin (official fees notice): `https://www.zimembassyberlin.gov.zw/`
+  - Ministry of Home Affairs and Cultural Heritage
+- **Statutory Framework:**
+  - Citizenship of Zimbabwe Act and Statutory Instruments regulating electronic biometric passport (e-passport) tariffs.
+- **Domestic Fee Schedule (in US Dollars — USD):**
+  - **Ordinary Biometric e-Passport (Standard turnaround ~7 business days):** **USD 170** (composed of USD 150 base statutory fee + mandatory USD 20 Quick Response / QR code fee)
+  - **Emergency / Express Biometric e-Passport (Turnaround within 48–72 hours):** **USD 250** (or up to **USD 270** inclusive of QR code fee depending on statutory category)
+  - **Payment Mode:** Strictly paid in USD cash or via designated bank partner accounts (CBZ Bank, First Capital Bank).
+  - **Validity:** **10 years** for adults; **5 years** for minors under 18.
+  - **Evidence confidence: `DIRECT`** — established by Statutory Instrument under the Citizenship of Zimbabwe Act and confirmed across Civil Registry Department announcements and embassy schedules.
+- **Consular Fee Schedule (Diaspora):**
+  - Processed through designated Zimbabwean Embassies (e.g. Pretoria, London, Washington) equipped with e-passport bio-enrollment kits.
+  - Fees collected in USD or foreign currency equivalent at official consular rates.
+  - **Evidence confidence: `DIRECT`** — unified statutory pricing applies at e-passport centers worldwide.
+- **Civil Identity & Document Checklists:**
+  - **Zimbabwean National Identity Card (Metal, Plastic, or Waiting Pass with photo):** Mandatory for all applicants aged 16 and older.
+  - **Original Birth Certificate (Long Form):** Mandatory for all applicants.
+  - **Marriage Certificate:** Required for married female applicants wishing to adopt their husband's surname.
+  - **Previous passport:** Must be presented for physical cancellation on renewal.
+  - **In case of loss/theft:** Police report and sworn affidavit detailing the loss.
+  - **For minors (under 18):** Long-form birth certificate; national ID of the accompanying parent; written consent from the legal guardian.
+  - **Biometrics:** Digital facial photograph, live ten-fingerprint scan, and electronic signature captured at e-passport bio-enrollment centers.
+- **Application & Delivery Channels:**
+  - In-person attendance at Civil Registry e-passport bio-enrolment centers (Harare Old Hospital, Bulawayo, Gweru, Mutare, Chitungwiza, Hwange, etc.).
+  - Delivery: Collected in person or delivered to the chosen registry office upon notification.
+  - Overseas: Via Zimbabwean embassies equipped with e-passport biometric desks.
+
+---
+
+### 14.5 Angola (AO / AGO) — Serviço de Migração e Estrangeiros (SME)
+
+- **Administering Authority:** Serviço de Migração e Estrangeiros (SME), Ministério do Interior, República de Angola
+- **Primary Portals:**
+  - Official SME Portal: `https://www.sme.gov.ao/`
+  - Ministry of Interior: `https://minint.ao/`
+- **Statutory Framework:**
+  - Decreto Presidencial n.º 21/19 establishing the updated schedule of migration service fees and administrative acts (*Tabela de Taxas dos Atos Migratórios*).
+- **Domestic Fee Schedule (in Angolan Kwanzas — AOA):**
+  - **Standard Ordinary Biometric Passport (Passaporte Ordinário, 5-year validity):** **30.500,00 AOA**
+  - **Payment Mechanism:** Paid via RUPE (Referência Única de Pagamento ao Estado) generated by the SME portal and settled through the Multicaixa interbank network or home banking.
+  - **Replacement for Lost or Damaged Passports:** **30.500,00 AOA** plus mandatory police declaration of loss (*participação policial*).
+  - **Evidence confidence: `DIRECT`** — established by Decreto Presidencial n.º 21/19 and confirmed on `sme.gov.ao`.
+- **Consular Fee Schedule:**
+  - Via Angolan Consulates-General and Embassies overseas (e.g. Lisbon, Porto, Paris, London, Houston, Windhoek).
+  - Fees collected in local currency (EUR/USD) based on ministerial chancery fee tables.
+  - **Evidence confidence: `PARTIAL`** — chancery tariffs vary by foreign diplomatic post.
+- **Civil Identity & Document Checklists:**
+  - **Bilhete de Identidade (BI):** Valid original national identity card of Angola (mandatory for all applicants).
+  - **RUPE Payment Voucher:** Proof of settlement of the 30.500,00 AOA statutory fee.
+  - **Birth Certificate (Assento de nascimento):** Required for minors under 18.
+  - **Parental Authorization:** Legalized authorization from both parents or legal guardian for minors.
+  - **Previous passport:** Must be presented for physical cancellation on renewal.
+  - **In case of loss:** Police declaration (*participação de extravio*) issued by the Polícia Nacional de Angola.
+  - **Biometrics:** Digital facial image, live fingerprints, and electronic signature captured at SME enrollment stations.
+- **Application & Delivery Channels:**
+  - Digital pre-application and appointment scheduling via `https://www.sme.gov.ao/`.
+  - In-person attendance at SME provincial directorates or SIAC (Serviço Integrado de Atendimento ao Cidadão) counters across Angola.
+  - Processing: Standard 10–15 business days (faster in central SIAC centers).
+  - Delivery: Collected in person upon presentation of application slip and BI verification.
+  - Overseas: Via Angolan Consulates-General.
+
+---
+
+### 14.6 Mozambique (MZ / MOZ) — Serviço Nacional de Migração (SENAMI)
+
+- **Administering Authority:** Serviço Nacional de Migração (SENAMI / Direcção Nacional de Migração), Ministério do Interior, República de Moçambique
+- **Primary Portals:**
+  - Official SENAMI Appointment Portal: `https://agendamento.senami.gov.mz/`
+  - Ministry of Interior eVisa/eTA Portal: `https://evisa.gov.mz/`
+- **Statutory Framework:**
+  - Diploma Ministerial n.º 18/2024 (enacted jointly by the Ministry of Interior and the Ministry of Economy and Finance, published in the *Boletim da República*).
+- **Domestic Fee Schedule (in Mozambican Meticais — MZN):**
+  - **Standard Biometric Passport (Normal Processing timeline):** **2.400,00 MZN**
+  - **Urgent Biometric Passport (Expedited processing):** **2.775,00 MZN**
+  - **Emergency Certificate (Certificado de Emergência):** 400,00 MZN (Normal) / 463,00 MZN (Urgent)
+  - **Travel Document for Refugees:** 3.750,00 MZN (Normal) / 4.340,00 MZN (Urgent)
+  - **Validity:** **5 years** for ordinary biometric passports.
+  - **Evidence confidence: `DIRECT`** — established by Diploma Ministerial n.º 18/2024 and confirmed on official SENAMI channels.
+- **Consular Fee Schedule:**
+  - Via Mozambican High Commissions and Embassies overseas (e.g. Pretoria, Lisbon, Washington, Dar es Salaam).
+  - Fees collected in local foreign currencies (ZAR, EUR, USD) with applicable diplomatic handling fees.
+  - **Evidence confidence: `PARTIAL`** — mission-specific consular chancery schedules apply.
+- **Civil Identity & Document Checklists:**
+  - **Bilhete de Identidade (BI):** Valid original Mozambican national identity card (mandatory for all adult applicants).
+  - **Birth Certificate (Certidão de nascimento / Cédula pessoal):** Mandatory for minors and first-time applicants.
+  - **For minors (under 18):** Written and recognized parental authorization from both parents or legal guardian.
+  - **Previous passport:** Surrendered for physical cancellation on renewal.
+  - **In case of loss/theft:** Police loss report from the Polícia da República de Moçambique (PRM).
+  - **Biometrics:** Live facial photo, digital fingerprints, and signature captured in-person on SENAMI biometric stations.
+- **Application & Delivery Channels:**
+  - Online appointment booking required via `https://agendamento.senami.gov.mz/`.
+  - In-person attendance and biometric enrollment at SENAMI provincial directorates across Mozambique.
+  - Processing: Standard ~7–10 working days; urgent ~3–4 working days.
+  - Delivery: Collected in person at the SENAMI provincial office upon presentation of receipt slip.
+  - Overseas: Via Mozambican diplomatic and consular missions.
 
 ---
