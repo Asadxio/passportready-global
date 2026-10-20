@@ -36,6 +36,121 @@ class PassportRulesEngine {
     return location === 'abroad' ? 'Consular / Overseas Application' : 'Domestic Application';
   }
 
+  collectServiceSources(pack, serviceObj) {
+    const list = [];
+    if (serviceObj && Array.isArray(serviceObj.sources)) {
+      list.push(...serviceObj.sources);
+    }
+    if (pack && Array.isArray(pack.sources)) {
+      list.push(...pack.sources);
+    }
+    if (serviceObj?.documents && Array.isArray(serviceObj.documents)) {
+      serviceObj.documents.forEach(d => {
+        if (d && (d.official_source_url || d.source_url)) {
+          list.push(d.official_source_url || d.source_url);
+        }
+      });
+    }
+    if (serviceObj?.steps && Array.isArray(serviceObj.steps)) {
+      serviceObj.steps.forEach(s => {
+        if (s && (s.official_source_url || s.source_url)) {
+          list.push(s.official_source_url || s.source_url);
+        }
+      });
+    }
+    if (serviceObj?.fees?.fee_records && Array.isArray(serviceObj.fees.fee_records)) {
+      serviceObj.fees.fee_records.forEach(r => {
+        if (r && r.official_source_url) {
+          list.push(r.official_source_url);
+        }
+      });
+    }
+    return list.map(s => typeof s === 'string' ? s : (s?.url || s?.page_title)).filter(Boolean);
+  }
+
+  hasUrgentFeeEvidence(feesObj) {
+    if (!feesObj || typeof feesObj !== 'object') return false;
+    if (typeof feesObj.tatkaal_surcharge === 'number' && feesObj.tatkaal_surcharge > 0) return true;
+    if (feesObj.urgent_service_nzd && typeof feesObj.urgent_service_nzd === 'object' && Object.keys(feesObj.urgent_service_nzd).length > 0) return true;
+    if (feesObj.urgent_appointment_service_eur && typeof feesObj.urgent_appointment_service_eur === 'object' && Object.keys(feesObj.urgent_appointment_service_eur).length > 0) return true;
+    if (feesObj.standard_domestic_lkr && typeof feesObj.standard_domestic_lkr.all_countries_urgent_one_day === 'number' && feesObj.standard_domestic_lkr.all_countries_urgent_one_day > 0) return true;
+    if (typeof feesObj.express_same_day_surcharge === 'number' && feesObj.express_same_day_surcharge > 0) return true;
+    if (feesObj.standard_domestic_npr && typeof feesObj.standard_domestic_npr.urgent_34_pages_dop_kathmandu === 'number' && feesObj.standard_domestic_npr.urgent_34_pages_dop_kathmandu > 0) return true;
+    if (typeof feesObj.expedite_service_fee === 'number' && feesObj.expedite_service_fee > 0) return true;
+    if (typeof feesObj.expedited_service_usd === 'number' && feesObj.expedited_service_usd > 0) return true;
+    if (feesObj.consular_overseas_usd && feesObj.consular_overseas_usd.emergency_surcharge_schedule && typeof feesObj.consular_overseas_usd.emergency_surcharge_schedule === 'object' && Object.keys(feesObj.consular_overseas_usd.emergency_surcharge_schedule).length > 0) return true;
+    if (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && (r.emergency_surcharge > 0 || (r.application_channel && r.application_channel.includes('urgent'))))) return true;
+    return false;
+  }
+
+  hasActualConsularFeeSchedule(feesObj) {
+    if (!feesObj || typeof feesObj !== 'object') return false;
+    if (feesObj.consular_overseas_usd && typeof feesObj.consular_overseas_usd === 'object') {
+      const cos = feesObj.consular_overseas_usd;
+      if (cos.standard && typeof cos.standard === 'object' && Object.keys(cos.standard).length > 0) return true;
+      if (typeof cos.standard_34_pages === 'number' && cos.standard_34_pages > 0) return true;
+      const numValues = Object.values(cos).filter(v => typeof v === 'number' && v > 0);
+      if (numValues.length > 0) return true;
+    }
+    if (feesObj.diaspora_overseas_usd && typeof feesObj.diaspora_overseas_usd === 'object') {
+      const dos = feesObj.diaspora_overseas_usd;
+      if (typeof dos.booklet_32_pages_5_year === 'number' && dos.booklet_32_pages_5_year > 0) return true;
+      const numValues = Object.values(dos).filter(v => typeof v === 'number' && v > 0);
+      if (numValues.length > 0) return true;
+    }
+    if (feesObj.standard_overseas_usd && typeof feesObj.standard_overseas_usd === 'object') {
+      const sos = feesObj.standard_overseas_usd;
+      const numValues = Object.values(sos).filter(v => typeof v === 'number' && v > 0);
+      if (numValues.length > 0) return true;
+    }
+    if (Array.isArray(feesObj.fee_records)) {
+      const consularRecords = feesObj.fee_records.filter(r => 
+        r && (r.application_channel?.includes('consular') || r.application_channel?.includes('overseas') || r.application_channel?.includes('diaspora')) &&
+        typeof r.amount === 'number' && r.amount > 0
+      );
+      if (consularRecords.length > 0) return true;
+    }
+    return false;
+  }
+
+  hasConsularGuidance(pack, serviceObj) {
+    if (!pack) return false;
+    // 1. Jurisdictions explicitly mentioning consular/embassy/diplomatic/overseas
+    if (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => {
+      if (!j) return false;
+      if (j.application_channel === 'consular' || j.application_channel === 'embassy' || j.application_channel === 'overseas') return true;
+      if (typeof j.name === 'string') {
+        const n = j.name.toLowerCase();
+        return n.includes('consul') || n.includes('embassy') || n.includes('diplomatic') || n.includes('high commission') || n.includes('overseas');
+      }
+      return false;
+    })) {
+      return true;
+    }
+    // 2. Sources mentioning consular/embassy/diplomatic/overseas
+    const allSources = [
+      ...(Array.isArray(serviceObj?.sources) ? serviceObj.sources : []),
+      ...(Array.isArray(pack.sources) ? pack.sources : [])
+    ];
+    if (allSources.some(s => {
+      const url = typeof s === 'string' ? s : (s?.url || s?.page_title || '');
+      const lower = url.toLowerCase();
+      return lower.includes('consul') || lower.includes('embassy') || lower.includes('diplomatic') || lower.includes('overseas');
+    })) {
+      return true;
+    }
+    // 3. Service steps mentioning embassy/consulate
+    const steps = (serviceObj?.steps || pack.services?.first_passport?.steps || []);
+    if (Array.isArray(steps) && steps.some(st => {
+      const text = typeof st === 'string' ? st : (st?.step || st?.title || st?.description || '');
+      const lower = text.toLowerCase();
+      return lower.includes('embassy') || lower.includes('consulate') || lower.includes('consular') || lower.includes('overseas');
+    })) {
+      return true;
+    }
+    return false;
+  }
+
   determineBaseServiceCoverage(pack, countryCode, service) {
     const isVerifiedPack = !!(pack && (pack.rule_pack_status === 'verified' || pack.is_verified === true));
     const countryName = (pack && pack.country_name) || countryCode;
@@ -68,6 +183,7 @@ class PassportRulesEngine {
     switch (service) {
       case 'first_passport': {
         const serviceObj = pack.services && pack.services.first_passport;
+        const sources = this.collectServiceSources(pack, serviceObj);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
@@ -75,11 +191,17 @@ class PassportRulesEngine {
           typeof serviceObj.fees === 'object' &&
           Object.keys(serviceObj.fees).length > 0 &&
           ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
-           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0))
+           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0)) &&
+          sources.length > 0
         );
 
         if (hasValidServiceObj) {
-          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+          const verifiedFields = [];
+          if (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0) verifiedFields.push('eligibility');
+          if (Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) verifiedFields.push('documents');
+          if (serviceObj.fees && typeof serviceObj.fees === 'object' && Object.keys(serviceObj.fees).length > 0) verifiedFields.push('fees');
+          if (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) verifiedFields.push('steps');
+
           return {
             dimension: 'service',
             key: 'first_passport',
@@ -100,12 +222,18 @@ class PassportRulesEngine {
             evidence: {
               hasSupportingEvidence: true,
               sources,
-              verifiedFields: ['eligibility', 'documents', 'fees', 'steps']
+              verifiedFields
             }
           };
         }
 
         // Required first_passport service object or evidence is missing in rule pack
+        const missingEvidence = [];
+        if (!serviceObj) missingEvidence.push('services.first_passport definition');
+        if (!serviceObj?.fees || Object.keys(serviceObj.fees).length === 0) missingEvidence.push('statutory fee schedule');
+        if (!Array.isArray(serviceObj?.documents) || serviceObj.documents.length === 0) missingEvidence.push('mandatory citizenship evidence checklist');
+        if (sources.length === 0) missingEvidence.push('traceable official source documentation');
+
         return {
           dimension: 'service',
           key: 'first_passport',
@@ -125,22 +253,29 @@ class PassportRulesEngine {
           evidence: {
             hasSupportingEvidence: false,
             sources: [],
-            missingEvidence: ['services.first_passport definition', 'statutory fee schedule', 'mandatory citizenship evidence checklist']
+            missingEvidence
           }
         };
       }
 
       case 'renewal_reissue': {
         const serviceObj = pack.services && pack.services.renewal_reissue;
+        const sources = this.collectServiceSources(pack, serviceObj);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
           ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
-           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0))
+           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0)) &&
+          sources.length > 0
         );
 
         if (hasValidServiceObj) {
-          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+          const verifiedFields = [];
+          if (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0) verifiedFields.push('eligibility');
+          if (Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) verifiedFields.push('documents');
+          if (serviceObj.fees && typeof serviceObj.fees === 'object' && Object.keys(serviceObj.fees).length > 0) verifiedFields.push('fees');
+          if (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) verifiedFields.push('steps');
+
           return {
             dimension: 'service',
             key: 'renewal_reissue',
@@ -161,7 +296,7 @@ class PassportRulesEngine {
             evidence: {
               hasSupportingEvidence: true,
               sources,
-              verifiedFields: ['eligibility', 'documents', 'steps']
+              verifiedFields
             }
           };
         }
@@ -183,23 +318,31 @@ class PassportRulesEngine {
           rulePackKey: null,
           evidence: {
             hasSupportingEvidence: false,
-            missingEvidence: ['services.renewal_reissue definition', 'dedicated renewal document checklist']
+            sources: [],
+            missingEvidence: ['services.renewal_reissue definition', 'dedicated renewal document checklist', 'traceable official source documentation']
           }
         };
       }
 
       case 'lost_stolen': {
         const serviceObj = pack.services && pack.services.lost_stolen;
+        const sources = this.collectServiceSources(pack, serviceObj);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
           ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
            (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) ||
-           serviceObj.fees)
+           serviceObj.fees) &&
+          sources.length > 0
         );
 
         if (hasValidServiceObj) {
-          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+          const verifiedFields = [];
+          if (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0) verifiedFields.push('eligibility');
+          if (Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) verifiedFields.push('documents');
+          if (serviceObj.fees && typeof serviceObj.fees === 'object' && Object.keys(serviceObj.fees).length > 0) verifiedFields.push('replacement_penalties');
+          if (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) verifiedFields.push('steps');
+
           return {
             dimension: 'service',
             key: 'lost_stolen',
@@ -220,12 +363,12 @@ class PassportRulesEngine {
             evidence: {
               hasSupportingEvidence: true,
               sources,
-              verifiedFields: ['documents', 'steps', 'replacement_penalties']
+              verifiedFields
             }
           };
         }
 
-        const hasStatutoryNotice = ['US', 'PH'].includes(countryCode);
+        const hasStatutoryNotice = ['US', 'PH'].includes(countryCode) && sources.length > 0;
         return {
           dimension: 'service',
           key: 'lost_stolen',
@@ -250,13 +393,27 @@ class PassportRulesEngine {
           evidence: {
             hasSupportingEvidence: hasStatutoryNotice,
             isPartial: hasStatutoryNotice,
-            missingEvidence: ['dedicated replacement fee table', 'formal investigation workflow']
+            sources: hasStatutoryNotice ? sources : [],
+            missingEvidence: hasStatutoryNotice ? ['dedicated replacement fee table', 'formal investigation workflow'] : ['statutory loss reporting procedures', 'official source documentation']
           }
         };
       }
 
       case 'damaged': {
-        const hasCodifiedPenalty = ['MY', 'ID', 'KE', 'LK'].includes(countryCode);
+        const serviceObj = pack.services && (pack.services.damaged || pack.services.lost_stolen || pack.services.first_passport);
+        const feesObj = serviceObj?.fees || pack.services?.first_passport?.fees || {};
+        const sources = this.collectServiceSources(pack, serviceObj);
+        const hasCodifiedPenalty = !!(
+          sources.length > 0 &&
+          (
+            feesObj.lost_and_damaged_replacement_schedule ||
+            feesObj.damaged_passport_fine ||
+            feesObj.damaged_penalty_myr ||
+            feesObj.replacement_penalties_myr ||
+            feesObj.lost_passport_conditional_penalties_lkr ||
+            (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => (r.applicant_category || '').toLowerCase().includes('mutilat') || (r.applicant_category || '').toLowerCase().includes('damag') || (r.applicable_conditions || '').toLowerCase().includes('mutilat') || (r.applicable_conditions || '').toLowerCase().includes('damag')))
+          )
+        );
         return {
           dimension: 'service',
           key: 'damaged',
@@ -283,22 +440,29 @@ class PassportRulesEngine {
           evidence: {
             hasSupportingEvidence: hasCodifiedPenalty,
             isPartial: hasCodifiedPenalty,
-            missingEvidence: hasCodifiedPenalty ? ['standalone damaged booklet replacement workflow'] : ['statutory damage penalty schedule']
+            sources: hasCodifiedPenalty ? sources : [],
+            missingEvidence: hasCodifiedPenalty ? ['standalone damaged booklet replacement workflow'] : ['statutory damage penalty schedule', 'official source documentation']
           }
         };
       }
 
       case 'name_correction': {
         const serviceObj = pack.services && pack.services.name_correction;
+        const sources = this.collectServiceSources(pack, serviceObj);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
           ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
-           (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0))
+           (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0)) &&
+          sources.length > 0
         );
 
         if (hasValidServiceObj) {
-          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+          const verifiedFields = [];
+          if (Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) verifiedFields.push('documents');
+          if (Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) verifiedFields.push('steps');
+          if (serviceObj.gazette_rules || (Array.isArray(serviceObj.documents) && serviceObj.documents.some(d => (d.document_name || '').toLowerCase().includes('gazette')))) verifiedFields.push('gazette_rules');
+
           return {
             dimension: 'service',
             key: 'name_correction',
@@ -319,7 +483,7 @@ class PassportRulesEngine {
             evidence: {
               hasSupportingEvidence: true,
               sources,
-              verifiedFields: ['documents', 'steps', 'gazette_rules']
+              verifiedFields
             }
           };
         }
@@ -341,22 +505,29 @@ class PassportRulesEngine {
           rulePackKey: null,
           evidence: {
             hasSupportingEvidence: false,
-            missingEvidence: ['services.name_correction definition', 'statutory gazette rules']
+            sources: [],
+            missingEvidence: ['services.name_correction definition', 'statutory gazette rules', 'official source documentation']
           }
         };
       }
 
       case 'minor_child': {
         const serviceObj = pack.services && pack.services.minor_child;
+        const sources = this.collectServiceSources(pack, serviceObj);
         const hasValidServiceObj = !!(
           serviceObj &&
           serviceObj.availability_status !== 'unavailable' &&
           ((Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) ||
-           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0))
+           (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0)) &&
+          sources.length > 0
         );
 
         if (hasValidServiceObj) {
-          const sources = (serviceObj.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+          const verifiedFields = [];
+          if (Array.isArray(serviceObj.eligibility) && serviceObj.eligibility.length > 0) verifiedFields.push('parental_consent');
+          if (Array.isArray(serviceObj.documents) && serviceObj.documents.length > 0) verifiedFields.push('documents');
+          if (serviceObj.child_validity || serviceObj.fees) verifiedFields.push('child_validity');
+
           return {
             dimension: 'service',
             key: 'minor_child',
@@ -377,23 +548,28 @@ class PassportRulesEngine {
             evidence: {
               hasSupportingEvidence: true,
               sources,
-              verifiedFields: ['parental_consent', 'documents', 'child_validity']
+              verifiedFields
             }
           };
         }
+        const hasStatutoryParental = sources.length > 0;
         return {
           dimension: 'service',
           key: 'minor_child',
           name: this.formatServiceName('minor_child'),
-          status: 'partial',
-          label: 'Partial Service Coverage',
-          badgeClass: 'status-linked',
+          status: hasStatutoryParental ? 'partial' : 'general_guidance',
+          label: hasStatutoryParental ? 'Partial Service Coverage' : 'General Preparation Guidance',
+          badgeClass: hasStatutoryParental ? 'status-linked' : 'status-needs-research',
           isVerified: false,
-          summary: `Statutory parental consent and civil birth documentation rules are verified for ${countryName}, but standalone minor service packs are not separately modeled.`,
-          supportedChecks: [
-            'Statutory parental consent safeguards (e.g. Annexure D/C, US 22 CFR § 51.28)',
-            'Civil birth certificate documentation'
-          ],
+          summary: hasStatutoryParental
+            ? `Statutory parental consent and civil birth documentation rules are verified for ${countryName}, but standalone minor service packs are not separately modeled.`
+            : `Dedicated child/minor passport rule packs are not yet codified for ${countryName}. Standard parental consent and legal guardianship requirements apply.`,
+          supportedChecks: hasStatutoryParental
+            ? [
+                'Statutory parental consent safeguards (e.g. Annexure D/C, US 22 CFR § 51.28)',
+                'Civil birth certificate documentation'
+              ]
+            : ['Civil birth certificate documentation'],
           missingChecks: [
             'Standalone minor passport application forms',
             'Country-specific minor fee tiers (where distinct from general tables)'
@@ -401,15 +577,20 @@ class PassportRulesEngine {
           officialSourceUrl: pack.official_portal_url,
           rulePackKey: null,
           evidence: {
-            hasSupportingEvidence: true,
-            isPartial: true,
-            missingEvidence: ['standalone minor service object', 'dedicated minor fee tiers']
+            hasSupportingEvidence: hasStatutoryParental,
+            isPartial: hasStatutoryParental,
+            sources: hasStatutoryParental ? sources : [],
+            missingEvidence: hasStatutoryParental ? ['standalone minor service object', 'dedicated minor fee tiers'] : ['minor parental consent rules', 'dedicated minor fee tiers', 'official source documentation']
           }
         };
       }
 
       case 'urgent_expedited': {
-        const hasUrgentSchedule = ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode);
+        const serviceObj = pack.services && (pack.services.urgent_expedited || pack.services.first_passport);
+        const feesObj = serviceObj?.fees || {};
+        const sources = this.collectServiceSources(pack, serviceObj);
+        const hasUrgentSchedule = this.hasUrgentFeeEvidence(feesObj) && sources.length > 0;
+
         return {
           dimension: 'service',
           key: 'urgent_expedited',
@@ -436,13 +617,22 @@ class PassportRulesEngine {
           evidence: {
             hasSupportingEvidence: hasUrgentSchedule,
             isPartial: hasUrgentSchedule,
-            missingEvidence: hasUrgentSchedule ? ['daily appointment quota availability'] : ['expedited fee schedule']
+            sources: hasUrgentSchedule ? sources : [],
+            missingEvidence: hasUrgentSchedule ? ['daily appointment quota availability'] : ['expedited fee schedule', 'official source documentation']
           }
         };
       }
 
       case 'emergency_travel': {
-        if (countryCode === 'MX') {
+        const serviceObj = pack.services && (pack.services.emergency_travel || pack.services.emergency_passport || pack.services.first_passport);
+        const feesObj = serviceObj?.fees || pack.services?.first_passport?.fees || {};
+        const sources = this.collectServiceSources(pack, serviceObj);
+        const hasMxEmergencyData = !!(
+          (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && Object.keys(feesObj.consular_overseas_usd.emergency_surcharge_schedule).length > 0) ||
+          (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && r.emergency_surcharge > 0))
+        );
+
+        if (countryCode === 'MX' && hasMxEmergencyData && sources.length > 0) {
           return {
             dimension: 'service',
             key: 'emergency_travel',
@@ -465,10 +655,46 @@ class PassportRulesEngine {
             evidence: {
               hasSupportingEvidence: true,
               isPartial: true,
-              citation: 'Art. 20 Ley Federal de Derechos (LFD) + Pasaporte de Emergencia Tipo E'
+              citation: 'Art. 20 Ley Federal de Derechos (LFD) + Pasaporte de Emergencia Tipo E',
+              sources
             }
           };
         }
+
+        const hasNzCalloutData = !!(
+          feesObj.after_hours_callout_service_nzd &&
+          typeof feesObj.after_hours_callout_service_nzd === 'object' &&
+          Object.keys(feesObj.after_hours_callout_service_nzd).length > 0
+        );
+
+        if (countryCode === 'NZ' && hasNzCalloutData && sources.length > 0) {
+          return {
+            dimension: 'service',
+            key: 'emergency_travel',
+            name: this.formatServiceName('emergency_travel'),
+            status: 'partial',
+            label: 'Partial Service Coverage',
+            badgeClass: 'status-linked',
+            isFullyVerified: false,
+            summary: 'Official after-hours callout emergency passport fees (NZD 1,001 adult / NZD 898 child) are verified for New Zealand, but callout attendance requires direct telephone coordination with DIA.',
+            supportedChecks: [
+              'Statutory after-hours callout fee schedule (passports.govt.nz)',
+              'Emergency callout availability criteria'
+            ],
+            missingChecks: [
+              'Direct DIA duty officer dispatch and location availability confirmation'
+            ],
+            officialSourceUrl: pack.official_portal_url,
+            rulePackKey: 'after_hours_callout',
+            evidence: {
+              hasSupportingEvidence: true,
+              isPartial: true,
+              citation: 'passports.govt.nz/passport-costs After-Hours Callout Service',
+              sources
+            }
+          };
+        }
+
         return {
           dimension: 'service',
           key: 'emergency_travel',
@@ -488,7 +714,8 @@ class PassportRulesEngine {
           rulePackKey: null,
           evidence: {
             hasSupportingEvidence: false,
-            missingEvidence: ['country-specific ETC application procedures and fees']
+            sources: [],
+            missingEvidence: ['country-specific ETC application procedures and fees', 'official source documentation']
           }
         };
       }
@@ -512,7 +739,8 @@ class PassportRulesEngine {
           rulePackKey: null,
           evidence: {
             hasSupportingEvidence: false,
-            missingEvidence: ['dedicated service pack']
+            sources: [],
+            missingEvidence: ['dedicated service pack', 'official source documentation']
           }
         };
     }
@@ -543,10 +771,14 @@ class PassportRulesEngine {
 
     if (urgency === 'standard') {
       const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
+      const sources = this.collectServiceSources(pack, serviceObj);
       const hasStandardEvidence = !!(
-        (serviceObj && Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) ||
-        (serviceObj && serviceObj.processing_times && (serviceObj.processing_times.normal_days || serviceObj.processing_times.standard_days)) ||
-        (pack.processing_times && (pack.processing_times.normal_days || pack.processing_times.standard_days))
+        sources.length > 0 &&
+        (
+          (serviceObj && Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0) ||
+          (serviceObj && serviceObj.processing_times && (serviceObj.processing_times.normal_days || serviceObj.processing_times.standard_days)) ||
+          (pack.processing_times && (pack.processing_times.normal_days || pack.processing_times.standard_days))
+        )
       );
 
       if (hasStandardEvidence) {
@@ -555,7 +787,6 @@ class PassportRulesEngine {
           'Routine appointment and lodging procedures',
           timeEvidence ? `Documented routine processing baseline: ${timeEvidence}` : 'Standard statutory processing timeframe baseline'
         ];
-        const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
         return {
           dimension: 'urgency',
           key: 'standard',
@@ -592,7 +823,7 @@ class PassportRulesEngine {
         ],
         evidence: {
           hasSupportingEvidence: false,
-          missingEvidence: ['routine application filing steps', 'statutory processing timeframe documentation']
+          missingEvidence: ['routine application filing steps', 'statutory processing timeframe documentation', 'official source documentation']
         }
       };
     }
@@ -600,20 +831,10 @@ class PassportRulesEngine {
     if (urgency === 'urgent') {
       const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
       const feesObj = serviceObj?.fees || {};
-      const hasUrgentFeeEvidence = !!(
-        feesObj.tatkaal_surcharge ||
-        feesObj.urgent_service_nzd ||
-        feesObj.urgent_appointment_service_eur ||
-        feesObj.standard_domestic_lkr?.all_countries_urgent_one_day ||
-        feesObj.express_same_day_surcharge ||
-        feesObj.standard_domestic_npr?.urgent_34_pages_dop_kathmandu ||
-        (countryCode === 'MX' && feesObj.standard_domestic_mxn) ||
-        (countryCode === 'US' && (feesObj.expedited_service_usd || feesObj.standard_fees)) ||
-        ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode)
-      );
+      const sources = this.collectServiceSources(pack, serviceObj);
+      const hasUrgentFeeEvidence = this.hasUrgentFeeEvidence(feesObj);
 
-      if (hasUrgentFeeEvidence && ['NZ', 'LK', 'IE', 'US', 'ID', 'MX', 'IN', 'NP'].includes(countryCode)) {
-        const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+      if (hasUrgentFeeEvidence && sources.length > 0) {
         return {
           dimension: 'urgency',
           key: 'urgent',
@@ -654,13 +875,22 @@ class PassportRulesEngine {
         ],
         evidence: {
           hasSupportingEvidence: false,
-          missingEvidence: ['statutory expedited fee schedule', 'fast-track appointment booking rules']
+          missingEvidence: ['statutory expedited fee schedule', 'fast-track appointment booking rules', 'official source documentation']
         }
       };
     }
 
     if (urgency === 'emergency') {
-      if (countryCode === 'MX') {
+      const serviceObj = pack.services && (pack.services.emergency_travel || pack.services.first_passport);
+      const feesObj = serviceObj?.fees || pack.services?.first_passport?.fees || {};
+      const sources = this.collectServiceSources(pack, serviceObj);
+
+      const hasMxEmergencyData = !!(
+        (feesObj.consular_overseas_usd?.emergency_surcharge_schedule && Object.keys(feesObj.consular_overseas_usd.emergency_surcharge_schedule).length > 0) ||
+        (Array.isArray(feesObj.fee_records) && feesObj.fee_records.some(r => r && r.emergency_surcharge > 0))
+      );
+
+      if (countryCode === 'MX' && hasMxEmergencyData && sources.length > 0) {
         return {
           dimension: 'urgency',
           key: 'emergency',
@@ -681,11 +911,19 @@ class PassportRulesEngine {
           evidence: {
             hasSupportingEvidence: true,
             isPartial: true,
-            citation: 'Art. 20 Ley Federal de Derechos (LFD) + Pasaporte de Emergencia Tipo E'
+            citation: 'Art. 20 Ley Federal de Derechos (LFD) + Pasaporte de Emergencia Tipo E',
+            sources
           }
         };
       }
-      if (countryCode === 'NZ') {
+
+      const hasNzCalloutData = !!(
+        feesObj.after_hours_callout_service_nzd &&
+        typeof feesObj.after_hours_callout_service_nzd === 'object' &&
+        Object.keys(feesObj.after_hours_callout_service_nzd).length > 0
+      );
+
+      if (countryCode === 'NZ' && hasNzCalloutData && sources.length > 0) {
         return {
           dimension: 'urgency',
           key: 'emergency',
@@ -705,10 +943,12 @@ class PassportRulesEngine {
           evidence: {
             hasSupportingEvidence: true,
             isPartial: true,
-            citation: 'passports.govt.nz/passport-costs After-Hours Callout Service'
+            citation: 'passports.govt.nz/passport-costs After-Hours Callout Service',
+            sources
           }
         };
       }
+
       return {
         dimension: 'urgency',
         key: 'emergency',
@@ -725,7 +965,7 @@ class PassportRulesEngine {
         ],
         evidence: {
           hasSupportingEvidence: false,
-          missingEvidence: ['statutory emergency callout fees', 'direct consular emergency dispatch procedures']
+          missingEvidence: ['statutory emergency callout fees', 'direct consular emergency dispatch procedures', 'official source documentation']
         }
       };
     }
@@ -772,17 +1012,18 @@ class PassportRulesEngine {
 
     if (location === 'inside') {
       const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
+      const sources = this.collectServiceSources(pack, serviceObj);
       const hasDomesticEvidence = !!(
         pack.authority_name &&
+        sources.length > 0 &&
         (
           (serviceObj && serviceObj.fees && typeof serviceObj.fees === 'object' && Object.keys(serviceObj.fees).length > 0) ||
-          (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => j.application_channel === 'domestic' || (j.name && j.name.toLowerCase().includes('domestic')))) ||
+          (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => j.application_channel === 'domestic' || (typeof j.name === 'string' && j.name.toLowerCase().includes('domestic')))) ||
           (serviceObj && Array.isArray(serviceObj.steps) && serviceObj.steps.length > 0)
         )
       );
 
       if (hasDomesticEvidence) {
-        const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
         return {
           dimension: 'channel',
           key: 'inside',
@@ -822,7 +1063,7 @@ class PassportRulesEngine {
         ],
         evidence: {
           hasSupportingEvidence: false,
-          missingEvidence: ['competent authority designation', 'domestic statutory fee schedule', 'domestic filing procedures']
+          missingEvidence: ['competent authority designation', 'domestic statutory fee schedule', 'domestic filing procedures', 'official source documentation']
         }
       };
     }
@@ -830,15 +1071,13 @@ class PassportRulesEngine {
     // Overseas / Consular channel
     const serviceObj = pack.services && (pack.services[service] || pack.services.first_passport);
     const feesObj = serviceObj?.fees || {};
-    const hasCodifiedConsularFees = !!(
-      feesObj.consular_overseas_usd ||
-      feesObj.diaspora_overseas_usd ||
-      feesObj.standard_overseas_usd ||
-      (['MX', 'NG', 'NP'].includes(countryCode) && feesObj)
-    );
+    const sources = this.collectServiceSources(pack, serviceObj);
 
-    if (hasCodifiedConsularFees && ['MX', 'NG', 'NP'].includes(countryCode)) {
-      const sources = (serviceObj?.sources || pack.sources || []).map(s => typeof s === 'string' ? s : s.url || s.page_title).filter(Boolean);
+    const hasCodifiedConsularFees = this.hasActualConsularFeeSchedule(feesObj);
+    const hasConsularGuidance = this.hasConsularGuidance(pack, serviceObj);
+
+    // Fully verified consular channel requires codified foreign-currency fees, consular lodging guidance, and sources
+    if (hasCodifiedConsularFees && hasConsularGuidance && sources.length > 0) {
       return {
         dimension: 'channel',
         key: 'abroad',
@@ -861,15 +1100,8 @@ class PassportRulesEngine {
       };
     }
 
-    // Has consular guidance/jurisdiction in pack?
-    const hasConsularGuidance = !!(
-      (Array.isArray(pack.jurisdictions) && pack.jurisdictions.some(j => j && (j.application_channel === 'consular' || (j.name && (j.name.toLowerCase().includes('consular') || j.name.toLowerCase().includes('embassy')))))) ||
-      (Array.isArray(pack.sources) && pack.sources.some(s => s && s.url && (s.url.includes('consular') || s.url.includes('embassy') || s.url.includes('diplomatic')))) ||
-      (pack.services?.first_passport?.steps && pack.services.first_passport.steps.some(st => st && st.step && (st.step.toLowerCase().includes('embassy') || st.step.toLowerCase().includes('consulate')))) ||
-      (['AE', 'AU', 'BD', 'BR', 'CA', 'DE', 'ES', 'FR', 'GB', 'ID', 'IE', 'IN', 'IT', 'JP', 'KE', 'LK', 'MX', 'MY', 'NG', 'NP', 'NZ', 'PH', 'PK', 'SA', 'SG', 'US', 'ZA'].includes(countryCode) && pack.rule_pack_status === 'verified')
-    );
-
-    if (hasConsularGuidance) {
+    // Has genuine consular guidance/jurisdiction in pack
+    if (hasConsularGuidance && sources.length > 0) {
       return {
         dimension: 'channel',
         key: 'abroad',
@@ -890,6 +1122,7 @@ class PassportRulesEngine {
         evidence: {
           hasSupportingEvidence: true,
           isPartial: true,
+          sources,
           missingEvidence: ['local host-currency fee schedule', 'mission-specific booking partner procedures']
         }
       };
@@ -912,7 +1145,7 @@ class PassportRulesEngine {
       ],
       evidence: {
         hasSupportingEvidence: false,
-        missingEvidence: ['consular lodging procedures', 'diplomatic mission fee schedule']
+        missingEvidence: ['consular lodging procedures', 'diplomatic mission fee schedule', 'official source documentation']
       }
     };
   }

@@ -26,13 +26,13 @@ async function verifyLive() {
   console.log('Has "LIVE PREVIEW":', hasLivePreview);
   assert(!hasLivePreview, 'Must NOT contain LIVE PREVIEW');
   
-  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_13"/g) || []);
-  console.log('Scripts with ?v=20261019_13:', scriptsWithV.length);
-  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_13');
+  const scriptsWithV = (index.body.match(/src="[^"]+\?v=20261019_14"/g) || []);
+  console.log('Scripts with ?v=20261019_14:', scriptsWithV.length);
+  assert(scriptsWithV.length >= 7, 'Must have at least 7 scripts with v=20261019_14');
   
-  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_13"/g) || []);
-  console.log('CSS with ?v=20261019_13:', cssWithV.length);
-  assert(cssWithV.length >= 1, 'CSS must have v=20261019_13');
+  const cssWithV = (index.body.match(/href="css\/styles\.css\?v=20261019_14"/g) || []);
+  console.log('CSS with ?v=20261019_14:', cssWithV.length);
+  assert(cssWithV.length >= 1, 'CSS must have v=20261019_14');
 
   // Service coverage card check
   assert(index.body.includes('id="resServiceCoverageCard"'), 'Live HTML must contain resServiceCoverageCard container');
@@ -54,7 +54,7 @@ async function verifyLive() {
   assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
-  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_13');
+  const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261019_14');
   console.log('Country data HTTP Status:', countryDataRes.status);
   assert.strictEqual(countryDataRes.status, 200, 'Country data must return HTTP 200');
 
@@ -72,7 +72,7 @@ async function verifyLive() {
   assert.strictEqual(cdResearch, 222, 'Must have 222 awaiting research');
 
   console.log('\n--- 3. Checking Live rule-packs.js ---');
-  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_13');
+  const rulePacks = await fetchUrl('https://passport.myoss.in/data/rule-packs.js?v=20261019_14');
   console.log('Rule packs HTTP Status:', rulePacks.status);
   assert.strictEqual(rulePacks.status, 200, 'Rule packs must return HTTP 200');
 
@@ -224,7 +224,7 @@ async function verifyLive() {
   assert.strictEqual(lkFees.lost_passport_conditional_penalties_lkr.lost_after_validity_expired, 0);
 
   console.log('\n--- 5. Checking Live rules-engine.js & Runtime Evaluation ---');
-  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_13');
+  const rulesEngineRes = await fetchUrl('https://passport.myoss.in/js/rules-engine.js?v=20261019_14');
   console.log('Rules engine HTTP Status:', rulesEngineRes.status);
   assert.strictEqual(rulesEngineRes.status, 200, 'Rules engine must return HTTP 200');
 
@@ -359,7 +359,7 @@ async function verifyLive() {
   assert.strictEqual(liveMy60.checklist.find(c => c.id === 'official_fee_payment').feeRecord.amount, 100, 'Live MY age 60 must be RM 100');
 
   console.log('\n--- 6. Checking Live app.js & Dynamic Directory Filtering ---');
-  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_13');
+  const appJsRes = await fetchUrl('https://passport.myoss.in/js/app.js?v=20261019_14');
   console.log('app.js HTTP Status:', appJsRes.status);
   assert.strictEqual(appJsRes.status, 200, 'app.js must return HTTP 200');
 
@@ -600,7 +600,7 @@ async function verifyLive() {
     assert(res.readinessScore <= 80, 'Incomplete effective coverage readinessScore must be capped at <= 80%');
   });
 
-  console.log('\n--- 9. Checking Live Phase 4.3.5 Evidence-Linked Coverage Audit across Dimensions ---');
+  console.log('\n--- 9. Checking Live Phase 4.3.5 & Phase 4.3.6 Evidence Integrity & Country-Allowlist Bypass Removal ---');
   // 9.1 India first passport standard inside -> full evidence link
   assert.strictEqual(liveInFull.serviceCoverage.evidence.hasSupportingEvidence, true, 'Live IN full coverage must have supporting evidence');
   assert.strictEqual(liveInFull.serviceCoverage.dimensions.service.evidence.hasSupportingEvidence, true, 'Live IN service must have supporting evidence');
@@ -645,7 +645,224 @@ async function verifyLive() {
   assert.strictEqual(liveNgAbroad.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, true, 'NG abroad channel has codified diaspora fee evidence');
   assert.strictEqual(liveJpAbroad.serviceCoverage.dimensions.channel.evidence.isPartial, true, 'JP abroad channel has partial evidence');
 
-  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4 & PHASE 4.3.5 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
+  // 9.7 Phase 4.3.6 Scenario A: Live urgent-route bypass removal (IN fixture without urgent fee)
+  const liveInNoUrgentPack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Seva',
+    official_portal_url: 'https://passportindia.gov.in',
+    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'INR', standard: 1500 }, // tatkaal_surcharge deliberately removed!
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }],
+        steps: [{ step: 'Apply online' }]
+      }
+    }
+  };
+  const liveInNoUrgentEngine = new PassportRulesEngine({ IN: liveInNoUrgentPack });
+  const liveInNoUrgentRes = liveInNoUrgentEngine.evaluate({
+    countryCode: 'IN',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'urgent'
+  });
+  assert.strictEqual(
+    liveInNoUrgentRes.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Live engine: IN fixture without urgent fee must yield general_guidance, NOT partial'
+  );
+  assert.strictEqual(liveInNoUrgentRes.serviceCoverage.dimensions.urgency.evidence.hasSupportingEvidence, false);
+
+  // 9.8 Phase 4.3.6 Scenario B: Live overseas-fee bypass removal (MX, NG, NP with empty fees)
+  ['MX', 'NG', 'NP'].forEach(cCode => {
+    const emptyFeePack = {
+      country_code: cCode,
+      country_name: cCode,
+      rule_pack_status: 'verified',
+      authority_name: 'Auth',
+      sources: [{ url: 'https://example.gov' }],
+      jurisdictions: [{ application_channel: 'consular', name: 'Consulate' }],
+      services: {
+        first_passport: {
+          availability_status: 'available',
+          fees: {}, // EMPTY FEES
+          documents: [{ document_name: 'Doc' }],
+          eligibility: [{ rule: 'Citizen' }],
+          steps: [{ step: 'Step' }]
+        }
+      }
+    };
+    const emptyFeeEngine = new PassportRulesEngine({ [cCode]: emptyFeePack });
+    const emptyFeeRes = emptyFeeEngine.evaluate({
+      countryCode: cCode,
+      location: 'abroad',
+      service: 'first_passport'
+    });
+    assert.notStrictEqual(
+      emptyFeeRes.serviceCoverage.dimensions.channel.status,
+      'verified',
+      `Live engine: ${cCode} with empty fees must NEVER receive verified overseas channel`
+    );
+  });
+
+  // 9.9 Phase 4.3.6 Scenario C: Live consular country-status bypass removal (IN and JP domestic-only)
+  ['IN', 'JP'].forEach(cCode => {
+    const domesticOnlyPack = {
+      country_code: cCode,
+      country_name: cCode,
+      rule_pack_status: 'verified',
+      authority_name: 'Domestic Auth',
+      sources: [{ url: 'https://domestic.gov' }],
+      jurisdictions: [{ application_channel: 'domestic', name: 'Domestic Office' }],
+      services: {
+        first_passport: {
+          availability_status: 'available',
+          fees: { currency: 'CUR', amount: 100 },
+          documents: [{ document_name: 'Doc' }],
+          eligibility: [{ rule: 'Citizen' }],
+          steps: [{ step: 'Visit local counter' }]
+        }
+      }
+    };
+    const domEngine = new PassportRulesEngine({ [cCode]: domesticOnlyPack });
+    const domRes = domEngine.evaluate({
+      countryCode: cCode,
+      location: 'abroad',
+      service: 'first_passport'
+    });
+    assert.strictEqual(
+      domRes.serviceCoverage.dimensions.channel.status,
+      'general_guidance',
+      `Live engine: ${cCode} without consular metadata must yield general_guidance, NOT partial`
+    );
+    assert.strictEqual(domRes.serviceCoverage.dimensions.channel.evidence.hasSupportingEvidence, false);
+  });
+
+  // 9.10 Phase 4.3.6 Scenario D: Live empty sources metadata validation
+  const liveEmptySourcesPack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Authority',
+    sources: [], // EMPTY
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        sources: [], // EMPTY
+        fees: { currency: 'INR', amount: 1500 },
+        documents: [{ document_name: 'Birth Certificate' }],
+        eligibility: [{ rule: 'Citizen' }]
+      }
+    }
+  };
+  const liveEmptySourcesEngine = new PassportRulesEngine({ IN: liveEmptySourcesPack });
+  const liveEmptySourcesRes = liveEmptySourcesEngine.evaluate({
+    countryCode: 'IN',
+    location: 'inside',
+    service: 'first_passport'
+  });
+  assert.strictEqual(
+    liveEmptySourcesRes.serviceCoverage.dimensions.service.status,
+    'general_guidance',
+    'Live engine: Object with empty sources must receive general_guidance'
+  );
+  assert.strictEqual(liveEmptySourcesRes.serviceCoverage.dimensions.service.evidence.hasSupportingEvidence, false);
+
+  // 9.11 Phase 4.3.6 Scenario E: Live verifiedFields accuracy (no steps claimed when steps absent)
+  const liveNoStepsServicePack = {
+    country_code: 'IN',
+    country_name: 'India',
+    rule_pack_status: 'verified',
+    authority_name: 'Passport Seva',
+    sources: [{ url: 'https://passportindia.gov.in', publisher: 'MEA' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'INR', standard: 1500 },
+        documents: [{ document_name: 'Aadhaar' }],
+        eligibility: [{ rule: 'Citizen' }]
+        // NO steps
+      }
+    }
+  };
+  const liveNoStepsServiceEngine = new PassportRulesEngine({ IN: liveNoStepsServicePack });
+  const liveNoStepsServiceRes = liveNoStepsServiceEngine.evaluate({
+    countryCode: 'IN',
+    location: 'inside',
+    service: 'first_passport'
+  });
+  assert.strictEqual(liveNoStepsServiceRes.serviceCoverage.dimensions.service.status, 'verified');
+  const liveVerifiedFields = liveNoStepsServiceRes.serviceCoverage.dimensions.service.evidence.verifiedFields;
+  assert(!liveVerifiedFields.includes('steps'), 'Live engine: verifiedFields must NOT claim steps when steps are absent');
+  assert(liveVerifiedFields.includes('eligibility') && liveVerifiedFields.includes('documents') && liveVerifiedFields.includes('fees'));
+
+  // 9.12 Phase 4.3.6 Scenario F: Live emergency route fallback (MX and NZ with stripped emergency fees)
+  const liveMxNoEmergPack = {
+    country_code: 'MX',
+    country_name: 'Mexico',
+    rule_pack_status: 'verified',
+    authority_name: 'SRE',
+    sources: [{ url: 'https://sre.gob.mx' }],
+    jurisdictions: [{ application_channel: 'consular' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'MXN', standard_domestic_mxn: { validity_3_years: 900 } }, // NO emergency surcharge schedule!
+        documents: [{ document_name: 'Acta' }],
+        eligibility: [{ rule: 'Mexicano' }]
+      }
+    }
+  };
+  const liveMxNoEmergEngine = new PassportRulesEngine({ MX: liveMxNoEmergPack });
+  const liveMxNoEmergRes = liveMxNoEmergEngine.evaluate({
+    countryCode: 'MX',
+    location: 'abroad',
+    service: 'emergency_travel',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(
+    liveMxNoEmergRes.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Live engine: MX without emergency fee schedule must yield general_guidance'
+  );
+
+  const liveNzNoCalloutPack = {
+    country_code: 'NZ',
+    country_name: 'New Zealand',
+    rule_pack_status: 'verified',
+    authority_name: 'DIA',
+    sources: [{ url: 'https://passports.govt.nz' }],
+    jurisdictions: [{ application_channel: 'domestic' }],
+    services: {
+      first_passport: {
+        availability_status: 'available',
+        fees: { currency: 'NZD', standard_service_nzd: { adult_10_year: 247 } }, // NO callout fee!
+        documents: [{ document_name: 'Birth Cert' }],
+        eligibility: [{ rule: 'NZ Citizen' }]
+      }
+    }
+  };
+  const liveNzNoCalloutEngine = new PassportRulesEngine({ NZ: liveNzNoCalloutPack });
+  const liveNzNoCalloutRes = liveNzNoCalloutEngine.evaluate({
+    countryCode: 'NZ',
+    location: 'inside',
+    service: 'first_passport',
+    urgency: 'emergency'
+  });
+  assert.strictEqual(
+    liveNzNoCalloutRes.serviceCoverage.dimensions.urgency.status,
+    'general_guidance',
+    'Live engine: NZ without callout fee must yield general_guidance'
+  );
+
+  console.log('\n>>> ALL PHASE 3.4, PHASE 4, PHASE 4.1, PHASE 4.2, PHASE 4.3, PHASE 4.3.1, PHASE 4.3.2, PHASE 4.3.3, PHASE 4.3.4, PHASE 4.3.5 & PHASE 4.3.6 LIVE CHECKS ASSERTED SUCCESSFULLY <<<');
 }
 
 verifyLive().catch(err => {
