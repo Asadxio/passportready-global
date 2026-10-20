@@ -55,8 +55,8 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BN** | BRN | Brunei | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BG** | BGR | Bulgaria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BF** | BFA | Burkina Faso | Sovereign State | Division de la Migration, DGPN / ONI (`police.gov.bf` / `oni.bf`) | `primary_sources_audited` | Décret portant tarification des passeports: Standard biometric passport (5-year validity) 50 000 FCFA + 200 FCFA fiscal stamp (total 50 200 FCFA) (DIRECT). Turnaround ~7 to 15 working days. CNIB (Carte Nationale d'Identité Burkinabè) légalisée + Copie légalisée d'acte de naissance + Certificat de nationalité burkinabè + Casier judiciaire (<3mo) mandatory; in-person biometrics at Division de la Migration (Ouagadougou / Bobo-Dioulasso). |
-| **BI** | BDI | Burundi | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **CV** | CPV | Cabo Verde | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BI** | BDI | Burundi | Sovereign State | Commissariat Général des Migrations (CGM) (`migration.gov.bi`) | `primary_sources_audited` | Ordonnance ministérielle conjointe & CGM: Passeport biométrique ordinaire (10-yr adult 16+ / 5-yr minor <16) 235 000 BIF (DIRECT). Turnaround ~5 to 10 working days. Laissez-passer: 30 000 BIF; CEPGL card: 18 000 BIF. Carte Nationale d'Identité (CNI) burundaise + Acte de naissance certifié conforme + Attestation de résidence mandatory; in-person biometrics at CGM Kigobe, Bujumbura. |
+| **CV** | CPV | Cabo Verde | Sovereign State | Direção de Estrangeiros e Fronteiras (DEF) / Polícia Nacional (`gov.cv` / `policianacional.cv`) | `primary_sources_audited` | Regulamento do Passaporte Eletrónico Cabo-Verdiano (PEC): Pedido normal 5.600 CVE; Pedido urgente 6.000 CVE; Consular no estrangeiro 69,00 € normal / 120,00 € urgente (DIRECT). Validade: 5 anos (adultos/crianças ≥5), 2 anos (<5). Cartão Nacional de Identificação (CNI) cabo-verdiano ou BI válido + Certidão de Nascimento mandatory; in-person biometrics at DEF or Casa do Cidadão. |
 | **KH** | KHM | Cambodia | Sovereign State | General Dept. of Identification (GDI), Ministry of Interior (`gdi.gov.kh`) | `primary_sources_audited` | Joint Inter-Ministerial Prakas (MoI & MEF): Standard ~20 days: Adult 6+ (10-yr) US$ 100; Child <6 (5-yr) US$ 80; Urgent 10-day tier: US$ 150; Urgent 1-day tier: US$ 200 (DIRECT). Khmer National ID Card (15+) + Family/Residence Book + Birth Certificate mandatory; in-person biometrics at GDI Phnom Penh or provincial centers. |
 | **CM** | CMR | Cameroon | Sovereign State | DGSN / PASSCAM — `https://www.passcam.cm/` | `primary_sources_audited` | Presidential Decree No. 2021/347: Biometric passport (5-yr) 110,000 XAF (DIRECT). Paid exclusively online via mobile money / credit card on passcam.cm during pre-enrollment. Turnaround guaranteed 48 hours domestic. CNI + Birth Certificate mandatory; in-person biometrics at local police centers or foreign missions. |
 | **KY** | CYM | Cayman Islands | Territory / Special Region | Workforce Opportunities & Residency Cayman (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -97,7 +97,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **PF** | PYF | French Polynesia | Territory / Special Region | Haut-Commissariat de la République en Polynésie française (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **TF** | ATF | French Southern Territories | Territory / Special Region | Terres australes et antarctiques françaises (No permanent civilian population) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **GA** | GAB | Gabon | Sovereign State | Direction Générale de la Documentation et de l'Immigration (DGDI) (`dgdi.ga`) | `primary_sources_audited` | Décret tarifaire titres de voyage: Standard CEMAC biometric passport (5-yr): Adult (16+) 45 000 FCFA (40k DGDI + 5k Trésor); Minor <16 35 000 FCFA (30k DGDI + 5k Trésor) (DIRECT). Acte de naissance original légalisé + justificatif de ressources + formulaire DGDI mandatory; in-person biometrics at DGDI Libreville (Oloumi) or regional delegations. |
-| **GM** | GMB | Gambia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GM** | GMB | Gambia | Sovereign State | Gambia Immigration Department (GID), Ministry of Interior (`gid.gov.gm`) | `primary_sources_audited` | GID statutory tariffs: Ordinary biometric passport (5-year validity) D5,100 GMD (D100 application form + D5,000 booklet fee) paid via EcoBank Gambia Ltd (DIRECT). Turnaround ~5 to 10 working days. Gambian National Identity Card (Smart ID) + Birth Certificate issued by Ministry of Health mandatory; in-person biometrics at GID HQ Banjul or Kanifing. |
 | **GE** | GEO | Georgia | Sovereign State | Public Service Development Agency (SDA) & PSH — `https://psh.gov.ge/` | `primary_sources_audited` | Biometric passport fees graded by turnaround: 10th wd 150 GEL; 5th wd 180 GEL; 3rd wd 225 GEL; 24h 300 GEL; Same-day 350 GEL (DIRECT). Photo +5 GEL. Validity 10-yr adult / 3-yr minor. Georgian ID Card (Piradobis Motsmoba) mandatory; in-person at Public Service Hall (PSH) or Community Centers; online renewals via sda.gov.ge. |
 | **GH** | GHA | Ghana | Sovereign State | Passport Office / Ministry of Foreign Affairs and Regional Integration | `primary_sources_audited` | Primary source audited (Batch 5). L.I. 2481 statutory tariffs (effective April 1, 2024): Standard 32-page GHS 500.00 / 48-page GHS 644.00; Expedited 32-page GHS 700.00 / 48-page GHS 800.00. 10-yr validity (adult 18+), 5-yr (minor). Mandatory Ghana Card (NIA) + birth certificate + guarantor. |
 | **GI** | GIB | Gibraltar | Territory / Special Region | Civil Status & Registration Office Gibraltar (British Passport - Gibraltar) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
@@ -132,7 +132,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **LV** | LVA | Latvia | Sovereign State | Pilsonības un migrācijas lietu pārvalde (PMLP — `pmlp.gov.lv`) | `primary_sources_audited` | Valsts nodeva statutory tariff: Standard 10 working days: Adult (10-yr) 50.00 EUR; Children <20 / Pensioners / Disabled 25.00 EUR; Urgent 2 working days: Adult 75.00 EUR / Reduced 45.00 EUR (DIRECT). Personas kods + eID card mandatory; biometrics at PMLP territorial divisions or via latvija.lv. |
 | **LB** | LBN | Lebanon | Sovereign State | General Directorate of General Security (Sûreté Générale) — `https://www.general-security.gov.lb/` | `primary_sources_audited` | General Security official fee: 5-yr LBP 6,000,000; 10-yr LBP 10,000,000 (DIRECT). Fast-track surcharges apply. Ikhraj Qayd Fardi (<3mo) or Biometric ID Card mandatory; Moukhtar-certified photos; in-person at General Security regional bureau. Quota appointment system applies due to high demand. Consular USD 300/600 (PARTIAL). |
 | **LS** | LSO | Lesotho | Sovereign State | Dept. of Immigration Services, Ministry of Home Affairs (`homeaffairs.gov.ls`) | `primary_sources_audited` | Passports & Travel Documents (Fees) Regs: Regular 32-page e-passport (10-yr adult / 5-yr minor) M 130.00; Regular 64-page frequent traveller M 300.00; Urgent processing surcharge +M 500.00 (DIRECT). Lesotho National ID Card (e-ID) + NICR security-featured Birth Certificate mandatory; in-person biometrics at Home Affairs district offices. |
-| **LR** | LBR | Liberia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LR** | LBR | Liberia | Sovereign State | Bureau of Passport and Visas, Ministry of Foreign Affairs (`mofa.gov.lr` / `liberiapassports.com`) | `primary_sources_audited` | Executive regulations & MOFA statutory fee: Ordinary ECOWAS Biometric Passport (5-year validity) USD $40.00; Expedited / express processing USD $80.00; Overseas consular USD $165.00 (DIRECT). National Identification Registry (NIR) Citizen ID Card or certified Birth Certificate mandatory; payment via authorized bank/MoMo; biometrics at MOFA Passport Center, Capitol Hill, Monrovia. |
 | **LY** | LBY | Libya | Sovereign State | Passports, Nationality & Foreigners Affairs Authority (GNU) — `https://ejraat.gov.ly/` | `primary_sources_audited` | Standard passport LYD 50.50 (DIRECT); lost/damaged replacement LYD 1,000 (eff. late 2024, DIRECT). ⚠️ Dual-government political split; GNU-aligned services primarily in Tripoli. Service availability varies by region and security conditions. |
 | **LI** | LIE | Liechtenstein | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **LT** | LTU | Lithuania | Sovereign State | Migracijos departamentas prie VRM (MIGRIS — `migracija.lt`) | `primary_sources_audited` | Valstybės rinkliava tariff: Standard 1 month: Adult (10-yr) 50 Eur; Child <18: 25 Eur (50% reduction); Pensioner: 10 Eur (80% reduction); Urgent 5 working days: 100 Eur; Same day (Vilnius): 200 Eur (DIRECT). Asmens kodas + eID card mandatory; digital application/booking via MIGRIS (migracija.lt). |
@@ -145,7 +145,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MT** | MLT | Malta | Sovereign State | Identità (Passport Office — `identita.gov.mt`) | `primary_sources_audited` | Passports Regulations statutory tariff: Adults 16+ (10-yr): €70.00 (Sept–March) / €80.00 (April–Aug); Minors 10–15 (5-yr): €40.00; Children <10 (2-yr): €16.00; Urgent (4 hours): €160.00 adult / €80.00 minor; Lost replacement supplement: +€15.00 (DIRECT). Form A + Maltese ID Card + recommender endorsement; appointments via passportbooking.identita.gov.mt. |
 | **MH** | MHL | Marshall Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **MQ** | MTQ | Martinique | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
-| **MR** | MRT | Mauritania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MR** | MRT | Mauritania | Sovereign State | Agence Nationale du Registre des Populations et des Titres Sécurisés (ANRPTS) (`anrpts.gov.mr`) | `primary_sources_audited` | Décret tarifaire ANRPTS: Passeport biométrique ordinaire 32 pages (5-year validity) 3 000 MRU; Grand format 64 pages 10 000 MRU; Lost replacement graduated penalty (4 000 to 10 000 MRU) (DIRECT). Carte Nationale d'Identité (CNI) avec NNI + Acte de naissance sécurisé ANRPTS mandatory; enrollment via Centre d'Accueil des Citoyens (CAC) or Houwiyeti portal. |
 | **MU** | MUS | Mauritius | Sovereign State | Passport and Immigration Office (PIO) — `https://passport.govmu.org/` | `primary_sources_audited` | Passports Act regulations: Adults (16–54, 10-yr) MUR 700; Minors (<16, 5-yr) / Seniors (55+) / Disabled: MUR 400 (DIRECT). Lost/damaged penalty: 1st loss MUR 5,000; 2nd loss MUR 15,000; subsequent MUR 15,000. NIC + original birth certificate mandatory; Police loss declaration; Form PF 136 in-person at PIO Port Louis or district divisional HQs. |
 | **YT** | MYT | Mayotte | Territory / Special Region | French Ministry of the Interior / ANTS (French Republic Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **FM** | FSM | Micronesia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -195,7 +195,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **VC** | VCT | Saint Vincent and the Grenadines | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **WS** | WSM | Samoa | Sovereign State | Immigration Division, Ministry of the Prime Minister and Cabinet (`mpmc.gov.ws`) | `primary_sources_audited` | Passports Act 2008 & Immigration Act 2020: Standard passport (5-day turnaround, 5-yr): Adult (17+) WST 200.00; Child (≤16) WST 100.00; Urgent (2-day): Adult WST 240.00; Child WST 140.00; Lost/damaged replacement: Adult WST 400.00; Child WST 200.00 (DIRECT). MJCA Birth Certificate + Section 6 Recommender (Fa'amasino/Faife'au/Pulenu'u/Lawyer) mandatory; in-person biometrics at Apia. |
 | **SM** | SMR | San Marino | Sovereign State | Ufficio Stato Civile / Ufficio Passaporti (`gov.sm` / `esteri.sm`) | `primary_sources_audited` | Rev. Carta dei Servizi 2025: Adults & 14+ (10-yr) € 100.00; Minors 3–14 (5-yr) € 50.00; Children 0–3 (3-yr) € 30.00; Urgent 3 working days surcharge: +€ 50.00 (DIRECT). Sammarinese citizenship required; Codice ISS + Carta d'Identità sammarinese mandatory; application at Ufficio Stato Civile Borgo Maggiore; consular via Dipartimento Affari Esteri. |
-| **ST** | STP | Sao Tome and Principe | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **ST** | STP | Sao Tome and Principe | Sovereign State | Serviço de Migração e Fronteiras (SMF), Ministério da Defesa e Ordem Interna (`smf.st`) | `primary_sources_audited` | Tabela oficial de taxas do SMF: Passaporte Comum (5-year validity): Normal 1.500,00 STN; Taxa de urgência (24 horas) +250,00 STN (total 1.750,00 STN); Emissão fora de horas +25%; Aeroporto/porto +30% (DIRECT). Bilhete de Identidade (BI santomense) válido + Certidão de Nascimento narrativa completa + Registo Criminal mandatory; biometrics at SMF HQ, São Tomé. |
 | **SN** | SEN | Senegal | Sovereign State | Direction Police Étrangers & Titres Voyage (DPETV) — `https://interieur.gouv.sn/` | `primary_sources_audited` | Passeport ordinaire (5-yr) 20,000 XOF (DIRECT). Paid via quittance at Direction de l'Enregistrement, des Domaines et du Timbre (DGID/DEDT). No duplicate issued for loss: requires police loss certificate + new application at 20,000 XOF. CNI biométrique CEDEAO mandatory (15+); parental consent for minors; in-person biometrics at police stations. |
 | **RS** | SRB | Serbia | Sovereign State | Ministry of Internal Affairs (MUP / МУП) — `http://www.mup.gov.rs/` | `primary_sources_audited` | Law on Travel Documents: Standard procedure 3,600 RSD (regular up to 30d, typically 7–10d); Urgent with justified emergency (48h): 3,600 RSD; Expedited without emergency proof (48h): 8,600 RSD (DIRECT). Consular ~64 EUR (PARTIAL). Biometric Lična karta mandatory; uplatnica via eUprava or bank; in-person at local Police Directorate/Station. |
 | **SC** | SYC | Seychelles | Sovereign State | Dept. of Immigration and Civil Status (`ics.gov.sc`) | `primary_sources_audited` | Passports Act (Cap. 159) & Regs: Standard biometric passport (10-yr adult / 5-yr minor) SCR 750; Misplaced/lost passport surcharge +SCR 1,500 (total SCR 2,250); Overseas courier surcharge SCR 1,000 (DIRECT). Turnaround ~72 hours (3 working days); paperless application (no form). National Identity Number (NIN) Card + birth cert mandatory; in-person biometrics at Independence House, Victoria, Mahé. |
@@ -5013,6 +5013,261 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 - **Application & Delivery Channels:**
   - In-person attendance and enrollment at the Sierra Leone Immigration Department Headquarters, 14–16 Gloucester Street, Freetown; or at regional enrollment centers in Bo, Kenema, and Makeni. Online pre-application and voucher redemption via `slid.gov.sl`.
   - Delivery: In-person collection upon presentation of voucher receipt and NCRA National Identification Number (NIN).
+
+---
+
+## Section 24 — Batch 22 Research Dossiers: Liberia (LR), The Gambia (GM), Mauritania (MR), Cabo Verde (CV), Sao Tome and Principe (ST), Burundi (BI)
+
+*Researched: 2026-10-21. Primary statutory investigation covering 6 sovereign nations across West Africa, the Atlantic archipelagos, the Maghreb/Sahel interface, and the African Great Lakes. Official sources audited across primary ministry portals, national immigration departments, statutory fee regulations, civil registration prerequisites, and biometric capture stations.*
+
+---
+
+### 24.1 Liberia (LR / LBR) — Bureau of Passport and Visas, Ministry of Foreign Affairs
+
+- **Administering Authority:** Bureau of Passport and Visas, Ministry of Foreign Affairs (MFA), Republic of Liberia
+- **Primary Portals:**
+  - Ministry of Foreign Affairs: `https://mofa.gov.lr/`
+  - Liberia Online Passport Application Portal: `https://liberiapassports.com/`
+- **Statutory Framework:**
+  - Executive Regulations on the Issuance of the Liberia-ECOWAS Biometric Passport and Ministry of Foreign Affairs statutory fee gazettes.
+- **Domestic Fee Schedule (in US Dollars — USD):**
+  - **Ordinary ECOWAS Biometric Passport (5-year validity):**
+    - **Standard Processing (Regular Service, ~5–10 working days):** **USD $40.00**
+  - **Expedited / Express Service Tier:**
+    - **Express Priority Processing (~24–48 hours):** **USD $80.00**
+  - **Payment Channel:**
+    - Paid through authorized commercial banks (such as International Bank Liberia Ltd, Ecobank Liberia) or via mobile financial services (Lonestar Cell MTN Mobile Money / Orange Money) to obtain the official payment transaction code.
+  - **Validity:**
+    - Standard biometric passport: **5 years** (all citizens).
+  - **Evidence confidence: `DIRECT`** — established by official Ministry of Foreign Affairs regulations published on `mofa.gov.lr` and `liberiapassports.com`.
+- **Consular Fee Schedule:**
+  - Via Liberian Embassies and Consulates General abroad (e.g. Washington D.C., New York, London, Paris, Berlin, Accra).
+  - Overseas consular fee: **USD $160.00** + $5.00 banking/convenience charge (**USD $165.00** total); additional VFS Global service fee (e.g. $60.00) applies at specialized centers.
+  - **Evidence confidence: `DIRECT`** — verified via official embassy portals.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** National Identification Registry (NIR) Citizen ID Card with unique National Identification Number (NIN), or certified Liberian Birth Certificate issued by the Ministry of Health (Vital Statistics).
+  - **Proof of Citizenship:** Liberian citizenship evidence (Certificate of Naturalization if foreign-born).
+  - **Payment Receipt:** Official bank deposit slip / mobile money confirmation receipt for USD $40.00 (standard) or $80.00 (express).
+  - **Photographs:** Two (2) recent passport-sized color photographs (clear white background); live biometric photograph also captured during interview.
+  - **For minors (under 18):** Child accompanied by parents/legal guardian; minor's certified birth certificate; copies of parents' Liberian passports/ID cards; formal signed parental consent affidavit.
+  - **Renewal:** Physical presentation of previous passport booklet for cancellation.
+  - **In case of loss/theft:** Mandatory police clearance / loss report from the Liberia National Police (LNP) and sworn affidavit from a court of competent jurisdiction.
+  - **Biometrics:** Mandatory in-person enrollment (digital facial photograph, electronic ten-fingerprint scan, and digital signature) at the Passport Center.
+- **Application & Delivery Channels:**
+  - Online pre-application and appointment booking via `liberiapassports.com`. In-person interview and biometric enrollment at the Ministry of Foreign Affairs Passport Center, Capitol Hill, Monrovia.
+  - Delivery: In-person collection upon presentation of tracking slip and identification.
+
+---
+
+### 24.2 The Gambia (GM / GMB) — Gambia Immigration Department (GID)
+
+- **Administering Authority:** Gambia Immigration Department (GID), Ministry of the Interior, Republic of The Gambia
+- **Primary Portals:**
+  - Gambia Immigration Department: `https://gid.gov.gm/`
+  - Ministry of the Interior: `https://www.interior.gov.gm/`
+  - Government of The Gambia: `https://gambia.gov.gm/`
+- **Statutory Framework:**
+  - Immigration Act and official statutory regulations on the issuance of the Gambian Biometric Passport.
+- **Domestic Fee Schedule (in Gambian Dalasis — GMD):**
+  - **Standard Ordinary Electronic Biometric Passport (5-year validity):**
+    - **Total Statutory Issuance Fee:** **D5,100 GMD**
+    - Breakdown: Application Form fee **D100 GMD** + Passport Booklet fee **D5,000 GMD**.
+  - **Payment Channel:**
+    - Exclusively paid through any branch of **EcoBank Gambia Ltd.** nationwide against an official bank payment slip.
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**.
+  - **Validity:**
+    - Standard ordinary biometric passport: **5 years**.
+  - **Evidence confidence: `DIRECT`** — established by official statutory fee schedules published on `gid.gov.gm`.
+- **Consular Fee Schedule:**
+  - Via Gambian Embassies and High Commissions abroad (e.g. London, Washington D.C., Brussels, Dakar, Madrid, Ankara).
+  - Consular passport fee: ~EUR €100.00 to €150.00 / USD $120.00 to $160.00 / GBP £100.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Mandatory Gambian National Identity Card (Smart ID Card / Biometric ID Card) issued by the Immigration Department.
+  - **Proof of Civil Status:** Original Birth Certificate issued by the Ministry of Health / Registrar of Births and Deaths.
+  - **Voters Card / Citizenship Proof:** Gambian Voter's Card or National Certificate of Citizenship (District Seyfo certificate if applicable).
+  - **Bank Payment Slip:** Original EcoBank deposit slip confirming payment of D5,100 GMD.
+  - **Photographs:** Two (2) recent passport-sized color photographs on plain white background; digital capture on site.
+  - **For minors (under 18):** Child accompanied by parents/legal guardian; child's birth certificate; certified copies of parents' national ID cards; written consent from father/legal guardian.
+  - **Renewal:** Physical presentation and cancellation of the expiring passport.
+  - **In case of loss/theft:** Mandatory police loss report issued by the Gambia Police Force and sworn affidavit.
+  - **Biometrics:** Mandatory in-person enrollment (digital facial photograph, electronic ten-fingerprint scan, and digital signature).
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Gambia Immigration Department Headquarters, 71 Hagan Street, Banjul; or at regional enrollment stations in Kanifing (Kairaba Avenue) and Brikama.
+  - Delivery: In-person collection upon presentation of bank receipt and national ID card.
+
+---
+
+### 24.3 Mauritania (MR / MRT) — Agence Nationale du Registre des Populations et des Titres Sécurisés (ANRPTS)
+
+- **Administering Authority:** Agence Nationale du Registre des Populations et des Titres Sécurisés (ANRPTS), Ministère de l'Intérieur et de la Décentralisation, République Islamique de Mauritanie
+- **Primary Portals:**
+  - Agence Nationale du Registre des Populations (ANRPTS): `https://anrpts.gov.mr/`
+  - Portail des Procédures Administratives: `https://procedures.gov.mr/`
+  - Application Mobile Officielle: *Houwiyeti*
+- **Statutory Framework:**
+  - Décret présidentiel fixant les tarifs et modalités de délivrance des titres d'identité et de voyage sécurisés en République Islamique de Mauritanie.
+- **Domestic Fee Schedule (in Mauritanian Ouguiya — MRU):**
+  - **Standard Ordinary Biometric Passport (32 pages, 5-year validity):**
+    - **Uniform Statutory Tariff:** **3 000 MRU** (equivalent to 30 000 old MRO)
+  - **Frequent Traveller / VIP Biometric Passport (64 pages):**
+    - **Statutory Fee:** **10 000 MRU** (equivalent to 100 000 old MRO)
+  - **Replacement Surcharge Schedule for Lost Passports (Tarification progressive):**
+    - **Ordinary Passport (32 pages):**
+      - 1st Loss: **4 000 MRU**
+      - 2nd Loss: **5 500 MRU**
+      - 3rd Loss: **7 000 MRU**
+      - 4th Loss and subsequent: **10 000 MRU**
+    - **VIP Passport (64 pages):**
+      - 1st Loss: **12 000 MRU**; 2nd Loss: **15 000 MRU**; 3rd Loss: **17 500 MRU**; 4th+ Loss: **20 000 MRU**
+  - **Payment Channel:**
+    - Paid at the Treasury counter / Bankimoun cash desks at the enrollment center or directly via the *Houwiyeti* government application.
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**.
+  - **Validity:**
+    - Standard ordinary biometric passport: **5 years** (strictly non-prorogable).
+  - **Evidence confidence: `DIRECT`** — established by official ANRPTS fee decrees published on `procedures.gov.mr` and `anrpts.gov.mr`.
+- **Consular Fee Schedule:**
+  - Via Mauritanian Embassies and Consulates General abroad (e.g. Paris, Washington D.C., Dakar, Casablanca, Riyadh, Abu Dhabi).
+  - Consular passport fee: ~EUR €100.00 to €120.00 / USD $100.00 to $130.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official consular mission circulars.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Mauritanian National Identity Card (*Carte Nationale d'Identité biométrique — CNI*) containing the Numéro National d'Identification (NNI).
+  - **Proof of Civil Status:** Authenticated birth certificate (*Acte de naissance sécurisé*) extracted from the national biometric registry.
+  - **Application Channel:** Physical presentation at a Centre d'Accueil des Citoyens (CAC) or digital request initiated via the *Houwiyeti* application.
+  - **For minors (under 18):** Accompanied by parent/legal guardian; child's NNI registration birth certificate; parents' CNI; legal guardian's consent.
+  - **Renewal:** Physical presentation of previous passport booklet for cancellation.
+  - **In case of loss/theft:** Mandatory police loss declaration (*déclaration de perte*) certified by the Police Nationale.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph, electronic signature, and ten fingerprints) at the CAC.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at any Centre d'Accueil des Citoyens (CAC) of the ANRPTS across Nouakchott (Tevragh Zeina, Ksar, Sebkha, etc.) or regional wilaya capitals (Nouadhibou, Rosso, Kiffa, Atar).
+  - Delivery: In-person collection upon presentation of receipt and CNI.
+
+---
+
+### 24.4 Cabo Verde (CV / CPV) — Direção de Estrangeiros e Fronteiras (DEF / Polícia Nacional)
+
+- **Administering Authority:** Direção de Estrangeiros e Fronteiras (DEF), Polícia Nacional, Ministério da Administração Interna / Direção-Geral dos Registos, Notariado e Identificação (DGRNI), República de Cabo Verde
+- **Primary Portals:**
+  - Portal Oficial do Governo de Cabo Verde: `https://www.gov.cv/`
+  - Polícia Nacional de Cabo Verde: `https://policianacional.cv/`
+  - Portal Eletrónico da DEF: `https://e-portaldef.gov.cv/`
+  - Ministério dos Negócios Estrangeiros: `https://mnec.gov.cv/`
+- **Statutory Framework:**
+  - Decreto-Lei que aprova o regime jurídico do Passaporte Eletrónico Cabo-Verdiano (PEC) e portaria regulamentadora de taxas e emolumentos.
+- **Domestic Fee Schedule (in Cape Verdean Escudos — CVE):**
+  - **Passaporte Eletrónico Cabo-Verdiano (PEC):**
+    - **Pedido Normal (Standard Processing, ~5–10 working days):** **5.600 CVE**
+    - **Pedido Urgente (Expedited Processing, ~2–3 working days):** **6.000 CVE**
+  - **Validity:**
+    - Citizens aged 5 years and older: **5 years**.
+    - Children under 5 years of age: **2 years**.
+  - **Payment Channel:**
+    - Paid via the integrated Government Gateway (vinti4 network / multibanco) or at the Casa do Cidadão / municipal cashier desks against an official receipt.
+  - **Evidence confidence: `DIRECT`** — established by statutory regulations published on `gov.cv` and `policianacional.cv`.
+- **Consular Fee Schedule:**
+  - Via Cape Verdean Embassies and Consulates General abroad (e.g. Lisbon, Boston, Paris, Dakar, Luanda, Rome).
+  - Consular fees: **69,00 €** (Pedido normal) / **120,00 €** (Pedido urgente); plus optional postal delivery / consular processing supplement (~10,00 € to 30,00 €).
+  - **Evidence confidence: `DIRECT`** — established on official Ministry of Foreign Affairs schedules on `mnec.gov.cv`.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Cape Verdean National Identification Card (*Cartão Nacional de Identificação — CNI*) or valid Bilhete de Identidade (BI).
+  - **Proof of Civil Status:** Official Birth Certificate (*Certidão de Nascimento narrativa*) issued by the Conservatória dos Registos.
+  - **Criminal Record:** Certificate of criminal record (*Certificado de Registo Criminal*) issued within the last 3 months (for adult applicants).
+  - **For minors (under 18):** Accompanied by parent/legal guardian; minor's birth certificate/CNI; valid CNI of both parents; formal written authorization from both parents (*autorização paternal devidamente reconhecida*).
+  - **Renewal:** Physical presentation and cancellation of the expiring passport booklet.
+  - **In case of loss/theft:** Mandatory police loss declaration (*participação de extravio*) issued by the Polícia Nacional.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo, electronic signature, and ten fingerprints) at DEF enrollment counters or Casa do Cidadão.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at DEF delegations, Casa do Cidadão branches across all islands (Praia, Mindelo, Santa Maria, Espargos, Sal Rei, etc.), or online pre-registration via `gov.cv`.
+  - Delivery: In-person collection upon presentation of receipt and CNI.
+
+---
+
+### 24.5 Sao Tome and Principe (ST / STP) — Serviço de Migração e Fronteiras (SMF)
+
+- **Administering Authority:** Serviço de Migração e Fronteiras (SMF), Ministério da Defesa e Ordem Interna, República Democrática de São Tomé e Príncipe
+- **Primary Portals:**
+  - Serviço de Migração e Fronteiras: `https://smf.st/`
+  - Governo de São Tomé e Príncipe: `https://www.governo.st/`
+- **Statutory Framework:**
+  - Legislação sobre Documentos de Viagem e Regulamento de Emolumentos do Serviço de Migração e Fronteiras da República Democrática de São Tomé e Príncipe.
+- **Domestic Fee Schedule (in New Dobras — STN):**
+  - **Passaporte Comum (Standard Ordinary Passport, 5-year validity):**
+    - **Normal Processing Fee (sem urgência):** **1.500,00 STN**
+  - **Expedited / Urgent Processing Service Surcharges:**
+    - **Taxa de Urgência (24-hour turnaround):** **+250,00 STN** (Total: **1.750,00 STN**)
+    - **Emissão e Entrega Especial (no aeroporto / porto):** +30% surcharge (Total: **2.535,00 STN**)
+    - **Emissão Fora de Horário / Domingos / Feriados:** +25% surcharge (Total: **2.437,50 STN**)
+  - **Passaporte Temporário:** **1.000,00 STN**
+  - **Passaporte Especial de Serviço:** **1.900,00 STN** (normal) / **2.150,00 STN** (urgente)
+  - **Payment Channel:**
+    - Paid at the Treasury counter / designated commercial bank desk against an official deposit slip (*comprovativo de pagamento*).
+  - **Validity:**
+    - Standard ordinary passport: **5 years**.
+  - **Evidence confidence: `DIRECT`** — established by the official SMF tariff schedule published on `smf.st`.
+- **Consular Fee Schedule:**
+  - Via Santomean Embassies and Consulates General abroad (e.g. Lisbon, Luanda, Libreville, Brussels, Brasília).
+  - Consular passport fee: ~EUR €80.00 to €120.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Santomean Identity Card (*Bilhete de Identidade — BI santomense*).
+  - **Proof of Civil Status:** Full narrative Birth Certificate (*Certidão de Nascimento narrativa completa*) issued by the Registo Civil.
+  - **Criminal Record:** Criminal record certificate (*Certificado de Registo Criminal*) issued within the last 3 months (for adult applicants).
+  - **Official Form:** Duly completed and signed official passport application form (*Requerimento de passaporte*).
+  - **Photographs:** Two (2) recent passport-sized color photographs on plain white background; live digital enrollment on site.
+  - **For minors (under 18):** Accompanied by parents or legal guardian; minor's birth certificate; certified copies of parents' BI; written parental consent (*autorização parental autenticada*).
+  - **Renewal:** Physical presentation of previous passport booklet for cancellation.
+  - **In case of loss/theft:** Mandatory police loss declaration issued by the Polícia Nacional and sworn statement.
+  - **Biometrics:** Mandatory in-person biometric capture (digital facial photography, electronic signature, and ten fingerprints) at the SMF counter.
+- **Application & Delivery Channels:**
+  - In-person attendance and enrollment at the Headquarters of the Serviço de Migração e Fronteiras (SMF), Avenida 12 de Julho, São Tomé; or at the regional delegation on Príncipe Island (Santo António).
+  - Delivery: In-person collection upon presentation of payment slip and BI.
+
+---
+
+### 24.6 Burundi (BI / BDI) — Commissariat Général des Migrations (CGM)
+
+- **Administering Authority:** Commissariat Général des Migrations (CGM), Ministère de l'Intérieur, du Développement Communautaire et de la Sécurité Publique, République du Burundi
+- **Primary Portals:**
+  - Commissariat Général des Migrations: `https://migration.gov.bi/`
+  - Ministère de la Sécurité Publique: `https://securitepublique.gov.bi/`
+  - Ministère des Finances: `https://finances.gov.bi/`
+- **Statutory Framework:**
+  - Ordonnance ministérielle conjointe fixant les tarifs des documents de voyage et Loi de finances de la République du Burundi.
+- **Domestic Fee Schedule (in Burundian Francs — BIF):**
+  - **Passeport Biométrique Ordinaire:**
+    - **Uniform Standard Issuance Fee:** **235 000 BIF** (statutory standard tariff established by joint ministerial order; framework reflects 235 000–300 000 BIF).
+  - **Other Travel Documents:**
+    - **Laissez-passer ordinaire (Border Pass):** **30 000 BIF**
+    - **Carte CEPGL (National):** **18 000 BIF** (validity: 1 year)
+    - **Passeport de Service / Diplomatique:** **135 000 BIF**
+  - **Turnaround Timeline:**
+    - Standard processing: **5 to 10 working days**.
+  - **Validity:**
+    - Adult (16 years and older): **10 years**.
+    - Minor (under 16 years): **5 years**.
+  - **Payment Channel:**
+    - Paid directly into the dedicated government account at the Office Burundais des Recettes (OBR) or authorized partner commercial banks (BANCOBU, Interbank Burundi - IBB) against an official tax receipt (*quittance de paiement*).
+  - **Evidence confidence: `DIRECT`** — established by official CGM regulations and ministry tariff circulars on `migration.gov.bi`.
+- **Consular Fee Schedule:**
+  - Via Burundian Embassies and Consulates General abroad (e.g. Brussels, Paris, Washington D.C., Nairobi, Kigali, Dar es Salaam, Beijing).
+  - Consular passport fee: ~EUR €100.00 to €150.00 / USD $100.00 to $150.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via official embassy notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Document:** Valid Burundian National Identity Card (*Carte Nationale d'Identité — CNI burundaise*).
+  - **Proof of Civil Status:** Original or certified copy of Birth Certificate (*Extrait d'acte de naissance certifié conforme à l'original*).
+  - **Proof of Residence & Civil Registry:** Attestation of residence (*Attestation de résidence*) and certificate of civil status (*Attestation d'état civil*) issued by the local administrative commune.
+  - **Proof of Profession:** Certificate of employment, administrative attestation, or student card.
+  - **Tax Receipt:** Original OBR / bank payment quittance confirming payment of the 235 000 BIF tariff.
+  - **Photographs:** Two (2) recent passport-sized color photographs on plain background; digital capture on site.
+  - **For minors (under 16):** Accompanied by parent/legal guardian; certified birth certificate; copies of parents' CNI; authenticated parental authorization.
+  - **Renewal:** Physical presentation of expiring passport booklet for cancellation.
+  - **In case of loss/theft:** Mandatory police loss certificate (*déclaration de perte*) issued by the Police Nationale du Burundi and official court affidavit.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph, electronic signature, and ten fingerprints) at CGM Headquarters.
+- **Application & Delivery Channels:**
+  - Online pre-registration and appointment booking via `migration.gov.bi`. In-person submission and biometric enrollment at the Commissariat Général des Migrations (CGM), Avenue de l'OUA, Kigobe, Bujumbura.
+  - Delivery: In-person collection upon presentation of deposit voucher and CNI.
 
 ---
 
