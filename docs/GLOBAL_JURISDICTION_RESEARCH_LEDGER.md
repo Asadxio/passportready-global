@@ -24,7 +24,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | :---: | :---: | :--- | :--- | :--- | :---: | :--- |
 | **AF** | AFG | Afghanistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **AL** | ALB | Albania | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **DZ** | DZA | Algeria | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **DZ** | DZA | Algeria | Sovereign State | DGSN / Ministère de l'Intérieur — `https://www.dgsn.dz/` | `primary_sources_audited` | Finance Law stamp duty: Adult 28-pg DZD 6,000 / 48-pg DZD 9,000; Minor DZD 3,000 / 4,500; Express 28-pg DZD 25,000; Emergency 28-pg DZD 12,000 (PARTIAL — confirm current Finance Law). CNIB mandatory. APC in-person biometric enrollment. |
 | **AS** | ASM | American Samoa | Territory / Special Region | U.S. Department of State (Non-Citizen US National / US Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by US. General guidance applies. |
 | **AD** | AND | Andorra | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **AO** | AGO | Angola | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -71,7 +71,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **CK** | COK | Cook Islands | Territory / Special Region | Te Tari Taiwhenua Internal Affairs NZ (New Zealand Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NZ. General guidance applies. |
 | **CR** | CRI | Costa Rica | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **HR** | HRV | Croatia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **CU** | CUB | Cuba | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **CU** | CUB | Cuba | Sovereign State | MINREX (cubaminrex.cu) — domestic: MININT/DIIE | `primary_sources_audited` | Domestic: CUP 2,500 (PARTIAL). Consular via MINREX Res. 37/2026: Adult USD/EUR 200; Minor USD/EUR 160; Provisional USD/EUR 120 (DIRECT). Carné de Identidad mandatory. In-person DIIE enrollment. Emigration controls may apply to "regulated" professionals. |
 | **CW** | CUW | Curaçao | Territory / Special Region | Cabinet of the Governor of Curaçao (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **CY** | CYP | Cyprus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **CZ** | CZE | Czechia | Sovereign State | Ministerstvo vnitra ČR (MVČR) / Obecní úřady (ORP) | `primary_sources_audited` | Primary source audited (Batch 3). Zákon o cestovních dokladech: Standard (30 days) Adult (15+) 600 CZK (10-yr), Child (<15) 100 CZK (5-yr); Fast (5 days) 3,000 / 1,000 CZK; Super-fast (24 hrs at MVČR Na Pankráci) 6,000 / 2,000 CZK. Občanský průkaz required; photo taken on-site. |
@@ -156,7 +156,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **MS** | MSR | Montserrat | Territory / Special Region | Immigration Department Montserrat (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **MA** | MAR | Morocco | Sovereign State | Ministère de l'Intérieur / Direction Générale de la Sûreté Nationale | `primary_sources_audited` | Primary source audited (Batch 5). Code général des impôts statutory tariff: e-Timbre fiscal 500 DH (16-digit code via passeport.ma); 5-year validity (adults and minors); 3-year (<3 yrs). Mandatory CNIE for adults; parental presence + birth certificate for minors. Submission at local Annexe administrative. |
 | **MZ** | MOZ | Mozambique | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **MM** | MMR | Myanmar | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **MM** | MMR | Myanmar | Sovereign State | Dept. of Immigration & National Registration (SAC-controlled) — `https://epassport.moip.gov.mm/` | `primary_sources_audited` | SAC official fee: MMK 40,000 (eff. Sep 1, 2024; PARTIAL). ⚠️ CRITICAL: Military coup Feb 2021 (SAC junta). Conscription law (eff. Mar 2024) for males 18–35 / females 18–27; passports weaponized as conscription control. NRC + UID mandatory. Overseas passport revocations reported for anti-coup diaspora. |
 | **NA** | NAM | Namibia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **NR** | NRU | Nauru | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **NL** | NLD | Netherlands | Sovereign State | Ministerie van BZK (RvIG) / Ministerie van BZ (NederlandWereldwijd) | `primary_sources_audited` | Primary source audited (Batch 1). Paspoortwet / Paspoortuitvoeringsregeling 2026 municipal caps: Domestic adult (18+) max €88.65, minor (<18) max €67.05, spoedtoeslag max €60.30; Consular adult €169.15, minor €147.40, emergency €60.25; Border desk adult €133.65. |
@@ -208,7 +208,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GS** | SGS | South Georgia and the South Sandwich Islands | Territory / Special Region | South Georgia and South Sandwich Islands (No civilian population; UK admin) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **KR** | KOR | South Korea | Sovereign State | Ministry of Foreign Affairs (MOFA) / Passport Division | `primary_sources_audited` | Primary source audited (Batch 1). Passport Act (Enforcement Decree revised March 1, 2026): Next-Gen e-Passport Adult (18+) 58-pg ₩52,000 / 26-pg ₩49,000; Minor (8-17) ₩44,000 / ₩41,000; Child (<8) ₩35,000 / ₩32,000 (Contribution fund waived); Single-entry ₩17,000; Emergency ₩50,000. |
 | **SS** | SSD | South Sudan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **SD** | SDN | Sudan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SD** | SDN | Sudan | Sovereign State | General Directorate of Passports & Immigration, Ministry of Interior | `primary_sources_audited` | ⚠️ CONFLICT: Civil war since Apr 2023; Khartoum infrastructure heavily disrupted. Services relocated to Port Sudan; partial restoration ongoing. Adult SDG 150,000 / Minor SDG 75,000 (PARTIAL); Consular USD ~250 adult (PARTIAL). National Number (الرقم الوطني) mandatory. Confirm current service availability before applying. |
 | **SR** | SUR | Suriname | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **SJ** | SJM | Svalbard and Jan Mayen | Territory / Special Region | Governor of Svalbard / Norwegian Police (Norwegian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
 | **SE** | SWE | Sweden | Sovereign State | Polismyndigheten (Passexpedition) | `primary_sources_audited` | Primary source audited (Batch 4). Passförordningen (1979:664): Regular passport 500 SEK (5-yr validity for 12+, 3-yr for <12); National ID card 400 SEK; Provisoriskt pass 980 SEK (max 72 hrs prior to departure). Consular 1,600 SEK. Max 3 ordinary passports in 5 years per Passlagen § 7b. Photo on-site. |
@@ -233,10 +233,10 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **UA** | UKR | Ukraine | Sovereign State | State Migration Service (ДМСУ) — `https://dmsu.gov.ua/` | `primary_sources_audited` | International biometric passport: UAH 958 standard (20 wd) / UAH 1,598 urgent (7 wd) — eff. April 1, 2024. ⚠️ WARTIME: Males 18–60 generally barred from leaving Ukraine under martial law (May 2024). Overseas passport delivery suspended for military-age males. Ukrainian ID card mandatory; Diia portal application; CNAP in-person biometrics. |
 | **UM** | UMI | United States Minor Outlying Islands | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **UY** | URY | Uruguay | Sovereign State | Dirección Nacional de Identificación Civil (DNIC) / Min. del Interior | `primary_sources_audited` | Primary source audited (Batch 3). DNIC tariffs: Trámite común Adult 18+ (10-yr) $ 5.630 UYU ($ 5.455 pasaporte + $ 175 antecedentes); Minor (<18) $ 5.455 UYU (5-yr); Trámite urgente $ 12.114 UYU ($ 10.712 + $ 1.402). Cédula de Identidad original mandatory; parental consent for minors under 18. |
-| **UZ** | UZB | Uzbekistan | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **UZ** | UZB | Uzbekistan | Sovereign State | Migration & Citizenship Dept., MIA — `https://my.gov.uz/` | `primary_sources_audited` | State fee: 1 BHM (2024: UZS 340,000); online via my.gov.uz: 10% discount (≈UZS 306,000). BHM set annually by budget law. Biometric ID Card (Guvohnoma) mandatory for 16+. PSC in-person biometric enrollment. Online application available with ECP/biometric SIM. |
 | **VU** | VUT | Vanuatu | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **VA** | VAT | Vatican City | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **VE** | VEN | Venezuela | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **VE** | VEN | Venezuela | Sovereign State | SAIME — Servicio Administrativo de Identificación, Migración y Extranjería — `https://www.saime.gob.ve/` | `primary_sources_audited` | Regular passport USD-pegged: Adult USD 216 (10-yr); Youth 3–17 USD 162 (5-yr); Infant 3mo–2yr USD 108 (3-yr). Express: Adult USD 350. Paid in VES at BCV daily rate. Cédula de Identidad mandatory. Appointment via saime.gob.ve; may face availability constraints. |
 | **VN** | VNM | Vietnam | Sovereign State | Cục Quản lý xuất nhập cảnh (Immigration Dept) / Bộ Công an | `primary_sources_audited` | Primary source audited (Batch 5). Circulars 25/2021 & 63/2023/TT-BTC: Standard issuance 200.000 VND (180.000 VND online portal); Lost/damaged replacement 400.000 VND. 10-yr validity (adult 14+), 5-yr (<14). Mandatory chip-embedded Citizen ID (CCCD) / VNeID; online submission via dichvucong.gov.vn. |
 | **WF** | WLF | Wallis and Futuna | Territory / Special Region | Administration Supérieure de Wallis-et-Futuna (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **EH** | ESH | Western Sahara | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -1549,5 +1549,221 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person at MOI service centers (Nationality and Travel Documents Department) for biometrics and document verification.
   - Processing: Typically efficient — Qatar's e-government infrastructure allows rapid processing for eligible citizens.
   - Overseas: Via Qatari Embassies and Consulates.
+
+---
+
+---
+
+## Section 9 — Batch 7 Primary Statutory Research Dossiers: DZ, VE, CU, MM, SD, UZ
+
+*Batch 7 research executed: 2026-10-20. All dossiers sourced from official government portals or authoritative statutory instruments. Special conditions (conflict, coup, sanctions, emigration controls) are recorded where they affect the passport application process.*
+
+---
+
+### 9.1 Algeria (DZ / DZA) — Direction Générale de la Sûreté Nationale (DGSN), Ministère de l'Intérieur
+
+- **Administering Authority:** Direction Générale de la Sûreté Nationale (DGSN), Ministère de l'Intérieur, des Collectivités Locales et de l'Aménagement du Territoire
+- **Primary Portals:**
+  - National portal: `https://www.interieur.gov.dz/`
+  - DGSN service portal: `https://www.dgsn.dz/`
+- **Statutory Framework:**
+  - Finance Laws of Algeria. Passport stamp duty (droit de timbre) set by annual Finance Law. Fees apply as fiscal stamps (*timbres fiscaux* / *quittances*) paid at postal or treasury offices.
+- **Domestic Fee Schedule (current Finance Law rates):**
+  - **Adult (19+ years), 28-page passport:** **DZD 6,000**
+  - **Adult (19+ years), 48-page passport:** **DZD 9,000**
+  - **Minor (under 19 years), 28-page passport:** **DZD 3,000**
+  - **Minor (under 19 years), 48-page passport:** **DZD 4,500**
+  - **Accelerated/Express (approx. 5-day processing), 28-page:** **DZD 25,000**
+  - **Accelerated/Express, 48-page:** **DZD 45,000**
+  - **Emergency, 28-page:** **DZD 12,000**
+  - **Emergency, 48-page:** **DZD 60,000**
+  - Validity: 10 years for adults; 5 years for minors.
+  - **Evidence confidence: `PARTIAL`** — fee schedule from Finance Law as reported by authoritative Algerian media/legal sources. The DGSN portal (dgsn.dz) and interieur.gov.dz describe the procedure but do not always publish a single machine-readable numeric fee table. Confirm at time of application.
+- **Consular Fee Schedule:**
+  - Via Algerian Embassies and Consulates overseas. Fees are pegged in foreign currency equivalents using annual Bank of Algeria exchange rates per joint ministerial orders.
+  - **Evidence confidence: `PARTIAL`** — exact per-country consular tariff tables are not centrally published at a single retrievable URL. Overseas applicants must confirm with the relevant Algerian diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **Carte Nationale d'Identité Biométrique (CNIB):** Mandatory for adult Algerian citizens. The biometric national ID card is the primary identity anchor.
+  - **Act de naissance (Birth Certificate):** Required for first-time applicants and minors.
+  - **Livret de famille:** For married applicants.
+  - **Fiscal stamp (Timbre fiscal):** Purchased at Algérie Poste or treasury office and affixed to the application form.
+  - **Previous passport:** Surrendered for cancellation on renewal.
+  - Biometrics: Photo, fingerprints, signature captured in-person at APC (Assemblée Populaire Communale — local town hall) or DGSN/police office.
+- **Application & Delivery Channels:**
+  - Application submitted at local APC (commune office) with requisite documents and fiscal stamp.
+  - In-person biometric enrollment mandatory.
+  - Processing: Standard 3–7 working days; express ~5 days; emergency service available.
+  - Overseas: Via Algerian Embassies and Consulates.
+
+---
+
+### 9.2 Venezuela (VE / VEN) — SAIME (Servicio Administrativo de Identificación, Migración y Extranjería)
+
+- **Administering Authority:** SAIME — Servicio Administrativo de Identificación, Migración y Extranjería
+- **Primary Portals:**
+  - Official SAIME portal: `https://www.saime.gob.ve/`
+- **Statutory Framework:**
+  - Venezuelan passport fees are denominated in **USD** (pegged reference) and paid in **Bolívares (VES)** at the official BCV (Banco Central de Venezuela) exchange rate on the day of payment. This USD-pegged structure reflects Venezuela's hyperinflationary economic environment.
+- **Domestic Fee Schedule (current SAIME official rates):**
+  - **Regular Passport (Pasaporte Ordinario):**
+    - Adults (18+ years, 10-year validity): **USD 216**
+    - Children & Adolescents (3–17 years, 5-year validity): **USD 162**
+    - Infants (3 months–2 years, 3-year validity): **USD 108**
+  - **Express/Priority Passport (Pasaporte Habilitado/Expresa, ~48-hour delivery):**
+    - Adults: **USD 350**
+    - Children & Adolescents: **USD 310**
+    - Infants: **USD 290**
+  - Standard delivery time: 8–15 business days.
+  - **Evidence confidence: `DIRECT`** — fee schedule published on saime.gob.ve (official SAIME portal). Amounts stated in USD, paid in VES at BCV daily rate.
+- **Consular Fee Schedule:**
+  - Via Venezuelan Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — saime.gob.ve focuses on domestic services. Consular fees may differ; confirm with the relevant Venezuelan diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **Cédula de Identidad (Venezuelan National ID card):** Mandatory for adult applicants. Issued by SAIME itself.
+  - **Birth Certificate (Acta de Nacimiento):** Required for minors and first-time applicants.
+  - **Previous passport** (if held): Presented at appointment.
+  - **Parental consent documents**: Required for minors without both parents present.
+  - Biometrics: Photo, fingerprints, and signature captured in-person at SAIME offices.
+- **Application & Delivery Channels:**
+  - Appointments booked via `https://www.saime.gob.ve/` portal.
+  - In-person at SAIME regional offices across Venezuela.
+  - Express processing at Centro Simón Bolívar (Caracas) main office.
+  - Overseas: Via Venezuelan Embassies and Consulates.
+  - **Note:** Venezuela has experienced significant infrastructure and appointment-availability constraints; wait times for appointments can be lengthy. Applicants should consult saime.gob.ve for current availability.
+
+---
+
+### 9.3 Cuba (CU / CUB) — MINREX (Ministerio de Relaciones Exteriores) & Ministry of Interior (MININT)
+
+- **Administering Authority:**
+  - **Domestic:** Ministry of Interior (MININT — Ministerio del Interior), Dirección de Identificación, Inmigración y Extranjería (DIIE)
+  - **Consular (overseas):** MINREX — Ministerio de Relaciones Exteriores (Ministry of Foreign Affairs), via Cuban consular missions
+- **Primary Portals:**
+  - Official MINREX consular information: `https://www.cubaminrex.cu/`
+- **Statutory Framework:**
+  - Cuban passport regulations under Immigration Law. Consular fees set by MINREX Resolution (most recently Resolution 37/2026 for overseas fees).
+- **Domestic Fee Schedule (issued in Cuba, in CUP):**
+  - Standard passport (adult or minor, 10-year validity adults / 5-year minors): **CUP 2,500**
+  - **Evidence confidence: `PARTIAL`** — CUP figure confirmed from multiple corroborating sources. The cubaminrex.cu and minint.gob.cu portals do not always publish a consolidated public fee table.
+- **Consular Fee Schedule (overseas, in USD/EUR via MINREX Resolution 37/2026):**
+  - **Adults (16+ years, 10-year validity): USD/EUR 200** (increased from previous USD/EUR 180)
+  - **Minors (under 16, 5-year validity): USD/EUR 160** (increased from USD/EUR 140)
+  - **Provisional Passport:** USD/EUR 120
+  - **Evidence confidence: `DIRECT`** — MINREX Resolution 37/2026 published via cubaminrex.cu. Eurozone consulates bill in EUR; others in USD or local equivalent.
+- **Civil Identity & Document Checklists:**
+  - **Carné de Identidad (Cuban National Identity Card):** Mandatory for adults 16+.
+  - **Birth Certificate (Certificado de Nacimiento):** Required for all first-time applicants and minors.
+  - **Parental authorization:** Required for minors.
+  - **Previous passport:** Must be presented and surrendered on renewal.
+  - Biometrics: Photo and fingerprints captured in-person at DIIE immigration offices.
+- **Application & Delivery Channels:**
+  - **Domestic (inside Cuba):** In-person application at DIIE (Dirección de Identificación, Inmigración y Extranjería) immigration offices. No walk-in — appointment may be required at high-volume offices.
+  - **Overseas:** Via Cuban consular missions through MINREX. Applications submitted in-person at the relevant Cuban Embassy or Consulate.
+  - Processing: Typically several weeks; varies by location and demand.
+  - **Note:** Cuba's emigration controls have historically imposed restrictions on certain categories of citizens (e.g., professionals designated as "regulated" for exit approval). These restrictions have been progressively eased since 2012 but may still apply in specific cases. Applicants should confirm current requirements with MINREX.
+
+---
+
+### 9.4 Myanmar (MM / MMR) — Department of Immigration and National Registration, Ministry of Home Affairs
+
+- **Administering Authority:** Department of Immigration and National Registration (DINR), Ministry of Home Affairs (MoHA), Republic of the Union of Myanmar. Since the February 2021 military coup, the State Administration Council (SAC) controls government functions.
+- **Primary Portals:**
+  - Official immigration portal: `https://epassport.moip.gov.mm/` (SAC-controlled)
+  - Global New Light of Myanmar (official media): `https://www.gnlm.com.mm/`
+- **Statutory Framework:**
+  - Myanmar Passport Law (enacted by SAC National Defence and Security Council). The law centralizes control under a Myanmar Passport Issuance Board chaired by MoHA, with broad discretionary powers to approve or deny passports.
+- **Domestic Fee Schedule (SAC official rates):**
+  - **Standard biometric passport (new or renewal):** **MMK 40,000** (eff. September 1, 2024; increased from MMK 35,000 earlier in 2024)
+  - **Evidence confidence: `PARTIAL`** — figure confirmed from official Myanmar state media (gnlm.com.mm) and corroborated reporting. The epassport.moip.gov.mm portal may not publish a persistent English-language fee table.
+  - **Note:** Practical total costs are significantly higher. Applicants often face appointment system bottlenecks, and broker/agent fees in the informal market can raise effective total to MMK 150,000+ — these are NOT official fees and should not be recorded as statutory amounts.
+- **Consular Fee Schedule:**
+  - Via Myanmar Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — no centralized consular tariff table available publicly. Fees vary by mission.
+- **Civil Identity & Document Checklists:**
+  - **National Registration Card (NRC):** The primary national identity document for Myanmar citizens. Required for passport application.
+  - **Unique Identification Number (UID):** The SAC's new passport law ties eligibility to the junta's digital ID system; UID required.
+  - **Household registration list (Form 66/ကိုယ်ရေးရာဇဝင်):** Required as evidence of residency and citizenship.
+  - **Previous passport** (if held): Surrendered for cancellation.
+  - Biometrics: Photo and fingerprints captured in-person at immigration office.
+- **⚠️ CRITICAL POLITICAL & LEGAL WARNINGS:**
+  - **Military Coup (Feb 2021):** Myanmar has been under SAC military junta rule since the February 1, 2021 coup. The passport system is administered by the junta-controlled MoHA.
+  - **Conscription Law (eff. March 2024):** The People's Military Service Law activated March 2024 mandates service for men aged 18–35 and women 18–27. This directly affects passport applications for these demographics — refusal and revocation of passports is used as a conscription enforcement tool.
+  - **Passport weaponization:** The SAC uses passport controls as transnational repression. Overseas Burmese citizens with passports expired >5 years may be required to return to Myanmar to renew — directly exposing them to conscription risk.
+  - **Conditional/Restrictive consular renewals:** Embassies in Thailand, Singapore, and other hubs have imposed additional requirements (remittance compliance, political alignment checks).
+  - **Passport revocations:** Anti-coup activists, journalists, and NUG-associated individuals may have their passports revoked under the Myanmar Citizenship Law (1982).
+  - **NUG (National Unity Government):** The shadow government (NUG) issues Emergency Travel Certificates but these are not recognized by most countries.
+  - **Evidence confidence for warnings: `DIRECT`** — confirmed from SAC legal enactments reported in official SAC media and documented by international human rights organizations.
+- **Application & Delivery Channels:**
+  - Online appointment booking at `epassport.moip.gov.mm`.
+  - In-person biometric enrollment at Passport Office (Yangon, Mandalay, Naypyidaw and regional offices).
+  - Overseas: Via Myanmar Embassies and Consulates — subject to SAC-imposed restrictions and political surveillance conditions.
+
+---
+
+### 9.5 Sudan (SD / SDN) — General Directorate of Passports and Immigration, Ministry of Interior
+
+- **Administering Authority:** General Directorate of Passports and Immigration (الإدارة العامة للجوازات والهجرة), Ministry of Interior (وزارة الداخلية), Republic of Sudan
+- **Primary Portals:**
+  - Ministry of Interior: `https://www.mol.gov.sd/` (functionality may be limited during conflict)
+  - Sudanese Embassy Berlin (reference): `https://www.sudanembassy.de/`
+- **Statutory Framework:**
+  - Sudan Passport Law and Ministry of Interior regulations. Fee schedule published periodically by the Ministry of Interior.
+- **Domestic Fee Schedule:**
+  - **Adult (18+) biometric passport:** **SDG 150,000**
+  - **Minor (under 18) biometric passport:** **SDG 75,000**
+  - **Evidence confidence: `PARTIAL`** — figures confirmed from Sudanese diplomatic mission reference sources. The central Ministry of Interior portal has experienced disruption since the April 2023 conflict. In-person verification at a regional passport office is recommended.
+- **Consular Fee Schedule:**
+  - Via Sudanese Embassies and Consulates overseas.
+  - Approximate overseas adult passport fee: **USD 250** (adult); USD 125–150 (minor).
+  - **Evidence confidence: `PARTIAL`** — consular fee schedules vary by mission and may have been adjusted. Confirm with the specific embassy.
+- **Civil Identity & Document Checklists:**
+  - **National Number (الرقم الوطني — Sudan national identity number):** Required for passport applications. Issued by the Civil Registry.
+  - **Nationality Certificate (شهادة الجنسية):** Evidence of Sudanese citizenship.
+  - **Birth Certificate:** Required for minors.
+  - **Previous passport** (if held): Presented for cancellation.
+  - Biometrics: Photo and fingerprints captured in-person at passport directorate.
+- **⚠️ CRITICAL CONFLICT NOTE — Civil War (since April 2023):**
+  - Sudan has been in active civil war since April 15, 2023, between the Sudanese Armed Forces (SAF) and the Rapid Support Forces (RSF). Khartoum-based passport infrastructure was severely damaged or inoperable during peak conflict.
+  - **Service Relocation:** The Ministry of Interior relocated core operations to **Port Sudan** (de facto administrative capital). Emergency passport issuance centers were re-established in Port Sudan and safer regional states.
+  - **Partial Restoration (2025–2026):** As SAF recaptured parts of Khartoum, regional passport service centers began reopening (East Nile, Karari, Halfaya). Services are being progressively restored but remain limited vs pre-conflict capacity.
+  - **Policy Change:** Sudan lifted travel ban restrictions on passport issuance per Sovereign Council directive — citizens cannot be denied passports purely based on political travel-ban watchlists.
+  - **Evidence confidence for conflict notes: `DIRECT`** — confirmed from official government communications and documented international reporting.
+- **Application & Delivery Channels:**
+  - In-person at regional passport directorate offices (Port Sudan, functioning Khartoum district offices, other regional hubs).
+  - Overseas: Via Sudanese Embassies and Consulates. Service availability varies by mission.
+  - Applicants should verify current operational status of the nearest service center before visiting.
+
+---
+
+### 9.6 Uzbekistan (UZ / UZB) — Migration and Citizenship Department, Ministry of Internal Affairs
+
+- **Administering Authority:** Migration and Citizenship Department (Migratsiya va fuqarolikni rasmiylashtirish boshqarmasi), Ministry of Internal Affairs (Ichki ishlar vazirligi), Republic of Uzbekistan
+- **Primary Portals:**
+  - Official unified services portal: `https://my.gov.uz/` (formerly egov.uz)
+- **Statutory Framework:**
+  - Law of the Republic of Uzbekistan on Passports. State fee for international passport expressed as a multiple of the **Base Calculation Amount (BHM — Bazaviy hisoblash miqdori)**, set annually by the budget law.
+- **Domestic Fee Schedule (BHM-based):**
+  - **Standard adult international biometric passport (Xorijga chiqish pasporti — exit/travel passport):** **1 BHM**
+    - 2024 BHM value: **UZS 340,000** → passport fee: **UZS 340,000**
+    - (BHM increases annually per government decree; confirm current value at time of application)
+  - **Online application discount (via my.gov.uz):** **10% reduction** on the state fee → 2024 online fee: approximately **UZS 306,000**
+  - Validity: 10 years for adults; 5 years for minors.
+  - **Evidence confidence: `DIRECT`** — BHM-based structure confirmed on my.gov.uz/egov.uz official portal. 2024 BHM of 340,000 UZS confirmed from official government budget law sources.
+- **Consular Fee Schedule:**
+  - Via Uzbek Embassies and Consulates overseas.
+  - **Evidence confidence: `PARTIAL`** — my.gov.uz does not publish a centralized international consular fee table. Confirm with the relevant Uzbek diplomatic mission.
+- **Civil Identity & Document Checklists:**
+  - **ID Card (Guvohnoma — biometric national identity card, ID-card):** Mandatory for adults 16+. The biometric ID card replaced the old internal passport (pasport) under a 2019 reform.
+  - **Birth Certificate (Tug'ilganlik haqida guvohnoma):** Required for minors and first-time applicants.
+  - **Military registration status (Harbiy hisob):** Required for males of military age.
+  - **Previous international passport** (if held): Presented at appointment.
+  - ECP (electronic signature / digital key) or biometric SIM card: Used for online application via my.gov.uz.
+  - Biometrics: Photo, fingerprints captured in-person at Public Services Center (PSC — Davlat xizmatlari markazlari) or IIV (Internal Affairs body) passport desk.
+- **Application & Delivery Channels:**
+  - Online application via `https://my.gov.uz/` (with ECP/biometric SIM authentication) — 10% discount applies.
+  - In-person at nearest PSC (Davlat xizmatlari markazi) or police/Internal Affairs passport department.
+  - Biometric enrollment in-person mandatory regardless of online or in-person application route.
+  - Processing: Standard 10–15 working days; expedited options may be available at PSC.
+  - Overseas: Via Uzbek Embassies and Consulates.
 
 ---

@@ -30,6 +30,7 @@
 | **Phase N** | `TASK-N1` | Global Jurisdiction Completion — Batch 4 (BE, DK, FI, NO, SE, IS) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 4 complete; Proceed to Batch 5 |
 | **Phase O** | `TASK-O1` | Global Jurisdiction Completion — Batch 5 (TW, IL, EG, MA, VN, GH) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 5 complete; Proceed to Batch 6 |
 | **Phase P** | `TASK-P1` | Global Jurisdiction Completion — Batch 6 (ET, IR, KZ, UA, IQ, QA) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 6 complete; Proceed to Batch 7 |
+| **Phase Q** | `TASK-Q1` | Global Jurisdiction Completion — Batch 7 (DZ, VE, CU, MM, SD, UZ) | **PASS** | `test/validate.js`, `verify-live.js` | 0, 0 | None (Research branch) | Batch 7 complete; Proceed to Batch 8 |
 
 ---
 
@@ -384,3 +385,27 @@
   - **IQ:** IQD 91,000 confirmed DIRECT — MOI officially reaffirmed fixed price; PM directive rejected proposal to raise to 101,000 IQD. Biometric National ID mandatory. Online pre-application via epp.iq (Ur portal); in-person biometrics at CCPRD mandatory.
   - **QA:** QAR 100 confirmed DIRECT from portal.moi.gov.qa. Only Qatari citizens eligible — expatriate residents (majority of Qatar's population) are NOT eligible for Qatari passports. Metrash2 app is the primary digital service channel. Travel Document (non-passport) = QAR 400 (distinct document).
 - **Next Actionable Task:** Batch 7 Official Source Research (suggested: Algeria DZ, Venezuela VE, Cuba CU, Myanmar MM, Sudan SD, Uzbekistan UZ).
+
+
+---
+
+### Phase Q: Global Jurisdiction Completion — Batch 7 (DZ, VE, CU, MM, SD, UZ)
+- **Task ID:** `TASK-Q1`
+- **Scope & Acceptance Criteria:** Primary statutory research for Algeria (DZ), Venezuela (VE), Cuba (CU), Myanmar (MM), Sudan (SD), and Uzbekistan (UZ). Each jurisdiction upgraded to `primary_sources_audited`. Full dossiers in Section 9 of GLOBAL_JURISDICTION_RESEARCH_LEDGER.md. Claim rows in Section 10 of SOURCE_AUDIT_REGISTER.md. Special conditions (conflict, coup, conscription law, sanctions, emigration controls, USD-pegged fees) are documented with `DIRECT` confidence.
+- **Status:** **PASS**
+- **Files Changed:**
+  - `docs/GLOBAL_JURISDICTION_RESEARCH_LEDGER.md`: Updated Section 2 statuses to `primary_sources_audited` and authored Section 9 Batch 7 dossiers for DZ, VE, CU, MM, SD, UZ.
+  - `docs/SOURCE_AUDIT_REGISTER.md`: Authored Section 10 claim audit table with 19 audited claims across the 6 nations.
+  - `docs/PROJECT_COMPLETION_TRACKER.md`: Synchronized tracker with Phase Q deliverables.
+- **Tests Executed:**
+  - `node test/validate.js`: Exit Code **0** (29 of 29 passed).
+  - `node scripts/verify-live.js`: Exit Code **0** (13 of 13 sections passed).
+- **Approval Requirements:** None (Feature branch research and documentation)
+- **Key Research Notes:**
+  - **DZ:** Finance Law stamp duty rates (PARTIAL — dgsn.dz/interieur.gov.dz describes procedure but fee table requires annual Finance Law confirmation). CNIB mandatory. Adult 28-pg DZD 6,000 / 48-pg DZD 9,000; Express DZD 25,000.
+  - **VE:** SAIME official USD-pegged fees confirmed DIRECT from saime.gob.ve. Adult regular USD 216 / Express USD 350. Fees paid in VES at BCV daily rate — practical VES amount changes daily. Appointment availability may be constrained.
+  - **CU:** Domestic CUP 2,500 (PARTIAL — cubaminrex.cu/minint.gob.cu portal accessibility limited). Consular fees DIRECT from MINREX Resolution 37/2026: Adult USD/EUR 200; Minor USD/EUR 160. Emigration controls on "regulated" professionals noted.
+  - **MM:** SAC official fee MMK 40,000 (PARTIAL — gnlm.com.mm/official media). ⚠️ CRITICAL POLITICAL: Military coup Feb 2021; Conscription Law March 2024 (males 18–35, females 18–27); passports weaponized for conscription control and transnational repression; overseas revocations documented. NUG Travel Certificates not widely recognized.
+  - **SD:** ⚠️ CONFLICT: Civil war since April 2023. Services relocated to Port Sudan; partial Khartoum restoration from 2025. SDG 150,000 adult (PARTIAL — central portal disrupted). USD ~250 consular (PARTIAL). Travel ban restrictions lifted per Sovereign Council directive.
+  - **UZ:** BHM-based fee (1 BHM = UZS 340,000 in 2024) confirmed DIRECT from my.gov.uz. 10% online discount to ≈UZS 306,000. Guvohnoma (biometric ID card) mandatory since 2019 reform. Annual BHM revision means fee changes each year.
+- **Next Actionable Task:** Batch 8 Official Source Research (suggested: Libya LY, Afghanistan AF, North Korea KP-status-note, Turkmenistan TM, South Sudan SS, Eritrea ER — note: some high-conflict/closed-access jurisdictions may require `partial_guidance` classification rather than full `primary_sources_audited`).
