@@ -36,12 +36,12 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **AW** | ABW | Aruba | Territory / Special Region | Cabinet of the Governor of Aruba (Kingdom of the Netherlands Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NL. General guidance applies. |
 | **AT** | AUT | Austria | Sovereign State | Bundesministerium für Inneres (BMI) / Passbehörden | `primary_sources_audited` | Primary source audited (Batch 1). Passgesetz 1992 (July 2025 Budget reform): Standard adult (12+) €112.00, Expresspass €148.00, 1-Tages-Express €326.00, Child (2-11) €44.00, Infant (<2) €0.00 first issue. Staatsbürgerschaftsnachweis + Geburtsurkunde required. |
 | **AZ** | AZE | Azerbaijan | Sovereign State | Main Passport Dept., MIA & ASAN Xidmət — `https://asan.gov.az/` | `primary_sources_audited` | Law on State Duty: Adults 18+ (10-yr) 60 AZN; Children 3–18 (5-yr) 35 AZN; Children 1–3: 25 AZN; Infants <1: 15 AZN (DIRECT). Expedited tiers scale up by law. Şəxsiyyət vəsiqəsi (National ID) + military certificate (Hərbi bilet) mandatory for males 18–35; in-person at ASAN Xidmət centers. |
-| **BS** | BHS | Bahamas | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BS** | BHS | Bahamas | Sovereign State | Passport Office, Ministry of Foreign Affairs (`mofa.gov.bs`) | `primary_sources_audited` | E-passport fees: Adult 15½+ (10-yr) $50.00; Minor <15½ (5-yr) $25.00; Frequent Traveller (expanded) $100.00 (DIRECT). Expedited tiers: 36–48 hrs +$300.00; same-day +$350.00; lost replacement rush +$75–$375. National Insurance Board (NIB) Smart Card + birth certificate (RGD) mandatory; in-person or MyGateway (online adult renewal). |
 | **BH** | BHR | Bahrain | Sovereign State | Nationality, Passports & Residence Affairs (NPRA), MOI — `https://www.npra.gov.bh/` | `primary_sources_audited` | Biometric e-passport: First issue BHD 12 (adult) / BHD 6 (senior 60+); Renewal/replacement BHD 15 (adult) / BHD 7.5 (senior 60+) (DIRECT). Validity 10-yr adult / 5-yr minor. National ID (Smart Card/CPR) mandatory; online via bahrain.bh with eKey or NPRA app; NPRA service centers. |
-| **BB** | BRB | Barbados | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BB** | BRB | Barbados | Sovereign State | Barbados Immigration Department, Ministry of Home Affairs (`immigration.gov.bb`) | `primary_sources_audited` | Passports & Travel Documents Regs: Adult 16+ (10-yr, Form A) BDS$ 150.00; Minor <16 (5-yr, Form B) BDS$ 100.00; Urgent 2–5 days BDS$ 225.00; Express 1-day BDS$ 300.00; Lost/damaged penalty fee BDS$ 300.00 (DIRECT). Barbados Trident ID card + birth certificate + Section 10 Guarantor mandatory; in-person biometrics at Princess Alice Highway, Bridgetown. |
 | **BY** | BLR | Belarus | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BE** | BEL | Belgium | Sovereign State | SPF Affaires étrangères / Communes belges | `primary_sources_audited` | Primary source audited (Batch 4). Base federal tariffs: Adult 18+ (7-yr) €65 standard (€240 urgent, €350 superurgente); Minor <18 (5-yr) €35 standard (€210 urgent, €320 superurgente); plus municipal tax. Consular adult €75 standard / €210 urgent. eID required; ICAO photo. |
-| **BZ** | BLZ | Belize | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **BZ** | BLZ | Belize | Sovereign State | Dept. of Border Management & Immigration, MFAFTI (`immigration.gov.bz`) | `primary_sources_audited` | Belize Electronic Passport System (BEPS): Adult 16+ (10-yr) BZ$ 200.00; Minor <16 (5-yr) BZ$ 150.00; 24-hr expedite +BZ$ 300.00; 48-hr expedite +BZ$ 130.00; 5-day emergency +BZ$ 100.00; Lost replacement penalty +BZ$ 200.00 (DIRECT). Social Security Card (SSB) + Vital Statistics birth cert + Form 3A Recommender mandatory; in-person biometrics. |
 | **BJ** | BEN | Benin | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **BM** | BMU | Bermuda | Territory / Special Region | HMPO / Dept of Immigration Bermuda (British Overseas Territories Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **BT** | BTN | Bhutan | Sovereign State | Passport Div., Ministry of Foreign Affairs & External Trade (`mfa.gov.bt`) | `primary_sources_audited` | MFAET statutory fees: Adult 18+ (10-yr) Nu. 1,000; Minor <18 (5-yr) Nu. 800; Lost/damaged replacement fine: Nu. 5,000 penalty + standard booklet fee (Nu. 6,000 adult / Nu. 5,800 minor) (DIRECT). Citizenship Identity Card (CID) + Security Clearance Certificate (SCC) mandatory; G2C online portal (citizenservices.gov.bt) or Passport Division Thimphu. |
@@ -110,7 +110,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **GG** | GGY | Guernsey | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GN** | GIN | Guinea | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **GW** | GNB | Guinea-Bissau | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **GY** | GUY | Guyana | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **GY** | GUY | Guyana | Sovereign State | Central Immigration & Passport Office (CIPO), Guyana Police Force / MoHA (`moha.gov.gy`) | `primary_sources_audited` | Immigration Act (Cap. 14:02): Standard biometric e-passport: 5-year G$ 6,000; 10-year G$ 12,000; Expedited 72-hour surcharge +G$ 20,000 (DIRECT). Standard turnaround ~5 working days. Guyana National ID Card + GRO Birth Certificate + Form A + Recommender mandatory; appointment via Guyana Passport System; in-person biometrics at CIPO Georgetown or regional offices. |
 | **HT** | HTI | Haiti | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
 | **HM** | HMD | Heard Island and McDonald Islands | Territory / Special Region | Heard Island and McDonald Islands (Uninhabited Australian territory) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by AU. General guidance applies. |
 | **HN** | HND | Honduras | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -189,7 +189,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **BL** | BLM | Saint Barthélemy | Territory / Special Region | Collectivité de Saint-Barthélemy (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **SH** | SHN | Saint Helena, Ascension and Tristan da Cunha | Territory / Special Region | St Helena Immigration (BOT Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by GB. General guidance applies. |
 | **KN** | KNA | Saint Kitts and Nevis | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
-| **LC** | LCA | Saint Lucia | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **LC** | LCA | Saint Lucia | Sovereign State | Immigration Dept., Royal Saint Lucia Police Force (`govt.lc`) | `primary_sources_audited` | Passports (Amendment) Regulations: Standard ePassport (10-yr adult / 5-yr minor) EC$ 250.00; Replacement before expiry (lost/damaged) EC$ 300.00; Expedited surcharge (3–5 days) +EC$ 50.00 (DIRECT). National ID Card (18+) or NIS Card (16–17) + Civil Registry Birth Certificate mandatory; in-person biometrics at Police HQ Castries or Vieux Fort. |
 | **MF** | MAF | Saint Martin (French part) | Territory / Special Region | Collectivité de Saint-Martin (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **PM** | SPM | Saint Pierre and Miquelon | Territory / Special Region | Préfecture de Saint-Pierre-et-Miquelon (French Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by FR. General guidance applies. |
 | **VC** | VCT | Saint Vincent and the Grenadines | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
@@ -209,7 +209,7 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
 | **KR** | KOR | South Korea | Sovereign State | Ministry of Foreign Affairs (MOFA) / Passport Division | `primary_sources_audited` | Primary source audited (Batch 1). Passport Act (Enforcement Decree revised March 1, 2026): Next-Gen e-Passport Adult (18+) 58-pg ₩52,000 / 26-pg ₩49,000; Minor (8-17) ₩44,000 / ₩41,000; Child (<8) ₩35,000 / ₩32,000 (Contribution fund waived); Single-entry ₩17,000; Emergency ₩50,000. |
 | **SS** | SSD | South Sudan | Sovereign State | Directorate of Civil Registry, Nationality, Passport & Immigration, Ministry of Interior — `https://www.moi.goss.org/` | `primary_sources_audited` | USD-denominated fees paid in SSP at CBS rate: Adult USD 100; Child USD 50; Business USD 400 (PARTIAL — MOI portal has limited access; from Financial Act circulars). Nationality Certificate mandatory. ⚠️ Fragile state: recurring conflict; service availability varies by region. |
 | **SD** | SDN | Sudan | Sovereign State | General Directorate of Passports & Immigration, Ministry of Interior | `primary_sources_audited` | ⚠️ CONFLICT: Civil war since Apr 2023; Khartoum infrastructure heavily disrupted. Services relocated to Port Sudan; partial restoration ongoing. Adult SDG 150,000 / Minor SDG 75,000 (PARTIAL); Consular USD ~250 adult (PARTIAL). National Number (الرقم الوطني) mandatory. Confirm current service availability before applying. |
-| **SR** | SUR | Suriname | Sovereign State | National Passport / Immigration Directorate | `official_source_needs_research` | Awaiting primary statutory fee schedule, civil identity document checklist, and appointment workflow verification. |
+| **SR** | SUR | Suriname | Sovereign State | Directoraat Burgerzaken / CBB, Ministerie van Binnenlandse Zaken (`burgerzaken.gov.sr`) | `primary_sources_audited` | Besluit e-Paspoorttarieven: Standard biometric e-passport: Adult 18+ (10-yr) SRD 2.100,-; Minor <18 (5-yr) SRD 1.365,-; Spoedaanvraag surcharge +100% (SRD 4.200 / 2.730); Lost penalty SRD 900,-; Damaged penalty SRD 650,- (DIRECT). Surinamese e-ID card + Uittreksel/geboorteakte mandatory; in-person biometrics at designated CBB Bureaus voor Burgerzaken. |
 | **SJ** | SJM | Svalbard and Jan Mayen | Territory / Special Region | Governor of Svalbard / Norwegian Police (Norwegian Passport) | `official_source_needs_research` | Non-sovereign territory: passport issuance administered by NO. General guidance applies. |
 | **SE** | SWE | Sweden | Sovereign State | Polismyndigheten (Passexpedition) | `primary_sources_audited` | Primary source audited (Batch 4). Passförordningen (1979:664): Regular passport 500 SEK (5-yr validity for 12+, 3-yr for <12); National ID card 400 SEK; Provisoriskt pass 980 SEK (max 72 hrs prior to departure). Consular 1,600 SEK. Max 3 ordinary passports in 5 years per Passlagen § 7b. Photo on-site. |
 | **CH** | CHE | Switzerland | Sovereign State | Bundesamt für Polizei (fedpol) / Kantonale Passbüros | `primary_sources_audited` | Primary source audited (Batch 1). Ausweisgesetz (AwG) / VAwG: Pass 10 Adult (18+) CHF 145.00 (CHF 140 fee + CHF 5 porto), Child (<18) CHF 65.00 (CHF 60 fee + CHF 5 porto); Kombiangebot Adult CHF 158.00 / Child CHF 78.00; Notpass CHF 100.00 (centre) / CHF 150.00 (airport). Biometrics at cantonal centre mandatory. |
@@ -3790,5 +3790,253 @@ Jurisdictions awaiting detailed research are evaluated across 6 objective criter
   - In-person attendance at the GDI Passport Issuance Department (Khan Chbar Ampov, Phnom Penh) or provincial branches (Battambang, Siem Reap, Banteay Meanchey, Koh Kong).
   - Processing: Standard ~20 working days; expedited 10 days or 1 day.
   - Delivery: Collected in person at the application office upon presentation of receipt slip.
+
+---
+
+## 19. Batch 17 Statutory Research Dossiers: BZ, GY, SR, BB, BS, LC
+
+---
+
+### 19.1 Belize (BZ / BLZ) — Department of Border Management and Immigration
+
+- **Administering Authority:** Department of Border Management and Immigration / Ministry of Foreign Affairs, Foreign Trade and Immigration, Government of Belize
+- **Primary Portals:**
+  - Official Immigration Portal: `https://immigration.gov.bz/`
+  - Belize Electronic Passport System (BEPS): `https://epassport.immigration.gov.bz/`
+- **Statutory Framework:**
+  - Belize Passports Act (Chapter 164 of the Substantive Laws of Belize) and Belize Passport Regulations.
+- **Domestic Fee Schedule (in Belize Dollars — BZD / BZ$):**
+  - **Standard Electronic Passport (BEPS e-Passport):**
+    - **Adults (aged 16 years and older, 10-year validity):** **BZ$ 200.00**
+    - **Minors (under 16 years of age, 5-year validity):** **BZ$ 150.00**
+  - **Expedited / Urgent Processing Service Tiers (Belmopan Headquarters Office only):**
+    - **24-Hour Expedite Service:** Additional surcharge of **BZ$ 300.00** (total: BZ$ 500.00 adult / BZ$ 450.00 minor).
+    - **48-Hour Expedite Service:** Additional surcharge of **BZ$ 130.00** (total: BZ$ 330.00 adult / BZ$ 280.00 minor).
+    - **5-Day Service / Medical Emergency:** Additional surcharge of **BZ$ 100.00** (medical emergency: BZ$ 80.00 upon submission of certified medical proof).
+  - **Lost / Stolen / Damaged Passport Replacement Penalties:**
+    - Statutory replacement surcharge of **BZ$ 200.00** in addition to the base passport fee (requires Form 6, statutory declaration of loss, and official police report).
+  - **Emergency Travel Documents:**
+    - Temporary Emergency Travel Document: **BZ$ 30.00**.
+  - **Evidence confidence: `DIRECT`** — established by Belize Passport Regulations and published on `immigration.gov.bz`.
+- **Consular Fee Schedule:**
+  - Via Belize High Commissions and Embassies abroad (e.g. Washington, London, Brussels).
+  - Subject to consular administrative processing and shipping/courier surcharges (~USD $200–$250 total equivalent). Expedited turnaround is unavailable abroad.
+  - **Evidence confidence: `DIRECT`** — confirmed via official mission fee notices.
+- **Civil Identity & Document Checklists:**
+  - **Photo Identification:** Valid Belize Social Security Board (SSB) Card or Voter's Identification Card.
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Vital Statistics Unit (or Belize Naturalization / Registration Certificate if born abroad; Adoption Certificate if applicable).
+  - **Supplementary Forms:** Form 3A Recommender Form completed and signed by an authorized Belizean citizen of standing (Justice of the Peace, Minister of Religion, Medical Practitioner, Attorney-at-Law, Notary Public, or Gazetted Police Officer).
+  - **For minors (under 16):** Presence of child accompanied by parent or legal guardian; original birth certificate; parents' photo ID and marriage certificate (if applicable); formal parental consent.
+  - **Renewal:** Physical presentation and surrender of current/expired machine-readable Belizean passport.
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph, electronic signature, and live fingerprint scanning) at Belmopan Headquarters or regional stations (Belize City, Corozal, Orange Walk, San Pedro, Dangriga, Punta Gorda).
+- **Application & Delivery Channels:**
+  - Appointments booked online via `https://epassport.immigration.gov.bz/`.
+  - Standard turnaround: Typically 3 to 4 weeks across district offices.
+  - Delivery: Collected in person by the applicant (or parent/guardian for minors) with receipt and identification.
+
+---
+
+### 19.2 Guyana (GY / GUY) — Central Immigration and Passport Office (CIPO)
+
+- **Administering Authority:** Central Immigration and Passport Office (CIPO), Guyana Police Force / Ministry of Home Affairs (MoHA), Co-operative Republic of Guyana
+- **Primary Portals:**
+  - Ministry of Home Affairs Portal: `https://moha.gov.gy/`
+  - Guyana Government Portal (Passport Appointment System): `https://portal.gov.gy/`
+- **Statutory Framework:**
+  - Guyana Immigration Act (Cap. 14:02) and Passport Regulations.
+- **Domestic Fee Schedule (in Guyanese Dollars — GYD / G$):**
+  - **Standard Biometric e-Passport:**
+    - **5-Year Validity Passport:** **G$ 6,000**
+    - **10-Year Validity Passport:** **G$ 12,000**
+  - **Expedited / Urgent Processing Service:**
+    - **72-Hour Expedited Service:** Additional statutory surcharge of **G$ 20,000** in addition to the standard passport fee (total: G$ 26,000 for 5-yr / G$ 32,000 for 10-yr).
+  - **Standard Turnaround Timeline:**
+    - Standard processing: **5 working days**.
+  - **Evidence confidence: `DIRECT`** — published on `moha.gov.gy` and `portal.gov.gy`.
+- **Consular Fee Schedule:**
+  - Via Guyanese diplomatic missions abroad (e.g. New York, Toronto, London, Caracas).
+  - Machine-readable / e-passport overseas fee: ~USD $75.00–$100.00 / CAD $100.00 / GBP £60.00.
+  - **Evidence confidence: `DIRECT`** — published on Guyanese consulate platforms.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Card:** Valid National Identification Card issued by the Guyana Elections Commission (GECOM) for all adult applicants.
+  - **Proof of Citizenship:** Original Birth Certificate issued by the General Register Office (GRO) with certificate number and embossed seal.
+  - **Application Form:** Form A generated and submitted through the online appointment portal or completed in physical hardcopy.
+  - **Photographs:** Two (2) recent identical colour passport photographs (white background, neutral expression); one certified on reverse by an authorized Recommender.
+  - **Recommender:** Endorsement by a Guyanese citizen of standing (Justice of the Peace, Commissioner of Oaths to Affidavits, Attorney-at-Law, Minister of Religion, Head Teacher, Senior Public Servant) who has known the applicant for at least two years.
+  - **For minors (under 16):** Birth certificate; presence of parent or legal guardian with valid ID; written authorization if one parent is absent.
+  - **Renewal:** Submission and physical cancellation of previous passport booklet.
+  - **Lost / Damaged Replacement:** Police report from the Guyana Police Force certifying loss; formal affidavit of lost passport.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo and fingerprints) at CIPO.
+- **Application & Delivery Channels:**
+  - Pre-application and appointment scheduling online via the Guyana Passport Appointment System (`portal.gov.gy`).
+  - In-person biometric enrollment and submission at CIPO Headquarters (Camp Road, Georgetown) or regional passport offices in New Amsterdam (Berbice), Linden, Anna Regina (Essequibo), Leonora, Port Mourant, or Lethem.
+  - Processing: Standard 5 working days; expedited 72 hours.
+  - Delivery: In-person collection upon presentation of receipt and National ID card.
+
+---
+
+### 19.3 Suriname (SR / SUR) — Directoraat Burgerzaken / CBB
+
+- **Administering Authority:** Directoraat Burgerzaken / Centraal Bureau voor Burgerzaken (CBB), Ministerie van Binnenlandse Zaken (BiZa), Republic of Suriname
+- **Primary Portals:**
+  - Directoraat Burgerzaken Portal: `https://burgerzaken.gov.sr/`
+  - Government of Suriname Official Portal: `https://gov.sr/`
+- **Statutory Framework:**
+  - Paspoortwet (Suriname Passport Act) and Besluit e-Paspoorttarieven (Decree on Electronic Passport Tariffs).
+- **Domestic Fee Schedule (in Surinamese Dollars — SRD):**
+  - **National Biometric e-Passport (Nationaal e-Paspoort):**
+    - **Adults (aged 18 years and older, 10-year validity):** **SRD 2.100,-**
+    - **Minors (children up to 17 years, 5-year validity):** **SRD 1.365,-**
+  - **Expedited Processing (Spoedaanvraag):**
+    - Statutory urgency surcharge of **100% additional** on regular passport fees (**SRD 4.200,-** total for adults / **SRD 2.730,-** total for minors).
+    - Note: Expedited processing is restricted strictly to verified emergencies with documentary proof (specialist medical referral, death of a relative up to 3rd degree, or urgent state business letter).
+  - **Lost / Damaged Passport Penalties:**
+    - **Lost or Stolen Passport Fine (Boete bij verlies):** **SRD 900,-** in addition to the standard passport fee (subject to official police report / *proces-verbaal*).
+    - **Damaged Passport Fine (Boete bij beschadiging):** **SRD 650,-** in addition to the standard passport fee.
+  - **Evidence confidence: `DIRECT`** — established by CBB ministerial regulations published on `burgerzaken.gov.sr` and `gov.sr`.
+- **Consular Fee Schedule:**
+  - Via Surinamese diplomatic missions abroad (e.g. The Hague, Amsterdam, Willemstad, Miami, Brussels).
+  - Consular e-passport fee: ~EUR €130.00–€150.00 / USD $150.00.
+  - **Evidence confidence: `DIRECT`** — confirmed via embassy consular schedules.
+- **Civil Identity & Document Checklists:**
+  - **National Identity Card:** Valid Surinamese National ID Card (*Identiteitskaart / e-ID*) issued by CBB.
+  - **Civil Registry Proof:** Official extract from the civil registry (*Uittreksel uit het bevolkingsregister*) or original birth certificate (*Geboorteakte*). If born abroad, legalized/apostilled birth certificate with sworn Dutch translation.
+  - **For minors (under 18):** Application submitted by parents/legal guardians (aged 18+); family book (*Familieboek*) or birth certificate; valid ID cards of both parents; consent form signed by both parents.
+  - **Renewal:** Surrender of existing passport for cancellation.
+  - **In case of loss/theft:** Official police report (*proces-verbaal*) issued by the Korps Politie Suriname (KPS).
+  - **Biometrics:** Mandatory in-person enrollment (digital photograph and biometric fingerprints) at modern e-passport desks.
+- **Application & Delivery Channels:**
+  - In-person application at designated municipal Bureaus voor Burgerzaken (BvB) of the Centraal Bureau voor Burgerzaken (CBB) where the citizen is registered.
+  - Processing: Standard ~2 to 3 weeks; spoed ~2 to 5 working days (subject to emergency validation).
+  - Delivery: Collected in person at the local BvB office upon notification and presentation of receipt.
+
+---
+
+### 19.4 Barbados (BB / BRB) — Barbados Immigration Department (BID)
+
+- **Administering Authority:** Barbados Immigration Department (BID), Ministry of Home Affairs and Information, Government of Barbados
+- **Primary Portals:**
+  - Official Immigration Portal: `https://immigration.gov.bb/`
+  - Government of Barbados Portal: `https://www.gov.bb/`
+- **Statutory Framework:**
+  - Barbados Passports and Travel Documents (General) Regulations, Cap. 185; Barbados Immigration Act.
+- **Domestic Fee Schedule (in Barbadian Dollars — BBD / BDS$):**
+  - **Standard Biometric Passport:**
+    - **Adult Passport (16 years and older / Form A, 10-year validity):** **BDS$ 150.00**
+    - **Minor Passport (under 16 years of age / Form B, 5-year validity):** **BDS$ 100.00**
+  - **Expedited / Urgent Processing Service Tiers:**
+    - **Urgent Passport (2 to 5 working days turnaround):** **BDS$ 225.00**
+    - **Express / Emergency Passport (1 working day / 24 hours turnaround):** **BDS$ 300.00**
+  - **Lost / Damaged Passport Replacement:**
+    - Statutory replacement fee for lost, stolen, or damaged passports: **BDS$ 300.00** (statutory penalty rate; requires formal report and declaration of loss).
+  - **Evidence confidence: `DIRECT`** — established by Barbados Immigration Regulations published on `immigration.gov.bb`.
+- **Consular Fee Schedule:**
+  - Via Barbados High Commissions and Consulates General (e.g. London, Ottawa, Toronto, New York, Miami).
+  - Consular fees: ~USD $100.00 / CAD $135.00 / GBP £75.00 plus consular administrative/dispatch fees.
+  - **Evidence confidence: `DIRECT`** — confirmed via foreign.gov.bb and mission notices.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Card:** Valid Barbados National Identification Card (Trident ID / National Registration Card) issued by the Electoral and Boundaries Commission (EBC).
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Registration Department (Supreme Court Complex, Coleridge Street, Bridgetown).
+  - **Application Forms:**
+    - **Form A:** For persons aged 16 years and over (completed in applicant’s own handwriting in BLOCK CAPITALS).
+    - **Form B:** For children under 16 years of age (completed by parent or legal guardian).
+  - **Photographs:** Two (2) identical recent photographs (5cm x 5cm) taken by a professional photographer. One photo certified on reverse by the guarantor: *"I certify that this is a true likeness of [Applicant Name]"*.
+  - **Guarantor Endorsement:** Section 10 of Form A / Form B must be certified and signed by an approved guarantor (Member of Parliament, Justice of the Peace, Magistrate, Minister of Religion, Attorney-at-Law, Medical Practitioner, Principal, or Senior Bank Officer) who has known the applicant personally for at least three years.
+  - **Marital Status:** Original Marriage Certificate mandatory for married women adopting spouse's surname; divorce decree absolute if resuming maiden name.
+  - **For minors (under 16):** Parents' national ID cards, marriage certificate (if applicable), and written consent of both parents.
+  - **Biometrics:** Mandatory in-person enrollment at the Immigration Department.
+- **Application & Delivery Channels:**
+  - Submission in person at the Barbados Immigration Department, Careenage House / Princess Alice Highway, Bridgetown.
+  - Turnaround: Standard ~10 to 15 working days; urgent 2–5 days; express 1 day.
+  - Delivery: Collected in person by applicant upon surrender of receipt slip and previous passport booklet for cancellation.
+
+---
+
+### 19.5 Bahamas (BS / BHS) — Passport Office, Ministry of Foreign Affairs
+
+- **Administering Authority:** Passport Office, Consular Division, Ministry of Foreign Affairs, Commonwealth of The Bahamas
+- **Primary Portals:**
+  - Ministry of Foreign Affairs Official Portal: `https://mofa.gov.bs/`
+  - Government of The Bahamas Services Portal: `https://www.bahamas.gov.bs/`
+  - MyGateway Government Portal: `https://mygateway.gov.bs/`
+- **Statutory Framework:**
+  - Bahamas Nationality Act (Chapter 190) and Bahamas Passport Regulations.
+- **Domestic Fee Schedule (in Bahamian Dollars — BSD / B$ / $):**
+  - **Standard Electronic Passport (ePassport):**
+    - **Adults (aged 15½ years and older, 10-year validity):** **$50.00**
+    - **Minors (under 15½ years of age, 5-year validity):** **$25.00**
+    - **Frequent Traveller / Frequent Flyer ePassport (expanded booklet pages):** **$100.00**
+  - **Expedited / Emergency Processing Surcharges (Standard Applications):**
+    - **Within 36 to 48 hours:** Additional surcharge of **$300.00** (total: $350.00 adult / $325.00 minor).
+    - **Same-Day Emergency Service (application submitted before 12:00 noon):** Additional surcharge of **$350.00** (total: $400.00 adult / $375.00 minor).
+  - **Damaged, Lost, or Stolen Passport Replacement Fees:**
+    - Standard replacement (Adult 15½+): **$50.00** regular booklet / **$100.00** frequent flyer booklet.
+    - Standard replacement (Minor <15½): **$25.00**.
+    - Expedited replacement within 10 days: Additional surcharge of **$75.00**.
+    - Expedited replacement within 48 hours: Additional surcharge of **$325.00**.
+    - Same-Day expedited replacement (before noon): Additional surcharge of **$375.00**.
+  - **Overseas Collection / Dispatch Surcharge:**
+    - Subsidized international DHL courier fee: **$35.00** for collection at overseas missions.
+  - **Evidence confidence: `DIRECT`** — established by Bahamas Passport Regulations published on `mofa.gov.bs`.
+- **Consular Fee Schedule:**
+  - Via Bahamian Embassies and Consulates General (e.g. Miami, Atlanta, New York, Washington, Ottawa, London, Havana).
+  - Overseas ePassport fees: $50.00 regular adult / $25.00 minor / $100.00 frequent traveller + $35.00 courier fee.
+  - **Evidence confidence: `DIRECT`** — confirmed via official mission portals.
+- **Civil Identity & Document Checklists:**
+  - **National Insurance Card:** Valid National Insurance Board (NIB) Smart Card mandatory.
+  - **Proof of Bahamian Citizenship:**
+    - Original Birth Certificate issued by the Registrar General’s Department (RGD).
+    - Mother’s birth certificate or parents' registered marriage certificate (mandatory under Bahamian constitutional citizenship provisions).
+    - Certificate of Naturalization or Registration (if applicable).
+  - **Photographs:** Three (3) identical recent passport photographs (white background) certified by an authorized Counter-Signatory / Notary Public (for in-person first-time applications).
+  - **For minors (under 15½):** Presence of child accompanied by mother/father/legal guardian; child’s birth certificate; parent’s NIB card and passport; written parental consent.
+  - **Online Adult Renewal (MyGateway):** Available for adult holders of 10-year electronic biometric passports issued after 2007; digital photo upload; electronic payment via credit/debit card.
+  - **Lost / Stolen Applications:** Cannot be submitted online; requires mandatory in-person appearance, Police Certificate of Loss from the Royal Bahamas Police Force, and completed Lost/Stolen/Damaged Passport Form.
+  - **Biometrics:** Mandatory biometric enrollment (facial image, live fingerprint scan, electronic signature) at the Passport Office.
+- **Application & Delivery Channels:**
+  - Online renewal via `mygateway.gov.bs` or in-person submission at Passport Office Headquarters (Thompson Boulevard, Nassau), Grand Bahama Office (Freeport), or Family Island Administrator Offices (Abaco, Eleuthera, Exuma, etc.).
+  - Standard processing: Typically 3 to 5 weeks in New Providence (longer for Family Islands).
+  - Delivery: Collected in person or dispatched via trackable postal/courier service.
+
+---
+
+### 19.6 Saint Lucia (LC / LCA) — Immigration Department, Royal Saint Lucia Police Force
+
+- **Administering Authority:** Immigration Department, Royal Saint Lucia Police Force (RSLPF) / Ministry of Home Affairs, Government of Saint Lucia
+- **Primary Portals:**
+  - Official Government Portal: `https://www.govt.lc/`
+  - Royal Saint Lucia Police Force: `https://rslpf.com/`
+- **Statutory Framework:**
+  - Saint Lucia Passports Act, Cap. 10.03 and Passports (Amendment) Regulations (Statutory Instrument No. 109 of 2022 / S.I. 128 of 2022 establishing the e-Passport schedule).
+- **Domestic Fee Schedule (in Eastern Caribbean Dollars — XCD / EC$):**
+  - **Standard Electronic Passport (e-Passport):**
+    - **Adults (aged 16 years and older, 10-year validity):** **EC$ 250.00**
+    - **Minors (under 16 years of age, 5-year validity):** **EC$ 250.00** (statutory uniform e-passport issuance rate).
+  - **Passport Replacement before Expiry (Lost, Stolen, or Damaged):**
+    - **Replacement Fee:** **EC$ 300.00** (statutory replacement fee; requires formal declaration and police loss report).
+  - **Expedited / Emergency Service Surcharges:**
+    - **Urgent / Expedited Processing (3 to 5 working days):** Additional surcharge of **EC$ 50.00** on base or replacement fee (total: EC$ 300.00 regular / EC$ 350.00 replacement).
+  - **Emergency Travel Documents:**
+    - Standalone Emergency Passport / Emergency Certificate: **EC$ 50.00**.
+  - **Standard Turnaround Timeline:**
+    - Standard processing: **15 working days**.
+  - **Evidence confidence: `DIRECT`** — established by Statutory Instrument No. 109 of 2022 and published on `govt.lc`.
+- **Consular Fee Schedule:**
+  - Via Saint Lucia High Commissions and Consulates General (e.g. New York, Washington D.C., Toronto, London, Martinique).
+  - Consular e-passport fee: ~USD $125.00 / CAD $175.00 / GBP £100.00 plus diplomatic courier fees.
+  - **Evidence confidence: `DIRECT`** — published on embassy consular portals.
+- **Civil Identity & Document Checklists:**
+  - **National Identification Card:** Valid Saint Lucia National Identification Card (NIC) mandatory for applicants aged 18 and older. For applicants aged 16–17, National Insurance Scheme (NIS) card is accepted.
+  - **Proof of Citizenship:** Original Birth Certificate issued by the Civil Status Registry (Adeline Street, Castries). A Birth and Baptismal Certificate is required only if the applicant’s name does not appear on the original civil birth record.
+  - **Proof of Marital Status:** Original Marriage Certificate (mandatory for married females taking husband's surname); divorce decree absolute if applicable.
+  - **Photographs:** Two (2) identical recent color passport photographs (white background, ears visible); one certified by an authorized Recommender. (Live digital photography captured at modernized counters).
+  - **Recommender:** Section 9 of application form certified by a Justice of the Peace, Minister of Religion, Medical Practitioner, Attorney-at-Law, Police Officer (Inspector or above), or Principal.
+  - **For minors (under 16):** Accompanied by parent or legal guardian; child's birth certificate; parent’s national ID card; written parental consent if one parent is absent.
+  - **In case of loss/theft:** Official Police Report from the Royal Saint Lucia Police Force (RSLPF) and signed Statutory Declaration of Loss.
+  - **Biometrics:** Mandatory in-person biometric capture (facial photo, electronic signature, and ten fingerprints) at the Immigration Department.
+- **Application & Delivery Channels:**
+  - In-person attendance and submission at the Immigration Department, Police Headquarters (Bridge Street, Castries) or Southern Division Sub-Station (Vieux Fort).
+  - Turnaround: Standard 15 working days; expedited 3 to 5 working days.
+  - Delivery: In-person collection upon presentation of receipt and ID card.
 
 ---
