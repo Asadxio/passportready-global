@@ -2533,7 +2533,7 @@ class PassportRulesEngine {
     const isMinorApplicant = countryCode === 'ID'
       ? (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16')
       : (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16' || canonicalAgeBand === 'age_17');
-    const isSeniorApplicant = canonicalAgeBand === 'senior_60_plus';
+    const isSeniorApplicant = countryCode === 'IN' ? (rawExactAge !== null ? rawExactAge > 60 : (canonicalAgeBand === 'senior_60_plus' || age === 'senior')) : (canonicalAgeBand === 'senior_60_plus' || age === 'senior');
     const isAdultApplicant = !isMinorApplicant;
     const isVerifiedPack = pack && pack.rule_pack_status === 'verified';
     const serviceCoverage = this.determineServiceCoverage(pack, countryCode, service, location, urgency);
@@ -3628,12 +3628,18 @@ class PassportRulesEngine {
                 feeStatus = 'verified_statutory';
                 specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_additional_fee: tatkaalSurcharge, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60, tatkaal_concession_status: 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR' };
               } else {
-                const isSenior60 = (rawExactAge !== null && rawExactAge >= 60) || isSeniorApplicant;
+                const isSenior60 = (rawExactAge !== null ? rawExactAge > 60 : isSeniorApplicant);
                 const seniorRebate36 = isSenior60 ? Math.round(fee36 * 0.9) : null;
                 const seniorRebate60 = isSenior60 ? Math.round(fee60 * 0.9) : null;
                 feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. (10% rebate on basic fee applies for fresh passport applications of senior citizens above 60 years: ₹${Math.round(fee36 * 0.9).toLocaleString('en-IN')} for 36 pages / ₹${Math.round(fee60 * 0.9).toLocaleString('en-IN')} for 60 pages). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, ...(seniorRebate36 ? { fresh_senior_rebate_36: seniorRebate36, fresh_senior_rebate_60: seniorRebate60 } : {}) };
+                specificFeeRecord = {
+                  currency: 'INR',
+                  standard_36: fee36,
+                  standard_60: fee60,
+                  ...(seniorRebate36 ? { fresh_senior_rebate_36: seniorRebate36, fresh_senior_rebate_60: seniorRebate60 } : {}),
+                  ...(rawExactAge === 60 ? { senior_boundary_note: 'Statutory 10% rebate applies strictly to applicants above 60 years of age. Applicants at exactly age 60 must verify birthdate eligibility at the official Passport Seva portal; standard adult tariff applies unless confirmed as above 60 years.' } : {})
+                };
               }
             }
           }
@@ -3751,16 +3757,14 @@ class PassportRulesEngine {
           }
         } else {
           const overseasOnline = fees.adult_overseas_online ?? 116.50;
-          const internationalDeliveryFee = fees.international_delivery_fee ?? 14.32;
-          feeDetails = `UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas standard adult application fee is £${overseasOnline.toFixed(2)} online. Standard international courier delivery is charged separately by HM Passport Office at £${internationalDeliveryFee.toFixed(2)} per consignment (£14.32 for passport delivery; £14.32 for return of supporting documents if applicable). Reported £20.86 fee is unverified and unsubstantiated by the current official tariff. Application and delivery fees are assessed separately during checkout. Domestic fee rates (£102.00 / £66.50) do not apply when applying from abroad.`;
+          feeDetails = `UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas standard adult application fee is £${overseasOnline.toFixed(2)} online. Note: International courier delivery fee (reported estimates of £14.32 or £20.86 per consignment) is unverified in the accessible statutory schedule and must be confirmed directly on gov.uk at checkout; do not treat either delivery figure as a confirmed statutory charge. Application and delivery fees are assessed separately during online checkout. Domestic fee rates (£102.00 / £66.50) do not apply when applying from abroad.`;
           feeStatus = 'consular_local_currency';
           specificFeeRecord = {
             currency: 'GBP',
             adult_overseas_online: overseasOnline,
-            international_delivery_fee_separate: internationalDeliveryFee,
-            unverified_legacy_delivery_fee: 20.86,
-            delivery_fee_status: 'unverified_legacy_substantiated_as_14_32',
-            note: 'Overseas online tariff with separate international delivery fee of £14.32 per consignment assessed via gov.uk'
+            reported_delivery_estimates: [14.32, 20.86],
+            delivery_fee_status: 'unverified_confirmation_required',
+            note: 'Overseas online application fee is £116.50; international courier delivery fee is unverified and assessed separately at checkout on gov.uk'
           };
         }
       } else if (countryCode === 'CA') {

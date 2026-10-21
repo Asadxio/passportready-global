@@ -3925,10 +3925,9 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   const gbAbroadFee = gbAbroad.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(gbAbroadFee.feeStatus, 'consular_local_currency');
   assert.strictEqual(gbAbroadFee.feeRecord.adult_overseas_online, 116.50);
-  assert.strictEqual(gbAbroadFee.feeRecord.international_delivery_fee_separate, 14.32);
-  assert.strictEqual(gbAbroadFee.feeRecord.unverified_legacy_delivery_fee, 20.86);
-  assert(gbAbroadFee.details.includes('£14.32'), 'Must cite confirmed £14.32 HMPO international delivery fee');
-  assert(gbAbroadFee.details.includes('unverified'), 'Must mark £20.86 as unverified');
+  assert.strictEqual(gbAbroadFee.feeRecord.delivery_fee_status, 'unverified_confirmation_required');
+  assert(Array.isArray(gbAbroadFee.feeRecord.reported_delivery_estimates), 'Must record delivery estimates');
+  assert(gbAbroadFee.details.includes('unverified'), 'Must mark courier delivery fee as unverified');
 
   // 4. Canada (CA)
   const caAdult = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport' });
@@ -4587,7 +4586,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   const countries = countryDataModule.PASSPORT_COUNTRIES;
   const engine = new PassportRulesEngine(rulePacks, countries);
 
-  // 1. Transparency & Public Beta Elements in index.html
+  // 1. Transparency & Public Beta Elements in index.html and Assets
   assert(indexHtml.includes('<title>PassportReady (Public Beta) — Check Before You Apply | Global Passport Preparation</title>'), 'index.html title must reflect Public Beta status');
   assert(indexHtml.includes('name="description" content="Independent global passport preparation platform in public beta.'), 'index.html meta description must specify public beta status');
   assert(indexHtml.includes('property="og:image" content="https://passport.myoss.in/assets/preview.png"'), 'index.html must specify og:image');
@@ -4600,6 +4599,12 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(indexHtml.includes('id="resUnsupportedNotice"'), 'index.html must contain #resUnsupportedNotice in resultbox');
   assert(indexHtml.includes('https://github.com/Asadxio/passportready-global/issues'), 'index.html must point feedback links to issues repository');
 
+  // Verify social preview asset exists and is valid on disk
+  const previewAssetPath = path.join(__dirname, '..', 'assets', 'preview.png');
+  assert(fs.existsSync(previewAssetPath), 'assets/preview.png must physically exist on disk');
+  const previewStats = fs.statSync(previewAssetPath);
+  assert(previewStats.size > 1000, `assets/preview.png must be a substantive image (size: ${previewStats.size})`);
+
   // 2. CSS & Print Style Rules
   assert(stylesCss.includes('.beta-banner {'), 'styles.css must style .beta-banner');
   assert(stylesCss.includes('.beta-badge {'), 'styles.css must style .beta-badge');
@@ -4608,7 +4613,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
   assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
 
-  // 3. Translation Key Parity for Beta & Limitation Keys
+  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 280 keys total)
   const betaKeys = [
     'beta_badge',
     'beta_notice_text',
@@ -4634,8 +4639,28 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   const inMinor = engine.evaluate({ countryCode: 'IN', service: 'first_passport', age: 'minor', location: 'inside' }, 'en');
   assert.strictEqual(inMinor.feeGuidance.specificRecord.base, 1750, 'India minor standard 36-page must be ₹1,750');
 
-  const inSenior = engine.evaluate({ countryCode: 'IN', service: 'first_passport', age: 'senior', location: 'inside' }, 'en');
-  assert(inSenior.feeGuidance.details.includes('₹2,250 for 36 pages'), 'India senior 10% rebate must reflect ₹2,250');
+  // Senior above 60 years threshold reconciliation
+  const inSenior65 = engine.evaluate({ countryCode: 'IN', service: 'first_passport', ageExact: 65, location: 'inside' }, 'en');
+  assert.strictEqual(inSenior65.feeGuidance.specificRecord.fresh_senior_rebate_36, 2250, 'India senior age 65 must receive ₹2,250 10% rebate');
+  assert.strictEqual(inSenior65.feeGuidance.specificRecord.fresh_senior_rebate_60, 3150, 'India senior age 65 60-page must receive ₹3,150 10% rebate');
+  assert.strictEqual(inSenior65.applicant.isSenior, true, 'India age 65 applicant must be classified as senior');
+
+  // Exact age 60: Do not guess eligibility at boundary; standard adult fee applies unless confirmed
+  const inExact60 = engine.evaluate({ countryCode: 'IN', service: 'first_passport', ageExact: 60, location: 'inside' }, 'en');
+  assert.strictEqual(inExact60.feeGuidance.specificRecord.fresh_senior_rebate_36, undefined, 'India exact age 60 must not guess senior rebate eligibility');
+  assert.strictEqual(inExact60.feeGuidance.specificRecord.standard_36, 2500, 'India exact age 60 standard fee remains ₹2,500');
+  assert.strictEqual(inExact60.applicant.isSenior, false, 'India exact age 60 applicant must not be assumed senior');
+  assert(inExact60.feeGuidance.specificRecord.senior_boundary_note.includes('above 60 years'), 'India exact age 60 must contain boundary note');
+
+  // Declared senior category (without exact age)
+  const inSeniorDeclared = engine.evaluate({ countryCode: 'IN', service: 'first_passport', age: 'senior', location: 'inside' }, 'en');
+  assert.strictEqual(inSeniorDeclared.feeGuidance.specificRecord.fresh_senior_rebate_36, 2250, 'Declared senior receives ₹2,250 rebate');
+
+  // India age bands reconciliation
+  const inAdultBand = rulePacks.IN.age_bands.find(b => b.label.includes('18 to 60'));
+  const inSeniorBand = rulePacks.IN.age_bands.find(b => b.label.includes('above 60 years'));
+  assert(inAdultBand && inAdultBand.min_age === 18 && inAdultBand.max_age === 60, 'IN adult age band must be 18 to 60');
+  assert(inSeniorBand && inSeniorBand.min_age === 61 && inSeniorBand.max_age === null, 'IN senior age band must be min_age: 61 (above 60 years)');
 
   // 4.2 United Kingdom (GB)
   const gbAdult = engine.evaluate({ countryCode: 'GB', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
@@ -4653,10 +4678,26 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert.strictEqual(gbFastTrack.feeGuidance.specificRecord.fast_track_1_week_adult, 192, 'UK Fast Track adult must be £192.00');
   assert.strictEqual(gbFastTrack.feeGuidance.specificRecord.premium_1_day_adult, 239.5, 'UK Premium 1-day adult must be £239.50');
 
+  // UK effective-date metadata assertion (8 April 2026)
+  const gbFees = rulePacks.GB.services.first_passport.fees;
+  assert.strictEqual(gbFees.effective_date, '2026-04-08', 'UK fee effective_date must be 2026-04-08 (8 April 2026)');
+  gbFees.fee_records.forEach(r => {
+    assert.strictEqual(r.effective_date, '2026-04-08', 'Every UK fee record must reflect effective_date 2026-04-08');
+  });
+
+  // UK courier delivery fee explicitly unverified assertion
+  const gbOverseas = engine.evaluate({ countryCode: 'GB', service: 'first_passport', age: 'adult', location: 'abroad' }, 'en');
+  assert.strictEqual(gbOverseas.feeGuidance.specificRecord.delivery_fee_status, 'unverified_confirmation_required', 'UK international delivery fee must be explicitly unverified');
+  assert(gbOverseas.feeGuidance.details.includes('unverified'), 'UK overseas guidance details must identify delivery fee as unverified');
+
   // 4.3 Canada (CA)
   const caAdult = engine.evaluate({ countryCode: 'CA', service: 'first_passport', age: 'adult', location: 'inside', validity: 10 }, 'en');
   assert.strictEqual(caAdult.feeGuidance.specificRecord.adult_5_year, 122.5, 'Canada adult 5-year must be CAD $122.50');
   assert.strictEqual(caAdult.feeGuidance.specificRecord.adult_10_year, 163.5, 'Canada adult 10-year must be CAD $163.50');
+
+  // Explicit Canada child fee regression check: CAD $58.50
+  const caChild = engine.evaluate({ countryCode: 'CA', service: 'first_passport', age: 'minor', location: 'inside' }, 'en');
+  assert.strictEqual(caChild.feeGuidance.specificRecord.child_0_to_15, 58.5, 'Canada child passport fee must be CAD $58.50');
 
   const caUrgent = engine.evaluate({ countryCode: 'CA', service: 'first_passport', age: 'adult', location: 'inside', urgency: 'urgent' }, 'en');
   assert.strictEqual(caUrgent.feeGuidance.specificRecord.urgent_pickup_surcharge, 125.75, 'Canada urgent pickup surcharge must be CAD $125.75');
@@ -4665,6 +4706,14 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   const auAdult = engine.evaluate({ countryCode: 'AU', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
   assert.strictEqual(auAdult.feeGuidance.specificRecord.adult_10_year, 422, 'Australia adult 10-year must be AUD $422');
   assert.strictEqual(auAdult.feeGuidance.specificRecord.priority_processing_surcharge, 308, 'Australia priority processing surcharge must be AUD $308');
+
+  // Explicit Australia child fee regression check: AUD $213
+  const auChild = engine.evaluate({ countryCode: 'AU', service: 'first_passport', age: 'minor', location: 'inside' }, 'en');
+  assert.strictEqual(auChild.feeGuidance.specificRecord.child_5_year, 213, 'Australia child 5-year passport fee must be AUD $213');
+
+  // Explicit Australia overseas child surcharge regression check: AUD $92
+  const auAbroad = engine.evaluate({ countryCode: 'AU', service: 'first_passport', age: 'adult', location: 'abroad' }, 'en');
+  assert.strictEqual(auAbroad.feeGuidance.specificRecord.overseas_surcharge_child, 92, 'Australia overseas child surcharge must be AUD $92');
 
   const auUrgent = engine.evaluate({ countryCode: 'AU', service: 'first_passport', age: 'adult', location: 'inside', urgency: 'urgent' }, 'en');
   assert.strictEqual(auUrgent.feeGuidance.specificRecord.total_priority, 730, 'Australia urgent total priority must be AUD $730');

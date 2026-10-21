@@ -38,14 +38,14 @@ window.RULE_PACKS = {
         "age_basis_source": "https://www.passportindia.gov.in/"
       },
       {
-        "label": "Adult (18 to 59)",
+        "label": "Adult (18 to 60)",
         "min_age": 18,
-        "max_age": 59,
+        "max_age": 60,
         "age_basis_source": "https://www.passportindia.gov.in/"
       },
       {
         "label": "Senior citizen (above 60 years)",
-        "min_age": 60,
+        "min_age": 61,
         "max_age": null,
         "age_basis_source": "https://www.passportindia.gov.in/"
       }
@@ -63,6 +63,11 @@ window.RULE_PACKS = {
             "rule": "Minors require parental consent through Annexure D/C.",
             "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms",
             "last_reviewed": "2026-10-18"
+          },
+          {
+            "rule": "Senior citizen concession (10% rebate on basic passport fee) requires the applicant to be above the age of 60 years at the time of fresh application (Passports (Amendment) Rules, 2026, G.S.R. 516(E)).",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+            "last_reviewed": "2026-10-21"
           }
         ],
         "steps": [
@@ -1144,7 +1149,7 @@ window.RULE_PACKS = {
           "currency": "GBP",
           "fiscal_year": 2026,
           "statutory_source": "Passport (Fees) Regulations / HM Passport Office (gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible)",
-          "effective_date": "2024-04-11",
+          "effective_date": "2026-04-08",
           "adult_online": 102,
           "adult_postal": 115.5,
           "adult_jumbo_online": 116,
@@ -1169,7 +1174,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard online application rate for adults aged 16+.",
               "applicable_conditions": "Standard 34-page booklet via gov.uk.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1186,7 +1191,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard paper/postal rate for adults aged 16+.",
               "applicable_conditions": "Paper application submitted via Post Office Check & Send or post.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1203,7 +1208,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "1-Week Fast Track service total fee for adults (renewal/replacement only).",
               "applicable_conditions": "Appointment at Passport Customer Service Centre required. NOT available for first-time adult passports.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1220,7 +1225,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard online application rate for children under 16.",
               "applicable_conditions": "Standard 34-page booklet for children under 16 via gov.uk.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1237,7 +1242,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard paper/postal rate for children under 16.",
               "applicable_conditions": "Paper application for child under 16 via Post Office Check & Send or post.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1254,7 +1259,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "1-Day Premium same-day service total fee for adults (renewal only).",
               "applicable_conditions": "Adult renewal only; strictly NOT available for first passports, replacements of lost/stolen, or child passports.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1271,7 +1276,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "Adult 54-page frequent-traveller passport online rate.",
               "applicable_conditions": "Standard frequent traveller 54-page booklet via gov.uk.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1288,7 +1293,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "Adult 54-page frequent-traveller passport postal rate.",
               "applicable_conditions": "Paper application for 54-page frequent-traveller passport via post.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1305,7 +1310,7 @@ window.RULE_PACKS = {
               "discount_eligibility": "1-Week Fast Track service total fee for children under 16.",
               "applicable_conditions": "Appointment at Passport Customer Service Centre required. Child must attend if over 12 or photo rules require.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
@@ -1320,19 +1325,23 @@ window.RULE_PACKS = {
               "application_channel": "overseas_online",
               "validity_period": "10_years",
               "discount_eligibility": "Standard overseas online application rate for adults aged 16+.",
-              "applicable_conditions": "Application from abroad via gov.uk. Standard international delivery fee (£14.32 per consignment: £14.32 for passport delivery, and £14.32 for return of supporting documents if applicable) assessed separately by HMPO. Legacy figure £20.86 is unverified and unsubstantiated by current HMPO fee schedule.",
+              "applicable_conditions": "Application from abroad via gov.uk. Standard international delivery fees (reported courier charges of £14.32 or £20.86 per consignment) are explicitly unverified in the accessible statutory schedule and must be confirmed directly on gov.uk at checkout.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
-              "effective_date": "2024-04-11",
+              "effective_date": "2026-04-08",
               "verification_date": "2026-10-21",
               "date_checked": "2026-10-21",
               "verification_status": "verified"
             }
           ],
           "adult_overseas_online": 116.5,
-          "international_delivery_fee": 14.32,
-          "supporting_documents_return_delivery_fee": 14.32,
-          "unverified_legacy_delivery_fee": 20.86,
-          "delivery_fee_status": "unverified_legacy_substantiated_as_14_32"
+          "international_delivery_fee": null,
+          "supporting_documents_return_delivery_fee": null,
+          "delivery_fee_status": "unverified_confirmation_required",
+          "reported_courier_fee_estimates": [
+            14.32,
+            20.86
+          ],
+          "delivery_fee_note": "International courier delivery fees (£14.32 / £20.86) are not verified in the current accessible statutory schedule and must be confirmed directly at gov.uk before application submission."
         },
         "processing_times": {
           "standard": "Up to 3 weeks",
