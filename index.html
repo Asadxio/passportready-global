@@ -642,6 +642,104 @@
           <button id="btnAnalyzeMismatch" type="button" class="btn btn-dark" style="margin-top:16px;width:100%">Analyze Discrepancy →</button>
           <div id="mismatchResult"></div>
         </div>
+        <!-- Biometric Passport Photo & Aspect Ratio Validator -->
+        <div class="tool-box" id="toolBoxPhoto" style="grid-column: 1 / -1">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="font-size:1.8rem">📷</div>
+              <div>
+                <h3 data-i18n="tools_photo_title" style="margin:0">Biometric Passport Photo & Aspect Ratio Validator</h3>
+                <small style="color:var(--slate-muted);font-size:0.75rem">ICAO Doc 9303 (35×45mm), US State Dept (2×2"), and Canada (50×70mm) Alignment Grids</small>
+              </div>
+            </div>
+            <span class="status-pill status-verified" style="font-size:0.7rem">100% Client-Side Privacy</span>
+          </div>
+
+          <p data-i18n="tools_photo_desc" style="margin-bottom:16px">Avoid application rejection. Check your photo dimensions, aspect ratio, and face alignment against ICAO 9303, US 2x2 inch, and Canadian biometric standards.</p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;align-items:start">
+            <!-- Left Column: Alignment Preview & Interactive Canvas -->
+            <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:16px;text-align:center">
+              <div style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;font-weight:700;color:var(--slate-dark)" id="photoGuideStandardLabel">ICAO (35 × 45 mm)</span>
+                <span id="photoComplianceBadge" class="status-pill status-optional" style="font-size:11px">READY TO TEST</span>
+              </div>
+
+              <!-- Canvas & SVG Silhouette Overlay Container -->
+              <div id="photoPreviewContainer" class="photo-preview-box" style="position:relative;width:260px;height:334px;margin:0 auto;border:2px dashed #94a3b8;border-radius:10px;background:#ffffff;overflow:hidden;box-shadow:inset 0 0 10px rgba(0,0,0,0.03)">
+                <canvas id="photoCanvas" width="260" height="334" style="width:100%;height:100%;display:block"></canvas>
+                <div id="photoOverlayContainer" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none"></div>
+              </div>
+
+              <!-- Zoom / Scale Control (active when photo loaded) -->
+              <div id="photoControlsRow" style="margin-top:12px;display:none;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap">
+                <label for="photoScaleSlider" style="font-size:11px;color:var(--slate-dark);font-weight:600" data-i18n="photo_zoom_label">Fit & Align Scale:</label>
+                <input type="range" id="photoScaleSlider" min="50" max="200" value="100" style="width:120px">
+                <button type="button" id="photoResetBtn" class="btn btn-outline" style="font-size:11px;padding:4px 8px" data-i18n="photo_reset_btn">Clear Photo</button>
+              </div>
+
+              <!-- Upload Button & File Input -->
+              <div style="margin-top:14px">
+                <input type="file" id="photoFileInput" accept="image/*" style="display:none">
+                <button type="button" id="btnUploadPhoto" class="btn btn-dark" style="font-size:12px;padding:8px 16px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+                  📁 <span data-i18n="btn_upload_photo">Choose Photo to Test</span>
+                </button>
+              </div>
+
+              <div style="font-size:0.6875rem;color:var(--slate-muted);margin-top:8px;line-height:1.4" data-i18n="photo_privacy_guarantee">
+                🔒 100% Client-Side Privacy: Your photo is evaluated locally in your browser. No image data is ever uploaded or transmitted.
+              </div>
+            </div>
+
+            <!-- Right Column: Standards Selector, Live Evaluation & Biometric Checklist -->
+            <div>
+              <!-- Standard Selector Buttons -->
+              <label style="display:block;font-size:12px;font-weight:700;color:var(--slate-dark);margin-bottom:6px" data-i18n="photo_select_standard">Target Biometric Standard:</label>
+              <div class="filter-pills" id="photoStandardPills" style="margin-bottom:14px;flex-wrap:wrap">
+                <button type="button" class="filter-pill active" data-photo-standard="icao_35x45">ICAO 35×45mm (UK, EU, AU, Global)</button>
+                <button type="button" class="filter-pill" data-photo-standard="us_2x2">US 2×2" (51×51mm)</button>
+                <button type="button" class="filter-pill" data-photo-standard="ca_50x70">Canada 50×70mm</button>
+              </div>
+
+              <!-- Evaluation Feedback Result Box -->
+              <div id="photoEvaluationResult" style="padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:16px;font-size:12px;line-height:1.5">
+                <div style="font-weight:700;color:var(--slate-dark);margin-bottom:4px" id="photoStandardTitle">ICAO Doc 9303 Standard (35 × 45 mm)</div>
+                <div id="photoStandardDetails" style="color:#475569">Head height must occupy 70%–80% of total frame (32–36mm). Eyes positioned in the upper-middle third. Plain cream, light grey, or off-white background.</div>
+              </div>
+
+              <!-- Biometric Compliance Pitfall Checklist -->
+              <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px">
+                <h5 style="margin:0 0 10px;font-size:12px;color:var(--slate-dark);text-transform:uppercase;letter-spacing:0.04em">Biometric Verification Checklist</h5>
+                <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:12px;color:#334155">
+                  <li style="display:flex;align-items:flex-start;gap:8px">
+                    <input type="checkbox" id="chkPhotoBg" class="photo-verify-chk">
+                    <label for="chkPhotoBg"><strong>Background:</strong> Plain, uniform, no shadows or textures (white for US/IN; light grey/cream for UK/EU).</label>
+                  </li>
+                  <li style="display:flex;align-items:flex-start;gap:8px">
+                    <input type="checkbox" id="chkPhotoExp" class="photo-verify-chk">
+                    <label for="chkPhotoExp"><strong>Expression:</strong> Neutral, mouth firmly closed, no teeth showing, direct camera gaze.</label>
+                  </li>
+                  <li style="display:flex;align-items:flex-start;gap:8px">
+                    <input type="checkbox" id="chkPhotoEyes" class="photo-verify-chk">
+                    <label for="chkPhotoEyes"><strong>Eyes & Face:</strong> Both eyes open and visible; no hair covering eyes, eyebrows, or face.</label>
+                  </li>
+                  <li style="display:flex;align-items:flex-start;gap:8px">
+                    <input type="checkbox" id="chkPhotoGlasses" class="photo-verify-chk">
+                    <label for="chkPhotoGlasses"><strong>Eyeglasses:</strong> No eyeglasses (prohibited in US/UK/most) or clear lenses without reflection.</label>
+                  </li>
+                  <li style="display:flex;align-items:flex-start;gap:8px">
+                    <input type="checkbox" id="chkPhotoRecency" class="photo-verify-chk">
+                    <label for="chkPhotoRecency"><strong>Recency:</strong> Photo taken within the last 6 months; exact current physical likeness.</label>
+                  </li>
+                  <li style="display:flex;align-items:flex-start;gap:8px">
+                    <input type="checkbox" id="chkPhotoFilter" class="photo-verify-chk">
+                    <label for="chkPhotoFilter"><strong>No Digital Filters:</strong> No beauty retouching, AI smoothing, or scanned re-prints.</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

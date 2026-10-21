@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 290;
+  const expectedKeyCount = 298;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4080,7 +4080,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 290;
+  const expectedKeys = 298;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4777,7 +4777,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
   assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
 
-  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 290 keys total)
+  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 298 keys total)
   const betaKeys = [
     'beta_badge',
     'beta_notice_text',
@@ -5144,7 +5144,7 @@ runTest('Phase 4.11 Feature: Shareable Pre-Filled Checklist Deep-Linking (URL St
   const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
   assert(printBlockMatch && printBlockMatch[1].includes('#shareBtn'), '@media print must suppress #shareBtn');
 
-  // 3. Translation Parity across all 6 languages (290 keys total)
+  // 3. Translation Parity across all 6 languages (298 keys total)
   const shareKeys = ['btn_share_link', 'toast_link_copied', 'toast_shared_checklist_loaded'];
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   for (const lang of supportedLangs) {
@@ -5201,6 +5201,128 @@ runTest('Phase 4.11 Feature: Shareable Pre-Filled Checklist Deep-Linking (URL St
   assert.strictEqual(app.parseShareableHash(null), null, 'parseShareableHash(null) must return null');
   assert.strictEqual(app.parseShareableHash(''), null, 'parseShareableHash("") must return null');
   assert.strictEqual(app.parseShareableHash('#corrupted_param_without_country'), null, 'parseShareableHash without country must return null');
+});
+
+// 39. Phase 4.12 Feature: Biometric Passport Photo & Aspect Ratio Validator (ICAO 35x45mm, US 2x2", Canada 50x70mm)
+runTest('Phase 4.12 Feature: Biometric Passport Photo & Aspect Ratio Validator (ICAO 35x45mm, US 2x2", Canada 50x70mm)', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const stylesCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const { PassportTools } = require('../js/tools.js');
+  const app = require('../js/app.js');
+
+  // 1. PassportTools Biometric Standards Integrity
+  const standards = PassportTools.getPhotoStandards();
+  assert(standards.icao_35x45, 'ICAO 35x45mm standard must be defined');
+  assert(standards.us_2x2, 'US 2x2 inch standard must be defined');
+  assert(standards.ca_50x70, 'Canada 50x70mm standard must be defined');
+
+  assert.strictEqual(standards.icao_35x45.widthMm, 35);
+  assert.strictEqual(standards.icao_35x45.heightMm, 45);
+  assert.strictEqual(standards.icao_35x45.headRatioMin, 0.70);
+  assert.strictEqual(standards.icao_35x45.headRatioMax, 0.80);
+
+  assert.strictEqual(standards.us_2x2.widthMm, 51);
+  assert.strictEqual(standards.us_2x2.heightMm, 51);
+  assert.strictEqual(standards.us_2x2.aspectRatio, 1.0);
+  assert.strictEqual(standards.us_2x2.headRatioMin, 0.50);
+  assert.strictEqual(standards.us_2x2.headRatioMax, 0.69);
+
+  assert.strictEqual(standards.ca_50x70.widthMm, 50);
+  assert.strictEqual(standards.ca_50x70.heightMm, 70);
+
+  // 2. Country to Standard Mapping
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('US'), 'us_2x2');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('CA'), 'ca_50x70');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('GB'), 'icao_35x45');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('IN'), 'icao_35x45');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('AU'), 'icao_35x45');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('JP'), 'icao_35x45');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry('DE'), 'icao_35x45');
+  assert.strictEqual(PassportTools.getPhotoStandardForCountry(''), 'icao_35x45');
+
+  // 3. Dimension & Aspect Ratio Validation Suite
+  // 3.1 Compliant ICAO photo (700 x 900 px, ~0.778 ratio)
+  const icaoCompliant = PassportTools.validatePhotoDimensions(700, 900, 'icao_35x45');
+  assert.strictEqual(icaoCompliant.valid, true);
+  assert.strictEqual(icaoCompliant.status, 'COMPLIANT');
+  assert.strictEqual(icaoCompliant.deviationPct, 0);
+
+  // 3.2 Non-compliant aspect ratio (square 600 x 600 px tested against ICAO)
+  const icaoNonCompliant = PassportTools.validatePhotoDimensions(600, 600, 'icao_35x45');
+  assert.strictEqual(icaoNonCompliant.valid, false);
+  assert.strictEqual(icaoNonCompliant.status, 'NON_COMPLIANT_RATIO');
+  assert(icaoNonCompliant.deviationPct >= 28, 'Square photo against ICAO must show >=28% deviation');
+
+  // 3.3 Compliant US photo (600 x 600 px)
+  const usCompliant = PassportTools.validatePhotoDimensions(600, 600, 'us_2x2');
+  assert.strictEqual(usCompliant.valid, true);
+  assert.strictEqual(usCompliant.status, 'COMPLIANT');
+  assert.strictEqual(usCompliant.deviationPct, 0);
+
+  // 3.4 Low resolution warning (200 x 257 px with correct aspect ratio against ICAO)
+  const lowRes = PassportTools.validatePhotoDimensions(200, 257, 'icao_35x45');
+  assert.strictEqual(lowRes.valid, false);
+  assert.strictEqual(lowRes.status, 'LOW_RESOLUTION');
+
+  // 3.5 Compliant Canada photo (500 x 700 px)
+  const caCompliant = PassportTools.validatePhotoDimensions(500, 700, 'ca_50x70');
+  assert.strictEqual(caCompliant.valid, true);
+  assert.strictEqual(caCompliant.status, 'COMPLIANT');
+
+  // 3.6 Invalid / missing dimensions handling
+  assert.strictEqual(PassportTools.validatePhotoDimensions(0, 0).valid, false);
+  assert.strictEqual(PassportTools.validatePhotoDimensions(-10, 500).valid, false);
+  assert.strictEqual(PassportTools.validatePhotoDimensions('bad', null).valid, false);
+
+  // 4. DOM Elements in index.html
+  assert(indexHtml.includes('id="toolBoxPhoto"'), 'index.html must contain #toolBoxPhoto');
+  assert(indexHtml.includes('id="photoCanvas"'), 'index.html must contain #photoCanvas');
+  assert(indexHtml.includes('id="photoFileInput"'), 'index.html must contain #photoFileInput');
+  assert(indexHtml.includes('id="btnUploadPhoto"'), 'index.html must contain #btnUploadPhoto');
+  assert(indexHtml.includes('id="photoStandardPills"'), 'index.html must contain #photoStandardPills');
+  assert(indexHtml.includes('id="photoComplianceBadge"'), 'index.html must contain #photoComplianceBadge');
+  assert(indexHtml.includes('id="photoScaleSlider"'), 'index.html must contain #photoScaleSlider');
+  assert(indexHtml.includes('id="photoResetBtn"'), 'index.html must contain #photoResetBtn');
+  assert(indexHtml.includes('class="photo-verify-chk"'), 'index.html must contain photo-verify-chk checkboxes');
+
+  // 5. Print stylesheet suppression
+  const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
+  assert(printBlockMatch && printBlockMatch[1].includes('.btn-photo-tool'), '@media print must suppress .btn-photo-tool');
+
+  // 6. Translation Parity across all 6 languages (298 keys total)
+  const photoKeys = [
+    'tools_photo_title',
+    'tools_photo_desc',
+    'photo_select_standard',
+    'btn_upload_photo',
+    'photo_privacy_guarantee',
+    'btn_photo_tool',
+    'photo_reset_btn',
+    'photo_zoom_label'
+  ];
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  for (const lang of supportedLangs) {
+    for (const key of photoKeys) {
+      assert(I18N_TRANSLATIONS[lang][key], `Key ${key} missing in language ${lang}`);
+      assert(typeof I18N_TRANSLATIONS[lang][key] === 'string' && I18N_TRANSLATIONS[lang][key].length > 2, `Key ${key} must have content in ${lang}`);
+    }
+  }
+
+  // 7. App Controller Integration
+  app.activatePhotoToolForCountry('US');
+  assert.strictEqual(app.getActivePhotoStandard(), 'us_2x2', 'activatePhotoToolForCountry(US) must select us_2x2 standard');
+
+  app.activatePhotoToolForCountry('CA');
+  assert.strictEqual(app.getActivePhotoStandard(), 'ca_50x70', 'activatePhotoToolForCountry(CA) must select ca_50x70 standard');
+
+  app.activatePhotoToolForCountry('GB');
+  assert.strictEqual(app.getActivePhotoStandard(), 'icao_35x45', 'activatePhotoToolForCountry(GB) must select icao_35x45 standard');
+
+  assert.doesNotThrow(() => {
+    app.resetPhotoTool();
+    app.updatePhotoStandard('icao_35x45');
+  }, 'resetPhotoTool and updatePhotoStandard must execute safely');
 });
 
 console.log('\n====================================================');

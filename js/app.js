@@ -852,6 +852,14 @@
 
     if (!list.dataset.hasListener) {
       list.addEventListener('click', (e) => {
+        const photoBtn = e.target.closest('.btn-photo-tool');
+        if (photoBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const cCode = photoBtn.dataset.photoCountry || state.answers?.countryCode;
+          activatePhotoToolForCountry(cCode);
+          return;
+        }
         const helperBtn = e.target.closest('[data-doc-helper-id]');
         if (helperBtn) {
           e.preventDefault();
@@ -871,6 +879,8 @@
     const mandatoryLabel = (typeof getI18nText === 'function') ? getI18nText('status_mandatory') : 'MANDATORY';
     const optionalLabel = (typeof getI18nText === 'function') ? getI18nText('status_optional') : 'CONDITIONAL';
     const docDetailsLabel = (typeof getI18nText === 'function') ? getI18nText('btn_doc_details') : 'Details & Alternatives';
+    const photoGuideLabel = (typeof getI18nText === 'function') ? getI18nText('btn_photo_tool') : 'Photo Guide & Grid';
+    const currentCountryCode = state.evaluationResult?.country?.code || state.answers?.countryCode || '';
 
     list.innerHTML = items.map((item) => {
       const isChecked = !!state.checklistChecked[item.id];
@@ -884,9 +894,15 @@
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
               <strong style="font-size:14px;color:#1e293b">${escapeHTML(item.title)}</strong>
               ${item.mandatory ? `<span class="status-pill status-mandatory">${escapeHTML(mandatoryLabel)}</span>` : `<span class="status-pill status-optional">${escapeHTML(optionalLabel)}</span>`}
-              <button type="button" class="btn-doc-helper" data-doc-helper-id="${item.id}" style="margin-left:auto;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid #cbd5e1;background:#f8fafc;color:#1e293b;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
-                ℹ <span>${escapeHTML(docDetailsLabel)}</span>
-              </button>
+              <div style="margin-left:auto;display:inline-flex;gap:6px;align-items:center">
+                ${item.id === 'photo_spec_check' ? `
+                <button type="button" class="btn-photo-tool" data-photo-country="${escapeHTML(currentCountryCode)}" style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid #0f5132;background:#e8f5e9;color:#0f5132;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
+                  📷 <span>${escapeHTML(photoGuideLabel)}</span>
+                </button>` : ''}
+                <button type="button" class="btn-doc-helper" data-doc-helper-id="${item.id}" style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid #cbd5e1;background:#f8fafc;color:#1e293b;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
+                  ℹ <span>${escapeHTML(docDetailsLabel)}</span>
+                </button>
+              </div>
             </div>
             <p style="margin:4px 0 0;font-size:12px;color:#64748b;line-height:1.5">${escapeHTML(item.details)}</p>
           </div>
@@ -1135,10 +1151,25 @@
           <a href="${escapeHTML(modalData.officialPortalUrl)}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:11px;padding:5px 10px">Open Official Portal ↗</a>
         </div>
         ` : ''}
+        ${itemId === 'photo_spec_check' ? `
+        <div style="margin-top:14px;padding-top:10px;border-top:1px solid #e2e8f0;text-align:center">
+          <button type="button" id="btnModalLaunchPhotoTool" class="btn btn-dark" style="font-size:12px;padding:7px 14px">
+            📷 Open Interactive Biometric Photo Validator →
+          </button>
+        </div>
+        ` : ''}
       </div>
     `;
 
     modal.classList.add('open');
+
+    const modalLaunchPhotoBtn = document.getElementById('btnModalLaunchPhotoTool');
+    if (modalLaunchPhotoBtn) {
+      modalLaunchPhotoBtn.addEventListener('click', () => {
+        modal.classList.remove('open');
+        activatePhotoToolForCountry(modalData.countryCode);
+      });
+    }
   }
 
   // Checklist Export & Sharing Helpers (Text & JSON)
@@ -1674,8 +1705,352 @@
     });
   }
 
+  // Helper to reliably access PassportTools across Browser, Global, and Node
+  function getPassportTools() {
+    if (typeof PassportTools !== 'undefined') return PassportTools;
+    if (typeof window !== 'undefined' && window.PassportTools) return window.PassportTools;
+    if (typeof global !== 'undefined' && global.PassportTools) return global.PassportTools;
+    if (typeof require !== 'undefined') {
+      try {
+        const mod = require('./tools.js');
+        return mod.PassportTools || mod;
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  // 3. Biometric Photo Standards & Compliance Tool Controller
+  let activePhotoStandard = 'icao_35x45';
+  let currentPhotoImg = null;
+  let currentPhotoScale = 1.0;
+
+  function renderPhotoOverlay(standardId) {
+    const overlayContainer = document.getElementById('photoOverlayContainer');
+    if (!overlayContainer) return;
+
+    const stdId = standardId || activePhotoStandard;
+    const pt = getPassportTools();
+    const stds = (pt && pt.getPhotoStandards) ? pt.getPhotoStandards() : null;
+    const standard = (stds && stds[stdId]) ? stds[stdId] : {
+      id: 'icao_35x45',
+      name: 'ICAO (35 × 45 mm)',
+      widthMm: 35,
+      heightMm: 45,
+      headRatioMin: 0.70,
+      headRatioMax: 0.80,
+      containerWidth: 260,
+      containerHeight: 334
+    };
+
+    const W = standard.containerWidth || 260;
+    const H = standard.containerHeight || 334;
+
+    let chinY, crownY, eyeY, cx = W / 2, rx, ry, shoulderPath;
+
+    if (stdId === 'us_2x2') {
+      chinY = 220;
+      crownY = 55;
+      eyeY = 135;
+      rx = 52;
+      ry = 75;
+      shoulderPath = `M 15 260 Q 75 210 130 215 Q 185 210 245 260`;
+    } else if (stdId === 'ca_50x70') {
+      chinY = 255;
+      crownY = 85;
+      eyeY = 170;
+      rx = 50;
+      ry = 75;
+      shoulderPath = `M 15 350 Q 70 250 125 250 Q 180 250 235 350`;
+    } else {
+      chinY = 295;
+      crownY = 38;
+      eyeY = 145;
+      rx = 62;
+      ry = 95;
+      shoulderPath = `M 10 334 Q 70 270 130 275 Q 190 270 250 334`;
+    }
+
+    overlayContainer.innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:100%;display:block">
+        <defs>
+          <linearGradient id="overlayGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0f5132" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#0f5132" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+
+        <line x1="${cx}" y1="0" x2="${cx}" y2="${H}" stroke="#0f5132" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+        <line x1="20" y1="${crownY}" x2="${W - 20}" y2="${crownY}" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.75"/>
+        <text x="25" y="${crownY - 4}" fill="#dc2626" font-size="9" font-weight="bold" font-family="sans-serif">Crown Limit</text>
+
+        <rect x="20" y="${eyeY - 12}" width="${W - 40}" height="24" fill="#3b82f6" fill-opacity="0.08" stroke="#2563eb" stroke-width="1" stroke-dasharray="3 3" opacity="0.8"/>
+        <text x="25" y="${eyeY + 3}" fill="#1d4ed8" font-size="9" font-weight="bold" font-family="sans-serif">Eye Level Band</text>
+
+        <ellipse cx="${cx}" cy="${(chinY + crownY) / 2}" rx="${rx}" ry="${(chinY - crownY) / 2}" fill="url(#overlayGrad)" stroke="#0f5132" stroke-width="2" stroke-dasharray="5 3"/>
+
+        <line x1="20" y1="${chinY}" x2="${W - 20}" y2="${chinY}" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.75"/>
+        <text x="25" y="${chinY + 12}" fill="#dc2626" font-size="9" font-weight="bold" font-family="sans-serif">Chin Baseline</text>
+
+        <path d="${shoulderPath}" fill="none" stroke="#0f5132" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+
+        <rect x="${W - 90}" y="10" width="80" height="18" rx="4" fill="#0f172a" fill-opacity="0.85"/>
+        <text x="${W - 50}" y="22" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" font-family="sans-serif">${escapeHTML(standard.shortName || standard.name)}</text>
+      </svg>
+    `;
+  }
+
+  function updatePhotoStandard(standardId) {
+    activePhotoStandard = standardId || 'icao_35x45';
+
+    if (typeof document !== 'undefined') {
+      const pills = document.querySelectorAll('#photoStandardPills [data-photo-standard]');
+      pills.forEach(p => {
+        if (p.dataset.photoStandard === activePhotoStandard) {
+          p.classList.add('active');
+          p.setAttribute('aria-selected', 'true');
+        } else {
+          p.classList.remove('active');
+          p.setAttribute('aria-selected', 'false');
+        }
+      });
+
+      const pt = getPassportTools();
+      const stds = (pt && pt.getPhotoStandards) ? pt.getPhotoStandards() : null;
+      const std = (stds && stds[activePhotoStandard]) ? stds[activePhotoStandard] : null;
+
+      if (std) {
+        const lbl = document.getElementById('photoGuideStandardLabel');
+        if (lbl) lbl.textContent = std.shortName || std.name;
+
+        const titleEl = document.getElementById('photoStandardTitle');
+        if (titleEl) titleEl.textContent = std.name;
+
+        const detailsEl = document.getElementById('photoStandardDetails');
+        if (detailsEl) {
+          detailsEl.textContent = `Dimensions: ${std.widthMm} × ${std.heightMm} mm. Head Coverage: ${Math.round(std.headRatioMin * 100)}%–${Math.round(std.headRatioMax * 100)}% of height. Background: ${std.backgroundDesc}. Expression: ${std.expressionDesc}. Eyeglasses: ${std.eyeglassDesc}.`;
+        }
+
+        const previewContainer = document.getElementById('photoPreviewContainer');
+        const canvas = document.getElementById('photoCanvas');
+        if (previewContainer && canvas) {
+          previewContainer.style.width = `${std.containerWidth}px`;
+          previewContainer.style.height = `${std.containerHeight}px`;
+          canvas.width = std.containerWidth;
+          canvas.height = std.containerHeight;
+        }
+      }
+
+      renderPhotoOverlay(activePhotoStandard);
+
+      if (currentPhotoImg) {
+        drawPhotoOnCanvas();
+        const pt = getPassportTools();
+        if (pt && pt.validatePhotoDimensions) {
+          const valRes = pt.validatePhotoDimensions(currentPhotoImg.naturalWidth, currentPhotoImg.naturalHeight, activePhotoStandard);
+          displayPhotoValidationResult(valRes);
+        }
+      }
+    }
+  }
+
+  function drawPhotoOnCanvas() {
+    if (typeof document === 'undefined') return;
+    const canvas = document.getElementById('photoCanvas');
+    if (!canvas || !currentPhotoImg) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const img = currentPhotoImg;
+    const scale = currentPhotoScale || 1.0;
+
+    const baseScale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
+    const drawW = img.naturalWidth * baseScale * scale;
+    const drawH = img.naturalHeight * baseScale * scale;
+    const drawX = (canvas.width - drawW) / 2;
+    const drawY = (canvas.height - drawH) / 2;
+
+    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+  }
+
+  function displayPhotoValidationResult(valRes) {
+    if (typeof document === 'undefined') return;
+    const badge = document.getElementById('photoComplianceBadge');
+    const resultBox = document.getElementById('photoEvaluationResult');
+    if (!badge || !resultBox || !valRes) return;
+
+    if (valRes.status === 'COMPLIANT') {
+      badge.className = 'status-pill status-verified';
+      badge.textContent = 'COMPLIANT RATIO';
+    } else if (valRes.status === 'LOW_RESOLUTION') {
+      badge.className = 'status-pill status-mandatory';
+      badge.textContent = 'LOW RESOLUTION';
+    } else {
+      badge.className = 'status-pill status-optional';
+      badge.textContent = 'NON-STANDARD RATIO';
+    }
+
+    resultBox.innerHTML = `
+      <div style="font-weight:700;color:var(--slate-dark);margin-bottom:4px">${escapeHTML(valRes.badge)} — ${valRes.width} × ${valRes.height} px</div>
+      <p style="margin:0 0 6px;color:#334155">${escapeHTML(valRes.message)}</p>
+      <div style="font-size:11px;color:#64748b;display:flex;gap:12px;flex-wrap:wrap">
+        <span>Detected Ratio: <strong>${valRes.imageRatio}</strong> (Target: ${valRes.targetRatio})</span>
+        <span>Ratio Deviation: <strong>${valRes.deviationPct}%</strong></span>
+        <span>Recommended Resolution: <strong>${valRes.minWidthPx}×${valRes.minHeightPx} px</strong></span>
+      </div>
+    `;
+  }
+
+  function handlePhotoUpload(file) {
+    if (!file || !file.type.startsWith('image/')) {
+      if (typeof showToast === 'function') {
+        showToast('Please select a valid image file (JPEG, PNG, WebP).');
+      }
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        currentPhotoImg = img;
+        currentPhotoScale = 1.0;
+
+        const slider = document.getElementById('photoScaleSlider');
+        if (slider) slider.value = 100;
+
+        const controlsRow = document.getElementById('photoControlsRow');
+        if (controlsRow) controlsRow.style.display = 'flex';
+
+        drawPhotoOnCanvas();
+
+        const pt = getPassportTools();
+        if (pt && pt.validatePhotoDimensions) {
+          const valRes = pt.validatePhotoDimensions(img.naturalWidth, img.naturalHeight, activePhotoStandard);
+          displayPhotoValidationResult(valRes);
+        }
+
+        if (typeof showToast === 'function') {
+          showToast(`Loaded photo (${img.naturalWidth}×${img.naturalHeight}px) for evaluation.`);
+        }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function resetPhotoTool() {
+    currentPhotoImg = null;
+    currentPhotoScale = 1.0;
+
+    if (typeof document !== 'undefined') {
+      const fileInput = document.getElementById('photoFileInput');
+      if (fileInput) fileInput.value = '';
+
+      const controlsRow = document.getElementById('photoControlsRow');
+      if (controlsRow) controlsRow.style.display = 'none';
+
+      const canvas = document.getElementById('photoCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      const badge = document.getElementById('photoComplianceBadge');
+      if (badge) {
+        badge.className = 'status-pill status-optional';
+        badge.textContent = 'READY TO TEST';
+      }
+
+      updatePhotoStandard(activePhotoStandard);
+    }
+  }
+
+  function activatePhotoToolForCountry(countryCode) {
+    const pt = getPassportTools();
+    const std = (pt && pt.getPhotoStandardForCountry)
+      ? pt.getPhotoStandardForCountry(countryCode)
+      : 'icao_35x45';
+
+    updatePhotoStandard(std);
+
+    if (typeof document !== 'undefined') {
+      const toolBox = document.getElementById('toolBoxPhoto');
+      if (toolBox) {
+        toolBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        toolBox.style.transition = 'box-shadow 0.3s ease';
+        toolBox.style.boxShadow = '0 0 0 3px #10b981';
+        setTimeout(() => {
+          toolBox.style.boxShadow = '';
+        }, 1500);
+      }
+    }
+
+    if (typeof showToast === 'function') {
+      const cName = state.evaluationResult?.country?.name || countryCode || 'Selected Country';
+      showToast(`Photo validator configured for ${cName} standard.`);
+    }
+  }
+
+  function setupPhotoToolListeners() {
+    if (typeof document === 'undefined') return;
+
+    updatePhotoStandard(activePhotoStandard);
+
+    const pills = document.querySelectorAll('#photoStandardPills [data-photo-standard]');
+    pills.forEach(p => {
+      p.addEventListener('click', (e) => {
+        e.preventDefault();
+        const std = p.dataset.photoStandard;
+        if (std) updatePhotoStandard(std);
+      });
+    });
+
+    const btnUpload = document.getElementById('btnUploadPhoto');
+    const fileInput = document.getElementById('photoFileInput');
+    if (btnUpload && fileInput) {
+      btnUpload.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) handlePhotoUpload(file);
+      });
+    }
+
+    const previewContainer = document.getElementById('photoPreviewContainer');
+    if (previewContainer) {
+      previewContainer.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        previewContainer.style.borderColor = '#0f5132';
+      });
+      previewContainer.addEventListener('dragleave', () => {
+        previewContainer.style.borderColor = '#94a3b8';
+      });
+      previewContainer.addEventListener('drop', (e) => {
+        e.preventDefault();
+        previewContainer.style.borderColor = '#94a3b8';
+        const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file) handlePhotoUpload(file);
+      });
+    }
+
+    const slider = document.getElementById('photoScaleSlider');
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        currentPhotoScale = Number(e.target.value) / 100;
+        drawPhotoOnCanvas();
+      });
+    }
+
+    const resetBtn = document.getElementById('photoResetBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', resetPhotoTool);
+    }
+  }
+
   // Interactive Tools Listeners
   function setupToolListeners() {
+    setupPhotoToolListeners();
     // 6-Month Expiry Tool
     const btnCheckExpiry = document.getElementById('btnCheckExpiry');
     if (btnCheckExpiry) {
@@ -1992,6 +2367,11 @@
     parseShareableHash,
     loadStateFromUrlHash,
     shareChecklist,
+    activatePhotoToolForCountry,
+    renderPhotoOverlay,
+    updatePhotoStandard,
+    resetPhotoTool,
+    getActivePhotoStandard: () => activePhotoStandard,
     getState: () => state
   };
 
