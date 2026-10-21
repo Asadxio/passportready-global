@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 132;
+  const expectedKeyCount = 264;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4030,6 +4030,130 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   assert(!JSON.stringify(zzRes).includes('India'), 'Evaluating ZZ must not contain India');
 });
 
+
+// 31. Phase 4.5 Dynamic i18n & Results Dashboard State (DEF-05 & DEF-06) Calibration
+runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, and results dashboard state preservation (DEF-05 & DEF-06)', () => {
+  const { I18N_TRANSLATIONS, getI18nText } = require('../js/i18n.js');
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const countryDataModule = require('../data/country-data.js');
+  const countries = countryDataModule.PASSPORT_COUNTRIES;
+  const engine = new PassportRulesEngine(rulePacks, countries);
+
+  // 1. Key count and 100% dictionary key parity across all 6 languages
+  const expectedKeys = 264;
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
+  assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
+
+  for (const lang of supportedLangs) {
+    assert(I18N_TRANSLATIONS[lang], `Dictionary missing for ${lang}`);
+    const keys = Object.keys(I18N_TRANSLATIONS[lang]).sort();
+    assert.strictEqual(keys.length, expectedKeys, `${lang} must have exactly ${expectedKeys} keys, got ${keys.length}`);
+    assert.deepStrictEqual(keys, baseKeys, `${lang} must have 100% key parity with English dictionary`);
+
+    const dir = I18N_TRANSLATIONS[lang].dir;
+    if (lang === 'ur' || lang === 'ar') {
+      assert.strictEqual(dir, 'rtl', `${lang} must specify rtl direction`);
+    } else {
+      assert.strictEqual(dir, 'ltr', `${lang} must specify ltr direction`);
+    }
+  }
+
+  // 2. DEF-05: Multilingual checklist output across all supported languages
+  for (const lang of supportedLangs) {
+    // 2.1 India (IN) - Standard Adult
+    const inAdult = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' }, lang);
+    const inAdultFee = inAdult.checklist.find(c => c.id === 'official_fee_payment');
+    assert(inAdultFee, `IN adult fee item must exist in ${lang}`);
+    assert(inAdultFee.title.length > 5, `IN fee title in ${lang} must be translated`);
+    assert(inAdultFee.details.includes('₹2,500'), `IN fee details in ${lang} must preserve ₹2,500 verbatim`);
+    assert(inAdultFee.details.includes('₹3,500'), `IN fee details in ${lang} must preserve ₹3,500 verbatim`);
+
+    // 2.2 India (IN) - Tatkaal
+    const inTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'tatkaal' }, lang);
+    const inTatkaalFee = inTatkaal.checklist.find(c => c.id === 'official_fee_payment');
+    assert(inTatkaalFee.details.includes('₹5,000'), `IN Tatkaal fee details in ${lang} must preserve ₹5,000 verbatim`);
+    assert(inTatkaalFee.details.includes('₹6,000'), `IN Tatkaal fee details in ${lang} must preserve ₹6,000 verbatim`);
+
+    // 2.3 Japan (JP) - Online Domestic
+    const jpRes = engine.evaluate({ countryCode: 'JP', location: 'inside', service: 'first_passport', channel: 'online' }, lang);
+    const jpFee = jpRes.checklist.find(c => c.id === 'official_fee_payment');
+    assert(jpFee.details.includes('¥8,900'), `JP online fee details in ${lang} must preserve ¥8,900 verbatim`);
+
+    // 2.4 United Kingdom (GB) - Adult Standard
+    const gbRes = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport' }, lang);
+    const gbFee = gbRes.checklist.find(c => c.id === 'official_fee_payment');
+    assert(gbFee.details.includes('£102'), `GB fee details in ${lang} must preserve £102 verbatim`);
+
+    // 2.5 Australia (AU) - Standard Adult
+    const auRes = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport' }, lang);
+    const auFee = auRes.checklist.find(c => c.id === 'official_fee_payment');
+    assert(auFee.details.includes('422'), `AU adult fee details in ${lang} must preserve AUD 422 verbatim`);
+
+    // 2.6 Photo Rule Specifications (US physical dimensions & IN live capture)
+    const usRes = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport' }, lang);
+    const usPhoto = usRes.checklist.find(c => c.id === 'photo_spec_check');
+    assert(usPhoto, `US photo item missing in ${lang}`);
+    assert(!usPhoto.details.includes('{'), `US photo details in ${lang} must not contain raw JSON`);
+    assert(usPhoto.details.includes('51 x 51 mm'), `US photo dimensions 51 x 51 mm must be preserved in ${lang}`);
+
+    const inPhoto = inAdult.checklist.find(c => c.id === 'photo_spec_check');
+    assert(inPhoto, `IN photo item missing in ${lang}`);
+    assert(!inPhoto.details.includes('{'), `IN photo details in ${lang} must not contain raw JSON`);
+    assert(inPhoto.details.length > 40, `IN photo details must be substantial in ${lang}`);
+
+    // 2.7 Multi-Language Flags & Directives
+    const flagProfile = { countryCode: 'XX', service: 'first_passport', location: 'inside', countryName: 'Testland', nameMatch: 'minor' };
+    const flagRes = engine.evaluate(flagProfile, lang);
+    assert(flagRes.flags.length > 0, `Flags must be generated in ${lang}`);
+    const nameFlag = flagRes.flags.find(f => f.code === 'NAME_MINOR_MISMATCH');
+    assert(nameFlag, `Minor name discrepancy flag must exist in ${lang}`);
+    assert(nameFlag.title.length > 5, `Minor name flag title must be translated in ${lang}`);
+    assert(nameFlag.action.length > 5, `Minor name flag action must be translated in ${lang}`);
+  }
+
+  // 3. Backward Compatibility & Safe Fallbacks
+  const defaultRes = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  const defaultFee = defaultRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(defaultFee.title, 'Pay Official Government Fee Directly', 'Default language without argument must default to English');
+
+  const unknownLangRes = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' }, 'invalid_locale');
+  const unknownLangFee = unknownLangRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(unknownLangFee.title, 'Pay Official Government Fee Directly', 'Unrecognized language code must fall back safely to English');
+
+  // 4. DEF-06: Results Dashboard State & Language-Switch Simulation
+  const simulatedAnswers = {
+    countryCode: 'IN',
+    countryName: 'India',
+    location: 'inside',
+    service: 'first_passport',
+    age: 'adult',
+    urgency: 'standard'
+  };
+  const evalEn = engine.evaluate(simulatedAnswers, 'en');
+  const simulatedChecked = {};
+  const checkId1 = evalEn.checklist[0].id;
+  const checkId2 = evalEn.checklist[1].id;
+  simulatedChecked[checkId1] = true;
+  simulatedChecked[checkId2] = true;
+
+  for (const switchLang of ['fr', 'hi', 'ar', 'de', 'ur']) {
+    const evalSwitched = engine.evaluate(simulatedAnswers, switchLang);
+    assert.strictEqual(evalSwitched.checklist.length, evalEn.checklist.length, `Checklist length must be invariant across language switches to ${switchLang}`);
+    for (let i = 0; i < evalEn.checklist.length; i++) {
+      assert.strictEqual(evalSwitched.checklist[i].id, evalEn.checklist[i].id, `Checklist item ID at ${i} must remain identical in ${switchLang}`);
+    }
+    // Checkbox selections survive re-evaluation
+    assert.strictEqual(simulatedChecked[evalSwitched.checklist[0].id], true, `Checked item 0 must retain checked state in ${switchLang}`);
+    assert.strictEqual(simulatedChecked[evalSwitched.checklist[1].id], true, `Checked item 1 must retain checked state in ${switchLang}`);
+    assert(!simulatedChecked[evalSwitched.checklist[2].id], `Unchecked item 2 must remain unchecked in ${switchLang}`);
+
+    // Evaluation scores and classification remain invariant
+    assert.strictEqual(evalSwitched.readinessScore, evalEn.readinessScore, `Readiness score must remain identical across language switch to ${switchLang}`);
+    assert.strictEqual(evalSwitched.statusLabel, evalEn.statusLabel, `Status label must remain identical across language switch to ${switchLang}`);
+  }
+});
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');

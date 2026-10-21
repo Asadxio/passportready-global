@@ -293,6 +293,31 @@ const APPROVED_CLAIM_SOURCES = Object.freeze([
   })
 ]);
 
+let i18nModule = null;
+if (typeof require !== 'undefined') {
+  try {
+    i18nModule = require('./i18n.js');
+  } catch (e) {
+    try {
+      i18nModule = require('../js/i18n.js');
+    } catch (e2) {}
+  }
+}
+
+function resolveI18n(key, replacements = {}, lang = 'en') {
+  if (typeof getI18nText === 'function') {
+    return getI18nText(key, replacements, lang);
+  }
+  if (i18nModule && typeof i18nModule.getI18nText === 'function') {
+    return i18nModule.getI18nText(key, replacements, lang);
+  }
+  let text = key;
+  for (const [k, v] of Object.entries(replacements)) {
+    text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v);
+  }
+  return text;
+}
+
 class PassportRulesEngine {
   static get AUTHORITATIVE_OFFICIAL_DOMAINS() {
     // Return deeply frozen defensive copy to prevent runtime mutation
@@ -363,66 +388,69 @@ class PassportRulesEngine {
     }
   }
 
-  static formatPhotoRules(photoRules, countryName = '') {
+  static formatPhotoRules(photoRules, countryName = '', lang = 'en') {
+    const t = (k, reps = {}) => resolveI18n(k, reps, lang);
+    const jurisdiction = countryName || t('jurisdiction_fallback');
+
     if (!photoRules) {
-      return `Ensure photos for ${countryName || 'your jurisdiction'} follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.`;
+      return t('photo_fallback_guidelines', { country: jurisdiction });
     }
     if (typeof photoRules === 'string') {
-      return `Official photo requirements for ${countryName || 'your jurisdiction'}: ${photoRules}`;
+      return t('photo_intro_requirements', { country: jurisdiction }) + photoRules;
     }
     if (typeof photoRules !== 'object') {
-      return `Ensure photos for ${countryName || 'your jurisdiction'} follow standard ICAO 9303 guidelines.`;
+      return t('photo_fallback_guidelines', { country: jurisdiction });
     }
 
     const parts = [];
 
     if (photoRules.captured_live === true) {
-      parts.push('Live Capture: Photos are captured live digitally at the official appointment center or enrollment counter');
+      parts.push(t('photo_live_capture'));
     } else if (photoRules.captured_live === false && photoRules.details) {
-      parts.push(`Photo Source: ${photoRules.details}`);
+      parts.push(`${t('photo_source_label')}: ${photoRules.details}`);
     }
 
     if (photoRules.dimensions) {
-      parts.push(`Dimensions: ${photoRules.dimensions}`);
+      parts.push(`${t('photo_dimensions_label')}: ${photoRules.dimensions}`);
     }
     if (photoRules.background) {
-      parts.push(`Background: ${photoRules.background}`);
+      parts.push(`${t('photo_background_label')}: ${photoRules.background}`);
     }
     if (photoRules.eyeglass_policy) {
-      parts.push(`Eyeglasses: ${photoRules.eyeglass_policy}`);
+      parts.push(`${t('photo_eyeglass_label')}: ${photoRules.eyeglass_policy}`);
     }
     if (photoRules.expression) {
-      parts.push(`Expression: ${photoRules.expression}`);
+      parts.push(`${t('photo_expression_label')}: ${photoRules.expression}`);
     }
     if (photoRules.age_of_photo) {
-      parts.push(`Recency: ${photoRules.age_of_photo}`);
+      parts.push(`${t('photo_recency_label')}: ${photoRules.age_of_photo}`);
     }
     if (photoRules.rules) {
-      parts.push(`Specifications: ${photoRules.rules}`);
+      parts.push(`${t('photo_specifications_label')}: ${photoRules.rules}`);
     }
     if (photoRules.specifications) {
-      parts.push(`Specifications: ${photoRules.specifications}`);
+      parts.push(`${t('photo_specifications_label')}: ${photoRules.specifications}`);
     }
     if (photoRules.conditions) {
-      parts.push(`Conditions: ${photoRules.conditions}`);
+      parts.push(`${t('photo_conditions_label')}: ${photoRules.conditions}`);
     }
     if (photoRules.details && !parts.some(p => p.includes(photoRules.details))) {
-      parts.push(`Details: ${photoRules.details}`);
+      parts.push(`${t('photo_details_label')}: ${photoRules.details}`);
     }
     if (photoRules.attire) {
-      parts.push(`Attire: ${photoRules.attire}`);
+      parts.push(`${t('photo_attire_label')}: ${photoRules.attire}`);
     }
     if (photoRules.photographer_stamp) {
-      parts.push(`Photographer Stamp: ${photoRules.photographer_stamp}`);
+      parts.push(`${t('photo_stamp_label')}: ${photoRules.photographer_stamp}`);
     }
     if (photoRules.guarantor_endorsement) {
-      parts.push(`Guarantor Endorsement: ${photoRules.guarantor_endorsement}`);
+      parts.push(`${t('photo_guarantor_label')}: ${photoRules.guarantor_endorsement}`);
     }
     if (photoRules.exception_for_infants) {
-      parts.push(`Infant Exception: ${photoRules.exception_for_infants}`);
+      parts.push(`${t('photo_infant_label')}: ${photoRules.exception_for_infants}`);
     }
     if (photoRules.notes) {
-      parts.push(`Notes: ${photoRules.notes}`);
+      parts.push(`${t('photo_notes_label')}: ${photoRules.notes}`);
     }
 
     const handledKeys = new Set([
@@ -438,37 +466,43 @@ class PassportRulesEngine {
     }
 
     if (parts.length === 0) {
-      return `Ensure photos for ${countryName || 'your jurisdiction'} follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.`;
+      return t('photo_fallback_guidelines', { country: jurisdiction });
     }
 
-    return `Official photo requirements for ${countryName || 'your jurisdiction'}: ` + parts.join(' · ');
+    return t('photo_intro_requirements', { country: jurisdiction }) + parts.join(' · ');
   }
 
-  formatPhotoRules(photoRules, countryName = '') {
-    return PassportRulesEngine.formatPhotoRules(photoRules, countryName);
+  formatPhotoRules(photoRules, countryName = '', lang = 'en') {
+    return PassportRulesEngine.formatPhotoRules(photoRules, countryName, lang);
   }
 
-  formatServiceName(service) {
-    const map = {
-      first_passport: 'First-Time / Fresh Passport',
-      renewal_reissue: 'Renewal / Reissue (Expiring or Full)',
-      lost_stolen: 'Lost or Stolen Passport',
-      damaged: 'Damaged / Mutilated Passport',
-      name_correction: 'Correction / Name or Detail Change',
-      minor_child: 'Child / Minor Passport',
-      urgent_expedited: 'Urgent / Expedited Processing',
-      emergency_travel: 'Emergency Travel Certificate (ETC)'
+  formatServiceName(service, lang = 'en') {
+    const keyMap = {
+      first_passport: 'srv_first',
+      renewal_reissue: 'srv_renewal',
+      lost_stolen: 'srv_lost',
+      damaged: 'srv_damaged',
+      name_correction: 'srv_name_change',
+      minor_child: 'srv_minor',
+      urgent_expedited: 'srv_urgent',
+      emergency_travel: 'srv_emergency'
     };
-    return map[service] || service;
+    if (keyMap[service]) {
+      return resolveI18n(keyMap[service], {}, lang);
+    }
+    return service;
   }
 
-  formatUrgencyName(urgency) {
-    const map = {
-      standard: 'Standard Processing',
-      urgent: 'Urgent / Expedited Processing',
-      emergency: 'Emergency Processing'
+  formatUrgencyName(urgency, lang = 'en') {
+    const keyMap = {
+      standard: 'urg_standard',
+      urgent: 'urg_expedited',
+      emergency: 'urg_emergency'
     };
-    return map[urgency] || urgency;
+    if (keyMap[urgency]) {
+      return resolveI18n(keyMap[urgency], {}, lang);
+    }
+    return urgency;
   }
 
   formatChannelName(location) {
@@ -2416,8 +2450,15 @@ class PassportRulesEngine {
     };
   }
 
-  evaluate(profile) {
+  evaluate(profile, lang) {
     const safeProfile = (profile && typeof profile === 'object' && !Array.isArray(profile)) ? profile : {};
+    const activeLang = (typeof lang === 'string' && lang)
+      ? lang
+      : (typeof safeProfile.lang === 'string' && safeProfile.lang
+        ? safeProfile.lang
+        : (typeof CURRENT_LANG !== 'undefined' ? CURRENT_LANG : 'en'));
+
+    const t = (k, reps = {}) => resolveI18n(k, reps, activeLang);
     const {
       location = 'inside',
       service = 'first_passport',
@@ -2509,9 +2550,9 @@ class PassportRulesEngine {
       flags.push({
         severity: 'info',
         code: 'UNVERIFIED_COUNTRY_PROCEDURAL_PACK',
-        title: `Preliminary Guidance for ${countryName}`,
-        message: `Detailed scenario rules for ${countryName} are undergoing official research. This checklist reflects baseline international preparation standards (ICAO Doc 9303).`,
-        action: `Confirm specific accepted document alternatives, forms, and fees directly with the official authority of ${countryName} before applying.`
+        title: t('flag_unverified_title', { country: countryName }),
+        message: t('flag_unverified_msg', { country: countryName }),
+        action: t('flag_unverified_action', { country: countryName })
       });
     }
 
@@ -2544,14 +2585,14 @@ class PassportRulesEngine {
       flags.push({
         severity: 'critical',
         code: 'NAME_MAJOR_MISMATCH',
-        title: 'Significant Legal Name Difference Detected',
-        message: 'Your name differs substantially across records. Submitting without statutory name change proof will result in processing suspension or rejection.',
+        title: t('flag_name_major_title'),
+        message: t('flag_name_major_msg'),
         action: nameSpecificAdvice
       });
       checklist.push({
         id: 'name_correction_evidence',
-        title: 'Secure Statutory Proof of Legal Name Change',
-        details: isVerifiedPack ? `Obtain official evidence conforming to ${countryName} legal requirements.` : 'Obtain certified court order, marriage certificate, or official government gazette / deed poll matching your jurisdiction.',
+        title: t('chk_name_correction_title'),
+        details: isVerifiedPack ? t('chk_name_correction_details_verified', { country: countryName }) : t('chk_name_correction_details_unverified'),
         mandatory: true,
         status: 'pending',
         category: 'identity'
@@ -2561,14 +2602,14 @@ class PassportRulesEngine {
       flags.push({
         severity: 'warning',
         code: 'NAME_MINOR_MISMATCH',
-        title: 'Spelling or Initial Inconsistency',
-        message: 'A difference in spelling, initials, or name order was reported. Authorities require proof that both names belong to the same person.',
-        action: 'Ensure your application form separates Given Name and Family Name exactly as assigned on your primary citizenship certificate.'
+        title: t('flag_name_minor_title'),
+        message: t('flag_name_minor_msg'),
+        action: t('flag_name_minor_action')
       });
       checklist.push({
         id: 'name_split_check',
-        title: 'Reconcile Given Name vs. Family Name Allocation',
-        details: 'Ensure your application form separates Given Name and Surname exactly as they appear in your primary civil registration.',
+        title: t('chk_name_split_title'),
+        details: t('chk_name_split_details'),
         mandatory: true,
         status: 'pending',
         category: 'identity'
@@ -2580,14 +2621,14 @@ class PassportRulesEngine {
       flags.push({
         severity: 'critical',
         code: 'DOB_MISMATCH',
-        title: 'Date-of-Birth Discrepancy Across Documents',
-        message: 'Date of birth differences are strictly audited by passport authorities. The date recorded on your primary civil birth certificate or first citizenship grant legally supersedes dates on secondary cards.',
-        action: 'If an educational certificate or national ID has an incorrect birth date, reconcile the discrepancy with the issuing civil authority before submitting your passport application.'
+        title: t('flag_dob_mismatch_title'),
+        message: t('flag_dob_mismatch_msg'),
+        action: t('flag_dob_mismatch_action')
       });
       checklist.push({
         id: 'resolve_dob_discrepancy',
-        title: 'Verify Primary Civil Birth Record for DOB Precedence',
-        details: 'Ensure the application form reflects the exact birth date established in your primary civil registration.',
+        title: t('chk_dob_discrepancy_title'),
+        details: t('chk_dob_discrepancy_details'),
         mandatory: true,
         status: 'pending',
         category: 'identity'
@@ -2625,9 +2666,9 @@ class PassportRulesEngine {
       flags.push({
         severity: 'warning',
         code: 'BIRTH_PROOF_MISSING',
-        title: 'Primary Birth Proof Unavailable',
-        message: `You indicated that primary civil birth documentation is missing.`,
-        action: `Verified alternatives for ${countryName}: ${altList.join(' · ')}`
+        title: t('flag_birth_missing_title'),
+        message: t('flag_birth_missing_msg'),
+        action: t('flag_birth_missing_action', { country: countryName, alternatives: altList.join(' · ') })
       });
       alternatives.push({
         document: 'Proof of Date of Birth',
@@ -2635,8 +2676,8 @@ class PassportRulesEngine {
       });
       checklist.push({
         id: 'secure_birth_alt',
-        title: 'Gather Secondary Date-of-Birth Evidence',
-        details: `Acceptable alternatives for ${countryName}: ${altList.join(', ')}.`,
+        title: t('chk_birth_alt_title'),
+        details: t('chk_birth_alt_details', { country: countryName, alternatives: altList.join(', ') }),
         mandatory: true,
         status: 'pending',
         category: 'documents'
@@ -2648,9 +2689,9 @@ class PassportRulesEngine {
       flags.push({
         severity: 'warning',
         code: 'ADDRESS_PROOF_MISSING',
-        title: 'Current Residential Proof Needed',
-        message: 'Passports require verifiable proof of your physical residence for territorial jurisdiction, background checks, and delivery.',
-        action: 'Secure a registered residential agreement, continuous utility bills, or active bank passbook.'
+        title: t('flag_address_missing_title'),
+        message: t('flag_address_missing_msg'),
+        action: t('flag_address_missing_action')
       });
     }
 
@@ -2658,26 +2699,26 @@ class PassportRulesEngine {
     if (service === 'first_passport') {
       checklist.push({
         id: 'citizenship_evidence',
-        title: 'Proof of Citizenship / Nationality',
+        title: t('chk_citizenship_title'),
         details: isVerifiedPack && pack.services.first_passport
-          ? pack.services.first_passport.documents.find(d => d.document_name.includes('Citizenship') || d.document_name.includes('Date of Birth') || d.document_name.includes('Birth Certificate'))?.conditions || `Provide original civil birth certificate or naturalization record demonstrating ${countryName} citizenship.`
-          : `Original document demonstrating ${countryName} citizenship.`,
+          ? (pack.services.first_passport.documents.find(d => d.document_name.includes('Citizenship') || d.document_name.includes('Date of Birth') || d.document_name.includes('Birth Certificate'))?.conditions || t('chk_citizenship_details_verified', { country: countryName }))
+          : t('chk_citizenship_details_unverified', { country: countryName }),
         mandatory: true,
         status: birthProof === 'have' ? 'completed' : 'pending',
         category: 'documents'
       });
       checklist.push({
         id: 'identity_evidence',
-        title: 'Official Photo Identification',
-        details: 'Valid unexpired government-issued photo card (National ID, Driver’s Licence, State ID).',
+        title: t('chk_identity_title'),
+        details: t('chk_identity_details'),
         mandatory: true,
         status: 'completed',
         category: 'documents'
       });
       checklist.push({
         id: 'address_evidence',
-        title: 'Current Proof of Residence / Address',
-        details: 'Documentation proving your residence at your present physical address.',
+        title: t('chk_address_title'),
+        details: t('chk_address_details'),
         mandatory: true,
         status: addressProof === 'have' ? 'completed' : 'pending',
         category: 'documents'
@@ -2685,8 +2726,8 @@ class PassportRulesEngine {
     } else if (service === 'renewal_reissue') {
       checklist.push({
         id: 'old_passport_surrender',
-        title: 'Submit Existing Passport for Physical Cancellation',
-        details: 'Original existing passport booklet must be presented. It will be physically cancelled and returned with the new passport.',
+        title: t('chk_old_passport_title'),
+        details: t('chk_old_passport_details'),
         mandatory: true,
         status: status === 'valid' || status === 'expired' ? 'completed' : 'pending',
         category: 'documents'
@@ -2694,8 +2735,8 @@ class PassportRulesEngine {
       if (status === 'expired') {
         checklist.push({
           id: 'expired_validity_check',
-          title: 'Confirm Expiry Interval Rules',
-          details: 'If expired by more than 3 years, authorities in jurisdictions such as India and the US require fresh identity verification.',
+          title: t('chk_expired_validity_title'),
+          details: t('chk_expired_validity_details'),
           mandatory: false,
           status: 'pending',
           category: 'procedure'
@@ -2719,13 +2760,13 @@ class PassportRulesEngine {
       flags.push({
         severity: 'critical',
         code: 'LOST_STOLEN_MANDATORY_REPORT',
-        title: 'Official Loss Declaration / Police Report Required',
-        message: 'Lost travel documents must be officially declared to prevent identity theft and fraud.',
+        title: t('flag_lost_report_title'),
+        message: t('flag_lost_report_msg'),
         action: lossNotice
       });
       checklist.push({
         id: 'police_loss_report',
-        title: 'Official Police Report / Loss Declaration',
+        title: t('chk_police_loss_title'),
         details: lossNotice,
         mandatory: true,
         status: 'pending',
@@ -2733,8 +2774,8 @@ class PassportRulesEngine {
       });
       checklist.push({
         id: 'loss_circumstance_declaration',
-        title: 'Formal Statement Explaining Circumstances of Loss',
-        details: 'Formal written statement detailing the precise circumstances under which the passport was lost.',
+        title: t('chk_loss_statement_title'),
+        details: t('chk_loss_statement_details'),
         mandatory: true,
         status: 'pending',
         category: 'documents'
@@ -2742,8 +2783,8 @@ class PassportRulesEngine {
     } else if (service === 'damaged') {
       checklist.push({
         id: 'damaged_booklet_surrender',
-        title: 'Surrender Damaged Passport Booklet',
-        details: 'Present the damaged passport. If biographical data or electronic chip is compromised, it may be processed under mutilated travel document rules.',
+        title: t('chk_damaged_surrender_title'),
+        details: t('chk_damaged_surrender_details'),
         mandatory: true,
         status: 'pending',
         category: 'documents'
@@ -2766,14 +2807,14 @@ class PassportRulesEngine {
       flags.push({
         severity: 'info',
         code: 'MINOR_PARENTAL_CONSENT',
-        title: 'Parental Consent & Custody Safeguards for Minors',
+        title: t('flag_minor_consent_title'),
         message: minorSafeguardText,
-        action: 'Ensure all required parents attend the appointment or provide statutory notarized consent.'
+        action: t('flag_minor_consent_action')
       });
       checklist.push({
         id: 'parental_consent_proof',
-        title: 'Parental Consent & Relationship Proof',
-        details: 'Full birth certificate naming parents, plus valid photo IDs of parents and formal statutory consent.',
+        title: t('chk_parental_consent_title'),
+        details: t('chk_parental_consent_details'),
         mandatory: true,
         status: 'pending',
         category: 'legal'
@@ -2785,30 +2826,30 @@ class PassportRulesEngine {
       flags.push({
         severity: 'info',
         code: 'CONSULAR_APPLICATION_CHANNEL',
-        title: 'Consular Lodgement & Lodgement Matrix',
-        message: `You are applying outside ${countryName}. Diplomatic missions enforce strict consular jurisdiction based on your place of residence in the host country.`,
-        action: 'Check your embassy website to confirm whether applications are handled directly by the consular section (e.g. US, Japan, Germany, Brazil, Italy) or through an authorized service partner (e.g. VFS Global, BLS International, TLScontact in select countries).'
+        title: t('flag_consular_title'),
+        message: t('flag_consular_msg', { country: countryName }),
+        action: t('flag_consular_action')
       });
       checklist.push({
         id: 'consular_jurisdiction',
-        title: 'Confirm Consular Jurisdiction & Lodgement Method',
-        details: `Verify which embassy, high commission, or authorized application center serves your current residential area. Do not assume a private intermediary is required without verifying your mission's direct guidance.`,
+        title: t('chk_consular_jurisdiction_title'),
+        details: t('chk_consular_jurisdiction_details'),
         mandatory: true,
         status: 'pending',
         category: 'procedure'
       });
       checklist.push({
         id: 'residence_visa_proof',
-        title: 'Proof of Legal Residence in Host Country',
-        details: 'Current valid residency visa, work permit, permanent resident card, or residence certificate showing lawful status in the host nation.',
+        title: t('chk_residence_visa_title'),
+        details: t('chk_residence_visa_details'),
         mandatory: true,
         status: 'pending',
         category: 'documents'
       });
       checklist.push({
         id: 'consular_fee_currency',
-        title: 'Verify Consular Fee Surcharge & Payment Currency',
-        details: 'Passports issued overseas frequently carry statutory consular surcharges and require payment in local host currency, debit card, or postal money order.',
+        title: t('chk_consular_fee_title'),
+        details: t('chk_consular_fee_details'),
         mandatory: true,
         status: 'pending',
         category: 'payment'
@@ -2816,10 +2857,10 @@ class PassportRulesEngine {
     } else {
       checklist.push({
         id: 'domestic_appointment',
-        title: 'Book Appointment at Authorized Domestic Center',
+        title: t('chk_domestic_appointment_title'),
         details: isVerifiedPack && pack.official_portal_url
-          ? `Schedule appointment through the verified portal: ${pack.official_portal_url}`
-          : `Schedule appointment through the official passport authority of ${countryName}.`,
+          ? t('chk_domestic_appointment_portal', { portal: pack.official_portal_url })
+          : t('chk_domestic_appointment_general', { country: countryName }),
         mandatory: true,
         status: 'pending',
       });
@@ -2829,8 +2870,8 @@ class PassportRulesEngine {
     if (urgency === 'urgent') {
       checklist.push({
         id: 'expedited_fee_slot',
-        title: 'Verify Expedited / Tatkaal Eligibility & Slots',
-        details: 'Confirm whether your specific service qualifies for expedited processing. Certain cases (major name changes, lost passports without prior record) may be excluded from expedited streams.',
+        title: t('chk_expedited_slot_title'),
+        details: t('chk_expedited_slot_details'),
         mandatory: false,
         status: 'pending',
         category: 'procedure'
@@ -2848,9 +2889,9 @@ class PassportRulesEngine {
         flags.push({
           severity: 'warning',
           code: 'EMERGENCY_DOCUMENT_RESTRICTION',
-          title: 'Emergency Travel Document Conditions',
-          message: 'Emergency travel certificates or temporary passports usually have short validity (typically 30 days to 1 year) and are frequently valid ONLY for direct return travel to your country of citizenship.',
-          action: 'Confirm destination acceptance before purchasing non-refundable transit or flight tickets.'
+          title: t('flag_emergency_doc_title'),
+          message: t('flag_emergency_doc_msg'),
+          action: t('flag_emergency_doc_action')
         });
       }
     }
@@ -2858,17 +2899,17 @@ class PassportRulesEngine {
     // 7. General Photographic & Biometric Standards
     checklist.push({
       id: 'photo_spec_check',
-      title: 'ICAO-Compliant Passport Photos or Live Capture',
+      title: t('chk_photo_spec_title'),
       details: isVerifiedPack && pack.services[service]?.photo_rules
-        ? this.formatPhotoRules(pack.services[service].photo_rules, countryName)
-        : `Ensure photos for ${countryName} follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.`,
+        ? this.formatPhotoRules(pack.services[service].photo_rules, countryName, activeLang)
+        : t('photo_fallback_guidelines', { country: countryName }),
       mandatory: true,
       status: 'pending',
       category: 'photo'
     });
 
     // 8. Official Payment Channel & Statutory Fee Guidance
-    let feeDetails = 'Always pay fees directly through the government portal, designated post office, or authorized bank challan. Never pay private agents claiming to guarantee approval.';
+    let feeDetails = t('fee_guidance_default');
     let feeStatus = 'general_guidance';
     let specificFeeRecord = null;
 
@@ -2987,8 +3028,8 @@ class PassportRulesEngine {
               });
               checklist.push({
                 id: 'id_marriage_proof_under_17',
-                title: 'Submit Authenticated Marriage Certificate (Buku Nikah / Akta Perkawinan)',
-                details: 'Under Permenkumham No. 18/2022 Pasal 2A, citizens under 17 qualify for 10-year validity upon presenting original government marriage certificate.',
+                title: t('chk_id_marriage_title'),
+                details: t('chk_id_marriage_details'),
                 mandatory: true,
                 status: 'pending',
                 category: 'identity'
@@ -4073,26 +4114,26 @@ class PassportRulesEngine {
         }
       } else {
         if (location === 'abroad') {
-          feeDetails = `Overseas consular passport fees for ${countryName} are collected in host country local currency or USD by diplomatic missions. Domestic statutory tariffs do not apply abroad. Check the accredited embassy portal for current fee schedules.`;
+          feeDetails = t('fee_guidance_consular_general', { country: countryName });
           feeStatus = 'consular_local_currency';
           specificFeeRecord = { currency: 'Host currency / USD', note: 'Determined by consular mission abroad' };
         } else {
-          feeDetails = `Official statutory fee schedule for ${countryName}: Please verify the exact applicable fee and payment channel directly on the official portal (${pack.official_portal_url || 'official government portal'}).`;
+          feeDetails = t('fee_guidance_domestic_general', { country: countryName, portal: pack.official_portal_url || t('official_portal_fallback') });
           feeStatus = 'verified_statutory';
           specificFeeRecord = fees;
         }
       }
     } else if (isVerifiedPack) {
-      feeDetails = `Fee Confirmation Required: Statutory fee schedule for "${this.formatServiceName(service)}" in ${countryName} is not yet individually verified in this rule pack. Check the official portal of ${pack && pack.authority_name ? pack.authority_name : countryName} before making payment.`;
+      feeDetails = t('fee_guidance_confirm_verified', { service: this.formatServiceName(service, activeLang), country: countryName, authority: (pack && pack.authority_name ? pack.authority_name : countryName) });
       feeStatus = 'confirmation_required';
     } else {
-      feeDetails = `Fee Confirmation Required: Official statutory fees for ${countryName} have not been individually verified. Confirm the current statutory fee and official payment channel directly on the official government portal before making any payment.`;
+      feeDetails = t('fee_guidance_confirm_unverified', { country: countryName });
       feeStatus = 'confirmation_required';
     }
 
     checklist.push({
       id: 'official_fee_payment',
-      title: 'Pay Official Government Fee Directly',
+      title: t('chk_official_fee_title'),
       details: feeDetails,
       mandatory: true,
       status: 'pending',
@@ -4117,7 +4158,7 @@ class PassportRulesEngine {
         flags.unshift({
           severity: 'warning',
           code: 'SERVICE_GENERAL_GUIDANCE_ONLY',
-          title: `General Guidance: No Dedicated Country Pack for ${this.formatServiceName(service)}`,
+          title: `General Guidance: No Dedicated Country Pack for ${this.formatServiceName(service, lang)}`,
           message: serviceCoverage.dimensions.service.summary,
           action: `Consult the official portal of ${pack && pack.authority_name ? pack.authority_name : countryName} to confirm specific forms, documentary proof, and fees for this service.`
         });
@@ -4126,7 +4167,7 @@ class PassportRulesEngine {
         flags.unshift({
           severity: 'warning',
           code: 'ROUTE_GENERAL_GUIDANCE_ONLY',
-          title: `General Guidance: No Dedicated Route for ${this.formatUrgencyName(urgency)}`,
+          title: `General Guidance: No Dedicated Route for ${this.formatUrgencyName(urgency, lang)}`,
           message: serviceCoverage.dimensions.urgency.summary,
           action: `Confirm emergency or urgent processing procedures directly with the official passport authority of ${countryName}.`
         });
@@ -4146,7 +4187,7 @@ class PassportRulesEngine {
         flags.unshift({
           severity: 'info',
           code: 'SERVICE_COVERAGE_PARTIAL',
-          title: `Partial Service Coverage: ${this.formatServiceName(service)}`,
+          title: `Partial Service Coverage: ${this.formatServiceName(service, lang)}`,
           message: serviceCoverage.dimensions.service.summary,
           action: `Review the specific notices in your checklist and verify final lodgement requirements on the official authority portal.`
         });
@@ -4155,7 +4196,7 @@ class PassportRulesEngine {
         flags.unshift({
           severity: 'info',
           code: 'ROUTE_COVERAGE_PARTIAL',
-          title: `Partial Processing Route Coverage: ${this.formatUrgencyName(urgency)}`,
+          title: `Partial Processing Route Coverage: ${this.formatUrgencyName(urgency, lang)}`,
           message: serviceCoverage.dimensions.urgency.summary,
           action: `Confirm expedited slot availability, quotas, and service exclusions directly with ${countryName} passport authorities.`
         });
