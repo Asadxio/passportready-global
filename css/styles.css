@@ -734,6 +734,14 @@ button { cursor: pointer; }
 }
 .checklist-item.is-checked { opacity: 0.6; }
 .checklist-item.is-checked strong { text-decoration: line-through; }
+.btn-doc-helper {
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.btn-doc-helper:hover {
+  background: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
 .check-box-label {
   display: flex;
   align-items: center;
@@ -1077,6 +1085,7 @@ button { cursor: pointer; }
   #downloadJsonBtn,
   #restartBtn,
   #saveProgressBtn,
+  .btn-doc-helper,
   .filter-pills,
   .filter-pill {
     display: none !important;

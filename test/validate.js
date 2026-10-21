@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 285;
+  const expectedKeyCount = 287;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4080,7 +4080,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 285;
+  const expectedKeys = 287;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4777,7 +4777,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
   assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
 
-  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 285 keys total)
+  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 287 keys total)
   const betaKeys = [
     'beta_badge',
     'beta_notice_text',
@@ -5056,6 +5056,78 @@ runTest('Phase 4.9 Feature: Copy and Download Checklist Export (Text & JSON), DO
   // 6. Safe Null / Fallback Handling
   assert.strictEqual(app.generateChecklistText(null), '', 'generateChecklistText(null) must safely return empty string');
   assert.strictEqual(app.generateChecklistJson(null), null, 'generateChecklistJson(null) must safely return null');
+});
+
+// 37. Phase 4.10 Feature: Detailed Document Modal Helper with Country-Specific Evidence & Alternatives
+runTest('Phase 4.10 Feature: Detailed Document Modal Helper with Country-Specific Evidence & Alternatives', () => {
+  const stylesCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+  const app = require('../js/app.js');
+
+  // 1. Stylesheet verification
+  assert(stylesCss.includes('.btn-doc-helper'), 'styles.css must style .btn-doc-helper');
+  const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
+  assert(printBlockMatch && printBlockMatch[1].includes('.btn-doc-helper'), '@media print must suppress .btn-doc-helper');
+
+  // 2. Translation key parity for modal helper keys (all 6 languages, 287 keys total)
+  const helperKeys = ['btn_doc_details', 'modal_doc_details_title'];
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  for (const lang of supportedLangs) {
+    for (const key of helperKeys) {
+      assert(I18N_TRANSLATIONS[lang][key], `Key ${key} missing in language ${lang}`);
+      assert(typeof I18N_TRANSLATIONS[lang][key] === 'string' && I18N_TRANSLATIONS[lang][key].length > 2, `Key ${key} must have content in ${lang}`);
+    }
+  }
+
+  // 3. Document Modal Data Extraction for India (IN)
+  const inEval = engine.evaluate({
+    countryCode: 'IN',
+    service: 'first_passport',
+    age: 'adult',
+    location: 'inside',
+    urgency: 'standard'
+  }, 'en');
+
+  const inBirthData = app.getDocumentModalData('citizenship_evidence', inEval);
+  assert(inBirthData, 'getDocumentModalData must return data for citizenship_evidence');
+  assert.strictEqual(inBirthData.countryName, 'India', 'Country name must be India');
+  assert.strictEqual(inBirthData.mandatory, true, 'citizenship_evidence must be mandatory');
+  assert(inBirthData.standards.length > 20, 'Document standards must have substantive guidance');
+  assert(Array.isArray(inBirthData.alternatives) && inBirthData.alternatives.length >= 2, 'Must provide at least 2 accepted document alternatives');
+  assert(inBirthData.originalOrCopy.includes('Original'), 'Must specify physical original requirement');
+  assert(inBirthData.caution.includes('verbatim'), 'Must include name consistency caution');
+  assert.strictEqual(inBirthData.officialPortalUrl, 'https://www.passportindia.gov.in/', 'Must link official Passport Seva portal');
+
+  // 4. Procedural & Photo Modal Data Extraction
+  const inPhotoData = app.getDocumentModalData('photo_spec_check', inEval);
+  assert(inPhotoData, 'getDocumentModalData must return data for photo_spec_check');
+  assert(inPhotoData.standards.includes('35') || inPhotoData.standards.includes('ICAO'), 'Photo standards must include dimensions/specifications');
+  assert(Array.isArray(inPhotoData.alternatives) && inPhotoData.alternatives.length >= 2, 'Photo must have alternatives');
+
+  const inFeeData = app.getDocumentModalData('official_fee_payment', inEval);
+  assert(inFeeData, 'getDocumentModalData must return data for official_fee_payment');
+  assert(inFeeData.standards.includes('₹2,500'), 'Fee standards must reflect statutory figures');
+  assert(inFeeData.caution.includes('non-refundable'), 'Fee caution must state statutory non-refundable nature');
+
+  const inApptData = app.getDocumentModalData('domestic_appointment', inEval);
+  assert(inApptData, 'getDocumentModalData must return data for domestic_appointment');
+  assert(inApptData.standards.includes('passportindia.gov.in'), 'Appointment standards must reference official portal');
+
+  // 5. Multi-Jurisdiction Coverage (US, GB, CA, AU)
+  for (const cCode of ['US', 'GB', 'CA', 'AU']) {
+    const evalRes = engine.evaluate({ countryCode: cCode, service: 'first_passport' }, 'en');
+    const docData = app.getDocumentModalData('citizenship_evidence', evalRes);
+    assert(docData, `getDocumentModalData must resolve citizenship_evidence for ${cCode}`);
+    assert(docData.alternatives.length >= 1, `Must have alternatives for ${cCode}`);
+    assert(docData.officialPortalUrl.length > 5, `Must have official portal URL for ${cCode}`);
+  }
+
+  // 6. Safe Null / Fallback Handling
+  assert.strictEqual(app.getDocumentModalData(null, null), null, 'getDocumentModalData(null, null) must safely return null');
+  assert.strictEqual(app.getDocumentModalData('non_existent_id', inEval), null, 'getDocumentModalData with unknown ID must return null');
 });
 
 console.log('\n====================================================');

@@ -810,6 +810,15 @@
     if (!list) return;
 
     if (!list.dataset.hasListener) {
+      list.addEventListener('click', (e) => {
+        const helperBtn = e.target.closest('[data-doc-helper-id]');
+        if (helperBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const docId = helperBtn.dataset.docHelperId;
+          openDocumentHelperModal(docId);
+        }
+      });
       list.dataset.hasListener = 'true';
       list.addEventListener('change', (e) => {
         if (e.target && e.target.dataset && e.target.dataset.checkId) {
@@ -820,6 +829,7 @@
 
     const mandatoryLabel = (typeof getI18nText === 'function') ? getI18nText('status_mandatory') : 'MANDATORY';
     const optionalLabel = (typeof getI18nText === 'function') ? getI18nText('status_optional') : 'CONDITIONAL';
+    const docDetailsLabel = (typeof getI18nText === 'function') ? getI18nText('btn_doc_details') : 'Details & Alternatives';
 
     list.innerHTML = items.map((item) => {
       const isChecked = !!state.checklistChecked[item.id];
@@ -833,6 +843,9 @@
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
               <strong style="font-size:14px;color:#1e293b">${escapeHTML(item.title)}</strong>
               ${item.mandatory ? `<span class="status-pill status-mandatory">${escapeHTML(mandatoryLabel)}</span>` : `<span class="status-pill status-optional">${escapeHTML(optionalLabel)}</span>`}
+              <button type="button" class="btn-doc-helper" data-doc-helper-id="${item.id}" style="margin-left:auto;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid #cbd5e1;background:#f8fafc;color:#1e293b;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
+                ℹ <span>${escapeHTML(docDetailsLabel)}</span>
+              </button>
             </div>
             <p style="margin:4px 0 0;font-size:12px;color:#64748b;line-height:1.5">${escapeHTML(item.details)}</p>
           </div>
@@ -840,6 +853,253 @@
       `;
     }).join('');
   }
+  // Document Helper Modal & Alternatives Inspector
+  function getDocumentModalData(itemId, evaluationResult) {
+    const res = evaluationResult || state.evaluationResult;
+    if (!res || !res.checklist) return null;
+    const item = res.checklist.find(c => c.id === itemId);
+    if (!item) return null;
+
+    const countryCode = res.country?.code || state.answers?.countryCode || '';
+    const countryName = res.country?.name || countryCode || 'Selected Country';
+    const authorityName = res.country?.authorityName || 'Official Passport Authority';
+    const officialPortalUrl = res.country?.officialPortalUrl || '';
+    const serviceKey = res.serviceCoverage?.service || state.answers?.service || 'first_passport';
+
+    // Attempt lookup in country rule pack
+    let matchedDoc = null;
+    let pack = null;
+    try {
+      if (typeof rulesEngine !== 'undefined' && rulesEngine && rulesEngine.rulePacks) {
+        pack = rulesEngine.rulePacks[countryCode];
+      } else if (typeof COUNTRY_RULES !== 'undefined') {
+        pack = COUNTRY_RULES[countryCode];
+      }
+    } catch (e) {}
+
+    const srv = pack?.services?.[serviceKey] || pack?.services?.first_passport;
+    if (srv && Array.isArray(srv.documents)) {
+      const idLower = itemId.toLowerCase();
+      for (const doc of srv.documents) {
+        const dName = (doc.document_name || '').toLowerCase();
+        if ((idLower.includes('citizenship') || idLower.includes('birth')) &&
+            (dName.includes('birth') || dName.includes('citizenship') || dName.includes('nationality') || dName.includes('state of origin') || dName.includes('family register'))) {
+          matchedDoc = doc;
+          break;
+        }
+        if ((idLower.includes('identity') || idLower.includes('id_proof')) &&
+            (dName.includes('identity') || dName.includes('photo id') || dName.includes('identification') || dName.includes('national id'))) {
+          matchedDoc = doc;
+          break;
+        }
+        if (idLower.includes('address') &&
+            (dName.includes('address') || dName.includes('residence') || dName.includes('electoral') || dName.includes('justificatif'))) {
+          matchedDoc = doc;
+          break;
+        }
+        if (idLower.includes('non_ecr') && dName.includes('ecr')) {
+          matchedDoc = doc;
+          break;
+        }
+        if (idLower.includes('marriage') && dName.includes('marriage')) {
+          matchedDoc = doc;
+          break;
+        }
+      }
+    }
+
+    // Default standards and text
+    let standards = matchedDoc?.conditions || item.details || 'Verify official statutory rules on the official authority portal.';
+    let alternatives = Array.isArray(matchedDoc?.accepted_alternatives) && matchedDoc.accepted_alternatives.length > 0
+      ? [...matchedDoc.accepted_alternatives]
+      : [];
+    let originalOrCopy = matchedDoc?.original_or_copy || 'Original physical document required for in-person appointment inspection + one self-attested photocopy.';
+    let translation = matchedDoc?.translation_or_legalisation || 'Official certified translation required if document is in a regional or foreign language. Apostille / consular legalization applies to foreign records.';
+    let caution = 'Ensure applicant full name, parent names, and date of birth match verbatim across all identity records without abbreviations or phonetic discrepancies.';
+    let sourceUrl = matchedDoc?.source_url || officialPortalUrl;
+
+    // Item-specific procedural fallbacks
+    if (itemId === 'photo_spec_check') {
+      const photoRules = srv?.photo_rules;
+      if (photoRules) {
+        standards = `Dimensions: ${photoRules.dimensions || '35x45mm'}. Background: ${photoRules.background_color || 'Plain white'}. Quantity: ${photoRules.quantity || 2}. Expression: Neutral, mouth closed, direct eye contact. Eyeglasses: ${photoRules.glasses_allowed ? 'Allowed if non-reflective' : 'No eyeglasses'}. Headwear: ${photoRules.headwear_rules || 'Religious only, face must be fully visible'}.`;
+      } else {
+        standards = 'ICAO 9303 standard biometric passport photos: 35×45mm or 2×2 inches, plain white / off-white background, neutral expression, taken within the last 6 months.';
+      }
+      alternatives = [
+        '2 identical physical color photographs on high-grade photographic paper',
+        'Official studio digital photo code / online digital upload (where supported by authority)',
+        'Direct live biometric digital capture at authorized application center (where available)'
+      ];
+      originalOrCopy = 'Physical photos must be unmounted, borderless, free of watermarks, creases, or staple marks.';
+      translation = 'Biometric photo specifications apply uniformly regardless of language.';
+      caution = 'Never apply digital beauty filters, AI enhancements, smoothing, or scan re-prints of previous passport photos. Incompliant photos are the leading technical reason for application rejection.';
+    } else if (itemId === 'official_fee_payment') {
+      standards = (res.feeGuidance && res.feeGuidance.details)
+        ? res.feeGuidance.details
+        : 'Statutory passport issuance fee payable to the competent government authority prior to or at appointment.';
+      alternatives = [
+        'Online government portal payment (credit/debit card, net banking, UPI, or state payment gateway)',
+        'Authorized partner bank cash deposit / teller challan receipt (where accepted)',
+        'Postal Order or Demand Draft payable to the official passport issuing authority',
+        'Direct card payment at regional passport center cashier (where supported)'
+      ];
+      originalOrCopy = 'Electronic payment confirmation receipt or official stamped bank teller deposit slip.';
+      translation = 'All official fee transactions are denominated in statutory national currency.';
+      caution = 'Statutory government passport fees are non-refundable once an application is registered. Never pay fees to unauthorized intermediaries or agents claiming to bypass official queues.';
+    } else if (itemId === 'domestic_appointment' || itemId === 'consular_jurisdiction') {
+      standards = res.country?.officialPortalUrl
+        ? `Appointment booking must be completed directly via ${res.country.officialPortalUrl}. Walk-in applications are strictly restricted.`
+        : 'Scheduled in-person appointment at an authorized regional passport office, embassy, or high commission.';
+      alternatives = [
+        'Standard advance online appointment slot through the official booking portal',
+        'Emergency walk-in slot (strictly for documented urgent travel, medical emergency, or death in family with confirmed ticket evidence)',
+        'Postal / Mail-in submission (where specifically authorized for eligible renewal categories)'
+      ];
+      originalOrCopy = 'Printed appointment confirmation sheet / Application Reference Number (ARN) token.';
+      translation = 'Appointment booking receipt must be presented in the national language or English.';
+      caution = 'Arrive 15 minutes before your scheduled appointment slot. Late arrivals typically forfeit the appointment token and require full rebooking.';
+    } else if (itemId === 'old_passport_surrender') {
+      standards = 'Physical surrender of existing passport booklet for cancellation and invalidation stamping.';
+      alternatives = [
+        'Physical passport booklet (all expired or valid pages must be surrendered intact)',
+        'If lost or stolen: Official Police Lost Property Report (FIR) + Form Annexure / Statutory Lost Declaration',
+        'If physically damaged: Damaged passport booklet + Written formal statement detailing circumstances of damage'
+      ];
+      originalOrCopy = 'Original physical booklet. Cancelled booklet will be returned to you after cancellation stamping.';
+      translation = 'Foreign visas inside an expired cancelled booklet remain legally valid when carried together with your new valid passport.';
+      caution = 'Do not tear, detach, or modify pages containing valid visas from a cancelled booklet yourself. Tampered passports are rendered invalid.';
+    } else if (itemId === 'parental_consent_proof') {
+      standards = 'Statutory legal parental consent is mandatory for child/minor passport issuance in all jurisdictions.';
+      alternatives = [
+        'Both parents present in person at the appointment center with official photo ID',
+        'Signed and notarized parental consent affidavit (e.g. Form DS-3053 in US, Annexure D/C in India) from absent parent',
+        'Certified family court decree proving sole legal custody / guardianship',
+        'Official death certificate if one parent is deceased'
+      ];
+      originalOrCopy = 'Original official court order, death certificate, or notarized consent form + government photo IDs of parents.';
+      translation = 'Foreign court custody orders must be accompanied by an official certified translation and apostille.';
+      caution = 'Passport authorities strictly scrutinize minor consent to prevent international child abduction. Misrepresenting parental consent carries criminal penalties.';
+    } else if (alternatives.length === 0) {
+      if (itemId.includes('identity')) {
+        alternatives = [
+          'Valid National Identity Card issued by central civil authority',
+          "Driver's Licence issued by competent motor vehicle authority",
+          'Government / Military Photo Identity Card',
+          'Voter Registration / Electoral Photo Identity Card'
+        ];
+      } else if (itemId.includes('address')) {
+        alternatives = [
+          'Recent utility bill (electricity, water, piped gas, landline) issued within last 3 months',
+          'Official Bank statement / passbook reflecting current residential address',
+          'Registered rental / lease agreement or property deed',
+          'Electoral / Voter registration card displaying current domicile'
+        ];
+      } else if (itemId.includes('birth') || itemId.includes('citizenship')) {
+        alternatives = [
+          'Official Birth Certificate issued by municipal civil registrar or vital statistics agency',
+          'Certificate of Naturalization or Citizenship Registration',
+          'School Leaving Certificate / Matriculation Certificate stating date of birth',
+          'Consular Report of Birth Abroad issued by embassy'
+        ];
+      } else {
+        alternatives = [
+          'Primary government-issued certificate or original record',
+          'Official certified true copy issued by the original granting government authority',
+          'Sworn statutory declaration or affidavit before a Notary Public / First Class Magistrate'
+        ];
+      }
+    }
+
+    return {
+      itemId,
+      itemTitle: item.title,
+      mandatory: !!item.mandatory,
+      countryCode,
+      countryName,
+      authorityName,
+      officialPortalUrl,
+      standards,
+      alternatives,
+      originalOrCopy,
+      translation,
+      caution,
+      sourceUrl
+    };
+  }
+
+  function openDocumentHelperModal(itemId) {
+    const result = state.evaluationResult;
+    if (!result) return;
+    const modalData = getDocumentModalData(itemId, result);
+    if (!modalData) return;
+
+    const modal = document.getElementById('genericModal');
+    const title = document.getElementById('modalTitle');
+    const body = document.getElementById('modalBody');
+    if (!modal || !title || !body) return;
+
+    const modalTitleText = (typeof getI18nText === 'function')
+      ? getI18nText('modal_doc_details_title')
+      : 'Document Details & Requirements';
+    title.textContent = modalTitleText;
+
+    const mandatoryLabel = (typeof getI18nText === 'function') ? getI18nText('status_mandatory') : 'MANDATORY';
+    const optionalLabel = (typeof getI18nText === 'function') ? getI18nText('status_optional') : 'CONDITIONAL';
+    const pillClass = modalData.mandatory ? 'status-mandatory' : 'status-optional';
+    const pillText = modalData.mandatory ? mandatoryLabel : optionalLabel;
+
+    body.innerHTML = `
+      <div class="doc-helper-modal">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+          <strong style="font-size:15px;color:#0f172a">${escapeHTML(modalData.itemTitle)}</strong>
+          <span class="status-pill ${pillClass}">${escapeHTML(pillText)}</span>
+          <span class="status-pill status-verified">${escapeHTML(modalData.countryName)}</span>
+        </div>
+
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-bottom:14px">
+          <h5 style="margin:0 0 6px;color:#0f5132;font-size:12px;text-transform:uppercase;letter-spacing:0.04em">🏛 Official Requirement & Standards</h5>
+          <p style="margin:0;font-size:13px;color:#334155;line-height:1.6">${escapeHTML(modalData.standards)}</p>
+        </div>
+
+        ${modalData.alternatives && modalData.alternatives.length > 0 ? `
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;margin-bottom:14px">
+          <h5 style="margin:0 0 8px;color:#166534;font-size:12px;text-transform:uppercase;letter-spacing:0.04em">✓ Accepted Document Substitutes & Alternatives</h5>
+          <ul style="margin:0;padding-left:18px;font-size:13px;color:#14532d;line-height:1.6">
+            ${modalData.alternatives.map(alt => `<li>${escapeHTML(alt)}</li>`).join('')}
+          </ul>
+          <p style="margin:8px 0 0;font-size:11px;color:#166534;font-style:italic">If the primary record is unavailable, one of the above government-recognized substitutes may be accepted.</p>
+        </div>
+        ` : ''}
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:10px;margin-bottom:14px">
+          <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
+            <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">📄 Physical Format</div>
+            <div style="font-size:12px;color:#1e293b;margin-top:3px">${escapeHTML(modalData.originalOrCopy)}</div>
+          </div>
+          <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
+            <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">🌐 Language & Attestation</div>
+            <div style="font-size:12px;color:#1e293b;margin-top:3px">${escapeHTML(modalData.translation)}</div>
+          </div>
+        </div>
+
+        <div class="notice" style="border-left:4px solid #d97706;background:#fffbeb;color:#78350f;margin-bottom:14px">
+          <strong style="color:#92400e;font-size:12px">⚠ Pre-Submission Verification:</strong>
+          <p style="margin:4px 0 0;font-size:12px;line-height:1.5">${escapeHTML(modalData.caution)}</p>
+        </div>
+
+        ${modalData.officialPortalUrl ? `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:8px">
+          <span style="font-size:11px;color:#64748b">Verified Authority: ${escapeHTML(modalData.authorityName || 'Official Passport Authority')}</span>
+          <a href="${escapeHTML(modalData.officialPortalUrl)}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:11px;padding:5px 10px">Open Official Portal ↗</a>
+        </div>
+        ` : ''}
+      </div>
+    `;
+
+    modal.classList.add('open');
+  }
+
   // Checklist Export & Sharing Helpers (Text & JSON)
   function generateChecklistText(result, answers = {}, checkedState = {}) {
     const res = result || state.evaluationResult;
@@ -1552,6 +1812,8 @@
     generateChecklistJson,
     copyChecklist,
     downloadChecklist,
+    getDocumentModalData,
+    openDocumentHelperModal,
     getState: () => state
   };
 
