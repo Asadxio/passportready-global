@@ -1373,16 +1373,16 @@ window.RULE_PACKS = {
         ],
         "steps": [
           {
-            "step": "Complete online renewal at GOV.UK.",
-            "source_url": "https://www.gov.uk/"
+            "step": "Complete renewal application online at GOV.UK or by post using a paper form from the Post Office.",
+            "source_url": "https://www.gov.uk/renew-adult-passport"
           },
           {
-            "step": "Pay £88.50 fee.",
-            "source_url": "https://www.gov.uk/"
+            "step": "Pay statutory renewal fee: £102 for standard adult online renewal or £115.50 for adult paper renewal.",
+            "source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible"
           },
           {
             "step": "Post old passport to HMPO address provided.",
-            "source_url": "https://www.gov.uk/"
+            "source_url": "https://www.gov.uk/renew-adult-passport"
           }
         ],
         "documents": [
@@ -1403,6 +1403,16 @@ window.RULE_PACKS = {
             "publisher": "HM Passport Office",
             "page_title": "Renew Adult Passport",
             "checked_at": "2026-10-18"
+          },
+          {
+            "url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+            "publisher": "HM Passport Office",
+            "page_title": "HM Passport Office fees accessible table",
+            "checked_at": "2026-10-21",
+            "claims": [
+              "fee",
+              "steps"
+            ]
           }
         ]
       }
@@ -2396,12 +2406,12 @@ window.RULE_PACKS = {
               "currency": "BDT",
               "amount": 6325,
               "base_amount": 5500,
-              "emergency_surcharge": 2300,
+              "emergency_surcharge": 0,
               "total_payable": 6325,
               "applicant_category": "express_48_pages_5yr",
               "application_channel": "domestic_express",
               "validity_period": "5_years",
-              "discount_eligibility": "Express delivery (7 working days) 48 pages (incl. 15% VAT).",
+              "discount_eligibility": "Express delivery (7 working days) 48 pages (incl. 15% statutory VAT).",
               "applicable_conditions": "Bangladeshi citizens with NID/BRC.",
               "official_source_url": "https://www.epassport.gov.bd/landing",
               "effective_date": "2020-01-22",
@@ -2420,6 +2430,23 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Regular delivery (15 working days) 48 pages 10-year (incl. 15% VAT).",
               "applicable_conditions": "Bangladeshi citizens aged 18+ with NID.",
+              "official_source_url": "https://www.epassport.gov.bd/landing",
+              "effective_date": "2020-01-22",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "BDT",
+              "amount": 8625,
+              "base_amount": 7500,
+              "emergency_surcharge": 0,
+              "total_payable": 8625,
+              "applicant_category": "super_express_48_pages_5yr",
+              "application_channel": "domestic_super_express",
+              "validity_period": "5_years",
+              "discount_eligibility": "Super Express delivery (2 working days) 48 pages (incl. 15% statutory VAT).",
+              "applicable_conditions": "Bangladeshi citizens with NID/BRC requiring urgent delivery.",
               "official_source_url": "https://www.epassport.gov.bd/landing",
               "effective_date": "2020-01-22",
               "verification_date": "2026-10-21",
@@ -3533,14 +3560,14 @@ window.RULE_PACKS = {
     ],
     "age_bands": [
       {
-        "label": "Minor / Young Citizen (under 20 - 5-year validity only)",
+        "label": "Minor (under 18)",
         "min_age": 0,
-        "max_age": 19,
+        "max_age": 17,
         "age_basis_source": "https://www.absher.sa/"
       },
       {
-        "label": "Adult (20 and older - 5 or 10-year validity option)",
-        "min_age": 20,
+        "label": "Adult (18 and older)",
+        "min_age": 18,
         "max_age": null,
         "age_basis_source": "https://www.absher.sa/"
       }
@@ -3563,6 +3590,11 @@ window.RULE_PACKS = {
             "rule": "Applicant must be present within the Kingdom at the time of application.",
             "source_url": "https://www.absher.sa/",
             "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "10-year passport validity option is available exclusively to citizens aged 21 and older. Citizens under age 21 are eligible for 5-year validity only (Absher / Jawazat regulations).",
+            "source_url": "https://www.absher.sa/",
+            "last_reviewed": "2026-10-21"
           }
         ],
         "steps": [
@@ -3579,7 +3611,7 @@ window.RULE_PACKS = {
             "source_url": "https://www.absher.sa/"
           },
           {
-            "step": "Confirm applicant details and select validity period (5 or 10 years for age 20+).",
+            "step": "Confirm applicant details and select validity period (5-year validity; or 10-year validity option available exclusively to applicants aged 21 and older).",
             "source_url": "https://www.absher.sa/"
           },
           {
@@ -3627,8 +3659,8 @@ window.RULE_PACKS = {
               "applicant_category": "standard_issuance_5yr",
               "application_channel": "domestic_absher",
               "validity_period": "5_years",
-              "discount_eligibility": "Standard 5-year passport issuance/renewal via Absher/Sadad.",
-              "applicable_conditions": "Saudi citizens of all ages. Jawazat regulation.",
+              "discount_eligibility": "Standard 5-year passport issuance/renewal via Absher/Sadad (mandatory validity for citizens under 21).",
+              "applicable_conditions": "Saudi citizens of all ages; sole validity option for applicants under age 21 (Jawazat regulation).",
               "official_source_url": "https://www.absher.sa/",
               "effective_date": "2020-01-01",
               "verification_date": "2026-10-21",
@@ -3644,7 +3676,7 @@ window.RULE_PACKS = {
               "applicant_category": "standard_issuance_10yr",
               "application_channel": "domestic_absher",
               "validity_period": "10_years",
-              "discount_eligibility": "Standard 10-year passport issuance/renewal for citizens 21+.",
+              "discount_eligibility": "Standard 10-year passport issuance/renewal for citizens aged 21 and older.",
               "applicable_conditions": "Saudi citizens aged 21 and older.",
               "official_source_url": "https://www.absher.sa/",
               "effective_date": "2020-01-01",

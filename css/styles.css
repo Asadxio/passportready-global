@@ -1085,7 +1085,7 @@ button { cursor: pointer; }
   .wrap,
   .wizard-box,
   .wizard-body,
-  .resultbox {
+  .resultbox.show {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -1102,7 +1102,11 @@ button { cursor: pointer; }
     position: static !important;
   }
 
-  .resultbox,
+  /* Results dashboard visibility: strictly hide ungenerated results in print */
+  .resultbox:not(.show) {
+    display: none !important;
+  }
+
   .resultbox.show {
     opacity: 1 !important;
     transform: none !important;

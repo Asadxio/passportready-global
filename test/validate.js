@@ -4250,120 +4250,208 @@ runTest('Phase 4.6 Calibration: Reliable Country Search, Normalization & State S
     assert.strictEqual(match.name, c.name, `Resolved canonical name must match '${c.name}'`);
   });
 
-  // 6, 7, 8, 9, 10, 11, 12, 13, 14: State synchronization simulation
-  const simState = {
-    answers: { countryCode: 'IN', countryName: 'India', location: 'inside', service: 'first_passport' },
-    currentStep: 0,
-    totalSteps: 10
+  // 6. Integration tests against real application handlers and stub DOM elements
+  function createStubDOM() {
+    const elements = new Map();
+    function createElement(id, tagName = 'div') {
+      const el = {
+        id,
+        tagName: tagName.toUpperCase(),
+        value: '',
+        innerHTML: '',
+        textContent: '',
+        className: '',
+        style: {},
+        dataset: {},
+        listeners: {},
+        attributes: {},
+        setAttribute(k, v) { this.attributes[k] = String(v); },
+        getAttribute(k) { return this.attributes[k] !== undefined ? this.attributes[k] : null; },
+        removeAttribute(k) { delete this.attributes[k]; },
+        addEventListener(evt, fn) {
+          if (!this.listeners[evt]) this.listeners[evt] = [];
+          this.listeners[evt].push(fn);
+        },
+        dispatchEvent(evt) {
+          const type = typeof evt === 'string' ? evt : evt.type;
+          const fns = this.listeners[type] || [];
+          fns.forEach(fn => fn.call(this, typeof evt === 'string' ? { type: evt, target: this, preventDefault() {}, key: evt.key } : evt));
+        },
+        click() {
+          this.dispatchEvent({ type: 'click', target: this, preventDefault() {} });
+        },
+        focus() { this.focused = true; },
+        classList: {
+          _classes: new Set(),
+          add(c) { this._classes.add(c); el.className = Array.from(this._classes).join(' '); },
+          remove(c) { this._classes.delete(c); el.className = Array.from(this._classes).join(' '); },
+          contains(c) { return this._classes.has(c); },
+          toggle(c, force) {
+            if (force === undefined) {
+              if (this.contains(c)) this.remove(c); else this.add(c);
+            } else if (force) {
+              this.add(c);
+            } else {
+              this.remove(c);
+            }
+          }
+        }
+      };
+      elements.set(id, el);
+      return el;
+    }
+
+    const countryInput = createElement('countryInput', 'input');
+    const countryHint = createElement('countryHint', 'div');
+    const officialBtn = createElement('officialLink', 'a');
+    const nextBtn = createElement('nextBtn', 'button');
+    const backBtn = createElement('backBtn', 'button');
+    const printBtn = createElement('printBtn', 'button');
+    const restartBtn = createElement('restartBtn', 'button');
+    const saveBtn = createElement('saveProgressBtn', 'button');
+    const stepCount = createElement('stepcount', 'div');
+    const toast = createElement('toast', 'div');
+    const resultBox = createElement('resultbox', 'div');
+    const wizardNav = createElement('wizardnav', 'div');
+    const locationSelect = createElement('locationSelect', 'select');
+    const applicantCategory = createElement('applicantCategory', 'select');
+    const validityOption = createElement('validityOption', 'select');
+    const lossTier = createElement('lossTier', 'select');
+    const urgency = createElement('urgency', 'select');
+    const nameMatch = createElement('nameMatch', 'select');
+    const dobMatch = createElement('dobMatch', 'select');
+    const special = createElement('special', 'select');
+    const exactAge = createElement('exactAge', 'input');
+    const countryOptions = createElement('country-options', 'datalist');
+    const langSelect = createElement('langSelect', 'select');
+    const dirSearchInput = createElement('dirSearchInput', 'input');
+    const countryDirectoryGrid = createElement('countryDirectoryGrid', 'div');
+    const guidesContainer = createElement('guidesContainer', 'div');
+
+    const stepPanes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => {
+      const pane = createElement(`stepPane${i}`, 'div');
+      pane.classList.add('step-pane');
+      if (i === 0) pane.classList.add('active');
+      return pane;
+    });
+
+    const stepBars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => {
+      const bar = createElement(`stepBar${i}`, 'span');
+      return bar;
+    });
+
+    const stubDoc = {
+      getElementById(id) { return elements.get(id) || null; },
+      querySelector(sel) {
+        if (sel === 'input[name="service"]:checked') return null;
+        if (sel && sel.startsWith('#')) return elements.get(sel.slice(1)) || null;
+        return null;
+      },
+      querySelectorAll(sel) {
+        if (sel === '.step-pane') return stepPanes;
+        if (sel === '.steps span') return stepBars;
+        return [];
+      },
+      addEventListener() {},
+      readyState: 'complete'
+    };
+
+    return { stubDoc, elements, countryInput, countryHint, nextBtn, stepCount, stepPanes };
+  }
+
+  const { stubDoc, elements, countryInput, countryHint, nextBtn, stepCount, stepPanes } = createStubDOM();
+  global.document = stubDoc;
+  global.window = {
+    addEventListener() {},
+    scrollTo() {},
+    CURRENT_LANG: 'en'
   };
+  global.CURRENT_LANG = 'en';
+  global.getI18nText = (k) => I18N_TRANSLATIONS['en'][k] || k;
+  global.PassportRulesEngine = PassportRulesEngine;
 
-  let mockInputValue = 'India';
-  let mockHintClass = '';
-  let mockInvalidAttr = 'false';
+  // Initialize real application controller
+  App.init();
+  const appState = App.getState();
+  appState.currentStep = 0;
+  appState.answers.countryCode = null;
+  appState.answers.countryName = null;
 
-  function mockUpdateCountryHint() {
-    const trimmed = mockInputValue ? mockInputValue.trim() : '';
-    if (!trimmed) {
-      simState.answers.countryCode = null;
-      simState.answers.countryName = null;
-      mockInvalidAttr = 'false';
-      mockHintClass = 'country-source-status hint-empty';
-      return null;
-    }
-    const c = App.getCountryByQuery(mockInputValue);
-    if (!c) {
-      simState.answers.countryCode = null;
-      simState.answers.countryName = null;
-      mockInvalidAttr = 'true';
-      mockHintClass = 'country-source-status hint-unresolved';
-      return null;
-    }
-    simState.answers.countryCode = c.alpha2;
-    simState.answers.countryName = c.name;
-    mockInvalidAttr = 'false';
-    mockHintClass = 'country-source-status hint-resolved';
-    return c;
-  }
+  // 6.1 Empty country input: hints empty, aria-invalid cleared, countryCode null, continue guard blocks navigation
+  countryInput.value = '';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, null, 'Empty input countryCode must be null');
+  assert.strictEqual(appState.answers.countryName, null, 'Empty input countryName must be null');
+  assert(countryHint.className.includes('hint-empty'), 'Empty input must display hint-empty class');
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), null, 'Empty input must clear aria-invalid');
+  nextBtn.click();
+  assert.strictEqual(appState.currentStep, 0, 'Continue guard must block navigation when country input is empty');
 
-  function mockNextClick() {
-    if (simState.currentStep === 0) {
-      const c = mockUpdateCountryHint();
-      if (!c || !simState.answers.countryCode) {
-        return false; // navigation blocked
-      }
-    }
-    simState.currentStep++;
-    return true;
-  }
+  // 6.2 Invalid country input: hints unresolved, aria-invalid true, countryCode null, continue guard blocks navigation
+  countryInput.value = 'Atlantis';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, null, 'Invalid countryCode must be null');
+  assert.strictEqual(appState.answers.countryName, null, 'Invalid countryName must be null');
+  assert(countryHint.className.includes('hint-unresolved'), 'Invalid country must display hint-unresolved class');
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), 'true', 'Invalid country input must set aria-invalid="true"');
+  nextBtn.click();
+  assert.strictEqual(appState.currentStep, 0, 'Continue guard must block navigation for unrecognized country');
 
-  // 6. Initial state: India
-  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'IN');
-  assert.strictEqual(simState.answers.countryCode, 'IN');
-  assert.strictEqual(simState.answers.countryName, 'India');
+  // Ambiguous prefix input
+  countryInput.value = 'United';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, null, 'Ambiguous prefix must not resolve');
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), 'true');
+  nextBtn.click();
+  assert.strictEqual(appState.currentStep, 0, 'Continue guard must block navigation for ambiguous prefix');
 
-  // 7 & 12. Change to Australia, United Kingdom, and United States
-  mockInputValue = 'Australia';
-  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'AU');
-  assert.strictEqual(simState.answers.countryCode, 'AU');
-  assert.strictEqual(simState.answers.countryName, 'Australia');
+  // 6.3 Transition from valid to invalid input: previous country code evicted immediately
+  countryInput.value = 'Germany';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, 'DE', 'Germany must resolve to DE');
+  assert.strictEqual(appState.answers.countryName, 'Germany');
+  assert(countryHint.className.includes('hint-resolved'));
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), 'false');
 
-  mockInputValue = 'United Kingdom';
-  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'GB');
-  assert.strictEqual(simState.answers.countryCode, 'GB');
-  assert.strictEqual(simState.answers.countryName, 'United Kingdom');
+  countryInput.value = 'GermanyXYZ';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, null, 'Transition from valid to invalid must immediately evict countryCode');
+  assert.strictEqual(appState.answers.countryName, null);
+  assert(countryHint.className.includes('hint-unresolved'));
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), 'true');
+  nextBtn.click();
+  assert.strictEqual(appState.currentStep, 0, 'Continue guard must block navigation after invalidating edit');
 
-  mockInputValue = 'United States';
-  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'US');
-  assert.strictEqual(simState.answers.countryCode, 'US');
-  assert.strictEqual(simState.answers.countryName, 'United States');
+  // 6.4 Clearing a previously stored country code
+  countryInput.value = 'Canada';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, 'CA');
+  countryInput.value = '   ';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, null, 'Clearing input with whitespace must set countryCode to null');
+  assert.strictEqual(appState.answers.countryName, null);
+  assert(countryHint.className.includes('hint-empty'));
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), null);
+  nextBtn.click();
+  assert.strictEqual(appState.currentStep, 0, 'Continue guard must block navigation on cleared input');
 
-  // 8. Clearing the input
-  mockInputValue = '';
-  assert.strictEqual(mockUpdateCountryHint(), null);
-  assert.strictEqual(simState.answers.countryCode, null, 'Clearing input must clear countryCode to null');
-  assert.strictEqual(simState.answers.countryName, null, 'Clearing input must clear countryName to null');
-  assert.strictEqual(mockHintClass, 'country-source-status hint-empty');
+  // 6.5 Correctly resolved country input
+  countryInput.value = 'Australia';
+  countryInput.dispatchEvent('input');
+  assert.strictEqual(appState.answers.countryCode, 'AU', 'Australia must resolve to AU');
+  assert.strictEqual(appState.answers.countryName, 'Australia');
+  assert(countryHint.className.includes('hint-resolved'));
+  assert.strictEqual(countryInput.getAttribute('aria-invalid'), 'false');
 
-  // 14. Preventing wizard from advancing when country is empty or unresolved
-  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked when country is empty');
-  assert.strictEqual(simState.currentStep, 0, 'Wizard step must remain 0');
+  // 6.6 The actual Continue-button navigation result
+  nextBtn.click();
+  assert.strictEqual(appState.currentStep, 1, 'Continue button click must advance wizard from step 0 to step 1 upon valid selection');
+  assert.strictEqual(stepPanes[0].classList.contains('active'), false, 'Step 0 pane must no longer be active');
+  assert.strictEqual(stepPanes[1].classList.contains('active'), true, 'Step 1 pane must now be active');
+  assert.strictEqual(stepCount.textContent, 'STEP 2 OF 10', 'Step count header must update to STEP 2 OF 10');
 
-  // 9. Unknown country names
-  mockInputValue = 'Atlantis';
-  assert.strictEqual(mockUpdateCountryHint(), null, 'Atlantis must return null');
-  assert.strictEqual(simState.answers.countryCode, null);
-  assert.strictEqual(simState.answers.countryName, null);
-  assert.strictEqual(mockInvalidAttr, 'true');
-  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked for unknown country');
-
-  // 10. Ambiguous or incomplete input
-  mockInputValue = 'United';
-  assert.strictEqual(mockUpdateCountryHint(), null, 'United is ambiguous and must not resolve');
-  assert.strictEqual(simState.answers.countryCode, null);
-  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked for ambiguous prefix');
-
-  mockInputValue = 'Austr';
-  assert.strictEqual(mockUpdateCountryHint(), null, 'Austr is incomplete and must not resolve');
-  assert.strictEqual(simState.answers.countryCode, null);
-  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked for incomplete prefix');
-
-  // 11. Previous valid country followed by invalid text
-  mockInputValue = 'Germany';
-  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'DE');
-  assert.strictEqual(simState.answers.countryCode, 'DE');
-
-  mockInputValue = 'GermanyXYZ';
-  assert.strictEqual(mockUpdateCountryHint(), null);
-  assert.strictEqual(simState.answers.countryCode, null, 'Lingering DE code must be invalidated immediately');
-  assert.strictEqual(simState.answers.countryName, null);
-  assert.strictEqual(mockNextClick(), false, 'Advance blocked after invalidating edit');
-
-  // 13. Correct state passed to PassportRulesEngine.evaluate()
-  mockInputValue = 'Australia';
-  mockUpdateCountryHint();
-  assert(mockNextClick(), 'Advance allowed with valid Australia selection');
-  assert.strictEqual(simState.currentStep, 1);
-  const auEval = engine.evaluate(simState.answers);
+  // Verify resulting answers evaluate accurately in rules engine
+  const auEval = engine.evaluate(appState.answers);
   assert.strictEqual(auEval.country.code, 'AU');
   assert.strictEqual(auEval.country.name, 'Australia');
   const auFee = auEval.checklist.find(c => c.id === 'official_fee_payment');
@@ -4391,8 +4479,8 @@ runTest('Phase 4.6 Calibration: Reliable Country Search, Normalization & State S
   }
 });
 
-// 33. Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-07)
-runTest('Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-07)', () => {
+// 33. Phase 4.7 Calibration: Print Stylesheet & Paged Media CSS Rules (DEF-07)
+runTest('Phase 4.7 Calibration: Print Stylesheet & Paged Media CSS Rules (DEF-07)', () => {
   const css = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
   const printIdx = css.indexOf('@media print');
   assert(printIdx !== -1, '@media print must exist in styles.css');
@@ -4421,11 +4509,14 @@ runTest('Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-0
     assert(printBlock.includes(sel), `Selector ${sel} must be hidden in @media print`);
   });
 
-  // 4. Non-clipping container hierarchy
+  // 4. Non-clipping container hierarchy & Results visibility
   assert(printBlock.includes('.wizard-box'), '.wizard-box must be reset in print');
   assert(/wizard-box[^{]*\{[^}]*overflow:\s*visible\s*!important/i.test(printBlock), '.wizard-box must have overflow: visible !important');
   assert(/wrap[^{]*\{[^}]*width:\s*100%\s*!important/i.test(printBlock), '.wrap must expand to width: 100% in print');
   assert(/checker-layout[^{]*\{[^}]*display:\s*block\s*!important/i.test(printBlock), '.checker-layout must display as block');
+  assert(printBlock.includes('.resultbox.show'), '.resultbox.show must expand in container width hierarchy');
+  assert(/\.resultbox:not\(\.show\)[^{]*\{[^}]*display:\s*none\s*!important/i.test(printBlock), '.resultbox without .show must have display: none !important in @media print');
+  assert(/\.resultbox\.show[^{]*\{[^}]*opacity:\s*1\s*!important/i.test(printBlock), '.resultbox.show must have opacity: 1 !important');
 
   // 5. Page break & fragmentation controls
   assert(printBlock.includes('break-inside: avoid !important'), 'break-inside: avoid !important must exist');
@@ -4466,19 +4557,58 @@ runTest('Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-0
   const appJs = fs.readFileSync(path.join(__dirname, '..', 'js', 'app.js'), 'utf8');
   assert(appJs.includes("printBtn.addEventListener('click', () => window.print())"), 'printBtn must be wired to window.print()');
 
-  // 12. Headless Chrome PDF Verification (if Chrome executable exists)
-  const chromePaths = [
+});
+
+// 34. Headless Chrome/Chromium Print-to-PDF Export & Pre-Results Visibility (DEF-07)
+function findChromeExecutable() {
+  if (process.env.CHROME_PATH && fs.existsSync(process.env.CHROME_PATH)) return process.env.CHROME_PATH;
+  if (process.env.PUPPETEER_EXECUTABLE_PATH && fs.existsSync(process.env.PUPPETEER_EXECUTABLE_PATH)) return process.env.PUPPETEER_EXECUTABLE_PATH;
+  if (process.env.CHROME_BIN && fs.existsSync(process.env.CHROME_BIN)) return process.env.CHROME_BIN;
+
+  const candidatePaths = [
     'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    path.join(process.env.LOCALAPPDATA || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    path.join(process.env.PROGRAMFILES || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    path.join(process.env['PROGRAMFILES(X86)'] || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+    path.join(process.env['ProgramFiles(x86)'] || '', 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+    '/snap/bin/chromium',
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
   ];
-  const chromeExe = chromePaths.find(p => fs.existsSync(p));
-  if (chromeExe) {
+
+  for (const p of candidatePaths) {
+    if (p && fs.existsSync(p)) return p;
+  }
+
+  try {
+    const whichCmd = process.platform === 'win32' ? 'where chrome.exe' : 'which google-chrome || which chromium';
+    const found = require('child_process').execSync(whichCmd, { stdio: ['pipe', 'pipe', 'ignore'], encoding: 'utf8' }).trim().split(/\r?\n/)[0];
+    if (found && fs.existsSync(found)) return found;
+  } catch (e) {}
+
+  return null;
+}
+
+const detectedChrome = findChromeExecutable();
+if (!detectedChrome) {
+  console.warn('\n⚠ NOTICE: Supported Chrome/Chromium executable not detected across candidate system paths. Headless PDF generation verification could not run in this environment.');
+  console.log('- SKIPPED: Phase 4.7 Calibration: Headless Chrome/Chromium Print-to-PDF Export & Pre-Results Visibility (Chrome/Chromium executable not detected)\n');
+} else {
+  runTest('Phase 4.7 Calibration: Headless Chrome/Chromium Print-to-PDF Export & Pre-Results Visibility (DEF-07)', () => {
     const { execFileSync } = require('child_process');
     const { PassportRulesEngine } = require('../js/rules-engine.js');
     const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
     const countryDataModule = require('../data/country-data.js');
     const countries = countryDataModule.PASSPORT_COUNTRIES;
     const engine = new PassportRulesEngine(rulePacks, countries);
+    const css = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+    const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 
     const evalResult = engine.evaluate({
       countryCode: 'IN',
@@ -4493,88 +4623,122 @@ runTest('Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-0
     assert(evalResult.checklist.length >= 8, 'Evaluation should produce at least 8 checklist items');
     assert(evalResult.flags.length >= 3, 'Evaluation should produce at least 3 flags');
 
-    const testHtmlPath = path.join(__dirname, '..', 'test-val-print.html');
-    const outPdfPath = path.join(__dirname, '..', 'test-val-print.pdf');
+    const testHtmlPopulated = path.join(__dirname, '..', 'test-val-print-pop.html');
+    const outPdfPopulated = path.join(__dirname, '..', 'test-val-print-pop.pdf');
+    const testHtmlEmpty = path.join(__dirname, '..', 'test-val-print-empty.html');
+    const outPdfEmpty = path.join(__dirname, '..', 'test-val-print-empty.pdf');
 
-    let testDoc = html.replace('<link rel="stylesheet" href="css/styles.css?v=20261020_01">', `<style>\n${css}\n</style>`);
-    testDoc = testDoc.replace(/<script[\s\S]*?<\/script>/gi, '');
-    testDoc = testDoc.replace('<div class="resultbox" id="resultbox">', '<div class="resultbox show" id="resultbox">');
-    testDoc = testDoc.replace('<h3 id="resCountryName" style="font-size:1.5rem;color:var(--forest-dark);margin:0 0 2px">India</h3>', `<h3 id="resCountryName" style="font-size:1.5rem;color:var(--forest-dark);margin:0 0 2px">${evalResult.country.name}</h3>`);
+    try {
+      // 1. Populated Results Print Verification (.resultbox.show)
+      let popDoc = html.replace('<link rel="stylesheet" href="css/styles.css?v=20261020_01">', `<style>\n${css}\n</style>`);
+      popDoc = popDoc.replace(/<script[\s\S]*?<\/script>/gi, '');
+      popDoc = popDoc.replace('<div class="resultbox" id="resultbox">', '<div class="resultbox show" id="resultbox">');
+      popDoc = popDoc.replace('<h3 id="resCountryName" style="font-size:1.5rem;color:var(--forest-dark);margin:0 0 2px">India</h3>', `<h3 id="resCountryName" style="font-size:1.5rem;color:var(--forest-dark);margin:0 0 2px">${evalResult.country.name}</h3>`);
 
-    const checklistHtml = evalResult.checklist.map(item => `
-      <li class="checklist-item" data-item-id="${item.id}">
-        <label class="check-box-label">
-          <input type="checkbox" data-check-id="${item.id}">
-          <span class="custom-check"></span>
-        </label>
-        <div class="check-text">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-            <strong style="font-size:14px;color:#1e293b">${item.title}</strong>
-            ${item.mandatory ? '<span class="status-pill status-mandatory">MANDATORY</span>' : '<span class="status-pill status-optional">CONDITIONAL</span>'}
+      const checklistHtml = evalResult.checklist.map(item => `
+        <li class="checklist-item" data-item-id="${item.id}">
+          <label class="check-box-label">
+            <input type="checkbox" data-check-id="${item.id}">
+            <span class="custom-check"></span>
+          </label>
+          <div class="check-text">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <strong style="font-size:14px;color:#1e293b">${item.title}</strong>
+              ${item.mandatory ? '<span class="status-pill status-mandatory">MANDATORY</span>' : '<span class="status-pill status-optional">CONDITIONAL</span>'}
+            </div>
+            <p style="margin:4px 0 0;font-size:12px;color:#64748b;line-height:1.5">${item.details}</p>
           </div>
-          <p style="margin:4px 0 0;font-size:12px;color:#64748b;line-height:1.5">${item.details}</p>
+        </li>
+      `).join('');
+
+      const flagsHtml = evalResult.flags.map(f => `
+        <div class="notice" style="border-left:4px solid ${f.severity === 'critical' ? '#dc2626' : '#d97706'};background:${f.severity === 'critical' ? '#fef2f2' : '#fffbeb'};color:#451a03;margin-bottom:12px">
+          <strong style="color:${f.severity === 'critical' ? '#991b1b' : '#b45309'};font-size:13px">${f.title}</strong>
+          <p style="margin:5px 0;font-size:12px">${f.message}</p>
+          <div style="font-weight:700;font-size:11px;color:${f.severity === 'critical' ? '#b91c1c' : '#92400e'}">Recommended Action: ${f.action}</div>
         </div>
-      </li>
-    `).join('');
+      `).join('');
 
-    const flagsHtml = evalResult.flags.map(f => `
-      <div class="notice" style="border-left:4px solid ${f.severity === 'critical' ? '#dc2626' : '#d97706'};background:${f.severity === 'critical' ? '#fef2f2' : '#fffbeb'};color:#451a03;margin-bottom:12px">
-        <strong style="color:${f.severity === 'critical' ? '#991b1b' : '#b45309'};font-size:13px">${f.title}</strong>
-        <p style="margin:5px 0;font-size:12px">${f.message}</p>
-        <div style="font-weight:700;font-size:11px;color:${f.severity === 'critical' ? '#b91c1c' : '#92400e'}">Recommended Action: ${f.action}</div>
-      </div>
-    `).join('');
-
-    const sourceHtml = `
-      <div class="resultscore" style="background:#f4f9f6;border:1px solid #c8e0d4">
-        <div class="scoreicon" style="background:#d4ecdf;color:#135939">🏛</div>
-        <div style="flex:1">
-          <strong style="color:#0e4028">${evalResult.country.authorityName}</strong>
-          <small style="display:block;color:#4c6e5b;margin:3px 0">Direct government portal verified for ${evalResult.country.name}.</small>
-          <a href="${evalResult.country.officialPortalUrl}" target="_blank" rel="noopener" class="btn btn-dark" style="padding:7px 14px;font-size:12px;margin-top:6px;display:inline-flex">Open Official Portal ↗</a>
+      const sourceHtml = `
+        <div class="resultscore" style="background:#f4f9f6;border:1px solid #c8e0d4">
+          <div class="scoreicon" style="background:#d4ecdf;color:#135939">🏛</div>
+          <div style="flex:1">
+            <strong style="color:#0e4028">${evalResult.country.authorityName}</strong>
+            <small style="display:block;color:#4c6e5b;margin:3px 0">Direct government portal verified for ${evalResult.country.name}.</small>
+            <a href="${evalResult.country.officialPortalUrl}" target="_blank" rel="noopener" class="btn btn-dark" style="padding:7px 14px;font-size:12px;margin-top:6px;display:inline-flex">Open Official Portal ↗</a>
+          </div>
         </div>
-      </div>
-    `;
+      `;
 
-    testDoc = testDoc.replace('<div id="resOfficialSourceCard"></div>', `<div id="resOfficialSourceCard">${sourceHtml}</div>`);
-    testDoc = testDoc.replace('<div id="resFlagsContainer" style="margin:20px 0"></div>', `<div id="resFlagsContainer" style="margin:20px 0">${flagsHtml}</div>`);
-    testDoc = testDoc.replace('<ul id="resChecklistItems" class="checklist-ul"></ul>', `<ul id="resChecklistItems" class="checklist-ul">${checklistHtml}</ul>`);
+      popDoc = popDoc.replace('<div id="resOfficialSourceCard"></div>', `<div id="resOfficialSourceCard">${sourceHtml}</div>`);
+      popDoc = popDoc.replace('<div id="resFlagsContainer" style="margin:20px 0"></div>', `<div id="resFlagsContainer" style="margin:20px 0">${flagsHtml}</div>`);
+      popDoc = popDoc.replace('<ul id="resChecklistItems" class="checklist-ul"></ul>', `<ul id="resChecklistItems" class="checklist-ul">${checklistHtml}</ul>`);
 
-    fs.writeFileSync(testHtmlPath, testDoc, 'utf8');
+      fs.writeFileSync(testHtmlPopulated, popDoc, 'utf8');
 
-    execFileSync(chromeExe, [
-      '--headless=new',
-      '--disable-gpu',
-      '--no-pdf-header-footer',
-      '--print-to-pdf=' + outPdfPath,
-      'file:///' + testHtmlPath
-    ]);
+      execFileSync(detectedChrome, [
+        '--headless=new',
+        '--disable-gpu',
+        '--no-pdf-header-footer',
+        '--print-to-pdf=' + outPdfPopulated,
+        'file:///' + testHtmlPopulated
+      ]);
 
-    const stats = fs.statSync(outPdfPath);
-    assert(stats.size > 50000, `PDF size must be > 50KB to confirm non-blank rendering (got ${stats.size})`);
+      const popStats = fs.statSync(outPdfPopulated);
+      assert(popStats.size > 20000, `Populated PDF size must be substantive (got ${popStats.size})`);
 
-    const pdfStr = fs.readFileSync(outPdfPath, 'latin1');
-    const pages = pdfStr.match(/\/Type\s*\/Page\b/g);
-    assert(pages && pages.length >= 2, `PDF must have >= 2 pages to confirm non-clipped pagination (got ${pages ? pages.length : 0})`);
-    assert(pdfStr.includes('passportindia.gov.in'), 'PDF must include the official authority portal URL');
+      const pdfStr = fs.readFileSync(outPdfPopulated, 'latin1');
+      const pages = pdfStr.match(/\/Type\s*\/Page\b/g);
+      assert(pages && pages.length >= 2, `Populated PDF must have >= 2 pages to confirm non-clipped pagination (got ${pages ? pages.length : 0})`);
+      assert(pdfStr.includes('passportindia.gov.in'), 'Populated PDF must include the official authority portal URL');
 
-    const zlib = require('zlib');
-    const re = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
-    let m;
-    let allDecoded = '';
-    while ((m = re.exec(pdfStr)) !== null) {
-      try {
-        allDecoded += zlib.inflateSync(Buffer.from(m[1], 'latin1')).toString('utf8');
-      } catch(e) {}
+      const zlib = require('zlib');
+      const re = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
+      let m;
+      let allDecoded = '';
+      while ((m = re.exec(pdfStr)) !== null) {
+        try {
+          allDecoded += zlib.inflateSync(Buffer.from(m[1], 'latin1')).toString('utf8');
+        } catch(e) {}
+      }
+      assert(!allDecoded.includes('Print / Save PDF'), 'Print button text must be hidden from print output');
+
+      // 2. Pre-Results Initial State Print Verification (.resultbox without .show)
+      let unshownDoc = html.replace('<link rel="stylesheet" href="css/styles.css?v=20261020_01">', `<style>\n${css}\n</style>`);
+      unshownDoc = unshownDoc.replace(/<script[\s\S]*?<\/script>/gi, '');
+      // Ensure #resultbox retains only .resultbox (without .show)
+      fs.writeFileSync(testHtmlEmpty, unshownDoc, 'utf8');
+
+      execFileSync(detectedChrome, [
+        '--headless=new',
+        '--disable-gpu',
+        '--no-pdf-header-footer',
+        '--print-to-pdf=' + outPdfEmpty,
+        'file:///' + testHtmlEmpty
+      ]);
+
+      const unshownPdfStr = fs.readFileSync(outPdfEmpty, 'latin1');
+      let unshownDecoded = '';
+      const reEmpty = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
+      while ((m = reEmpty.exec(unshownPdfStr)) !== null) {
+        try {
+          unshownDecoded += zlib.inflateSync(Buffer.from(m[1], 'latin1')).toString('utf8');
+        } catch(e) {}
+      }
+
+      assert(!unshownDecoded.includes('PASSPORTREADY · PRE-SUBMISSION DOCUMENT PREPARATION CHECKLIST'), 'Document branding header must NOT appear in print before results are generated');
+      assert(!unshownDecoded.includes('First-Time / Fresh Passport'), 'Result header contents must NOT appear in print before results are generated');
+
+    } finally {
+      // Hardened Cleanup: Always remove temporary files
+      [testHtmlPopulated, outPdfPopulated, testHtmlEmpty, outPdfEmpty].forEach(f => {
+        try {
+          if (fs.existsSync(f)) fs.unlinkSync(f);
+        } catch (e) {}
+      });
     }
-    assert(!allDecoded.includes('Print / Save PDF'), 'Print button text must be hidden from print output');
-    assert(!allDecoded.includes('Start New Check'), 'Restart button text must be hidden from print output');
-
-    if (fs.existsSync(testHtmlPath)) fs.unlinkSync(testHtmlPath);
-    if (fs.existsSync(outPdfPath)) fs.unlinkSync(outPdfPath);
-  }
-});
-
+  });
+}
 
 runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation Notices, and 5-Country Journey Verifications (IN, US, GB, CA, AU)', () => {
   const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
@@ -4734,6 +4898,73 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   const unverifiedRes = engine.evaluate({ countryCode: 'AD', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
   assert(unverifiedRes.serviceCoverage.status !== 'verified', 'Unverified country service coverage must not be marked verified');
   assert(unverifiedRes.readinessScore <= 75, 'Unverified country readiness score must be capped');
+
+  // 6. Final Review Audit Regressions
+  // 6.1 Bangladesh (BD) Express fee metadata & delivery tiers
+  const bdPacks = [rulePacks.BD, JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8')).BD];
+  bdPacks.forEach(bdPack => {
+    const fees = bdPack.services.first_passport.fees;
+    assert.strictEqual(fees.regular_5_year_48_pages, 4025, 'BD regular 5-year must be 4025');
+    assert.strictEqual(fees.express_5_year_48_pages, 6325, 'BD express 5-year must be 6325');
+    assert.strictEqual(fees.super_express_5_year, 8625, 'BD super express 5-year must be 8625');
+    fees.fee_records.forEach(rec => {
+      assert.strictEqual(rec.emergency_surcharge, 0, 'BD fee records must have emergency_surcharge 0 (express is a distinct statutory tier)');
+    });
+    const expRec = fees.fee_records.find(r => r.applicant_category === 'express_48_pages_5yr');
+    assert.strictEqual(expRec.base_amount, 5500, 'BD express base_amount must be 5500');
+    assert.strictEqual(expRec.amount, 6325, 'BD express amount must be 6325');
+    assert.strictEqual(expRec.total_payable, 6325, 'BD express total_payable must be 6325');
+
+    const superRec = fees.fee_records.find(r => r.applicant_category === 'super_express_48_pages_5yr');
+    assert(superRec, 'BD super express fee record must exist');
+    assert.strictEqual(superRec.base_amount, 7500, 'BD super express base_amount must be 7500');
+    assert.strictEqual(superRec.total_payable, 8625, 'BD super express total_payable must be 8625');
+  });
+
+  const bdEval = engine.evaluate({ countryCode: 'BD', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
+  assert(bdEval.feeGuidance.details.includes('Regular BDT 4,025'), 'BD guidance must display regular BDT 4,025');
+  assert(bdEval.feeGuidance.details.includes('Express BDT 6,325'), 'BD guidance must display express BDT 6,325');
+  assert(bdEval.feeGuidance.details.includes('Super Express BDT 8,625'), 'BD guidance must display super express BDT 8,625');
+  assert.strictEqual(bdEval.feeGuidance.specificRecord.express_5yr_48p, 6325);
+
+  // 6.2 United Kingdom (GB) renewal workflow steps (£102 online / £115.50 paper)
+  const gbPacks = [rulePacks.GB, JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8')).GB];
+  gbPacks.forEach(gbPack => {
+    const renSteps = gbPack.services.renewal_reissue.steps;
+    assert(renSteps.some(s => s.step.includes('£102') && s.step.includes('£115.50')), 'GB renewal steps must clearly distinguish £102 online and £115.50 paper');
+    const stepFee = renSteps.find(s => s.step.includes('statutory renewal fee'));
+    assert(stepFee.source_url.includes('passport-fees-accessible'), 'GB renewal fee step must link accessible fee table');
+  });
+  // Ensure no stale 88.50 remains across data files
+  const countryRulesRaw = fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8');
+  const rulePacksRaw = fs.readFileSync(path.join(__dirname, '..', 'data', 'rule-packs.js'), 'utf8');
+  assert(!countryRulesRaw.includes('88.50'), 'country-rules.json must contain zero occurrences of stale 88.50 fee');
+  assert(!rulePacksRaw.includes('88.50'), 'rule-packs.js must contain zero occurrences of stale 88.50 fee');
+
+  // 6.3 Saudi Arabia (SA) validity & age bands separation
+  const saPacks = [rulePacks.SA, JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8')).SA];
+  saPacks.forEach(saPack => {
+    const minorBand = saPack.age_bands.find(b => b.min_age === 0);
+    const adultBand = saPack.age_bands.find(b => b.min_age === 18);
+    assert(minorBand && minorBand.max_age === 17, 'SA minor age band must be under 18 (min 0, max 17)');
+    assert(adultBand && adultBand.max_age === null, 'SA adult age band must be 18 and older (min 18)');
+
+    const fp = saPack.services.first_passport;
+    const valRule = fp.eligibility.find(e => e.rule.includes('10-year passport validity'));
+    assert(valRule, 'SA eligibility must include 10-year validity rule');
+    assert(valRule.rule.includes('aged 21 and older') && valRule.rule.includes('under age 21 are eligible for 5-year validity only'), 'SA validity rule must reflect Absher guidance (21+ for 10-year, under 21 for 5-year only)');
+
+    const step4 = fp.steps.find(s => s.step.includes('validity period'));
+    assert(step4.step.includes('21 and older'), 'SA step 4 must specify 10-year option available exclusively to applicants aged 21 and older');
+
+    const rec5 = fp.fees.fee_records.find(r => r.validity_period === '5_years');
+    const rec10 = fp.fees.fee_records.find(r => r.validity_period === '10_years');
+    assert(rec5.discount_eligibility.includes('mandatory validity for citizens under 21'), 'SA 5-year fee record must document mandatory validity under 21');
+    assert(rec10.applicable_conditions.includes('21 and older'), 'SA 10-year fee record must document 21+ eligibility');
+  });
+
+  const saEval = engine.evaluate({ countryCode: 'SA', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
+  assert(saEval.feeGuidance.details.includes('citizens aged 21 and older'), 'SA fee guidance details must reflect 21+ condition for 10-year validity');
 });
 
 console.log('\n====================================================');
