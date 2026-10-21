@@ -269,7 +269,17 @@ const I18N_TRANSLATIONS = {
     "source_card_unverified_desc": "PassportReady has not yet completed a primary source audit for this jurisdiction. Use this checklist as preparatory guidance, and contact your national foreign ministry or embassy for definitive local rules.",
     "checklist_heading": "Your Actionable Document Checklist",
     "presubmission_notice": "Pre-Submission Rule: This checklist reflects standard requirements. Government authorities reserve the legal right to request additional supporting documents, police reports, or biometric re-examinations.",
-    "flag_minor_consent_action": "Ensure all required parents attend the appointment or provide statutory notarized consent."
+    "flag_minor_consent_action": "Ensure all required parents attend the appointment or provide statutory notarized consent.",
+    "country_prompt_title": "Select Country",
+    "country_prompt_desc": "Please type or select your passport-issuing authority from the list.",
+    "country_unresolved_pill": "UNRESOLVED JURISDICTION",
+    "country_unresolved_title": "Select an indexed country",
+    "country_unresolved_desc": "Please select a recognized country from the suggested list.",
+    "country_verified_desc": "Official requirements and document standards fully researched and updated for 2026.",
+    "country_linked_desc": "Official portal link recorded; scenario-specific rules undergoing detailed research.",
+    "country_awaiting_desc": "Official passport authority link currently undergoing research. Generic preparation guidance provided.",
+    "country_general_guidance_title": "General Preparation Guidance",
+    "country_continue_error": "Please type and select a recognized passport-issuing authority before continuing."
   },
 
   hi: {
@@ -536,7 +546,17 @@ const I18N_TRANSLATIONS = {
     "source_card_unverified_desc": "PassportReady ने अभी तक इस अधिकार क्षेत्र के लिए प्राथमिक स्रोत ऑडिट पूरा नहीं किया है। इस चेकलिस्ट का उपयोग प्रारंभिक मार्गदर्शन के रूप में करें, और निश्चित नियमों के लिए अपने विदेश मंत्रालय या दूतावास से संपर्क करें।",
     "checklist_heading": "आपकी व्यावहारिक दस्तावेज़ चेकलिस्ट",
     "presubmission_notice": "प्रस्तुतीकरण-पूर्व नियम: यह चेकलिस्ट मानक आवश्यकताओं को दर्शाती है। सरकारी अधिकारियों के पास अतिरिक्त सहायक दस्तावेज़, पुलिस रिपोर्ट या बायोमेट्रिक पुन: परीक्षा का अनुरोध करने का कानूनी अधिकार सुरक्षित है।",
-    "flag_minor_consent_action": "सुनिश्चित करें कि सभी आवश्यक माता-पिता नियुक्ति (अपॉइंटमेंट) में उपस्थित हों या वैधानिक नोटरीकृत सहमति प्रदान करें।"
+    "flag_minor_consent_action": "सुनिश्चित करें कि सभी आवश्यक माता-पिता नियुक्ति (अपॉइंटमेंट) में उपस्थित हों या वैधानिक नोटरीकृत सहमति प्रदान करें।",
+    "country_prompt_title": "देश चुनें",
+    "country_prompt_desc": "कृपया सूची में से अपना पासपोर्ट जारी करने वाला देश टाइप करें या चुनें।",
+    "country_unresolved_pill": "अनसुलझा क्षेत्राधिकार",
+    "country_unresolved_title": "एक अनुक्रमित देश चुनें",
+    "country_unresolved_desc": "कृपया सुझाई गई सूची में से किसी मान्यता प्राप्त देश का चयन करें।",
+    "country_verified_desc": "आधिकारिक आवश्यकताओं और दस्तावेज़ मानकों का पूरी तरह से शोध और 2026 के लिए अद्यतन किया गया है।",
+    "country_linked_desc": "आधिकारिक पोर्टल लिंक दर्ज किया गया; परिदृश्य-विशिष्ट नियमों का विस्तृत शोध जारी है।",
+    "country_awaiting_desc": "आधिकारिक पासपोर्ट प्राधिकरण लिंक पर वर्तमान में शोध चल रहा है। सामान्य तैयारी मार्गदर्शन प्रदान किया गया।",
+    "country_general_guidance_title": "सामान्य तैयारी मार्गदर्शन",
+    "country_continue_error": "कृपया जारी रखने से पहले एक मान्यता प्राप्त पासपोर्ट जारी करने वाले प्राधिकरण को टाइप करें और चुनें।"
   },
 
   ur: {
@@ -803,7 +823,17 @@ const I18N_TRANSLATIONS = {
     "source_card_unverified_desc": "PassportReady نے ابھی اس دائرہ اختیار کا بنیادی آڈٹ مکمل نہیں کیا۔ حتمی قواعد کے لیے اپنی وزارت خارجہ یا سفارت خانے سے رابطہ کریں۔",
     "checklist_heading": "آپ کی قابل عمل دستاویز چیک لسٹ",
     "presubmission_notice": "جمع کرانے سے قبل کا اصول: یہ فہرست معیاری ضروریات کو ظاہر کرتی ہے۔ سرکاری حکام کے پاس اضافی دستاویزات، پولیس رپورٹ یا بائیو میٹرک دوبارہ جانچنے کا قانونی حق محفوظ ہے۔",
-    "flag_minor_consent_action": "یقینی بنائیں کہ والدین اپوائنٹمنٹ میں موجود ہوں یا قانونی تصدیق شدہ رضامندی فراہم کریں۔"
+    "flag_minor_consent_action": "یقینی بنائیں کہ والدین اپوائنٹمنٹ میں موجود ہوں یا قانونی تصدیق شدہ رضامندی فراہم کریں۔",
+    "country_prompt_title": "ملک منتخب کریں",
+    "country_prompt_desc": "براہ کرم فہرست سے اپنے پاسپورٹ جاری کرنے والے ملک کو ٹائپ کریں یا منتخب کریں۔",
+    "country_unresolved_pill": "غیر حل شدہ دائرہ اختیار",
+    "country_unresolved_title": "ایک تسلیم شدہ ملک منتخب کریں",
+    "country_unresolved_desc": "براہ کرم تجویز کردہ فہرست میں سے کسی تسلیم شدہ ملک کا انتخاب کریں۔",
+    "country_verified_desc": "سرکاری تقاضوں اور دستاویز کے معیارات پر مکمل تحقیق اور 2026 کے لیے اپ ڈیٹ کیا گیا ہے۔",
+    "country_linked_desc": "سرکاری پورٹل کا لنک درج ہے؛ منظر نامے کے مخصوص قواعد پر تفصیلی تحقیق جاری ہے۔",
+    "country_awaiting_desc": "سرکاری پاسپورٹ اتھارٹی کے لنک پر فی الحال تحقیق جاری ہے۔ عمومی تیاری کی رہنمائی فراہم کی گئی ہے۔",
+    "country_general_guidance_title": "عمومی تیاری کی رہنمائی",
+    "country_continue_error": "براہ کرم آگے بڑھنے سے پہلے کسی تسلیم شدہ پاسپورٹ جاری کرنے والے ادارے کو ٹائپ کریں اور منتخب کریں۔"
   },
 
   fr: {
@@ -1070,7 +1100,17 @@ const I18N_TRANSLATIONS = {
     "source_card_unverified_desc": "PassportReady n'a pas encore terminé l'audit pour cette juridiction. Utilisez cette liste à titre indicatif et contactez votre ambassade.",
     "checklist_heading": "Votre liste de documents à préparer",
     "presubmission_notice": "Règle de pré-soumission : Cette liste reflète les exigences standard. Les autorités se réservent le droit d'exiger des pièces justificatives supplémentaires.",
-    "flag_minor_consent_action": "Assurez-vous que les parents assistent au rendez-vous ou fournissent un consentement notarié légal."
+    "flag_minor_consent_action": "Assurez-vous que les parents assistent au rendez-vous ou fournissent un consentement notarié légal.",
+    "country_prompt_title": "Sélectionnez le pays",
+    "country_prompt_desc": "Veuillez saisir ou sélectionner votre autorité de délivrance dans la liste.",
+    "country_unresolved_pill": "JURIDICTION NON RÉSOLUE",
+    "country_unresolved_title": "Sélectionnez un pays indexé",
+    "country_unresolved_desc": "Veuillez sélectionner un pays reconnu dans la liste suggérée.",
+    "country_verified_desc": "Exigences officielles et normes documentaires entièrement documentées et mises à jour pour 2026.",
+    "country_linked_desc": "Lien vers le portail officiel enregistré ; règles spécifiques en cours de recherche détaillée.",
+    "country_awaiting_desc": "Lien vers l'autorité officielle des passeports en cours de recherche. Conseils généraux de préparation fournis.",
+    "country_general_guidance_title": "Conseils généraux de préparation",
+    "country_continue_error": "Veuillez saisir et sélectionner une autorité de délivrance de passeports reconnue avant de continuer."
   },
 
   de: {
@@ -1337,7 +1377,17 @@ const I18N_TRANSLATIONS = {
     "source_card_unverified_desc": "PassportReady hat für dieses Land noch kein Primärquellen-Audit abgeschlossen. Nutzen Sie diese Checkliste als Leitfaden und kontaktieren Sie Ihre Behörden.",
     "checklist_heading": "Ihre handlungsrelevante Dokumenten-Checkliste",
     "presubmission_notice": "Hinweis vor Einreichung: Diese Checkliste spiegelt Standardanforderungen wider. Behörden behalten sich das Recht vor, zusätzliche Dokumente anzufordern.",
-    "flag_minor_consent_action": "Stellen Sie sicher, dass die Erziehungsberechtigten zum Termin anwesend sind oder eine notarielle Zustimmung vorlegen."
+    "flag_minor_consent_action": "Stellen Sie sicher, dass die Erziehungsberechtigten zum Termin anwesend sind oder eine notarielle Zustimmung vorlegen.",
+    "country_prompt_title": "Land auswählen",
+    "country_prompt_desc": "Bitte geben Sie Ihre ausstellende Behörde ein oder wählen Sie sie aus der Liste aus.",
+    "country_unresolved_pill": "UNGEKLÄRTE JURISDIKTION",
+    "country_unresolved_title": "Wählen Sie ein erfasstes Land",
+    "country_unresolved_desc": "Bitte wählen Sie ein anerkanntes Land aus der vorgeschlagenen Liste aus.",
+    "country_verified_desc": "Offizielle Anforderungen und Dokumentenstandards vollständig recherchiert und für 2026 aktualisiert.",
+    "country_linked_desc": "Offizieller Portallink erfasst; szenariospezifische Regeln werden detailliert recherchiert.",
+    "country_awaiting_desc": "Offizieller Link der Passbehörde wird derzeit recherchiert. Allgemeine Vorbereitungsrichtlinien bereitgestellt.",
+    "country_general_guidance_title": "Allgemeine Vorbereitungsrichtlinien",
+    "country_continue_error": "Bitte geben Sie vor dem Fortfahren eine anerkannte passausstellende Behörde ein und wählen Sie sie aus."
   },
 
   ar: {
@@ -1604,7 +1654,17 @@ const I18N_TRANSLATIONS = {
     "source_card_unverified_desc": "لم يكمل PassportReady بعد تدقيق المصدر الأساسي لهذا البلد. استخدم هذه القائمة كدليل إرشادي تحضيري، وتواصل مع وزارة الخارجية أو السفارة لمعرفة القواعد النهائية.",
     "checklist_heading": "قائمة التحقق العملية الخاصة بمستنداتك",
     "presubmission_notice": "قاعدة ما قبل التقديم: تعكس قائمة التحقق هذه المتطلبات القياسية. تحتفظ السلطات الحكومية بالحق القانوني في طلب مستندات داعمة إضافية أو تقارير شرطية أو إعادة فحص القياسات الحيوية.",
-    "flag_minor_consent_action": "تأكد من حضور الوالدين للموعد أو تقديم موافقة موثقة قانونياً."
+    "flag_minor_consent_action": "تأكد من حضور الوالدين للموعد أو تقديم موافقة موثقة قانونياً.",
+    "country_prompt_title": "حدد الدولة",
+    "country_prompt_desc": "يرجى كتابة أو تحديد جهة إصدار جواز السفر الخاصة بك من القائمة.",
+    "country_unresolved_pill": "ولاية قضائية غير محددة",
+    "country_unresolved_title": "حدد دولة مفهرسة",
+    "country_unresolved_desc": "يرجى تحديد دولة معترف بها من القائمة المقترحة.",
+    "country_verified_desc": "تم بحث المتطلبات الرسمية ومعايير المستندات بالكامل وتحديثها لعام 2026.",
+    "country_linked_desc": "تم تسجيل رابط البوابة الرسمية؛ القواعد الخاصة بكل سيناريو تخضع لبحث مفصل.",
+    "country_awaiting_desc": "رابط سلطة الجوازات الرسمية قيد البحث حاليًا. تم توفير إرشادات تحضيرية عامة.",
+    "country_general_guidance_title": "إرشادات عامة للتحضير",
+    "country_continue_error": "يرجى كتابة وتحديد جهة إصدار جواز سفر معترف بها قبل المتابعة."
   },
 
 };

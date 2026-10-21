@@ -8,7 +8,8 @@
 
   // Country Data Reference: resolve from window.PASSPORT_COUNTRIES or window.COUNTRY_DATA
   const COUNTRY_DATA = (typeof window !== 'undefined' && (window.COUNTRY_DATA || window.PASSPORT_COUNTRIES)) ||
-    (typeof PASSPORT_COUNTRIES !== 'undefined' ? PASSPORT_COUNTRIES : []);
+    (typeof PASSPORT_COUNTRIES !== 'undefined' ? PASSPORT_COUNTRIES :
+      (typeof require !== 'undefined' ? (require('../data/country-data.js').PASSPORT_COUNTRIES || []) : []));
 
   // Application State
   const state = {
@@ -208,17 +209,51 @@
     });
   }
 
-  // Country Data Helpers
+  // Country Data Helpers & Robust Normalization (DEF-04)
+  function normalizeCountryText(str) {
+    if (typeof str !== 'string') return '';
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\u2018\u2019\u201A\u201B\u2032\u0060]/g, "'")
+      .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-')
+      .trim()
+      .replace(/\s+/g, ' ')
+      .toLowerCase();
+  }
+
   function getCountryByQuery(query) {
-    if (!query) return null;
-    const q = query.trim().toLowerCase();
-    return COUNTRY_DATA.find(c => 
-      c.name.toLowerCase() === q ||
-      c.alpha2.toLowerCase() === q ||
-      c.alpha3.toLowerCase() === q ||
-      (c.official_name && c.official_name.toLowerCase() === q) ||
-      (c.search_terms && c.search_terms.some(t => t.toLowerCase() === q))
-    ) || null;
+    if (!query || typeof query !== 'string') return null;
+    const q = normalizeCountryText(query);
+    if (!q) return null;
+
+    // 1. Exact normalized match against canonical name, ISO alpha-2, ISO alpha-3, official full name, or search terms
+    const match = COUNTRY_DATA.find(c => {
+      if (normalizeCountryText(c.name) === q) return true;
+      if (normalizeCountryText(c.alpha2) === q) return true;
+      if (normalizeCountryText(c.alpha3) === q) return true;
+      if (c.official_name && normalizeCountryText(c.official_name) === q) return true;
+      if (c.search_terms && c.search_terms.some(t => normalizeCountryText(t) === q)) return true;
+      return false;
+    });
+    if (match) return match;
+
+    // 2. Dot-stripped acronym fallback (e.g., 'U.S.A.' -> 'USA', 'U.S.' -> 'US', 'U.K.' -> 'UK')
+    if (q.includes('.')) {
+      const qNoDots = q.replace(/\./g, '');
+      if (qNoDots) {
+        return COUNTRY_DATA.find(c => {
+          if (normalizeCountryText(c.name).replace(/\./g, '') === qNoDots) return true;
+          if (normalizeCountryText(c.alpha2) === qNoDots) return true;
+          if (normalizeCountryText(c.alpha3) === qNoDots) return true;
+          if (c.official_name && normalizeCountryText(c.official_name).replace(/\./g, '') === qNoDots) return true;
+          if (c.search_terms && c.search_terms.some(t => normalizeCountryText(t).replace(/\./g, '') === qNoDots)) return true;
+          return false;
+        }) || null;
+      }
+    }
+
+    return null;
   }
 
   function renderCountryOptions() {
@@ -231,54 +266,113 @@
     const hint = document.getElementById('countryHint');
     const input = document.getElementById('countryInput');
     const officialBtn = document.getElementById('officialLink');
-    if (!hint || !input) return;
+    if (!hint || !input) return null;
 
-    const c = getCountryByQuery(input.value) || COUNTRY_DATA.find(x => x.alpha2 === state.answers.countryCode);
-    if (!c) {
-      hint.innerHTML = `<strong style="color:#b45309">Select an indexed country</strong><span>Please type and select a country from the indexed list.</span>`;
-      return;
+    const rawVal = input.value;
+    const trimmed = rawVal ? rawVal.trim() : '';
+
+    if (!trimmed) {
+      // Clearing input clears both countryCode and countryName immediately
+      state.answers.countryCode = null;
+      state.answers.countryName = null;
+      input.removeAttribute('aria-invalid');
+      if (officialBtn) {
+        officialBtn.style.display = 'none';
+        officialBtn.href = '#';
+      }
+      hint.className = 'country-source-status hint-empty';
+      const promptTitle = (typeof getI18nText === 'function') ? getI18nText('country_prompt_title') : 'Select Country';
+      const promptDesc = (typeof getI18nText === 'function') ? getI18nText('country_prompt_desc') : 'Please type or select your passport-issuing authority from the list.';
+      hint.innerHTML = `
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="status-pill status-needs-research">${escapeHTML(promptTitle)}</span>
+          <strong style="color:#64748b">${escapeHTML(promptDesc)}</strong>
+        </div>
+      `;
+      return null;
     }
 
+    const c = getCountryByQuery(rawVal);
+    if (!c) {
+      // Incomplete, ambiguous, or unrecognized input immediately invalidates previous selection
+      state.answers.countryCode = null;
+      state.answers.countryName = null;
+      input.setAttribute('aria-invalid', 'true');
+      if (officialBtn) {
+        officialBtn.style.display = 'none';
+        officialBtn.href = '#';
+      }
+      hint.className = 'country-source-status hint-unresolved';
+      const unresPill = (typeof getI18nText === 'function') ? getI18nText('country_unresolved_pill') : 'UNRESOLVED JURISDICTION';
+      const unresTitle = (typeof getI18nText === 'function') ? getI18nText('country_unresolved_title') : 'Select an indexed country';
+      const unresDesc = (typeof getI18nText === 'function') ? getI18nText('country_unresolved_desc') : 'Please select a recognized country from the suggested list.';
+      hint.innerHTML = `
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="status-pill status-needs-research" style="background:#fef2f2;color:#991b1b;border-color:#fecaca">${escapeHTML(unresPill)}</span>
+          <strong style="color:#b91c1c">${escapeHTML(unresTitle)}</strong>
+        </div>
+        <span style="color:#7f1d1d">${escapeHTML(unresDesc)}</span>
+      `;
+      return null;
+    }
+
+    // Successfully resolved canonical country
     state.answers.countryCode = c.alpha2;
     state.answers.countryName = c.name;
+    input.setAttribute('aria-invalid', 'false');
 
     const isVerified = c.portal_status === 'verified';
     const isLinked = !!c.authority_url;
 
+    hint.className = 'country-source-status hint-resolved';
     if (isVerified) {
+      const verifiedPill = (typeof getI18nText === 'function') ? getI18nText('status_verified_country_pack') : 'VERIFIED SOURCE PACK';
+      const verifiedDesc = (typeof getI18nText === 'function') ? getI18nText('country_verified_desc') : 'Official requirements and document standards fully researched and updated for 2026.';
+      const openBtnText = (typeof getI18nText === 'function') ? getI18nText('btn_open_portal') : 'Open Official Portal ↗';
       hint.innerHTML = `
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill status-verified">VERIFIED SOURCE PACK</span>
-          <strong>${escapeHTML(c.authority_label || c.name + ' Passport Authority')}</strong>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="status-pill status-verified">${escapeHTML(verifiedPill)}</span>
+          <strong>${escapeHTML(c.name)} (${escapeHTML(c.alpha2)}) · ${escapeHTML(c.authority_label || c.name + ' Passport Authority')}</strong>
         </div>
-        <span>Official requirements and document standards fully researched and updated for 2026.</span>
-        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">Open Official Portal ↗</a>
+        <span>${escapeHTML(verifiedDesc)}</span>
+        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">${escapeHTML(openBtnText)}</a>
       `;
     } else if (isLinked) {
+      const linkedPill = (typeof getI18nText === 'function') ? getI18nText('badge_official') : 'OFFICIAL PORTAL LINKED';
+      const linkedDesc = (typeof getI18nText === 'function') ? getI18nText('country_linked_desc') : 'Official portal link recorded; scenario-specific rules undergoing detailed research.';
+      const openBtnText = (typeof getI18nText === 'function') ? getI18nText('btn_open_portal') : 'Open Official Portal ↗';
       hint.innerHTML = `
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill status-linked">OFFICIAL PORTAL LINKED</span>
-          <strong>${escapeHTML(c.authority_label || 'Official Government Agency')}</strong>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="status-pill status-linked">${escapeHTML(linkedPill)}</span>
+          <strong>${escapeHTML(c.name)} (${escapeHTML(c.alpha2)}) · ${escapeHTML(c.authority_label || 'Official Government Agency')}</strong>
         </div>
-        <span>Official portal link recorded; scenario-specific rules undergoing detailed research.</span>
-        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">Open Official Portal ↗</a>
+        <span>${escapeHTML(linkedDesc)}</span>
+        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">${escapeHTML(openBtnText)}</a>
       `;
     } else {
+      const awaitingPill = (typeof getI18nText === 'function') ? getI18nText('status_awaiting_research') : 'AWAITING SOURCE RESEARCH';
+      const generalTitle = (typeof getI18nText === 'function') ? getI18nText('country_general_guidance_title') : 'General Preparation Guidance';
+      const awaitingDesc = (typeof getI18nText === 'function') ? getI18nText('country_awaiting_desc') : 'Official passport authority link currently undergoing research. Generic preparation guidance provided.';
       hint.innerHTML = `
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill status-needs-research">AWAITING SOURCE RESEARCH</span>
-          <strong>General Preparation Guidance</strong>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="status-pill status-needs-research">${escapeHTML(awaitingPill)}</span>
+          <strong>${escapeHTML(c.name)} (${escapeHTML(c.alpha2)}) · ${escapeHTML(generalTitle)}</strong>
         </div>
-        <span>Official passport authority link currently undergoing research. Generic preparation guidance provided.</span>
+        <span>${escapeHTML(awaitingDesc)}</span>
       `;
     }
 
     if (officialBtn && c.authority_url) {
+      officialBtn.style.display = 'inline-flex';
       officialBtn.href = c.authority_url;
       officialBtn.textContent = `Open ${c.name} Official Portal ↗`;
+    } else if (officialBtn) {
+      officialBtn.style.display = 'none';
+      officialBtn.href = '#';
     }
-  }
 
+    return c;
+  }
   // Step Navigation
   function renderStep(stepIndex) {
     state.currentStep = stepIndex;
@@ -311,6 +405,18 @@
   function syncInputsToState() {
     const getVal = (id) => { const el = document.getElementById(id); return el ? el.value : null; };
     const getRadio = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : null; };
+
+    const countryVal = getVal('countryInput');
+    if (countryVal !== null) {
+      const matched = getCountryByQuery(countryVal);
+      if (matched) {
+        state.answers.countryCode = matched.alpha2;
+        state.answers.countryName = matched.name;
+      } else {
+        state.answers.countryCode = null;
+        state.answers.countryName = null;
+      }
+    }
 
     if (getRadio('service')) state.answers.service = getRadio('service');
     if (getRadio('age')) state.answers.age = getRadio('age');
@@ -359,12 +465,46 @@
     const saveBtn = document.getElementById('saveProgressBtn');
 
     if (countryInput) {
-      countryInput.addEventListener('input', updateCountryHint);
-      countryInput.addEventListener('change', updateCountryHint);
+      countryInput.addEventListener('input', () => {
+        updateCountryHint();
+      });
+      countryInput.addEventListener('change', () => {
+        const c = updateCountryHint();
+        if (c && countryInput.value !== c.name) {
+          countryInput.value = c.name;
+        }
+      });
+      countryInput.addEventListener('blur', () => {
+        const c = updateCountryHint();
+        if (c && countryInput.value !== c.name) {
+          countryInput.value = c.name;
+        }
+      });
+      countryInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const c = updateCountryHint();
+          if (c) {
+            countryInput.value = c.name;
+            const locationSelect = document.getElementById('locationSelect');
+            if (locationSelect) locationSelect.focus();
+          } else {
+            showToast((typeof getI18nText === 'function' ? getI18nText('country_continue_error') : null) || 'Please select a valid country from the list');
+          }
+        }
+      });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
+        if (state.currentStep === 0) {
+          const c = updateCountryHint();
+          if (!c || !state.answers.countryCode) {
+            if (countryInput) countryInput.focus();
+            showToast((typeof getI18nText === 'function' ? getI18nText('country_continue_error') : null) || 'Please type and select a recognized passport-issuing authority before continuing.');
+            return;
+          }
+        }
         syncInputsToState();
         if (state.currentStep < state.totalSteps - 1) {
           renderStep(state.currentStep + 1);
@@ -1089,8 +1229,8 @@
     return [...code.toUpperCase()].map(ch => String.fromCodePoint(127397 + ch.charCodeAt(0))).join('');
   }
 
-  // Expose global controller
-  window.PassportApp = {
+  // Expose global controller with DEF-04 helpers
+  const exportedApp = {
     init,
     toggleCheck,
     selectCountryFromDirectory,
@@ -1098,13 +1238,26 @@
     openInformationalModal,
     getDirectoryCounts,
     updateDirectoryFilterCounts,
-    getCountryByQuery
+    getCountryByQuery,
+    normalizeCountryText,
+    updateCountryHint,
+    syncInputsToState,
+    renderStep,
+    getState: () => state
   };
 
-  // Run on DOM load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  if (typeof window !== 'undefined') {
+    window.PassportApp = exportedApp;
+    if (typeof document !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    }
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = exportedApp;
   }
 })();

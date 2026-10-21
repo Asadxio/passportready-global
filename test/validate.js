@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 264;
+  const expectedKeyCount = 274;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4041,7 +4041,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 264;
+  const expectedKeys = 274;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4152,6 +4152,203 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
     // Evaluation scores and classification remain invariant
     assert.strictEqual(evalSwitched.readinessScore, evalEn.readinessScore, `Readiness score must remain identical across language switch to ${switchLang}`);
     assert.strictEqual(evalSwitched.statusLabel, evalEn.statusLabel, `Status label must remain identical across language switch to ${switchLang}`);
+  }
+});
+
+// 32. Phase 4.6 Calibration: Reliable Country Search, Normalization & State Synchronization (DEF-04)
+runTest('Phase 4.6 Calibration: Reliable Country Search, Normalization & State Synchronization (DEF-04)', () => {
+  const App = require('../js/app.js');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const countryDataModule = require('../data/country-data.js');
+  const countries = countryDataModule.PASSPORT_COUNTRIES;
+  const engine = new PassportRulesEngine(rulePacks, countries);
+
+  // 1. Exact canonical country-name match
+  const inMatch = App.getCountryByQuery('India');
+  assert(inMatch && inMatch.alpha2 === 'IN' && inMatch.name === 'India', 'India exact match must resolve');
+  const usMatch = App.getCountryByQuery('United States');
+  assert(usMatch && usMatch.alpha2 === 'US' && usMatch.name === 'United States', 'United States exact match must resolve');
+  const gbMatch = App.getCountryByQuery('United Kingdom');
+  assert(gbMatch && gbMatch.alpha2 === 'GB' && gbMatch.name === 'United Kingdom', 'United Kingdom exact match must resolve');
+  const auMatch = App.getCountryByQuery('Australia');
+  assert(auMatch && auMatch.alpha2 === 'AU' && auMatch.name === 'Australia', 'Australia exact match must resolve');
+
+  // 2. Case-insensitive matching
+  assert.strictEqual(App.getCountryByQuery('india')?.alpha2, 'IN', 'india lowercase must resolve to IN');
+  assert.strictEqual(App.getCountryByQuery('UNITED STATES')?.alpha2, 'US', 'UNITED STATES uppercase must resolve to US');
+  assert.strictEqual(App.getCountryByQuery('uNiTeD kInGdOm')?.alpha2, 'GB', 'Mixed case must resolve to GB');
+  assert.strictEqual(App.getCountryByQuery('australia')?.alpha2, 'AU', 'australia lowercase must resolve to AU');
+  assert.strictEqual(App.getCountryByQuery('gerMANy')?.alpha2, 'DE', 'gerMANy mixed case must resolve to DE');
+
+  // 3. Leading/trailing and repeated whitespace
+  assert.strictEqual(App.getCountryByQuery('   India   ')?.alpha2, 'IN', 'Padded whitespace must resolve to IN');
+  assert.strictEqual(App.getCountryByQuery('United   States')?.alpha2, 'US', 'Repeated internal spaces must resolve to US');
+  assert.strictEqual(App.getCountryByQuery('  United    Kingdom   ')?.alpha2, 'GB', 'Repeated spaces and padding must resolve to GB');
+
+  // 4. Accented and Unicode-normalized input
+  assert.strictEqual(App.getCountryByQuery("Côte d’Ivoire")?.alpha2, 'CI', 'Curly apostrophe Côte d’Ivoire must resolve to CI');
+  assert.strictEqual(App.getCountryByQuery("Cote d'Ivoire")?.alpha2, 'CI', 'Unaccented Cote d\'Ivoire must resolve to CI');
+  assert.strictEqual(App.getCountryByQuery("Ivory Coast")?.alpha2, 'CI', 'Ivory Coast alias must resolve to CI');
+  assert.strictEqual(App.getCountryByQuery("Türkiye")?.alpha2, 'TR', 'Accented Türkiye must resolve to TR');
+  assert.strictEqual(App.getCountryByQuery("Turkiye")?.alpha2, 'TR', 'Unaccented Turkiye must resolve to TR');
+  assert.strictEqual(App.getCountryByQuery("Turkey")?.alpha2, 'TR', 'Turkey alias must resolve to TR');
+  assert.strictEqual(App.getCountryByQuery("Curaçao")?.alpha2, 'CW', 'Accented Curaçao must resolve to CW');
+  assert.strictEqual(App.getCountryByQuery("Curacao")?.alpha2, 'CW', 'Unaccented Curacao must resolve to CW');
+  assert.strictEqual(App.getCountryByQuery("Réunion")?.alpha2, 'RE', 'Accented Réunion must resolve to RE');
+  assert.strictEqual(App.getCountryByQuery("Reunion")?.alpha2, 'RE', 'Unaccented Reunion must resolve to RE');
+  assert.strictEqual(App.getCountryByQuery("Åland Islands")?.alpha2, 'AX', 'Åland Islands must resolve to AX');
+  assert.strictEqual(App.getCountryByQuery("Aland Islands")?.alpha2, 'AX', 'Aland Islands must resolve to AX');
+  assert.strictEqual(App.getCountryByQuery("Saint Barthélemy")?.alpha2, 'BL', 'Saint Barthélemy must resolve to BL');
+  assert.strictEqual(App.getCountryByQuery("Saint Barthelemy")?.alpha2, 'BL', 'Saint Barthelemy must resolve to BL');
+
+  // 5. HTML5 datalist options consistency (all 249 canonical entries resolve 1:1)
+  countries.forEach(c => {
+    const match = App.getCountryByQuery(c.name);
+    assert(match, `Canonical country name '${c.name}' must resolve via getCountryByQuery`);
+    assert.strictEqual(match.alpha2, c.alpha2, `Resolved alpha2 for '${c.name}' must match '${c.alpha2}'`);
+    assert.strictEqual(match.name, c.name, `Resolved canonical name must match '${c.name}'`);
+  });
+
+  // 6, 7, 8, 9, 10, 11, 12, 13, 14: State synchronization simulation
+  const simState = {
+    answers: { countryCode: 'IN', countryName: 'India', location: 'inside', service: 'first_passport' },
+    currentStep: 0,
+    totalSteps: 10
+  };
+
+  let mockInputValue = 'India';
+  let mockHintClass = '';
+  let mockInvalidAttr = 'false';
+
+  function mockUpdateCountryHint() {
+    const trimmed = mockInputValue ? mockInputValue.trim() : '';
+    if (!trimmed) {
+      simState.answers.countryCode = null;
+      simState.answers.countryName = null;
+      mockInvalidAttr = 'false';
+      mockHintClass = 'country-source-status hint-empty';
+      return null;
+    }
+    const c = App.getCountryByQuery(mockInputValue);
+    if (!c) {
+      simState.answers.countryCode = null;
+      simState.answers.countryName = null;
+      mockInvalidAttr = 'true';
+      mockHintClass = 'country-source-status hint-unresolved';
+      return null;
+    }
+    simState.answers.countryCode = c.alpha2;
+    simState.answers.countryName = c.name;
+    mockInvalidAttr = 'false';
+    mockHintClass = 'country-source-status hint-resolved';
+    return c;
+  }
+
+  function mockNextClick() {
+    if (simState.currentStep === 0) {
+      const c = mockUpdateCountryHint();
+      if (!c || !simState.answers.countryCode) {
+        return false; // navigation blocked
+      }
+    }
+    simState.currentStep++;
+    return true;
+  }
+
+  // 6. Initial state: India
+  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'IN');
+  assert.strictEqual(simState.answers.countryCode, 'IN');
+  assert.strictEqual(simState.answers.countryName, 'India');
+
+  // 7 & 12. Change to Australia, United Kingdom, and United States
+  mockInputValue = 'Australia';
+  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'AU');
+  assert.strictEqual(simState.answers.countryCode, 'AU');
+  assert.strictEqual(simState.answers.countryName, 'Australia');
+
+  mockInputValue = 'United Kingdom';
+  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'GB');
+  assert.strictEqual(simState.answers.countryCode, 'GB');
+  assert.strictEqual(simState.answers.countryName, 'United Kingdom');
+
+  mockInputValue = 'United States';
+  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'US');
+  assert.strictEqual(simState.answers.countryCode, 'US');
+  assert.strictEqual(simState.answers.countryName, 'United States');
+
+  // 8. Clearing the input
+  mockInputValue = '';
+  assert.strictEqual(mockUpdateCountryHint(), null);
+  assert.strictEqual(simState.answers.countryCode, null, 'Clearing input must clear countryCode to null');
+  assert.strictEqual(simState.answers.countryName, null, 'Clearing input must clear countryName to null');
+  assert.strictEqual(mockHintClass, 'country-source-status hint-empty');
+
+  // 14. Preventing wizard from advancing when country is empty or unresolved
+  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked when country is empty');
+  assert.strictEqual(simState.currentStep, 0, 'Wizard step must remain 0');
+
+  // 9. Unknown country names
+  mockInputValue = 'Atlantis';
+  assert.strictEqual(mockUpdateCountryHint(), null, 'Atlantis must return null');
+  assert.strictEqual(simState.answers.countryCode, null);
+  assert.strictEqual(simState.answers.countryName, null);
+  assert.strictEqual(mockInvalidAttr, 'true');
+  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked for unknown country');
+
+  // 10. Ambiguous or incomplete input
+  mockInputValue = 'United';
+  assert.strictEqual(mockUpdateCountryHint(), null, 'United is ambiguous and must not resolve');
+  assert.strictEqual(simState.answers.countryCode, null);
+  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked for ambiguous prefix');
+
+  mockInputValue = 'Austr';
+  assert.strictEqual(mockUpdateCountryHint(), null, 'Austr is incomplete and must not resolve');
+  assert.strictEqual(simState.answers.countryCode, null);
+  assert.strictEqual(mockNextClick(), false, 'Continue must be blocked for incomplete prefix');
+
+  // 11. Previous valid country followed by invalid text
+  mockInputValue = 'Germany';
+  assert.strictEqual(mockUpdateCountryHint()?.alpha2, 'DE');
+  assert.strictEqual(simState.answers.countryCode, 'DE');
+
+  mockInputValue = 'GermanyXYZ';
+  assert.strictEqual(mockUpdateCountryHint(), null);
+  assert.strictEqual(simState.answers.countryCode, null, 'Lingering DE code must be invalidated immediately');
+  assert.strictEqual(simState.answers.countryName, null);
+  assert.strictEqual(mockNextClick(), false, 'Advance blocked after invalidating edit');
+
+  // 13. Correct state passed to PassportRulesEngine.evaluate()
+  mockInputValue = 'Australia';
+  mockUpdateCountryHint();
+  assert(mockNextClick(), 'Advance allowed with valid Australia selection');
+  assert.strictEqual(simState.currentStep, 1);
+  const auEval = engine.evaluate(simState.answers);
+  assert.strictEqual(auEval.country.code, 'AU');
+  assert.strictEqual(auEval.country.name, 'Australia');
+  const auFee = auEval.checklist.find(c => c.id === 'official_fee_payment');
+  assert(auFee.details.includes('422'), 'AU evaluation must produce 422 AUD statutory fee');
+
+  // 15. Translation keys and accessibility attributes check
+  const requiredKeys = [
+    'country_prompt_title',
+    'country_prompt_desc',
+    'country_unresolved_pill',
+    'country_unresolved_title',
+    'country_unresolved_desc',
+    'country_verified_desc',
+    'country_linked_desc',
+    'country_awaiting_desc',
+    'country_general_guidance_title',
+    'country_continue_error'
+  ];
+
+  for (const lang of ['en', 'hi', 'ur', 'fr', 'de', 'ar']) {
+    requiredKeys.forEach(k => {
+      assert(I18N_TRANSLATIONS[lang][k], `Key ${k} missing in ${lang}`);
+      assert(I18N_TRANSLATIONS[lang][k].length > 3, `Key ${k} in ${lang} must not be empty`);
+    });
   }
 });
 console.log('\n====================================================');
