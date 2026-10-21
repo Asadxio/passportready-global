@@ -3836,6 +3836,23 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   assert.strictEqual(inAbroadFee.feeStatus, 'consular_local_currency');
   assert(!inAbroadFee.details.includes('₹2,500'), 'Must not claim domestic INR fee is payable abroad');
 
+  // India 10% Fresh Rebate Boundaries Verification (above 60 years & children up to 8 years)
+  const inSenior = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 65 });
+  const inSeniorFee = inSenior.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inSeniorFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inSeniorFee.feeRecord.fresh_senior_rebate_36, 2250);
+  assert.strictEqual(inSeniorFee.feeRecord.fresh_senior_rebate_60, 3150);
+  assert(inSeniorFee.details.includes('above 60 years'), 'Must use statutory phrase above 60 years');
+  assert(!inSeniorFee.details.includes('60+'), 'Must not use informal 60+ in details');
+  assert(!inSeniorFee.details.includes('Does not apply to Tatkaal'), 'Must not claim Tatkaal is excluded from 10% rebate');
+  assert(!inSeniorFee.details.includes('Does not apply to 60-page'), 'Must not claim 60-page is excluded from 10% rebate');
+
+  const inChild8 = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 7 });
+  const inChild8Fee = inChild8.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inChild8Fee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inChild8Fee.feeRecord.fresh_under_8_rebate, 1575);
+  assert(inChild8Fee.details.includes('children up to 8 years'));
+
   // 2. United States (US)
   const usAdult = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport' });
   const usAdultFee = usAdult.checklist.find(c => c.id === 'official_fee_payment');
@@ -3888,7 +3905,10 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   const gbAbroadFee = gbAbroad.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(gbAbroadFee.feeStatus, 'consular_local_currency');
   assert.strictEqual(gbAbroadFee.feeRecord.adult_overseas_online, 116.50);
-  assert.strictEqual(gbAbroadFee.feeRecord.international_courier_fee_separate, 20.86);
+  assert.strictEqual(gbAbroadFee.feeRecord.international_delivery_fee_separate, 14.32);
+  assert.strictEqual(gbAbroadFee.feeRecord.unverified_legacy_delivery_fee, 20.86);
+  assert(gbAbroadFee.details.includes('£14.32'), 'Must cite confirmed £14.32 HMPO international delivery fee');
+  assert(gbAbroadFee.details.includes('unverified'), 'Must mark £20.86 as unverified');
 
   // 4. Canada (CA)
   const caAdult = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport' });

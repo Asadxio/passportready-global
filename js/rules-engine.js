@@ -3605,13 +3605,15 @@ class PassportRulesEngine {
                 feeStatus = 'confirmation_required';
               } else if (isTatkaalRequested && typeof tatkaalSurcharge === 'number') {
                 const totalTatkaal = fees.tatkaal_total_minor ?? (minorBase + tatkaalSurcharge);
-                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. Tatkaal urgent processing: +₹${tatkaalSurcharge.toLocaleString('en-IN')} (Total Tatkaal: ₹${totalTatkaal.toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
+                const isUnder8 = (rawExactAge !== null && rawExactAge <= 8);
+                const under8Tatkaal = isUnder8 ? (Math.round(minorBase * 0.9) + tatkaalSurcharge) : null;
+                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. Tatkaal urgent processing: +₹${tatkaalSurcharge.toLocaleString('en-IN')} (Total Tatkaal: ₹${totalTatkaal.toLocaleString('en-IN')}). (For fresh applications, children up to 8 years receive a 10% rebate on the basic fee component: ₹4,075 total). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', base: minorBase, tatkaal_surcharge: tatkaalSurcharge, total: totalTatkaal, booklet: '36 pages' };
+                specificFeeRecord = { currency: 'INR', base: minorBase, tatkaal_surcharge: tatkaalSurcharge, total: totalTatkaal, booklet: '36 pages', ...(under8Tatkaal ? { fresh_under_8_tatkaal: under8Tatkaal } : {}) };
               } else {
                 const isUnder8 = (rawExactAge !== null && rawExactAge <= 8);
                 const discountedMinor = isUnder8 ? Math.round(minorBase * 0.9) : null;
-                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. (10% rebate applies for children up to 8 years applying fresh: ₹${Math.round(minorBase * 0.9).toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
+                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. (10% rebate on basic fee applies for fresh passport applications of children up to 8 years: ₹${Math.round(minorBase * 0.9).toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
                 specificFeeRecord = { currency: 'INR', base: minorBase, booklet: '36 pages', ...(discountedMinor ? { fresh_under_8_rebate: discountedMinor } : {}) };
               }
@@ -3624,15 +3626,19 @@ class PassportRulesEngine {
               } else if (isTatkaalRequested && typeof tatkaalSurcharge === 'number') {
                 const tatkaal36 = fees.tatkaal_total_36_pages ?? (fee36 + tatkaalSurcharge);
                 const tatkaal60 = fees.tatkaal_total_60_pages ?? (fee60 + tatkaalSurcharge);
-                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. Tatkaal urgent processing fee: ₹${tatkaal36.toLocaleString('en-IN')} for 36 pages / ₹${tatkaal60.toLocaleString('en-IN')} for 60 pages (inclusive of ₹${tatkaalSurcharge.toLocaleString('en-IN')} Tatkaal additional fee). Pay online via Passport Seva portal.`;
+                const isSenior60 = (rawExactAge !== null && rawExactAge >= 60) || isSeniorApplicant;
+                const seniorTatkaal36 = isSenior60 ? (Math.round(fee36 * 0.9) + tatkaalSurcharge) : null;
+                const seniorTatkaal60 = isSenior60 ? (Math.round(fee60 * 0.9) + tatkaalSurcharge) : null;
+                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. Tatkaal urgent processing fee: ₹${tatkaal36.toLocaleString('en-IN')} for 36 pages / ₹${tatkaal60.toLocaleString('en-IN')} for 60 pages (inclusive of ₹${tatkaalSurcharge.toLocaleString('en-IN')} Tatkaal additional fee). (For fresh applications, senior citizens above 60 years receive a 10% rebate on the basic fee component: ₹4,750 for 36 pages / ₹5,650 for 60 pages). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_additional_fee: tatkaalSurcharge, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60 };
+                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_additional_fee: tatkaalSurcharge, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60, ...(seniorTatkaal36 ? { fresh_senior_tatkaal_36: seniorTatkaal36, fresh_senior_tatkaal_60: seniorTatkaal60 } : {}) };
               } else {
                 const isSenior60 = (rawExactAge !== null && rawExactAge >= 60) || isSeniorApplicant;
-                const seniorRebate = isSenior60 ? Math.round(fee36 * 0.9) : null;
-                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. (10% rebate applies for senior citizens aged 60+ applying fresh: ₹${Math.round(fee36 * 0.9).toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
+                const seniorRebate36 = isSenior60 ? Math.round(fee36 * 0.9) : null;
+                const seniorRebate60 = isSenior60 ? Math.round(fee60 * 0.9) : null;
+                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. (10% rebate on basic fee applies for fresh passport applications of senior citizens above 60 years: ₹${Math.round(fee36 * 0.9).toLocaleString('en-IN')} for 36 pages / ₹${Math.round(fee60 * 0.9).toLocaleString('en-IN')} for 60 pages). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, ...(seniorRebate ? { fresh_senior_rebate: seniorRebate } : {}) };
+                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, ...(seniorRebate36 ? { fresh_senior_rebate_36: seniorRebate36, fresh_senior_rebate_60: seniorRebate60 } : {}) };
               }
             }
           }
@@ -3750,9 +3756,17 @@ class PassportRulesEngine {
           }
         } else {
           const overseasOnline = fees.adult_overseas_online ?? 116.50;
-          feeDetails = `UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas standard adult application fee is £${overseasOnline.toFixed(2)} online. International courier delivery fee (£20.86) is assessed and paid separately during checkout. Domestic fee rates (£102.00 / £66.50) do not apply when applying from abroad.`;
+          const internationalDeliveryFee = fees.international_delivery_fee ?? 14.32;
+          feeDetails = `UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas standard adult application fee is £${overseasOnline.toFixed(2)} online. Standard international courier delivery is charged separately by HM Passport Office at £${internationalDeliveryFee.toFixed(2)} per consignment (£14.32 for passport delivery; £14.32 for return of supporting documents if applicable). Reported £20.86 fee is unverified and unsubstantiated by the current official tariff. Application and delivery fees are assessed separately during checkout. Domestic fee rates (£102.00 / £66.50) do not apply when applying from abroad.`;
           feeStatus = 'consular_local_currency';
-          specificFeeRecord = { currency: 'GBP', adult_overseas_online: overseasOnline, international_courier_fee_separate: 20.86, note: 'Overseas online tariff with separate international courier fee assessed via gov.uk' };
+          specificFeeRecord = {
+            currency: 'GBP',
+            adult_overseas_online: overseasOnline,
+            international_delivery_fee_separate: internationalDeliveryFee,
+            unverified_legacy_delivery_fee: 20.86,
+            delivery_fee_status: 'unverified_legacy_substantiated_as_14_32',
+            note: 'Overseas online tariff with separate international delivery fee of £14.32 per consignment assessed via gov.uk'
+          };
         }
       } else if (countryCode === 'CA') {
         if (location === 'inside') {

@@ -40,7 +40,7 @@
         "age_basis_source": "https://www.passportindia.gov.in/"
       },
       {
-        "label": "Senior citizen (60+)",
+        "label": "Senior citizen (above 60 years)",
         "min_age": 60,
         "max_age": null,
         "age_basis_source": "https://www.passportindia.gov.in/"
@@ -153,7 +153,7 @@
           "tatkaal_total_36_pages": 5000,
           "tatkaal_total_60_pages": 6000,
           "tatkaal_total_minor": 4250,
-          "senior_child_discount_note": "10% rebate on base passport fee for senior citizens (60+) fresh 36-page (₹2,250) and children up to 8 years fresh minor (₹1,575). Does not apply to Tatkaal, 60-page jumbo, or replacement.",
+          "senior_child_discount_note": "A 10% rebate on the basic passport fee is available for fresh passport applications submitted by senior citizens (persons above the age of 60 years) and minor children up to the age of 8 years. Applies to the basic passport fee component; does not apply to re-issue or replacement of lost/damaged passports.",
           "fee_records": [
             {
               "currency": "INR",
@@ -164,7 +164,7 @@
               "applicant_category": "adult_18_and_older",
               "application_channel": "domestic_online",
               "validity_period": "10_years",
-              "discount_eligibility": "Standard adult 36-page passport or reissue.",
+              "discount_eligibility": "Standard adult 36-page passport or reissue (fresh applications for senior citizens above 60 years eligible for 10% rebate on basic fee: ₹2,250).",
               "applicable_conditions": "Indian citizens aged 18 and older. Passports (Amendment) Rules 2026 G.S.R. 516(E).",
               "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
               "effective_date": "2026-07-01",
@@ -181,7 +181,7 @@
               "applicant_category": "adult_18_and_older_jumbo",
               "application_channel": "domestic_online",
               "validity_period": "10_years",
-              "discount_eligibility": "Standard adult 60-page jumbo booklet.",
+              "discount_eligibility": "Standard adult 60-page jumbo booklet (fresh applications for senior citizens above 60 years eligible for 10% rebate on basic fee: ₹3,150).",
               "applicable_conditions": "Frequent travellers aged 18 and older. Passports (Amendment) Rules 2026 G.S.R. 516(E).",
               "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
               "effective_date": "2026-07-01",
@@ -198,7 +198,7 @@
               "applicant_category": "minor_under_18",
               "application_channel": "domestic_online",
               "validity_period": "5_years_or_until_18",
-              "discount_eligibility": "Minors under 18 standard 36-page booklet (₹1,750; fresh children up to 8 years eligible for 10% rebate: ₹1,575).",
+              "discount_eligibility": "Minors under 18 standard 36-page booklet (₹1,750; fresh children up to 8 years eligible for 10% rebate on basic fee: ₹1,575).",
               "applicable_conditions": "Minors under 18 years. Annexure D signed by parents required. Passports (Amendment) Rules, 2026, G.S.R. 516(E), Gazette No. 273829.",
               "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
               "effective_date": "2026-07-01",
@@ -215,7 +215,7 @@
               "applicant_category": "adult_tatkaal_36_pages",
               "application_channel": "domestic_tatkaal",
               "validity_period": "10_years",
-              "discount_eligibility": "Tatkaal urgent processing total fee (₹2,500 base + ₹2,500 Tatkaal additional fee).",
+              "discount_eligibility": "Tatkaal urgent processing total fee (₹2,500 base + ₹2,500 Tatkaal additional fee; fresh senior applicants above 60 years receive 10% rebate on basic fee component: ₹2,250 base + ₹2,500 = ₹4,750).",
               "applicable_conditions": "Urgent Tatkaal dispatch (1–3 business days). Verification under MEA Tatkaal norms.",
               "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
               "effective_date": "2026-07-01",
@@ -232,7 +232,7 @@
               "applicant_category": "adult_tatkaal_60_pages",
               "application_channel": "domestic_tatkaal",
               "validity_period": "10_years",
-              "discount_eligibility": "Tatkaal urgent processing total fee (₹3,500 base + ₹2,500 Tatkaal additional fee).",
+              "discount_eligibility": "Tatkaal urgent processing total fee for 60-page booklet (₹3,500 base + ₹2,500 Tatkaal additional fee; fresh senior applicants above 60 years receive 10% rebate on basic fee component: ₹3,150 base + ₹2,500 = ₹5,650).",
               "applicable_conditions": "Urgent Tatkaal dispatch (1–3 business days) for 60-page jumbo booklet.",
               "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
               "effective_date": "2026-07-01",
@@ -249,7 +249,7 @@
               "applicant_category": "minor_tatkaal_36_pages",
               "application_channel": "domestic_tatkaal",
               "validity_period": "5_years_or_until_18",
-              "discount_eligibility": "Tatkaal urgent processing total fee for minors (₹1,750 base + ₹2,500 Tatkaal additional fee).",
+              "discount_eligibility": "Tatkaal urgent processing total fee for minors (₹1,750 base + ₹2,500 Tatkaal additional fee; fresh children up to 8 years receive 10% rebate on basic fee component: ₹1,575 base + ₹2,500 = ₹4,075).",
               "applicable_conditions": "Urgent Tatkaal dispatch for minors under 18 years. Passports (Amendment) Rules, 2026, G.S.R. 516(E), Gazette No. 273829.",
               "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
               "effective_date": "2026-07-01",
@@ -1316,7 +1316,7 @@
               "application_channel": "overseas_online",
               "validity_period": "10_years",
               "discount_eligibility": "Standard overseas online application rate for adults aged 16+.",
-              "applicable_conditions": "Application from abroad via gov.uk. International delivery courier fee (£20.86) assessed separately.",
+              "applicable_conditions": "Application from abroad via gov.uk. Standard international delivery fee (£14.32 per consignment: £14.32 for passport delivery, and £14.32 for return of supporting documents if applicable) assessed separately by HMPO. Legacy figure £20.86 is unverified and unsubstantiated by current HMPO fee schedule.",
               "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
               "effective_date": "2024-04-11",
               "verification_date": "2026-10-21",
@@ -1325,7 +1325,10 @@
             }
           ],
           "adult_overseas_online": 116.5,
-          "international_courier_fee": 20.86
+          "international_delivery_fee": 14.32,
+          "supporting_documents_return_delivery_fee": 14.32,
+          "unverified_legacy_delivery_fee": 20.86,
+          "delivery_fee_status": "unverified_legacy_substantiated_as_14_32"
         },
         "processing_times": {
           "standard": "Up to 3 weeks",
