@@ -3538,9 +3538,17 @@ class PassportRulesEngine {
           if (service === 'lost_stolen') {
             const fee36 = fees.standard_adult_36_pages;
             const fee60 = fees.standard_adult_60_pages;
+            const isTatkaalRequested = urgency === 'urgent' || urgency === 'tatkaal';
+            const tatkaalSurcharge = fees.tatkaal_additional_fee ?? fees.tatkaal_surcharge ?? 2500;
             if (typeof fee36 !== 'number' || typeof fee60 !== 'number') {
               feeDetails = `Fee Confirmation Required: Statutory replacement fees for lost/damaged passports in India require confirmation on passportindia.gov.in.`;
               feeStatus = 'confirmation_required';
+            } else if (isTatkaalRequested) {
+              const tatkaal36 = fees.tatkaal_total_36_pages ?? (fee36 + tatkaalSurcharge);
+              const tatkaal60 = fees.tatkaal_total_60_pages ?? (fee60 + tatkaalSurcharge);
+              feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Lost or damaged passport replacement under Tatkaal: Standard 36 pages: ₹${tatkaal36.toLocaleString('en-IN')} (₹${fee36.toLocaleString('en-IN')} base + ₹${tatkaalSurcharge.toLocaleString('en-IN')} Tatkaal); Jumbo 60 pages: ₹${tatkaal60.toLocaleString('en-IN')} (₹${fee60.toLocaleString('en-IN')} base + ₹${tatkaalSurcharge.toLocaleString('en-IN')} Tatkaal). Police FIR and Annexure F mandatory. Pay online via Passport Seva portal.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'INR', standard_adult_36_pages: fee36, standard_adult_60_pages: fee60, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60 };
             } else {
               feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Lost or damaged passport replacement: Standard 36 pages: ₹${fee36.toLocaleString('en-IN')}; Jumbo 60 pages: ₹${fee60.toLocaleString('en-IN')}. Pay online via Passport Seva portal.`;
               feeStatus = 'verified_statutory';
@@ -3560,9 +3568,11 @@ class PassportRulesEngine {
                 feeStatus = 'verified_statutory';
                 specificFeeRecord = { currency: 'INR', base: minorBase, tatkaal_surcharge: tatkaalSurcharge, total: totalTatkaal, booklet: '36 pages' };
               } else {
+                const isUnder8 = (rawExactAge !== null && rawExactAge <= 8);
+                const discountedMinor = isUnder8 ? Math.round(minorBase * 0.9) : null;
                 feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. (10% rebate applies for children up to 8 years applying fresh: ₹${Math.round(minorBase * 0.9).toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', base: minorBase, booklet: '36 pages' };
+                specificFeeRecord = { currency: 'INR', base: minorBase, booklet: '36 pages', ...(discountedMinor ? { fresh_under_8_rebate: discountedMinor } : {}) };
               }
             } else {
               const fee36 = fees.standard_adult_36_pages ?? fees.standard;
@@ -3577,9 +3587,11 @@ class PassportRulesEngine {
                 feeStatus = 'verified_statutory';
                 specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_additional_fee: tatkaalSurcharge, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60 };
               } else {
+                const isSenior60 = (rawExactAge !== null && rawExactAge >= 60) || isSeniorApplicant;
+                const seniorRebate = isSenior60 ? Math.round(fee36 * 0.9) : null;
                 feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. (10% rebate applies for senior citizens aged 60+ applying fresh: ₹${Math.round(fee36 * 0.9).toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60 };
+                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, ...(seniorRebate ? { fresh_senior_rebate: seniorRebate } : {}) };
               }
             }
           }
@@ -3653,44 +3665,53 @@ class PassportRulesEngine {
         if (location === 'inside') {
           const isFastTrack = urgency === 'urgent' || urgency === 'fast_track';
           const fastTrackAdult = fees.fast_track_1_week_adult;
+          const fastTrackChild = fees.fast_track_1_week_child ?? 156.50;
+          const premium1Day = fees.premium_1_day_adult ?? 239.50;
           if (isMinorApplicant) {
             const childOnline = fees.child_online;
             const childPostal = fees.child_postal;
             if (typeof childOnline !== 'number' || typeof childPostal !== 'number') {
               feeDetails = `Fee Confirmation Required: UK child passport fees require confirmation on gov.uk.`;
               feeStatus = 'confirmation_required';
-            } else {
-              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Child (under 16) standard passport: £${childOnline.toFixed(2)} online / £${childPostal.toFixed(2)} postal (paper form). Pay online via gov.uk or Post Office Check & Send.`;
+            } else if (isFastTrack) {
+              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Child (under 16) 1-Week Fast Track service: £${fastTrackChild.toFixed(2)} (standard online fee £${childOnline.toFixed(2)} / postal £${childPostal.toFixed(2)}). Appointment at Passport Customer Service Centre required. Pay online via gov.uk.`;
               feeStatus = 'verified_statutory';
-              specificFeeRecord = { currency: 'GBP', child_online: childOnline, child_postal: childPostal };
+              specificFeeRecord = { currency: 'GBP', child_online: childOnline, child_postal: childPostal, fast_track_1_week_child: fastTrackChild };
+            } else {
+              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Child (under 16) standard passport: £${childOnline.toFixed(2)} online / £${childPostal.toFixed(2)} postal (paper form). Optional 1-Week Fast Track: £${fastTrackChild.toFixed(2)}. Pay online via gov.uk or Post Office Check & Send.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'GBP', child_online: childOnline, child_postal: childPostal, fast_track_1_week_child: fastTrackChild };
             }
           } else {
             const adultOnline = fees.adult_online;
             const adultPostal = fees.adult_postal;
+            const adultJumboOnline = fees.adult_jumbo_online ?? 116.00;
+            const adultJumboPostal = fees.adult_jumbo_postal ?? 129.50;
             if (typeof adultOnline !== 'number' || typeof adultPostal !== 'number') {
               feeDetails = `Fee Confirmation Required: UK adult passport fees require confirmation on gov.uk.`;
               feeStatus = 'confirmation_required';
             } else if (isFastTrack && typeof fastTrackAdult === 'number') {
               const isFirstTimeAdult = service === 'first_passport';
               if (isFirstTimeAdult) {
-                feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport: £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal. Note: First-time adult passport applicants cannot use 1-Week Fast Track (£${fastTrackAdult.toFixed(2)}) or 1-Day Premium (£${(fees.premium_1_day_adult || 222).toFixed(2)}) due to mandatory identity interviews. Pay online via gov.uk.`;
+                feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport: £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal (frequent-traveller 54-page: £${adultJumboOnline.toFixed(2)} online / £${adultJumboPostal.toFixed(2)} postal). Note: First-time adult passport applicants cannot use 1-Week Fast Track (£${fastTrackAdult.toFixed(2)}) or 1-Day Premium (£${premium1Day.toFixed(2)}) due to mandatory identity interviews. Pay online via gov.uk.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal, fast_track_1_week_adult: fastTrackAdult, first_time_adult_fast_track_eligible: false };
+                specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal, adult_jumbo_online: adultJumboOnline, adult_jumbo_postal: adultJumboPostal, fast_track_1_week_adult: fastTrackAdult, premium_1_day_adult: premium1Day, first_time_adult_fast_track_eligible: false };
               } else {
-                feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport: £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal. 1-Week Fast Track service (urgent): £${fastTrackAdult.toFixed(2)} (appointment required). Pay online via gov.uk.`;
+                feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport: £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal (frequent-traveller 54-page: £${adultJumboOnline.toFixed(2)} online / £${adultJumboPostal.toFixed(2)} postal). 1-Week Fast Track service (urgent): £${fastTrackAdult.toFixed(2)}; 1-Day Premium (renewal only): £${premium1Day.toFixed(2)}. Pay online via gov.uk.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal, fast_track_1_week_adult: fastTrackAdult };
+                specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal, adult_jumbo_online: adultJumboOnline, adult_jumbo_postal: adultJumboPostal, fast_track_1_week_adult: fastTrackAdult, premium_1_day_adult: premium1Day };
               }
             } else {
-              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport (10-year validity): £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal (paper application). Pay online via gov.uk or Post Office Check & Send.`;
+              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport (10-year validity): £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal (paper application). Frequent-traveller 54-page passport: £${adultJumboOnline.toFixed(2)} online / £${adultJumboPostal.toFixed(2)} postal. Pay online via gov.uk or Post Office Check & Send.`;
               feeStatus = 'verified_statutory';
-              specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal };
+              specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal, adult_jumbo_online: adultJumboOnline, adult_jumbo_postal: adultJumboPostal };
             }
           }
         } else {
-          feeDetails = 'UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas fees include an international courier surcharge (Adult: £116.00 + £20.86 courier fee = £136.86; Child: £75.00 + £20.86 courier fee = £95.86). Domestic fee rates (£102.00/£64.50) do not apply when applying from abroad.';
+          const overseasOnline = fees.adult_overseas_online ?? 116.50;
+          feeDetails = `UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas standard adult application fee is £${overseasOnline.toFixed(2)} online. International courier delivery fee (£20.86) is assessed and paid separately during checkout. Domestic fee rates (£102.00 / £66.50) do not apply when applying from abroad.`;
           feeStatus = 'consular_local_currency';
-          specificFeeRecord = { currency: 'GBP', note: 'Overseas online tariff with international courier fee assessed via gov.uk' };
+          specificFeeRecord = { currency: 'GBP', adult_overseas_online: overseasOnline, international_courier_fee_separate: 20.86, note: 'Overseas online tariff with separate international courier fee assessed via gov.uk' };
         }
       } else if (countryCode === 'CA') {
         if (location === 'inside') {
@@ -3702,8 +3723,8 @@ class PassportRulesEngine {
               feeDetails = `Fee Confirmation Required: Canadian child passport fees require confirmation on Canada.ca.`;
               feeStatus = 'confirmation_required';
             } else if (isUrgent && typeof urgentSurcharge === 'number') {
-              const total = childFee + urgentSurcharge;
-              feeDetails = `Official Canadian statutory fees (Passport Program / Canada.ca): Child (0–15 years): CAD ${childFee.toFixed(2)} (5-year validity). Urgent pickup surcharge: +CAD ${urgentSurcharge.toFixed(2)} (Total CAD ${total.toFixed(2)} with urgent pickup). Pay online, in person at Service Canada by card, or certified cheque.`;
+              const total = fees.child_urgent_pickup_total ?? (childFee + urgentSurcharge);
+              feeDetails = `Official Canadian statutory fees (Passport Program / Canada.ca): Child (0–15 years): CAD ${childFee.toFixed(2)} (5-year validity). Urgent pickup surcharge: +CAD ${urgentSurcharge.toFixed(2)} (Total CAD ${total.toFixed(2)} with urgent pickup). Proof of urgent travel required. Pay online, in person at Service Canada by card, or certified cheque.`;
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'CAD', child_0_to_15: childFee, urgent_pickup_surcharge: urgentSurcharge, total_urgent: total };
             } else {
@@ -3730,9 +3751,10 @@ class PassportRulesEngine {
             }
           }
         } else {
-          feeDetails = 'Canadian citizens applying outside Canada pay official overseas tariffs in CAD or local currency at Government of Canada diplomatic missions (Adult 5-year: CAD 194.25 / 10-year: CAD 265.75; Child 0–15: CAD 102.25). Domestic fees (CAD 122.50/163.50) do not apply abroad. Check travel.gc.ca or your local embassy portal.';
+          const childAbroad = fees.child_overseas ?? 102.50;
+          feeDetails = `Canadian citizens applying outside Canada pay official overseas tariffs in CAD or local currency at Government of Canada diplomatic missions (Adult 5-year: CAD 194.25 / 10-year: CAD 265.75; Child 0–15: CAD ${childAbroad.toFixed(2)}). Domestic fees (CAD 122.50/163.50/58.50) do not apply abroad. Check travel.gc.ca or your local embassy portal.`;
           feeStatus = 'consular_local_currency';
-          specificFeeRecord = { currency: 'CAD / Local currency', note: 'Official overseas tariff applies outside Canada' };
+          specificFeeRecord = { currency: 'CAD / Local currency', child_overseas: childAbroad, note: 'Official overseas tariff applies outside Canada' };
         }
       } else if (countryCode === 'AU') {
         if (location === 'inside') {
@@ -3745,7 +3767,7 @@ class PassportRulesEngine {
               feeDetails = `Fee Confirmation Required: Australian child passport fees require confirmation on passports.gov.au.`;
               feeStatus = 'confirmation_required';
             } else if (isPriority && typeof prioritySurcharge === 'number') {
-              const total = childFee + prioritySurcharge;
+              const total = fees.priority_total_child ?? (childFee + prioritySurcharge);
               feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Child (under 18) 5-year passport: AUD ${childFee}. Priority processing surcharge (2 business days): +AUD ${prioritySurcharge} (Total: AUD ${total}). Pay in person at Australia Post by card or cash.`;
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'AUD', child_5_year: childFee, priority_processing_surcharge: prioritySurcharge, total_priority: total };
@@ -3761,7 +3783,7 @@ class PassportRulesEngine {
               feeDetails = `Fee Confirmation Required: Australian senior passport fees require confirmation on passports.gov.au.`;
               feeStatus = 'confirmation_required';
             } else if (isPriority && typeof prioritySurcharge === 'number') {
-              const total = seniorFee + prioritySurcharge;
+              const total = fees.priority_total_senior ?? (seniorFee + prioritySurcharge);
               feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Senior (75 and over) optional 5-year passport: AUD ${seniorFee} (Standard 10-year option: AUD ${adult10}). Priority processing surcharge: +AUD ${prioritySurcharge} (Total 5-yr: AUD ${total}). Pay at Australia Post.`;
               feeStatus = 'verified_statutory';
               specificFeeRecord = { currency: 'AUD', senior_75_plus_5_year: seniorFee, adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge, total_priority: total };
@@ -3776,10 +3798,11 @@ class PassportRulesEngine {
               feeDetails = `Fee Confirmation Required: Australian adult passport fees require confirmation on passports.gov.au.`;
               feeStatus = 'confirmation_required';
             } else if (isPriority && typeof prioritySurcharge === 'number') {
-              const total = adult10 + prioritySurcharge;
-              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Adult 10-year passport: AUD ${adult10}. Priority processing surcharge (2 business days): +AUD ${prioritySurcharge} (Total: AUD ${total}). Pay at participating Australia Post retail outlets.`;
+              const total = fees.priority_total_adult ?? (adult10 + prioritySurcharge);
+              const fastTrackTotal = fees.fast_track_total_adult ?? (adult10 + (fees.fast_track_processing_surcharge || 107));
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Adult 10-year passport: AUD ${adult10}. Priority processing surcharge (2 business days): +AUD ${prioritySurcharge} (Total: AUD ${total}). Fast Track 5-business-day surcharge: +AUD ${fees.fast_track_processing_surcharge || 107} (Total: AUD ${fastTrackTotal}). Pay at participating Australia Post retail outlets.`;
               feeStatus = 'verified_statutory';
-              specificFeeRecord = { currency: 'AUD', adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge, total_priority: total };
+              specificFeeRecord = { currency: 'AUD', adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge, total_priority: total, fast_track_surcharge: fees.fast_track_processing_surcharge || 107, fast_track_total: fastTrackTotal };
             } else {
               feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Adult 10-year passport: AUD ${adult10}. Optional priority processing surcharge: +AUD ${typeof prioritySurcharge === 'number' ? prioritySurcharge : '308'}. Pay in person at participating Australia Post outlets.`;
               feeStatus = 'verified_statutory';
@@ -3787,9 +3810,11 @@ class PassportRulesEngine {
             }
           }
         } else {
-          feeDetails = 'Australian passport applications lodged overseas at Australian diplomatic missions incur an additional overseas application surcharge (Adult: AUD 185 / Child: AUD 90) payable in local currency or AUD. Priority processing is generally unavailable overseas. Check your local Australian Embassy or High Commission website for payment instructions.';
+          const adultSur = fees.overseas_surcharge_adult ?? 189;
+          const childSur = fees.overseas_surcharge_child ?? 92;
+          feeDetails = `Australian passport applications lodged overseas at Australian diplomatic missions incur an additional overseas application surcharge (Adult: AUD ${adultSur} / Child: AUD ${childSur}) payable in local currency or AUD. Priority processing is generally unavailable overseas. Check your local Australian Embassy or High Commission website for payment instructions.`;
           feeStatus = 'consular_local_currency';
-          specificFeeRecord = { currency: 'AUD / Local currency', note: 'Overseas application fee + consular surcharge applies' };
+          specificFeeRecord = { currency: 'AUD / Local currency', overseas_surcharge_adult: adultSur, overseas_surcharge_child: childSur, note: 'Overseas application fee + consular surcharge applies' };
         }
       } else if (countryCode === 'PK') {
         if (location === 'inside') {

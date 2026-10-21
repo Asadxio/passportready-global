@@ -3812,13 +3812,24 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   const inMinor = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 10 });
   const inMinorFee = inMinor.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(inMinorFee.feeStatus, 'verified_statutory');
-  assert.strictEqual(inMinorFee.feeRecord.base, 1500);
+  assert.strictEqual(inMinorFee.feeRecord.base, 1750);
+
+  const inMinorTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 10, urgency: 'tatkaal' });
+  const inMinorTatkaalFee = inMinorTatkaal.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inMinorTatkaalFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inMinorTatkaalFee.feeRecord.total, 4250);
 
   const inLost = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'lost_stolen' });
   const inLostFee = inLost.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(inLostFee.feeStatus, 'verified_statutory');
-  assert.strictEqual(inLostFee.feeRecord.standard_adult_36_pages, 4000);
-  assert.strictEqual(inLostFee.feeRecord.standard_adult_60_pages, 4500);
+  assert.strictEqual(inLostFee.feeRecord.standard_adult_36_pages, 5000);
+  assert.strictEqual(inLostFee.feeRecord.standard_adult_60_pages, 6000);
+
+  const inLostTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'lost_stolen', urgency: 'tatkaal' });
+  const inLostTatkaalFee = inLostTatkaal.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inLostTatkaalFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inLostTatkaalFee.feeRecord.tatkaal_total_36, 7500);
+  assert.strictEqual(inLostTatkaalFee.feeRecord.tatkaal_total_60, 8500);
 
   const inAbroad = engine.evaluate({ countryCode: 'IN', location: 'abroad', service: 'first_passport' });
   const inAbroadFee = inAbroad.checklist.find(c => c.id === 'official_fee_payment');
@@ -3858,19 +3869,26 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   assert.strictEqual(gbAdultFee.feeStatus, 'verified_statutory');
   assert.strictEqual(gbAdultFee.feeRecord.adult_online, 102.00);
   assert.strictEqual(gbAdultFee.feeRecord.adult_postal, 115.50);
+  assert.strictEqual(gbAdultFee.feeRecord.adult_jumbo_online, 116.00);
+  assert.strictEqual(gbAdultFee.feeRecord.adult_jumbo_postal, 129.50);
 
   const gbFastTrack = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport', urgency: 'fast_track' });
   const gbFastFee = gbFastTrack.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(gbFastFee.feeStatus, 'verified_statutory');
   assert.strictEqual(gbFastFee.feeRecord.fast_track_1_week_adult, 192.00);
+  assert.strictEqual(gbFastFee.feeRecord.premium_1_day_adult, 239.50);
 
   const gbChild = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport', ageExact: 12 });
   const gbChildFee = gbChild.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(gbChildFee.feeStatus, 'verified_statutory');
-  assert.strictEqual(gbChildFee.feeRecord.child_online, 64.50);
+  assert.strictEqual(gbChildFee.feeRecord.child_online, 66.50);
+  assert.strictEqual(gbChildFee.feeRecord.child_postal, 80.00);
 
   const gbAbroad = engine.evaluate({ countryCode: 'GB', location: 'abroad', service: 'first_passport' });
-  assert.strictEqual(gbAbroad.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'consular_local_currency');
+  const gbAbroadFee = gbAbroad.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(gbAbroadFee.feeStatus, 'consular_local_currency');
+  assert.strictEqual(gbAbroadFee.feeRecord.adult_overseas_online, 116.50);
+  assert.strictEqual(gbAbroadFee.feeRecord.international_courier_fee_separate, 20.86);
 
   // 4. Canada (CA)
   const caAdult = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport' });
@@ -3888,10 +3906,17 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   const caChild = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport', ageExact: 8 });
   const caChildFee = caChild.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(caChildFee.feeStatus, 'verified_statutory');
-  assert.strictEqual(caChildFee.feeRecord.child_0_to_15, 58.25);
+  assert.strictEqual(caChildFee.feeRecord.child_0_to_15, 58.50);
+
+  const caChildUrgent = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport', ageExact: 8, urgency: 'urgent' });
+  const caChildUrgentFee = caChildUrgent.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(caChildUrgentFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(caChildUrgentFee.feeRecord.total_urgent, 184.25);
 
   const caAbroad = engine.evaluate({ countryCode: 'CA', location: 'abroad', service: 'first_passport' });
-  assert.strictEqual(caAbroad.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'consular_local_currency');
+  const caAbroadFee = caAbroad.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(caAbroadFee.feeStatus, 'consular_local_currency');
+  assert.strictEqual(caAbroadFee.feeRecord.child_overseas, 102.50);
 
   // 5. Australia (AU)
   const auAdult = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport' });
@@ -3903,19 +3928,33 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   const auPriFee = auPriority.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(auPriFee.feeStatus, 'verified_statutory');
   assert.strictEqual(auPriFee.feeRecord.total_priority, 730);
+  assert.strictEqual(auPriFee.feeRecord.fast_track_total, 529);
 
   const auChild = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', ageExact: 10 });
   const auChildFee = auChild.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(auChildFee.feeStatus, 'verified_statutory');
-  assert.strictEqual(auChildFee.feeRecord.child_5_year, 211);
+  assert.strictEqual(auChildFee.feeRecord.child_5_year, 213);
+
+  const auChildPriority = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', ageExact: 10, urgency: 'priority' });
+  const auChildPriFee = auChildPriority.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auChildPriFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(auChildPriFee.feeRecord.total_priority, 521);
 
   const auSenior = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', ageExact: 76 });
   const auSeniorFee = auSenior.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(auSeniorFee.feeStatus, 'verified_statutory');
-  assert.strictEqual(auSeniorFee.feeRecord.senior_75_plus_5_year, 211);
+  assert.strictEqual(auSeniorFee.feeRecord.senior_75_plus_5_year, 213);
+
+  const auSeniorPriority = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', ageExact: 76, urgency: 'priority' });
+  const auSeniorPriFee = auSeniorPriority.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auSeniorPriFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(auSeniorPriFee.feeRecord.total_priority, 521);
 
   const auAbroad = engine.evaluate({ countryCode: 'AU', location: 'abroad', service: 'first_passport' });
-  assert.strictEqual(auAbroad.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'consular_local_currency');
+  const auAbroadFee = auAbroad.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auAbroadFee.feeStatus, 'consular_local_currency');
+  assert.strictEqual(auAbroadFee.feeRecord.overseas_surcharge_adult, 189);
+  assert.strictEqual(auAbroadFee.feeRecord.overseas_surcharge_child, 92);
 
     // 6. Multi-country sweep across remaining 10 verified countries (PK, BD, DE, AE, PH, FR, SA, BR, ZA, IT)
   const testCodes = ['PK', 'BD', 'DE', 'AE', 'PH', 'FR', 'SA', 'BR', 'ZA', 'IT'];
