@@ -2190,12 +2190,16 @@
       }
     });
 
-    // Links for Legal & Info modals
+    // Links for Legal, Info & Report modals
     document.querySelectorAll('[data-open-modal]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const type = btn.dataset.openModal;
-        openInformationalModal(type);
+        if (type === 'report-change') {
+          openReportChangeModal();
+        } else {
+          openInformationalModal(type);
+        }
       });
     });
   }
@@ -2343,7 +2347,194 @@
     return [...code.toUpperCase()].map(ch => String.fromCodePoint(127397 + ch.charCodeAt(0))).join('');
   }
 
-  // Expose global controller with DEF-04 helpers
+  // PWA Service Worker & Offline Management
+  function registerServiceWorker() {
+    if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    if (window.location.protocol === 'https:' || isLocal) {
+      navigator.serviceWorker.register('sw.js').then((reg) => {
+        reg.onupdatefound = () => {
+          const installingWorker = reg.installing;
+          if (installingWorker) {
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                if (typeof showToast === 'function') {
+                  showToast(getI18nText('toast_offline_ready') || 'Application is ready for 100% offline use!');
+                }
+              }
+            };
+          }
+        };
+      }).catch(() => {});
+    }
+  }
+
+  function updateOfflineStatus() {
+    if (typeof document === 'undefined') return;
+    const offlineBadge = document.getElementById('offlineBadge');
+    const isOffline = typeof navigator !== 'undefined' && !navigator.onLine;
+
+    if (offlineBadge) {
+      offlineBadge.style.display = isOffline ? 'inline-flex' : 'none';
+    }
+
+    if (isOffline && typeof showToast === 'function') {
+      showToast(getI18nText('toast_offline_active') || 'You are offline. Full checklist evaluation and tools remain available locally.');
+    }
+  }
+
+  function setupOfflineListeners() {
+    if (typeof window === 'undefined') return;
+    window.addEventListener('online', updateOfflineStatus);
+    window.addEventListener('offline', updateOfflineStatus);
+    updateOfflineStatus();
+  }
+
+  // Fees & Rule Maintenance Community Reporter
+  function buildChangeReportMarkdown(reportData) {
+    const data = reportData || {};
+    return [
+      '### PassportReady Rule / Fee Update Report',
+      `- **Country:** ${data.countryName || 'Not specified'} (${data.countryCode || 'N/A'})`,
+      `- **Service:** ${data.service || 'General'}`,
+      `- **Category of Update:** ${data.category || 'Fee / Procedural Update'}`,
+      `- **Current PassportReady Guidance:** ${data.currentGuidance || 'Standard rule'}`,
+      `- **Reported New Figure / Rule:** ${data.reportedValue || 'N/A'}`,
+      `- **Official Government Source / Gazette URL:** ${data.sourceUrl || 'Mandatory official link required'}`,
+      `- **Additional Notes:** ${data.notes || 'None'}`,
+      '',
+      '---',
+      '*Submitted via PassportReady Community Update Assistant*'
+    ].join('\n');
+  }
+
+  function openReportChangeModal(prefilledData = {}) {
+    if (typeof document === 'undefined') return;
+    const modal = document.getElementById('genericModal');
+    const title = document.getElementById('modalTitle');
+    const body = document.getElementById('modalBody');
+    if (!modal || !title || !body) return;
+
+    const res = state.evaluationResult;
+    const countryCode = prefilledData.countryCode || res?.country?.code || state.answers?.countryCode || 'IN';
+    const countryName = prefilledData.countryName || res?.country?.name || 'Selected Country';
+    const service = prefilledData.service || res?.serviceCoverage?.service || state.answers?.service || 'first_passport';
+
+    title.textContent = (typeof getI18nText === 'function') ? getI18nText('modal_report_change_title') : 'Report Fee or Rule Change';
+
+    body.innerHTML = `
+      <div class="report-change-form" style="display:flex;flex-direction:column;gap:12px;font-size:13px">
+        <p style="color:#64748b;margin:0 0 6px;line-height:1.5">
+          Help keep PassportReady accurate. If a government authority updated their statutory fees, photo rules, or delivery tiers, submit the official circular or gazette URL below.
+        </p>
+
+        <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:10px">
+          <div class="field">
+            <label style="font-weight:600;font-size:11px;color:#334155">Country / Jurisdiction:</label>
+            <input type="text" id="repCountry" value="${escapeHTML(countryName)} (${escapeHTML(countryCode)})" readonly style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;padding:6px 10px">
+          </div>
+          <div class="field">
+            <label style="font-weight:600;font-size:11px;color:#334155">Service Type:</label>
+            <input type="text" id="repService" value="${escapeHTML(service)}" readonly style="background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;padding:6px 10px">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="repCategory" style="font-weight:600;font-size:11px;color:#334155">Category of Change:</label>
+          <select id="repCategory" class="field input" style="padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff">
+            <option value="Statutory Fee Revision">Statutory Fee Revision (Amount increased/decreased)</option>
+            <option value="Urgent / Tatkaal Scheme Tariff">Urgent / Tatkaal Scheme Tariff Change</option>
+            <option value="Photo Specification Update">Photo / Biometric Specification Update</option>
+            <option value="Document Requirement Change">Required Supporting Document Updated</option>
+            <option value="Senior / Minor Age Band Threshold">Senior / Minor Age Band Threshold</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="repNewValue" style="font-weight:600;font-size:11px;color:#334155">Reported New Value or Rule:</label>
+          <input type="text" id="repNewValue" placeholder="e.g. Adult 36-page fee changed to ₹X or £Y; or new delivery tier added" class="field input" style="padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px">
+        </div>
+
+        <div class="field">
+          <label for="repSourceUrl" style="font-weight:700;font-size:11px;color:#0f5132">Official Government Gazette / Portal URL * (Mandatory):</label>
+          <input type="url" id="repSourceUrl" placeholder="https://passport.gov.xx/... or official gazette link" class="field input" style="padding:8px 12px;border:1.5px solid #059669;border-radius:8px;background:#f0fdf4">
+          <small style="color:#64748b;font-size:11px">We only accept updates verified by official government sources (.gov, gazette, ministry portals).</small>
+        </div>
+
+        <div class="field">
+          <label for="repNotes" style="font-weight:600;font-size:11px;color:#334155">Additional Notes / Circular Number:</label>
+          <input type="text" id="repNotes" placeholder="e.g. Effective from 1 November 2026 under Notification No. 123" class="field input" style="padding:8px 12px;border:1px solid #cbd5e1;border-radius:8px">
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+          <button type="button" id="btnSubmitGithubIssue" class="btn btn-dark" style="flex:1;min-width:200px;font-size:12px;padding:9px 14px">
+            🐙 Submit via GitHub Issue ↗
+          </button>
+          <button type="button" id="btnCopyReportText" class="btn btn-outline" style="font-size:12px;padding:9px 14px">
+            📋 Copy Report Text
+          </button>
+        </div>
+      </div>
+    `;
+
+    modal.classList.add('open');
+
+    const btnGithub = document.getElementById('btnSubmitGithubIssue');
+    const btnCopy = document.getElementById('btnCopyReportText');
+
+    if (btnGithub) {
+      btnGithub.addEventListener('click', () => {
+        const sourceUrl = document.getElementById('repSourceUrl')?.value?.trim();
+        if (!sourceUrl || !sourceUrl.startsWith('http')) {
+          alert('Please enter a valid official government source URL (http:// or https://) to substantiate your report.');
+          document.getElementById('repSourceUrl')?.focus();
+          return;
+        }
+
+        const repData = {
+          countryCode,
+          countryName,
+          service,
+          category: document.getElementById('repCategory')?.value,
+          reportedValue: document.getElementById('repNewValue')?.value?.trim(),
+          sourceUrl,
+          notes: document.getElementById('repNotes')?.value?.trim()
+        };
+
+        const mdBody = buildChangeReportMarkdown(repData);
+        const issueTitle = encodeURIComponent(`[Rule/Fee Update]: ${countryName} (${countryCode}) — ${repData.category}`);
+        const issueBody = encodeURIComponent(mdBody);
+        const ghUrl = `https://github.com/Asadxio/passportready-global/issues/new?title=${issueTitle}&body=${issueBody}`;
+
+        window.open(ghUrl, '_blank', 'noopener');
+      });
+    }
+
+    if (btnCopy) {
+      btnCopy.addEventListener('click', () => {
+        const repData = {
+          countryCode,
+          countryName,
+          service,
+          category: document.getElementById('repCategory')?.value,
+          reportedValue: document.getElementById('repNewValue')?.value?.trim(),
+          sourceUrl: document.getElementById('repSourceUrl')?.value?.trim(),
+          notes: document.getElementById('repNotes')?.value?.trim()
+        };
+        const text = buildChangeReportMarkdown(repData);
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            if (typeof showToast === 'function') {
+              showToast(getI18nText('toast_report_copied') || 'Change report copied to clipboard!');
+            }
+          });
+        }
+      });
+    }
+  }
+
+    // Expose global controller with DEF-04 helpers
   const exportedApp = {
     init,
     toggleCheck,
@@ -2372,6 +2563,10 @@
     updatePhotoStandard,
     resetPhotoTool,
     getActivePhotoStandard: () => activePhotoStandard,
+    registerServiceWorker,
+    updateOfflineStatus,
+    buildChangeReportMarkdown,
+    openReportChangeModal,
     getState: () => state
   };
 

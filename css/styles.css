@@ -1091,6 +1091,7 @@ button { cursor: pointer; }
   #downloadChecklistBtn,
   #downloadJsonBtn,
   #shareBtn,
+  #btnReportFeeChange,
   #restartBtn,
   #saveProgressBtn,
   .btn-doc-helper,

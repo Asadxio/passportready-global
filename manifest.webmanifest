@@ -1,0 +1,25 @@
+{
+  "name": "PassportReady — Global Passport Readiness & Biometric Guide",
+  "short_name": "PassportReady",
+  "description": "Independent, privacy-first passport preparation checklist, fee calculator, and biometric photo validator for 249 jurisdictions.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#065f46",
+  "categories": ["travel", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/preview.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
+  ]
+}

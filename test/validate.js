@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 298;
+  const expectedKeyCount = 304;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4080,7 +4080,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 298;
+  const expectedKeys = 304;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4777,7 +4777,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
   assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
 
-  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 298 keys total)
+  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 304 keys total)
   const betaKeys = [
     'beta_badge',
     'beta_notice_text',
@@ -5144,7 +5144,7 @@ runTest('Phase 4.11 Feature: Shareable Pre-Filled Checklist Deep-Linking (URL St
   const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
   assert(printBlockMatch && printBlockMatch[1].includes('#shareBtn'), '@media print must suppress #shareBtn');
 
-  // 3. Translation Parity across all 6 languages (298 keys total)
+  // 3. Translation Parity across all 6 languages (304 keys total)
   const shareKeys = ['btn_share_link', 'toast_link_copied', 'toast_shared_checklist_loaded'];
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   for (const lang of supportedLangs) {
@@ -5290,7 +5290,7 @@ runTest('Phase 4.12 Feature: Biometric Passport Photo & Aspect Ratio Validator (
   const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
   assert(printBlockMatch && printBlockMatch[1].includes('.btn-photo-tool'), '@media print must suppress .btn-photo-tool');
 
-  // 6. Translation Parity across all 6 languages (298 keys total)
+  // 6. Translation Parity across all 6 languages (304 keys total)
   const photoKeys = [
     'tools_photo_title',
     'tools_photo_desc',
@@ -5323,6 +5323,88 @@ runTest('Phase 4.12 Feature: Biometric Passport Photo & Aspect Ratio Validator (
     app.resetPhotoTool();
     app.updatePhotoStandard('icao_35x45');
   }, 'resetPhotoTool and updatePhotoStandard must execute safely');
+});
+
+// 40. Phase 4.13 Feature: PWA Offline Support, Visual Modernization & Decentralized Fee/Rule Maintenance
+runTest('Phase 4.13 Feature: PWA Offline Support, Visual Modernization & Decentralized Fee/Rule Maintenance', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const stylesCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const app = require('../js/app.js');
+
+  // 1. PWA Manifest Verification
+  const manifestPath = path.join(__dirname, '..', 'manifest.webmanifest');
+  assert(fs.existsSync(manifestPath), 'manifest.webmanifest must exist on disk');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  assert.strictEqual(manifest.short_name, 'PassportReady');
+  assert.strictEqual(manifest.display, 'standalone');
+  assert.strictEqual(manifest.theme_color, '#065f46');
+  assert(Array.isArray(manifest.icons) && manifest.icons.length >= 1, 'Manifest must specify icons');
+
+  // 2. Service Worker File & Cache Rules
+  const swPath = path.join(__dirname, '..', 'sw.js');
+  assert(fs.existsSync(swPath), 'sw.js must exist on disk');
+  const swContent = fs.readFileSync(swPath, 'utf8');
+  assert(swContent.includes('CACHE_NAME'), 'sw.js must define CACHE_NAME');
+  assert(swContent.includes('PRECACHE_ASSETS'), 'sw.js must define PRECACHE_ASSETS');
+  assert(swContent.includes('caches.match'), 'sw.js must handle offline cache matching');
+
+  // 3. SVG App Icon
+  const iconPath = path.join(__dirname, '..', 'assets', 'icon.svg');
+  assert(fs.existsSync(iconPath), 'assets/icon.svg must exist');
+  const iconContent = fs.readFileSync(iconPath, 'utf8');
+  assert(iconContent.includes('<svg') && iconContent.includes('viewBox="0 0 512 512"'), 'icon.svg must be a valid 512x512 SVG');
+
+  // 4. DOM Elements in index.html
+  assert(indexHtml.includes('<link rel="manifest" href="manifest.webmanifest">'), 'index.html must link manifest.webmanifest');
+  assert(indexHtml.includes('<link rel="icon" type="image/svg+xml" href="assets/icon.svg">'), 'index.html must link SVG favicon');
+  assert(indexHtml.includes('id="offlineBadge"'), 'index.html must contain #offlineBadge');
+  assert(indexHtml.includes('id="btnReportFeeChange"'), 'index.html must contain #btnReportFeeChange in results');
+  assert(indexHtml.includes('id="footerReportFeeLink"'), 'index.html must contain #footerReportFeeLink in footer');
+
+  // 5. Print stylesheet suppression
+  const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
+  assert(printBlockMatch && printBlockMatch[1].includes('#btnReportFeeChange'), '@media print must suppress #btnReportFeeChange');
+
+  // 6. Translation Parity across all 6 languages (304 keys total)
+  const pwaKeys = [
+    'badge_offline',
+    'toast_offline_ready',
+    'toast_offline_active',
+    'btn_report_change',
+    'btn_submit_github',
+    'toast_report_copied'
+  ];
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  for (const lang of supportedLangs) {
+    for (const key of pwaKeys) {
+      assert(I18N_TRANSLATIONS[lang][key], `Key ${key} missing in language ${lang}`);
+      assert(typeof I18N_TRANSLATIONS[lang][key] === 'string' && I18N_TRANSLATIONS[lang][key].length > 2, `Key ${key} must have content in ${lang}`);
+    }
+    const totalKeys = Object.keys(I18N_TRANSLATIONS[lang]).length;
+    assert.strictEqual(totalKeys, 304, `Language ${lang} must have exactly 304 keys, found ${totalKeys}`);
+  }
+
+  // 7. Community Fee & Rule Report Markdown Builder
+  const testReport = {
+    countryName: 'India',
+    countryCode: 'IN',
+    service: 'first_passport',
+    category: 'Statutory Fee Revision',
+    reportedValue: '₹3,000 (36 pages)',
+    sourceUrl: 'https://passportindia.gov.in/gazette-2026',
+    notes: 'Gazette revision 2026'
+  };
+  const mdReport = app.buildChangeReportMarkdown(testReport);
+  assert(mdReport.includes('### PassportReady Rule / Fee Update Report'), 'Report must contain header');
+  assert(mdReport.includes('- **Country:** India (IN)'), 'Report must format country');
+  assert(mdReport.includes('- **Category of Update:** Statutory Fee Revision'), 'Report must format category');
+  assert(mdReport.includes('- **Official Government Source / Gazette URL:** https://passportindia.gov.in/gazette-2026'), 'Report must include official source');
+
+  // 8. App Controller Function Exports
+  assert.strictEqual(typeof app.registerServiceWorker, 'function', 'registerServiceWorker must be exported');
+  assert.strictEqual(typeof app.updateOfflineStatus, 'function', 'updateOfflineStatus must be exported');
+  assert.strictEqual(typeof app.openReportChangeModal, 'function', 'openReportChangeModal must be exported');
 });
 
 console.log('\n====================================================');

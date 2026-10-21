@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#082d25">
+  <meta name="theme-color" content="#065f46">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
   <title>PassportReady (Public Beta) — Check Before You Apply | Global Passport Preparation</title>
   <meta name="description" content="Independent global passport preparation platform in public beta. Build a personalized document checklist, spot name and DOB mismatches before submission, discover verified alternatives, and link directly to official government portals.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -83,6 +86,7 @@
         <a href="#faq" data-i18n="nav_faq">FAQs</a>
       </div>
       <div class="nav-actions">
+        <span id="offlineBadge" class="status-pill status-verified" style="display:none;font-size:11px;padding:3px 8px;background:#059669;color:#fff" title="100% features available offline">⚡ <span data-i18n="badge_offline">Offline Ready</span></span>
         <label for="langSelect" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Select Language</label>
         <select id="langSelect" class="lang-select" aria-label="Language selector">
           <option value="en">English (EN)</option>
@@ -546,6 +550,7 @@
               <button class="btn btn-outline" id="downloadChecklistBtn" data-i18n="btn_download_checklist">💾 Download (.txt)</button>
               <button class="btn btn-outline" id="downloadJsonBtn" data-i18n="btn_download_json">{ } Export (.json)</button>
               <button class="btn btn-outline" id="shareBtn" data-i18n="btn_share_link">🔗 Share Checklist</button>
+              <button class="btn btn-outline" id="btnReportFeeChange" data-i18n="btn_report_change">📢 Report Fee / Rule Update</button>
               <button class="btn btn-outline" id="restartBtn" data-i18n="btn_restart">Start New Check</button>
             </div>
           </div>
@@ -827,6 +832,7 @@
         <a href="#" data-open-modal="methodology">Methodology</a>
         <a href="#" data-open-modal="privacy">Privacy Policy</a>
         <a href="#" data-open-modal="terms">Terms of Service</a>
+        <a href="#" id="footerReportFeeLink" data-open-modal="report-change" data-i18n="btn_report_change">📢 Report Fee / Rule Update</a>
         <a href="https://github.com/Asadxio/passportready-global/issues" target="_blank" rel="noopener" class="feedback-link" data-i18n="feedback_link">Report an Error / Feedback ↗</a>
       </div>
     </div>
