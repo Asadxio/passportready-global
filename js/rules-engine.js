@@ -3605,11 +3605,9 @@ class PassportRulesEngine {
                 feeStatus = 'confirmation_required';
               } else if (isTatkaalRequested && typeof tatkaalSurcharge === 'number') {
                 const totalTatkaal = fees.tatkaal_total_minor ?? (minorBase + tatkaalSurcharge);
-                const isUnder8 = (rawExactAge !== null && rawExactAge <= 8);
-                const under8Tatkaal = isUnder8 ? (Math.round(minorBase * 0.9) + tatkaalSurcharge) : null;
-                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. Tatkaal urgent processing: +₹${tatkaalSurcharge.toLocaleString('en-IN')} (Total Tatkaal: ₹${totalTatkaal.toLocaleString('en-IN')}). (For fresh applications, children up to 8 years receive a 10% rebate on the basic fee component: ₹4,075 total). Pay online via Passport Seva portal.`;
+                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. Tatkaal urgent processing: +₹${tatkaalSurcharge.toLocaleString('en-IN')} (Total Tatkaal: ₹${totalTatkaal.toLocaleString('en-IN')}). (Note: 10% rebate on basic fee component for fresh applications of children up to 8 years under Tatkaal is UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR; standard Tatkaal payable is ₹${totalTatkaal.toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', base: minorBase, tatkaal_surcharge: tatkaalSurcharge, total: totalTatkaal, booklet: '36 pages', ...(under8Tatkaal ? { fresh_under_8_tatkaal: under8Tatkaal } : {}) };
+                specificFeeRecord = { currency: 'INR', base: minorBase, tatkaal_surcharge: tatkaalSurcharge, total: totalTatkaal, booklet: '36 pages', tatkaal_concession_status: 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR' };
               } else {
                 const isUnder8 = (rawExactAge !== null && rawExactAge <= 8);
                 const discountedMinor = isUnder8 ? Math.round(minorBase * 0.9) : null;
@@ -3626,12 +3624,9 @@ class PassportRulesEngine {
               } else if (isTatkaalRequested && typeof tatkaalSurcharge === 'number') {
                 const tatkaal36 = fees.tatkaal_total_36_pages ?? (fee36 + tatkaalSurcharge);
                 const tatkaal60 = fees.tatkaal_total_60_pages ?? (fee60 + tatkaalSurcharge);
-                const isSenior60 = (rawExactAge !== null && rawExactAge >= 60) || isSeniorApplicant;
-                const seniorTatkaal36 = isSenior60 ? (Math.round(fee36 * 0.9) + tatkaalSurcharge) : null;
-                const seniorTatkaal60 = isSenior60 ? (Math.round(fee60 * 0.9) + tatkaalSurcharge) : null;
-                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. Tatkaal urgent processing fee: ₹${tatkaal36.toLocaleString('en-IN')} for 36 pages / ₹${tatkaal60.toLocaleString('en-IN')} for 60 pages (inclusive of ₹${tatkaalSurcharge.toLocaleString('en-IN')} Tatkaal additional fee). (For fresh applications, senior citizens above 60 years receive a 10% rebate on the basic fee component: ₹4,750 for 36 pages / ₹5,650 for 60 pages). Pay online via Passport Seva portal.`;
+                feeDetails = `Official Indian statutory fees (Passports (Amendment) Rules, 2026, G.S.R. 516(E) / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. Tatkaal urgent processing fee: ₹${tatkaal36.toLocaleString('en-IN')} for 36 pages / ₹${tatkaal60.toLocaleString('en-IN')} for 60 pages (inclusive of ₹${tatkaalSurcharge.toLocaleString('en-IN')} Tatkaal additional fee). (Note: 10% rebate on basic fee component for fresh applications of senior citizens above 60 years under Tatkaal is UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR; standard Tatkaal payable is ₹${tatkaal36.toLocaleString('en-IN')} for 36 pages / ₹${tatkaal60.toLocaleString('en-IN')} for 60 pages). Pay online via Passport Seva portal.`;
                 feeStatus = 'verified_statutory';
-                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_additional_fee: tatkaalSurcharge, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60, ...(seniorTatkaal36 ? { fresh_senior_tatkaal_36: seniorTatkaal36, fresh_senior_tatkaal_60: seniorTatkaal60 } : {}) };
+                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_additional_fee: tatkaalSurcharge, tatkaal_surcharge: tatkaalSurcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60, tatkaal_concession_status: 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR' };
               } else {
                 const isSenior60 = (rawExactAge !== null && rawExactAge >= 60) || isSeniorApplicant;
                 const seniorRebate36 = isSenior60 ? Math.round(fee36 * 0.9) : null;

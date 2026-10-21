@@ -3808,6 +3808,7 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_surcharge, 2500);
   assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_total_36, 5000);
   assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_total_60, 6000);
+  assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_concession_status, 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR');
 
   const inMinor = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 10 });
   const inMinorFee = inMinor.checklist.find(c => c.id === 'official_fee_payment');
@@ -3818,6 +3819,7 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   const inMinorTatkaalFee = inMinorTatkaal.checklist.find(c => c.id === 'official_fee_payment');
   assert.strictEqual(inMinorTatkaalFee.feeStatus, 'verified_statutory');
   assert.strictEqual(inMinorTatkaalFee.feeRecord.total, 4250);
+  assert.strictEqual(inMinorTatkaalFee.feeRecord.tatkaal_concession_status, 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR');
 
   const inLost = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'lost_stolen' });
   const inLostFee = inLost.checklist.find(c => c.id === 'official_fee_payment');
@@ -3852,6 +3854,24 @@ runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-read
   assert.strictEqual(inChild8Fee.feeStatus, 'verified_statutory');
   assert.strictEqual(inChild8Fee.feeRecord.fresh_under_8_rebate, 1575);
   assert(inChild8Fee.details.includes('children up to 8 years'));
+
+  // Tatkaal Senior & Minor Concession Status Audit (Statutory basic concession retained; Tatkaal concession marked unverified)
+  const inSeniorTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 65, urgency: 'tatkaal' });
+  const inSeniorTatkaalFee = inSeniorTatkaal.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inSeniorTatkaalFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inSeniorTatkaalFee.feeRecord.tatkaal_total_36, 5000);
+  assert.strictEqual(inSeniorTatkaalFee.feeRecord.tatkaal_total_60, 6000);
+  assert.strictEqual(inSeniorTatkaalFee.feeRecord.tatkaal_concession_status, 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR');
+  assert(inSeniorTatkaalFee.details.includes('UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR'));
+  assert(inSeniorTatkaalFee.details.includes('above 60 years'));
+
+  const inChildTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 7, urgency: 'tatkaal' });
+  const inChildTatkaalFee = inChildTatkaal.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inChildTatkaalFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inChildTatkaalFee.feeRecord.total, 4250);
+  assert.strictEqual(inChildTatkaalFee.feeRecord.tatkaal_concession_status, 'UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR');
+  assert(inChildTatkaalFee.details.includes('UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR'));
+  assert(inChildTatkaalFee.details.includes('children up to 8 years'));
 
   // 2. United States (US)
   const usAdult = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport' });
