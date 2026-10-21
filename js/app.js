@@ -8,7 +8,8 @@
 
   // Country Data Reference: resolve from window.PASSPORT_COUNTRIES or window.COUNTRY_DATA
   const COUNTRY_DATA = (typeof window !== 'undefined' && (window.COUNTRY_DATA || window.PASSPORT_COUNTRIES)) ||
-    (typeof PASSPORT_COUNTRIES !== 'undefined' ? PASSPORT_COUNTRIES : []);
+    (typeof PASSPORT_COUNTRIES !== 'undefined' ? PASSPORT_COUNTRIES :
+      (typeof require !== 'undefined' ? (require('../data/country-data.js').PASSPORT_COUNTRIES || []) : []));
 
   // Application State
   const state = {
@@ -62,7 +63,8 @@
     if (typeof RULE_PACKS !== 'undefined') {
       rulePacks = RULE_PACKS;
     }
-    rulesEngine = new PassportRulesEngine(rulePacks);
+    const countries = Array.isArray(COUNTRY_DATA) ? COUNTRY_DATA : [];
+    rulesEngine = new PassportRulesEngine(rulePacks, countries);
   }
 
   // LocalStorage Persistence
@@ -175,24 +177,83 @@
       setLanguage(e.target.value);
     });
 
-    window.addEventListener('languageChanged', () => {
+    window.addEventListener('languageChanged', (e) => {
+      const newLang = (e && e.detail && e.detail.lang) || CURRENT_LANG;
       updateCountryHint();
       renderCountryDirectory();
-      renderStep(state.currentStep);
+
+      const resultBox = document.getElementById('resultbox');
+      const isResultsVisible = resultBox && resultBox.classList.contains('show');
+
+      if (isResultsVisible && state.evaluationResult) {
+        // DEF-06: Preserve scroll position and suppress step panes/wizard navigation
+        const scrollY = (typeof window !== 'undefined') ? window.scrollY : 0;
+        const panes = document.querySelectorAll('.step-pane');
+        panes.forEach(p => p.classList.remove('active'));
+        const wizardNav = document.getElementById('wizardnav');
+        if (wizardNav) wizardNav.style.display = 'none';
+
+        // Re-evaluate current answers with the new language
+        const updatedResult = rulesEngine.evaluate(state.answers, newLang);
+        state.evaluationResult = updatedResult;
+
+        // Re-render results dashboard without jumping scroll
+        renderResultsDashboard(updatedResult, false);
+
+        if (typeof window !== 'undefined') {
+          window.scrollTo(0, scrollY);
+        }
+      } else {
+        renderStep(state.currentStep);
+      }
     });
   }
 
-  // Country Data Helpers
+  // Country Data Helpers & Robust Normalization (DEF-04)
+  function normalizeCountryText(str) {
+    if (typeof str !== 'string') return '';
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\u2018\u2019\u201A\u201B\u2032\u0060]/g, "'")
+      .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-')
+      .trim()
+      .replace(/\s+/g, ' ')
+      .toLowerCase();
+  }
+
   function getCountryByQuery(query) {
-    if (!query) return null;
-    const q = query.trim().toLowerCase();
-    return COUNTRY_DATA.find(c => 
-      c.name.toLowerCase() === q ||
-      c.alpha2.toLowerCase() === q ||
-      c.alpha3.toLowerCase() === q ||
-      (c.official_name && c.official_name.toLowerCase() === q) ||
-      (c.search_terms && c.search_terms.some(t => t.toLowerCase() === q))
-    ) || null;
+    if (!query || typeof query !== 'string') return null;
+    const q = normalizeCountryText(query);
+    if (!q) return null;
+
+    // 1. Exact normalized match against canonical name, ISO alpha-2, ISO alpha-3, official full name, or search terms
+    const match = COUNTRY_DATA.find(c => {
+      if (normalizeCountryText(c.name) === q) return true;
+      if (normalizeCountryText(c.alpha2) === q) return true;
+      if (normalizeCountryText(c.alpha3) === q) return true;
+      if (c.official_name && normalizeCountryText(c.official_name) === q) return true;
+      if (c.search_terms && c.search_terms.some(t => normalizeCountryText(t) === q)) return true;
+      return false;
+    });
+    if (match) return match;
+
+    // 2. Dot-stripped acronym fallback (e.g., 'U.S.A.' -> 'USA', 'U.S.' -> 'US', 'U.K.' -> 'UK')
+    if (q.includes('.')) {
+      const qNoDots = q.replace(/\./g, '');
+      if (qNoDots) {
+        return COUNTRY_DATA.find(c => {
+          if (normalizeCountryText(c.name).replace(/\./g, '') === qNoDots) return true;
+          if (normalizeCountryText(c.alpha2) === qNoDots) return true;
+          if (normalizeCountryText(c.alpha3) === qNoDots) return true;
+          if (c.official_name && normalizeCountryText(c.official_name).replace(/\./g, '') === qNoDots) return true;
+          if (c.search_terms && c.search_terms.some(t => normalizeCountryText(t).replace(/\./g, '') === qNoDots)) return true;
+          return false;
+        }) || null;
+      }
+    }
+
+    return null;
   }
 
   function renderCountryOptions() {
@@ -205,54 +266,113 @@
     const hint = document.getElementById('countryHint');
     const input = document.getElementById('countryInput');
     const officialBtn = document.getElementById('officialLink');
-    if (!hint || !input) return;
+    if (!hint || !input) return null;
 
-    const c = getCountryByQuery(input.value) || COUNTRY_DATA.find(x => x.alpha2 === state.answers.countryCode);
-    if (!c) {
-      hint.innerHTML = `<strong style="color:#b45309">Select an indexed country</strong><span>Please type and select a country from the indexed list.</span>`;
-      return;
+    const rawVal = input.value;
+    const trimmed = rawVal ? rawVal.trim() : '';
+
+    if (!trimmed) {
+      // Clearing input clears both countryCode and countryName immediately
+      state.answers.countryCode = null;
+      state.answers.countryName = null;
+      input.removeAttribute('aria-invalid');
+      if (officialBtn) {
+        officialBtn.style.display = 'none';
+        officialBtn.href = '#';
+      }
+      hint.className = 'country-source-status hint-empty';
+      const promptTitle = (typeof getI18nText === 'function') ? getI18nText('country_prompt_title') : 'Select Country';
+      const promptDesc = (typeof getI18nText === 'function') ? getI18nText('country_prompt_desc') : 'Please type or select your passport-issuing authority from the list.';
+      hint.innerHTML = `
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="status-pill status-needs-research">${escapeHTML(promptTitle)}</span>
+          <strong style="color:#64748b">${escapeHTML(promptDesc)}</strong>
+        </div>
+      `;
+      return null;
     }
 
+    const c = getCountryByQuery(rawVal);
+    if (!c) {
+      // Incomplete, ambiguous, or unrecognized input immediately invalidates previous selection
+      state.answers.countryCode = null;
+      state.answers.countryName = null;
+      input.setAttribute('aria-invalid', 'true');
+      if (officialBtn) {
+        officialBtn.style.display = 'none';
+        officialBtn.href = '#';
+      }
+      hint.className = 'country-source-status hint-unresolved';
+      const unresPill = (typeof getI18nText === 'function') ? getI18nText('country_unresolved_pill') : 'UNRESOLVED JURISDICTION';
+      const unresTitle = (typeof getI18nText === 'function') ? getI18nText('country_unresolved_title') : 'Select an indexed country';
+      const unresDesc = (typeof getI18nText === 'function') ? getI18nText('country_unresolved_desc') : 'Please select a recognized country from the suggested list.';
+      hint.innerHTML = `
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="status-pill status-needs-research" style="background:#fef2f2;color:#991b1b;border-color:#fecaca">${escapeHTML(unresPill)}</span>
+          <strong style="color:#b91c1c">${escapeHTML(unresTitle)}</strong>
+        </div>
+        <span style="color:#7f1d1d">${escapeHTML(unresDesc)}</span>
+      `;
+      return null;
+    }
+
+    // Successfully resolved canonical country
     state.answers.countryCode = c.alpha2;
     state.answers.countryName = c.name;
+    input.setAttribute('aria-invalid', 'false');
 
     const isVerified = c.portal_status === 'verified';
     const isLinked = !!c.authority_url;
 
+    hint.className = 'country-source-status hint-resolved';
     if (isVerified) {
+      const verifiedPill = (typeof getI18nText === 'function') ? getI18nText('status_verified_country_pack') : 'VERIFIED SOURCE PACK';
+      const verifiedDesc = (typeof getI18nText === 'function') ? getI18nText('country_verified_desc') : 'Official requirements and document standards fully researched and updated for 2026.';
+      const openBtnText = (typeof getI18nText === 'function') ? getI18nText('btn_open_portal') : 'Open Official Portal ↗';
       hint.innerHTML = `
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill status-verified">VERIFIED SOURCE PACK</span>
-          <strong>${escapeHTML(c.authority_label || c.name + ' Passport Authority')}</strong>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="status-pill status-verified">${escapeHTML(verifiedPill)}</span>
+          <strong>${escapeHTML(c.name)} (${escapeHTML(c.alpha2)}) · ${escapeHTML(c.authority_label || c.name + ' Passport Authority')}</strong>
         </div>
-        <span>Official requirements and document standards fully researched and updated for 2026.</span>
-        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">Open Official Portal ↗</a>
+        <span>${escapeHTML(verifiedDesc)}</span>
+        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">${escapeHTML(openBtnText)}</a>
       `;
     } else if (isLinked) {
+      const linkedPill = (typeof getI18nText === 'function') ? getI18nText('badge_official') : 'OFFICIAL PORTAL LINKED';
+      const linkedDesc = (typeof getI18nText === 'function') ? getI18nText('country_linked_desc') : 'Official portal link recorded; scenario-specific rules undergoing detailed research.';
+      const openBtnText = (typeof getI18nText === 'function') ? getI18nText('btn_open_portal') : 'Open Official Portal ↗';
       hint.innerHTML = `
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill status-linked">OFFICIAL PORTAL LINKED</span>
-          <strong>${escapeHTML(c.authority_label || 'Official Government Agency')}</strong>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="status-pill status-linked">${escapeHTML(linkedPill)}</span>
+          <strong>${escapeHTML(c.name)} (${escapeHTML(c.alpha2)}) · ${escapeHTML(c.authority_label || 'Official Government Agency')}</strong>
         </div>
-        <span>Official portal link recorded; scenario-specific rules undergoing detailed research.</span>
-        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">Open Official Portal ↗</a>
+        <span>${escapeHTML(linkedDesc)}</span>
+        <a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="link-external">${escapeHTML(openBtnText)}</a>
       `;
     } else {
+      const awaitingPill = (typeof getI18nText === 'function') ? getI18nText('status_awaiting_research') : 'AWAITING SOURCE RESEARCH';
+      const generalTitle = (typeof getI18nText === 'function') ? getI18nText('country_general_guidance_title') : 'General Preparation Guidance';
+      const awaitingDesc = (typeof getI18nText === 'function') ? getI18nText('country_awaiting_desc') : 'Official passport authority link currently undergoing research. Generic preparation guidance provided.';
       hint.innerHTML = `
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="status-pill status-needs-research">AWAITING SOURCE RESEARCH</span>
-          <strong>General Preparation Guidance</strong>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="status-pill status-needs-research">${escapeHTML(awaitingPill)}</span>
+          <strong>${escapeHTML(c.name)} (${escapeHTML(c.alpha2)}) · ${escapeHTML(generalTitle)}</strong>
         </div>
-        <span>Official passport authority link currently undergoing research. Generic preparation guidance provided.</span>
+        <span>${escapeHTML(awaitingDesc)}</span>
       `;
     }
 
     if (officialBtn && c.authority_url) {
+      officialBtn.style.display = 'inline-flex';
       officialBtn.href = c.authority_url;
       officialBtn.textContent = `Open ${c.name} Official Portal ↗`;
+    } else if (officialBtn) {
+      officialBtn.style.display = 'none';
+      officialBtn.href = '#';
     }
-  }
 
+    return c;
+  }
   // Step Navigation
   function renderStep(stepIndex) {
     state.currentStep = stepIndex;
@@ -285,6 +405,18 @@
   function syncInputsToState() {
     const getVal = (id) => { const el = document.getElementById(id); return el ? el.value : null; };
     const getRadio = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : null; };
+
+    const countryVal = getVal('countryInput');
+    if (countryVal !== null) {
+      const matched = getCountryByQuery(countryVal);
+      if (matched) {
+        state.answers.countryCode = matched.alpha2;
+        state.answers.countryName = matched.name;
+      } else {
+        state.answers.countryCode = null;
+        state.answers.countryName = null;
+      }
+    }
 
     if (getRadio('service')) state.answers.service = getRadio('service');
     if (getRadio('age')) state.answers.age = getRadio('age');
@@ -333,12 +465,46 @@
     const saveBtn = document.getElementById('saveProgressBtn');
 
     if (countryInput) {
-      countryInput.addEventListener('input', updateCountryHint);
-      countryInput.addEventListener('change', updateCountryHint);
+      countryInput.addEventListener('input', () => {
+        updateCountryHint();
+      });
+      countryInput.addEventListener('change', () => {
+        const c = updateCountryHint();
+        if (c && countryInput.value !== c.name) {
+          countryInput.value = c.name;
+        }
+      });
+      countryInput.addEventListener('blur', () => {
+        const c = updateCountryHint();
+        if (c && countryInput.value !== c.name) {
+          countryInput.value = c.name;
+        }
+      });
+      countryInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const c = updateCountryHint();
+          if (c) {
+            countryInput.value = c.name;
+            const locationSelect = document.getElementById('locationSelect');
+            if (locationSelect) locationSelect.focus();
+          } else {
+            showToast((typeof getI18nText === 'function' ? getI18nText('country_continue_error') : null) || 'Please select a valid country from the list');
+          }
+        }
+      });
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
+        if (state.currentStep === 0) {
+          const c = updateCountryHint();
+          if (!c || !state.answers.countryCode) {
+            if (countryInput) countryInput.focus();
+            showToast((typeof getI18nText === 'function' ? getI18nText('country_continue_error') : null) || 'Please type and select a recognized passport-issuing authority before continuing.');
+            return;
+          }
+        }
         syncInputsToState();
         if (state.currentStep < state.totalSteps - 1) {
           renderStep(state.currentStep + 1);
@@ -372,38 +538,96 @@
   // Generate Final Results Dashboard
   function generateFinalResults() {
     syncInputsToState();
-    const result = rulesEngine.evaluate(state.answers);
+    const currentLang = (typeof CURRENT_LANG !== 'undefined') ? CURRENT_LANG : 'en';
+    const result = rulesEngine.evaluate(state.answers, currentLang);
     state.evaluationResult = result;
+    renderResultsDashboard(result, true);
+  }
 
+  function renderResultsDashboard(result, scrollIntoView = false) {
+    if (!result) return;
     const resultBox = document.getElementById('resultbox');
     const wizardNav = document.getElementById('wizardnav');
     const panes = document.querySelectorAll('.step-pane');
 
     panes.forEach(p => p.classList.remove('active'));
-    wizardNav.style.display = 'none';
-    resultBox.classList.add('show');
+    if (wizardNav) wizardNav.style.display = 'none';
+    if (resultBox) resultBox.classList.add('show');
 
     // Header info
-    document.getElementById('resCountryName').textContent = result.country.name;
-    document.getElementById('resServiceName').textContent = formatServiceName(state.answers.service);
-    const metaAge = (result.applicant && result.applicant.exactAge !== null)
-      ? `Age ${result.applicant.exactAge} (${formatAgeBandName(result.applicant.canonicalAgeBand)})`
-      : formatAgeName(state.answers.age);
-    document.getElementById('resApplicantMeta').textContent = `${metaAge} · ${state.answers.location === 'abroad' ? 'Applying Abroad (Embassy/Consulate)' : 'Domestic Application'}`;
+    const resCountryName = document.getElementById('resCountryName');
+    if (resCountryName) resCountryName.textContent = result.country.name;
+
+    const resServiceName = document.getElementById('resServiceName');
+    if (resServiceName) resServiceName.textContent = formatServiceName(state.answers.service);
+
+    const resApplicantMeta = document.getElementById('resApplicantMeta');
+    if (resApplicantMeta) {
+      const metaAge = (result.applicant && result.applicant.exactAge !== null)
+        ? (typeof getI18nText === 'function'
+            ? getI18nText('meta_age_prefix', { age: result.applicant.exactAge, band: formatAgeBandName(result.applicant.canonicalAgeBand) })
+            : `Age ${result.applicant.exactAge} (${formatAgeBandName(result.applicant.canonicalAgeBand)})`)
+        : formatAgeName(state.answers.age);
+      const locText = state.answers.location === 'abroad'
+        ? (typeof getI18nText === 'function' ? getI18nText('meta_abroad') : 'Applying Abroad (Embassy/Consulate)')
+        : (typeof getI18nText === 'function' ? getI18nText('meta_domestic') : 'Domestic Application');
+      resApplicantMeta.textContent = `${metaAge} · ${locText}`;
+    }
 
     // Score badge
     const badgeEl = document.getElementById('resStatusBadge');
-    badgeEl.textContent = result.statusLabel.replace(/_/g, ' ');
-    if (result.statusLabel === 'PREPARED') {
-      badgeEl.className = 'status-pill status-verified';
-    } else if (result.statusLabel === 'VERIFICATION_RECOMMENDED' || result.statusLabel === 'NEEDS_ATTENTION') {
-      badgeEl.className = 'status-pill status-linked';
-    } else {
-      badgeEl.className = 'status-pill status-needs-research';
+    if (badgeEl) {
+      const statusMap = {
+        PREPARED: 'status_prepared',
+        VERIFICATION_RECOMMENDED: 'status_verification_recommended',
+        NEEDS_ATTENTION: 'status_needs_attention',
+        AWAITING_RESEARCH: 'status_awaiting_research'
+      };
+      const statusKey = statusMap[result.statusLabel];
+      badgeEl.textContent = (statusKey && typeof getI18nText === 'function')
+        ? getI18nText(statusKey)
+        : result.statusLabel.replace(/_/g, ' ');
+
+      if (result.statusLabel === 'PREPARED') {
+        badgeEl.className = 'status-pill status-verified';
+      } else if (result.statusLabel === 'VERIFICATION_RECOMMENDED' || result.statusLabel === 'NEEDS_ATTENTION') {
+        badgeEl.className = 'status-pill status-linked';
+      } else {
+        badgeEl.className = 'status-pill status-needs-research';
+      }
     }
 
-    document.getElementById('resScoreNum').textContent = `${result.readinessScore}%`;
-    document.getElementById('resScoreBar').style.width = `${result.readinessScore}%`;
+    const resScoreNum = document.getElementById('resScoreNum');
+    if (resScoreNum) resScoreNum.textContent = `${result.readinessScore}%`;
+    const resScoreBar = document.getElementById('resScoreBar');
+    if (resScoreBar) resScoreBar.style.width = `${result.readinessScore}%`;
+
+    // Unsupported / Limited Coverage In-Wizard Notice
+    const unsupportedNotice = document.getElementById('resUnsupportedNotice');
+    if (unsupportedNotice) {
+      if (result.serviceCoverage && result.serviceCoverage.status !== 'verified') {
+        const unsuppTitle = (typeof getI18nText === 'function')
+          ? getI18nText('unsupported_coverage_title')
+          : 'Limited Coverage Notice';
+        const unsuppAction = (typeof getI18nText === 'function')
+          ? getI18nText('unsupported_coverage_action')
+          : 'This service scenario is in public beta and not yet fully audited with claim-level evidence. Confirm all forms, fees, and requirements directly with official authorities.';
+        const summaryText = result.serviceCoverage.summary || '';
+        const serviceName = formatServiceName(state.answers.service);
+
+        unsupportedNotice.innerHTML = `
+          <div class="unsupported-service-notice">
+            <h5>⚠ ${escapeHTML(unsuppTitle)}: ${escapeHTML(serviceName)}</h5>
+            <p>${escapeHTML(summaryText)}</p>
+            <p class="unsupported-action">${escapeHTML(unsuppAction)}</p>
+          </div>
+        `;
+        unsupportedNotice.style.display = 'block';
+      } else {
+        unsupportedNotice.innerHTML = '';
+        unsupportedNotice.style.display = 'none';
+      }
+    }
 
     // Service Coverage Transparency Card
     const coverageCard = document.getElementById('resServiceCoverageCard');
@@ -411,7 +635,14 @@
       const sc = result.serviceCoverage;
       const isCountryVerified = result.country && result.country.isVerified;
       const countryBadgeClass = isCountryVerified ? 'status-verified' : 'status-needs-research';
-      const countryBadgeText = isCountryVerified ? 'VERIFIED COUNTRY PACK' : 'AWAITING RESEARCH';
+      const countryBadgeText = isCountryVerified
+        ? (typeof getI18nText === 'function' ? getI18nText('status_verified_country_pack') : 'VERIFIED COUNTRY PACK')
+        : (typeof getI18nText === 'function' ? getI18nText('status_awaiting_research') : 'AWAITING RESEARCH');
+
+      const covTitle = typeof getI18nText === 'function' ? getI18nText('cov_title') : 'Service Verification Audit · Multi-Dimensional Coverage';
+      const dimServiceLabel = typeof getI18nText === 'function' ? getI18nText('cov_dim_service') : 'Base Service';
+      const dimUrgencyLabel = typeof getI18nText === 'function' ? getI18nText('cov_dim_urgency') : 'Processing Route';
+      const dimChannelLabel = typeof getI18nText === 'function' ? getI18nText('cov_dim_channel') : 'Lodgement Channel';
 
       const dims = sc.dimensions || {};
       const serviceDim = dims.service || { name: 'Base Service', label: sc.label, badgeClass: sc.badgeClass };
@@ -421,37 +652,45 @@
       const renderEvidenceBadge = (dim) => {
         const lvl = dim.evidence?.evidenceLevel;
         if (lvl === 'trusted_official' || (dim.evidence?.hasSupportingEvidence && !dim.evidence?.isPartial)) {
-          return '<div style="font-size:10px;color:#166534;margin-top:4px">✓ Official Evidence Linked</div>';
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_official') : '✓ Official Evidence Linked';
+          return `<div style="font-size:10px;color:#166534;margin-top:4px">${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'partial_confirmation' || dim.evidence?.isPartial) {
-          return '<div style="font-size:10px;color:#b45309;margin-top:4px">⚠ Partial Evidence Requiring Confirmation</div>';
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_partial') : '⚠ Partial Evidence Requiring Confirmation';
+          return `<div style="font-size:10px;color:#b45309;margin-top:4px">${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'valid_syntax_incomplete_claim') {
-          return '<div style="font-size:10px;color:#475569;margin-top:4px">ℹ Valid Source Reference · Incomplete Claim Evidence</div>';
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_incomplete') : 'ℹ Valid Source Reference · Incomplete Claim Evidence';
+          return `<div style="font-size:10px;color:#475569;margin-top:4px">${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'no_trusted_source' || dim.status === 'general_guidance') {
-          return '<div style="font-size:10px;color:#b91c1c;margin-top:4px">⚠ No Trusted Official Source</div>';
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_no_trusted') : '⚠ No Trusted Official Source';
+          return `<div style="font-size:10px;color:#b91c1c;margin-top:4px">${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'awaiting_primary_research' || dim.status === 'awaiting_research') {
-          return '<div style="font-size:10px;color:#64748b;margin-top:4px">⌛ Awaiting Primary Research</div>';
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_awaiting') : '⌛ Awaiting Primary Research';
+          return `<div style="font-size:10px;color:#64748b;margin-top:4px">${escapeHTML(txt)}</div>`;
         }
-        return '<div style="font-size:10px;color:#b45309;margin-top:4px">⚠ Direct Confirmation Required</div>';
+        const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_confirmation') : '⚠ Direct Confirmation Required';
+        return `<div style="font-size:10px;color:#b45309;margin-top:4px">${escapeHTML(txt)}</div>`;
       };
 
       const supportedHtml = (sc.supportedChecks && sc.supportedChecks.length > 0)
-        ? `<div style="margin-top:10px"><strong style="font-size:12px;color:#166534">✓ Researched Checks Supported:</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#334155;line-height:1.4">${sc.supportedChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
+        ? `<div style="margin-top:10px"><strong style="font-size:12px;color:#166534">${escapeHTML(typeof getI18nText === 'function' ? getI18nText('cov_supported_heading') : '✓ Researched Checks Supported:')}</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#334155;line-height:1.4">${sc.supportedChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
         : '';
 
       const missingHtml = (sc.missingChecks && sc.missingChecks.length > 0)
-        ? `<div style="margin-top:8px"><strong style="font-size:12px;color:#b45309">⚠ Direct Official Confirmation Required:</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#78350f;line-height:1.4">${sc.missingChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
+        ? `<div style="margin-top:8px"><strong style="font-size:12px;color:#b45309">${escapeHTML(typeof getI18nText === 'function' ? getI18nText('cov_missing_heading') : '⚠ Direct Official Confirmation Required:')}</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#78350f;line-height:1.4">${sc.missingChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
         : '';
+
+      const disclaimerText = typeof getI18nText === 'function' ? getI18nText('score_disclaimer') : 'Readiness score reflects document preparation completeness only; it does not calculate, indicate, or guarantee passport issuance or approval.';
 
       coverageCard.innerHTML = `
         <div style="background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:16px;margin-bottom:16px">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
-            <span style="font-size:12px;font-weight:700;color:var(--slate-dark);text-transform:uppercase;letter-spacing:0.04em">Service Verification Audit · Multi-Dimensional Coverage</span>
+            <span style="font-size:12px;font-weight:700;color:var(--slate-dark);text-transform:uppercase;letter-spacing:0.04em">${escapeHTML(covTitle)}</span>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <span class="status-pill ${countryBadgeClass}">${countryBadgeText}</span>
+              <span class="status-pill ${countryBadgeClass}">${escapeHTML(countryBadgeText)}</span>
               <span class="status-pill ${sc.badgeClass}">${escapeHTML(sc.label.toUpperCase())}</span>
             </div>
           </div>
@@ -459,19 +698,19 @@
           <!-- Three Dimensions Status Breakdown -->
           <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:8px;margin-bottom:12px;background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
             <div>
-              <div style="font-size:11px;color:#64748b;font-weight:600">Base Service</div>
+              <div style="font-size:11px;color:#64748b;font-weight:600">${escapeHTML(dimServiceLabel)}</div>
               <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(serviceDim.name || 'Base Service')}</div>
               <span class="status-pill ${serviceDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(serviceDim.label || 'Verified')}</span>
               ${renderEvidenceBadge(serviceDim)}
             </div>
             <div>
-              <div style="font-size:11px;color:#64748b;font-weight:600">Processing Route</div>
+              <div style="font-size:11px;color:#64748b;font-weight:600">${escapeHTML(dimUrgencyLabel)}</div>
               <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(urgencyDim.name || 'Processing Route')}</div>
               <span class="status-pill ${urgencyDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(urgencyDim.label || 'Verified')}</span>
               ${renderEvidenceBadge(urgencyDim)}
             </div>
             <div>
-              <div style="font-size:11px;color:#64748b;font-weight:600">Lodgement Channel</div>
+              <div style="font-size:11px;color:#64748b;font-weight:600">${escapeHTML(dimChannelLabel)}</div>
               <div style="font-size:12px;font-weight:700;color:#1e293b;margin:2px 0">${escapeHTML(channelDim.name || 'Lodgement Channel')}</div>
               <span class="status-pill ${channelDim.badgeClass}" style="font-size:10px;padding:2px 6px">${escapeHTML(channelDim.label || 'Verified')}</span>
               ${renderEvidenceBadge(channelDim)}
@@ -482,7 +721,7 @@
           ${supportedHtml}
           ${missingHtml}
           <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #cbd5e1;font-size:11px;color:#64748b">
-            <em>Readiness score reflects document preparation completeness only; it does not calculate, indicate, or guarantee passport issuance or approval.</em>
+            <em>${escapeHTML(disclaimerText)}</em>
           </div>
         </div>
       `;
@@ -490,52 +729,65 @@
 
     // Flags section
     const flagsContainer = document.getElementById('resFlagsContainer');
-    if (result.flags.length === 0) {
-      flagsContainer.innerHTML = `
-        <div class="resultscore" style="background:#eaf6ef;border:1px solid #b7dfc8">
-          <div class="scoreicon" style="background:#c6e9d6;color:#18683f">✓</div>
-          <div>
-            <strong style="color:#14532d">No Critical Inconsistencies Reported</strong>
-            <small style="color:#4a6b57">Your personal particulars appear consistent across records. Review the required document checklist below.</small>
+    if (flagsContainer) {
+      if (result.flags.length === 0) {
+        const cleanTitle = (typeof getI18nText === 'function') ? getI18nText('flags_none_title') : 'No Critical Inconsistencies Reported';
+        const cleanMsg = (typeof getI18nText === 'function') ? getI18nText('flags_none_desc') : 'Your personal particulars appear consistent across records. Review the required document checklist below.';
+        flagsContainer.innerHTML = `
+          <div class="resultscore" style="background:#eaf6ef;border:1px solid #b7dfc8">
+            <div class="scoreicon" style="background:#c6e9d6;color:#18683f">✓</div>
+            <div>
+              <strong style="color:#14532d">${escapeHTML(cleanTitle)}</strong>
+              <small style="color:#4a6b57">${escapeHTML(cleanMsg)}</small>
+            </div>
           </div>
-        </div>
-      `;
-    } else {
-      flagsContainer.innerHTML = result.flags.map(f => `
-        <div class="notice" style="border-left:4px solid ${f.severity === 'critical' ? '#dc2626' : '#d97706'};background:${f.severity === 'critical' ? '#fef2f2' : '#fffbeb'};color:#451a03;margin-bottom:12px">
-          <strong style="color:${f.severity === 'critical' ? '#991b1b' : '#b45309'};font-size:13px">${escapeHTML(f.title)}</strong>
-          <p style="margin:5px 0;font-size:12px">${escapeHTML(f.message)}</p>
-          <div style="font-weight:700;font-size:11px;color:${f.severity === 'critical' ? '#b91c1c' : '#92400e'}">Recommended Action: ${escapeHTML(f.action)}</div>
-        </div>
-      `).join('');
+        `;
+      } else {
+        flagsContainer.innerHTML = result.flags.map(f => {
+          const recActionText = (typeof getI18nText === 'function')
+            ? getI18nText('flag_recommended_action', { action: escapeHTML(f.action) })
+            : `Recommended Action: ${escapeHTML(f.action)}`;
+          return `
+            <div class="notice" style="border-left:4px solid ${f.severity === 'critical' ? '#dc2626' : '#d97706'};background:${f.severity === 'critical' ? '#fef2f2' : '#fffbeb'};color:#451a03;margin-bottom:12px">
+              <strong style="color:${f.severity === 'critical' ? '#991b1b' : '#b45309'};font-size:13px">${escapeHTML(f.title)}</strong>
+              <p style="margin:5px 0;font-size:12px">${escapeHTML(f.message)}</p>
+              <div style="font-weight:700;font-size:11px;color:${f.severity === 'critical' ? '#b91c1c' : '#92400e'}">${recActionText}</div>
+            </div>
+          `;
+        }).join('');
+      }
     }
 
     // Official Source Card
     const sourceCard = document.getElementById('resOfficialSourceCard');
-    if (result.country.officialPortalUrl) {
-      sourceCard.innerHTML = `
-        <div class="resultscore" style="background:#f4f9f6;border:1px solid #c8e0d4">
-          <div class="scoreicon" style="background:#d4ecdf;color:#135939">🏛</div>
-          <div style="flex:1">
-            <strong style="color:#0e4028">${escapeHTML(result.country.authorityName || 'Official Passport Authority')}</strong>
-            <small style="display:block;color:#4c6e5b;margin:3px 0">Direct government portal verified for ${escapeHTML(result.country.name)}. Always complete final filing and fee payments directly on official government servers.</small>
-            <a href="${escapeHTML(result.country.officialPortalUrl)}" target="_blank" rel="noopener" class="btn btn-dark" style="padding:7px 14px;font-size:12px;margin-top:6px;display:inline-flex">Open Official Portal ↗</a>
+    if (sourceCard) {
+      if (result.country.officialPortalUrl) {
+        sourceCard.innerHTML = `
+          <div class="resultscore" style="background:#f4f9f6;border:1px solid #c8e0d4">
+            <div class="scoreicon" style="background:#d4ecdf;color:#135939">🏛</div>
+            <div style="flex:1">
+              <strong style="color:#0e4028">${escapeHTML(result.country.authorityName || 'Official Passport Authority')}</strong>
+              <small style="display:block;color:#4c6e5b;margin:3px 0">Direct government portal verified for ${escapeHTML(result.country.name)}. Always complete final filing and fee payments directly on official government servers.</small>
+              <a href="${escapeHTML(result.country.officialPortalUrl)}" target="_blank" rel="noopener" class="btn btn-dark" style="padding:7px 14px;font-size:12px;margin-top:6px;display:inline-flex">Open Official Portal ↗</a>
+            </div>
           </div>
-        </div>
-      `;
-    } else {
-      sourceCard.innerHTML = `
-        <div class="notice" style="background:#fffbeb;border:1px solid #fde68a;color:#78350f">
-          <strong>Official Portal Under Verification for ${escapeHTML(result.country.name)}</strong>
-          <p style="margin:5px 0;font-size:12px">PassportReady has not yet completed a primary source audit for this jurisdiction. Use this checklist as preparatory guidance, and contact your national foreign ministry or embassy for definitive local rules.</p>
-        </div>
-      `;
+        `;
+      } else {
+        sourceCard.innerHTML = `
+          <div class="notice" style="background:#fffbeb;border:1px solid #fde68a;color:#78350f">
+            <strong>Official Portal Under Verification for ${escapeHTML(result.country.name)}</strong>
+            <p style="margin:5px 0;font-size:12px">PassportReady has not yet completed a primary source audit for this jurisdiction. Use this checklist as preparatory guidance, and contact your national foreign ministry or embassy for definitive local rules.</p>
+          </div>
+        `;
+      }
     }
 
     // Checklist Items
     renderChecklistItems(result.checklist);
 
-    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (scrollIntoView && resultBox) {
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   function renderChecklistItems(items) {
@@ -551,7 +803,10 @@
       });
     }
 
-    list.innerHTML = items.map((item, idx) => {
+    const mandatoryLabel = (typeof getI18nText === 'function') ? getI18nText('status_mandatory') : 'MANDATORY';
+    const optionalLabel = (typeof getI18nText === 'function') ? getI18nText('status_optional') : 'CONDITIONAL';
+
+    list.innerHTML = items.map((item) => {
       const isChecked = !!state.checklistChecked[item.id];
       return `
         <li class="checklist-item ${isChecked ? 'is-checked' : ''}" data-item-id="${item.id}">
@@ -562,7 +817,7 @@
           <div class="check-text">
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
               <strong style="font-size:14px;color:#1e293b">${escapeHTML(item.title)}</strong>
-              ${item.mandatory ? '<span class="status-pill status-mandatory">MANDATORY</span>' : '<span class="status-pill status-optional">CONDITIONAL</span>'}
+              ${item.mandatory ? `<span class="status-pill status-mandatory">${escapeHTML(mandatoryLabel)}</span>` : `<span class="status-pill status-optional">${escapeHTML(optionalLabel)}</span>`}
             </div>
             <p style="margin:4px 0 0;font-size:12px;color:#64748b;line-height:1.5">${escapeHTML(item.details)}</p>
           </div>
@@ -570,7 +825,6 @@
       `;
     }).join('');
   }
-
   function toggleCheck(id) {
     state.checklistChecked[id] = !state.checklistChecked[id];
     saveState();
@@ -925,6 +1179,19 @@
 
   // Formatting helpers
   function formatServiceName(s) {
+    const keyMap = {
+      first_passport: 'srv_first',
+      renewal_reissue: 'srv_renewal',
+      lost_stolen: 'srv_lost',
+      damaged: 'srv_damaged',
+      name_correction: 'srv_name_change',
+      minor_child: 'srv_minor',
+      urgent_expedited: 'srv_urgent',
+      emergency_travel: 'srv_emergency'
+    };
+    if (keyMap[s] && typeof getI18nText === 'function') {
+      return getI18nText(keyMap[s]);
+    }
     const map = {
       first_passport: "First-Time / Fresh Passport",
       renewal_reissue: "Passport Renewal / Reissue",
@@ -939,6 +1206,15 @@
   }
 
   function formatAgeName(a) {
+    const keyMap = {
+      infant: 'age_infant',
+      minor: 'age_minor',
+      adult: 'age_adult',
+      senior: 'age_senior'
+    };
+    if (keyMap[a] && typeof getI18nText === 'function') {
+      return getI18nText(keyMap[a]);
+    }
     const map = {
       infant: "Infant / Young Child (under 5/6)",
       minor: "Child / Minor (under 16/18)",
@@ -949,6 +1225,16 @@
   }
 
   function formatAgeBandName(band) {
+    const keyMap = {
+      child_under_12: 'band_child_under_12',
+      minor_12_to_16: 'band_minor_12_to_16',
+      age_17: 'band_age_17',
+      adult_18_to_59: 'band_adult_18_to_59',
+      senior_60_plus: 'band_senior_60_plus'
+    };
+    if (keyMap[band] && typeof getI18nText === 'function') {
+      return getI18nText(keyMap[band]);
+    }
     const map = {
       child_under_12: "Child Under 12",
       minor_12_to_16: "Minor / Youth (12–16)",
@@ -970,8 +1256,8 @@
     return [...code.toUpperCase()].map(ch => String.fromCodePoint(127397 + ch.charCodeAt(0))).join('');
   }
 
-  // Expose global controller
-  window.PassportApp = {
+  // Expose global controller with DEF-04 helpers
+  const exportedApp = {
     init,
     toggleCheck,
     selectCountryFromDirectory,
@@ -979,13 +1265,26 @@
     openInformationalModal,
     getDirectoryCounts,
     updateDirectoryFilterCounts,
-    getCountryByQuery
+    getCountryByQuery,
+    normalizeCountryText,
+    updateCountryHint,
+    syncInputsToState,
+    renderStep,
+    getState: () => state
   };
 
-  // Run on DOM load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  if (typeof window !== 'undefined') {
+    window.PassportApp = exportedApp;
+    if (typeof document !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    }
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = exportedApp;
   }
 })();

@@ -34,14 +34,14 @@
         "age_basis_source": "https://www.passportindia.gov.in/"
       },
       {
-        "label": "Adult (18 to 59)",
+        "label": "Adult (18 to 60)",
         "min_age": 18,
-        "max_age": 59,
+        "max_age": 60,
         "age_basis_source": "https://www.passportindia.gov.in/"
       },
       {
-        "label": "Senior citizen (60+)",
-        "min_age": 60,
+        "label": "Senior citizen (above 60 years)",
+        "min_age": 61,
         "max_age": null,
         "age_basis_source": "https://www.passportindia.gov.in/"
       }
@@ -59,6 +59,11 @@
             "rule": "Minors require parental consent through Annexure D/C.",
             "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/citizenshipNorms",
             "last_reviewed": "2026-10-18"
+          },
+          {
+            "rule": "Senior citizen concession (10% rebate on basic passport fee) requires the applicant to be above the age of 60 years at the time of fresh application (Passports (Amendment) Rules, 2026, G.S.R. 516(E)).",
+            "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+            "last_reviewed": "2026-10-21"
           }
         ],
         "steps": [
@@ -142,10 +147,122 @@
         },
         "fees": {
           "currency": "INR",
-          "standard_adult_36_pages": 1500,
-          "standard_adult_60_pages": 2000,
-          "minor_under_18": 1000,
-          "tatkaal_surcharge": 2000
+          "fiscal_year": 2026,
+          "statutory_source": "Passports (Amendment) Rules, 2026, G.S.R. 516(E), Ministry of External Affairs, effective 1 July 2026",
+          "effective_date": "2026-07-01",
+          "standard_adult_36_pages": 2500,
+          "standard_adult_60_pages": 3500,
+          "minor_under_18": 1750,
+          "tatkaal_additional_fee": 2500,
+          "tatkaal_surcharge": 2500,
+          "tatkaal_total_36_pages": 5000,
+          "tatkaal_total_60_pages": 6000,
+          "tatkaal_total_minor": 4250,
+          "senior_child_discount_note": "A 10% rebate on the basic passport fee is available for fresh passport applications submitted by senior citizens (persons above the age of 60 years) and minor children up to the age of 8 years. Applies to normal fresh basic passport fee; applicability of the 10% basic rebate to Tatkaal applications is UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR (official Tatkaal totals are ₹5,000 for 36-page, ₹6,000 for 60-page, and ₹4,250 for minor). Does not apply to re-issue or replacement of lost/damaged passports.",
+          "fee_records": [
+            {
+              "currency": "INR",
+              "amount": 2500,
+              "base_amount": 2500,
+              "emergency_surcharge": 0,
+              "total_payable": 2500,
+              "applicant_category": "adult_18_and_older",
+              "application_channel": "domestic_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard adult 36-page passport or reissue (fresh applications for senior citizens above 60 years eligible for 10% rebate on basic fee: ₹2,250).",
+              "applicable_conditions": "Indian citizens aged 18 and older. Passports (Amendment) Rules 2026 G.S.R. 516(E).",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 3500,
+              "base_amount": 3500,
+              "emergency_surcharge": 0,
+              "total_payable": 3500,
+              "applicant_category": "adult_18_and_older_jumbo",
+              "application_channel": "domestic_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard adult 60-page jumbo booklet (fresh applications for senior citizens above 60 years eligible for 10% rebate on basic fee: ₹3,150).",
+              "applicable_conditions": "Frequent travellers aged 18 and older. Passports (Amendment) Rules 2026 G.S.R. 516(E).",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 1750,
+              "base_amount": 1750,
+              "emergency_surcharge": 0,
+              "total_payable": 1750,
+              "applicant_category": "minor_under_18",
+              "application_channel": "domestic_online",
+              "validity_period": "5_years_or_until_18",
+              "discount_eligibility": "Minors under 18 standard 36-page booklet (₹1,750; fresh children up to 8 years eligible for 10% rebate on basic fee: ₹1,575).",
+              "applicable_conditions": "Minors under 18 years. Annexure D signed by parents required. Passports (Amendment) Rules, 2026, G.S.R. 516(E), Gazette No. 273829.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 5000,
+              "base_amount": 2500,
+              "emergency_surcharge": 2500,
+              "total_payable": 5000,
+              "applicant_category": "adult_tatkaal_36_pages",
+              "application_channel": "domestic_tatkaal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Tatkaal urgent processing total fee (₹2,500 base + ₹2,500 Tatkaal additional fee = ₹5,000 total). Potential 10% rebate on basic fee component for fresh senior applicants above 60 years (arithmetic ₹4,750) is UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR.",
+              "applicable_conditions": "Urgent Tatkaal dispatch (1–3 business days). Verification under MEA Tatkaal norms.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 6000,
+              "base_amount": 3500,
+              "emergency_surcharge": 2500,
+              "total_payable": 6000,
+              "applicant_category": "adult_tatkaal_60_pages",
+              "application_channel": "domestic_tatkaal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Tatkaal urgent processing total fee for 60-page booklet (₹3,500 base + ₹2,500 Tatkaal additional fee = ₹6,000 total). Potential 10% rebate on basic fee component for fresh senior applicants above 60 years (arithmetic ₹5,650) is UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR.",
+              "applicable_conditions": "Urgent Tatkaal dispatch (1–3 business days) for 60-page jumbo booklet.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 4250,
+              "base_amount": 1750,
+              "emergency_surcharge": 2500,
+              "total_payable": 4250,
+              "applicant_category": "minor_tatkaal_36_pages",
+              "application_channel": "domestic_tatkaal",
+              "validity_period": "5_years_or_until_18",
+              "discount_eligibility": "Tatkaal urgent processing total fee for minors (₹1,750 base + ₹2,500 Tatkaal additional fee = ₹4,250 total). Potential 10% rebate on basic fee component for fresh children up to 8 years (arithmetic ₹4,075) is UNVERIFIED / CONFIRM AT OFFICIAL FEE CALCULATOR.",
+              "applicable_conditions": "Urgent Tatkaal dispatch for minors under 18 years. Passports (Amendment) Rules, 2026, G.S.R. 516(E), Gazette No. 273829.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "normal_days": "15 to 30 days including police verification",
@@ -321,8 +438,85 @@
         ],
         "fees": {
           "currency": "INR",
-          "standard_adult_36_pages": 3000,
-          "standard_adult_60_pages": 3500
+          "fiscal_year": 2026,
+          "statutory_source": "Passports (Amendment) Rules, 2026, G.S.R. 516(E), Ministry of External Affairs, effective 1 July 2026",
+          "effective_date": "2026-07-01",
+          "standard_adult_36_pages": 5000,
+          "standard_adult_60_pages": 6000,
+          "tatkaal_additional_fee": 2500,
+          "tatkaal_surcharge": 2500,
+          "tatkaal_total_36_pages": 7500,
+          "tatkaal_total_60_pages": 8500,
+          "fee_records": [
+            {
+              "currency": "INR",
+              "amount": 5000,
+              "base_amount": 5000,
+              "emergency_surcharge": 0,
+              "total_payable": 5000,
+              "applicant_category": "lost_damaged_replacement_36",
+              "application_channel": "domestic_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Statutory replacement fee for lost/damaged passport (36 pages).",
+              "applicable_conditions": "Police FIR / Missing Report and Annexure F mandatory. Passports (Amendment) Rules 2026 G.S.R. 516(E), Gazette No. 273829.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 6000,
+              "base_amount": 6000,
+              "emergency_surcharge": 0,
+              "total_payable": 6000,
+              "applicant_category": "lost_damaged_replacement_60",
+              "application_channel": "domestic_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Statutory replacement fee for lost/damaged jumbo passport (60 pages).",
+              "applicable_conditions": "Police FIR / Missing Report and Annexure F mandatory. Passports (Amendment) Rules 2026 G.S.R. 516(E), Gazette No. 273829.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 7500,
+              "base_amount": 5000,
+              "emergency_surcharge": 2500,
+              "total_payable": 7500,
+              "applicant_category": "lost_damaged_replacement_36_tatkaal",
+              "application_channel": "domestic_tatkaal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Tatkaal replacement fee for lost/damaged passport (36 pages: ₹5,000 base + ₹2,500 Tatkaal fee).",
+              "applicable_conditions": "Urgent Tatkaal replacement. Police FIR and Annexure F mandatory. Passports (Amendment) Rules 2026 G.S.R. 516(E), Gazette No. 273829.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "INR",
+              "amount": 8500,
+              "base_amount": 6000,
+              "emergency_surcharge": 2500,
+              "total_payable": 8500,
+              "applicant_category": "lost_damaged_replacement_60_tatkaal",
+              "application_channel": "domestic_tatkaal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Tatkaal replacement fee for lost/damaged jumbo passport (60 pages: ₹6,000 base + ₹2,500 Tatkaal fee).",
+              "applicable_conditions": "Urgent Tatkaal replacement jumbo booklet. Police FIR and Annexure F mandatory. Passports (Amendment) Rules 2026 G.S.R. 516(E), Gazette No. 273829.",
+              "official_source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/tatkaalPassports",
+              "effective_date": "2026-07-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "sources": [
           {
@@ -559,7 +753,60 @@
           "total_adult_first_time": 165,
           "minor_book_application_fee": 100,
           "minor_total": 135,
-          "expedite_service_fee": 60
+          "expedite_service_fee": 60,
+          "fee_records": [
+            {
+              "currency": "USD",
+              "amount": 165,
+              "base_amount": 130,
+              "emergency_surcharge": 0,
+              "total_payable": 165,
+              "applicant_category": "adult_16_and_older_first_time",
+              "application_channel": "domestic_acceptance_facility",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard first-time adult passport (Form DS-11: $130 application fee + $35 execution fee).",
+              "applicable_conditions": "U.S. citizens aged 16+ applying in person. 22 CFR 22.1.",
+              "official_source_url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+              "effective_date": "2021-12-27",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 135,
+              "base_amount": 100,
+              "emergency_surcharge": 0,
+              "total_payable": 135,
+              "applicant_category": "minor_under_16",
+              "application_channel": "domestic_acceptance_facility",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard minor passport (Form DS-11: $100 application fee + $35 execution fee).",
+              "applicable_conditions": "Minors under 16 with both parents present.",
+              "official_source_url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+              "effective_date": "2021-12-27",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 225,
+              "base_amount": 165,
+              "emergency_surcharge": 60,
+              "total_payable": 225,
+              "applicant_category": "adult_expedited_first_time",
+              "application_channel": "domestic_acceptance_facility",
+              "validity_period": "10_years",
+              "discount_eligibility": "Expedited adult first-time passport ($165 base total + $60 expedite fee).",
+              "applicable_conditions": "Expedited processing 2–3 weeks.",
+              "official_source_url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+              "effective_date": "2021-12-27",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "routine": "6 to 8 weeks",
@@ -652,7 +899,43 @@
         "fees": {
           "currency": "USD",
           "adult_renewal_book": 130,
-          "expedite_fee": 60
+          "expedite_fee": 60,
+          "fee_records": [
+            {
+              "currency": "USD",
+              "amount": 130,
+              "base_amount": 130,
+              "emergency_surcharge": 0,
+              "total_payable": 130,
+              "applicant_category": "adult_renewal_by_mail",
+              "application_channel": "postal_mail",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard adult passport renewal (Form DS-82). No execution fee.",
+              "applicable_conditions": "Adult renewal by mail with eligible undamaged previous 10-year passport.",
+              "official_source_url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+              "effective_date": "2021-12-27",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "USD",
+              "amount": 190,
+              "base_amount": 130,
+              "emergency_surcharge": 60,
+              "total_payable": 190,
+              "applicant_category": "adult_renewal_expedited",
+              "application_channel": "postal_mail",
+              "validity_period": "10_years",
+              "discount_eligibility": "Expedited adult renewal ($130 renewal fee + $60 expedite fee).",
+              "applicable_conditions": "Expedited renewal by mail 2–3 weeks.",
+              "official_source_url": "https://travel.state.gov/content/travel/en/passports/how-apply/fees.html",
+              "effective_date": "2021-12-27",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "sources": [
           {
@@ -860,11 +1143,201 @@
         },
         "fees": {
           "currency": "GBP",
-          "adult_online": 88.5,
-          "adult_postal": 100,
-          "child_online": 57.5,
-          "child_postal": 69,
-          "fast_track_1_week_adult": 166.5
+          "fiscal_year": 2026,
+          "statutory_source": "Passport (Fees) Regulations / HM Passport Office (gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible)",
+          "effective_date": "2026-04-08",
+          "adult_online": 102,
+          "adult_postal": 115.5,
+          "adult_jumbo_online": 116,
+          "adult_jumbo_postal": 129.5,
+          "child_online": 66.5,
+          "child_postal": 80,
+          "child_jumbo_online": 76.5,
+          "child_jumbo_postal": 90,
+          "fast_track_1_week_adult": 192,
+          "fast_track_1_week_child": 156.5,
+          "premium_1_day_adult": 239.5,
+          "fee_records": [
+            {
+              "currency": "GBP",
+              "amount": 102,
+              "base_amount": 102,
+              "emergency_surcharge": 0,
+              "total_payable": 102,
+              "applicant_category": "adult_16_and_older_online",
+              "application_channel": "online_digital",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard online application rate for adults aged 16+.",
+              "applicable_conditions": "Standard 34-page booklet via gov.uk.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 115.5,
+              "base_amount": 115.5,
+              "emergency_surcharge": 0,
+              "total_payable": 115.5,
+              "applicant_category": "adult_16_and_older_postal",
+              "application_channel": "postal_paper",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard paper/postal rate for adults aged 16+.",
+              "applicable_conditions": "Paper application submitted via Post Office Check & Send or post.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 192,
+              "base_amount": 102,
+              "emergency_surcharge": 90,
+              "total_payable": 192,
+              "applicant_category": "adult_urgent_fast_track",
+              "application_channel": "counter_appointment",
+              "validity_period": "10_years",
+              "discount_eligibility": "1-Week Fast Track service total fee for adults (renewal/replacement only).",
+              "applicable_conditions": "Appointment at Passport Customer Service Centre required. NOT available for first-time adult passports.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 66.5,
+              "base_amount": 66.5,
+              "emergency_surcharge": 0,
+              "total_payable": 66.5,
+              "applicant_category": "child_under_16_online",
+              "application_channel": "online_digital",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard online application rate for children under 16.",
+              "applicable_conditions": "Standard 34-page booklet for children under 16 via gov.uk.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 80,
+              "base_amount": 80,
+              "emergency_surcharge": 0,
+              "total_payable": 80,
+              "applicant_category": "child_under_16_postal",
+              "application_channel": "postal_paper",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard paper/postal rate for children under 16.",
+              "applicable_conditions": "Paper application for child under 16 via Post Office Check & Send or post.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 239.5,
+              "base_amount": 102,
+              "emergency_surcharge": 137.5,
+              "total_payable": 239.5,
+              "applicant_category": "adult_urgent_1_day_premium",
+              "application_channel": "counter_appointment",
+              "validity_period": "10_years",
+              "discount_eligibility": "1-Day Premium same-day service total fee for adults (renewal only).",
+              "applicable_conditions": "Adult renewal only; strictly NOT available for first passports, replacements of lost/stolen, or child passports.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 116,
+              "base_amount": 116,
+              "emergency_surcharge": 0,
+              "total_payable": 116,
+              "applicant_category": "adult_frequent_traveller_online",
+              "application_channel": "online_digital",
+              "validity_period": "10_years",
+              "discount_eligibility": "Adult 54-page frequent-traveller passport online rate.",
+              "applicable_conditions": "Standard frequent traveller 54-page booklet via gov.uk.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 129.5,
+              "base_amount": 129.5,
+              "emergency_surcharge": 0,
+              "total_payable": 129.5,
+              "applicant_category": "adult_frequent_traveller_postal",
+              "application_channel": "postal_paper",
+              "validity_period": "10_years",
+              "discount_eligibility": "Adult 54-page frequent-traveller passport postal rate.",
+              "applicable_conditions": "Paper application for 54-page frequent-traveller passport via post.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 156.5,
+              "base_amount": 66.5,
+              "emergency_surcharge": 90,
+              "total_payable": 156.5,
+              "applicant_category": "child_urgent_fast_track",
+              "application_channel": "counter_appointment",
+              "validity_period": "5_years",
+              "discount_eligibility": "1-Week Fast Track service total fee for children under 16.",
+              "applicable_conditions": "Appointment at Passport Customer Service Centre required. Child must attend if over 12 or photo rules require.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "GBP",
+              "amount": 116.5,
+              "base_amount": 116.5,
+              "emergency_surcharge": 0,
+              "total_payable": 116.5,
+              "applicant_category": "adult_overseas_online",
+              "application_channel": "overseas_online",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard overseas online application rate for adults aged 16+.",
+              "applicable_conditions": "Application from abroad via gov.uk. Standard international delivery fees (reported courier charges of £14.32 or £20.86 per consignment) are explicitly unverified in the accessible statutory schedule and must be confirmed directly on gov.uk at checkout.",
+              "official_source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+              "effective_date": "2026-04-08",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ],
+          "adult_overseas_online": 116.5,
+          "international_delivery_fee": null,
+          "supporting_documents_return_delivery_fee": null,
+          "delivery_fee_status": "unverified_confirmation_required",
+          "reported_courier_fee_estimates": [
+            14.32,
+            20.86
+          ],
+          "delivery_fee_note": "International courier delivery fees (£14.32 / £20.86) are not verified in the current accessible statutory schedule and must be confirmed directly at gov.uk before application submission."
         },
         "processing_times": {
           "standard": "Up to 3 weeks",
@@ -896,16 +1369,16 @@
         ],
         "steps": [
           {
-            "step": "Complete online renewal at GOV.UK.",
-            "source_url": "https://www.gov.uk/"
+            "step": "Complete renewal application online at GOV.UK or by post using a paper form from the Post Office.",
+            "source_url": "https://www.gov.uk/renew-adult-passport"
           },
           {
-            "step": "Pay £88.50 fee.",
-            "source_url": "https://www.gov.uk/"
+            "step": "Pay statutory renewal fee: £102 for standard adult online renewal or £115.50 for adult paper renewal.",
+            "source_url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible"
           },
           {
             "step": "Post old passport to HMPO address provided.",
-            "source_url": "https://www.gov.uk/"
+            "source_url": "https://www.gov.uk/renew-adult-passport"
           }
         ],
         "documents": [
@@ -926,6 +1399,16 @@
             "publisher": "HM Passport Office",
             "page_title": "Renew Adult Passport",
             "checked_at": "2026-10-18"
+          },
+          {
+            "url": "https://www.gov.uk/government/publications/application-fees-and-refunds/passport-fees-accessible",
+            "publisher": "HM Passport Office",
+            "page_title": "HM Passport Office fees accessible table",
+            "checked_at": "2026-10-21",
+            "claims": [
+              "fee",
+              "steps"
+            ]
           }
         ]
       }
@@ -1053,10 +1536,121 @@
         },
         "fees": {
           "currency": "CAD",
-          "adult_5_year": 120,
-          "adult_10_year": 160,
-          "child_0_to_15": 57,
-          "urgent_pickup_surcharge": 110
+          "fiscal_year": 2026,
+          "statutory_source": "Service Fees Act annual adjustment / Passport Program (Canada.ca), effective 31 March 2026",
+          "effective_date": "2026-03-31",
+          "adult_5_year": 122.5,
+          "adult_10_year": 163.5,
+          "child_0_to_15": 58.5,
+          "urgent_pickup_surcharge": 125.75,
+          "express_pickup_surcharge": 57.15,
+          "standard_pickup_surcharge": 22.85,
+          "fee_records": [
+            {
+              "currency": "CAD",
+              "amount": 122.5,
+              "base_amount": 122.5,
+              "emergency_surcharge": 0,
+              "total_payable": 122.5,
+              "applicant_category": "adult_5_year",
+              "application_channel": "domestic_standard",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard adult 5-year passport rate in Canada.",
+              "applicable_conditions": "Canadians aged 16+ applying in Canada. Service Fees Act indexed rate effective 31 March 2026.",
+              "official_source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+              "effective_date": "2026-03-31",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "CAD",
+              "amount": 163.5,
+              "base_amount": 163.5,
+              "emergency_surcharge": 0,
+              "total_payable": 163.5,
+              "applicant_category": "adult_10_year",
+              "application_channel": "domestic_standard",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard adult 10-year passport rate in Canada.",
+              "applicable_conditions": "Canadians aged 16+ applying in Canada. Service Fees Act indexed rate effective 31 March 2026.",
+              "official_source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+              "effective_date": "2026-03-31",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "CAD",
+              "amount": 58.5,
+              "base_amount": 58.5,
+              "emergency_surcharge": 0,
+              "total_payable": 58.5,
+              "applicant_category": "child_0_to_15",
+              "application_channel": "domestic_standard",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard child passport rate in Canada.",
+              "applicable_conditions": "Children aged 0–15 years applying in Canada. Service Fees Act indexed rate effective 31 March 2026.",
+              "official_source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+              "effective_date": "2026-03-31",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "CAD",
+              "amount": 289.25,
+              "base_amount": 163.5,
+              "emergency_surcharge": 125.75,
+              "total_payable": 289.25,
+              "applicant_category": "adult_urgent_pickup_10yr",
+              "application_channel": "domestic_urgent_pickup",
+              "validity_period": "10_years",
+              "discount_eligibility": "Urgent pickup total fee for adult 10-year passport (CAD 163.50 base + CAD 125.75 urgent surcharge).",
+              "applicable_conditions": "Urgent pickup by end of next business day at passport office; proof of urgent travel required.",
+              "official_source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+              "effective_date": "2026-03-31",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "CAD",
+              "amount": 248.25,
+              "base_amount": 122.5,
+              "emergency_surcharge": 125.75,
+              "total_payable": 248.25,
+              "applicant_category": "adult_urgent_pickup_5yr",
+              "application_channel": "domestic_urgent_pickup",
+              "validity_period": "5_years",
+              "discount_eligibility": "Urgent pickup total fee for adult 5-year passport (CAD 122.50 base + CAD 125.75 urgent surcharge).",
+              "applicable_conditions": "Urgent pickup by end of next business day at passport office; proof of urgent travel required.",
+              "official_source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+              "effective_date": "2026-03-31",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "CAD",
+              "amount": 184.25,
+              "base_amount": 58.5,
+              "emergency_surcharge": 125.75,
+              "total_payable": 184.25,
+              "applicant_category": "child_urgent_pickup",
+              "application_channel": "domestic_urgent_pickup",
+              "validity_period": "5_years",
+              "discount_eligibility": "Urgent pickup total fee for child passport (CAD 58.50 base + CAD 125.75 urgent surcharge).",
+              "applicable_conditions": "Urgent pickup by end of next business day at passport office; proof of urgent travel required.",
+              "official_source_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+              "effective_date": "2026-03-31",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ],
+          "child_overseas": 102.5,
+          "child_urgent_pickup_total": 184.25
         },
         "processing_times": {
           "in_person_passport_office": "10 business days",
@@ -1236,10 +1830,141 @@
         },
         "fees": {
           "currency": "AUD",
-          "adult_10_year": 398,
-          "child_5_year": 199,
-          "senior_75_plus_5_year": 199,
-          "priority_processing_surcharge": 290
+          "fiscal_year": 2026,
+          "statutory_source": "Australian Passports (Application Fees) Determination / Australian Passport Office (passports.gov.au/passports-explained/passport-fees), effective 1 January 2026",
+          "effective_date": "2026-01-01",
+          "adult_10_year": 422,
+          "child_5_year": 213,
+          "senior_75_plus_5_year": 213,
+          "priority_processing_surcharge": 308,
+          "fast_track_processing_surcharge": 107,
+          "fee_records": [
+            {
+              "currency": "AUD",
+              "amount": 422,
+              "base_amount": 422,
+              "emergency_surcharge": 0,
+              "total_payable": 422,
+              "applicant_category": "adult_16_and_older",
+              "application_channel": "domestic_standard",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard adult 10-year passport rate.",
+              "applicable_conditions": "Australian citizens aged 16 and older. Statutory indexed rate effective 1 January 2026.",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AUD",
+              "amount": 213,
+              "base_amount": 213,
+              "emergency_surcharge": 0,
+              "total_payable": 213,
+              "applicant_category": "child_under_16",
+              "application_channel": "domestic_standard",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard child 5-year passport rate.",
+              "applicable_conditions": "Australian children under 16 years. Statutory indexed rate effective 1 January 2026.",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AUD",
+              "amount": 213,
+              "base_amount": 213,
+              "emergency_surcharge": 0,
+              "total_payable": 213,
+              "applicant_category": "senior_75_plus_5_year",
+              "application_channel": "domestic_standard",
+              "validity_period": "5_years",
+              "discount_eligibility": "Optional 5-year passport concession for seniors aged 75 and over.",
+              "applicable_conditions": "Australian citizens aged 75+ (optional 5-year document; standard 10-year option is AUD 422).",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AUD",
+              "amount": 730,
+              "base_amount": 422,
+              "emergency_surcharge": 308,
+              "total_payable": 730,
+              "applicant_category": "adult_priority_processing",
+              "application_channel": "domestic_priority_2_day",
+              "validity_period": "10_years",
+              "discount_eligibility": "Priority 2-business-day processing total fee (AUD 422 base + AUD 308 priority surcharge).",
+              "applicable_conditions": "Ready in 2 business days upon complete application at participating Australia Post outlets.",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AUD",
+              "amount": 529,
+              "base_amount": 422,
+              "emergency_surcharge": 107,
+              "total_payable": 529,
+              "applicant_category": "adult_fast_track_processing",
+              "application_channel": "domestic_fast_track_5_day",
+              "validity_period": "10_years",
+              "discount_eligibility": "Fast Track 5-business-day processing total fee (AUD 422 base + AUD 107 Fast Track surcharge).",
+              "applicable_conditions": "Ready in 5 business days upon complete application at standard post offices.",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AUD",
+              "amount": 521,
+              "base_amount": 213,
+              "emergency_surcharge": 308,
+              "total_payable": 521,
+              "applicant_category": "child_priority_processing",
+              "application_channel": "domestic_priority_2_day",
+              "validity_period": "5_years",
+              "discount_eligibility": "Priority 2-business-day processing total fee for child (AUD 213 base + AUD 308 priority surcharge).",
+              "applicable_conditions": "Ready in 2 business days upon complete application at participating Australia Post outlets.",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AUD",
+              "amount": 521,
+              "base_amount": 213,
+              "emergency_surcharge": 308,
+              "total_payable": 521,
+              "applicant_category": "senior_75_plus_priority_processing",
+              "application_channel": "domestic_priority_2_day",
+              "validity_period": "5_years",
+              "discount_eligibility": "Priority 2-business-day processing total fee for optional 5-year senior 75+ passport (AUD 213 base + AUD 308 priority surcharge).",
+              "applicable_conditions": "Ready in 2 business days upon complete application at participating Australia Post outlets.",
+              "official_source_url": "https://www.passports.gov.au/passports-explained/passport-fees",
+              "effective_date": "2026-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ],
+          "overseas_surcharge_adult": 189,
+          "overseas_surcharge_child": 92,
+          "priority_total_adult": 730,
+          "priority_total_child": 521,
+          "priority_total_senior": 521,
+          "fast_track_total_adult": 529
         },
         "processing_times": {
           "standard": "Up to 6 weeks",
@@ -1417,7 +2142,60 @@
           "urgent_36_pages_5_year": 7500,
           "fast_track_36_pages_5_year": 12500,
           "normal_36_pages_10_year": 6700,
-          "urgent_36_pages_10_year": 11200
+          "urgent_36_pages_10_year": 11200,
+          "fee_records": [
+            {
+              "currency": "PKR",
+              "amount": 4500,
+              "base_amount": 4500,
+              "emergency_surcharge": 0,
+              "total_payable": 4500,
+              "applicant_category": "standard_36_pages_5yr",
+              "application_channel": "domestic_normal",
+              "validity_period": "5_years",
+              "discount_eligibility": "Normal delivery (10–12 working days) 36 pages.",
+              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP. DGIP fee schedule.",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": "2024-03-07",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "amount": 7500,
+              "base_amount": 4500,
+              "emergency_surcharge": 3000,
+              "total_payable": 7500,
+              "applicant_category": "urgent_36_pages_5yr",
+              "application_channel": "domestic_urgent",
+              "validity_period": "5_years",
+              "discount_eligibility": "Urgent delivery (5 working days) 36 pages.",
+              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP.",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": "2024-03-07",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "amount": 6700,
+              "base_amount": 6700,
+              "emergency_surcharge": 0,
+              "total_payable": 6700,
+              "applicant_category": "standard_36_pages_10yr",
+              "application_channel": "domestic_normal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Normal delivery (10–12 working days) 36 pages 10-year.",
+              "applicable_conditions": "Pakistani citizens aged 15+ with CNIC/NICOP.",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": "2024-03-07",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "normal": "10 to 15 working days",
@@ -1601,7 +2379,77 @@
           "express_5_year_48_pages": 6325,
           "super_express_5_year": 8625,
           "regular_10_year_48_pages": 5750,
-          "express_10_year_48_pages": 8050
+          "express_10_year_48_pages": 8050,
+          "fee_records": [
+            {
+              "currency": "BDT",
+              "amount": 4025,
+              "base_amount": 3500,
+              "emergency_surcharge": 0,
+              "total_payable": 4025,
+              "applicant_category": "regular_48_pages_5yr",
+              "application_channel": "domestic_regular",
+              "validity_period": "5_years",
+              "discount_eligibility": "Regular delivery (15 working days) 48 pages (incl. 15% VAT).",
+              "applicable_conditions": "Bangladeshi citizens with NID/BRC. DIP schedule.",
+              "official_source_url": "https://www.epassport.gov.bd/landing",
+              "effective_date": "2020-01-22",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "BDT",
+              "amount": 6325,
+              "base_amount": 5500,
+              "emergency_surcharge": 0,
+              "total_payable": 6325,
+              "applicant_category": "express_48_pages_5yr",
+              "application_channel": "domestic_express",
+              "validity_period": "5_years",
+              "discount_eligibility": "Express delivery (7 working days) 48 pages (incl. 15% statutory VAT).",
+              "applicable_conditions": "Bangladeshi citizens with NID/BRC.",
+              "official_source_url": "https://www.epassport.gov.bd/landing",
+              "effective_date": "2020-01-22",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "BDT",
+              "amount": 5750,
+              "base_amount": 5000,
+              "emergency_surcharge": 0,
+              "total_payable": 5750,
+              "applicant_category": "regular_48_pages_10yr",
+              "application_channel": "domestic_regular",
+              "validity_period": "10_years",
+              "discount_eligibility": "Regular delivery (15 working days) 48 pages 10-year (incl. 15% VAT).",
+              "applicable_conditions": "Bangladeshi citizens aged 18+ with NID.",
+              "official_source_url": "https://www.epassport.gov.bd/landing",
+              "effective_date": "2020-01-22",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "BDT",
+              "amount": 8625,
+              "base_amount": 7500,
+              "emergency_surcharge": 0,
+              "total_payable": 8625,
+              "applicant_category": "super_express_48_pages_5yr",
+              "application_channel": "domestic_super_express",
+              "validity_period": "5_years",
+              "discount_eligibility": "Super Express delivery (2 working days) 48 pages (incl. 15% statutory VAT).",
+              "applicable_conditions": "Bangladeshi citizens with NID/BRC requiring urgent delivery.",
+              "official_source_url": "https://www.epassport.gov.bd/landing",
+              "effective_date": "2020-01-22",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "regular": "15 to 21 working days",
@@ -1760,7 +2608,43 @@
           "under_24_years": 37.5,
           "age_24_and_older": 70,
           "express_surcharge": 32,
-          "frequent_traveler_48_pages_surcharge": 22
+          "frequent_traveler_48_pages_surcharge": 22,
+          "fee_records": [
+            {
+              "currency": "EUR",
+              "amount": 70,
+              "base_amount": 70,
+              "emergency_surcharge": 0,
+              "total_payable": 70,
+              "applicant_category": "adult_24_and_older",
+              "application_channel": "domestic_buergeramt",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard passport fee for applicants aged 24 and older.",
+              "applicable_conditions": "German citizens aged 24+ under Passverordnung.",
+              "official_source_url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 37.5,
+              "base_amount": 37.5,
+              "emergency_surcharge": 0,
+              "total_payable": 37.5,
+              "applicant_category": "minor_under_24",
+              "application_channel": "domestic_buergeramt",
+              "validity_period": "6_years",
+              "discount_eligibility": "Standard passport fee for applicants under 24 years.",
+              "applicable_conditions": "German citizens under 24 years under Passverordnung.",
+              "official_source_url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard": "4 to 6 weeks (printed centrally by Bundesdruckerei in Berlin)",
@@ -1990,7 +2874,60 @@
           "currency": "AED",
           "standard_issuance_5_year": 50,
           "standard_issuance_10_year": 65,
-          "express_surcharge": 50
+          "express_surcharge": 50,
+          "fee_records": [
+            {
+              "currency": "AED",
+              "amount": 50,
+              "base_amount": 50,
+              "emergency_surcharge": 0,
+              "total_payable": 50,
+              "applicant_category": "standard_issuance_5yr",
+              "application_channel": "domestic_smart_services",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard 5-year passport issuance/renewal via ICP.",
+              "applicable_conditions": "UAE citizens. ICP portal / UAE PASS.",
+              "official_source_url": "https://icp.gov.ae/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AED",
+              "amount": 65,
+              "base_amount": 65,
+              "emergency_surcharge": 0,
+              "total_payable": 65,
+              "applicant_category": "standard_issuance_10yr",
+              "application_channel": "domestic_smart_services",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard 10-year passport issuance/renewal for citizens 21+.",
+              "applicable_conditions": "UAE citizens aged 21 and older.",
+              "official_source_url": "https://icp.gov.ae/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "AED",
+              "amount": 100,
+              "base_amount": 50,
+              "emergency_surcharge": 50,
+              "total_payable": 100,
+              "applicant_category": "express_issuance_5yr",
+              "application_channel": "domestic_express",
+              "validity_period": "5_years",
+              "discount_eligibility": "Express urgent issuance (AED 50 base + AED 50 express surcharge).",
+              "applicable_conditions": "Same-day urgent issuance via ICP service centers.",
+              "official_source_url": "https://icp.gov.ae/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard": "48 hours",
@@ -2182,7 +3119,43 @@
           "currency": "PHP",
           "regular_processing": 950,
           "expedited_processing": 1200,
-          "lost_passport_penalty_fee": 350
+          "lost_passport_penalty_fee": 350,
+          "fee_records": [
+            {
+              "currency": "PHP",
+              "amount": 950,
+              "base_amount": 950,
+              "emergency_surcharge": 0,
+              "total_payable": 950,
+              "applicant_category": "regular_processing",
+              "application_channel": "domestic_consular_office",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard regular processing (12 working days in NCR).",
+              "applicable_conditions": "Filipino citizens. DFA online appointment system.",
+              "official_source_url": "https://passport.gov.ph/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PHP",
+              "amount": 1200,
+              "base_amount": 950,
+              "emergency_surcharge": 250,
+              "total_payable": 1200,
+              "applicant_category": "expedited_processing",
+              "application_channel": "domestic_consular_office",
+              "validity_period": "10_years",
+              "discount_eligibility": "Expedited processing (6 working days in NCR).",
+              "applicable_conditions": "Filipino citizens requesting expedited turnaround.",
+              "official_source_url": "https://passport.gov.ph/",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "regular": "12 working days (within Metro Manila)",
@@ -2424,7 +3397,60 @@
           "currency": "EUR",
           "adult_majeur": 86,
           "minor_15_to_17": 42,
-          "minor_under_15": 17
+          "minor_under_15": 17,
+          "fee_records": [
+            {
+              "currency": "EUR",
+              "amount": 86,
+              "base_amount": 86,
+              "emergency_surcharge": 0,
+              "total_payable": 86,
+              "applicant_category": "adult_majeur",
+              "application_channel": "domestic_mairie",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard timbre fiscal for adult (majeur).",
+              "applicable_conditions": "French citizens aged 18+. CGI Article 953.",
+              "official_source_url": "https://passeport.ants.gouv.fr/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 42,
+              "base_amount": 42,
+              "emergency_surcharge": 0,
+              "total_payable": 42,
+              "applicant_category": "minor_15_to_17",
+              "application_channel": "domestic_mairie",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard timbre fiscal for minors aged 15–17.",
+              "applicable_conditions": "French minors aged 15 to 17. CGI Article 953.",
+              "official_source_url": "https://passeport.ants.gouv.fr/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "EUR",
+              "amount": 17,
+              "base_amount": 17,
+              "emergency_surcharge": 0,
+              "total_payable": 17,
+              "applicant_category": "minor_under_15",
+              "application_channel": "domestic_mairie",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard timbre fiscal for children under 15.",
+              "applicable_conditions": "French children under 15. CGI Article 953.",
+              "official_source_url": "https://passeport.ants.gouv.fr/",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard": "2 to 6 weeks depending on Mairie and seasonal demand"
@@ -2530,14 +3556,14 @@
     ],
     "age_bands": [
       {
-        "label": "Minor / Young Citizen (under 20 - 5-year validity only)",
+        "label": "Minor (under 18)",
         "min_age": 0,
-        "max_age": 19,
+        "max_age": 17,
         "age_basis_source": "https://www.absher.sa/"
       },
       {
-        "label": "Adult (20 and older - 5 or 10-year validity option)",
-        "min_age": 20,
+        "label": "Adult (18 and older)",
+        "min_age": 18,
         "max_age": null,
         "age_basis_source": "https://www.absher.sa/"
       }
@@ -2560,6 +3586,11 @@
             "rule": "Applicant must be present within the Kingdom at the time of application.",
             "source_url": "https://www.absher.sa/",
             "last_reviewed": "2026-10-19"
+          },
+          {
+            "rule": "10-year passport validity option is available exclusively to citizens aged 21 and older. Citizens under age 21 are eligible for 5-year validity only (Absher / Jawazat regulations).",
+            "source_url": "https://www.absher.sa/",
+            "last_reviewed": "2026-10-21"
           }
         ],
         "steps": [
@@ -2576,7 +3607,7 @@
             "source_url": "https://www.absher.sa/"
           },
           {
-            "step": "Confirm applicant details and select validity period (5 or 10 years for age 20+).",
+            "step": "Confirm applicant details and select validity period (5-year validity; or 10-year validity option available exclusively to applicants aged 21 and older).",
             "source_url": "https://www.absher.sa/"
           },
           {
@@ -2613,7 +3644,43 @@
         "fees": {
           "currency": "SAR",
           "validity_5_year": 300,
-          "validity_10_year": 600
+          "validity_10_year": 600,
+          "fee_records": [
+            {
+              "currency": "SAR",
+              "amount": 300,
+              "base_amount": 300,
+              "emergency_surcharge": 0,
+              "total_payable": 300,
+              "applicant_category": "standard_issuance_5yr",
+              "application_channel": "domestic_absher",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard 5-year passport issuance/renewal via Absher/Sadad (mandatory validity for citizens under 21).",
+              "applicable_conditions": "Saudi citizens of all ages; sole validity option for applicants under age 21 (Jawazat regulation).",
+              "official_source_url": "https://www.absher.sa/",
+              "effective_date": "2020-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "SAR",
+              "amount": 600,
+              "base_amount": 600,
+              "emergency_surcharge": 0,
+              "total_payable": 600,
+              "applicant_category": "standard_issuance_10yr",
+              "application_channel": "domestic_absher",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard 10-year passport issuance/renewal for citizens aged 21 and older.",
+              "applicable_conditions": "Saudi citizens aged 21 and older.",
+              "official_source_url": "https://www.absher.sa/",
+              "effective_date": "2020-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard": "3 to 5 business days for delivery via SPL"
@@ -3926,7 +4993,43 @@
           "standard_fee": 257.25,
           "urgent_emergency_surcharge": 77.17,
           "total_urgent_fee": 334.42,
-          "unpresented_previous_passport_penalty": 514.5
+          "unpresented_previous_passport_penalty": 514.5,
+          "fee_records": [
+            {
+              "currency": "BRL",
+              "amount": 257.25,
+              "base_amount": 257.25,
+              "emergency_surcharge": 0,
+              "total_payable": 257.25,
+              "applicant_category": "standard_issuance",
+              "application_channel": "domestic_policia_federal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard passport issuance fee via GRU boleto / PagTesouro.",
+              "applicable_conditions": "Brazilian citizens. Polícia Federal regulation.",
+              "official_source_url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "BRL",
+              "amount": 334.42,
+              "base_amount": 257.25,
+              "emergency_surcharge": 77.17,
+              "total_payable": 334.42,
+              "applicant_category": "urgent_emergency_issuance",
+              "application_channel": "domestic_policia_federal",
+              "validity_period": "10_years",
+              "discount_eligibility": "Urgent/emergency passport total fee (R$ 257.25 base + R$ 77.17 urgent surcharge).",
+              "applicable_conditions": "Emergency travel requirements documented at Polícia Federal.",
+              "official_source_url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
+              "effective_date": "2023-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard_business_days": "6 to 10 business days after in-person appointment",
@@ -4142,7 +5245,60 @@
           "adult_tourist_32_pages": 400,
           "maxi_tourist_48_pages": 600,
           "child_passport_under_16": 400,
-          "lost_passport_penalty_double_fee": 800
+          "lost_passport_penalty_double_fee": 800,
+          "fee_records": [
+            {
+              "currency": "ZAR",
+              "amount": 400,
+              "base_amount": 400,
+              "emergency_surcharge": 0,
+              "total_payable": 400,
+              "applicant_category": "adult_tourist_32_pages",
+              "application_channel": "domestic_dha_office",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard adult 32-page tourist passport fee.",
+              "applicable_conditions": "South African citizens aged 16+. DHA regulation.",
+              "official_source_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
+              "effective_date": "2022-11-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "ZAR",
+              "amount": 600,
+              "base_amount": 600,
+              "emergency_surcharge": 0,
+              "total_payable": 600,
+              "applicant_category": "maxi_tourist_48_pages",
+              "application_channel": "domestic_dha_office",
+              "validity_period": "10_years",
+              "discount_eligibility": "Maxi 48-page frequent traveller tourist passport fee.",
+              "applicable_conditions": "South African citizens aged 16+ frequent travellers.",
+              "official_source_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
+              "effective_date": "2022-11-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "ZAR",
+              "amount": 400,
+              "base_amount": 400,
+              "emergency_surcharge": 0,
+              "total_payable": 400,
+              "applicant_category": "child_under_16",
+              "application_channel": "domestic_dha_office",
+              "validity_period": "5_years",
+              "discount_eligibility": "Standard child 32-page passport fee.",
+              "applicable_conditions": "South African children under 16 years.",
+              "official_source_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
+              "effective_date": "2022-11-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "domestic_live_capture": "7 to 14 business days",
@@ -4685,7 +5841,26 @@
           "contrassegno_telematico": 73.5,
           "costo_libretto": 42.5,
           "total_standard_fee": 116,
-          "poste_delivery_optional": 9.55
+          "poste_delivery_optional": 9.55,
+          "fee_records": [
+            {
+              "currency": "EUR",
+              "amount": 116,
+              "base_amount": 116,
+              "emergency_surcharge": 0,
+              "total_payable": 116,
+              "applicant_category": "standard_issuance_total",
+              "application_channel": "domestic_questura",
+              "validity_period": "10_years",
+              "discount_eligibility": "Standard passport fee (€73.50 marca da bollo + €42.50 booklet fee).",
+              "applicable_conditions": "Italian citizens. Legge 89/2014.",
+              "official_source_url": "https://www.poliziadistato.it/articolo/1087",
+              "effective_date": "2024-01-01",
+              "verification_date": "2026-10-21",
+              "date_checked": "2026-10-21",
+              "verification_status": "verified"
+            }
+          ]
         },
         "processing_times": {
           "standard": "15 to 30 days depending on local Questura volume",
