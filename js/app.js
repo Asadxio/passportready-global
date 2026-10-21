@@ -602,6 +602,33 @@
     const resScoreBar = document.getElementById('resScoreBar');
     if (resScoreBar) resScoreBar.style.width = `${result.readinessScore}%`;
 
+    // Unsupported / Limited Coverage In-Wizard Notice
+    const unsupportedNotice = document.getElementById('resUnsupportedNotice');
+    if (unsupportedNotice) {
+      if (result.serviceCoverage && result.serviceCoverage.status !== 'verified') {
+        const unsuppTitle = (typeof getI18nText === 'function')
+          ? getI18nText('unsupported_coverage_title')
+          : 'Limited Coverage Notice';
+        const unsuppAction = (typeof getI18nText === 'function')
+          ? getI18nText('unsupported_coverage_action')
+          : 'This service scenario is in public beta and not yet fully audited with claim-level evidence. Confirm all forms, fees, and requirements directly with official authorities.';
+        const summaryText = result.serviceCoverage.summary || '';
+        const serviceName = formatServiceName(state.answers.service);
+
+        unsupportedNotice.innerHTML = `
+          <div class="unsupported-service-notice">
+            <h5>⚠ ${escapeHTML(unsuppTitle)}: ${escapeHTML(serviceName)}</h5>
+            <p>${escapeHTML(summaryText)}</p>
+            <p class="unsupported-action">${escapeHTML(unsuppAction)}</p>
+          </div>
+        `;
+        unsupportedNotice.style.display = 'block';
+      } else {
+        unsupportedNotice.innerHTML = '';
+        unsupportedNotice.style.display = 'none';
+      }
+    }
+
     // Service Coverage Transparency Card
     const coverageCard = document.getElementById('resServiceCoverageCard');
     if (coverageCard && result.serviceCoverage) {

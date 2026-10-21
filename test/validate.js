@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 274;
+  const expectedKeyCount = 280;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4081,7 +4081,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 274;
+  const expectedKeys = 280;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4574,6 +4574,117 @@ runTest('Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-0
     if (fs.existsSync(testHtmlPath)) fs.unlinkSync(testHtmlPath);
     if (fs.existsSync(outPdfPath)) fs.unlinkSync(outPdfPath);
   }
+});
+
+
+runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation Notices, and 5-Country Journey Verifications (IN, US, GB, CA, AU)', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const stylesCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const { I18N_TRANSLATIONS, getI18nText } = require('../js/i18n.js');
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const countryDataModule = require('../data/country-data.js');
+  const countries = countryDataModule.PASSPORT_COUNTRIES;
+  const engine = new PassportRulesEngine(rulePacks, countries);
+
+  // 1. Transparency & Public Beta Elements in index.html
+  assert(indexHtml.includes('<title>PassportReady (Public Beta) — Check Before You Apply | Global Passport Preparation</title>'), 'index.html title must reflect Public Beta status');
+  assert(indexHtml.includes('name="description" content="Independent global passport preparation platform in public beta.'), 'index.html meta description must specify public beta status');
+  assert(indexHtml.includes('property="og:image" content="https://passport.myoss.in/assets/preview.png"'), 'index.html must specify og:image');
+  assert(indexHtml.includes('name="twitter:image" content="https://passport.myoss.in/assets/preview.png"'), 'index.html must specify twitter:image');
+  assert(indexHtml.includes('id="feedbackLink"'), 'index.html must contain #feedbackLink');
+  assert(indexHtml.includes('class="beta-banner"'), 'index.html must contain .beta-banner');
+  assert(indexHtml.includes('class="beta-badge"'), 'index.html must contain .beta-badge');
+  assert(indexHtml.includes('class="beta-text"'), 'index.html must contain .beta-text');
+  assert(indexHtml.includes('class="nav-feedback"'), 'index.html must contain .nav-feedback');
+  assert(indexHtml.includes('id="resUnsupportedNotice"'), 'index.html must contain #resUnsupportedNotice in resultbox');
+  assert(indexHtml.includes('https://github.com/Asadxio/passportready-global/issues'), 'index.html must point feedback links to issues repository');
+
+  // 2. CSS & Print Style Rules
+  assert(stylesCss.includes('.beta-banner {'), 'styles.css must style .beta-banner');
+  assert(stylesCss.includes('.beta-badge {'), 'styles.css must style .beta-badge');
+  assert(stylesCss.includes('.nav-feedback {'), 'styles.css must style .nav-feedback');
+  assert(stylesCss.includes('.unsupported-service-notice {'), 'styles.css must style .unsupported-service-notice');
+  assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
+  assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
+
+  // 3. Translation Key Parity for Beta & Limitation Keys
+  const betaKeys = [
+    'beta_badge',
+    'beta_notice_text',
+    'feedback_link',
+    'nav_feedback',
+    'unsupported_coverage_title',
+    'unsupported_coverage_action'
+  ];
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  for (const lang of supportedLangs) {
+    for (const key of betaKeys) {
+      assert(I18N_TRANSLATIONS[lang][key], `Translation key ${key} missing in language ${lang}`);
+      assert(I18N_TRANSLATIONS[lang][key].length > 3, `Translation key ${key} must have content in language ${lang}`);
+    }
+  }
+
+  // 4. Five-Country Journey Verifications
+  // 4.1 India (IN)
+  const inAdult = engine.evaluate({ countryCode: 'IN', service: 'first_passport', age: 'adult', location: 'inside', pages: 36 }, 'en');
+  assert.strictEqual(inAdult.feeGuidance.specificRecord.standard_36, 2500, 'India adult standard 36-page must be ₹2,500');
+  assert.strictEqual(inAdult.feeGuidance.specificRecord.standard_60, 3500, 'India adult standard 60-page must be ₹3,500');
+
+  const inMinor = engine.evaluate({ countryCode: 'IN', service: 'first_passport', age: 'minor', location: 'inside' }, 'en');
+  assert.strictEqual(inMinor.feeGuidance.specificRecord.base, 1750, 'India minor standard 36-page must be ₹1,750');
+
+  const inSenior = engine.evaluate({ countryCode: 'IN', service: 'first_passport', age: 'senior', location: 'inside' }, 'en');
+  assert(inSenior.feeGuidance.details.includes('₹2,250 for 36 pages'), 'India senior 10% rebate must reflect ₹2,250');
+
+  // 4.2 United Kingdom (GB)
+  const gbAdult = engine.evaluate({ countryCode: 'GB', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
+  assert.strictEqual(gbAdult.feeGuidance.specificRecord.adult_online, 102, 'UK adult standard online must be £102.00');
+  assert.strictEqual(gbAdult.feeGuidance.specificRecord.adult_postal, 115.5, 'UK adult postal must be £115.50');
+  assert.strictEqual(gbAdult.feeGuidance.specificRecord.adult_jumbo_online, 116, 'UK adult frequent traveller online must be £116.00');
+  assert.strictEqual(gbAdult.feeGuidance.specificRecord.adult_jumbo_postal, 129.5, 'UK adult frequent traveller postal must be £129.50');
+
+  const gbChild = engine.evaluate({ countryCode: 'GB', service: 'first_passport', age: 'minor', location: 'inside' }, 'en');
+  assert.strictEqual(gbChild.feeGuidance.specificRecord.child_online, 66.5, 'UK child online must be £66.50');
+  assert.strictEqual(gbChild.feeGuidance.specificRecord.child_postal, 80, 'UK child postal must be £80.00');
+  assert.strictEqual(gbChild.feeGuidance.specificRecord.fast_track_1_week_child, 156.5, 'UK child Fast Track must be £156.50');
+
+  const gbFastTrack = engine.evaluate({ countryCode: 'GB', service: 'first_passport', age: 'adult', location: 'inside', urgency: 'urgent' }, 'en');
+  assert.strictEqual(gbFastTrack.feeGuidance.specificRecord.fast_track_1_week_adult, 192, 'UK Fast Track adult must be £192.00');
+  assert.strictEqual(gbFastTrack.feeGuidance.specificRecord.premium_1_day_adult, 239.5, 'UK Premium 1-day adult must be £239.50');
+
+  // 4.3 Canada (CA)
+  const caAdult = engine.evaluate({ countryCode: 'CA', service: 'first_passport', age: 'adult', location: 'inside', validity: 10 }, 'en');
+  assert.strictEqual(caAdult.feeGuidance.specificRecord.adult_5_year, 122.5, 'Canada adult 5-year must be CAD $122.50');
+  assert.strictEqual(caAdult.feeGuidance.specificRecord.adult_10_year, 163.5, 'Canada adult 10-year must be CAD $163.50');
+
+  const caUrgent = engine.evaluate({ countryCode: 'CA', service: 'first_passport', age: 'adult', location: 'inside', urgency: 'urgent' }, 'en');
+  assert.strictEqual(caUrgent.feeGuidance.specificRecord.urgent_pickup_surcharge, 125.75, 'Canada urgent pickup surcharge must be CAD $125.75');
+
+  // 4.4 Australia (AU)
+  const auAdult = engine.evaluate({ countryCode: 'AU', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
+  assert.strictEqual(auAdult.feeGuidance.specificRecord.adult_10_year, 422, 'Australia adult 10-year must be AUD $422');
+  assert.strictEqual(auAdult.feeGuidance.specificRecord.priority_processing_surcharge, 308, 'Australia priority processing surcharge must be AUD $308');
+
+  const auUrgent = engine.evaluate({ countryCode: 'AU', service: 'first_passport', age: 'adult', location: 'inside', urgency: 'urgent' }, 'en');
+  assert.strictEqual(auUrgent.feeGuidance.specificRecord.total_priority, 730, 'Australia urgent total priority must be AUD $730');
+  assert.strictEqual(auUrgent.feeGuidance.specificRecord.fast_track_surcharge, 107, 'Australia fast track surcharge must be AUD $107');
+  assert.strictEqual(auUrgent.feeGuidance.specificRecord.fast_track_total, 529, 'Australia fast track total must be AUD $529');
+
+  // 4.5 United States (US)
+  const usRenewal = engine.evaluate({ countryCode: 'US', service: 'renewal_reissue', age: 'adult', location: 'inside' }, 'en');
+  assert.strictEqual(usRenewal.feeGuidance.specificRecord.renewal_fee, 130, 'US adult renewal book fee must be $130');
+
+  const usFirstTime = engine.evaluate({ countryCode: 'US', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
+  assert.strictEqual(usFirstTime.feeGuidance.specificRecord.application_fee, 130, 'US first time application fee must be $130');
+  assert.strictEqual(usFirstTime.feeGuidance.specificRecord.execution_fee, 35, 'US first time execution fee must be $35');
+  assert.strictEqual(usFirstTime.feeGuidance.specificRecord.total, 165, 'US first time total must be $165');
+
+  // 5. In-Wizard Limitation Notice Verification
+  // Unverified country (e.g. AD)
+  const unverifiedRes = engine.evaluate({ countryCode: 'AD', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
+  assert(unverifiedRes.serviceCoverage.status !== 'verified', 'Unverified country service coverage must not be marked verified');
+  assert(unverifiedRes.readinessScore <= 75, 'Unverified country readiness score must be capped');
 });
 
 console.log('\n====================================================');

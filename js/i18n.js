@@ -279,7 +279,13 @@ const I18N_TRANSLATIONS = {
     "country_linked_desc": "Official portal link recorded; scenario-specific rules undergoing detailed research.",
     "country_awaiting_desc": "Official passport authority link currently undergoing research. Generic preparation guidance provided.",
     "country_general_guidance_title": "General Preparation Guidance",
-    "country_continue_error": "Please type and select a recognized passport-issuing authority before continuing."
+    "country_continue_error": "Please type and select a recognized passport-issuing authority before continuing.",
+    "beta_badge": "LIMITED PUBLIC BETA",
+    "beta_notice_text": "PassportReady is an independent preparation guide and <strong>not</strong> an official government service. Currently providing tested guidance for 27 verified jurisdictions; other countries display baseline international standards awaiting full research.",
+    "feedback_link": "Report an Error / Feedback ↗",
+    "nav_feedback": "Feedback ↗",
+    "unsupported_coverage_title": "Limited Coverage Notice",
+    "unsupported_coverage_action": "This service scenario is in public beta and not yet fully audited with claim-level evidence. Confirm all forms, fees, and requirements directly with official authorities."
   },
 
   hi: {
@@ -556,7 +562,13 @@ const I18N_TRANSLATIONS = {
     "country_linked_desc": "आधिकारिक पोर्टल लिंक दर्ज किया गया; परिदृश्य-विशिष्ट नियमों का विस्तृत शोध जारी है।",
     "country_awaiting_desc": "आधिकारिक पासपोर्ट प्राधिकरण लिंक पर वर्तमान में शोध चल रहा है। सामान्य तैयारी मार्गदर्शन प्रदान किया गया।",
     "country_general_guidance_title": "सामान्य तैयारी मार्गदर्शन",
-    "country_continue_error": "कृपया जारी रखने से पहले एक मान्यता प्राप्त पासपोर्ट जारी करने वाले प्राधिकरण को टाइप करें और चुनें।"
+    "country_continue_error": "कृपया जारी रखने से पहले एक मान्यता प्राप्त पासपोर्ट जारी करने वाले प्राधिकरण को टाइप करें और चुनें।",
+    "beta_badge": "सीमित सार्वजनिक बीटा",
+    "beta_notice_text": "PassportReady एक स्वतंत्र तैयारी गाइड है और <strong>कोई आधिकारिक सरकारी सेवा नहीं है</strong>। वर्तमान में 27 सत्यापित न्यायालयों के लिए परीक्षित मार्गदर्शन उपलब्ध है; अन्य देश पूर्ण शोध की प्रतीक्षा में हैं।",
+    "feedback_link": "त्रुटि रिपोर्ट / प्रतिक्रिया ↗",
+    "nav_feedback": "प्रतिक्रिया ↗",
+    "unsupported_coverage_title": "सीमित कवरेज सूचना",
+    "unsupported_coverage_action": "यह सेवा परिदृश्य सार्वजनिक बीटा में है और अभी पूरी तरह से सत्यापित नहीं है। आधिकारिक प्राधिकरण से सीधे सभी प्रपत्रों, शुल्कों और आवश्यकताओं की पुष्टि करें।"
   },
 
   ur: {
@@ -833,7 +845,13 @@ const I18N_TRANSLATIONS = {
     "country_linked_desc": "سرکاری پورٹل کا لنک درج ہے؛ منظر نامے کے مخصوص قواعد پر تفصیلی تحقیق جاری ہے۔",
     "country_awaiting_desc": "سرکاری پاسپورٹ اتھارٹی کے لنک پر فی الحال تحقیق جاری ہے۔ عمومی تیاری کی رہنمائی فراہم کی گئی ہے۔",
     "country_general_guidance_title": "عمومی تیاری کی رہنمائی",
-    "country_continue_error": "براہ کرم آگے بڑھنے سے پہلے کسی تسلیم شدہ پاسپورٹ جاری کرنے والے ادارے کو ٹائپ کریں اور منتخب کریں۔"
+    "country_continue_error": "براہ کرم آگے بڑھنے سے پہلے کسی تسلیم شدہ پاسپورٹ جاری کرنے والے ادارے کو ٹائپ کریں اور منتخب کریں۔",
+    "beta_badge": "محدود پبلک بیٹا",
+    "beta_notice_text": "PassportReady ایک خود مختار تیاری گائیڈ ہے اور <strong>سرکاری سروس نہیں ہے</strong>۔ فی الحال 27 تصدیق شدہ ممالک کے لیے جانچی گئی رہنمائی فراہم کی گئی ہے؛ دیگر ممالک مکمل تحقیق کے منتظر ہیں۔",
+    "feedback_link": "غلطی کی رپورٹ / فیڈ بیک ↗",
+    "nav_feedback": "فیڈ بیک ↗",
+    "unsupported_coverage_title": "محدود کوریج نوٹس",
+    "unsupported_coverage_action": "یہ سروس پبلک بیٹا میں ہے اور ابھی مکمل طور پر تصدیق شدہ نہیں ہے۔ تمام فارمز، فیس اور شرائط کی سرکاری پورٹل سے تصدیق کریں۔"
   },
 
   fr: {
@@ -1110,7 +1128,13 @@ const I18N_TRANSLATIONS = {
     "country_linked_desc": "Lien vers le portail officiel enregistré ; règles spécifiques en cours de recherche détaillée.",
     "country_awaiting_desc": "Lien vers l'autorité officielle des passeports en cours de recherche. Conseils généraux de préparation fournis.",
     "country_general_guidance_title": "Conseils généraux de préparation",
-    "country_continue_error": "Veuillez saisir et sélectionner une autorité de délivrance de passeports reconnue avant de continuer."
+    "country_continue_error": "Veuillez saisir et sélectionner une autorité de délivrance de passeports reconnue avant de continuer.",
+    "beta_badge": "BÊTA PUBLIQUE LIMITÉE",
+    "beta_notice_text": "PassportReady est un guide de préparation indépendant et <strong>n'est pas</strong> un service officiel du gouvernement. Guide testé pour 27 juridictions vérifiées ; les autres affichent les normes internationales en attente d'audit.",
+    "feedback_link": "Signaler une erreur / Retour ↗",
+    "nav_feedback": "Avis ↗",
+    "unsupported_coverage_title": "Avis de couverture limitée",
+    "unsupported_coverage_action": "Ce scénario de service est en bêta publique et n'est pas encore entièrement vérifié. Confirmez tous les formulaires et frais auprès des autorités officielles."
   },
 
   de: {
@@ -1387,7 +1411,13 @@ const I18N_TRANSLATIONS = {
     "country_linked_desc": "Offizieller Portallink erfasst; szenariospezifische Regeln werden detailliert recherchiert.",
     "country_awaiting_desc": "Offizieller Link der Passbehörde wird derzeit recherchiert. Allgemeine Vorbereitungsrichtlinien bereitgestellt.",
     "country_general_guidance_title": "Allgemeine Vorbereitungsrichtlinien",
-    "country_continue_error": "Bitte geben Sie vor dem Fortfahren eine anerkannte passausstellende Behörde ein und wählen Sie sie aus."
+    "country_continue_error": "Bitte geben Sie vor dem Fortfahren eine anerkannte passausstellende Behörde ein und wählen Sie sie aus.",
+    "beta_badge": "LIMITIERTE ÖFFENTLICHE BETA",
+    "beta_notice_text": "PassportReady ist ein unabhängiger Vorbereitungsleitfaden und <strong>keine</strong> offizielle Regierungsbehörde. Getestete Richtlinien für 27 verifizierte Rechtsräume; andere Länder zeigen ICAO-Basisstandards.",
+    "feedback_link": "Fehler melden / Feedback ↗",
+    "nav_feedback": "Feedback ↗",
+    "unsupported_coverage_title": "Hinweis auf eingeschränkte Abdeckung",
+    "unsupported_coverage_action": "Dieses Dienstszenario befindet sich in der öffentlichen Beta und ist noch nicht vollständig geprüft. Bestätigen Sie alle Formulare und Gebühren direkt bei den Behörden."
   },
 
   ar: {
@@ -1664,7 +1694,13 @@ const I18N_TRANSLATIONS = {
     "country_linked_desc": "تم تسجيل رابط البوابة الرسمية؛ القواعد الخاصة بكل سيناريو تخضع لبحث مفصل.",
     "country_awaiting_desc": "رابط سلطة الجوازات الرسمية قيد البحث حاليًا. تم توفير إرشادات تحضيرية عامة.",
     "country_general_guidance_title": "إرشادات عامة للتحضير",
-    "country_continue_error": "يرجى كتابة وتحديد جهة إصدار جواز سفر معترف بها قبل المتابعة."
+    "country_continue_error": "يرجى كتابة وتحديد جهة إصدار جواز سفر معترف بها قبل المتابعة.",
+    "beta_badge": "نسخة تجريبية عامة محدودة",
+    "beta_notice_text": "PassportReady هو دليل مستقل للتحضير و<strong>ليس خدمة حكومية رسمية</strong>. يوفر حاليًا إرشادات مختبرة لـ 27 دولة تم التحقق منها؛ الدول الأخرى تعرض المعايير الدولية بانتظار التدقيق الكامل.",
+    "feedback_link": "الإبلاغ عن خطأ / إبداء ملاحظات ↗",
+    "nav_feedback": "ملاحظات ↗",
+    "unsupported_coverage_title": "إشعار تغطية محدودة",
+    "unsupported_coverage_action": "هذا السيناريو في مرحلة تجريبية عامة ولم يتم تدقيقه بالكامل بعد. يرجى تأكيد جميع النماذج والرسوم مباشرة من الجهات الرسمية."
   },
 
 };
