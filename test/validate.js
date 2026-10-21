@@ -4351,6 +4351,191 @@ runTest('Phase 4.6 Calibration: Reliable Country Search, Normalization & State S
     });
   }
 });
+
+// 33. Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-07)
+runTest('Phase 4.7 Calibration: Print Stylesheet & PDF Export Reliability (DEF-07)', () => {
+  const css = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const printIdx = css.indexOf('@media print');
+  assert(printIdx !== -1, '@media print must exist in styles.css');
+  const printBlock = css.substring(printIdx);
+
+  // 1. @page rules
+  assert(css.includes('@page'), '@page declaration must exist');
+  assert(/@page\s*\{[^}]*size:\s*auto/i.test(css), '@page must specify size: auto');
+  assert(/@page\s*\{[^}]*margin:\s*12mm/i.test(css), '@page must specify margins');
+
+  // 2. Color fidelity & animations
+  assert(printBlock.includes('print-color-adjust: exact'), 'print-color-adjust: exact must be present');
+  assert(printBlock.includes('-webkit-print-color-adjust: exact'), '-webkit-print-color-adjust: exact must be present');
+  assert(printBlock.includes('animation: none !important'), 'Animations must be disabled in print to prevent fadeIn 0-opacity freeze');
+  assert(printBlock.includes('transition: none !important'), 'Transitions must be disabled in print');
+
+  // 3. Screen element suppression
+  const hiddenSelectors = [
+    '.topbar', '.nav', '.hero', '.features-section', '.directory-section',
+    '.tools-section', '.guides-section', '.sourceband', '.faq-section', '.footer',
+    '.wizard-head', '.wizard-nav', '.checker-copy', '.toast', '.modal-overlay',
+    '.step-pane', '.steps', '#stepcount', '#printBtn', '#restartBtn', '#saveProgressBtn',
+    '.filter-pills', '.filter-pill'
+  ];
+  hiddenSelectors.forEach(sel => {
+    assert(printBlock.includes(sel), `Selector ${sel} must be hidden in @media print`);
+  });
+
+  // 4. Non-clipping container hierarchy
+  assert(printBlock.includes('.wizard-box'), '.wizard-box must be reset in print');
+  assert(/wizard-box[^{]*\{[^}]*overflow:\s*visible\s*!important/i.test(printBlock), '.wizard-box must have overflow: visible !important');
+  assert(/wrap[^{]*\{[^}]*width:\s*100%\s*!important/i.test(printBlock), '.wrap must expand to width: 100% in print');
+  assert(/checker-layout[^{]*\{[^}]*display:\s*block\s*!important/i.test(printBlock), '.checker-layout must display as block');
+
+  // 5. Page break & fragmentation controls
+  assert(printBlock.includes('break-inside: avoid !important'), 'break-inside: avoid !important must exist');
+  assert(printBlock.includes('page-break-inside: avoid !important'), 'page-break-inside: avoid !important must exist for legacy compatibility');
+  assert(printBlock.includes('.checklist-item'), '.checklist-item must have break-inside protection');
+  assert(printBlock.includes('.notice'), '.notice must have break-inside protection');
+  assert(printBlock.includes('.resultscore'), '.resultscore must have break-inside protection');
+  assert(printBlock.includes('#resServiceCoverageCard > div'), '#resServiceCoverageCard > div must have break-inside protection');
+  assert(printBlock.includes('#resOfficialSourceCard > div'), '#resOfficialSourceCard > div must have break-inside protection');
+  assert(printBlock.includes('#resFlagsContainer > div'), '#resFlagsContainer > div must have break-inside protection');
+
+  // 6. Header orphan prevention
+  assert(printBlock.includes('break-after: avoid !important'), 'break-after: avoid !important must exist');
+  assert(printBlock.includes('page-break-after: avoid !important'), 'page-break-after: avoid !important must exist');
+  assert(printBlock.includes('.result-header'), '.result-header must have break-after avoid');
+  assert(printBlock.includes('[data-i18n="checklist_heading"]'), 'checklist heading must have break-after avoid');
+
+  // 7. Official portal URL exposure
+  assert(printBlock.includes('#resOfficialSourceCard a[href]::after'), 'Official portal link must expose href');
+  assert(printBlock.includes('attr(href)'), 'href attribute must be appended to portal link');
+
+  // 8. Checkbox styling
+  assert(printBlock.includes('.check-box-label input[type="checkbox"]'), 'Checkboxes must have dedicated print styles');
+  assert(printBlock.includes('appearance: auto !important'), 'Checkboxes must use appearance: auto');
+  assert(printBlock.includes('.checklist-item.is-checked'), 'Checked items must have print styles');
+  assert(/checklist-item\.is-checked[^{]*\{[^}]*opacity:\s*1\s*!important/i.test(printBlock), 'Checked items must remain fully legible at opacity: 1');
+
+  // 9. Document branding header
+  assert(printBlock.includes('.result-header::before'), 'Document branding header must exist in print');
+  assert(printBlock.includes('PASSPORTREADY'), 'Branding header must state PASSPORTREADY');
+
+  // 10. DOM check
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert(html.includes('id="printBtn"'), '#printBtn must exist in index.html');
+  assert(html.includes('data-i18n="btn_print"'), '#printBtn must have data-i18n="btn_print"');
+
+  // 11. Event wiring in js/app.js
+  const appJs = fs.readFileSync(path.join(__dirname, '..', 'js', 'app.js'), 'utf8');
+  assert(appJs.includes("printBtn.addEventListener('click', () => window.print())"), 'printBtn must be wired to window.print()');
+
+  // 12. Headless Chrome PDF Verification (if Chrome executable exists)
+  const chromePaths = [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+  ];
+  const chromeExe = chromePaths.find(p => fs.existsSync(p));
+  if (chromeExe) {
+    const { execFileSync } = require('child_process');
+    const { PassportRulesEngine } = require('../js/rules-engine.js');
+    const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+    const countryDataModule = require('../data/country-data.js');
+    const countries = countryDataModule.PASSPORT_COUNTRIES;
+    const engine = new PassportRulesEngine(rulePacks, countries);
+
+    const evalResult = engine.evaluate({
+      countryCode: 'IN',
+      service: 'first_passport',
+      location: 'inside',
+      urgency: 'tatkaal',
+      nameMatch: 'minor',
+      special: 'loss_reported',
+      exactAge: 4
+    }, 'en');
+
+    assert(evalResult.checklist.length >= 8, 'Evaluation should produce at least 8 checklist items');
+    assert(evalResult.flags.length >= 3, 'Evaluation should produce at least 3 flags');
+
+    const testHtmlPath = path.join(__dirname, '..', 'test-val-print.html');
+    const outPdfPath = path.join(__dirname, '..', 'test-val-print.pdf');
+
+    let testDoc = html.replace('<link rel="stylesheet" href="css/styles.css?v=20261020_01">', `<style>\n${css}\n</style>`);
+    testDoc = testDoc.replace(/<script[\s\S]*?<\/script>/gi, '');
+    testDoc = testDoc.replace('<div class="resultbox" id="resultbox">', '<div class="resultbox show" id="resultbox">');
+    testDoc = testDoc.replace('<h3 id="resCountryName" style="font-size:1.5rem;color:var(--forest-dark);margin:0 0 2px">India</h3>', `<h3 id="resCountryName" style="font-size:1.5rem;color:var(--forest-dark);margin:0 0 2px">${evalResult.country.name}</h3>`);
+
+    const checklistHtml = evalResult.checklist.map(item => `
+      <li class="checklist-item" data-item-id="${item.id}">
+        <label class="check-box-label">
+          <input type="checkbox" data-check-id="${item.id}">
+          <span class="custom-check"></span>
+        </label>
+        <div class="check-text">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <strong style="font-size:14px;color:#1e293b">${item.title}</strong>
+            ${item.mandatory ? '<span class="status-pill status-mandatory">MANDATORY</span>' : '<span class="status-pill status-optional">CONDITIONAL</span>'}
+          </div>
+          <p style="margin:4px 0 0;font-size:12px;color:#64748b;line-height:1.5">${item.details}</p>
+        </div>
+      </li>
+    `).join('');
+
+    const flagsHtml = evalResult.flags.map(f => `
+      <div class="notice" style="border-left:4px solid ${f.severity === 'critical' ? '#dc2626' : '#d97706'};background:${f.severity === 'critical' ? '#fef2f2' : '#fffbeb'};color:#451a03;margin-bottom:12px">
+        <strong style="color:${f.severity === 'critical' ? '#991b1b' : '#b45309'};font-size:13px">${f.title}</strong>
+        <p style="margin:5px 0;font-size:12px">${f.message}</p>
+        <div style="font-weight:700;font-size:11px;color:${f.severity === 'critical' ? '#b91c1c' : '#92400e'}">Recommended Action: ${f.action}</div>
+      </div>
+    `).join('');
+
+    const sourceHtml = `
+      <div class="resultscore" style="background:#f4f9f6;border:1px solid #c8e0d4">
+        <div class="scoreicon" style="background:#d4ecdf;color:#135939">🏛</div>
+        <div style="flex:1">
+          <strong style="color:#0e4028">${evalResult.country.authorityName}</strong>
+          <small style="display:block;color:#4c6e5b;margin:3px 0">Direct government portal verified for ${evalResult.country.name}.</small>
+          <a href="${evalResult.country.officialPortalUrl}" target="_blank" rel="noopener" class="btn btn-dark" style="padding:7px 14px;font-size:12px;margin-top:6px;display:inline-flex">Open Official Portal ↗</a>
+        </div>
+      </div>
+    `;
+
+    testDoc = testDoc.replace('<div id="resOfficialSourceCard"></div>', `<div id="resOfficialSourceCard">${sourceHtml}</div>`);
+    testDoc = testDoc.replace('<div id="resFlagsContainer" style="margin:20px 0"></div>', `<div id="resFlagsContainer" style="margin:20px 0">${flagsHtml}</div>`);
+    testDoc = testDoc.replace('<ul id="resChecklistItems" class="checklist-ul"></ul>', `<ul id="resChecklistItems" class="checklist-ul">${checklistHtml}</ul>`);
+
+    fs.writeFileSync(testHtmlPath, testDoc, 'utf8');
+
+    execFileSync(chromeExe, [
+      '--headless=new',
+      '--disable-gpu',
+      '--no-pdf-header-footer',
+      '--print-to-pdf=' + outPdfPath,
+      'file:///' + testHtmlPath
+    ]);
+
+    const stats = fs.statSync(outPdfPath);
+    assert(stats.size > 50000, `PDF size must be > 50KB to confirm non-blank rendering (got ${stats.size})`);
+
+    const pdfStr = fs.readFileSync(outPdfPath, 'latin1');
+    const pages = pdfStr.match(/\/Type\s*\/Page\b/g);
+    assert(pages && pages.length >= 2, `PDF must have >= 2 pages to confirm non-clipped pagination (got ${pages ? pages.length : 0})`);
+    assert(pdfStr.includes('passportindia.gov.in'), 'PDF must include the official authority portal URL');
+
+    const zlib = require('zlib');
+    const re = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
+    let m;
+    let allDecoded = '';
+    while ((m = re.exec(pdfStr)) !== null) {
+      try {
+        allDecoded += zlib.inflateSync(Buffer.from(m[1], 'latin1')).toString('utf8');
+      } catch(e) {}
+    }
+    assert(!allDecoded.includes('Print / Save PDF'), 'Print button text must be hidden from print output');
+    assert(!allDecoded.includes('Start New Check'), 'Restart button text must be hidden from print output');
+
+    if (fs.existsSync(testHtmlPath)) fs.unlinkSync(testHtmlPath);
+    if (fs.existsSync(outPdfPath)) fs.unlinkSync(outPdfPath);
+  }
+});
+
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');
