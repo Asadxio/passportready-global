@@ -461,6 +461,9 @@
     const backBtn = document.getElementById('backBtn');
     const countryInput = document.getElementById('countryInput');
     const printBtn = document.getElementById('printBtn');
+    const copyChecklistBtn = document.getElementById('copyChecklistBtn');
+    const downloadChecklistBtn = document.getElementById('downloadChecklistBtn');
+    const downloadJsonBtn = document.getElementById('downloadJsonBtn');
     const restartBtn = document.getElementById('restartBtn');
     const saveBtn = document.getElementById('saveProgressBtn');
 
@@ -524,6 +527,18 @@
 
     if (printBtn) {
       printBtn.addEventListener('click', () => window.print());
+    }
+
+    if (copyChecklistBtn) {
+      copyChecklistBtn.addEventListener('click', copyChecklist);
+    }
+
+    if (downloadChecklistBtn) {
+      downloadChecklistBtn.addEventListener('click', () => downloadChecklist('txt'));
+    }
+
+    if (downloadJsonBtn) {
+      downloadJsonBtn.addEventListener('click', () => downloadChecklist('json'));
     }
 
     if (restartBtn) {
@@ -825,6 +840,252 @@
       `;
     }).join('');
   }
+  // Checklist Export & Sharing Helpers (Text & JSON)
+  function generateChecklistText(result, answers = {}, checkedState = {}) {
+    const res = result || state.evaluationResult;
+    if (!res) return '';
+    const ans = (answers && Object.keys(answers).length > 0) ? answers : state.answers;
+    const checks = (checkedState && Object.keys(checkedState).length > 0) ? checkedState : state.checklistChecked;
+
+    const countryName = res.country?.name || ans.countryCode || 'Unknown';
+    const countryCode = res.country?.code || ans.countryCode || '';
+    const authority = res.country?.authorityName || 'Official Passport Authority';
+    const officialPortal = res.country?.officialPortalUrl || 'Direct official portal under research';
+    const serviceName = formatServiceName(ans.service || res.serviceCoverage?.service);
+
+    const metaAge = (res.applicant && res.applicant.exactAge !== null)
+      ? `Age ${res.applicant.exactAge} (${formatAgeBandName(res.applicant.canonicalAgeBand)})`
+      : formatAgeName(ans.age);
+    const locText = ans.location === 'abroad'
+      ? 'Applying Abroad (Embassy / High Commission / Consulate)'
+      : 'Domestic Application (Inside Country)';
+    const urgencyText = formatUrgencyName(ans.urgency);
+
+    const lines = [];
+    lines.push('================================================================================');
+    lines.push('PASSPORTREADY — DOCUMENT PREPARATION CHECKLIST');
+    lines.push('================================================================================');
+    lines.push(`Issuing Country:    ${countryName} (${countryCode})`);
+    lines.push(`Issuing Authority:  ${authority}`);
+    lines.push(`Official Portal:    ${officialPortal}`);
+    lines.push(`Application Route:  ${serviceName}`);
+    lines.push(`Applicant Profile:  ${metaAge}`);
+    lines.push(`Lodging Location:   ${locText}`);
+    lines.push(`Processing Urgency: ${urgencyText}`);
+    lines.push(`Readiness Score:    ${res.readinessScore}% (${(res.statusLabel || '').replace(/_/g, ' ')})`);
+    lines.push(`Exported On:        ${new Date().toISOString().slice(0, 10)} via https://passport.myoss.in/`);
+    lines.push('--------------------------------------------------------------------------------');
+
+    if (res.serviceCoverage) {
+      lines.push('');
+      lines.push('[SERVICE VERIFICATION AUDIT]');
+      lines.push(`Audit Status: ${res.serviceCoverage.label || ''} (${res.serviceCoverage.status || ''})`);
+      if (res.serviceCoverage.summary) {
+        lines.push(`Summary: ${res.serviceCoverage.summary}`);
+      }
+      if (res.serviceCoverage.supportedChecks && res.serviceCoverage.supportedChecks.length > 0) {
+        lines.push('Verified Checks:');
+        res.serviceCoverage.supportedChecks.forEach(c => lines.push(`  ✓ ${c}`));
+      }
+      if (res.serviceCoverage.missingChecks && res.serviceCoverage.missingChecks.length > 0) {
+        lines.push('Official Confirmation Required:');
+        res.serviceCoverage.missingChecks.forEach(c => lines.push(`  ⚠ ${c}`));
+      }
+    }
+
+    if (res.feeGuidance && res.feeGuidance.details) {
+      lines.push('');
+      lines.push('[STATUTORY FEE GUIDANCE]');
+      lines.push(res.feeGuidance.details);
+      lines.push('Note: Government fees are subject to statutory amendments. Confirm exact total on the official portal.');
+    }
+
+    lines.push('');
+    lines.push('[ACTIONABLE DOCUMENT CHECKLIST]');
+    if (res.checklist && res.checklist.length > 0) {
+      res.checklist.forEach((item, index) => {
+        const isChecked = !!checks[item.id];
+        const statusBox = isChecked ? '[X]' : '[ ]';
+        const obligation = item.mandatory ? 'MANDATORY' : 'CONDITIONAL';
+        lines.push(`${statusBox} ${index + 1}. ${item.title} (${obligation})`);
+        if (item.details) {
+          lines.push(`    Details: ${item.details}`);
+        }
+      });
+    } else {
+      lines.push('No specific documents listed.');
+    }
+
+    lines.push('');
+    lines.push('[NOTICES & PRE-SUBMISSION FLAGS]');
+    if (res.flags && res.flags.length > 0) {
+      res.flags.forEach((f) => {
+        lines.push(`• [${(f.severity || 'NOTICE').toUpperCase()}] ${f.title}`);
+        lines.push(`  ${f.message}`);
+        if (f.action) {
+          lines.push(`  Recommended Action: ${f.action}`);
+        }
+      });
+    } else {
+      lines.push('✓ No critical inconsistencies or discrepancy notices reported.');
+    }
+
+    lines.push('');
+    lines.push('================================================================================');
+    lines.push('LEGAL DISCLAIMER & PRE-SUBMISSION RULE:');
+    lines.push('PassportReady is an independent preparatory platform and is not affiliated with');
+    lines.push('any government agency. This checklist reflects researched preparation guidance');
+    lines.push('only and does not constitute approval or guarantee passport issuance.');
+    lines.push('Always complete final filings and statutory fee payments directly on official');
+    lines.push(`government systems: ${officialPortal}`);
+    lines.push('================================================================================');
+
+    return lines.join('\n');
+  }
+
+  function generateChecklistJson(result, answers = {}, checkedState = {}) {
+    const res = result || state.evaluationResult;
+    if (!res) return null;
+    const ans = (answers && Object.keys(answers).length > 0) ? answers : state.answers;
+    const checks = (checkedState && Object.keys(checkedState).length > 0) ? checkedState : state.checklistChecked;
+
+    const data = {
+      generator: "PassportReady",
+      version: "1.0",
+      canonicalUrl: "https://passport.myoss.in/",
+      exportedAt: new Date().toISOString(),
+      disclaimer: "Pre-submission preparation guidance only. Independent platform not affiliated with any government authority. No approval guarantee.",
+      country: {
+        code: res.country?.code || ans.countryCode || "",
+        name: res.country?.name || "",
+        authorityName: res.country?.authorityName || "",
+        officialPortalUrl: res.country?.officialPortalUrl || "",
+        isVerified: !!res.country?.isVerified
+      },
+      applicationProfile: {
+        service: ans.service || "",
+        serviceName: formatServiceName(ans.service || res.serviceCoverage?.service),
+        location: ans.location || "inside",
+        ageCategory: ans.age || "",
+        urgency: ans.urgency || "standard"
+      },
+      readinessScore: res.readinessScore || 0,
+      statusLabel: res.statusLabel || "",
+      serviceCoverage: res.serviceCoverage ? {
+        status: res.serviceCoverage.status,
+        label: res.serviceCoverage.label,
+        summary: res.serviceCoverage.summary,
+        supportedChecks: res.serviceCoverage.supportedChecks || [],
+        missingChecks: res.serviceCoverage.missingChecks || []
+      } : null,
+      feeGuidance: res.feeGuidance ? {
+        details: res.feeGuidance.details || "",
+        feeStatus: res.feeGuidance.feeStatus || "",
+        specificRecord: res.feeGuidance.specificRecord || null
+      } : null,
+      flags: (res.flags || []).map(f => ({
+        id: f.id,
+        title: f.title,
+        severity: f.severity,
+        message: f.message,
+        action: f.action
+      })),
+      checklist: (res.checklist || []).map((item, idx) => ({
+        index: idx + 1,
+        id: item.id,
+        title: item.title,
+        mandatory: !!item.mandatory,
+        details: item.details,
+        completed: !!checks[item.id]
+      }))
+    };
+
+    return JSON.stringify(data, null, 2);
+  }
+
+  function copyChecklist() {
+    const result = state.evaluationResult;
+    if (!result) return;
+    const text = generateChecklistText(result, state.answers, state.checklistChecked);
+    if (!text) return;
+
+    if (typeof navigator !== 'undefined' && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(text).then(() => {
+        const msg = (typeof getI18nText === 'function') ? getI18nText('toast_checklist_copied') : 'Checklist copied to clipboard!';
+        showToast(msg);
+      }).catch(() => {
+        fallbackCopyText(text);
+      });
+    } else {
+      fallbackCopyText(text);
+    }
+  }
+
+  function fallbackCopyText(text) {
+    if (typeof document === 'undefined') return;
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      textArea.style.left = '-9999px';
+      textArea.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (successful) {
+        const msg = (typeof getI18nText === 'function') ? getI18nText('toast_checklist_copied') : 'Checklist copied to clipboard!';
+        showToast(msg);
+      } else {
+        showToast('Unable to copy checklist to clipboard.');
+      }
+    } catch (err) {
+      showToast('Unable to copy checklist to clipboard.');
+    }
+  }
+
+  function downloadChecklist(format = 'txt') {
+    const result = state.evaluationResult;
+    if (!result) return;
+    const countryCode = (result.country && result.country.code) ? result.country.code.toUpperCase() : 'CHECKLIST';
+    const dateStr = new Date().toISOString().slice(0, 10);
+
+    if (format === 'json') {
+      const jsonStr = generateChecklistJson(result, state.answers, state.checklistChecked);
+      if (!jsonStr) return;
+      const filename = `PassportReady-Checklist-${countryCode}-${dateStr}.json`;
+      downloadBlob(filename, jsonStr, 'application/json;charset=utf-8');
+    } else {
+      const text = generateChecklistText(result, state.answers, state.checklistChecked);
+      if (!text) return;
+      const filename = `PassportReady-Checklist-${countryCode}-${dateStr}.txt`;
+      downloadBlob(filename, text, 'text/plain;charset=utf-8');
+    }
+    const msg = (typeof getI18nText === 'function') ? getI18nText('toast_checklist_downloaded') : 'Checklist downloaded successfully!';
+    showToast(msg);
+  }
+
+  function downloadBlob(filename, content, mimeType) {
+    if (typeof document === 'undefined') return;
+    try {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 150);
+    } catch (e) {
+      showToast('Download failed. Please try copying the checklist.');
+    }
+  }
+
   function toggleCheck(id) {
     state.checklistChecked[id] = !state.checklistChecked[id];
     saveState();
@@ -1245,6 +1506,23 @@
     return map[band] || band;
   }
 
+  function formatUrgencyName(u) {
+    const keyMap = {
+      standard: 'urg_standard',
+      expedited: 'urg_expedited',
+      emergency: 'urg_emergency'
+    };
+    if (keyMap[u] && typeof getI18nText === 'function') {
+      return getI18nText(keyMap[u]);
+    }
+    const map = {
+      standard: "Standard / Normal processing",
+      expedited: "Urgent / Expedited / Tatkaal",
+      emergency: "Immediate emergency travel"
+    };
+    return map[u] || u || "Standard";
+  }
+
   function escapeHTML(s) {
     return String(s || '').replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -1270,6 +1548,10 @@
     updateCountryHint,
     syncInputsToState,
     renderStep,
+    generateChecklistText,
+    generateChecklistJson,
+    copyChecklist,
+    downloadChecklist,
     getState: () => state
   };
 

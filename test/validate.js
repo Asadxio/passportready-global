@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 280;
+  const expectedKeyCount = 285;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4080,7 +4080,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 280;
+  const expectedKeys = 285;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4777,7 +4777,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
   assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
 
-  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 280 keys total)
+  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 285 keys total)
   const betaKeys = [
     'beta_badge',
     'beta_notice_text',
@@ -4965,6 +4965,97 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
 
   const saEval = engine.evaluate({ countryCode: 'SA', service: 'first_passport', age: 'adult', location: 'inside' }, 'en');
   assert(saEval.feeGuidance.details.includes('citizens aged 21 and older'), 'SA fee guidance details must reflect 21+ condition for 10-year validity');
+});
+
+// 36. Phase 4.9 Feature: Copy and Download Checklist Export (Text & JSON), DOM Buttons, i18n Parity, and Print Suppression
+runTest('Phase 4.9 Feature: Copy and Download Checklist Export (Text & JSON), DOM Buttons, i18n Parity, and Print Suppression', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const stylesCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+  const app = require('../js/app.js');
+
+  // 1. DOM Elements in index.html
+  assert(indexHtml.includes('id="printBtn"'), 'index.html must contain #printBtn');
+  assert(indexHtml.includes('id="copyChecklistBtn"'), 'index.html must contain #copyChecklistBtn');
+  assert(indexHtml.includes('id="downloadChecklistBtn"'), 'index.html must contain #downloadChecklistBtn');
+  assert(indexHtml.includes('id="downloadJsonBtn"'), 'index.html must contain #downloadJsonBtn');
+  assert(indexHtml.includes('id="restartBtn"'), 'index.html must contain #restartBtn');
+
+  // 2. Print stylesheet suppression
+  const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
+  assert(printBlockMatch, 'styles.css must contain @media print section');
+  const printBlock = printBlockMatch[1];
+  assert(printBlock.includes('#copyChecklistBtn'), '@media print must suppress #copyChecklistBtn');
+  assert(printBlock.includes('#downloadChecklistBtn'), '@media print must suppress #downloadChecklistBtn');
+  assert(printBlock.includes('#downloadJsonBtn'), '@media print must suppress #downloadJsonBtn');
+
+  // 3. Translation Parity across all 6 languages
+  const exportKeys = [
+    'btn_copy_checklist',
+    'btn_download_checklist',
+    'btn_download_json',
+    'toast_checklist_copied',
+    'toast_checklist_downloaded'
+  ];
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  for (const lang of supportedLangs) {
+    for (const key of exportKeys) {
+      assert(I18N_TRANSLATIONS[lang][key], `Key ${key} missing in language ${lang}`);
+      assert(typeof I18N_TRANSLATIONS[lang][key] === 'string' && I18N_TRANSLATIONS[lang][key].length > 3, `Key ${key} must have content in ${lang}`);
+    }
+  }
+
+  // 4. Formatted Plaintext Export Verification
+  const inEval = engine.evaluate({
+    countryCode: 'IN',
+    service: 'first_passport',
+    age: 'adult',
+    location: 'inside',
+    urgency: 'standard'
+  }, 'en');
+
+  const firstItemId = inEval.checklist[0].id;
+  const checkedMap = { [firstItemId]: true };
+  const answers = {
+    countryCode: 'IN',
+    service: 'first_passport',
+    age: 'adult',
+    location: 'inside',
+    urgency: 'standard'
+  };
+
+  const textExport = app.generateChecklistText(inEval, answers, checkedMap);
+  assert(typeof textExport === 'string' && textExport.length > 500, 'generateChecklistText must return substantive text');
+  assert(textExport.includes('PASSPORTREADY — DOCUMENT PREPARATION CHECKLIST'), 'Text export must have header title');
+  assert(textExport.includes('India (IN)'), 'Text export must display country name and code');
+  assert(textExport.includes('https://www.passportindia.gov.in/'), 'Text export must include verified official portal URL');
+  assert(textExport.includes('First-Time / Fresh Passport'), 'Text export must include service name');
+  assert(textExport.includes('[STATUTORY FEE GUIDANCE]'), 'Text export must include statutory fee section');
+  assert(textExport.includes('₹2,500'), 'Text export must include verified statutory fee figure');
+  assert(textExport.includes('[X] 1. '), 'Text export must reflect checked item as [X]');
+  assert(textExport.includes('[ ] 2. '), 'Text export must reflect unchecked item as [ ]');
+  assert(textExport.includes('LEGAL DISCLAIMER & PRE-SUBMISSION RULE:'), 'Text export must include pre-submission disclaimer');
+  assert(textExport.includes('PassportReady is an independent preparatory platform and is not affiliated with'), 'Text export must include platform independence statement');
+
+  // 5. Structured JSON Export Verification
+  const jsonExportStr = app.generateChecklistJson(inEval, answers, checkedMap);
+  assert(typeof jsonExportStr === 'string' && jsonExportStr.length > 300, 'generateChecklistJson must return JSON string');
+  const parsedJson = JSON.parse(jsonExportStr);
+  assert.strictEqual(parsedJson.generator, 'PassportReady', 'JSON export must identify generator');
+  assert.strictEqual(parsedJson.country.code, 'IN', 'JSON export country code must match');
+  assert.strictEqual(parsedJson.country.name, 'India', 'JSON export country name must match');
+  assert.strictEqual(parsedJson.country.officialPortalUrl, 'https://www.passportindia.gov.in/', 'JSON export must include official portal URL');
+  assert.strictEqual(parsedJson.checklist[0].completed, true, 'JSON export first item completed must be true');
+  assert.strictEqual(parsedJson.checklist[1].completed, false, 'JSON export second item completed must be false');
+  assert(parsedJson.feeGuidance.details.includes('₹2,500'), 'JSON export fee details must include statutory figures');
+  assert(parsedJson.disclaimer && parsedJson.disclaimer.length > 20, 'JSON export must contain disclaimer');
+
+  // 6. Safe Null / Fallback Handling
+  assert.strictEqual(app.generateChecklistText(null), '', 'generateChecklistText(null) must safely return empty string');
+  assert.strictEqual(app.generateChecklistJson(null), null, 'generateChecklistJson(null) must safely return null');
 });
 
 console.log('\n====================================================');
