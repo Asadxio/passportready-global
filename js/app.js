@@ -53,6 +53,11 @@
     setupToolListeners();
     setupDirectoryListeners();
     setupModalListeners();
+    // Deep-linking: load shared state from URL hash if provided
+    loadStateFromUrlHash();
+    if (typeof window !== 'undefined') {
+      window.addEventListener('hashchange', () => loadStateFromUrlHash());
+    }
     renderStep(state.currentStep);
     updateCountryHint();
   }
@@ -456,6 +461,37 @@
     }
   }
 
+  function syncStateToInputs() {
+    const setRadio = (name, val) => {
+      if (!val) return;
+      const el = document.querySelector(`input[name="${name}"][value="${val}"]`);
+      if (el) el.checked = true;
+    };
+    const setVal = (id, val) => {
+      if (val === undefined || val === null) return;
+      const el = document.getElementById(id);
+      if (el) el.value = val;
+    };
+
+    if (state.answers.countryName) setVal('countryInput', state.answers.countryName);
+    setRadio('service', state.answers.service);
+    setRadio('age', state.answers.age);
+    setVal('urgency', state.answers.urgency);
+    setRadio('status', state.answers.status);
+    setRadio('birthProof', state.answers.birthProof);
+    setRadio('addressProof', state.answers.addressProof);
+    setRadio('citizenshipProof', state.answers.citizenshipProof);
+    setVal('nameMatch', state.answers.nameMatch);
+    setVal('dobMatch', state.answers.dobMatch);
+    setVal('special', state.answers.special);
+    setVal('locationSelect', state.answers.location);
+    setVal('checkedGov', state.answers.checkedGov);
+    if (state.answers.ageExact) setVal('exactAge', state.answers.ageExact);
+    if (state.answers.validity) setVal('validityOption', state.answers.validity);
+    if (state.answers.lossTier) setVal('lossTier', state.answers.lossTier);
+    if (state.answers.applicantCategory) setVal('applicantCategory', state.answers.applicantCategory);
+  }
+
   function setupWizardListeners() {
     const nextBtn = document.getElementById('nextBtn');
     const backBtn = document.getElementById('backBtn');
@@ -464,6 +500,7 @@
     const copyChecklistBtn = document.getElementById('copyChecklistBtn');
     const downloadChecklistBtn = document.getElementById('downloadChecklistBtn');
     const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+    const shareBtn = document.getElementById('shareBtn');
     const restartBtn = document.getElementById('restartBtn');
     const saveBtn = document.getElementById('saveProgressBtn');
 
@@ -539,6 +576,10 @@
 
     if (downloadJsonBtn) {
       downloadJsonBtn.addEventListener('click', () => downloadChecklist('json'));
+    }
+
+    if (shareBtn) {
+      shareBtn.addEventListener('click', shareChecklist);
     }
 
     if (restartBtn) {
@@ -1346,6 +1387,139 @@
     }
   }
 
+  // Shareable URL & Deep-Linking Helpers
+  function buildShareableUrl(answers) {
+    if (answers === null) return '';
+    const ans = (answers !== undefined && typeof answers === 'object')
+      ? (Object.keys(answers).length > 0 ? answers : {})
+      : state.answers;
+    if (!ans || !ans.countryCode) return '';
+
+    const params = new URLSearchParams();
+    if (ans.countryCode) params.set('country', ans.countryCode);
+    if (ans.service) params.set('service', ans.service);
+    if (ans.location) params.set('location', ans.location);
+    if (ans.age) params.set('age', ans.age);
+    if (ans.urgency) params.set('urgency', ans.urgency);
+    if (ans.status) params.set('status', ans.status);
+    if (ans.birthProof) params.set('birthProof', ans.birthProof);
+    if (ans.addressProof) params.set('addressProof', ans.addressProof);
+    if (ans.citizenshipProof) params.set('citizenshipProof', ans.citizenshipProof);
+    if (ans.nameMatch) params.set('nameMatch', ans.nameMatch);
+    if (ans.dobMatch) params.set('dobMatch', ans.dobMatch);
+    if (ans.special && ans.special !== 'none') params.set('special', ans.special);
+
+    const hashString = '#' + params.toString();
+    if (typeof window !== 'undefined' && window.location) {
+      const origin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'https://passport.myoss.in';
+      const pathname = window.location.pathname || '/';
+      return `${origin}${pathname}${hashString}`;
+    }
+    return `https://passport.myoss.in/${hashString}`;
+  }
+
+  function parseShareableHash(hashString) {
+    if (!hashString || typeof hashString !== 'string') return null;
+    const rawHash = hashString.startsWith('#') ? hashString.slice(1) : hashString;
+    if (!rawHash) return null;
+
+    const params = new URLSearchParams(rawHash);
+    const countryCode = params.get('country') || params.get('c');
+    if (!countryCode) return null;
+
+    return {
+      countryCode: countryCode.trim().toUpperCase(),
+      service: params.get('service') || params.get('s') || 'first_passport',
+      location: params.get('location') || params.get('loc') || params.get('l') || 'inside',
+      age: params.get('age') || params.get('a') || 'adult',
+      urgency: params.get('urgency') || params.get('u') || 'standard',
+      status: params.get('status') || params.get('st') || 'never',
+      birthProof: params.get('birthProof') || params.get('bp') || 'have',
+      addressProof: params.get('addressProof') || params.get('ap') || 'have',
+      citizenshipProof: params.get('citizenshipProof') || params.get('cp') || 'have',
+      nameMatch: params.get('nameMatch') || params.get('nm') || 'yes',
+      dobMatch: params.get('dobMatch') || params.get('dm') || 'yes',
+      special: params.get('special') || params.get('sp') || 'none',
+      checkedGov: 'yes'
+    };
+  }
+
+  function loadStateFromUrlHash(hashString) {
+    const hash = hashString || (typeof window !== 'undefined' && window.location ? window.location.hash : '');
+    const parsedAnswers = parseShareableHash(hash);
+    if (!parsedAnswers) return false;
+
+    // Resolve country from dataset
+    const c = getCountryByQuery(parsedAnswers.countryCode);
+    if (!c) return false;
+
+    // Sync state answers
+    state.answers = Object.assign({}, state.answers, parsedAnswers);
+    state.answers.countryCode = c.alpha2;
+    state.answers.countryName = c.name;
+
+    // Sync input elements in DOM
+    if (typeof document !== 'undefined') {
+      const countryInput = document.getElementById('countryInput');
+      if (countryInput) countryInput.value = c.name;
+      syncStateToInputs();
+    }
+
+    // Generate results automatically
+    generateFinalResults();
+
+    // Toast confirmation
+    if (typeof getI18nText === 'function') {
+      const msg = getI18nText('toast_shared_checklist_loaded', { country: c.name });
+      showToast(msg);
+    } else {
+      showToast(`Loaded shared checklist for ${c.name}!`);
+    }
+
+    return true;
+  }
+
+  function shareChecklist() {
+    const result = state.evaluationResult;
+    if (!result) return;
+    const url = buildShareableUrl(state.answers);
+    if (!url) return;
+
+    const countryName = result.country?.name || state.answers?.countryCode || 'Country';
+    const serviceName = formatServiceName(state.answers.service);
+    const shareTitle = `PassportReady Checklist — ${countryName}`;
+    const shareText = `Check out my document preparation checklist for ${countryName} (${serviceName}) on PassportReady:`;
+
+    if (typeof navigator !== 'undefined' && navigator.share && typeof navigator.share === 'function') {
+      navigator.share({
+        title: shareTitle,
+        text: shareText,
+        url: url
+      }).catch((err) => {
+        if (err && err.name !== 'AbortError') {
+          copyUrlToClipboard(url);
+        }
+      });
+    } else {
+      copyUrlToClipboard(url);
+    }
+  }
+
+  function copyUrlToClipboard(url) {
+    if (typeof navigator !== 'undefined' && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(url).then(() => {
+        const msg = (typeof getI18nText === 'function')
+          ? getI18nText('toast_link_copied')
+          : 'Shareable link copied to clipboard!';
+        showToast(msg);
+      }).catch(() => {
+        fallbackCopyText(url);
+      });
+    } else {
+      fallbackCopyText(url);
+    }
+  }
+
   function toggleCheck(id) {
     state.checklistChecked[id] = !state.checklistChecked[id];
     saveState();
@@ -1814,6 +1988,10 @@
     downloadChecklist,
     getDocumentModalData,
     openDocumentHelperModal,
+    buildShareableUrl,
+    parseShareableHash,
+    loadStateFromUrlHash,
+    shareChecklist,
     getState: () => state
   };
 

@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 287;
+  const expectedKeyCount = 290;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4080,7 +4080,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 287;
+  const expectedKeys = 290;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -4777,7 +4777,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   assert(stylesCss.includes('.beta-banner,') && stylesCss.includes('#feedbackLink,'), '@media print must suppress beta banner and feedback links');
   assert(stylesCss.includes('.unsupported-service-notice,') && stylesCss.includes('.resultscore,'), '@media print must prevent breaks inside .unsupported-service-notice');
 
-  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 287 keys total)
+  // 3. Translation Key Parity for Beta & Limitation Keys (all 6 languages, 290 keys total)
   const betaKeys = [
     'beta_badge',
     'beta_notice_text',
@@ -5128,6 +5128,79 @@ runTest('Phase 4.10 Feature: Detailed Document Modal Helper with Country-Specifi
   // 6. Safe Null / Fallback Handling
   assert.strictEqual(app.getDocumentModalData(null, null), null, 'getDocumentModalData(null, null) must safely return null');
   assert.strictEqual(app.getDocumentModalData('non_existent_id', inEval), null, 'getDocumentModalData with unknown ID must return null');
+});
+
+// 38. Phase 4.11 Feature: Shareable Pre-Filled Checklist Deep-Linking (URL State, Parsing & Auto-Evaluation)
+runTest('Phase 4.11 Feature: Shareable Pre-Filled Checklist Deep-Linking (URL State, Parsing & Auto-Evaluation)', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const stylesCss = fs.readFileSync(path.join(__dirname, '..', 'css', 'styles.css'), 'utf8');
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const app = require('../js/app.js');
+
+  // 1. DOM Elements in index.html
+  assert(indexHtml.includes('id="shareBtn"'), 'index.html must contain #shareBtn');
+
+  // 2. Print stylesheet suppression
+  const printBlockMatch = stylesCss.match(/@media\s+print\s*\{([\s\S]*?)\/\*\s*3\.\s*Container Width/i);
+  assert(printBlockMatch && printBlockMatch[1].includes('#shareBtn'), '@media print must suppress #shareBtn');
+
+  // 3. Translation Parity across all 6 languages (290 keys total)
+  const shareKeys = ['btn_share_link', 'toast_link_copied', 'toast_shared_checklist_loaded'];
+  const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
+  for (const lang of supportedLangs) {
+    for (const key of shareKeys) {
+      assert(I18N_TRANSLATIONS[lang][key], `Key ${key} missing in language ${lang}`);
+      assert(typeof I18N_TRANSLATIONS[lang][key] === 'string' && I18N_TRANSLATIONS[lang][key].length > 2, `Key ${key} must have content in ${lang}`);
+    }
+  }
+
+  // 4. URL Construction Verification
+  const testAnswers = {
+    countryCode: 'IN',
+    service: 'first_passport',
+    location: 'inside',
+    age: 'adult',
+    urgency: 'standard',
+    status: 'never',
+    birthProof: 'have',
+    addressProof: 'have',
+    citizenshipProof: 'have',
+    nameMatch: 'yes',
+    dobMatch: 'yes',
+    special: 'none'
+  };
+
+  const shareUrl = app.buildShareableUrl(testAnswers);
+  assert(typeof shareUrl === 'string' && shareUrl.includes('#'), 'buildShareableUrl must return URL containing hash');
+  assert(shareUrl.includes('country=IN'), 'Shareable URL must contain country=IN');
+  assert(shareUrl.includes('service=first_passport'), 'Shareable URL must contain service=first_passport');
+  assert(shareUrl.includes('location=inside'), 'Shareable URL must contain location=inside');
+  assert(shareUrl.includes('age=adult'), 'Shareable URL must contain age=adult');
+
+  // 5. Hash Parsing Verification (Standard & Compact keys)
+  const hashPart = shareUrl.split('#')[1];
+  const parsed = app.parseShareableHash(hashPart);
+  assert.strictEqual(parsed.countryCode, 'IN', 'Parsed countryCode must match');
+  assert.strictEqual(parsed.service, 'first_passport', 'Parsed service must match');
+  assert.strictEqual(parsed.location, 'inside', 'Parsed location must match');
+  assert.strictEqual(parsed.age, 'adult', 'Parsed age must match');
+
+  // Compact keys test
+  const compactHash = '#c=US&s=renewal_reissue&loc=abroad&a=senior&u=expedited&st=valid';
+  const compactParsed = app.parseShareableHash(compactHash);
+  assert.strictEqual(compactParsed.countryCode, 'US', 'Compact hash must resolve US');
+  assert.strictEqual(compactParsed.service, 'renewal_reissue', 'Compact hash must resolve renewal_reissue');
+  assert.strictEqual(compactParsed.location, 'abroad', 'Compact hash must resolve abroad');
+  assert.strictEqual(compactParsed.age, 'senior', 'Compact hash must resolve senior');
+  assert.strictEqual(compactParsed.urgency, 'expedited', 'Compact hash must resolve expedited');
+  assert.strictEqual(compactParsed.status, 'valid', 'Compact hash must resolve valid');
+
+  // 6. Safe Null / Fallback Handling
+  assert.strictEqual(app.buildShareableUrl(null), '', 'buildShareableUrl(null) must safely return empty string');
+  assert.strictEqual(app.buildShareableUrl({}), '', 'buildShareableUrl({}) without country must return empty string');
+  assert.strictEqual(app.parseShareableHash(null), null, 'parseShareableHash(null) must return null');
+  assert.strictEqual(app.parseShareableHash(''), null, 'parseShareableHash("") must return null');
+  assert.strictEqual(app.parseShareableHash('#corrupted_param_without_country'), null, 'parseShareableHash without country must return null');
 });
 
 console.log('\n====================================================');

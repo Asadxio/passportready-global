@@ -1083,6 +1083,7 @@ button { cursor: pointer; }
   #copyChecklistBtn,
   #downloadChecklistBtn,
   #downloadJsonBtn,
+  #shareBtn,
   #restartBtn,
   #saveProgressBtn,
   .btn-doc-helper,
