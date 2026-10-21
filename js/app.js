@@ -62,7 +62,8 @@
     if (typeof RULE_PACKS !== 'undefined') {
       rulePacks = RULE_PACKS;
     }
-    rulesEngine = new PassportRulesEngine(rulePacks);
+    const countries = Array.isArray(COUNTRY_DATA) ? COUNTRY_DATA : [];
+    rulesEngine = new PassportRulesEngine(rulePacks, countries);
   }
 
   // LocalStorage Persistence

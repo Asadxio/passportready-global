@@ -3782,6 +3782,215 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
   assert.strictEqual(dobDiff.discrepancyClass, 'LEGAL_DISCREPANCY');
 });
 
+
+// 30. Phase 4.4 Rules Engine Calibration: Resolution of DEF-01 (Statutory Fees), DEF-02 (Photo Rules), and DEF-03 (Dynamic Country Name Precedence)
+runTest('Phase 4.4 Calibration: Defect resolution for statutory fees, human-readable photos, and dynamic country name precedence', () => {
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const countryDataModule = require('../data/country-data.js');
+  const countries = countryDataModule.PASSPORT_COUNTRIES;
+  const engine = new PassportRulesEngine(rulePacks, countries);
+
+  // ---------------------------------------------------------
+  // DEF-01: Verified Statutory Fee Evaluation & Consular Channel Separation
+  // ---------------------------------------------------------
+  // 1. India (IN)
+  const inAdult = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport' });
+  const inAdultFee = inAdult.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inAdultFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inAdultFee.feeRecord.standard_36, 1500);
+  assert.strictEqual(inAdultFee.feeRecord.standard_60, 2000);
+  assert(inAdultFee.details.includes('₹1,500'));
+
+  const inTatkaal = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', urgency: 'tatkaal' });
+  const inTatkaalFee = inTatkaal.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inTatkaalFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_surcharge, 2000);
+  assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_total_36, 3500);
+  assert.strictEqual(inTatkaalFee.feeRecord.tatkaal_total_60, 4000);
+
+  const inMinor = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'first_passport', ageExact: 10 });
+  const inMinorFee = inMinor.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inMinorFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inMinorFee.feeRecord.base, 1000);
+
+  const inLost = engine.evaluate({ countryCode: 'IN', location: 'inside', service: 'lost_stolen' });
+  const inLostFee = inLost.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inLostFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(inLostFee.feeRecord.standard_adult_36_pages, 3000);
+  assert.strictEqual(inLostFee.feeRecord.standard_adult_60_pages, 3500);
+
+  const inAbroad = engine.evaluate({ countryCode: 'IN', location: 'abroad', service: 'first_passport' });
+  const inAbroadFee = inAbroad.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(inAbroadFee.feeStatus, 'consular_local_currency');
+  assert(!inAbroadFee.details.includes('₹1,500'), 'Must not claim domestic INR fee is payable abroad');
+
+  // 2. United States (US)
+  const usAdult = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport' });
+  const usAdultFee = usAdult.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(usAdultFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(usAdultFee.feeRecord.total, 165);
+  assert.strictEqual(usAdultFee.feeRecord.application_fee, 130);
+  assert.strictEqual(usAdultFee.feeRecord.execution_fee, 35);
+
+  const usExpedite = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  const usExpFee = usExpedite.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(usExpFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(usExpFee.feeRecord.expedite_total, 225);
+
+  const usRenewal = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'renewal_reissue' });
+  const usRenFee = usRenewal.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(usRenFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(usRenFee.feeRecord.renewal_fee, 130);
+
+  const usMinor = engine.evaluate({ countryCode: 'US', location: 'inside', service: 'first_passport', ageExact: 14 });
+  const usMinorFee = usMinor.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(usMinorFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(usMinorFee.feeRecord.total, 135);
+
+  const usAbroad = engine.evaluate({ countryCode: 'US', location: 'abroad', service: 'first_passport' });
+  const usAbroadFee = usAbroad.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(usAbroadFee.feeStatus, 'consular_local_currency');
+
+  // 3. United Kingdom (GB)
+  const gbAdult = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport' });
+  const gbAdultFee = gbAdult.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(gbAdultFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(gbAdultFee.feeRecord.adult_online, 88.50);
+  assert.strictEqual(gbAdultFee.feeRecord.adult_postal, 100.00);
+
+  const gbFastTrack = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport', urgency: 'fast_track' });
+  const gbFastFee = gbFastTrack.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(gbFastFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(gbFastFee.feeRecord.fast_track_1_week_adult, 166.50);
+
+  const gbChild = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport', ageExact: 12 });
+  const gbChildFee = gbChild.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(gbChildFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(gbChildFee.feeRecord.child_online, 57.50);
+
+  const gbAbroad = engine.evaluate({ countryCode: 'GB', location: 'abroad', service: 'first_passport' });
+  assert.strictEqual(gbAbroad.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'consular_local_currency');
+
+  // 4. Canada (CA)
+  const caAdult = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport' });
+  const caAdultFee = caAdult.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(caAdultFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(caAdultFee.feeRecord.adult_5_year, 120);
+  assert.strictEqual(caAdultFee.feeRecord.adult_10_year, 160);
+
+  const caUrgent = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport', urgency: 'urgent' });
+  const caUrgFee = caUrgent.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(caUrgFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(caUrgFee.feeRecord.urgent_total_5yr, 230);
+  assert.strictEqual(caUrgFee.feeRecord.urgent_total_10yr, 270);
+
+  const caChild = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport', ageExact: 8 });
+  const caChildFee = caChild.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(caChildFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(caChildFee.feeRecord.child_0_to_15, 57);
+
+  const caAbroad = engine.evaluate({ countryCode: 'CA', location: 'abroad', service: 'first_passport' });
+  assert.strictEqual(caAbroad.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'consular_local_currency');
+
+  // 5. Australia (AU)
+  const auAdult = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport' });
+  const auAdultFee = auAdult.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auAdultFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(auAdultFee.feeRecord.adult_10_year, 398);
+
+  const auPriority = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', urgency: 'priority' });
+  const auPriFee = auPriority.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auPriFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(auPriFee.feeRecord.total_priority, 688);
+
+  const auChild = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', ageExact: 10 });
+  const auChildFee = auChild.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auChildFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(auChildFee.feeRecord.child_5_year, 199);
+
+  const auSenior = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport', ageExact: 76 });
+  const auSeniorFee = auSenior.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(auSeniorFee.feeStatus, 'verified_statutory');
+  assert.strictEqual(auSeniorFee.feeRecord.senior_75_plus_5_year, 199);
+
+  const auAbroad = engine.evaluate({ countryCode: 'AU', location: 'abroad', service: 'first_passport' });
+  assert.strictEqual(auAbroad.checklist.find(c => c.id === 'official_fee_payment').feeStatus, 'consular_local_currency');
+
+  // 6. Multi-country sweep across remaining 10 verified countries (PK, BD, DE, AE, PH, FR, SA, BR, ZA, IT)
+  const testCodes = ['PK', 'BD', 'DE', 'AE', 'PH', 'FR', 'SA', 'BR', 'ZA', 'IT'];
+  for (const cCode of testCodes) {
+    const domRes = engine.evaluate({ countryCode: cCode, location: 'inside', service: 'first_passport' });
+    const domFee = domRes.checklist.find(c => c.id === 'official_fee_payment');
+    assert.strictEqual(domFee.feeStatus, 'verified_statutory', `${cCode} inside must produce verified_statutory fee`);
+    assert(domFee.feeRecord !== null, `${cCode} feeRecord must not be null`);
+    assert(domFee.details.length > 50, `${cCode} details must have substantial statutory content`);
+
+    const abrRes = engine.evaluate({ countryCode: cCode, location: 'abroad', service: 'first_passport' });
+    const abrFee = abrRes.checklist.find(c => c.id === 'official_fee_payment');
+    assert.strictEqual(abrFee.feeStatus, 'consular_local_currency', `${cCode} abroad must set consular_local_currency`);
+  }
+
+  // 7. Unverified country fallback test
+  const unverifiedRes = engine.evaluate({ countryCode: 'XX', location: 'inside', service: 'first_passport' });
+  const unverifiedFee = unverifiedRes.checklist.find(c => c.id === 'official_fee_payment');
+  assert.strictEqual(unverifiedFee.feeStatus, 'confirmation_required');
+  assert(unverifiedFee.details.includes('Fee Confirmation Required'));
+
+  // ---------------------------------------------------------
+  // DEF-02: Human-Readable Photo Specifications (No Raw JSON)
+  // ---------------------------------------------------------
+  const photoCountries = ['IN', 'US', 'GB', 'CA', 'AU', 'PK', 'BD', 'DE', 'AE', 'PH', 'FR', 'SA', 'BR', 'ZA', 'IT', 'JP', 'MX', 'NG'];
+  for (const pCode of photoCountries) {
+    const pRes = engine.evaluate({ countryCode: pCode, location: 'inside', service: 'first_passport' });
+    const photoItem = pRes.checklist.find(c => c.id === 'photo_spec_check');
+    assert(photoItem, `${pCode} must have photo_spec_check item`);
+    const details = photoItem.details;
+
+    // Must NOT contain JSON delimiters or quoted schema keys
+    assert(!details.includes('{'), `${pCode} photo details must not contain raw JSON open brace '{'`);
+    assert(!details.includes('}'), `${pCode} photo details must not contain raw JSON close brace '}'`);
+    assert(!details.includes('"dimensions":'), `${pCode} photo details must not contain quoted JSON key`);
+    assert(!details.includes('"background":'), `${pCode} photo details must not contain quoted JSON key`);
+    assert(!details.includes('"captured_live":'), `${pCode} photo details must not contain quoted JSON key`);
+    assert(!details.includes('[object Object]'), `${pCode} photo details must not contain [object Object]`);
+
+    // Must be human readable with labeled sections
+    assert(details.includes('Official photo requirements for') || details.includes('Ensure photos for'), `${pCode} must have clean human-readable intro`);
+  }
+
+  // ---------------------------------------------------------
+  // DEF-03: Dynamic Country Name Resolution Precedence
+  // ---------------------------------------------------------
+  // 1. Matched rule pack name precedence when countryName is omitted
+  const auNoName = engine.evaluate({ countryCode: 'AU', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(auNoName.country.name, 'Australia');
+  assert(JSON.stringify(auNoName).includes('Australia'));
+  assert(!JSON.stringify(auNoName).includes('India'), 'Evaluating AU without countryName must contain zero occurrences of India');
+
+  const gbNoName = engine.evaluate({ countryCode: 'GB', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(gbNoName.country.name, 'United Kingdom');
+  assert(!JSON.stringify(gbNoName).includes('India'), 'Evaluating GB without countryName must contain zero occurrences of India');
+
+  const caNoName = engine.evaluate({ countryCode: 'CA', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(caNoName.country.name, 'Canada');
+  assert(!JSON.stringify(caNoName).includes('India'), 'Evaluating CA without countryName must contain zero occurrences of India');
+
+  // 2. Caller-supplied non-empty name takes top precedence
+  const customNameRes = engine.evaluate({ countryCode: 'AU', countryName: 'Commonwealth of Australia', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(customNameRes.country.name, 'Commonwealth of Australia');
+
+  // 3. Fallback to countriesMap for un-audited country in countries dataset (e.g. Kiribati)
+  const kiRes = engine.evaluate({ countryCode: 'KI', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(kiRes.country.name, 'Kiribati');
+  assert(!JSON.stringify(kiRes).includes('India'), 'Evaluating KI must not contain India');
+
+  // 4. Safe fallback to ISO code for completely unknown code
+  const zzRes = engine.evaluate({ countryCode: 'ZZ', location: 'inside', service: 'first_passport' });
+  assert.strictEqual(zzRes.country.name, 'ZZ');
+  assert(!JSON.stringify(zzRes).includes('India'), 'Evaluating ZZ must not contain India');
+});
+
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');

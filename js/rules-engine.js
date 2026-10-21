@@ -340,8 +340,112 @@ class PassportRulesEngine {
     return lower;
   }
 
-  constructor(rulePacks = {}) {
-    this.rulePacks = rulePacks;
+  constructor(rulePacks = {}, countries = []) {
+    this.rulePacks = rulePacks || {};
+    this.countriesMap = new Map();
+    let countryList = Array.isArray(countries) ? countries : [];
+    if (countryList.length === 0) {
+      if (typeof PASSPORT_COUNTRIES !== 'undefined' && Array.isArray(PASSPORT_COUNTRIES)) {
+        countryList = PASSPORT_COUNTRIES;
+      } else if (typeof COUNTRY_DATA !== 'undefined' && Array.isArray(COUNTRY_DATA)) {
+        countryList = COUNTRY_DATA;
+      }
+    }
+    for (const c of countryList) {
+      if (c && c.alpha2) {
+        this.countriesMap.set(String(c.alpha2).toUpperCase(), c);
+      }
+    }
+    if (countries instanceof Map) {
+      for (const [k, v] of countries.entries()) {
+        this.countriesMap.set(String(k).toUpperCase(), v);
+      }
+    }
+  }
+
+  static formatPhotoRules(photoRules, countryName = '') {
+    if (!photoRules) {
+      return `Ensure photos for ${countryName || 'your jurisdiction'} follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.`;
+    }
+    if (typeof photoRules === 'string') {
+      return `Official photo requirements for ${countryName || 'your jurisdiction'}: ${photoRules}`;
+    }
+    if (typeof photoRules !== 'object') {
+      return `Ensure photos for ${countryName || 'your jurisdiction'} follow standard ICAO 9303 guidelines.`;
+    }
+
+    const parts = [];
+
+    if (photoRules.captured_live === true) {
+      parts.push('Live Capture: Photos are captured live digitally at the official appointment center or enrollment counter');
+    } else if (photoRules.captured_live === false && photoRules.details) {
+      parts.push(`Photo Source: ${photoRules.details}`);
+    }
+
+    if (photoRules.dimensions) {
+      parts.push(`Dimensions: ${photoRules.dimensions}`);
+    }
+    if (photoRules.background) {
+      parts.push(`Background: ${photoRules.background}`);
+    }
+    if (photoRules.eyeglass_policy) {
+      parts.push(`Eyeglasses: ${photoRules.eyeglass_policy}`);
+    }
+    if (photoRules.expression) {
+      parts.push(`Expression: ${photoRules.expression}`);
+    }
+    if (photoRules.age_of_photo) {
+      parts.push(`Recency: ${photoRules.age_of_photo}`);
+    }
+    if (photoRules.rules) {
+      parts.push(`Specifications: ${photoRules.rules}`);
+    }
+    if (photoRules.specifications) {
+      parts.push(`Specifications: ${photoRules.specifications}`);
+    }
+    if (photoRules.conditions) {
+      parts.push(`Conditions: ${photoRules.conditions}`);
+    }
+    if (photoRules.details && !parts.some(p => p.includes(photoRules.details))) {
+      parts.push(`Details: ${photoRules.details}`);
+    }
+    if (photoRules.attire) {
+      parts.push(`Attire: ${photoRules.attire}`);
+    }
+    if (photoRules.photographer_stamp) {
+      parts.push(`Photographer Stamp: ${photoRules.photographer_stamp}`);
+    }
+    if (photoRules.guarantor_endorsement) {
+      parts.push(`Guarantor Endorsement: ${photoRules.guarantor_endorsement}`);
+    }
+    if (photoRules.exception_for_infants) {
+      parts.push(`Infant Exception: ${photoRules.exception_for_infants}`);
+    }
+    if (photoRules.notes) {
+      parts.push(`Notes: ${photoRules.notes}`);
+    }
+
+    const handledKeys = new Set([
+      'captured_live', 'dimensions', 'background', 'eyeglass_policy', 'expression',
+      'age_of_photo', 'rules', 'specifications', 'conditions', 'details',
+      'attire', 'photographer_stamp', 'guarantor_endorsement', 'exception_for_infants', 'notes'
+    ]);
+    for (const [key, val] of Object.entries(photoRules)) {
+      if (!handledKeys.has(key) && val !== undefined && val !== null && typeof val !== 'object') {
+        const label = key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        parts.push(`${label}: ${val}`);
+      }
+    }
+
+    if (parts.length === 0) {
+      return `Ensure photos for ${countryName || 'your jurisdiction'} follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.`;
+    }
+
+    return `Official photo requirements for ${countryName || 'your jurisdiction'}: ` + parts.join(' · ');
+  }
+
+  formatPhotoRules(photoRules, countryName = '') {
+    return PassportRulesEngine.formatPhotoRules(photoRules, countryName);
   }
 
   formatServiceName(service) {
@@ -2315,8 +2419,6 @@ class PassportRulesEngine {
   evaluate(profile) {
     const safeProfile = (profile && typeof profile === 'object' && !Array.isArray(profile)) ? profile : {};
     const {
-      countryCode = 'IN',
-      countryName = 'India',
       location = 'inside',
       service = 'first_passport',
       age = 'adult',
@@ -2330,6 +2432,27 @@ class PassportRulesEngine {
       special = 'none',
       checkedGov = 'yes'
     } = safeProfile;
+
+    const countryCode = typeof safeProfile.countryCode === 'string' && safeProfile.countryCode.trim().length > 0
+      ? safeProfile.countryCode.trim().toUpperCase()
+      : 'IN';
+
+    const pack = (this.rulePacks && Object.prototype.hasOwnProperty.call(this.rulePacks, countryCode)) ? this.rulePacks[countryCode] : null;
+
+    let countryName = '';
+    if (typeof safeProfile.countryName === 'string' && safeProfile.countryName.trim().length > 0) {
+      countryName = safeProfile.countryName.trim();
+    } else if (pack && typeof pack.country_name === 'string' && pack.country_name.trim().length > 0) {
+      countryName = pack.country_name.trim();
+    } else if (this.countriesMap && this.countriesMap.has(countryCode)) {
+      const entry = this.countriesMap.get(countryCode);
+      if (entry && typeof entry.name === 'string' && entry.name.trim().length > 0) {
+        countryName = entry.name.trim();
+      }
+    }
+    if (!countryName) {
+      countryName = countryCode;
+    }
 
     // Canonical Age Normalization across all stages
     const rawExactAge = typeof safeProfile.ageExact === 'number' && !isNaN(safeProfile.ageExact)
@@ -2371,8 +2494,6 @@ class PassportRulesEngine {
       : (canonicalAgeBand === 'child_under_12' || canonicalAgeBand === 'minor_12_to_16' || canonicalAgeBand === 'age_17');
     const isSeniorApplicant = canonicalAgeBand === 'senior_60_plus';
     const isAdultApplicant = !isMinorApplicant;
-
-    const pack = (this.rulePacks && Object.prototype.hasOwnProperty.call(this.rulePacks, countryCode)) ? this.rulePacks[countryCode] : null;
     const isVerifiedPack = pack && pack.rule_pack_status === 'verified';
     const serviceCoverage = this.determineServiceCoverage(pack, countryCode, service, location, urgency);
 
@@ -2739,8 +2860,8 @@ class PassportRulesEngine {
       id: 'photo_spec_check',
       title: 'ICAO-Compliant Passport Photos or Live Capture',
       details: isVerifiedPack && pack.services[service]?.photo_rules
-        ? `Specific rules for ${countryName}: ${JSON.stringify(pack.services[service].photo_rules)}`
-        : 'Ensure photos follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.',
+        ? this.formatPhotoRules(pack.services[service].photo_rules, countryName)
+        : `Ensure photos for ${countryName} follow standard ICAO 9303 guidelines: neutral expression, no glasses, mouth closed, compliant background colour.`,
       mandatory: true,
       status: 'pending',
       category: 'photo'
@@ -2934,20 +3055,33 @@ class PassportRulesEngine {
           specificFeeRecord = { currency: 'Local currency', note: 'Determined by SIMKIM consular tariff' };
         }
       } else if (countryCode === 'IE') {
-        if (isMinorApplicant) {
-          feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard child 5-year online booklet: €20 via Passport Online. Paper Post Passport: €30 (+ €9.50 An Post charge).';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'EUR', online_child: 20, paper_child: 30 };
+        if (location === 'inside') {
+          if (isMinorApplicant) {
+            feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard child 5-year online booklet: €20 via Passport Online. Paper Post Passport: €30 (+ €9.50 An Post charge).';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'EUR', online_child: 20, paper_child: 30 };
+          } else {
+            feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard adult 10-year online booklet: €75 (large 66-page: €105); Adult Passport Booklet + Card bundle: €100. Urgent appointment in Dublin/Cork: €150 (same-day) / €110 (4-day). Apply via dfa.ie/passportonline.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'EUR', online_adult: 75, large_booklet: 105, bundle_with_card: 100, urgent_same_day: 150 };
+          }
         } else {
-          feeDetails = 'Official Irish statutory fees (Passport Service, DFA): Standard adult 10-year online booklet: €75 (large 66-page: €105); Adult Passport Booklet + Card bundle: €100. Urgent appointment in Dublin/Cork: €150 (same-day) / €110 (4-day). Apply via dfa.ie/passportonline.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'EUR', online_adult: 75, large_booklet: 105, bundle_with_card: 100, urgent_same_day: 150 };
+          feeDetails = 'Overseas Irish passport applications can be made online via dfa.ie/passportonline or through Irish diplomatic missions abroad. Consular processing fees and international registered delivery charges apply. Domestic Post Passport rates do not apply abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'EUR / Local currency', note: 'DFA Passport Online overseas tariff' };
         }
       } else if (countryCode === 'KE') {
-        feeDetails = 'Official Kenyan statutory fees (Directorate of Immigration Services / immigration.go.ke / eCitizen): Ordinary EAC e-Passport 34-page Series A: KES 7,550; 50-page Series B: KES 9,550; 66-page Series C: KES 12,050. Replacement of lost passport: KES 20,050; Mutilated passport replacement: KES 20,050. Payment must be made strictly online via official eCitizen portal.';
-        feeStatus = 'verified_statutory';
-        specificFeeRecord = { currency: 'KES', series_a: 7550, series_b: 9550, series_c: 12050, lost_replacement: 20050, mutilated_replacement: 20050 };
+        if (location === 'inside') {
+          feeDetails = 'Official Kenyan statutory fees (Directorate of Immigration Services / immigration.go.ke / eCitizen): Ordinary EAC e-Passport 34-page Series A: KES 7,550; 50-page Series B: KES 9,550; 66-page Series C: KES 12,050. Replacement of lost passport: KES 20,050; Mutilated passport replacement: KES 20,050. Payment must be made strictly online via official eCitizen portal.';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'KES', series_a: 7550, series_b: 9550, series_c: 12050, lost_replacement: 20050, mutilated_replacement: 20050 };
+        } else {
+          feeDetails = 'Kenyan overseas passport applications are submitted online via eCitizen with biometric enrollment at designated Kenya High Commissions and Embassies abroad. Tariffs are collected in USD or local currency under consular regulations. Domestic KES cash payments are not accepted abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Local currency', note: 'Determined by Kenyan diplomatic mission tariff' };
+        }
       } else if (countryCode === 'MY') {
+        if (location === 'inside') {
         const isLostOrDamaged = service === 'lost_stolen' || service === 'damaged' || status === 'lost' || status === 'damaged';
         
         // 1. Resolve effective category using canonical age band & special categories
@@ -3302,70 +3436,523 @@ class PassportRulesEngine {
             }
           }
         }
-      } else if (countryCode === 'NP') {
-        if (urgency === 'urgent' || urgency === 'emergency') {
-          feeDetails = 'Official Nepalese urgent statutory fees (Department of Passports Kathmandu fast-track): Standard 34-page e-Passport: NPR 12,000 (compared to NPR 5,000 standard DAO rate); Frequent traveller 66-page: NPR 20,000. Delivery within 2–3 business days at Tripureshwor.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NPR', urgent_34p: 12000, urgent_66p: 20000, standard_dao_34p: 5000 };
         } else {
-          feeDetails = 'Official Nepalese statutory fees (Department of Passports): Standard 34-page e-Passport at District Administration Office (DAO): NPR 5,000; Frequent traveller 66-page: NPR 10,000. Fast-track urgent at DoP Kathmandu: NPR 12,000 (34-page). Mandatory NID number required.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NPR', dao_standard_34p: 5000, dao_standard_66p: 10000, dop_urgent_34p: 12000 };
+          feeDetails = 'Malaysian passport renewals abroad are handled through Malaysian diplomatic missions (High Commissions, Embassies, or Consulates-General) or online via MyOnline Pasport with overseas mission collection. Consular collection fees are assessed in local host currency or USD under JIM consular regulations.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'Host currency / USD', note: 'JIM overseas consular tariff' };
+        }
+      } else if (countryCode === 'NP') {
+        if (location === 'inside') {
+          if (urgency === 'urgent' || urgency === 'emergency') {
+            feeDetails = 'Official Nepalese urgent statutory fees (Department of Passports Kathmandu fast-track): Standard 34-page e-Passport: NPR 12,000 (compared to NPR 5,000 standard DAO rate); Frequent traveller 66-page: NPR 20,000. Delivery within 2–3 business days at Tripureshwor.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'NPR', urgent_34p: 12000, urgent_66p: 20000, standard_dao_34p: 5000 };
+          } else {
+            feeDetails = 'Official Nepalese statutory fees (Department of Passports): Standard 34-page e-Passport at District Administration Office (DAO): NPR 5,000; Frequent traveller 66-page: NPR 10,000. Fast-track urgent at DoP Kathmandu: NPR 12,000 (34-page). Mandatory NID number required.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'NPR', dao_standard_34p: 5000, dao_standard_66p: 10000, dop_urgent_34p: 12000 };
+          }
+        } else {
+          feeDetails = 'Nepalese overseas e-Passport applications are collected in USD or local host currency at Nepalese diplomatic missions abroad (standard ordinary passport is typically USD 80 / AED 300 / SAR 300 / QAR 300 depending on mission jurisdiction). Domestic DAO/DoP NPR rates do not apply abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Host currency', note: 'Nepalese diplomatic mission consular tariff' };
         }
       } else if (countryCode === 'NZ') {
-        if (urgency === 'emergency') {
-          feeDetails = 'Official New Zealand after-hours callout emergency passport fees (DIA / passports.govt.nz): Adult 10-year total fee: NZD 1,001; Child 5-year total fee: NZD 898. For urgent travel outside normal business hours. Note: Courier delivery is an additional cost.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NZD', adult_callout_total: 1001, child_callout_total: 898, courier_note: 'Additional cost' };
-        } else if (urgency === 'urgent') {
-          feeDetails = 'Official New Zealand urgent passport total fees (DIA / passports.govt.nz): Adult 10-year total fee: NZD 494 (ready in up to 3 working days); Child 5-year total fee: NZD 391. (Standard fees are NZD 247 adult / NZD 144 child). Note: Courier delivery is an additional cost.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NZD', adult_urgent_total: 494, child_urgent_total: 391, adult_standard: 247, child_standard: 144, courier_note: 'Additional cost' };
+        if (location === 'inside') {
+          if (urgency === 'emergency') {
+            feeDetails = 'Official New Zealand after-hours callout emergency passport fees (DIA / passports.govt.nz): Adult 10-year total fee: NZD 1,001; Child 5-year total fee: NZD 898. For urgent travel outside normal business hours. Note: Courier delivery is an additional cost.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'NZD', adult_callout_total: 1001, child_callout_total: 898, courier_note: 'Additional cost' };
+          } else if (urgency === 'urgent') {
+            feeDetails = 'Official New Zealand urgent passport total fees (DIA / passports.govt.nz): Adult 10-year total fee: NZD 494 (ready in up to 3 working days); Child 5-year total fee: NZD 391. (Standard fees are NZD 247 adult / NZD 144 child). Note: Courier delivery is an additional cost.';
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'NZD', adult_urgent_total: 494, child_urgent_total: 391, adult_standard: 247, child_standard: 144, courier_note: 'Additional cost' };
+          } else {
+            const isNzChild = (rawExactAge !== null ? rawExactAge < 16 : (age === 'minor' || age === 'infant'));
+            if (isNzChild) {
+              feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Child 5-year passport (under 16): Standard service NZD 144 (ready in up to 10–15 working days); Urgent service NZD 391 (ready in up to 3 working days); After-hours callout NZD 898. Note: Courier delivery is an additional cost.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'NZD', child_standard_5yr: 144, child_urgent_5yr: 391, child_callout_5yr: 898, courier_note: 'Additional cost' };
+            } else {
+              feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Adult 10-year passport (16+): Standard service NZD 247 (ready in up to 10–15 working days); Urgent service NZD 494 (ready in up to 3 working days); After-hours callout service NZD 1,001. Child 5-year: Standard NZD 144 / Urgent NZD 391 / Callout NZD 898. Note: Courier delivery is an additional cost.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'NZD', adult_standard_10yr: 247, adult_urgent_10yr: 494, adult_callout_10yr: 1001, child_standard_5yr: 144, child_urgent_5yr: 391, courier_note: 'Additional cost' };
+            }
+          }
         } else {
-          const isNzChild = (rawExactAge !== null ? rawExactAge < 16 : (age === 'minor' || age === 'infant'));
-          if (isNzChild) {
-          feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Child 5-year passport (under 16): Standard service NZD 144 (ready in up to 10–15 working days); Urgent service NZD 391 (ready in up to 3 working days); After-hours callout NZD 898. Note: Courier delivery is an additional cost.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NZD', child_standard_5yr: 144, child_urgent_5yr: 391, child_callout_5yr: 898, courier_note: 'Additional cost' };
-        } else {
-          feeDetails = 'Official New Zealand statutory fees (Department of Internal Affairs / passports.govt.nz): Adult 10-year passport (16+): Standard service NZD 247 (ready in up to 10–15 working days); Urgent service NZD 494 (ready in up to 3 working days); After-hours callout service NZD 1,001. Child 5-year: Standard NZD 144 / Urgent NZD 391 / Callout NZD 898. Note: Courier delivery is an additional cost.';
-          feeStatus = 'verified_statutory';
-          specificFeeRecord = { currency: 'NZD', adult_standard_10yr: 247, adult_urgent_10yr: 494, adult_callout_10yr: 1001, child_standard_5yr: 144, child_urgent_5yr: 391, courier_note: 'Additional cost' };
-        }
+          feeDetails = 'New Zealand citizens applying from overseas can apply online via passports.govt.nz. Overseas applications are charged in NZD or local currency with international courier delivery charges. After-hours callout services abroad require direct contact with the nearest New Zealand embassy or high commission.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'NZD / Local currency', note: 'DIA online overseas application tariff' };
         }
       } else if (countryCode === 'SG') {
-        feeDetails = 'Official Singapore statutory fees (Immigration & Checkpoints Authority): Online application via MyICA: SGD 70 (10-year validity for 16+, 5-year for under 16). In-person counter application at ICA Building: SGD 80. Lost passport penalty: SGD 50 (1st loss) / SGD 100 (subsequent).';
-        feeStatus = 'verified_statutory';
-        specificFeeRecord = { currency: 'SGD', online: 70, counter: 80, first_loss_penalty: 50, repeat_loss_penalty: 100 };
+        if (location === 'inside') {
+          feeDetails = 'Official Singapore statutory fees (Immigration & Checkpoints Authority): Online application via MyICA: SGD 70 (10-year validity for 16+, 5-year for under 16). In-person counter application at ICA Building: SGD 80. Lost passport penalty: SGD 50 (1st loss) / SGD 100 (subsequent).';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'SGD', online: 70, counter: 80, first_loss_penalty: 50, repeat_loss_penalty: 100 };
+        } else {
+          feeDetails = 'Singapore citizens applying overseas can submit applications online via MyICA (SGD 70) or through Singapore Overseas Missions. Collection and physical processing abroad may incur local mission administrative charges in host currency.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'SGD / Host currency', note: 'MyICA online or overseas mission tariff' };
+        }
       } else if (countryCode === 'ES') {
-        feeDetails = 'Official Spanish statutory fees (Policía Nacional - Tasas del Estado): Standard passport issuance/renewal: €30.00. (Issued on the spot during domestic police appointment). 100% EXEMPTION (FREE €0.00) for members of large families (Familias Numerosas under Ley 40/2003).';
-        feeStatus = 'verified_statutory';
-        specificFeeRecord = { currency: 'EUR', standard: 30.0, familia_numerosa: 0.0 };
+        if (location === 'inside') {
+          feeDetails = 'Official Spanish statutory fees (Policía Nacional - Tasas del Estado): Standard passport issuance/renewal: €30.00. (Issued on the spot during domestic police appointment). 100% EXEMPTION (FREE €0.00) for members of large families (Familias Numerosas under Ley 40/2003).';
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'EUR', standard: 30.0, familia_numerosa: 0.0 };
+        } else {
+          feeDetails = 'Spanish passport applications lodged abroad at Spanish Consulates are assessed under Consular Fee (Tasas Consulares) schedules in local host currency or EUR (€30.00 equivalent). In-person appointment at the Spanish Consulate is required.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'EUR / Host currency', standard: 30.0, note: 'Spanish consular tariff abroad' };
+        }
       } else if (countryCode === 'LK') {
-        const isLkChild = (rawExactAge !== null ? rawExactAge < 16 : (age === 'minor' || age === 'infant'));
-        if (urgency === 'urgent' || urgency === 'emergency') {
-          if (isLkChild) {
-            feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year minor urgent service: LKR 9,000 (compared to LKR 3,000 normal service); Child 10-year urgent service: LKR 20,000. Issued same day at Battaramulla Head Office.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'LKR', child_3yr_urgent: 9000, child_3yr_normal: 3000, child_10yr_urgent: 20000 };
+        if (location === 'inside') {
+          const isLkChild = (rawExactAge !== null ? rawExactAge < 16 : (age === 'minor' || age === 'infant'));
+          if (urgency === 'urgent' || urgency === 'emergency') {
+            if (isLkChild) {
+              feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year minor urgent service: LKR 9,000 (compared to LKR 3,000 normal service); Child 10-year urgent service: LKR 20,000. Issued same day at Battaramulla Head Office.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'LKR', child_3yr_urgent: 9000, child_3yr_normal: 3000, child_10yr_urgent: 20000 };
+            } else {
+              feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): All Countries Urgent One-Day Service: LKR 20,000 (compared to LKR 10,000 normal service; issued same day at Battaramulla Head Office); Child 3-year urgent: LKR 9,000.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'LKR', urgent_all_countries: 20000, normal_all_countries: 10000, child_3yr_urgent: 9000 };
+            }
           } else {
-            feeDetails = 'Official Sri Lankan urgent fees (Department of Immigration & Emigration / immigration.gov.lk): All Countries Urgent One-Day Service: LKR 20,000 (compared to LKR 10,000 normal service; issued same day at Battaramulla Head Office); Child 3-year urgent: LKR 9,000.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'LKR', urgent_all_countries: 20000, normal_all_countries: 10000, child_3yr_urgent: 9000 };
+            if (isLkChild) {
+              feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year validity: LKR 3,000 normal / LKR 9,000 urgent one-day; Standard 10-year passport: LKR 10,000 normal / LKR 20,000 urgent. Approved studio digital photo receipt required.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'LKR', child_3yr_normal: 3000, child_3yr_urgent: 9000, child_10yr_normal: 10000, child_10yr_urgent: 20000 };
+            } else {
+              feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): All Countries Normal Service: LKR 10,000 (10-year validity); Urgent One-Day Service: LKR 20,000. Child 3-year minor option: LKR 3,000 normal / LKR 9,000 urgent. Conditional lost-passport penalty: LKR 20,000 if lost within 1 year of issue date; LKR 15,000 if lost after 1 year with validity remaining (payable in addition to the passport fee). No penalty if validity already expired.';
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'LKR', normal_all_countries: 10000, urgent_all_countries: 20000, child_3yr_normal: 3000, child_3yr_urgent: 9000, lost_penalty_under_1yr: 20000, lost_penalty_over_1yr: 15000 };
+            }
           }
         } else {
-          if (isLkChild) {
-            feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): Child under 16 3-year validity: LKR 3,000 normal / LKR 9,000 urgent one-day; Standard 10-year passport: LKR 10,000 normal / LKR 20,000 urgent. Approved studio digital photo receipt required.';
+          feeDetails = 'Sri Lankan passport applications lodged at Sri Lankan diplomatic missions abroad are assessed in USD or local host currency under Department of Immigration and Emigration overseas regulations (e.g. All Countries standard passport is typically USD 150). Domestic LKR tariffs do not apply abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Host currency', note: 'Sri Lankan diplomatic mission consular schedule' };
+        }
+      } else if (countryCode === 'IN') {
+        if (location === 'inside') {
+          if (service === 'lost_stolen') {
+            const fee36 = fees.standard_adult_36_pages || 3000;
+            const fee60 = fees.standard_adult_60_pages || 3500;
+            feeDetails = `Official Indian statutory fees (Passport Rules 1980 / passportindia.gov.in): Lost or damaged passport replacement: Standard 36 pages: ₹${fee36.toLocaleString('en-IN')}; Jumbo 60 pages: ₹${fee60.toLocaleString('en-IN')}. Pay online via Passport Seva portal.`;
             feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'LKR', child_3yr_normal: 3000, child_3yr_urgent: 9000, child_10yr_normal: 10000, child_10yr_urgent: 20000 };
+            specificFeeRecord = { currency: 'INR', standard_adult_36_pages: fee36, standard_adult_60_pages: fee60 };
           } else {
-            feeDetails = 'Official Sri Lankan statutory fees (Department of Immigration & Emigration / immigration.gov.lk): All Countries Normal Service: LKR 10,000 (10-year validity); Urgent One-Day Service: LKR 20,000. Child 3-year minor option: LKR 3,000 normal / LKR 9,000 urgent. Conditional lost-passport penalty: LKR 20,000 if lost within 1 year of issue date; LKR 15,000 if lost after 1 year with validity remaining (payable in addition to the passport fee). No penalty if validity already expired.';
-            feeStatus = 'verified_statutory';
-            specificFeeRecord = { currency: 'LKR', normal_all_countries: 10000, urgent_all_countries: 20000, child_3yr_normal: 3000, child_3yr_urgent: 9000, lost_penalty_under_1yr: 20000, lost_penalty_over_1yr: 15000 };
+            const isTatkaalRequested = urgency === 'urgent' || urgency === 'tatkaal';
+            const hasTatkaalFee = typeof fees.tatkaal_surcharge === 'number';
+            if (isMinorApplicant) {
+              const minorBase = fees.minor_under_18 || 1000;
+              if (isTatkaalRequested && hasTatkaalFee) {
+                const totalTatkaal = minorBase + fees.tatkaal_surcharge;
+                feeDetails = `Official Indian statutory fees (Passport Rules 1980 / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. Tatkaal urgent processing surcharge: +₹${fees.tatkaal_surcharge.toLocaleString('en-IN')} (Total Tatkaal: ₹${totalTatkaal.toLocaleString('en-IN')}). Pay online via Passport Seva portal.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'INR', base: minorBase, tatkaal_surcharge: fees.tatkaal_surcharge, total: totalTatkaal, booklet: '36 pages' };
+              } else {
+                feeDetails = `Official Indian statutory fees (Passport Rules 1980 / passportindia.gov.in): Minor (under 18) 36 pages: ₹${minorBase.toLocaleString('en-IN')}. Pay online via Passport Seva portal.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'INR', base: minorBase, booklet: '36 pages' };
+              }
+            } else {
+              const fee36 = fees.standard_adult_36_pages || fees.standard || 1500;
+              const fee60 = fees.standard_adult_60_pages || 2000;
+              if (isTatkaalRequested && hasTatkaalFee) {
+                const tatkaal36 = fee36 + fees.tatkaal_surcharge;
+                const tatkaal60 = fee60 + fees.tatkaal_surcharge;
+                feeDetails = `Official Indian statutory fees (Passport Rules 1980 / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. Tatkaal urgent processing surcharge: +₹${fees.tatkaal_surcharge.toLocaleString('en-IN')} (Total Tatkaal: ₹${tatkaal36.toLocaleString('en-IN')} for 36 pages / ₹${tatkaal60.toLocaleString('en-IN')} for 60 pages). Pay online via Passport Seva portal.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60, tatkaal_surcharge: fees.tatkaal_surcharge, tatkaal_total_36: tatkaal36, tatkaal_total_60: tatkaal60 };
+              } else {
+                feeDetails = `Official Indian statutory fees (Passport Rules 1980 / passportindia.gov.in): Adult 36 pages (10-year): ₹${fee36.toLocaleString('en-IN')}; Adult 60 pages (10-year): ₹${fee60.toLocaleString('en-IN')}. Pay online via Passport Seva portal.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'INR', standard_36: fee36, standard_60: fee60 };
+              }
+            }
           }
+        } else {
+          feeDetails = 'Overseas consular passport fees for Indian citizens are assessed in local currency or USD at Indian Missions (embassies/consulates) or outsourced centers (VFS Global / BLS International). Domestic INR fee schedules do not apply abroad. Check the official Indian Embassy portal in your country of residence for current consular fee schedules, ICWF surcharges, and service partner handling fees.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'Local currency / USD', note: 'Determined by Indian Mission consular tariff + ICWF fee' };
+        }
+      } else if (countryCode === 'US') {
+        if (location === 'inside') {
+          const isExpedited = urgency === 'urgent' || urgency === 'expedited';
+          const expediteFee = fees.expedite_service_fee || fees.expedite_fee || 60;
+          if (service === 'renewal_reissue') {
+            const renewalFee = fees.adult_renewal_book || 130;
+            if (isExpedited) {
+              const total = renewalFee + expediteFee;
+              feeDetails = `Official US statutory fees (U.S. Department of State / travel.state.gov): Adult passport renewal (Form DS-82): $${renewalFee} application fee. Expedite fee: +$${expediteFee} (Total: $${total}). Pay by check or money order to "U.S. Department of State".`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', renewal_fee: renewalFee, expedite_fee: expediteFee, total };
+            } else {
+              feeDetails = `Official US statutory fees (U.S. Department of State / travel.state.gov): Adult passport renewal (Form DS-82): $${renewalFee} application fee (no execution fee for mail renewal). Pay by check or money order to "U.S. Department of State".`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'USD', renewal_fee: renewalFee };
+            }
+          } else {
+            if (isMinorApplicant) {
+              const appFee = fees.minor_book_application_fee || 100;
+              const execFee = fees.acceptance_execution_fee || 35;
+              const baseTotal = fees.minor_total || (appFee + execFee);
+              if (isExpedited) {
+                const total = baseTotal + expediteFee;
+                feeDetails = `Official US statutory fees (U.S. Department of State / travel.state.gov): Minor (under 16, Form DS-11): $${appFee} application fee + $${execFee} acceptance/execution fee = Total $${baseTotal}. Expedited service fee: +$${expediteFee} (Total: $${total}). Application fee paid to U.S. Department of State; execution fee paid separately to acceptance facility.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'USD', application_fee: appFee, execution_fee: execFee, total: baseTotal, expedite_fee: expediteFee, expedite_total: total };
+              } else {
+                feeDetails = `Official US statutory fees (U.S. Department of State / travel.state.gov): Minor (under 16, Form DS-11): $${appFee} application fee + $${execFee} acceptance/execution fee = Total $${baseTotal}. Application fee paid to U.S. Department of State; execution fee paid separately to acceptance facility.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'USD', application_fee: appFee, execution_fee: execFee, total: baseTotal };
+              }
+            } else {
+              const appFee = fees.adult_book_application_fee || 130;
+              const execFee = fees.acceptance_execution_fee || 35;
+              const baseTotal = fees.total_adult_first_time || (appFee + execFee);
+              if (isExpedited) {
+                const total = baseTotal + expediteFee;
+                feeDetails = `Official US statutory fees (U.S. Department of State / travel.state.gov): Adult first-time (Form DS-11): $${appFee} application fee + $${execFee} acceptance/execution fee = Total $${baseTotal}. Expedited service fee: +$${expediteFee} (Total: $${total}). Application fee paid to U.S. Department of State; execution fee paid separately to acceptance facility.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'USD', application_fee: appFee, execution_fee: execFee, total: baseTotal, expedite_fee: expediteFee, expedite_total: total };
+              } else {
+                feeDetails = `Official US statutory fees (U.S. Department of State / travel.state.gov): Adult first-time (Form DS-11): $${appFee} application fee + $${execFee} acceptance/execution fee = Total $${baseTotal}. Application fee paid to U.S. Department of State; $${execFee} execution fee paid separately to acceptance facility.`;
+                feeStatus = 'verified_statutory';
+                specificFeeRecord = { currency: 'USD', application_fee: appFee, execution_fee: execFee, total: baseTotal };
+              }
+            }
+          }
+        } else {
+          feeDetails = 'US citizens applying outside the United States pay statutory consular fees via Pay.gov or at the U.S. Embassy/Consulate cashier in USD or equivalent local currency ($130 adult / $100 minor; no acceptance facility fee abroad). Domestic execution fees do not apply at embassies. Check your local U.S. Embassy or Consulate portal.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Local currency', note: 'Paid via Pay.gov or consular cashier abroad' };
+        }
+      } else if (countryCode === 'GB') {
+        if (location === 'inside') {
+          const isFastTrack = urgency === 'urgent' || urgency === 'fast_track';
+          if (isMinorApplicant) {
+            const childOnline = fees.child_online || 57.50;
+            const childPostal = fees.child_postal || 69.00;
+            feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Child (under 16) standard passport: £${childOnline.toFixed(2)} online / £${childPostal.toFixed(2)} postal (paper form). Pay online via gov.uk or Post Office Check & Send.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'GBP', child_online: childOnline, child_postal: childPostal };
+          } else {
+            const adultOnline = fees.adult_online || 88.50;
+            const adultPostal = fees.adult_postal || 100.00;
+            if (isFastTrack && fees.fast_track_1_week_adult) {
+              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport: £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal. 1-Week Fast Track service (urgent): £${fees.fast_track_1_week_adult.toFixed(2)} (appointment required). Pay online via gov.uk.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal, fast_track_1_week_adult: fees.fast_track_1_week_adult };
+            } else {
+              feeDetails = `Official UK statutory fees (HM Passport Office / gov.uk): Adult standard passport (10-year validity): £${adultOnline.toFixed(2)} online / £${adultPostal.toFixed(2)} postal (paper application). Pay online via gov.uk or Post Office Check & Send.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'GBP', adult_online: adultOnline, adult_postal: adultPostal };
+            }
+          }
+        } else {
+          feeDetails = 'UK passport applications submitted from overseas must be completed online via gov.uk/apply-renew-passport. Overseas fees include an international courier surcharge (Adult: £101.00 + £20.86 courier fee = £121.86; Child: £65.50 + £20.86 courier fee = £86.36). Domestic fee rates (£88.50/£57.50) do not apply when applying from abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'GBP', note: 'Overseas online tariff with international courier fee assessed via gov.uk' };
+        }
+      } else if (countryCode === 'CA') {
+        if (location === 'inside') {
+          const isUrgent = urgency === 'urgent' || urgency === 'emergency';
+          const urgentSurcharge = fees.urgent_pickup_surcharge || 110;
+          if (isMinorApplicant) {
+            const childFee = fees.child_0_to_15 || 57;
+            if (isUrgent) {
+              const total = childFee + urgentSurcharge;
+              feeDetails = `Official Canadian statutory fees (Passport Program / Canada.ca): Child (0–15 years): CAD ${childFee} (5-year validity). Urgent pickup surcharge: +CAD ${urgentSurcharge} (Total CAD ${total} with urgent pickup). Pay online, in person at Service Canada by card, or certified cheque.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'CAD', child_0_to_15: childFee, urgent_pickup_surcharge: urgentSurcharge, total_urgent: total };
+            } else {
+              feeDetails = `Official Canadian statutory fees (Passport Program / Canada.ca): Child (0–15 years): CAD ${childFee} (5-year validity). Optional urgent pickup surcharge: +CAD ${urgentSurcharge}. Pay online, in person at Service Canada by card, or certified cheque.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'CAD', child_0_to_15: childFee, urgent_pickup_surcharge: urgentSurcharge };
+            }
+          } else {
+            const adult5 = fees.adult_5_year || 120;
+            const adult10 = fees.adult_10_year || 160;
+            if (isUrgent) {
+              const total5 = adult5 + urgentSurcharge;
+              const total10 = adult10 + urgentSurcharge;
+              feeDetails = `Official Canadian statutory fees (Passport Program / Canada.ca): Adult 5-year passport: CAD ${adult5}; Adult 10-year passport: CAD ${adult10}. Urgent pickup surcharge: +CAD ${urgentSurcharge} (Total 5-yr CAD ${total5} / 10-yr CAD ${total10}). Pay by debit/credit card or certified cheque at Passport Program offices.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'CAD', adult_5_year: adult5, adult_10_year: adult10, urgent_pickup_surcharge: urgentSurcharge, urgent_total_5yr: total5, urgent_total_10yr: total10 };
+            } else {
+              feeDetails = `Official Canadian statutory fees (Passport Program / Canada.ca): Adult 5-year passport: CAD ${adult5}; Adult 10-year passport: CAD ${adult10}. Pay in person at Service Canada / Passport Program office or by mail.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'CAD', adult_5_year: adult5, adult_10_year: adult10 };
+            }
+          }
+        } else {
+          feeDetails = 'Canadian citizens applying outside Canada pay official overseas tariffs in CAD or local currency at Government of Canada diplomatic missions (Adult 5-year: CAD 190 / 10-year: CAD 260; Child 0–15: CAD 100). Domestic fees (CAD 120/160) do not apply abroad. Check travel.gc.ca or your local embassy portal.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'CAD / Local currency', note: 'Official overseas tariff applies outside Canada' };
+        }
+      } else if (countryCode === 'AU') {
+        if (location === 'inside') {
+          const isPriority = urgency === 'urgent' || urgency === 'priority';
+          const prioritySurcharge = fees.priority_processing_surcharge || 290;
+          const isSenior75 = (rawExactAge !== null && rawExactAge >= 75) || safeProfile.age === 'senior_75_plus';
+          if (isMinorApplicant) {
+            const childFee = fees.child_5_year || 199;
+            if (isPriority) {
+              const total = childFee + prioritySurcharge;
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Child (under 18) 5-year passport: AUD ${childFee}. Priority processing surcharge (2 business days): +AUD ${prioritySurcharge} (Total: AUD ${total}). Pay in person at Australia Post by card or cash.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'AUD', child_5_year: childFee, priority_processing_surcharge: prioritySurcharge, total_priority: total };
+            } else {
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Child (under 18) 5-year passport: AUD ${childFee}. Optional priority processing surcharge (2 business days): +AUD ${prioritySurcharge}. Pay in person at Australia Post by card or cash.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'AUD', child_5_year: childFee, priority_processing_surcharge: prioritySurcharge };
+            }
+          } else if (isSenior75) {
+            const seniorFee = fees.senior_75_plus_5_year || 199;
+            const adult10 = fees.adult_10_year || 398;
+            if (isPriority) {
+              const total = seniorFee + prioritySurcharge;
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Senior (75 and over) optional 5-year passport: AUD ${seniorFee} (Standard 10-year option: AUD ${adult10}). Priority processing surcharge: +AUD ${prioritySurcharge} (Total 5-yr: AUD ${total}). Pay at Australia Post.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'AUD', senior_75_plus_5_year: seniorFee, adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge, total_priority: total };
+            } else {
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Senior (75 and over) optional 5-year passport: AUD ${seniorFee} (Standard 10-year option: AUD ${adult10}). Optional priority processing surcharge: +AUD ${prioritySurcharge}. Pay at Australia Post.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'AUD', senior_75_plus_5_year: seniorFee, adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge };
+            }
+          } else {
+            const adult10 = fees.adult_10_year || 398;
+            if (isPriority) {
+              const total = adult10 + prioritySurcharge;
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Adult 10-year passport: AUD ${adult10}. Priority processing surcharge (2 business days): +AUD ${prioritySurcharge} (Total: AUD ${total}). Pay at participating Australia Post retail outlets.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'AUD', adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge, total_priority: total };
+            } else {
+              feeDetails = `Official Australian statutory fees (Australian Passport Office / passports.gov.au): Adult 10-year passport: AUD ${adult10}. Optional priority processing surcharge: +AUD ${prioritySurcharge}. Pay in person at participating Australia Post outlets.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'AUD', adult_10_year: adult10, priority_processing_surcharge: prioritySurcharge };
+            }
+          }
+        } else {
+          feeDetails = 'Australian passport applications lodged overseas at Australian diplomatic missions incur an additional overseas application surcharge (Adult: AUD 175 / Child: AUD 85) payable in local currency or AUD. Priority processing is generally unavailable overseas. Check your local Australian Embassy or High Commission website for payment instructions.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'AUD / Local currency', note: 'Overseas application fee + consular surcharge applies' };
+        }
+      } else if (countryCode === 'PK') {
+        if (location === 'inside') {
+          const n36_5 = fees.normal_36_pages_5_year || 4500;
+          const u36_5 = fees.urgent_36_pages_5_year || 7500;
+          const f36_5 = fees.fast_track_36_pages_5_year || 12500;
+          const n36_10 = fees.normal_36_pages_10_year || 6700;
+          const u36_10 = fees.urgent_36_pages_10_year || 11200;
+          feeDetails = `Official Pakistani statutory fees (DGIP / dgip.gov.pk): 36-page 5-year validity: Normal PKR ${n36_5.toLocaleString()} / Urgent PKR ${u36_5.toLocaleString()} / Fast Track PKR ${f36_5.toLocaleString()}. 36-page 10-year validity: Normal PKR ${n36_10.toLocaleString()} / Urgent PKR ${u36_10.toLocaleString()}. Pay via National Bank of Pakistan (NBP), Passport Fee Asaan digital mobile app / 1Link.`;
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'PKR', normal_36_5yr: n36_5, urgent_36_5yr: u36_5, fast_track_36_5yr: f36_5, normal_36_10yr: n36_10, urgent_36_10yr: u36_10 };
+        } else {
+          feeDetails = 'Pakistani overseas passport fees are collected in USD or host local currency under DGIP consular regulations. Apply online via onlinemrp.dgip.gov.pk or at your accredited Pakistan Embassy / Consulate. Domestic PKR tariffs do not apply abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Local currency', note: 'DGIP overseas online MRP tariff' };
+        }
+      } else if (countryCode === 'BD') {
+        if (location === 'inside') {
+          const r48_5 = fees.regular_5_year_48_pages || 4025;
+          const e48_5 = fees.express_5_year_48_pages || 6325;
+          const se_5 = fees.super_express_5_year || 8625;
+          const r48_10 = fees.regular_10_year_48_pages || 5750;
+          const e48_10 = fees.express_10_year_48_pages || 8050;
+          feeDetails = `Official Bangladeshi statutory fees (Department of Immigration & Passports / epassport.gov.bd): 48-page 5-year validity: Regular BDT ${r48_5.toLocaleString()} / Express BDT ${e48_5.toLocaleString()} / Super Express BDT ${se_5.toLocaleString()}. 48-page 10-year validity: Regular BDT ${r48_10.toLocaleString()} / Express BDT ${e48_10.toLocaleString()}. (All fees inclusive of 15% statutory VAT). Pay online via ekPay or authorized partner banks.`;
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'BDT', regular_5yr_48p: r48_5, express_5yr_48p: e48_5, super_express_5yr: se_5, regular_10yr_48p: r48_10, express_10yr_48p: e48_10, includes_vat: true };
+        } else {
+          feeDetails = 'Bangladeshi overseas e-Passport applications at Bangladesh Foreign Missions are collected in USD or local equivalent host currency (e.g. Regular USD 100 / Express USD 150 for general applicants). Domestic BDT tariffs do not apply abroad. Check epassport.gov.bd/instructions/consular-fees.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Local currency', note: 'Foreign Mission consular schedule' };
+        }
+      } else if (countryCode === 'DE') {
+        if (location === 'inside') {
+          const isUnder24 = (rawExactAge !== null && rawExactAge < 24) || (rawExactAge === null && (age === 'infant' || age === 'minor' || age === 'child_under_12'));
+          const isExpress = urgency === 'urgent' || urgency === 'express';
+          const feeUnder24 = fees.under_24_years || 37.50;
+          const feeAdult = fees.age_24_and_older || 70.00;
+          const expressSur = fees.express_surcharge || 32.00;
+          const freqSur = fees.frequent_traveler_48_pages_surcharge || 22.00;
+          if (isUnder24) {
+            if (isExpress) {
+              const total = feeUnder24 + expressSur;
+              feeDetails = `Official German statutory fees (Passverordnung / BMI): Applicant under 24 years (6-year validity): €${feeUnder24.toFixed(2)}. Express processing surcharge: +€${expressSur.toFixed(2)} (Total: €${total.toFixed(2)}). 48-page frequent traveler supplement: +€${freqSur.toFixed(2)}. Pay at the Bürgeramt by girocard/card.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'EUR', base: feeUnder24, express_surcharge: expressSur, total_express: total, validity: '6 years' };
+            } else {
+              feeDetails = `Official German statutory fees (Passverordnung / BMI): Applicant under 24 years (6-year validity): €${feeUnder24.toFixed(2)}. Optional express surcharge: +€${expressSur.toFixed(2)}; 48-page frequent traveler supplement: +€${freqSur.toFixed(2)}. Pay at local Bürgeramt.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'EUR', base: feeUnder24, validity: '6 years' };
+            }
+          } else {
+            if (isExpress) {
+              const total = feeAdult + expressSur;
+              feeDetails = `Official German statutory fees (Passverordnung / BMI): Applicant aged 24 and older (10-year validity): €${feeAdult.toFixed(2)}. Express processing surcharge: +€${expressSur.toFixed(2)} (Total: €${total.toFixed(2)}). 48-page frequent traveler supplement: +€${freqSur.toFixed(2)}. Pay at the Bürgeramt.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'EUR', base: feeAdult, express_surcharge: expressSur, total_express: total, validity: '10 years' };
+            } else {
+              feeDetails = `Official German statutory fees (Passverordnung / BMI): Applicant aged 24 and older (10-year validity): €${feeAdult.toFixed(2)}. Optional express surcharge: +€${expressSur.toFixed(2)}; 48-page frequent traveler supplement: +€${freqSur.toFixed(2)}. Pay at the Bürgeramt.`;
+              feeStatus = 'verified_statutory';
+              specificFeeRecord = { currency: 'EUR', base: feeAdult, validity: '10 years' };
+            }
+          }
+        } else {
+          feeDetails = 'German citizens applying at an Embassy or Consulate-General abroad pay statutory consular surcharges under the Auslandskostengesetz (AKostG): €101.00 for applicants 24+ (€70 base + €31 consular surcharge) and €68.50 for applicants under 24. Applications outside jurisdiction incur an extra non-competence fee. Domestic Bürgeramt rates do not apply abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'EUR / Host currency', note: 'AKostG overseas passport fee schedule' };
+        }
+      } else if (countryCode === 'AE') {
+        if (location === 'inside') {
+          const s5 = fees.standard_issuance_5_year || 50;
+          const s10 = fees.standard_issuance_10_year || 65;
+          const expSur = fees.express_surcharge || 50;
+          const isExpress = urgency === 'urgent' || urgency === 'express';
+          if (isExpress) {
+            feeDetails = `Official UAE statutory fees (Federal Authority for Identity, Citizenship, Customs and Port Security - ICP / icp.gov.ae): Standard issuance 5-year validity: AED ${s5}; 10-year validity (citizens aged 21+): AED ${s10}. Express urgent service surcharge: +AED ${expSur} (Total: AED ${s5 + expSur} for 5-yr / AED ${s10 + expSur} for 10-yr). Pay online via ICP smart services portal or UAE PASS.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'AED', standard_5_year: s5, standard_10_year: s10, express_surcharge: expSur, total_express_5yr: s5 + expSur, total_express_10yr: s10 + expSur };
+          } else {
+            feeDetails = `Official UAE statutory fees (Federal Authority for Identity, Citizenship, Customs and Port Security - ICP / icp.gov.ae): Standard issuance 5-year validity: AED ${s5}; 10-year validity (citizens aged 21+): AED ${s10}. Optional express urgent surcharge: +AED ${expSur}. Pay online via ICP smart services portal or UAE PASS.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'AED', standard_5_year: s5, standard_10_year: s10, express_surcharge: expSur };
+          }
+        } else {
+          feeDetails = 'UAE passport renewal or emergency issuance abroad is handled through UAE Ministry of Foreign Affairs (MoFA) diplomatic missions. Overseas tariffs are assessed under MoFA regulations in host currency or USD. Check mofa.gov.ae for mission procedures.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'AED / Local currency', note: 'MoFA consular mission tariff' };
+        }
+      } else if (countryCode === 'PH') {
+        if (location === 'inside') {
+          const reg = fees.regular_processing || 950;
+          const exp = fees.expedited_processing || 1200;
+          const lostPen = fees.lost_passport_penalty_fee || 350;
+          const isExpedited = urgency === 'urgent' || urgency === 'expedited';
+          if (isExpedited) {
+            feeDetails = `Official Philippine statutory fees (DFA / passport.gov.ph): Expedited processing (6–7 working days): ₱${exp.toLocaleString()}. Convenience fee of ₱50 applies per online appointment transaction. Lost valid ePassport clearing penalty: +₱${lostPen.toLocaleString()}. Pay through DFA authorized payment centers or online payment gateway.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'PHP', expedited_processing: exp, convenience_fee: 50, lost_penalty: lostPen };
+          } else {
+            feeDetails = `Official Philippine statutory fees (DFA / passport.gov.ph): Regular processing (10–12 working days): ₱${reg.toLocaleString()}; Expedited processing: ₱${exp.toLocaleString()}. Convenience fee of ₱50 applies per transaction. Pay through authorized payment centers or online.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'PHP', regular_processing: reg, expedited_processing: exp, convenience_fee: 50, lost_penalty: lostPen };
+          }
+        } else {
+          feeDetails = 'Philippine Foreign Service Posts (Embassies and Consulates) assess consular passport fees in USD or host local currency (standard consular passport fee is typically USD 60). Domestic PHP tariffs (₱950/₱1,200) do not apply overseas. Check your accredited Philippine Embassy or Consulate portal.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Host currency', note: 'DFA Foreign Service Post consular tariff (typically USD 60)' };
+        }
+      } else if (countryCode === 'FR') {
+        if (location === 'inside') {
+          const isUnder15 = (rawExactAge !== null && rawExactAge < 15) || (rawExactAge === null && age === 'infant');
+          const is15to17 = (rawExactAge !== null && rawExactAge >= 15 && rawExactAge < 18) || (rawExactAge === null && age === 'minor');
+          const adultFee = fees.adult_majeur || 86;
+          const minor1517Fee = fees.minor_15_to_17 || 42;
+          const minorUnder15Fee = fees.minor_under_15 || 17;
+          if (isUnder15) {
+            feeDetails = `Official French statutory fees (Fiscal stamp / timbre fiscal / service-public.fr): Minor under 15 years: €${minorUnder15Fee} (5-year validity). Purchase electronic tax stamp (timbre fiscal) online at timbres.impots.gouv.fr or at an authorized bureau de tabac.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'EUR', amount: minorUnder15Fee, category: 'minor_under_15', validity: '5 years' };
+          } else if (is15to17) {
+            feeDetails = `Official French statutory fees (Fiscal stamp / timbre fiscal / service-public.fr): Minor aged 15 to 17 years: €${minor1517Fee} (5-year validity). Purchase electronic tax stamp (timbre fiscal) online at timbres.impots.gouv.fr or at an authorized bureau de tabac.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'EUR', amount: minor1517Fee, category: 'minor_15_to_17', validity: '5 years' };
+          } else {
+            feeDetails = `Official French statutory fees (Fiscal stamp / timbre fiscal / service-public.fr): Adult (majeur, 10-year validity): €${adultFee}. Purchase electronic tax stamp (timbre fiscal électronique) online at timbres.impots.gouv.fr or at an authorized bureau de tabac. No payment is taken directly at the mairie.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'EUR', amount: adultFee, category: 'adult_majeur', validity: '10 years' };
+          }
+        } else {
+          feeDetails = 'French citizens applying abroad pay official consular tariffs at French Consulates: Adult: €96 (or equivalent in host currency); Minor 15–17: €52; Minor under 15: €27. Domestic timbre fiscal rates (€86/€42/€17) do not apply abroad. Pay by local card or cash as specified by the French Consulate.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'EUR / Host currency', note: 'French consular tariff abroad' };
+        }
+      } else if (countryCode === 'SA') {
+        if (location === 'inside') {
+          const v5 = fees.validity_5_year || 300;
+          const v10 = fees.validity_10_year || 600;
+          feeDetails = `Official Saudi statutory fees (General Directorate of Passports - Jawazat / absher.sa): 5-year validity ordinary passport: SAR ${v5}; 10-year validity (available to citizens aged 21 and older): SAR ${v10}. Payment must be made strictly electronically via the government Sadad payment system or Absher platform before appointment booking.`;
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'SAR', validity_5_year: v5, validity_10_year: v10 };
+        } else {
+          feeDetails = 'Saudi citizens residing abroad process renewals through Saudi Ministry of Foreign Affairs (MoFA) embassies and consulates. Tariffs and emergency travel certificates are handled under Saudi consular regulations. Verify with your nearest Saudi Embassy.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'SAR / Local currency', note: 'Saudi MoFA diplomatic mission tariff' };
+        }
+      } else if (countryCode === 'BR') {
+        if (location === 'inside') {
+          const std = fees.standard_fee || 257.25;
+          const urgSur = fees.urgent_emergency_surcharge || 77.17;
+          const urgTotal = fees.total_urgent_fee || (std + urgSur);
+          const unpres = fees.unpresented_previous_passport_penalty || 514.50;
+          const isUrgent = urgency === 'urgent' || urgency === 'emergency';
+          if (isUrgent) {
+            feeDetails = `Official Brazilian statutory fees (Polícia Federal / gov.br): Standard passport fee: R$ ${std.toFixed(2)}. Urgent / emergency surcharge: +R$ ${urgSur.toFixed(2)} = Total R$ ${urgTotal.toFixed(2)}. (Penalty for failure to present previous valid passport without police report: R$ ${unpres.toFixed(2)}). Pay via official GRU (Guia de Recolhimento da União) boleto or PagTesouro (Pix / card).`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'BRL', standard_fee: std, urgent_emergency_surcharge: urgSur, total_urgent_fee: urgTotal, unpresented_penalty: unpres };
+          } else {
+            feeDetails = `Official Brazilian statutory fees (Polícia Federal / gov.br): Standard passport fee: R$ ${std.toFixed(2)}. Urgent surcharge (if emergency): +R$ ${urgSur.toFixed(2)} (Total R$ ${urgTotal.toFixed(2)}). Penalty if previous valid passport cannot be presented without police report: R$ ${unpres.toFixed(2)}. Pay via GRU (Guia de Recolhimento da União) or PagTesouro (Pix/credit card).`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'BRL', standard_fee: std, urgent_emergency_surcharge: urgSur, unpresented_penalty: unpres };
+          }
+        } else {
+          feeDetails = 'Brazilian passport applications at Consulates abroad are collected in local host currency or USD under Itamaraty (MRE) consular tables (Adult: USD 120 / Minor 4–17: USD 80 / Minor 0–3: USD 40). Domestic GRU fees (R$ 257.25) do not apply overseas. Check your local Brazilian Consulate portal.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'USD / Host currency', note: 'Itamaraty consular tariff abroad' };
+        }
+      } else if (countryCode === 'ZA') {
+        if (location === 'inside') {
+          const adult32 = fees.adult_tourist_32_pages || 400;
+          const maxi48 = fees.maxi_tourist_48_pages || 600;
+          const childFee = fees.child_passport_under_16 || 400;
+          const doubleFee = fees.lost_passport_penalty_double_fee || 800;
+          if (isMinorApplicant) {
+            feeDetails = `Official South African statutory fees (Department of Home Affairs - DHA / dha.gov.za): Child passport (under 16, 32 pages, 5-year validity): R ${childFee}. Lost/damaged replacement double fee penalty: R ${doubleFee}. Pay at DHA offices via card (cashless policy) or through participating e-HomeAffairs partner banks.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'ZAR', child_passport_under_16: childFee, lost_penalty_double: doubleFee };
+          } else {
+            feeDetails = `Official South African statutory fees (Department of Home Affairs - DHA / dha.gov.za): Adult standard tourist passport (32 pages, 10-year validity): R ${adult32}; Maxi tourist passport (48 pages): R ${maxi48}. Lost/damaged replacement double fee penalty: R ${doubleFee} (or R ${maxi48 * 2} for maxi). Pay at DHA offices by card or via e-HomeAffairs online banking portal.`;
+            feeStatus = 'verified_statutory';
+            specificFeeRecord = { currency: 'ZAR', adult_tourist_32_pages: adult32, maxi_tourist_48_pages: maxi48, lost_penalty_double: doubleFee };
+          }
+        } else {
+          feeDetails = 'South African passport applications submitted at South African high commissions, embassies, or consulates abroad are collected in local host currency or USD under DHA foreign mission tariffs. Domestic ZAR rates do not apply abroad. Check your local South African mission portal for payment instructions.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'Host currency / USD', note: 'DHA foreign mission consular tariff' };
+        }
+      } else if (countryCode === 'IT') {
+        if (location === 'inside') {
+          const stamp = fees.contrassegno_telematico || 73.50;
+          const booklet = fees.costo_libretto || 42.50;
+          const total = fees.total_standard_fee || (stamp + booklet);
+          const poste = fees.poste_delivery_optional || 9.55;
+          feeDetails = `Official Italian statutory fees (Polizia di Stato / poliziadistato.it): Total standard issuance fee: €${total.toFixed(2)}, consisting of two separate statutory payments: (1) €${stamp.toFixed(2)} administrative revenue stamp (contrassegno telematico / marca da bollo) purchased at a tabaccheria; and (2) €${booklet.toFixed(2)} passport booklet fee paid via postal payment slip (bollettino postale c/c 67421804 intestato al MEF) or PagoPA. Optional home delivery by Poste Italiane: +€${poste.toFixed(2)}.`;
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = { currency: 'EUR', contrassegno_telematico: stamp, costo_libretto: booklet, total_standard_fee: total, poste_delivery_optional: poste };
+        } else {
+          feeDetails = 'Italian citizens residing abroad registered in AIRE pay consular fees directly to the Italian Consulate in local host currency or EUR according to the quarterly consular exchange rate table (Tariffa Consolare, Art. 27: booklet €42.50 + consular fee €73.50 = €116.00 equivalent). Contrassegno telematico purchased in Italy is not accepted abroad.';
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'EUR / Host currency', total_consular_fee: 116.00, note: 'Italian Tariffa Consolare Art. 27' };
+        }
+      } else {
+        if (location === 'abroad') {
+          feeDetails = `Overseas consular passport fees for ${countryName} are collected in host country local currency or USD by diplomatic missions. Domestic statutory tariffs do not apply abroad. Check the accredited embassy portal for current fee schedules.`;
+          feeStatus = 'consular_local_currency';
+          specificFeeRecord = { currency: 'Host currency / USD', note: 'Determined by consular mission abroad' };
+        } else {
+          feeDetails = `Official statutory fee schedule for ${countryName}: Please verify the exact applicable fee and payment channel directly on the official portal (${pack.official_portal_url || 'official government portal'}).`;
+          feeStatus = 'verified_statutory';
+          specificFeeRecord = fees;
         }
       }
-    } else if (!isVerifiedPack) {
+    } else if (isVerifiedPack) {
+      feeDetails = `Fee Confirmation Required: Statutory fee schedule for "${this.formatServiceName(service)}" in ${countryName} is not yet individually verified in this rule pack. Check the official portal of ${pack && pack.authority_name ? pack.authority_name : countryName} before making payment.`;
+      feeStatus = 'confirmation_required';
+    } else {
       feeDetails = `Fee Confirmation Required: Official statutory fees for ${countryName} have not been individually verified. Confirm the current statutory fee and official payment channel directly on the official government portal before making any payment.`;
       feeStatus = 'confirmation_required';
     }
