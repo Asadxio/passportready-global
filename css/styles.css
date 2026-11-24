@@ -89,6 +89,45 @@ button { cursor: pointer; }
   outline-offset: 2px;
 }
 
+/* Screen-Reader-Only Utility Class (WCAG 2.2 AA) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Accessible SVG Icons System (Phase 4.1) */
+.svg-icon {
+  width: 1.15em;
+  height: 1.15em;
+  display: inline-block;
+  vertical-align: -0.2em;
+  fill: currentColor;
+  stroke: none;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+.svg-icon-lg {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: -0.3em;
+}
+.svg-icon-xl {
+  width: 2.2em;
+  height: 2.2em;
+  vertical-align: -0.4em;
+}
+.svg-icon-warning { color: #b45309; }
+.svg-icon-check { color: #15803d; }
+.svg-icon-lock { color: #047857; }
+.svg-icon-megaphone { color: #b45309; }
+
 .wrap {
   width: min(1200px, calc(100% - 40px));
   margin: 0 auto;
@@ -667,6 +706,15 @@ button { cursor: pointer; }
   border-color: var(--forest-base);
   background: #f0fdf4;
 }
+.radio-card:has(input:focus-visible) {
+  outline: 3px solid var(--forest-base) !important;
+  outline-offset: 2px !important;
+  border-color: var(--forest-base) !important;
+}
+.filter-pill:focus-visible {
+  outline: 3px solid var(--forest-base) !important;
+  outline-offset: 2px !important;
+}
 .radio-card input { accent-color: var(--forest-base); }
 
 /* Country Status Hint Box inside Wizard */
@@ -1125,6 +1173,8 @@ button { cursor: pointer; }
   #btnReportFeeChange,
   #restartBtn,
   #saveProgressBtn,
+  #btnClearMyData,
+  .btn-clear-data,
   .btn-doc-helper,
   .btn-photo-tool,
   .filter-pills,

@@ -3685,7 +3685,7 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
 
   // 1. Translation Key Parity & Language Attributes (all 6 languages)
   const languages = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-  const expectedKeyCount = 304;
+  const expectedKeyCount = 305;
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(enKeys.length, expectedKeyCount, `English must have exactly ${expectedKeyCount} translation keys`);
 
@@ -4080,7 +4080,7 @@ runTest('Phase 4.5 Calibration: Dynamic i18n checklist translation, key parity, 
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Key count and 100% dictionary key parity across all 6 languages
-  const expectedKeys = 304;
+  const expectedKeys = 305;
   const supportedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
   const baseKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
   assert.strictEqual(baseKeys.length, expectedKeys, `Base English dictionary must have ${expectedKeys} keys`);
@@ -5382,7 +5382,7 @@ runTest('Phase 4.13 Feature: PWA Offline Support, Visual Modernization & Decentr
       assert(typeof I18N_TRANSLATIONS[lang][key] === 'string' && I18N_TRANSLATIONS[lang][key].length > 2, `Key ${key} must have content in ${lang}`);
     }
     const totalKeys = Object.keys(I18N_TRANSLATIONS[lang]).length;
-    assert.strictEqual(totalKeys, 304, `Language ${lang} must have exactly 304 keys, found ${totalKeys}`);
+    assert.strictEqual(totalKeys, 305, `Language ${lang} must have exactly 305 keys, found ${totalKeys}`);
   }
 
   // 7. Community Fee & Rule Report Markdown Builder
@@ -5606,12 +5606,12 @@ runTest('Phase 2 Global Readiness: 13-Language Translation Parity, Directionalit
 
   assert.strictEqual(Object.keys(I18N_TRANSLATIONS).length, 13, 'Must contain exactly 13 language dictionaries');
   const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
-  assert.strictEqual(enKeys.length, 304, 'English dictionary must maintain exact 304 keys');
+  assert.strictEqual(enKeys.length, 305, 'English dictionary must maintain exact 305 keys');
 
   expectedLanguages.forEach(lang => {
     assert(I18N_TRANSLATIONS[lang], 'Dictionary for ' + lang + ' must exist');
     const langKeys = Object.keys(I18N_TRANSLATIONS[lang]).sort();
-    assert.strictEqual(langKeys.length, 304, 'Language ' + lang + ' must have exactly 304 keys');
+    assert.strictEqual(langKeys.length, 305, 'Language ' + lang + ' must have exactly 305 keys');
     assert.deepStrictEqual(langKeys, enKeys, 'Language ' + lang + ' keys must have 100% parity with English');
 
     // Verify metadata
@@ -5863,6 +5863,94 @@ runTest('Phase 3 SEO & Discoverability: Sitemap.xml & Robots.txt Integrity', () 
   assert(robotsTxt.includes('User-agent: *'), 'robots.txt must have User-agent: *');
   assert(robotsTxt.includes('Allow: /'), 'robots.txt must allow root');
   assert(robotsTxt.includes('Sitemap: https://passport.myoss.in/sitemap.xml'), 'robots.txt must point to sitemap.xml');
+});
+
+runTest('Phase 4 UX & Accessibility: Vector SVG Icons System & Zero Functional Emojis', () => {
+  const iconsPath = path.join(__dirname, '../js/icons.js');
+  assert(fs.existsSync(iconsPath), 'js/icons.js must exist');
+
+  const iconsModule = require('../js/icons.js');
+  assert(typeof iconsModule.get === 'function', 'PassportIcons must export get()');
+  assert(typeof iconsModule.getAll === 'function', 'PassportIcons must export getAll()');
+
+  const allIcons = iconsModule.getAll();
+  const requiredIcons = [
+    'check', 'warning', 'lock', 'megaphone', 'camera', 'search',
+    'copy', 'download', 'save', 'share', 'externalLink', 'plane',
+    'scale', 'calendar', 'help', 'folder', 'government', 'trash',
+    'refresh', 'sparkle', 'bolt', 'document', 'github'
+  ];
+
+  requiredIcons.forEach(iconName => {
+    assert(typeof allIcons[iconName] === 'string' && allIcons[iconName].includes('<svg'), `PassportIcons must include valid SVG for ${iconName}`);
+    const svgStr = iconsModule.get(iconName);
+    assert(svgStr.includes('aria-hidden="true"'), `${iconName} SVG must include aria-hidden="true"`);
+    assert(svgStr.includes('focusable="false"'), `${iconName} SVG must include focusable="false"`);
+  });
+
+  // Verify index.html contains zero raw functional emojis
+  const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  assert(indexHtml.includes('js/icons.js'), 'index.html must include js/icons.js script');
+
+  const functionalEmojis = ['✈', '⚖', '📷', '📁', '🔒', '💾', '🔍', '📋', '🔗', '📢'];
+  functionalEmojis.forEach(emoji => {
+    assert(!indexHtml.includes(emoji), `index.html must NOT contain raw functional emoji ${emoji}`);
+  });
+});
+
+runTest('Phase 4 UX & Accessibility: Screen Reader Announcers & ARIA Live Regions', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  assert(indexHtml.includes('id="stepAnnouncer"'), 'index.html must have #stepAnnouncer');
+  assert(indexHtml.includes('aria-live="polite"'), 'stepAnnouncer must be aria-live="polite"');
+  assert(indexHtml.includes('id="errorAnnouncer"'), 'index.html must have #errorAnnouncer');
+  assert(indexHtml.includes('aria-live="assertive"'), 'errorAnnouncer must be aria-live="assertive"');
+
+  const appJs = fs.readFileSync(path.join(__dirname, '../js/app.js'), 'utf8');
+  assert(appJs.includes('stepAnnouncer'), 'js/app.js must update stepAnnouncer');
+  assert(appJs.includes('errorAnnouncer'), 'js/app.js must update errorAnnouncer');
+  assert(appJs.includes('announceStep'), 'js/app.js must implement announceStep()');
+  assert(appJs.includes('announceError'), 'js/app.js must implement announceError()');
+});
+
+runTest('Phase 4 UX & Accessibility: Modal Keyboard Focus Trap & Restoration (WCAG 2.2 AA)', () => {
+  const appJs = fs.readFileSync(path.join(__dirname, '../js/app.js'), 'utf8');
+  assert(appJs.includes('showModal'), 'js/app.js must define showModal');
+  assert(appJs.includes('hideModal'), 'js/app.js must define hideModal');
+  assert(appJs.includes('lastFocusedElement'), 'js/app.js must track lastFocusedElement for focus restoration');
+  assert(appJs.includes("e.key === 'Tab'"), 'js/app.js must intercept Tab key inside modal');
+  assert(appJs.includes('e.shiftKey'), 'js/app.js must handle Shift+Tab backward cycling in modal');
+  assert(appJs.includes("e.key === 'Escape'"), 'js/app.js must close modal on Escape key');
+
+  const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  assert(indexHtml.includes('id="genericModal"'), 'index.html must contain #genericModal');
+  assert(indexHtml.includes('role="dialog"'), '#genericModal must have role="dialog"');
+  assert(indexHtml.includes('aria-modal="true"'), '#genericModal must have aria-modal="true"');
+  assert(indexHtml.includes('aria-labelledby="modalTitle"'), '#genericModal must have aria-labelledby="modalTitle"');
+});
+
+runTest('Phase 4 UX & Accessibility: Client-Side Auto-Save & Data Erasure ("Clear My Data")', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  assert(indexHtml.includes('id="btnClearMyData"'), 'index.html must contain #btnClearMyData button');
+  assert(indexHtml.includes('btn-clear-data'), 'index.html must contain .btn-clear-data class');
+
+  const appJs = fs.readFileSync(path.join(__dirname, '../js/app.js'), 'utf8');
+  assert(appJs.includes('clearAllData'), 'js/app.js must implement clearAllData()');
+  assert(appJs.includes('autoSaveState'), 'js/app.js must implement autoSaveState()');
+  assert(appJs.includes("localStorage.removeItem('passportready_answers')"), 'clearAllData must purge passportready_answers');
+  assert(appJs.includes("localStorage.removeItem('passportready_checks')"), 'clearAllData must purge passportready_checks');
+
+  // Verify all 13 languages translate btn_clear_data
+  const { I18N_TRANSLATIONS } = require('../js/i18n.js');
+  const allLangs = ['en', 'es', 'pt', 'fr', 'de', 'ru', 'zh', 'hi', 'bn', 'ur', 'ar', 'id', 'tr'];
+  allLangs.forEach(lang => {
+    assert(I18N_TRANSLATIONS[lang], `Language ${lang} must exist`);
+    assert(I18N_TRANSLATIONS[lang].btn_clear_data, `Language ${lang} must define btn_clear_data`);
+  });
+
+  // Verify styles.css hides clear button in print mode
+  const stylesCss = fs.readFileSync(path.join(__dirname, '../css/styles.css'), 'utf8');
+  assert(stylesCss.includes('#btnClearMyData'), 'styles.css print stylesheet must suppress #btnClearMyData');
+  assert(stylesCss.includes('.btn-clear-data'), 'styles.css print stylesheet must suppress .btn-clear-data');
 });
 
 console.log('\n====================================================');

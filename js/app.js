@@ -72,13 +72,121 @@
     rulesEngine = new PassportRulesEngine(rulePacks, countries);
   }
 
-  // LocalStorage Persistence
+  // Accessible SVG Icon Helper
+  function getIcon(name) {
+    if (typeof PassportIcons !== 'undefined' && typeof PassportIcons.get === 'function') {
+      return PassportIcons.get(name);
+    }
+    return '';
+  }
+
+  // Screen Reader Announcer Helpers (WCAG 2.2 AA)
+  function announceStep(msg) {
+    const el = document.getElementById('stepAnnouncer');
+    if (el) el.textContent = msg;
+  }
+
+  function announceError(msg) {
+    const el = document.getElementById('errorAnnouncer');
+    if (el) {
+      el.textContent = '';
+      setTimeout(() => { el.textContent = msg; }, 50);
+    }
+  }
+
+  // Accessible Modal Controller with Focus Trap & Restoration (WCAG 2.2 AA)
+  let lastFocusedElement = null;
+
+  function showModal(modal) {
+    if (!modal) return;
+    lastFocusedElement = document.activeElement;
+    modal.classList.add('open');
+    const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length > 0) {
+      focusable[0].focus();
+    }
+  }
+
+  function hideModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('open');
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      try {
+        lastFocusedElement.focus();
+      } catch (e) {}
+    }
+  }
+
+  // LocalStorage Persistence & Auto-Save (Zero PII - Only non-sensitive question choices)
+  let autoSaveTimer = null;
+  function autoSaveState() {
+    if (autoSaveTimer) clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(() => {
+      try {
+        syncInputsToState();
+        localStorage.setItem('passportready_answers', JSON.stringify(state.answers));
+        localStorage.setItem('passportready_checks', JSON.stringify(state.checklistChecked));
+      } catch (e) {}
+    }, 250);
+  }
+
   function saveState() {
     try {
+      syncInputsToState();
       localStorage.setItem('passportready_answers', JSON.stringify(state.answers));
       localStorage.setItem('passportready_checks', JSON.stringify(state.checklistChecked));
-      showToast(getI18nText('Progress saved securely in browser.'));
+      showToast((typeof getI18nText === 'function' ? getI18nText('Progress saved securely in browser.') : null) || 'Progress saved securely in browser.');
     } catch (e) {}
+  }
+
+  function clearAllData() {
+    const confirmPrompt = (typeof getI18nText === 'function' ? getI18nText('confirm_clear_data') : null) || "Clear all saved progress and reset form?";
+    if (confirm(confirmPrompt)) {
+      try {
+        localStorage.removeItem('passportready_answers');
+        localStorage.removeItem('passportready_checks');
+      } catch (e) {}
+      state.currentStep = 0;
+      state.checklistChecked = {};
+      state.evaluationResult = null;
+      state.answers = {
+        countryCode: 'IN',
+        countryName: 'India',
+        location: 'inside',
+        service: 'first_passport',
+        age: 'adult',
+        urgency: 'standard',
+        status: 'never',
+        birthProof: 'have',
+        addressProof: 'have',
+        citizenshipProof: 'have',
+        nameMatch: 'yes',
+        dobMatch: 'yes',
+        special: 'none',
+        checkedGov: 'yes'
+      };
+
+      const countryInput = document.getElementById('countryInput');
+      if (countryInput) countryInput.value = 'India';
+      const exactAgeEl = document.getElementById('exactAge');
+      if (exactAgeEl) exactAgeEl.value = '';
+      const applicantCatEl = document.getElementById('applicantCategory');
+      if (applicantCatEl) applicantCatEl.value = 'general';
+      const validityEl = document.getElementById('validityOption');
+      if (validityEl) validityEl.value = 'auto';
+      const lossTierEl = document.getElementById('lossTier');
+      if (lossTierEl) lossTierEl.value = '';
+
+      renderStep(0);
+      updateCountryHint();
+      const resBox = document.getElementById('resultbox');
+      if (resBox) resBox.classList.remove('show');
+      const wNav = document.getElementById('wizardnav');
+      if (wNav) wNav.style.display = 'flex';
+
+      announceError("All local data has been permanently cleared.");
+      showToast((typeof getI18nText === 'function' ? getI18nText('toast_data_cleared') : null) || 'All saved progress permanently cleared.');
+    }
   }
 
   function loadSavedState() {
@@ -542,6 +650,12 @@
       nextBtn.textContent = stepIndex === (state.totalSteps - 1) ? 'Generate My Checklist →' : 'Continue →';
     }
 
+    // Screen reader live announcement per WCAG 2.2 AA
+    const activePane = panes ? panes[stepIndex] : null;
+    const stepTitleEl = (activePane && typeof activePane.querySelector === 'function') ? activePane.querySelector('h3') : null;
+    const stepTitle = stepTitleEl ? stepTitleEl.textContent.trim() : '';
+    announceStep(`Step ${stepIndex + 1} of ${state.totalSteps}: ${stepTitle}`);
+
     // Read current form values into state
     syncInputsToState();
   }
@@ -680,7 +794,9 @@
           const c = updateCountryHint();
           if (!c || !state.answers.countryCode) {
             if (countryInput) countryInput.focus();
-            showToast((typeof getI18nText === 'function' ? getI18nText('country_continue_error') : null) || 'Please type and select a recognized passport-issuing authority before continuing.');
+            const errMsg = (typeof getI18nText === 'function' ? getI18nText('country_continue_error') : null) || 'Please type and select a recognized passport-issuing authority before continuing.';
+            announceError(errMsg);
+            showToast(errMsg);
             return;
           }
         }
@@ -722,11 +838,26 @@
     }
 
     if (restartBtn) {
-      restartBtn.addEventListener('click', resetState);
+      restartBtn.addEventListener('click', clearAllData);
     }
 
     if (saveBtn) {
       saveBtn.addEventListener('click', saveState);
+    }
+
+    // Clear My Data buttons (Wizard header and Results bar)
+    document.querySelectorAll('#btnClearMyData, .btn-clear-data').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        clearAllData();
+      });
+    });
+
+    // Auto-save form inputs silently on input/change within checker
+    const checkerBox = document.getElementById('checker');
+    if (checkerBox) {
+      checkerBox.addEventListener('input', () => autoSaveState());
+      checkerBox.addEventListener('change', () => autoSaveState());
     }
   }
 
@@ -860,7 +991,7 @@
 
         unsupportedNotice.innerHTML = `
           <div class="unsupported-service-notice">
-            <h5>⚠ ${escapeHTML(unsuppTitle)}: ${escapeHTML(serviceName)}</h5>
+            <h5>${getIcon('warning')} ${escapeHTML(unsuppTitle)}: ${escapeHTML(serviceName)}</h5>
             <p>${escapeHTML(summaryText)}</p>
             <p class="unsupported-action">${escapeHTML(unsuppAction)}</p>
           </div>
@@ -895,35 +1026,35 @@
       const renderEvidenceBadge = (dim) => {
         const lvl = dim.evidence?.evidenceLevel;
         if (lvl === 'trusted_official' || (dim.evidence?.hasSupportingEvidence && !dim.evidence?.isPartial)) {
-          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_official') : '✓ Official Evidence Linked';
-          return `<div style="font-size:10px;color:#166534;margin-top:4px">${escapeHTML(txt)}</div>`;
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_official') : 'Official Evidence Linked';
+          return `<div style="font-size:10px;color:#166534;margin-top:4px">${getIcon('check')} ${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'partial_confirmation' || dim.evidence?.isPartial) {
-          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_partial') : '⚠ Partial Evidence Requiring Confirmation';
-          return `<div style="font-size:10px;color:#b45309;margin-top:4px">${escapeHTML(txt)}</div>`;
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_partial') : 'Partial Evidence Requiring Confirmation';
+          return `<div style="font-size:10px;color:#b45309;margin-top:4px">${getIcon('warning')} ${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'valid_syntax_incomplete_claim') {
-          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_incomplete') : 'ℹ Valid Source Reference · Incomplete Claim Evidence';
-          return `<div style="font-size:10px;color:#475569;margin-top:4px">${escapeHTML(txt)}</div>`;
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_incomplete') : 'Valid Source Reference · Incomplete Claim Evidence';
+          return `<div style="font-size:10px;color:#475569;margin-top:4px">ℹ ${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'no_trusted_source' || dim.status === 'general_guidance') {
-          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_no_trusted') : '⚠ No Trusted Official Source';
-          return `<div style="font-size:10px;color:#b91c1c;margin-top:4px">${escapeHTML(txt)}</div>`;
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_no_trusted') : 'No Trusted Official Source';
+          return `<div style="font-size:10px;color:#b91c1c;margin-top:4px">${getIcon('warning')} ${escapeHTML(txt)}</div>`;
         }
         if (lvl === 'awaiting_primary_research' || dim.status === 'awaiting_research') {
-          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_awaiting') : '⌛ Awaiting Primary Research';
-          return `<div style="font-size:10px;color:#64748b;margin-top:4px">${escapeHTML(txt)}</div>`;
+          const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_awaiting') : 'Awaiting Primary Research';
+          return `<div style="font-size:10px;color:#64748b;margin-top:4px">⌛ ${escapeHTML(txt)}</div>`;
         }
-        const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_confirmation') : '⚠ Direct Confirmation Required';
-        return `<div style="font-size:10px;color:#b45309;margin-top:4px">${escapeHTML(txt)}</div>`;
+        const txt = typeof getI18nText === 'function' ? getI18nText('cov_evidence_confirmation') : 'Direct Confirmation Required';
+        return `<div style="font-size:10px;color:#b45309;margin-top:4px">${getIcon('warning')} ${escapeHTML(txt)}</div>`;
       };
 
       const supportedHtml = (sc.supportedChecks && sc.supportedChecks.length > 0)
-        ? `<div style="margin-top:10px"><strong style="font-size:12px;color:#166534">${escapeHTML(typeof getI18nText === 'function' ? getI18nText('cov_supported_heading') : '✓ Researched Checks Supported:')}</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#334155;line-height:1.4">${sc.supportedChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
+        ? `<div style="margin-top:10px"><strong style="font-size:12px;color:#166534">${getIcon('check')} ${escapeHTML(typeof getI18nText === 'function' ? getI18nText('cov_supported_heading') : 'Researched Checks Supported:')}</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#334155;line-height:1.4">${sc.supportedChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
         : '';
 
       const missingHtml = (sc.missingChecks && sc.missingChecks.length > 0)
-        ? `<div style="margin-top:8px"><strong style="font-size:12px;color:#b45309">${escapeHTML(typeof getI18nText === 'function' ? getI18nText('cov_missing_heading') : '⚠ Direct Official Confirmation Required:')}</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#78350f;line-height:1.4">${sc.missingChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
+        ? `<div style="margin-top:8px"><strong style="font-size:12px;color:#b45309">${getIcon('warning')} ${escapeHTML(typeof getI18nText === 'function' ? getI18nText('cov_missing_heading') : 'Direct Official Confirmation Required:')}</strong><ul style="margin:4px 0 0 16px;padding:0;font-size:12px;color:#78350f;line-height:1.4">${sc.missingChecks.map(c => `<li>${escapeHTML(c)}</li>`).join('')}</ul></div>`
         : '';
 
       const disclaimerText = typeof getI18nText === 'function' ? getI18nText('score_disclaimer') : 'Readiness score reflects document preparation completeness only; it does not calculate, indicate, or guarantee passport issuance or approval.';
@@ -978,7 +1109,7 @@
         const cleanMsg = (typeof getI18nText === 'function') ? getI18nText('flags_none_desc') : 'Your personal particulars appear consistent across records. Review the required document checklist below.';
         flagsContainer.innerHTML = `
           <div class="resultscore" style="background:#eaf6ef;border:1px solid #b7dfc8">
-            <div class="scoreicon" style="background:#c6e9d6;color:#18683f">✓</div>
+            <div class="scoreicon" style="background:#c6e9d6;color:#18683f">${getIcon('check')}</div>
             <div>
               <strong style="color:#14532d">${escapeHTML(cleanTitle)}</strong>
               <small style="color:#4a6b57">${escapeHTML(cleanMsg)}</small>
@@ -1007,7 +1138,7 @@
       if (result.country.officialPortalUrl) {
         sourceCard.innerHTML = `
           <div class="resultscore" style="background:#f4f9f6;border:1px solid #c8e0d4">
-            <div class="scoreicon" style="background:#d4ecdf;color:#135939">🏛</div>
+            <div class="scoreicon" style="background:#d4ecdf;color:#135939">${getIcon('government')}</div>
             <div style="flex:1">
               <strong style="color:#0e4028">${escapeHTML(result.country.authorityName || 'Official Passport Authority')}</strong>
               <small style="display:block;color:#4c6e5b;margin:3px 0">Direct government portal verified for ${escapeHTML(result.country.name)}. Always complete final filing and fee payments directly on official government servers.</small>
@@ -1084,7 +1215,7 @@
               <div style="margin-left:auto;display:inline-flex;gap:6px;align-items:center">
                 ${item.id === 'photo_spec_check' ? `
                 <button type="button" class="btn-photo-tool" data-photo-country="${escapeHTML(currentCountryCode)}" style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid #0f5132;background:#e8f5e9;color:#0f5132;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
-                  📷 <span>${escapeHTML(photoGuideLabel)}</span>
+                  ${getIcon('camera')} <span>${escapeHTML(photoGuideLabel)}</span>
                 </button>` : ''}
                 <button type="button" class="btn-doc-helper" data-doc-helper-id="${item.id}" style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid #cbd5e1;background:#f8fafc;color:#1e293b;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
                   ℹ <span>${escapeHTML(docDetailsLabel)}</span>
@@ -1302,13 +1433,13 @@
         </div>
 
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;margin-bottom:14px">
-          <h5 style="margin:0 0 6px;color:#0f5132;font-size:12px;text-transform:uppercase;letter-spacing:0.04em">🏛 Official Requirement & Standards</h5>
+          <h5 style="margin:0 0 6px;color:#0f5132;font-size:12px;text-transform:uppercase;letter-spacing:0.04em">${getIcon('government')} Official Requirement & Standards</h5>
           <p style="margin:0;font-size:13px;color:#334155;line-height:1.6">${escapeHTML(modalData.standards)}</p>
         </div>
 
         ${modalData.alternatives && modalData.alternatives.length > 0 ? `
         <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;margin-bottom:14px">
-          <h5 style="margin:0 0 8px;color:#166534;font-size:12px;text-transform:uppercase;letter-spacing:0.04em">✓ Accepted Document Substitutes & Alternatives</h5>
+          <h5 style="margin:0 0 8px;color:#166534;font-size:12px;text-transform:uppercase;letter-spacing:0.04em">${getIcon('check')} Accepted Document Substitutes & Alternatives</h5>
           <ul style="margin:0;padding-left:18px;font-size:13px;color:#14532d;line-height:1.6">
             ${modalData.alternatives.map(alt => `<li>${escapeHTML(alt)}</li>`).join('')}
           </ul>
@@ -1318,22 +1449,22 @@
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:10px;margin-bottom:14px">
           <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
-            <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">📄 Physical Format</div>
+            <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">${getIcon('document')} Physical Format</div>
             <div style="font-size:12px;color:#1e293b;margin-top:3px">${escapeHTML(modalData.originalOrCopy)}</div>
           </div>
           <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:8px;padding:10px">
-            <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">🌐 Language & Attestation</div>
+            <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase">${getIcon('externalLink')} Language & Attestation</div>
             <div style="font-size:12px;color:#1e293b;margin-top:3px">${escapeHTML(modalData.translation)}</div>
           </div>
         </div>
 
         <div class="notice" style="border-left:4px solid #d97706;background:#fffbeb;color:#78350f;margin-bottom:14px">
-          <strong style="color:#92400e;font-size:12px">⚠ Pre-Submission Verification:</strong>
+          <strong style="color:#92400e;font-size:12px">${getIcon('warning')} Pre-Submission Verification:</strong>
           <p style="margin:4px 0 0;font-size:12px;line-height:1.5">${escapeHTML(modalData.caution)}</p>
         </div>
 
         ${modalData.officialPortalUrl ? `
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid #e2e8f0;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid #e2e8f0;flex-wrap:gap:8px">
           <span style="font-size:11px;color:#64748b">Verified Authority: ${escapeHTML(modalData.authorityName || 'Official Passport Authority')}</span>
           <a href="${escapeHTML(modalData.officialPortalUrl)}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:11px;padding:5px 10px">Open Official Portal ↗</a>
         </div>
@@ -1341,19 +1472,19 @@
         ${itemId === 'photo_spec_check' ? `
         <div style="margin-top:14px;padding-top:10px;border-top:1px solid #e2e8f0;text-align:center">
           <button type="button" id="btnModalLaunchPhotoTool" class="btn btn-dark" style="font-size:12px;padding:7px 14px">
-            📷 Open Interactive Biometric Photo Validator →
+            ${getIcon('camera')} Open Interactive Biometric Photo Validator →
           </button>
         </div>
         ` : ''}
       </div>
     `;
 
-    modal.classList.add('open');
+    showModal(modal);
 
     const modalLaunchPhotoBtn = document.getElementById('btnModalLaunchPhotoTool');
     if (modalLaunchPhotoBtn) {
       modalLaunchPhotoBtn.addEventListener('click', () => {
-        modal.classList.remove('open');
+        hideModal(modal);
         activatePhotoToolForCountry(modalData.countryCode);
       });
     }
@@ -1740,7 +1871,7 @@
 
   function toggleCheck(id) {
     state.checklistChecked[id] = !state.checklistChecked[id];
-    saveState();
+    autoSaveState();
     const itemEl = document.querySelector(`[data-item-id="${id}"]`);
     if (itemEl) {
       itemEl.classList.toggle('is-checked', !!state.checklistChecked[id]);
@@ -1844,11 +1975,11 @@
       }
 
       const verifiedBadge = isVerified
-        ? `<div style="font-size:11px;color:#166534;margin-top:4px">✓ Verified: ${escapeHTML(lastVerifiedDate)}</div>`
+        ? `<div style="font-size:11px;color:#166534;margin-top:4px">${getIcon('check')} Verified: ${escapeHTML(lastVerifiedDate)}</div>`
         : `<div style="font-size:11px;color:#92400e;margin-top:4px">⏳ Awaiting research</div>`;
 
       const staleBadge = isStale
-        ? `<span class="status-pill status-stale" style="background:#fef3c7;color:#92400e;border:1px solid #f59e0b;font-size:9px;padding:1px 5px">⚠️ Stale (>180d)</span>`
+        ? `<span class="status-pill status-stale" style="background:#fef3c7;color:#92400e;border:1px solid #f59e0b;font-size:9px;padding:1px 5px">${getIcon('warning')} Stale (>180d)</span>`
         : '';
 
       const sourceLink = c.authority_url
@@ -2340,7 +2471,7 @@
               </div>
             ` : ''}
             <div style="margin-top:10px;font-size:11px;color:#64748b;line-height:1.4">
-              ⚠️ Note: Airline boarding gate agents strictly enforce IATA Timatic rules. If in doubt, renew before traveling.
+              ${getIcon('warning')} Note: Airline boarding gate agents strictly enforce IATA Timatic rules. If in doubt, renew before traveling.
             </div>
           </div>
         `;
@@ -2369,7 +2500,7 @@
           if (ambA.isAmbiguous) {
             ambiguityNoticeHtml += `
               <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px;margin-bottom:12px;font-size:12px;color:#92400e">
-                <strong>⚠️ Ambiguous Primary DOB (${escapeHTML(dobA)}):</strong> ${escapeHTML(ambA.warning)}
+                <strong>${getIcon('warning')} Ambiguous Primary DOB (${escapeHTML(dobA)}):</strong> ${escapeHTML(ambA.warning)}
                 <div style="margin-top:4px">Interpretations: <em>${ambA.possibleInterpretations.join(' OR ')}</em></div>
               </div>
             `;
@@ -2380,7 +2511,7 @@
           if (ambB.isAmbiguous) {
             ambiguityNoticeHtml += `
               <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px;margin-bottom:12px;font-size:12px;color:#92400e">
-                <strong>⚠️ Ambiguous Secondary DOB (${escapeHTML(dobB)}):</strong> ${escapeHTML(ambB.warning)}
+                <strong>${getIcon('warning')} Ambiguous Secondary DOB (${escapeHTML(dobB)}):</strong> ${escapeHTML(ambB.warning)}
                 <div style="margin-top:4px">Interpretations: <em>${ambB.possibleInterpretations.join(' OR ')}</em></div>
               </div>
             `;
@@ -2555,26 +2686,54 @@
       </div>
     `;
 
-    modal.classList.add('open');
+    showModal(modal);
   }
 
-  // Modals Controller (About, Privacy, Terms, Methodology)
+  // Modals Controller with Focus Trap & Focus Restoration (WCAG 2.2 AA)
   function setupModalListeners() {
     const modal = document.getElementById('genericModal');
     const closeBtn = document.getElementById('modalCloseBtn');
     if (!modal) return;
 
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+      closeBtn.addEventListener('click', () => hideModal(modal));
     }
 
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
+      if (e.target === modal) hideModal(modal);
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        modal.classList.remove('open');
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') {
+        hideModal(modal);
+        return;
+      }
+      // Accessible keyboard focus trap (WCAG 2.2 AA)
+      if (e.key === 'Tab') {
+        const focusables = Array.from(modal.querySelectorAll(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === closeBtn);
+
+        if (focusables.length === 0) {
+          e.preventDefault();
+          return;
+        }
+
+        const firstEl = focusables[0];
+        const lastEl = focusables[focusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstEl || !modal.contains(document.activeElement)) {
+            e.preventDefault();
+            lastEl.focus();
+          }
+        } else {
+          if (document.activeElement === lastEl || !modal.contains(document.activeElement)) {
+            e.preventDefault();
+            firstEl.focus();
+          }
+        }
       }
     });
 
@@ -2611,7 +2770,7 @@
         <h4 style="color:#0f5132;margin-top:0">Privacy by Design</h4>
         <p><strong>1. Zero Identity Storage:</strong> PassportReady does NOT collect, store, or transmit your passport number, national identity number, or full address. All readiness evaluations are conducted 100% locally in your web browser.</p>
         <p><strong>2. No Document Uploads Required:</strong> Our core checklist tool uses non-sensitive question flows without demanding scans of your physical passports or birth certificates.</p>
-        <p><strong>3. Local Storage:</strong> If you choose to save your checklist progress, it is stored strictly inside your browser's local sandbox (LocalStorage) and can be permanently wiped with one click via 'Start New Check'.</p>
+        <p><strong>3. Local Storage:</strong> If you choose to save your checklist progress, it is stored strictly inside your browser's local sandbox (LocalStorage) and can be permanently wiped with one click via 'Start New Check' or 'Clear My Data'.</p>
         <p><strong>4. Third-Party Trackers:</strong> We do not employ third-party behavioral profiling trackers, advertising pixels, or invasive telemetry.</p>
       `;
     } else if (type === 'terms') {
@@ -2636,7 +2795,7 @@
       `;
     }
 
-    modal.classList.add('open');
+    showModal(modal);
   }
 
   // Formatting helpers
@@ -2856,16 +3015,16 @@
 
         <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
           <button type="button" id="btnSubmitGithubIssue" class="btn btn-dark" style="flex:1;min-width:200px;font-size:12px;padding:9px 14px">
-            🐙 Submit via GitHub Issue ↗
+            ${getIcon('github')} Submit via GitHub Issue ↗
           </button>
           <button type="button" id="btnCopyReportText" class="btn btn-outline" style="font-size:12px;padding:9px 14px">
-            📋 Copy Report Text
+            ${getIcon('copy')} Copy Report Text
           </button>
         </div>
       </div>
     `;
 
-    modal.classList.add('open');
+    showModal(modal);
 
     const btnGithub = document.getElementById('btnSubmitGithubIssue');
     const btnCopy = document.getElementById('btnCopyReportText');
@@ -2922,7 +3081,7 @@
     }
   }
 
-    // Expose global controller with DEF-04 helpers
+  // Expose global controller with DEF-04 helpers and Phase 4 accessibility/state controls
   const exportedApp = {
     init,
     toggleCheck,
@@ -2955,6 +3114,13 @@
     updateOfflineStatus,
     buildChangeReportMarkdown,
     openReportChangeModal,
+    clearAllData,
+    autoSaveState,
+    saveState,
+    showModal,
+    hideModal,
+    announceStep,
+    announceError,
     getState: () => state
   };
 

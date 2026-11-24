@@ -7,7 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased] - Phase 3: SEO & Discoverability (2026-11-24)
+## [Unreleased] - Phase 4: UX & Accessibility (2026-11-25)
+
+### Added
+- **Accessible SVG Icon System (`js/icons.js`)**:
+  - Modular vector icon library (`PassportIcons`) providing 23 high-contrast, scalable vector SVGs: `check`, `warning`, `lock`, `megaphone`, `camera`, `search`, `copy`, `download`, `save`, `share`, `externalLink`, `plane`, `scale`, `calendar`, `help`, `folder`, `government`, `trash`, `refresh`, `sparkle`, `bolt`, `document`, and `github`.
+  - All icons render with `aria-hidden="true"` and `focusable="false"`, using `fill="currentColor"` for dynamic contrast matching.
+  - Replaced 100% of functional emojis across `index.html` and dynamic template strings in `js/app.js` (`✈`, `⚖`, `📷`, `📁`, `🔒`, `💾`, `🔍`, `📋`, `🔗`, `📢`, `✓`, `🏛`, `✦`, `⚡`).
+- **Screen Reader Announcers & ARIA Live Regions**:
+  - Added `#stepAnnouncer` (`aria-live="polite"`, `role="status"`, `.sr-only`) announcing wizard step navigation transitions (e.g. `Step 1 of 10: Where are you applying?`).
+  - Added `#errorAnnouncer` (`aria-live="assertive"`, `role="alert"`, `.sr-only`) immediately announcing validation failures and data erasure events.
+  - Added `.sr-only` utility styling for screen-reader-only element visibility per WCAG 2.2 AA.
+- **Modal Keyboard Focus Trap & Focus Restoration (WCAG 2.2 AA)**:
+  - Implemented keyboard Tab trap inside `.modal-window` (`genericModal`), cycling between first and last focusable elements with `Tab` and `Shift+Tab`.
+  - Track `lastFocusedElement = document.activeElement` on modal open and restore focus cleanly to the trigger button on modal close (`Escape`, close button, or backdrop click).
+- **Client-Side Auto-Save & Data Erasure ("Clear My Data")**:
+  - Implemented debounced silent auto-save (`autoSaveState`) listening to `input` and `change` events across the wizard, persisting non-sensitive selections and checklist ticks to browser `localStorage` (`passportready_answers`, `passportready_checks`).
+  - Strict privacy-by-design: zero personal identity records, zero passport numbers, zero DOBs, and zero names are ever saved.
+  - Added prominent **"Clear My Data"** button (`#btnClearMyData` and `.btn-clear-data`) in both the wizard header and results action bar.
+  - Added `clearAllData()` function wiping local storage, resetting state, hiding results, returning to Step 1, and announcing erasure via screen reader.
+  - Translated `"btn_clear_data"` across all 13 supported languages (`en`, `es`, `pt`, `fr`, `de`, `ru`, `zh`, `hi`, `bn`, `ur`, `ar`, `id`, `tr`).
+- **WCAG 2.2 AA Focus Indicators**:
+  - High-contrast `:focus-visible` styling (`outline: 2px solid var(--forest-base); outline-offset: 2px`).
+  - High-contrast `.radio-card:has(input:focus-visible)` and `.filter-pill:focus-visible` focus outlines.
+  - Print stylesheet suppressions for `#btnClearMyData` and `.btn-clear-data`.
+- **Automated Quality Tests (55 of 55 Tests Passing)**:
+  - Added 4 test suites to `test/validate.js` verifying vector SVG icon coverage, screen reader announcers, modal focus trap mechanics, and data erasure/auto-save behavior.
+
+---
+
+## [3.0.0] - Phase 3: SEO & Discoverability (2026-11-24)
 
 ### Added
 - **Static Country and Service Pages (`/passport/{country}/{service}/`)**:
