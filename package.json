@@ -1,0 +1,26 @@
+{
+  "name": "passportready-global",
+  "version": "2.0.0",
+  "description": "Independent, privacy-first global passport preparation guide and readiness engine.",
+  "main": "js/app.js",
+  "scripts": {
+    "build": "node scripts/generate-static-pages.js && node scripts/generate-sitemap.js",
+    "test": "node test/validate.js",
+    "verify-live": "node scripts/verify-live.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asadxio/passportready-global.git"
+  },
+  "keywords": [
+    "passport",
+    "preparation",
+    "checklist",
+    "validity",
+    "travel",
+    "civic-tech"
+  ],
+  "author": "PassportReady Contributors",
+  "license": "MIT",
+  "homepage": "https://passport.myoss.in"
+}

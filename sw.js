@@ -3,22 +3,42 @@
  * Enables 100% offline checklist evaluation, photo guide, and calculators.
  */
 
-const CACHE_NAME = 'passportready-v2026.10.22';
+const CACHE_NAME = 'passportready-v2026.11.24';
 
 const PRECACHE_ASSETS = [
   './',
   'index.html',
   'manifest.webmanifest',
-  'css/styles.css',
-  'js/app.js',
-  'js/i18n.js',
-  'js/rules-engine.js',
-  'js/tools.js',
-  'js/guides-data.js',
-  'data/country-data.js',
-  'data/rule-packs.js',
+  'css/styles.css?v=20261124_01',
+  'js/site-config.js?v=20261124_01',
+  'js/app.js?v=20261124_01',
+  'js/i18n.js?v=20261124_01',
+  'js/rules-engine.js?v=20261124_01',
+  'js/tools.js?v=20261124_01',
+  'js/guides-data.js?v=20261124_01',
+  'data/country-data.js?v=20261124_01',
+  'data/rule-packs.js?v=20261124_01',
   'assets/icon.svg',
-  'assets/preview.png'
+  'assets/preview.png',
+  'locales/en.json',
+  'locales/hi.json',
+  'locales/ur.json',
+  'locales/fr.json',
+  'locales/de.json',
+  'locales/ar.json',
+  'locales/es.json',
+  'locales/pt.json',
+  'locales/zh.json',
+  'locales/ru.json',
+  'locales/id.json',
+  'locales/bn.json',
+  'locales/tr.json',
+  'about/',
+  'methodology/',
+  'privacy/',
+  'terms/',
+  'report/',
+  'passport/'
 ];
 
 self.addEventListener('install', (event) => {
