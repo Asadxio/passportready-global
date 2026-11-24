@@ -90,11 +90,18 @@
         <label for="langSelect" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Select Language</label>
         <select id="langSelect" class="lang-select" aria-label="Language selector">
           <option value="en">English (EN)</option>
+          <option value="es">Español (ES)</option>
+          <option value="pt">Português (PT)</option>
           <option value="fr">Français (FR)</option>
           <option value="de">Deutsch (DE)</option>
+          <option value="ru">Русский (RU)</option>
+          <option value="zh">中文 (ZH)</option>
           <option value="hi">हिन्दी (HI)</option>
+          <option value="bn">বাংলা (BN)</option>
           <option value="ur">اردو (UR)</option>
           <option value="ar">العربية (AR)</option>
+          <option value="id">Bahasa Indonesia (ID)</option>
+          <option value="tr">Türkçe (TR)</option>
         </select>
         <a href="https://github.com/Asadxio/passportready-global/issues" target="_blank" rel="noopener" class="nav-feedback" data-i18n="nav_feedback">Feedback ↗</a>
         <a href="#checker" class="btn btn-dark" data-i18n="nav_cta">Start Free ↗</a>
@@ -600,19 +607,35 @@
       </div>
 
       <div class="tools-grid">
-        <!-- 6-Month Expiry Calculator -->
+        <!-- Destination Entry Validity & Expiry Calculator (60 Destinations) -->
         <div class="tool-box">
           <div style="font-size:1.8rem;margin-bottom:8px">✈</div>
-          <h3 data-i18n="tools_expiry_title">6-Month Passport Expiry Calculator</h3>
-          <p data-i18n="tools_expiry_desc">Many countries deny airline boarding if your passport has less than 3 or 6 months validity remaining on your planned travel date.</p>
+          <h3 data-i18n="tools_expiry_title">Destination Entry Validity & Expiry Calculator</h3>
+          <p data-i18n="tools_expiry_desc">Verify whether your passport meets the specific statutory entry rules of your destination (e.g. Schengen 3-month beyond departure & 10-year issuance rule, Asian/Middle Eastern 6-month rule, or US/UK duration of stay).</p>
           <div class="form-grid">
+            <div class="field" style="grid-column: 1 / -1">
+              <label for="calcDestination" style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">Destination Country:</label>
+              <select id="calcDestination" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #cbd5e1;border-radius:6px;background:#fff">
+                <!-- Dynamically populated from DESTINATION_VALIDITY_RULES in app.js -->
+              </select>
+            </div>
             <div class="field">
-              <label for="calcTravelDate" data-i18n="label_travel_date">Planned Travel Date:</label>
+              <label for="calcTravelDate" data-i18n="label_travel_date">Entry / Arrival Date:</label>
               <input type="date" id="calcTravelDate">
+            </div>
+            <div class="field">
+              <label for="calcReturnDate">Planned Return Date:</label>
+              <input type="date" id="calcReturnDate">
+              <small style="color:#64748b;font-size:11px">Required for Schengen 3-month rule</small>
             </div>
             <div class="field">
               <label for="calcPassportExpiry" data-i18n="label_passport_expiry">Passport Expiry Date:</label>
               <input type="date" id="calcPassportExpiry">
+            </div>
+            <div class="field">
+              <label for="calcPassportIssue">Passport Issue Date (Optional):</label>
+              <input type="date" id="calcPassportIssue">
+              <small style="color:#64748b;font-size:11px">Required for Schengen 10-year rule</small>
             </div>
           </div>
           <button id="btnCheckExpiry" type="button" class="btn btn-dark" style="margin-top:16px;width:100%" data-i18n="btn_check_validity">Check Validity →</button>
@@ -623,26 +646,97 @@
         <div class="tool-box">
           <div style="font-size:1.8rem;margin-bottom:8px">⚖</div>
           <h3 data-i18n="tools_mismatch_title">Name & Date-of-Birth Discrepancy Analyzer</h3>
-          <p data-i18n="tools_mismatch_desc">Compare Document A (e.g., Birth Certificate / Old Passport) with Document B (e.g., National ID / Educational Certificate).</p>
+          <p data-i18n="tools_mismatch_desc">Analyze transliterations, mononyms, name order, diacritics, and date ambiguity against statutory passport authority rules.</p>
           <div class="form-grid">
+            <div class="field" style="grid-column: 1 / -1">
+              <label for="mismatchCountry" style="font-size:12px;font-weight:600;display:block;margin-bottom:4px">Passport Issuing Country (for statutory legal remedy):</label>
+              <select id="mismatchCountry" style="width:100%;padding:8px 10px;font-size:13px;border:1px solid #cbd5e1;border-radius:6px;background:#fff">
+                <option value="IN">India (Ministry of External Affairs)</option>
+                <option value="US">United States (State Department - 22 CFR § 51.25)</option>
+                <option value="GB">United Kingdom (HMPO Deed Poll Rules)</option>
+                <option value="CA">Canada (Passport Program)</option>
+                <option value="AU">Australia (Australian Passport Office)</option>
+                <option value="MY">Malaysia (Jabatan Imigresen Malaysia)</option>
+                <option value="ID">Indonesia (Direktorat Jenderal Imigrasi)</option>
+                <option value="OTHER">Other / International Baseline (ICAO Doc 9303)</option>
+              </select>
+            </div>
             <div class="field">
               <label for="mismatchNameA">Name on Primary Document (Doc A):</label>
-              <input type="text" id="mismatchNameA" placeholder="e.g. John Michael Doe">
+              <input type="text" id="mismatchNameA" placeholder="e.g. Mohd Hussain">
+              <small style="color:#64748b;font-size:11px">e.g. Birth Certificate, National ID, Old Passport</small>
             </div>
             <div class="field">
               <label for="mismatchNameB">Name on Secondary Document (Doc B):</label>
-              <input type="text" id="mismatchNameB" placeholder="e.g. John M. Doe">
+              <input type="text" id="mismatchNameB" placeholder="e.g. Mohammed Husain">
+              <small style="color:#64748b;font-size:11px">e.g. Educational Cert, Marriage Cert, Tax Record</small>
+            </div>
+            <div class="field">
+              <label for="mismatchDateFormat">Date Format Used in Documents:</label>
+              <select id="mismatchDateFormat" style="width:100%;padding:8px;font-size:13px;border:1px solid #cbd5e1;border-radius:6px;background:#fff">
+                <option value="ISO">YYYY-MM-DD (Standard ISO)</option>
+                <option value="DMY">DD/MM/YYYY (International / UK / India / EU)</option>
+                <option value="MDY">MM/DD/YYYY (United States)</option>
+              </select>
             </div>
             <div class="field">
               <label for="mismatchDobA">DOB on Primary Document:</label>
-              <input type="date" id="mismatchDobA">
+              <input type="text" id="mismatchDobA" placeholder="e.g. 05/11/1992 or 1992">
             </div>
             <div class="field">
               <label for="mismatchDobB">DOB on Secondary Document:</label>
-              <input type="date" id="mismatchDobB">
+              <input type="text" id="mismatchDobB" placeholder="e.g. 05/11/1992 or 1992">
             </div>
           </div>
-          <button id="btnAnalyzeMismatch" type="button" class="btn btn-dark" style="margin-top:16px;width:100%">Analyze Discrepancy →</button>
+
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <button id="btnAnalyzeMismatch" type="button" class="btn btn-dark" style="flex:1">Analyze Discrepancy →</button>
+            <button id="btnToggleCalendarTool" type="button" class="btn btn-outline" style="font-size:11px;padding:6px 10px">📅 Alternate Calendar</button>
+            <button id="btnToggleApproxDob" type="button" class="btn btn-outline" style="font-size:11px;padding:6px 10px">❓ Year-Only DOB</button>
+          </div>
+
+          <!-- Non-Gregorian Calendar Converter Sub-Panel (Hidden by default) -->
+          <div id="calendarConverterPanel" style="display:none;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:14px;margin-top:14px">
+            <h5 style="margin:0 0 6px;font-size:13px;color:#0f172a">Non-Gregorian to Gregorian Civil Calendar Converter</h5>
+            <p style="font-size:11px;color:#64748b;margin:0 0 10px">Convert civil registration dates from Islamic Hijri, Thai Buddhist, Nepali Bikram Sambat, or Persian Solar Hijri.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(110px, 1fr));gap:8px">
+              <div>
+                <label style="font-size:11px;font-weight:600;display:block;margin-bottom:2px">Calendar:</label>
+                <select id="convCalendarType" style="width:100%;padding:6px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px;background:#fff">
+                  <option value="thai_buddhist">Thai Buddhist (พ.ศ.)</option>
+                  <option value="bikram_sambat">Nepali Bikram Sambat (वि.सं.)</option>
+                  <option value="solar_hijri">Persian Solar Hijri (هـ.ش)</option>
+                  <option value="hijri">Islamic Lunar Hijri (هـ)</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:600;display:block;margin-bottom:2px">Year:</label>
+                <input type="number" id="convYear" placeholder="e.g. 2567" style="width:100%;padding:6px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px">
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:600;display:block;margin-bottom:2px">Month:</label>
+                <input type="number" id="convMonth" min="1" max="12" value="1" style="width:100%;padding:6px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px">
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:600;display:block;margin-bottom:2px">Day:</label>
+                <input type="number" id="convDay" min="1" max="31" value="1" style="width:100%;padding:6px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px">
+              </div>
+            </div>
+            <button id="btnConvertCalendar" type="button" class="btn btn-dark" style="margin-top:10px;font-size:12px;padding:6px 12px">Convert to Gregorian →</button>
+            <div id="calendarConvResult" style="margin-top:10px"></div>
+          </div>
+
+          <!-- Approx DOB Sub-Panel (Hidden by default) -->
+          <div id="approxDobPanel" style="display:none;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;padding:14px;margin-top:14px">
+            <h5 style="margin:0 0 6px;font-size:13px;color:#0f172a">Year-Only or Approximate DOB Standardization</h5>
+            <p style="font-size:11px;color:#64748b;margin:0 0 10px">Find how passport authorities standardize passport records when exact day/month is unknown.</p>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <input type="number" id="approxYearInput" placeholder="Birth Year (e.g. 1970)" style="padding:6px 10px;font-size:12px;border:1px solid #cbd5e1;border-radius:6px;width:150px">
+              <button id="btnCheckApproxDob" type="button" class="btn btn-dark" style="font-size:12px;padding:6px 12px">Check Statutory Standardization →</button>
+            </div>
+            <div id="approxDobResult" style="margin-top:10px"></div>
+          </div>
+
           <div id="mismatchResult"></div>
         </div>
         <!-- Biometric Passport Photo & Aspect Ratio Validator -->
@@ -702,12 +796,19 @@
                 <button type="button" class="filter-pill active" data-photo-standard="icao_35x45">ICAO 35×45mm (UK, EU, AU, Global)</button>
                 <button type="button" class="filter-pill" data-photo-standard="us_2x2">US 2×2" (51×51mm)</button>
                 <button type="button" class="filter-pill" data-photo-standard="ca_50x70">Canada 50×70mm</button>
+                <button type="button" class="filter-pill" data-photo-standard="cn_33x48">China 33×48mm</button>
+                <button type="button" class="filter-pill" data-photo-standard="my_35x50">Malaysia 35×50mm</button>
               </div>
 
               <!-- Evaluation Feedback Result Box -->
               <div id="photoEvaluationResult" style="padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:16px;font-size:12px;line-height:1.5">
                 <div style="font-weight:700;color:var(--slate-dark);margin-bottom:4px" id="photoStandardTitle">ICAO Doc 9303 Standard (35 × 45 mm)</div>
                 <div id="photoStandardDetails" style="color:#475569">Head height must occupy 70%–80% of total frame (32–36mm). Eyes positioned in the upper-middle third. Plain cream, light grey, or off-white background.</div>
+                <div id="photoSpecExtra" style="margin-top:8px;padding-top:8px;border-top:1px dashed #cbd5e1;font-size:11px;color:#64748b;display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                  <div><strong>Resolution:</strong> 300 DPI (413×531 px min)</div>
+                  <div><strong>File Size (Uploads):</strong> 50 KB – 10 MB</div>
+                  <div style="grid-column:1 / -1"><strong>Head Coverings:</strong> Religious headwear permitted; full face from chin to forehead and both cheek contours must be completely visible without shadows.</div>
+                </div>
               </div>
 
               <!-- Biometric Compliance Pitfall Checklist -->

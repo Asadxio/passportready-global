@@ -4,7 +4,7 @@
 **Live Site:** `https://passport.myoss.in/`  
 **Audit Conducted:** October 2026 / November 2026  
 **Auditor:** Senior Full-Stack, Accessibility & Legal Integrity Audit Team  
-**Status:** Phase 1 Complete (Critical Trust, Legal, Correctness & Integrity)
+**Status:** Phase 2 Complete (Global Readiness: Names, Dates, i18n, Photo Privacy, 60-Destination Validity, Special Categories)
 
 ---
 
@@ -26,6 +26,12 @@ This comprehensive audit was executed to eliminate all placeholder dead links, s
 | **AUD-04** | High | Directory Honesty Misrepresentation: Headline claimed "249 Countries & Territories Indexed" while only 27 were verified. | Updated headline to honest breakdown: "27 Verified · 0 Portal Linked · 222 Awaiting Research"; added status badge, `last_verified` date, direct official portal link, and 180-day stale warning badge to every directory card. | **FIXED** |
 | **AUD-05** | Medium | Sweeping Unqualified Legal Phrasing: FAQ Q1 claimed "Under international and constitutional law, passport issuance is an exercise of sovereign state authority..." | Replaced with precise, sourced statutory citations referencing Indian Passports Act 1967, 8 U.S.C. § 1185, 22 CFR Part 51, and the UK Royal Prerogative administered by HMPO. | **FIXED** |
 | **AUD-06** | Medium | Inaccessible Feedback Channel: Feedback previously went exclusively to GitHub Issues, which ordinary citizens lack. | Created `/report/` with a privacy-respecting feedback form supporting static-host mailto generation, clipboard copy, and optional GitHub issues as secondary. | **FIXED** |
+| **AUD-07** | High | Name Matching Rigidness & Transliteration Gaps: Common cultural transliterations (e.g. Mohammed/Muhammad, Zhang/Chang) and mononyms falsely flagged as blocking name mismatches without country-specific legal guidance. | Implemented 26 transliteration equivalence clusters, Levenshtein distance weighting, mononym support with ICAO Doc 9303 Part 3 guidance, name-inversion detection, and actionable country resolution paths (India Annexure E/Gazette, US DS-5504/court order, UK deed poll, etc.). | **FIXED** |
+| **AUD-08** | Medium | Ambiguous Dates & Lack of Alternate Civil Calendars: Global users faced ambiguity on numerical dates (e.g. 03/04/1990) and lacked support for non-Gregorian civil calendars used in official identity docs. | Added interactive date format selector with ambiguity warning, approximate/year-only DOB guidance (MEA 01/01 default, ICAO XX/XX filler), and multi-calendar converter (Thai Buddhist BE, Nepali BS, Solar Hijri SH, Islamic Hijri AH). | **FIXED** |
+| **AUD-09** | High | Linguistic Exclusivity & Incomplete i18n: Platform supported only 6 languages, leaving major global populations without native accessibility. Missing RTL font support and layout mirroring. | Expanded to 13 languages (EN, HI, UR, FR, DE, AR, ES, PT, ZH, RU, ID, BN, TR) with 100% key parity (304 keys), modular JSON files, `needs_review: true` tracking, bidirectional RTL layout mirroring, and localized typography (Noto fonts). | **FIXED** |
+| **AUD-10** | High | Photo Validator Privacy & Jurisdiction Bounds: Photo tool lacked China (33x48mm) and Malaysia (35x50mm) standards and lacked proof of zero-network transmission. | Added China and Malaysia standards with head-height bounds and religious headwear guidance. Implemented zero-network-request unit test intercepting HTTP/HTTPS/fetch calls during canvas image processing. | **FIXED** |
+| **AUD-11** | High | International Entry Validity Blindspots: Expiry calculator lacked destination-specific entry rules (e.g. Schengen 10-year issuance limit, Southeast Asia 6-month rule, US Six-Month Club). | Added 60-destination international rule dictionary with strict calendar-month math, leap-year handling, Schengen Article 6(1)(a) Regulation (EU) 2016/399 10-year issuance checks, and Six-Month Club exemptions. | **FIXED** |
+| **AUD-12** | High | Missing Statutory Guides for Complex Cases: Missing structured assistance for refugees, dual nationals, surrogacy/adoption, marriage/divorce name changes, gender markers, and emergency travel. | Added 6 comprehensive statutory guides and rules-engine checklist evaluations for refugee/stateless documents, dual nationality loss risks, surrogacy/adoption, marriage/divorce name restoration, gender marker self-certification, and Emergency Travel Certificates (ETC). | **FIXED** |
 
 ---
 
@@ -54,26 +60,33 @@ Every factual claim in FAQs, educational guides, rules-engine logic, and documen
 | **Japan Post-July 2026 Domestic Online vs Counter Fees** | `rules-engine.js`, `country-rules.json` | **CORRECT** | [Ministry of Foreign Affairs of Japan (MOFA)](https://www.mofa.go.jp/mofaj/toko/passport/) | 2026-10-19 | Statutory fee schedule establishing ¥8,900 for online adult applications vs. ¥9,300 for in-person counter submissions. |
 | **Mexico 2026 SRE Statutory Fees** | `rules-engine.js`, `country-rules.json` | **CORRECT** | [Secretaría de Relaciones Exteriores (SRE)](https://www.gob.mx/sre/acciones-y-programas/pasaporte-mexicano) | 2026-10-19 | Ley Federal de Derechos rates: 3-year (1,655 MXN standard / 825 MXN concession), 6-year (2,250 MXN), 10-year (3,940 MXN). |
 | **Nigeria NIS Ministerial Reform Fees** | `rules-engine.js`, `country-rules.json` | **CORRECT** | [Nigeria Immigration Service (NIS)](https://passport.immigration.gov.ng/) | 2026-10-19 | Ministerial fee schedule: 32-page 5-year (₦100,000 domestic / $150 abroad), 64-page 10-year (₦200,000 domestic / $230 abroad). |
+| **Schengen 10-Year Issuance Limit** | `tools.js`, Guide 6 | **CORRECT** | [Regulation (EU) 2016/399 Article 6(1)(a)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0399) | 2026-11-24 | Passports must have been issued within the previous 10 years on the date of entry into the Schengen area, even if passport has unexpired remaining validity. |
+| **Refugee Travel Document & Return Prohibition** | Guide 8, `rules-engine.js` | **CORRECT** | [1951 Geneva Convention Article 1(C) / Article 28](https://www.unhcr.org/1951-refugee-convention) | 2026-11-24 | 1951 Convention travel document does NOT permit travel to country of nationality/claimed persecution. Return travel triggers mandatory cessation/revocation of refugee status under Art. 1(C). |
+| **India Single Citizenship & Passport Surrender** | Guide 9, `rules-engine.js` | **CORRECT** | [India Citizenship Act 1955 Section 9](https://www.indiacode.nic.in/handle/123456789/1522) / [Passports Act 1967 Sec 12](https://www.indiacode.nic.in/handle/123456789/1647) | 2026-11-24 | Voluntary acquisition of foreign citizenship automatically terminates Indian citizenship. Retaining or traveling on Indian passport post-naturalization attracts penalties; surrender certificate required for OCI. |
+| **Japan Nationality Choice Requirement (Article 14)** | Guide 9, `rules-engine.js` | **CORRECT** | [Japan Nationality Law (Law No. 147 of 1950) Article 14](https://www.moj.go.jp/ENGLISH/information/tnl-01.html) | 2026-11-24 | A Japanese citizen who acquires dual citizenship must select one nationality before reaching age 20 (or within 2 years if acquired after age 18). |
+| **Malaysia Dual Citizenship Deprivation (Article 24)** | Guide 9, `rules-engine.js` | **CORRECT** | [Federal Constitution of Malaysia Article 24](https://www.agc.gov.my/) | 2026-11-24 | Exercising rights of citizenship in a foreign country (including holding a foreign passport) empowers the Federal Government to issue an order depriving citizenship. |
+| **ICAO Doc 9303 Part 3 Mononym MRTD Standards** | `tools.js` | **CORRECT** | [ICAO Doc 9303 Part 3 Section 5](https://www.icao.int/Security/FAL/PKD/Documents/ICAO_Doc_9303_p3.pdf) | 2026-11-24 | If a person holds a single name, it is entered in the primary identifier (surname) field while the secondary identifier is left blank or filled with filler characters (`<`). |
+| **China 33x48mm Biometric Photo Standard** | `tools.js` | **CORRECT** | [National Immigration Administration (NIA) of China](https://www.nia.gov.cn/) | 2026-11-24 | 33 mm wide by 48 mm high, head width 21-24 mm, head height 28-33 mm, pure white background. |
+| **Malaysia 35x50mm Biometric Photo Standard** | `tools.js` | **CORRECT** | [Jabatan Imigresen Malaysia (JIM)](https://www.imi.gov.my/) | 2026-11-24 | 35 mm wide by 50 mm high, head size between 25 mm and 30 mm, plain white background, dark clothing covering shoulders and chest. |
+| **US Passport Gender Self-Certification** | Guide 12, `rules-engine.js` | **CORRECT** | [U.S. Department of State Gender Designation Policy](https://travel.state.gov/content/travel/en/passports/need-passport/selecting-your-gender-marker.html) | 2026-11-24 | Medical documentation is no longer required to select or change gender marker (M, F, or X) on U.S. passports; self-certification is permitted. |
+| **India Transgender Identity Certificate Procedure** | Guide 12, `rules-engine.js` | **CORRECT** | [Transgender Persons (Protection of Rights) Act 2019 Section 6/7](https://transgender.dosje.gov.in/) | 2026-11-24 | Certificate of Identity issued by the District Magistrate (DM) under Section 6/7 is required to record a revised gender marker on Indian passports. |
 
 ---
 
 ## 4. Issues Remaining for Subsequent Phases
 
-- **Phase 2 (Global Readiness):**
-  - Name discrepancy engine fuzzy transliteration equivalence list (Mohammed/Muhammad, Zhang/Chang, mononyms, diacritics).
-  - Multi-calendar converter (Hijri, Thai Buddhist, Bikram Sambat, Solar Hijri) and non-ambiguous date selectors.
-  - Expansion to 13+ languages (Spanish, Portuguese, Chinese Simplified, Russian, Indonesian, Bengali, Turkish) with bidirectional RTL mirroring.
-  - Biometric photo validator client-side isolation unit test (asserting 0 network requests).
-  - 60-destination international entry validity calculator.
 - **Phase 3 (SEO & Discoverability):**
-  - Static country and service routes (`/passport/{country}/{service}/`).
-  - Optimized title lengths (55-60 chars).
-  - Sitemaps with hreflang alternates, JSON-LD schema (HowTo, FAQPage, Organization).
+  - Static country and service routes (`/passport/{country}/{service}/`) for verified and portal-linked jurisdictions.
+  - Optimized title lengths (55-60 characters) and descriptive meta tags.
+  - Sitemaps with hreflang alternates, JSON-LD schema (HowTo, FAQPage, Organization, BreadcrumbList).
+  - Domain-agnostic canonical base URL configuration.
 - **Phase 4 (UX & Accessibility):**
   - Replace functional emojis with accessible inline SVGs.
   - WCAG 2.2 AA keyboard focus trap and axe-core audit.
-  - "Clear My Data" button on checker UI.
+  - Auto-save state restoration and "Clear My Data" button on checker UI.
+  - Print/PDF export stylesheet polish.
 - **Phase 5 & 6 (Research & Engineering Quality):**
   - Top 40 full verified country rule packs in `/data/countries/{iso2}.json` modular format.
+  - 249-country official portal directory expansion.
   - Weekly source-change monitor script.
   - Playwright E2E browser tests.

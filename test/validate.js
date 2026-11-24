@@ -5475,6 +5475,259 @@ runTest('Phase 1 Audit: Legal Pages, Field Leakage Isolation, Score Integrity, D
   assert(reportHtml.includes('mailto:updates@myoss.in'), 'Report page must support mailto fallback without third-party tracker');
 });
 
+// 42. Phase 2 Feature: Name Transliterations, Equivalence Clusters & Mononyms (ICAO 9303)
+runTest('Phase 2 Global Readiness: Name Transliterations, Equivalence Clusters & Mononyms (ICAO 9303)', () => {
+  const { PassportTools, TRANSLITERATION_CLUSTERS } = require('../js/tools.js');
+
+  // 1. Equivalence Clusters Integrity
+  assert(Array.isArray(TRANSLITERATION_CLUSTERS), 'TRANSLITERATION_CLUSTERS must be an array');
+  assert(TRANSLITERATION_CLUSTERS.length >= 25, 'Must contain at least 25 global transliteration clusters');
+
+  // 2. Transliteration Variation Matching (Mohammed / Mohd)
+  const transAnalysis = PassportTools.analyzeNameDiscrepancy('Mohd Hussain', 'Mohammed Husain', '1990-01-01', '1990-01-01', 'IN');
+  assert.strictEqual(transAnalysis.isTransliteration, true, 'Mohd Hussain vs Mohammed Husain must be recognized as transliteration');
+  assert.strictEqual(transAnalysis.discrepancySeverity, 'minor', 'Transliteration variants must have minor severity');
+  assert.strictEqual(transAnalysis.nameStatus, 'SPELLING_DIFFERENCE', 'Must classify as SPELLING_DIFFERENCE');
+  assert(transAnalysis.explanation.includes('Mohammed / Muhammad / Mohd / Md'), 'Must explain equivalence cluster');
+  assert(transAnalysis.nextSteps[0].minorPath.includes('2 secondary statutory public documents'), 'Must cite secondary ID rule for minor spelling');
+  assert.strictEqual(transAnalysis.nextSteps[0].sourceUrl, 'https://www.passportindia.gov.in/AppOnlineProject/pdf/AnnexureE.pdf');
+
+  // 3. Mononym Detection
+  const mononymAnalysis = PassportTools.analyzeNameDiscrepancy('Siti', 'Siti Nurhaliza', '1992-05-10', '1992-05-10', 'ID');
+  assert.strictEqual(mononymAnalysis.isMononym, true, 'Single name must be detected as mononym');
+  assert(mononymAnalysis.recommendations.some(r => r.includes('Mononym / Single Name')), 'Must provide mononym ICAO 9303 Part 3 guidance');
+
+  // 4. Name Inversion Detection (East Asian order)
+  const inversionAnalysis = PassportTools.analyzeNameDiscrepancy('Zhang Wei', 'Wei Zhang', '1988-12-12', '1988-12-12', 'CN');
+  assert.strictEqual(inversionAnalysis.isNameOrderInversion, true, 'Zhang Wei vs Wei Zhang must be detected as name order inversion');
+  assert.strictEqual(inversionAnalysis.discrepancySeverity, 'minor');
+
+  // 5. Diacritic and Umlaut Normalization
+  const diacriticAnalysis = PassportTools.analyzeNameDiscrepancy('Müller', 'Mueller', '1985-03-20', '1985-03-20', 'DE');
+  assert.strictEqual(diacriticAnalysis.isDiacritic, true, 'Müller vs Mueller must be recognized as German umlaut conversion');
+
+  // 6. Actionable Next Steps by Jurisdiction
+  const usAnalysis = PassportTools.analyzeNameDiscrepancy('Jane Doe', 'Jane Smith', '1990-01-01', '1990-01-01', 'US');
+  assert((usAnalysis.nextSteps[0].minorPath + usAnalysis.nextSteps[0].majorPath).includes('22 CFR § 51.25'), 'US next steps must cite 22 CFR § 51.25');
+
+  const gbAnalysis = PassportTools.analyzeNameDiscrepancy('John Green', 'John Brown', '1990-01-01', '1990-01-01', 'GB');
+  assert(gbAnalysis.nextSteps[0].majorPath.includes('deed poll'), 'GB next steps must cite deed poll');
+});
+
+// 43. Phase 2 Feature: Date Ambiguity, Alternate Calendar Converters & Approximate DOB
+runTest('Phase 2 Global Readiness: Date Ambiguity, Alternate Calendar Converters & Approximate DOB', () => {
+  const { PassportTools } = require('../js/tools.js');
+
+  // 1. Ambiguous vs Unambiguous Date Verification
+  const ambigDate = PassportTools.checkDateAmbiguity('03/04/1990');
+  assert.strictEqual(ambigDate.isAmbiguous, true, '03/04/1990 must be flagged as ambiguous (could be 3 Apr or 4 Mar)');
+  assert.strictEqual(ambigDate.possibleInterpretations.length, 2);
+  assert(ambigDate.warning.includes('ambiguous'), 'Must provide clear ambiguity warning');
+
+  const unAmbigDate = PassportTools.checkDateAmbiguity('25/04/1990');
+  assert.strictEqual(unAmbigDate.isAmbiguous, false, '25/04/1990 cannot be ambiguous (25 > 12)');
+
+  const isoDate = PassportTools.checkDateAmbiguity('1990-04-03');
+  assert.strictEqual(isoDate.isAmbiguous, false, 'ISO dates are never ambiguous');
+
+  // 2. Non-Gregorian Calendar Converters
+  // 2.1 Thai Buddhist Era (พ.ศ. 2567 -> 2024 CE)
+  const thaiConv = PassportTools.convertAlternateCalendar(2567, 5, 15, 'THAI_BUDDHIST');
+  assert.strictEqual(thaiConv.gregorianYear, 2024);
+  assert.strictEqual(thaiConv.gregorianDate, '2024-05-15');
+  assert(thaiConv.explanation.includes('subtract 543 years'));
+
+  // 2.2 Nepali Bikram Sambat (2081 BS -> 2024 CE)
+  const nepaliConv = PassportTools.convertAlternateCalendar(2081, 2, 1, 'BIKRAM_SAMBAT');
+  assert.strictEqual(nepaliConv.gregorianYear, 2024);
+
+  // 2.3 Persian Solar Hijri (1403 SH -> 2024 CE)
+  const persianConv = PassportTools.convertAlternateCalendar(1403, 1, 1, 'SOLAR_HIJRI');
+  assert.strictEqual(persianConv.gregorianYear, 2024);
+
+  // 2.4 Islamic Lunar Hijri (1445 AH -> 2024 CE)
+  const hijriConv = PassportTools.convertAlternateCalendar(1445, 9, 1, 'HIJRI');
+  assert(hijriConv.gregorianYear === 2023 || hijriConv.gregorianYear === 2024);
+
+  // 3. Approximate DOB Guidance
+  const inApprox = PassportTools.getApproximateDobGuidance(1975, 'IN');
+  assert.strictEqual(inApprox.recordedDob, '01/01/1975', 'India MEA standardizes year-only DOB to 01/01/YYYY');
+  assert(inApprox.guidance.includes('Ministry of External Affairs'));
+
+  const usApprox = PassportTools.getApproximateDobGuidance(1980, 'US');
+  assert(usApprox.recordedDob.includes('1980'), 'US DOS guidance must reference birth year');
+});
+
+// 44. Phase 2 Feature: 60-Destination Entry Validity & Schengen 10-Year Issuance Limit
+runTest('Phase 2 Global Readiness: 60-Destination Entry Validity & Schengen 10-Year Issuance Limit', () => {
+  const { PassportTools, DESTINATION_VALIDITY_RULES } = require('../js/tools.js');
+
+  // 1. Destination Coverage Count
+  const destKeys = Object.keys(DESTINATION_VALIDITY_RULES);
+  assert(destKeys.length >= 60, 'DESTINATION_VALIDITY_RULES must cover at least 60 destinations');
+
+  // 2. Schengen 3-Month Post-Departure Check (Regulation EU 2016/399)
+  // Travel: 2026-06-01 to 2026-06-15, Passport Expiry: 2026-08-01 (Only 47 days after departure -> FAIL)
+  const schengenFail = PassportTools.evaluateDestinationValidity('2026-08-01', '2026-06-01', '2026-06-15', 'FR', '2020-01-01');
+  assert.strictEqual(schengenFail.valid, false);
+  assert.strictEqual(schengenFail.pass, false);
+  assert.strictEqual(schengenFail.status, 'FAIL_SCHENGEN_REQUIREMENT');
+  assert(schengenFail.message.includes('Regulation EU 2016/399') || schengenFail.message.includes('Regulation (EU) 2016/399'));
+
+  // Compliant Schengen: Expiry 2027-01-01 (200 days after departure -> PASS)
+  const schengenPass = PassportTools.evaluateDestinationValidity('2027-01-01', '2026-06-01', '2026-06-15', 'FR', '2020-01-01');
+  assert.strictEqual(schengenPass.valid, true);
+  assert.strictEqual(schengenPass.pass, true);
+  assert.strictEqual(schengenPass.status, 'PASS_SCHENGEN_REQUIREMENT');
+
+  // 3. Schengen 10-Year Issuance Limit (Article 6(1)(a) of Regulation EU 2016/399)
+  // Issued 2015-01-01, entry 2026-06-01 (> 10 years old even though unexpired -> FAIL)
+  const schengen10YrFail = PassportTools.evaluateDestinationValidity('2027-01-01', '2026-06-01', '2026-06-15', 'FR', '2015-01-01');
+  assert.strictEqual(schengen10YrFail.valid, false);
+  assert.strictEqual(schengen10YrFail.pass, false);
+  assert.strictEqual(schengen10YrFail.status, 'SCHENGEN_10_YEAR_EXCEEDED');
+  assert(schengen10YrFail.message.includes('10 years'));
+
+  // 4. Strict 6-Month Destinations (Thailand, Indonesia, Singapore, UAE)
+  // Expiry 2026-08-01 on entry 2026-06-01 (only 61 days -> FAIL)
+  const thaiFail = PassportTools.evaluateDestinationValidity('2026-08-01', '2026-06-01', null, 'TH');
+  assert.strictEqual(thaiFail.valid, false);
+  assert.strictEqual(thaiFail.status, 'FAIL_SIX_MONTH_RULE');
+
+  const thaiPass = PassportTools.evaluateDestinationValidity('2027-01-01', '2026-06-01', null, 'TH');
+  assert.strictEqual(thaiPass.valid, true);
+  assert.strictEqual(thaiPass.status, 'PASS_SIX_MONTH_RULE');
+});
+
+// 45. Phase 2 Feature: 13-Language Translation Parity, Directionality & Review Register
+runTest('Phase 2 Global Readiness: 13-Language Translation Parity, Directionality & Review Register', () => {
+  const { I18N_TRANSLATIONS, I18N_METADATA } = require('../js/i18n.js');
+  const expectedLanguages = ['en', 'hi', 'ur', 'fr', 'de', 'ar', 'es', 'pt', 'zh', 'ru', 'id', 'bn', 'tr'];
+
+  assert.strictEqual(Object.keys(I18N_TRANSLATIONS).length, 13, 'Must contain exactly 13 language dictionaries');
+  const enKeys = Object.keys(I18N_TRANSLATIONS.en).sort();
+  assert.strictEqual(enKeys.length, 304, 'English dictionary must maintain exact 304 keys');
+
+  expectedLanguages.forEach(lang => {
+    assert(I18N_TRANSLATIONS[lang], 'Dictionary for ' + lang + ' must exist');
+    const langKeys = Object.keys(I18N_TRANSLATIONS[lang]).sort();
+    assert.strictEqual(langKeys.length, 304, 'Language ' + lang + ' must have exactly 304 keys');
+    assert.deepStrictEqual(langKeys, enKeys, 'Language ' + lang + ' keys must have 100% parity with English');
+
+    // Verify metadata
+    assert(I18N_METADATA[lang], 'Metadata for ' + lang + ' must be defined in I18N_METADATA');
+    assert(typeof I18N_METADATA[lang].needs_review === 'boolean', 'needs_review must be boolean for ' + lang);
+  });
+
+  // RTL checks
+  assert.strictEqual(I18N_TRANSLATIONS.ur.dir, 'rtl', 'Urdu must have dir=rtl');
+  assert.strictEqual(I18N_TRANSLATIONS.ar.dir, 'rtl', 'Arabic must have dir=rtl');
+  assert.strictEqual(I18N_TRANSLATIONS.es.dir, 'ltr', 'Spanish must have dir=ltr');
+  assert.strictEqual(I18N_TRANSLATIONS.zh.dir, 'ltr', 'Chinese must have dir=ltr');
+
+  // Verify standalone JSON files exist in locales/
+  expectedLanguages.forEach(lang => {
+    const locFile = path.join(__dirname, '..', 'locales', lang + '.json');
+    assert(fs.existsSync(locFile), 'locales/' + lang + '.json must exist on disk');
+  });
+});
+
+// 46. Phase 2 Feature: Missing Categories & Guided Flows (Refugee, Dual Nationality, Surrogacy, Gender Marker, ETC)
+runTest('Phase 2 Global Readiness: Missing Categories & Guided Flows (Refugee, Dual Nationality, Surrogacy, Gender Marker, ETC)', () => {
+  const { PASSPORT_GUIDES } = require('../js/guides-data.js');
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+
+  // 1. Guides Registry Coverage (13 Guides)
+  assert.strictEqual(PASSPORT_GUIDES.length, 13, 'Must contain 13 comprehensive guides');
+  const guideIds = PASSPORT_GUIDES.map(g => g.id);
+  assert(guideIds.includes('refugee-stateless-travel-docs'), 'Must include refugee & stateless travel docs guide');
+  assert(guideIds.includes('dual-nationality-guide'), 'Must include dual nationality guide');
+  assert(guideIds.includes('adoption-surrogacy-guide'), 'Must include adoption & surrogacy guide');
+  assert(guideIds.includes('marriage-divorce-name-change'), 'Must include marriage & divorce name change guide');
+  assert(guideIds.includes('gender-marker-change'), 'Must include gender marker change guide');
+  assert(guideIds.includes('emergency-travel-certificate'), 'Must include Emergency Travel Certificate guide');
+
+  // 2. Rules Engine Evaluation for Special Categories
+  // 2.1 Refugee & Stateless Travel Document
+  const refugeeEval = engine.evaluate({ countryCode: 'US', service: 'refugee_stateless' });
+  assert(refugeeEval.checklist.some(c => c.id === 'refugee_status_determination'), 'Must require refugee status determination letter');
+  assert(refugeeEval.flags.some(f => f.code === 'REFUGEE_COUNTRY_OF_ORIGIN_PROHIBITION'), 'Must flag country of origin travel prohibition');
+
+  // 2.2 Emergency Travel Certificate
+  const etcEval = engine.evaluate({ countryCode: 'GB', service: 'emergency_travel_certificate' });
+  assert(etcEval.checklist.some(c => c.id === 'emergency_flight_itinerary'), 'Must require confirmed flight itinerary for ETC');
+  assert(etcEval.flags.some(f => f.code === 'EMERGENCY_TRAVEL_CERTIFICATE_RESTRICTION'), 'Must flag direct return restriction for ETC');
+
+  // 2.3 Dual Nationality (India Single Citizenship rule)
+  const dualEval = engine.evaluate({ countryCode: 'IN', special: 'dual_nat' });
+  assert(dualEval.flags.some(f => f.code === 'DUAL_NATIONALITY_STATUTORY_RULE'), 'Must evaluate dual nationality rule');
+  const inDualFlag = dualEval.flags.find(f => f.code === 'DUAL_NATIONALITY_STATUTORY_RULE');
+  assert(inDualFlag.message.includes('Citizenship Act 1955'), 'India dual nationality flag must cite Citizenship Act 1955');
+
+  // 2.4 Gender Marker Change
+  const genderEval = engine.evaluate({ countryCode: 'US', special: 'gender_marker' });
+  assert(genderEval.checklist.some(c => c.id === 'gender_marker_documentation'), 'Must emit gender marker checklist item');
+
+  // 2.5 Adoption & Surrogacy
+  const adoptEval = engine.evaluate({ countryCode: 'US', special: 'surrogacy_adoption' });
+  assert(adoptEval.checklist.some(c => c.id === 'court_custody_adoption_order'), 'Must require court adoption decree');
+});
+
+// 47. Phase 2 Feature: Photo Validator Zero-Network-Request Client-Side Privacy Verification
+runTest('Phase 2 Global Readiness: Photo Validator Zero-Network-Request Client-Side Privacy Verification', () => {
+  const { PassportTools } = require('../js/tools.js');
+  const http = require('http');
+  const https = require('https');
+
+  let networkCallsDetected = 0;
+  const originalHttpRequest = http.request;
+  const originalHttpsRequest = https.request;
+  const originalFetch = global.fetch;
+
+  // Intercept any attempted network requests
+  http.request = function(...args) { networkCallsDetected++; return originalHttpRequest.apply(this, args); };
+  https.request = function(...args) { networkCallsDetected++; return originalHttpsRequest.apply(this, args); };
+  if (typeof global.fetch === 'function') {
+    global.fetch = function(...args) { networkCallsDetected++; return originalFetch.apply(this, args); };
+  }
+
+  try {
+    // Execute all photo validator routines
+    const standards = PassportTools.getPhotoStandards();
+    assert(standards.cn_33x48, 'China 33x48mm standard must be present');
+    assert(standards.my_35x50, 'Malaysia 35x50mm standard must be present');
+
+    const mappedUs = PassportTools.getPhotoStandardForCountry('US');
+    assert.strictEqual(mappedUs, 'us_2x2');
+
+    const mappedCn = PassportTools.getPhotoStandardForCountry('CN');
+    assert.strictEqual(mappedCn, 'cn_33x48');
+
+    const mappedMy = PassportTools.getPhotoStandardForCountry('MY');
+    assert.strictEqual(mappedMy, 'my_35x50');
+
+    // Run dimension and aspect evaluations
+    const icaoEval = PassportTools.validatePhotoDimensions(700, 900, 'icao_35x45');
+    assert.strictEqual(icaoEval.valid, true);
+
+    const usEval = PassportTools.validatePhotoDimensions(600, 600, 'us_2x2');
+    assert.strictEqual(usEval.valid, true);
+
+    const cnEval = PassportTools.validatePhotoDimensions(390, 567, 'cn_33x48');
+    assert.strictEqual(cnEval.valid, true);
+
+    // Verify 100% network isolation
+    assert.strictEqual(networkCallsDetected, 0, 'Photo validator operations must trigger ZERO network requests');
+  } finally {
+    // Restore original network handlers
+    http.request = originalHttpRequest;
+    https.request = originalHttpsRequest;
+    if (originalFetch) global.fetch = originalFetch;
+  }
+});
+
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');

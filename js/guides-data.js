@@ -172,6 +172,144 @@ const PASSPORT_GUIDES = [
         content: "In the United States and the United Kingdom, eyeglasses are strictly prohibited in passport photos unless an urgent signed medical exemption is provided. Globally, glare on spectacle lenses is grounds for rejection. Religious headwear is permitted provided it does not obscure the face from the hairline to the chin or cast shadows across the face. Flash shadows on the background or uneven lighting will result in automated biometric rejection."
       }
     ]
+  },
+  {
+    id: "refugee-stateless-travel-docs",
+    icon: "🌐",
+    title: "Refugee & Stateless Travel Documents Guide (1951 Geneva & 1954 Conventions)",
+    subtitle: "Statutory rights, eligibility criteria, and critical travel restrictions for convention travel document holders.",
+    badge: "Special Status",
+    readTime: "5 min read",
+    summary: "Comprehensive guide to 1951 Convention Refugee Travel Documents (Titre de Voyage) and 1954 Convention Stateless Travel Documents, including the strict prohibition on traveling to the country of origin.",
+    sections: [
+      {
+        heading: "1. 1951 Convention Refugee Travel Documents (Titre de Voyage)",
+        content: "Under Article 28 of the 1951 Convention Relating to the Status of Refugees, contracting states issue travel documents to recognized refugees lawfully staying in their territory. In the United States, this is the Refugee Travel Document (Form I-571) issued by USCIS under 8 CFR § 223. In the United Kingdom, HMPO issues the 1951 Convention Travel Document. In Germany, the Reiseausweis für Flüchtlinge (Blue Passport) is issued under Section 4 of the Aufenthaltsverordnung. In France, OFPRA and the Ministry of the Interior issue the Titre de Voyage pour Réfugié."
+      },
+      {
+        heading: "2. The Strict Prohibition on Travel to the Country of Origin",
+        content: "Under international refugee law, 1951 Convention Travel Documents are valid for travel to all countries EXCEPT the holder's country of origin or former habitual residence from which asylum was claimed. Traveling to your country of origin, applying for a national passport from your home government, or seeking protection from its embassies is considered voluntary re-availment of national protection, which triggers mandatory cessation of refugee status under Article 1(C) of the 1951 Convention."
+      },
+      {
+        heading: "3. 1954 Convention Stateless Travel Documents",
+        content: "Under Article 28 of the 1954 Convention Relating to the Status of Stateless Persons, individuals who are not considered as nationals by any state under the operation of its law are issued a Stateless Person's Travel Document (or Certificate of Identity). Holders do not possess national citizenship but have recognized international travel rights and protection from refoulement. Entry visas are almost always required for international travel, as visa-waiver programs rarely extend to stateless document holders."
+      }
+    ]
+  },
+  {
+    id: "dual-nationality-guide",
+    icon: "⚖",
+    title: "Dual Nationality & Multiple Citizenship by Jurisdiction",
+    subtitle: "Statutory recognition, mandatory entry rules, and citizenship loss triggers across major countries.",
+    badge: "Legal Guide",
+    readTime: "6 min read",
+    summary: "Detailed review of how dual citizenship is treated across different sovereign jurisdictions: full recognition (US, UK, CA, AU), mandatory choice (JP), and strict prohibition with automatic loss (IN, MY).",
+    sections: [
+      {
+        heading: "1. Jurisdictions Fully Permitting Dual Citizenship (US, UK, Canada, Australia)",
+        content: "In the United States, dual nationality is recognized by federal law; however, under 8 U.S.C. § 1185(b), U.S. citizens are required to enter and depart the United States using their valid U.S. passport. In the United Kingdom, dual citizenship is permitted without restriction under the British Nationality Act 1981. In Canada, dual citizenship is fully protected under the Citizenship Act. In Australia, Section 17 of the Australian Citizenship Act was repealed in 2002, allowing Australian citizens to hold multiple citizenships freely."
+      },
+      {
+        heading: "2. Strict Single Citizenship Jurisdictions (India & Malaysia)",
+        content: "India strictly prohibits dual nationality under Article 9 of the Constitution of India and Section 9(1) of the Citizenship Act, 1955. Voluntary acquisition of foreign citizenship immediately terminates Indian citizenship by operation of law. Naturalized citizens must surrender their Indian passport within 90 days to receive a Surrender Certificate, after which they may apply for an Overseas Citizen of India (OCI) card. In Malaysia, under Article 24 of the Federal Constitution, the federal government may deprive a Malaysian of citizenship if they voluntarily acquire foreign citizenship or exercise rights exclusive to foreign citizens (such as voting or traveling on a foreign passport)."
+      },
+      {
+        heading: "3. Mandatory Choice of Nationality by Adulthood (Japan)",
+        content: "Under Article 14 of the Japanese Nationality Law (国籍法), Japanese citizens who acquire multiple nationalities by birth (such as birth in a jus soli country like the US or to bi-national parents) must declare their choice of nationality before turning 20 years old (or within two years if acquired after age 18). Choosing Japanese nationality requires executing a Declaration of Choice of Japanese Nationality (国籍選択届) and endeavoring to renounce the foreign citizenship."
+      }
+    ]
+  },
+  {
+    id: "adoption-surrogacy-guide",
+    icon: "👶",
+    title: "Intercountry Adoption & Surrogacy Passport Guidance for Minors",
+    subtitle: "Legal parentage establishment, Hague Convention standards, and biometric requirements for children.",
+    badge: "Minor Cases",
+    readTime: "5 min read",
+    summary: "Guidance on passport applications for adopted minors and children born through international surrogacy arrangements, covering Hague certificates, court parentage decrees, and DNA verification.",
+    sections: [
+      {
+        heading: "1. Hague Convention Intercountry Adoptions",
+        content: "Adoptions completed under the 1993 Hague Convention on Protection of Children require an Article 23 Certificate of Conformity from the central adoption authority of the origin country. In the United States, minors adopted abroad by U.S. citizens acquire citizenship automatically under the Child Citizenship Act of 2000 (8 U.S.C. § 1431) upon lawful admission as permanent residents (IR-3 or IH-3 visas). Passport applications require the certified foreign adoption decree, legal custody order, and proof of physical residence."
+      },
+      {
+        heading: "2. Cross-Border Gestational Surrogacy and Statutory Parentage",
+        content: "Children born through international surrogacy arrangements require verified statutory parentage before a passport can be issued. Under U.S. Department of State regulations (INA §§ 301 and 309, 7 FAM 1100), the child must have a biological or gestational connection to a transmitting U.S. citizen parent, which routinely requires embassy-supervised AABB-accredited DNA parentage testing. In the United Kingdom, commissioning parents must obtain a Parental Order from the family court under Section 54 of the Human Fertilisation and Embryology Act 2008 to extinguish the surrogate's legal parenthood."
+      },
+      {
+        heading: "3. Strict Two-Parent Appearance and Custody Safeguards",
+        content: "Under international anti-abduction protocols (such as US 22 CFR § 51.28 and similar European and Commonwealth rules), all legal parents or guardians must execute the passport application in person. If an adoptive parent has sole legal custody, a certified copy of the court order explicitly granting sole legal custody, or evidence of termination of parental rights, must be provided."
+      }
+    ]
+  },
+  {
+    id: "marriage-divorce-name-change",
+    icon: "💍",
+    title: "Name Change After Marriage, Civil Partnership, or Divorce",
+    subtitle: "Documentary proof, civil registration alignment, and avoiding travel ticket discrepancies.",
+    badge: "Civil Status",
+    readTime: "4 min read",
+    summary: "How to update passport biographical records after getting married, entering a civil partnership, or finalizing a divorce, including maiden name restoration rules and airline ticket name alignment.",
+    sections: [
+      {
+        heading: "1. Surname Changes Post-Marriage",
+        content: "Taking a spouse's surname or combining surnames with a hyphen requires submitting a certified government marriage certificate issued by a civil registrar (church/religious certificates without civil registration are rejected). In India, under current MEA Passport Rules, changing a surname post-marriage or adding a spouse's name requires only a self-declaration under Annexure 'E'—neither a marriage certificate nor Gazette publication is required. In the US, Form DS-82 or DS-5504 must be accompanied by the original certified marriage certificate."
+      },
+      {
+        heading: "2. Restoring Maiden Name After Divorce",
+        content: "Restoring a pre-marriage birth surname after divorce requires the final certified divorce decree (Decree Absolute in the UK, final dissolution judgment in the US). If the divorce decree does not explicitly order the resumption of the prior surname, authorities generally require the applicant's original birth certificate showing the birth surname, or a formal deed poll / statutory declaration."
+      },
+      {
+        heading: "3. The Strict Ticket Name Matching Rule",
+        content: "A critical international travel trap: the name on your international airline ticket and boarding pass must match the name in your passport character-for-character. If you have married or legally changed your name but have not yet received your updated passport, you MUST book all travel under the exact name currently displayed in your existing passport."
+      }
+    ]
+  },
+  {
+    id: "gender-marker-change",
+    icon: "⚧",
+    title: "Gender Marker Correction & Self-Certification Rules",
+    subtitle: "Official policies for M, F, and X markers across verified passport authorities.",
+    badge: "Policy Guide",
+    readTime: "4 min read",
+    summary: "Current official procedures for updating passport gender markers ('M', 'F', and 'X') across the US, UK, Canada, and India, including self-certification policies and medical certification requirements.",
+    sections: [
+      {
+        heading: "1. Self-Certification in the United States and Canada",
+        content: "The U.S. Department of State modernized its passport gender marker policies to allow applicants to self-select their gender marker ('M', 'F', or 'X') on passport applications without providing medical certification or court orders, even if the selected marker differs from supporting birth certificates or previous passports. Canada's Passport Program (IRCC) similarly permits self-determination of gender identity ('M', 'F', or 'X') without medical documentation."
+      },
+      {
+        heading: "2. Medical & Statutory Certification in the United Kingdom",
+        content: "Under current HM Passport Office guidance, changing a gender marker from 'M' to 'F' or 'F' to 'M' requires either a Gender Recognition Certificate (GRC) issued under the Gender Recognition Act 2004, or a letter from a registered medical practitioner (GMC) confirming that the transition is likely to be permanent, alongside proof of the new name in use. Note that under the UK Supreme Court judgment in Elan-Cane v Secretary of State [2021] UKSC 56, HMPO does not issue non-binary ('X') passport markers."
+      },
+      {
+        heading: "3. India: District Magistrate Certificate Requirement",
+        content: "Under Section 6 of the Transgender Persons (Protection of Rights) Act, 2019, an applicant must obtain a formal Certificate of Identity issued by the District Magistrate. The Ministry of External Affairs accepts this certificate as conclusive evidence for updating both the legal name and gender marker ('M', 'F', or 'T') on the Indian passport biographical page."
+      }
+    ]
+  },
+  {
+    id: "emergency-travel-certificate",
+    icon: "🚨",
+    title: "Emergency Travel Certificate (ETC) & Emergency Passport Guide",
+    subtitle: "Procedures, evidentiary requirements, and critical validity limits when stranded abroad.",
+    badge: "Urgent Relief",
+    readTime: "5 min read",
+    summary: "Essential guidance for citizens stranded abroad with lost, stolen, or expired passports: how to obtain an Emergency Travel Certificate (ETC), required evidence, and strict single-journey return limits.",
+    sections: [
+      {
+        heading: "1. Purpose and Strict Geographic Limits",
+        content: "An Emergency Travel Certificate (ETC), Emergency Passport, or Laissez-Passer is a temporary travel document issued by embassies and consulates exclusively to citizens who have suffered passport loss, theft, damage, or expiry while abroad, and have an urgent, unavoidable need to travel. Crucially, an ETC is strictly limited to direct, single-journey transit back to the citizen's home country and cannot be used for multi-destination tourism or onward leisure travel."
+      },
+      {
+        heading: "2. Mandatory Consular Evidentiary Requirements",
+        content: "To obtain an ETC, applicants must appear in person at the nearest embassy or consulate with: (1) an official police report from local law enforcement documenting the passport loss or theft; (2) confirmed flight itinerary or travel ticket for direct return departure; (3) proof of nationality (such as a photocopy of the lost passport data page, national ID card, or birth certificate); and (4) passport photos meeting consular biometric specifications."
+      },
+      {
+        heading: "3. Validity and Mandatory Surrender Upon Arrival",
+        content: "An Emergency Travel Certificate typically carries a short validity period (7 to 30 days), tailored strictly to the return journey. Upon arrival at the home country's immigration checkpoint, border officers will inspect and frequently endorse or retain the ETC. The citizen must then apply for a full-validity replacement passport through standard domestic procedures before undertaking any future international travel."
+      }
+    ]
   }
 ];
 

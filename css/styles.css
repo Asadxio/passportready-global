@@ -37,15 +37,46 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* RTL Support */
-html[dir="rtl"] body {
+/* Typography & Language-Specific Fonts per Phase 2.3 */
+html[lang="ur"] body {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Urdu Typesetting", "Noto Sans Arabic", -apple-system, sans-serif;
+  line-height: 1.85;
+}
+html[lang="ar"] body {
   font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+html[lang="hi"] body {
+  font-family: "Noto Sans Devanagari", "Segoe UI", sans-serif;
+}
+html[lang="bn"] body {
+  font-family: "Noto Sans Bengali", "SolaimanLipi", "Vrinda", sans-serif;
+}
+html[lang="zh"] body {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+html[lang="ru"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* RTL Layout Mirroring */
+html[dir="rtl"] body {
+  direction: rtl;
   text-align: right;
 }
 html[dir="rtl"] .hero h1,
 html[dir="rtl"] .brand,
-html[dir="rtl"] .section-head {
+html[dir="rtl"] .section-head,
+html[dir="rtl"] .tool-box,
+html[dir="rtl"] .checklist-card,
+html[dir="rtl"] .guide-card,
+html[dir="rtl"] .country-card {
   text-align: right;
+}
+html[dir="rtl"] .form-grid {
+  direction: rtl;
+}
+html[dir="rtl"] .nav-actions {
+  flex-direction: row-reverse;
 }
 
 a { color: inherit; text-decoration: none; }

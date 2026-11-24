@@ -84,9 +84,14 @@
   function loadSavedState() {
     try {
       const savedLang = localStorage.getItem('passportready_lang');
-      if (savedLang && typeof savedLang === 'string') {
-        const allowedLangs = ['en', 'hi', 'ur', 'fr', 'de', 'ar'];
-        if (allowedLangs.includes(savedLang)) setLanguage(savedLang);
+      const allowedLangs = ['en', 'es', 'pt', 'fr', 'de', 'ru', 'zh', 'hi', 'bn', 'ur', 'ar', 'id', 'tr'];
+      if (savedLang && typeof savedLang === 'string' && allowedLangs.includes(savedLang)) {
+        setLanguage(savedLang);
+      } else if (typeof navigator !== 'undefined' && navigator.language) {
+        const browserPrefix = navigator.language.split('-')[0].toLowerCase();
+        if (allowedLangs.includes(browserPrefix)) {
+          setLanguage(browserPrefix);
+        }
       }
 
       const savedAnswers = localStorage.getItem('passportready_answers');
@@ -2047,6 +2052,15 @@
           detailsEl.textContent = `Dimensions: ${std.widthMm} × ${std.heightMm} mm. Head Coverage: ${Math.round(std.headRatioMin * 100)}%–${Math.round(std.headRatioMax * 100)}% of height. Background: ${std.backgroundDesc}. Expression: ${std.expressionDesc}. Eyeglasses: ${std.eyeglassDesc}.`;
         }
 
+        const extraEl = document.getElementById('photoSpecExtra');
+        if (extraEl) {
+          extraEl.innerHTML = `
+            <div><strong>Min Resolution:</strong> ${std.minWidthPx} × ${std.minHeightPx} px (300 DPI)</div>
+            <div><strong>Aspect Ratio:</strong> ${(std.widthMm / std.heightMm).toFixed(2)} (${std.widthMm}×${std.heightMm}mm)</div>
+            <div style="grid-column:1 / -1"><strong>Head Coverings:</strong> ${escapeHTML(std.headCoveringDesc || 'Religious headwear permitted; full face from chin to forehead must be visible.')}</div>
+          `;
+        }
+
         const previewContainer = document.getElementById('photoPreviewContainer');
         const canvas = document.getElementById('photoCanvas');
         if (previewContainer && canvas) {
@@ -2268,41 +2282,72 @@
   // Interactive Tools Listeners
   function setupToolListeners() {
     setupPhotoToolListeners();
-    // 6-Month Expiry Tool
+
+    // Populate Destination Dropdown from DESTINATION_VALIDITY_RULES
+    const destSelect = document.getElementById('calcDestination');
+    const pt = getPassportTools();
+    const destRules = (pt && pt.DESTINATION_VALIDITY_RULES) || (typeof DESTINATION_VALIDITY_RULES !== 'undefined' ? DESTINATION_VALIDITY_RULES : null);
+    if (destSelect && destRules) {
+      const sortedKeys = Object.keys(destRules).sort((a, b) => 
+        (destRules[a].name || a).localeCompare(destRules[b].name || b)
+      );
+      destSelect.innerHTML = sortedKeys.map(k => {
+        const d = destRules[k];
+        const isSelected = k === 'TH' ? ' selected' : '';
+        return `<option value="${k}"${isSelected}>${escapeHTML(d.name || k)} (${k})</option>`;
+      }).join('');
+    }
+
+    // Destination Entry Validity & Expiry Tool
     const btnCheckExpiry = document.getElementById('btnCheckExpiry');
     if (btnCheckExpiry) {
       btnCheckExpiry.addEventListener('click', () => {
         const passExpiry = document.getElementById('calcPassportExpiry')?.value;
         const travelDate = document.getElementById('calcTravelDate')?.value;
+        const returnDate = document.getElementById('calcReturnDate')?.value;
+        const issueDate = document.getElementById('calcPassportIssue')?.value;
+        const destination = document.getElementById('calcDestination')?.value || 'TH';
         const resEl = document.getElementById('calcExpiryResult');
+        if (!resEl) return;
 
-        const evalRes = PassportTools.evaluateExpiry(passExpiry, travelDate);
+        const tools = getPassportTools();
+        if (!tools) return;
+
+        const evalRes = tools.evaluateDestinationValidity(passExpiry, travelDate, returnDate, destination, issueDate);
         if (!evalRes.valid && evalRes.error) {
-          resEl.innerHTML = `<div class="notice" style="background:#fee2e2;color:#991b1b">${evalRes.error}</div>`;
+          resEl.innerHTML = `<div class="notice" style="background:#fee2e2;color:#991b1b;margin-top:14px;padding:12px;border-radius:8px">${escapeHTML(evalRes.error)}</div>`;
           return;
         }
 
-        const colorMap = {
-          EXPIRED_AT_TRAVEL: { bg: '#fee2e2', border: '#f87171', text: '#991b1b' },
-          LESS_THAN_3_MONTHS: { bg: '#ffedd5', border: '#fb923c', text: '#9a3412' },
-          LESS_THAN_6_MONTHS: { bg: '#fef3c7', border: '#fcd34d', text: '#92400e' },
-          SUFFICIENT_VALIDITY: { bg: '#ecfdf5', border: '#6ee7b7', text: '#065f46' }
-        };
-        const c = colorMap[evalRes.status] || colorMap.SUFFICIENT_VALIDITY;
+        const isPass = evalRes.pass !== false;
+        const bg = isPass ? '#ecfdf5' : '#fef2f2';
+        const border = isPass ? '#6ee7b7' : '#fca5a5';
+        const textColor = isPass ? '#065f46' : '#991b1b';
+        const pillBg = isPass ? '#059669' : '#dc2626';
 
         resEl.innerHTML = `
-          <div style="background:${c.bg};border:1px solid ${c.border};border-radius:12px;padding:16px;margin-top:14px">
-            <div style="display:flex;align-items:center;gap:10px">
-              <span class="status-pill" style="background:${c.text};color:#fff">${evalRes.badge}</span>
-              <strong style="color:${c.text};font-size:14px">${evalRes.daysRemaining} days remaining</strong>
+          <div style="background:${bg};border:1px solid ${border};border-radius:12px;padding:16px;margin-top:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+              <span class="status-pill" style="background:${pillBg};color:#fff;font-size:11px">${escapeHTML(evalRes.badge || (isPass ? 'VALID FOR ENTRY' : 'RENEWAL REQUIRED'))}</span>
+              <strong style="color:${textColor};font-size:13px">${escapeHTML(evalRes.destination || '')}</strong>
             </div>
-            <p style="margin:8px 0 0;font-size:13px;color:${c.text};line-height:1.6">${evalRes.message}</p>
+            <p style="margin:10px 0 0;font-size:13px;color:${textColor};line-height:1.6">${escapeHTML(evalRes.message)}</p>
+            ${evalRes.sourceUrl ? `
+              <div style="margin-top:10px;font-size:12px">
+                <a href="${escapeHTML(evalRes.sourceUrl)}" target="_blank" rel="noopener noreferrer" style="color:${textColor};font-weight:600;text-decoration:underline">
+                  Official Statutory Immigration Source →
+                </a>
+              </div>
+            ` : ''}
+            <div style="margin-top:10px;font-size:11px;color:#64748b;line-height:1.4">
+              ⚠️ Note: Airline boarding gate agents strictly enforce IATA Timatic rules. If in doubt, renew before traveling.
+            </div>
           </div>
         `;
       });
     }
 
-    // Mismatch Analyzer
+    // Name & DOB Discrepancy Analyzer
     const btnAnalyzeMismatch = document.getElementById('btnAnalyzeMismatch');
     if (btnAnalyzeMismatch) {
       btnAnalyzeMismatch.addEventListener('click', () => {
@@ -2310,23 +2355,149 @@
         const nameB = document.getElementById('mismatchNameB')?.value;
         const dobA = document.getElementById('mismatchDobA')?.value;
         const dobB = document.getElementById('mismatchDobB')?.value;
+        const countryCode = document.getElementById('mismatchCountry')?.value || 'IN';
         const resEl = document.getElementById('mismatchResult');
+        if (!resEl) return;
 
-        const analysis = PassportTools.analyzeNameDiscrepancy(nameA, nameB, dobA, dobB);
-        if (analysis.recommendations.length === 0) {
-          resEl.innerHTML = `
-            <div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:12px;padding:16px;margin-top:14px;color:#065f46">
-              <strong>Perfect Match!</strong>
-              <p style="margin:4px 0 0;font-size:13px">No significant discrepancy was detected between Document A and Document B.</p>
+        const tools = getPassportTools();
+        if (!tools) return;
+
+        // Check for date ambiguity
+        let ambiguityNoticeHtml = '';
+        if (dobA) {
+          const ambA = tools.checkDateAmbiguity(dobA);
+          if (ambA.isAmbiguous) {
+            ambiguityNoticeHtml += `
+              <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px;margin-bottom:12px;font-size:12px;color:#92400e">
+                <strong>⚠️ Ambiguous Primary DOB (${escapeHTML(dobA)}):</strong> ${escapeHTML(ambA.warning)}
+                <div style="margin-top:4px">Interpretations: <em>${ambA.possibleInterpretations.join(' OR ')}</em></div>
+              </div>
+            `;
+          }
+        }
+        if (dobB && dobB !== dobA) {
+          const ambB = tools.checkDateAmbiguity(dobB);
+          if (ambB.isAmbiguous) {
+            ambiguityNoticeHtml += `
+              <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;padding:10px;margin-bottom:12px;font-size:12px;color:#92400e">
+                <strong>⚠️ Ambiguous Secondary DOB (${escapeHTML(dobB)}):</strong> ${escapeHTML(ambB.warning)}
+                <div style="margin-top:4px">Interpretations: <em>${ambB.possibleInterpretations.join(' OR ')}</em></div>
+              </div>
+            `;
+          }
+        }
+
+        const analysis = tools.analyzeNameDiscrepancy(nameA, nameB, dobA, dobB, countryCode);
+
+        const severityColorMap = {
+          none: { bg: '#ecfdf5', border: '#6ee7b7', text: '#065f46' },
+          minor: { bg: '#fefce8', border: '#fef08a', text: '#854d0e' },
+          significant: { bg: '#fef2f2', border: '#fca5a5', text: '#991b1b' }
+        };
+        const c = severityColorMap[analysis.discrepancySeverity] || severityColorMap.minor;
+
+        let nextStepsHtml = '';
+        if (analysis.nextSteps && analysis.nextSteps.length > 0) {
+          const ns = analysis.nextSteps[0];
+          nextStepsHtml = `
+            <div style="margin-top:14px;padding-top:12px;border-top:1px dashed #cbd5e1">
+              <strong style="font-size:13px;color:#0f172a;display:block;margin-bottom:8px">Statutory Resolution Next Steps (${escapeHTML(ns.jurisdiction)}):</strong>
+              ${ns.minorPath ? `<p style="font-size:12px;color:#334155;margin:4px 0"><strong>Minor / Spelling Clerical:</strong> ${escapeHTML(ns.minorPath)}</p>` : ''}
+              ${ns.marriagePath ? `<p style="font-size:12px;color:#334155;margin:4px 0"><strong>Post-Marriage Name:</strong> ${escapeHTML(ns.marriagePath)}</p>` : ''}
+              ${ns.majorPath ? `<p style="font-size:12px;color:#334155;margin:4px 0"><strong>Major Change / Gazette:</strong> ${escapeHTML(ns.majorPath)}</p>` : ''}
+              ${ns.sourceUrl ? `<p style="font-size:12px;margin:6px 0 0"><a href="${escapeHTML(ns.sourceUrl)}" target="_blank" rel="noopener noreferrer" style="color:#0f5132;font-weight:600;text-decoration:underline">Official Statutory Procedure Source →</a></p>` : ''}
             </div>
           `;
-        } else {
-          resEl.innerHTML = `
-            <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:16px;margin-top:14px;color:#92400e">
-              <strong style="font-size:14px">Discrepancy Analysis Findings:</strong>
-              <ul style="margin:8px 0 0;padding-left:18px;font-size:13px;line-height:1.6">
+        }
+
+        resEl.innerHTML = `
+          <div style="background:${c.bg};border:1px solid ${c.border};border-radius:12px;padding:16px;margin-top:14px">
+            ${ambiguityNoticeHtml}
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+              <span class="status-pill" style="background:${analysis.discrepancySeverity === 'none' ? '#059669' : (analysis.discrepancySeverity === 'minor' ? '#ca8a04' : '#dc2626')};color:#fff;font-size:11px">
+                ${analysis.discrepancySeverity === 'none' ? 'PERFECT MATCH' : (analysis.discrepancySeverity === 'minor' ? 'MINOR CLERICAL / TRANSLITERATION VARIATION' : 'SUBSTANTIVE LEGAL DISCREPANCY')}
+              </span>
+              <span style="font-size:12px;color:${c.text};font-weight:600">Classification: ${escapeHTML(analysis.nameStatus || 'MATCH')}</span>
+            </div>
+            ${analysis.explanation ? `<p style="margin:10px 0 0;font-size:13px;color:${c.text};line-height:1.6">${escapeHTML(analysis.explanation)}</p>` : ''}
+            ${analysis.recommendations && analysis.recommendations.length > 0 ? `
+              <ul style="margin:8px 0 0;padding-left:18px;font-size:12px;line-height:1.6;color:${c.text}">
                 ${analysis.recommendations.map(r => `<li>${escapeHTML(r)}</li>`).join('')}
               </ul>
+            ` : ''}
+            ${nextStepsHtml}
+          </div>
+        `;
+      });
+    }
+
+    // Toggle Calendar Converter Panel
+    const btnToggleCalendar = document.getElementById('btnToggleCalendarTool');
+    const calendarPanel = document.getElementById('calendarConverterPanel');
+    if (btnToggleCalendar && calendarPanel) {
+      btnToggleCalendar.addEventListener('click', () => {
+        calendarPanel.style.display = calendarPanel.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+
+    // Execute Calendar Conversion
+    const btnConvertCalendar = document.getElementById('btnConvertCalendar');
+    if (btnConvertCalendar) {
+      btnConvertCalendar.addEventListener('click', () => {
+        const cType = document.getElementById('convCalendarType')?.value || 'thai_buddhist';
+        const year = document.getElementById('convYear')?.value;
+        const month = document.getElementById('convMonth')?.value || 1;
+        const day = document.getElementById('convDay')?.value || 1;
+        const convResEl = document.getElementById('calendarConvResult');
+
+        const tools = getPassportTools();
+        if (!tools || !year) {
+          if (convResEl) convResEl.innerHTML = '<span style="color:#b91c1c;font-size:12px">Please enter a valid year.</span>';
+          return;
+        }
+
+        const conv = tools.convertAlternateCalendar(year, month, day, cType);
+        if (convResEl) {
+          convResEl.innerHTML = `
+            <div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:10px;font-size:12px;color:#065f46">
+              <strong>Gregorian Equivalent:</strong> ${escapeHTML(conv.gregorianDate)} (Year ${conv.gregorianYear} CE)
+              <div style="margin:4px 0">${escapeHTML(conv.explanation)}</div>
+              <div style="font-size:11px;color:#047857;margin-top:4px"><em>${escapeHTML(conv.officialNote)}</em></div>
+            </div>
+          `;
+        }
+      });
+    }
+
+    // Toggle Approx DOB Panel
+    const btnToggleApprox = document.getElementById('btnToggleApproxDob');
+    const approxPanel = document.getElementById('approxDobPanel');
+    if (btnToggleApprox && approxPanel) {
+      btnToggleApprox.addEventListener('click', () => {
+        approxPanel.style.display = approxPanel.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+
+    // Execute Approx DOB Check
+    const btnCheckApprox = document.getElementById('btnCheckApproxDob');
+    if (btnCheckApprox) {
+      btnCheckApprox.addEventListener('click', () => {
+        const year = document.getElementById('approxYearInput')?.value;
+        const countryCode = document.getElementById('mismatchCountry')?.value || 'IN';
+        const approxResEl = document.getElementById('approxDobResult');
+
+        const tools = getPassportTools();
+        if (!tools || !year) {
+          if (approxResEl) approxResEl.innerHTML = '<span style="color:#b91c1c;font-size:12px">Please enter a birth year.</span>';
+          return;
+        }
+
+        const approx = tools.getApproximateDobGuidance(year, countryCode);
+        if (approxResEl) {
+          approxResEl.innerHTML = `
+            <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px;font-size:12px;color:#166534">
+              <strong>${escapeHTML(approx.country)} Standardized Format:</strong> <code>${escapeHTML(approx.recordedDob)}</code>
+              <p style="margin:6px 0 0;line-height:1.5">${escapeHTML(approx.guidance)}</p>
             </div>
           `;
         }

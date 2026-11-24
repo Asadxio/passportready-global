@@ -2821,6 +2821,54 @@ class PassportRulesEngine {
         status: 'pending',
         category: 'documents'
       });
+    } else if (service === 'refugee_stateless') {
+      checklist.push({
+        id: 'refugee_status_determination',
+        title: 'UNHCR / National Asylum Determination Letter',
+        details: 'Formal grant of asylum, refugee status determination (RSD) letter, or Certificate of Eligibility under the 1951 Refugee Convention or 1954 Stateless Persons Convention.',
+        mandatory: true,
+        status: 'pending',
+        category: 'legal'
+      });
+      checklist.push({
+        id: 'refugee_residence_permit',
+        title: 'Proof of Lawful Stay in Country of Refuge',
+        details: 'Valid resident permit or biometric stay document issued by the host government acknowledging refugee or protected status.',
+        mandatory: true,
+        status: 'pending',
+        category: 'documents'
+      });
+      flags.push({
+        severity: 'critical',
+        code: 'REFUGEE_COUNTRY_OF_ORIGIN_PROHIBITION',
+        title: 'Strict Prohibition: Do Not Travel to Country of Origin',
+        message: 'Under Article 1(C) of the 1951 Geneva Refugee Convention, traveling to your country of origin or seeking consular assistance from its authorities is considered voluntary re-availment of national protection and will trigger immediate cessation/revocation of refugee status.',
+        action: 'Ensure your travel itinerary excludes your country of origin and any transit through its territory.'
+      });
+    } else if (service === 'emergency' || service === 'emergency_travel_certificate') {
+      checklist.push({
+        id: 'emergency_flight_itinerary',
+        title: 'Confirmed Immediate Flight Itinerary / Return Ticket',
+        details: 'Confirmed airline booking or boarding itinerary showing direct return travel to your home country within 7 to 30 days.',
+        mandatory: true,
+        status: 'pending',
+        category: 'documents'
+      });
+      checklist.push({
+        id: 'emergency_police_report',
+        title: 'Local Police Loss / Theft Report',
+        details: 'Official police report filed in the jurisdiction where the passport was lost or stolen abroad.',
+        mandatory: true,
+        status: 'pending',
+        category: 'documents'
+      });
+      flags.push({
+        severity: 'info',
+        code: 'EMERGENCY_TRAVEL_CERTIFICATE_RESTRICTION',
+        title: 'Single-Journey Direct Return Restriction',
+        message: 'Emergency Travel Certificates (ETCs) / Emergency Passports are issued with limited validity (7–30 days) solely for direct transit back to your home country and cannot be used for leisure travel to third countries.',
+        action: 'Upon arrival in your home country, surrender the ETC to immigration or apply for standard passport replacement.'
+      });
     }
 
     // 4. Age-Specific Safeguards
@@ -2850,6 +2898,69 @@ class PassportRulesEngine {
         mandatory: true,
         status: 'pending',
         category: 'legal'
+      });
+    }
+
+    // Special Categories & Circumstances Evaluation (Phase 2.6)
+    if (special === 'dual_nat') {
+      let dualNatText = 'Dual nationality rules vary strictly by jurisdiction. Check whether your home country permits multiple citizenships or requires formal surrender.';
+      if (countryCode === 'IN') {
+        dualNatText = 'Under Article 9 of the Constitution of India and Section 9(1) of the Citizenship Act 1955, India does not permit dual citizenship. Upon acquiring foreign citizenship, your Indian citizenship ceases automatically; you must surrender your Indian passport within 90 days and obtain a Surrender Certificate before applying for OCI.';
+      } else if (countryCode === 'US') {
+        dualNatText = 'The United States permits dual nationality. However, under 8 U.S.C. § 1185(b), U.S. citizens must enter and depart the United States using a valid U.S. passport.';
+      } else if (countryCode === 'MY') {
+        dualNatText = 'Under Article 24 of the Federal Constitution of Malaysia, the government may deprive citizenship if a citizen voluntarily acquires foreign citizenship or exercises rights of a foreign citizen.';
+      } else if (countryCode === 'JP') {
+        dualNatText = 'Under Article 14 of the Japanese Nationality Law, citizens with multiple nationalities acquired by birth must choose either Japanese or foreign citizenship before age 20.';
+      }
+      flags.push({
+        severity: 'info',
+        code: 'DUAL_NATIONALITY_STATUTORY_RULE',
+        title: 'Dual Nationality & Statutory Compliance',
+        message: dualNatText,
+        action: 'Review the statutory citizenship rules of both countries prior to filing.'
+      });
+    } else if (special === 'surrogacy_adoption' || special === 'custody') {
+      checklist.push({
+        id: 'court_custody_adoption_order',
+        title: 'Court Adoption Decree / Certified Parentage Order',
+        details: 'Final court adoption decree (Hague Article 23 Certificate of Conformity for intercountry adoptions) or certified family court parental order establishing legal parentage.',
+        mandatory: true,
+        status: 'pending',
+        category: 'legal'
+      });
+      flags.push({
+        severity: 'info',
+        code: 'ADOPTION_SURROGACY_SAFEGUARD',
+        title: 'Minor Parentage & Custody Safeguards',
+        message: 'Passports for adopted children or children born via surrogacy require verified court parentage decrees and full parental consent under statutory child protection frameworks.',
+        action: 'Provide certified original court decrees and DNA parentage evidence if mandated by consular authorities.'
+      });
+    } else if (special === 'gender_marker') {
+      let genderText = 'Official gender marker policies vary by country: US and Canada allow self-certification (M/F/X) without medical evidence; UK requires GRC or doctor letter (M/F only); India requires District Magistrate certificate under the Transgender Persons Act 2019.';
+      if (countryCode === 'US') {
+        genderText = 'Under US Department of State policy, you may self-certify your gender marker as M, F, or X without medical certification or matching civil birth certificates.';
+      } else if (countryCode === 'GB') {
+        genderText = 'HMPO requires a Gender Recognition Certificate (GRC) or a letter from a registered medical practitioner confirming that the transition is likely to be permanent. Note: UK does not currently issue X markers.';
+      } else if (countryCode === 'IN') {
+        genderText = 'Under Section 6 of the Transgender Persons (Protection of Rights) Act, 2019, obtain a Certificate of Identity from the District Magistrate to update your passport gender marker.';
+      }
+      checklist.push({
+        id: 'gender_marker_documentation',
+        title: 'Gender Marker Statutory Supporting Evidence',
+        details: genderText,
+        mandatory: true,
+        status: 'pending',
+        category: 'identity'
+      });
+    } else if (special === 'marriage_divorce_name') {
+      checklist.push({
+        id: 'civil_marriage_divorce_certificate',
+        title: 'Government Marriage Certificate / Decree Absolute',
+        details: 'Original certified civil marriage certificate (or final divorce decree absolute specifying surname resumption) issued by a civil registrar or court.',
+        mandatory: true,
+        status: 'pending',
+        category: 'identity'
       });
     }
 
