@@ -367,6 +367,7 @@
       `;
     }
 
+    updateCountrySpecificFormFields(c.alpha2, c.name, c.portal_status);
     if (officialBtn && c.authority_url) {
       officialBtn.style.display = 'inline-flex';
       officialBtn.href = c.authority_url;
@@ -378,6 +379,139 @@
 
     return c;
   }
+  function updateCountrySpecificFormFields(countryCode, countryName, portalStatus) {
+    if (!countryCode) return;
+    const applicantCatEl = document.getElementById('applicantCategory');
+    const concessionNotice = document.getElementById('countryConcessionNotice');
+    const optUrgent = document.getElementById('optUrgentExpedited');
+    const lossTierContainer = document.getElementById('lossTierContainer');
+    const labelInfant = document.getElementById('labelAgeInfant');
+    const labelMinor = document.getElementById('labelAgeMinor');
+    const labelAdult = document.getElementById('labelAgeAdult');
+    const labelSenior = document.getElementById('labelAgeSenior');
+    const lossTierEl = document.getElementById('lossTier');
+
+    // 1. Concession Notice for Awaiting Research
+    if (concessionNotice) {
+      if (portalStatus !== 'verified') {
+        concessionNotice.style.display = 'block';
+        concessionNotice.innerHTML = `
+          <div style="background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:6px;font-size:0.85rem;color:#92400e">
+            <strong>Awaiting Research Notice for ${escapeHTML(countryName || countryCode)}:</strong> Specific statutory concession categories and tiered validity rules are awaiting verification. Standard citizen baseline questions apply. Consult the linked official portal for local exemptions.
+          </div>
+        `;
+      } else {
+        concessionNotice.style.display = 'none';
+        concessionNotice.innerHTML = '';
+      }
+    }
+
+    // 2. Dynamic Concessions (#applicantCategory)
+    if (applicantCatEl) {
+      const currentCat = applicantCatEl.value || (state.answers ? state.answers.applicantCategory : 'standard');
+      let options = [];
+      if (countryCode === 'MY') {
+        options = [
+          { value: 'standard', label: 'Standard Citizen Applicant' },
+          { value: 'oku', label: 'Person with Disabilities (OKU cardholder)' },
+          { value: 'student_overseas', label: "Student under 21 (Bachelor's degree abroad)" },
+          { value: 'hajj_pilgrim', label: 'Hajj Pilgrim (with Tabung Haji letter)' },
+          { value: 'immigration_officers_staff', label: 'Immigration Department Staff (Pegawai/Kakitangan JIM)' },
+          { value: 'pmd_pmr_diplomatic_official', label: 'PMD / PMR Diplomatic or Official Passport (KLN approval)' },
+          { value: 'pma_dependents', label: 'PMA Dependents (aligned with PMD/PMR Principal)' },
+          { value: 'married_under_17', label: 'Legally Married Minor (under 17)' }
+        ];
+      } else if (countryCode === 'IN') {
+        options = [
+          { value: 'standard', label: 'Standard Citizen Applicant' },
+          { value: 'senior', label: 'Senior Citizen (60+ / 10% rebate on fresh passport)' },
+          { value: 'govt_servant', label: 'Government / PSU Employee (Annexure A / Prior Intimation / NOC)' },
+          { value: 'tatkaal', label: 'Tatkaal Scheme Applicant (Urgent route)' }
+        ];
+      } else if (countryCode === 'US') {
+        options = [
+          { value: 'standard', label: 'Standard US Citizen' },
+          { value: 'no_fee_official', label: 'Special Issuance / Official Passport (No Fee)' }
+        ];
+      } else if (countryCode === 'GB') {
+        options = [
+          { value: 'standard', label: 'Standard British Citizen' },
+          { value: 'born_before_1929', label: 'Born on or before 2 September 1929 (Free Passport)' }
+        ];
+      } else {
+        options = [
+          { value: 'standard', label: 'Standard Citizen Applicant' },
+          { value: 'disability', label: 'Person with Disabilities (Accessibility Need)' },
+          { value: 'senior', label: 'Senior Citizen' }
+        ];
+      }
+
+      let matchFound = options.some(o => o.value === currentCat);
+      applicantCatEl.innerHTML = options.map(opt => {
+        const isSel = (opt.value === currentCat) ? ' selected' : '';
+        return `<option value="${escapeHTML(opt.value)}"${isSel}>${escapeHTML(opt.label)}</option>`;
+      }).join('');
+      if (!matchFound) {
+        applicantCatEl.value = 'standard';
+        if (state.answers) state.answers.applicantCategory = 'standard';
+      }
+    }
+
+    // 3. Dynamic Urgency Labels (#urgency)
+    if (optUrgent) {
+      if (countryCode === 'IN') {
+        optUrgent.textContent = 'Tatkaal Scheme / Expedited (if officially available)';
+      } else if (countryCode === 'US') {
+        optUrgent.textContent = 'Expedited Service (2-3 weeks / $60 statutory fee)';
+      } else if (countryCode === 'GB') {
+        optUrgent.textContent = '1-Week Fast Track / 1-Day Premium Service';
+      } else {
+        optUrgent.textContent = 'Urgent / Expedited (if officially available)';
+      }
+    }
+
+    // 4. Country-Specific Age Labels
+    if (labelInfant && labelMinor && labelAdult && labelSenior) {
+      if (countryCode === 'MY') {
+        labelInfant.textContent = 'Child / Infant (under 12)';
+        labelMinor.textContent = 'Youth / Minor (12 to 17)';
+        labelAdult.textContent = 'Adult (18 to 59)';
+        labelSenior.textContent = 'Senior Citizen (60+)';
+      } else if (countryCode === 'US') {
+        labelInfant.textContent = 'Young Child (under 5)';
+        labelMinor.textContent = 'Child / Minor (under 16 - Form DS-11)';
+        labelAdult.textContent = 'Adult (16+ / 10-Year Book)';
+        labelSenior.textContent = 'Senior Citizen';
+      } else if (countryCode === 'GB') {
+        labelInfant.textContent = 'Young Child (under 5)';
+        labelMinor.textContent = 'Child (under 16)';
+        labelAdult.textContent = 'Adult (16+)';
+        labelSenior.textContent = 'Senior Citizen';
+      } else if (countryCode === 'IN') {
+        labelInfant.textContent = 'Infant / Young Child (under 5)';
+        labelMinor.textContent = 'Child / Minor (5 to 17)';
+        labelAdult.textContent = 'Adult (18 to 60)';
+        labelSenior.textContent = 'Senior Citizen (above 60)';
+      } else {
+        labelInfant.textContent = 'Infant / Young Child (under 5)';
+        labelMinor.textContent = 'Child / Minor (under 18)';
+        labelAdult.textContent = 'Adult (18 to 59)';
+        labelSenior.textContent = 'Senior Citizen (60+)';
+      }
+    }
+
+    // 5. Tiered Loss Replacement Container
+    if (lossTierContainer) {
+      if (countryCode === 'MY' || countryCode === 'NZ' || countryCode === 'SG') {
+        lossTierContainer.style.display = 'block';
+      } else {
+        lossTierContainer.style.display = 'none';
+        if (lossTierEl) lossTierEl.value = 'first_loss';
+        if (state.answers) delete state.answers.lossTier;
+      }
+    }
+  }
+
   // Step Navigation
   function renderStep(stepIndex) {
     state.currentStep = stepIndex;
@@ -591,13 +725,61 @@
     }
   }
 
-  // Generate Final Results Dashboard
+  // Update Documents Checked progress and status badge
+  function updateCheckedProgress() {
+    if (!state.evaluationResult || !state.evaluationResult.checklist) return;
+    const totalDocs = state.evaluationResult.checklist.length;
+    const checkedDocs = Object.keys(state.checklistChecked).filter(k => state.checklistChecked[k] && state.evaluationResult.checklist.some(c => c.id === k)).length;
+
+    const docCountEl = document.getElementById('resDocCount');
+    const docTotalEl = document.getElementById('resDocTotal');
+    const resScoreNum = document.getElementById('resScoreNum');
+    const resScoreBar = document.getElementById('resScoreBar');
+    const badgeEl = document.getElementById('resStatusBadge');
+
+    if (docCountEl) docCountEl.textContent = checkedDocs;
+    if (docTotalEl) docTotalEl.textContent = totalDocs;
+
+    const pct = totalDocs > 0 ? Math.round((checkedDocs / totalDocs) * 100) : 0;
+    if (resScoreNum) {
+      resScoreNum.textContent = `${pct}% Checked`;
+    }
+    if (resScoreBar) {
+      resScoreBar.style.width = `${pct}%`;
+      if (pct === 100) {
+        resScoreBar.style.backgroundColor = 'var(--forest-base)';
+      } else if (pct >= 50) {
+        resScoreBar.style.backgroundColor = '#d97706';
+      } else {
+        resScoreBar.style.backgroundColor = '#dc2626';
+      }
+    }
+
+    if (badgeEl) {
+      if (state.evaluationResult.statusLabel === 'PREPARED') {
+        if (checkedDocs === totalDocs && totalDocs > 0) {
+          badgeEl.textContent = (typeof getI18nText === 'function' ? getI18nText('status_prepared') : null) || 'ALL DOCUMENTS READY';
+          badgeEl.className = 'status-pill status-verified';
+        } else {
+          badgeEl.textContent = `CHECKLIST IN PROGRESS (${checkedDocs}/${totalDocs})`;
+          badgeEl.className = 'status-pill status-linked';
+        }
+      }
+    }
+  }
+
+  // Generate Final Results Dashboard (only renders when wizard is completed)
   function generateFinalResults() {
+    if (state.currentStep < state.totalSteps - 1) {
+      console.warn('Cannot render results before wizard completion.');
+      return;
+    }
     syncInputsToState();
     const currentLang = (typeof CURRENT_LANG !== 'undefined') ? CURRENT_LANG : 'en';
     const result = rulesEngine.evaluate(state.answers, currentLang);
     state.evaluationResult = result;
     renderResultsDashboard(result, true);
+    updateCheckedProgress();
   }
 
   function renderResultsDashboard(result, scrollIntoView = false) {
@@ -1558,6 +1740,7 @@
     if (itemEl) {
       itemEl.classList.toggle('is-checked', !!state.checklistChecked[id]);
     }
+    updateCheckedProgress();
   }
 
   // Country Directory Filter Counts & Dynamic Labeling
@@ -1574,6 +1757,10 @@
 
   function updateDirectoryFilterCounts() {
     const counts = getDirectoryCounts();
+    const headingEl = document.getElementById('dirMainHeading');
+    if (headingEl) {
+      headingEl.textContent = `${counts.verified} Verified · ${counts.linked} Portal Linked · ${counts.needs_research} Awaiting Research`;
+    }
     const filterButtons = document.querySelectorAll('[data-dir-filter]');
     filterButtons.forEach(btn => {
       const filterKey = btn.dataset.dirFilter;
@@ -1637,16 +1824,46 @@
       const statusClass = isVerified ? 'status-verified' : (isLinked ? 'status-linked' : 'status-needs-research');
       const statusText = isVerified ? 'VERIFIED' : (isLinked ? 'PORTAL LINKED' : 'AWAITING RESEARCH');
 
+      let pack = null;
+      if (typeof rulePacks !== 'undefined' && rulePacks[c.alpha2]) {
+        pack = rulePacks[c.alpha2];
+      }
+      const lastVerifiedDate = pack?.last_reviewed || c.last_source_reviewed || (isVerified ? '2026-10-19' : null);
+      let isStale = false;
+      if (isVerified && lastVerifiedDate) {
+        const reviewTime = new Date(lastVerifiedDate).getTime();
+        const now = Date.now();
+        if (!isNaN(reviewTime) && (now - reviewTime) > 15552000000) { // > 180 days
+          isStale = true;
+        }
+      }
+
+      const verifiedBadge = isVerified
+        ? `<div style="font-size:11px;color:#166534;margin-top:4px">✓ Verified: ${escapeHTML(lastVerifiedDate)}</div>`
+        : `<div style="font-size:11px;color:#92400e;margin-top:4px">⏳ Awaiting research</div>`;
+
+      const staleBadge = isStale
+        ? `<span class="status-pill status-stale" style="background:#fef3c7;color:#92400e;border:1px solid #f59e0b;font-size:9px;padding:1px 5px">⚠️ Stale (>180d)</span>`
+        : '';
+
+      const sourceLink = c.authority_url
+        ? `<a href="${escapeHTML(c.authority_url)}" target="_blank" rel="noopener" class="country-source-link" onclick="event.stopPropagation()" style="font-size:11px;color:var(--forest-base);text-decoration:underline">Official Portal ↗</a>`
+        : `<span style="font-size:10px;color:#94a3b8">Portal link pending</span>`;
+
       return `
         <article class="country-card" data-country-code="${c.alpha2}" role="button" tabindex="0">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
             <span class="country-flag">${flagEmoji(c.alpha2)}</span>
-            <span class="status-pill ${statusClass}">${statusText}</span>
+            <div style="display:flex;align-items:center;gap:4px">
+              <span class="status-pill ${statusClass}">${statusText}</span>
+              ${staleBadge}
+            </div>
           </div>
           <strong class="country-name">${escapeHTML(c.name)}</strong>
           <small class="country-authority">${escapeHTML(c.authority_label || 'Official source in review')}</small>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:11px;color:#64748b">
-            <span>ISO: ${c.alpha2} / ${c.alpha3}</span>
+          ${verifiedBadge}
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid #f1f5f9;font-size:11px">
+            ${sourceLink}
             <span style="color:#0f5132;font-weight:700">Select →</span>
           </div>
         </article>

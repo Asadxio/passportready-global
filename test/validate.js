@@ -5407,6 +5407,74 @@ runTest('Phase 4.13 Feature: PWA Offline Support, Visual Modernization & Decentr
   assert.strictEqual(typeof app.openReportChangeModal, 'function', 'openReportChangeModal must be exported');
 });
 
+// ============================================================================
+// Phase 1 Audit: Legal Pages, Field Leakage Isolation, Score Integrity & Directory Honesty
+// ============================================================================
+runTest('Phase 1 Audit: Legal Pages, Field Leakage Isolation, Score Integrity, Directory Honesty & Sourced Claims', () => {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+
+  // 1.1 Dead footer links resolution: all 5 legal pages exist & 0 href="#" remain
+  const legalPages = ['about/index.html', 'methodology/index.html', 'privacy/index.html', 'terms/index.html', 'report/index.html'];
+  legalPages.forEach(p => {
+    assert(fs.existsSync(path.join(__dirname, '..', p)), `Legal page must exist on disk: ${p}`);
+  });
+  assert(!indexHtml.includes('href="#"'), 'index.html must NOT contain any dead href="#" placeholders');
+  assert(indexHtml.includes('href="/about/"'), 'index.html must link to /about/');
+  assert(indexHtml.includes('href="/methodology/"'), 'index.html must link to /methodology/');
+  assert(indexHtml.includes('href="/privacy/"'), 'index.html must link to /privacy/');
+  assert(indexHtml.includes('href="/terms/"'), 'index.html must link to /terms/');
+  assert(indexHtml.includes('href="/report/"'), 'index.html must link to /report/');
+
+  // 1.2 Country-specific field leakage prevention
+  assert(!indexHtml.includes('<option value="oku">'), 'index.html static HTML must not leak Malaysia-only OKU option');
+  assert(!indexHtml.includes('<option value="hajj_pilgrim">'), 'index.html static HTML must not leak Malaysia-only Hajj pilgrim option');
+  assert(!indexHtml.includes('<option value="pmd_pmr_diplomatic_official">'), 'index.html static HTML must not leak Malaysia-only PMD/PMR option');
+  assert(!indexHtml.includes('under 5 / 6'), 'index.html must not use ambiguous "under 5 / 6" age label');
+  assert(!indexHtml.includes('under 16 / 18'), 'index.html must not use ambiguous "under 16 / 18" age label');
+
+  // 1.3 Readiness score integrity & hero preview watermark
+  assert(indexHtml.includes('demo-watermark-banner'), 'Hero preview card must include prominent demo watermark banner');
+  assert(indexHtml.includes('id="resDocCheckedMetric"'), 'Results card must include Documents Checked metric');
+
+  // Rules engine unconfirmed proof reduction test
+  const { PassportRulesEngine } = require('../js/rules-engine.js');
+  const rulePacks = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'country-rules.json'), 'utf8'));
+  const engine = new PassportRulesEngine(rulePacks);
+  const unconfirmedProfile = {
+    countryCode: 'IN',
+    service: 'first_passport',
+    location: 'inside',
+    age: 'adult',
+    urgency: 'standard',
+    birthProof: 'unanswered',
+    addressProof: 'unanswered',
+    citizenshipProof: 'unanswered'
+  };
+  const unconfirmedRes = engine.evaluate(unconfirmedProfile);
+  assert(unconfirmedRes.readinessScore < 100, 'Unconfirmed proofs must reduce readiness score below 100');
+  assert.notStrictEqual(unconfirmedRes.statusLabel, 'PREPARED', 'Unconfirmed profile must never achieve PREPARED status');
+  assert(unconfirmedRes.flags.some(f => f.code === 'BIRTH_PROOF_UNCONFIRMED'), 'Must emit BIRTH_PROOF_UNCONFIRMED flag');
+
+  // 1.4 Directory honesty: split headline & card verified badges
+  assert(indexHtml.includes('id="dirMainHeading"'), 'index.html must contain #dirMainHeading for dynamic breakdown');
+  assert(indexHtml.includes('27 Verified · 0 Portal Linked · 222 Awaiting Research'), 'index.html must state honest 27/0/222 partition');
+
+  // 1.5 Claims audit report & changelog exist
+  assert(fs.existsSync(path.join(__dirname, '..', 'AUDIT_REPORT.md')), 'AUDIT_REPORT.md must exist in repository root');
+  const auditReport = fs.readFileSync(path.join(__dirname, '..', 'AUDIT_REPORT.md'), 'utf8');
+  assert(auditReport.includes('## 3. Statutory Legal & Factual Claims Verification Table'), 'AUDIT_REPORT.md must contain verification table');
+  assert(auditReport.includes('https://eur-lex.europa.eu/'), 'AUDIT_REPORT.md must cite EUR-Lex official sources');
+
+  assert(fs.existsSync(path.join(__dirname, '..', 'CHANGELOG.md')), 'CHANGELOG.md must exist in repository root');
+  const changelog = fs.readFileSync(path.join(__dirname, '..', 'CHANGELOG.md'), 'utf8');
+  assert(changelog.includes('Phase 1: Critical Trust, Legal & Integrity Fixes'), 'CHANGELOG.md must document Phase 1');
+
+  // 1.6 Feedback channel
+  const reportHtml = fs.readFileSync(path.join(__dirname, '..', 'report', 'index.html'), 'utf8');
+  assert(reportHtml.includes('id="reportForm"'), 'Report page must have interactive report form');
+  assert(reportHtml.includes('mailto:updates@myoss.in'), 'Report page must support mailto fallback without third-party tracker');
+});
+
 console.log('\n====================================================');
 console.log(`Results: ${passedTests} of ${totalTests} tests passed.`);
 console.log('====================================================');

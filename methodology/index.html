@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Methodology — PassportReady</title>
+  <meta name="description" content="Discover PassportReady's official-source verification methodology, source hierarchy, audit lifecycle, and coverage classification standards.">
+  <link rel="canonical" href="https://passport.myoss.in/methodology/">
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#082d25">
+  <link rel="stylesheet" href="../css/styles.css?v=20261020_01">
+  <style>
+    .page-container {
+      width: min(900px, calc(100% - 40px));
+      margin: 40px auto 80px auto;
+    }
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .content-card h1 {
+      color: var(--forest-dark);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+    .content-card .lead {
+      font-size: 1.15rem;
+      color: var(--slate-body);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .content-card h2 {
+      color: var(--forest-base);
+      font-size: 1.4rem;
+      margin: 32px 0 12px 0;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 6px;
+    }
+    .content-card p, .content-card li {
+      color: var(--slate-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .content-card ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--mint-soft);
+      color: var(--forest-base);
+      margin-bottom: 16px;
+    }
+    .tier-box {
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--forest-base);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      background: #fafafa;
+    }
+    .tier-title {
+      font-weight: 700;
+      color: var(--forest-dark);
+      margin-bottom: 4px;
+      font-size: 1.05rem;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-right: 8px;
+    }
+    .status-verified { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    .status-linked { background: #e0f2fe; color: #075985; border: 1px solid #7dd3fc; }
+    .status-awaiting { background: #fef3c7; color: #92400e; border: 1px solid #fde047; }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--forest-base);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .btn-back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <span>✦ Official Government Link Aggregator & Preparation Framework</span>
+      <span>🔒 100% Client-Side Privacy — Zero Data Retention</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap headergrid">
+      <a class="brand" href="../">
+        <span class="brandmark">✦</span>
+        <span>PassportReady<small>Check before you apply</small></span>
+      </a>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="../#checker">Readiness Checker</a>
+        <a class="btn btn-outline" href="../#directory">Directory</a>
+        <a class="btn btn-outline" href="../#guides">Guides</a>
+        <a class="btn btn-outline" href="../#tools">Tools</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container" id="main-content">
+    <a href="../" class="btn-back">← Back to Home & Checker</a>
+
+    <article class="content-card">
+      <span class="badge-pill">Verification Standards · Integrity</span>
+      <h1>Research Methodology & Source Governance</h1>
+      <p class="lead">How PassportReady researches, verifies, audits, and maintains passport statutory regulations, fee schedules, document alternatives, and biometric photo criteria.</p>
+
+      <h2>The Golden Rule: Official Sources Only</h2>
+      <p>Passport requirements are statutory and administrative rules enforced by sovereign authorities. Inaccurate advice can result in rejected applications, stranded travelers, or lost non-refundable government fees. Therefore, PassportReady follows a strict rule: <strong>We never guess, invent facts, or rely on secondary travel blogs.</strong></p>
+
+      <h2>Source Hierarchy Standards</h2>
+      <div class="tier-box">
+        <div class="tier-title">Tier 1: Sovereign Primary Authorities (Mandatory for Rule Packs)</div>
+        <p>Every rule pack must be substantiated by direct documentation from the competent sovereign authority:</p>
+        <ul>
+          <li><strong>National Foreign Ministries & Departments of State</strong> (e.g. US Department of State, Ministry of External Affairs India, UK Foreign, Commonwealth & Development Office).</li>
+          <li><strong>Statutory Passport & Immigration Directorates</strong> (e.g. HM Passport Office UK, Jabatan Imigresen Malaysia, Dirección General de Pasaportes).</li>
+          <li><strong>Official Government Gazettes & Administrative Codes</strong> (e.g. US Code of Federal Regulations Title 22, Passports Act 1967 (India), Malaysian Passport Act 1966).</li>
+        </ul>
+      </div>
+
+      <div class="tier-box">
+        <div class="tier-title">Tier 2: Recognized International Standards Bodies</div>
+        <p>For cross-border interoperability and biometric specifications:</p>
+        <ul>
+          <li><strong>ICAO Doc 9303:</strong> Machine Readable Travel Documents (MRTD) published by the International Civil Aviation Organization, governing facial biometric geometry, MRZ line formats, and chip security.</li>
+          <li><strong>ISO/IEC 19794-5:</strong> Biometric data interchange formats for photographic facial images.</li>
+          <li><strong>Multilateral Border Agreements:</strong> Official texts such as Regulation (EU) 2016/399 (Schengen Borders Code).</li>
+        </ul>
+      </div>
+
+      <div class="tier-box" style="border-left-color: #ef4444; background: #fff5f5;">
+        <div class="tier-title" style="color: #991b1b;">Tier 3: Prohibited as Sources of Truth</div>
+        <p>The following are strictly banned from substantiating legal claims or fees on PassportReady:</p>
+        <ul>
+          <li>Commercial visa expediting companies or third-party visa agencies.</li>
+          <li>Travel blogs, forums, Reddit threads, and unverified social media posts.</li>
+          <li>AI-generated text or syntheses without underlying government URLs and verification dates.</li>
+        </ul>
+      </div>
+
+      <h2>Country Status Taxonomy</h2>
+      <p>Every jurisdiction in our directory is classified under one of three transparent statuses:</p>
+
+      <div style="margin-bottom: 20px;">
+        <p><span class="status-badge status-verified">Verified Rule Pack</span> <strong>Verified:</strong> Complete statutory coverage including fee schedules, accepted proof of identity/address/citizenship alternatives, photo specifications, age categories, processing pathways, and verified official portal URLs. All claims store a retrieved date and URL.</p>
+        <p><span class="status-badge status-linked">Portal Linked</span> <strong>Portal Linked:</strong> The primary government passport authority portal, appointment system, and contact page have been officially validated and monitored, but detailed multi-concession rule packs are actively being compiled.</p>
+        <p><span class="status-badge status-awaiting">Awaiting Research</span> <strong>Awaiting Research:</strong> Country indexed with ISO alpha-2 and alpha-3 codes, displaying generic baseline advisory questions with an explicit notice that local concessions and fee structures are awaiting official verification.</p>
+      </div>
+
+      <h2>Audit Cycles & Stale Rule Protection</h2>
+      <p>Government fees and passport rules change frequently. To prevent outdated advice:</p>
+      <ul>
+        <li><strong>180-Day Review Window:</strong> Every verified rule pack stores a <code>last_verified</code> date. If a country's rule pack exceeds 180 days without manual re-audit, our UI automatically displays a prominent amber <em>"Stale Rules Warning"</em> advising users to double-check directly on the linked portal.</li>
+        <li><strong>Automated Link & Hash Monitoring:</strong> An automated validator continuously tests official portal URLs to detect HTTP 404s, domain redirects, or significant content shifts.</li>
+        <li><strong>Community & User Error Reports:</strong> Users, immigration attorneys, and consular personnel can report statutory updates directly via our <a href="../report/" style="color:var(--forest-base);font-weight:600">Report Fee / Rule Update form</a>.</li>
+      </ul>
+
+      <h2>Discrepancy & Name Resolution Logic</h2>
+      <p>Our Name Discrepancy Analyzer classifies mismatches based on official consular guidelines (e.g. MEA Gazette notification rules, UK deed poll standards, US 22 CFR § 51.25):</p>
+      <ul>
+        <li><strong>Minor Discrepancy:</strong> Transliteration variants (e.g. Mohammed / Mohd), punctuation/hyphen differences, single-letter typographical slips, or expandable initials where birth and identity dates align.</li>
+        <li><strong>Significant Discrepancy:</strong> Complete surname changes, omitted legal patronymics, or differing dates of birth, which mandate certified Gazette notifications, registered deeds, or court orders.</li>
+      </ul>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap footergrid">
+      <div>
+        <a class="brand" href="../" style="color:#fff">
+          <span class="brandmark">✦</span>
+          <span>PassportReady<small style="color:#92a89e">Check before you apply</small></span>
+        </a>
+        <p data-i18n="footer_disclaimer">
+          PassportReady is an independent preparation guide and is not affiliated with any government or passport-issuing authority. We do not issue passports, schedule official appointments, or collect passport numbers. Always verify final requirements and fees on official government portals.
+        </p>
+      </div>
+      <div class="footerlinks">
+        <a href="../#checker">Readiness Checker</a>
+        <a href="../#directory">Country Directory</a>
+        <a href="../#guides">Passport Guides</a>
+        <a href="../#tools">Tools</a>
+        <a href="../about/">About Us</a>
+        <a href="./">Methodology</a>
+        <a href="../privacy/">Privacy Policy</a>
+        <a href="../terms/">Terms of Service</a>
+        <a href="../report/">📢 Report Fee / Rule Update</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

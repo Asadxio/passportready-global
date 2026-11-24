@@ -122,9 +122,12 @@
 
       <!-- Hero Preview Card -->
       <aside class="preview-card" aria-label="Illustrative Checklist Preview">
+        <div class="demo-watermark-banner" style="background:#fef3c7;border:1px solid #f59e0b;color:#92400e;padding:6px 12px;border-radius:6px;font-weight:700;font-size:0.75rem;display:flex;align-items:center;gap:6px;margin-bottom:12px">
+          <span>⚠️ INTERACTIVE DEMO ONLY</span> · <span>Illustrative example — not your assessment</span>
+        </div>
         <div class="preview-card-top">
-          <strong style="font-size:0.9375rem">Readiness Status Preview</strong>
-          <span class="status-pill status-linked">DEMONSTRATION ONLY</span>
+          <strong style="font-size:0.9375rem">Sample Readiness Preview</strong>
+          <span class="status-pill status-linked" style="background:#fef3c7;color:#92400e;border-color:#f59e0b">DEMO SPECIMEN</span>
         </div>
         <h3 style="font-size:1.25rem;margin:14px 0 4px;letter-spacing:-0.4px">Your pre-submission checklist, organized.</h3>
         <div style="font-size:0.75rem;color:var(--slate-muted)">Illustrative demonstration — not an official assessment or approval</div>
@@ -317,22 +320,23 @@
             <p class="step-helper" data-i18n="step3_helper">Applicant age determines legal consent, biometric exemptions, validity period, and fees.</p>
             <div class="field">
               <label data-i18n="label_age_group">Applicant Age Category</label>
-              <div class="radio-grid">
+              <div id="countryConcessionNotice" style="display:none;margin-bottom:14px"></div>
+              <div class="radio-grid" id="ageRadioGrid">
                 <label class="radio-card">
                   <input type="radio" name="age" value="infant">
-                  <span data-i18n="age_infant">Infant / Young Child (under 5 / 6)</span>
+                  <span id="labelAgeInfant" data-i18n="age_infant">Infant / Young Child (under 5)</span>
                 </label>
                 <label class="radio-card">
                   <input type="radio" name="age" value="minor">
-                  <span data-i18n="age_minor">Child / Minor (under 16 / 18)</span>
+                  <span id="labelAgeMinor" data-i18n="age_minor">Child / Minor (under 18)</span>
                 </label>
                 <label class="radio-card">
                   <input type="radio" name="age" value="adult" checked>
-                  <span data-i18n="age_adult">Adult (18 to 59)</span>
+                  <span id="labelAgeAdult" data-i18n="age_adult">Adult (18 to 59)</span>
                 </label>
                 <label class="radio-card">
                   <input type="radio" name="age" value="senior">
-                  <span data-i18n="age_senior">Senior Citizen (60+)</span>
+                  <span id="labelAgeSenior" data-i18n="age_senior">Senior Citizen (60+)</span>
                 </label>
               </div>
             </div>
@@ -345,13 +349,6 @@
                 <label for="applicantCategory">Special Concession Category (if applicable)</label>
                 <select id="applicantCategory">
                   <option value="standard" selected>Standard Citizen Applicant</option>
-                  <option value="oku">Person with Disabilities (OKU cardholder)</option>
-                  <option value="student_overseas">Student under 21 (Bachelor's degree abroad)</option>
-                  <option value="hajj_pilgrim">Hajj Pilgrim (with Tabung Haji letter)</option>
-                  <option value="immigration_officers_staff">Immigration Department Staff (Pegawai/Kakitangan JIM)</option>
-                  <option value="pmd_pmr_diplomatic_official">PMD / PMR Diplomatic or Official Passport (KLN approval)</option>
-                  <option value="pma_dependents">PMA Dependents (aligned with PMD/PMR Principal)</option>
-                  <option value="married_under_17">Legally Married Minor (under 17)</option>
                 </select>
               </div>
             </div>
@@ -368,12 +365,12 @@
           <!-- STEP 4: Processing Urgency -->
           <div class="step-pane" data-step="3">
             <h3 data-i18n="step4_title">Processing Urgency & Timeline</h3>
-            <p class="step-helper" data-i18n="step4_helper">Expedited or Tatkaal routes have specific eligibility rules and higher fees.</p>
+            <p class="step-helper" data-i18n="step4_helper">Expedited routes have specific statutory eligibility rules and higher fees.</p>
             <div class="field">
               <label for="urgency" data-i18n="label_urgency">Desired Processing Speed</label>
               <select id="urgency">
                 <option value="standard" data-i18n="urg_standard">Standard / Normal processing</option>
-                <option value="urgent" data-i18n="urg_expedited">Urgent / Expedited / Tatkaal (if officially available)</option>
+                <option value="urgent" id="optUrgentExpedited" data-i18n="urg_expedited">Urgent / Expedited (if officially available)</option>
                 <option value="emergency" data-i18n="urg_emergency">Immediate emergency travel (medical / compassionate)</option>
               </select>
             </div>
@@ -408,7 +405,7 @@
                 </label>
               </div>
             </div>
-            <div class="field" style="margin-top:14px">
+            <div class="field" id="lossTierContainer" style="margin-top:14px;display:none">
               <label for="lossTier">Replacement Frequency (if lost or damaged)</label>
               <select id="lossTier">
                 <option value="first_loss" selected>First-time replacement (1st loss/damage)</option>
@@ -511,7 +508,8 @@
                 </div>
                 <div style="text-align:right">
                   <span id="resStatusBadge" class="status-pill status-verified">PREPARED</span>
-                  <div style="font-size:1.4rem;font-weight:800;color:var(--forest-dark);margin-top:4px" id="resScoreNum">100%</div>
+                  <div style="font-size:1.15rem;font-weight:800;color:var(--forest-dark);margin-top:4px" id="resDocCheckedMetric">Documents checked: <span id="resDocCount">0</span> of <span id="resDocTotal">0</span></div>
+                  <div style="font-size:0.875rem;font-weight:700;color:var(--slate-muted)" id="resScoreNum">0% Verified</div>
                 </div>
               </div>
 
@@ -570,7 +568,7 @@
     <div class="wrap">
       <div class="section-head">
         <span class="kicker" data-i18n="nav_directory">Global Country Directory</span>
-        <h2>249 Countries & Territories Indexed</h2>
+        <h2 id="dirMainHeading">27 Verified · 0 Portal Linked · 222 Awaiting Research</h2>
         <p>Browse official passport authorities, research status, and verified entry-point portals worldwide.</p>
       </div>
 
@@ -785,7 +783,7 @@
       <div class="faq-box">
         <details>
           <summary>Can PassportReady guarantee my passport application will be approved?</summary>
-          <p>No. Under international and constitutional law, passport issuance is an exercise of sovereign state authority. Only the relevant government department (e.g. MEA in India, State Department in the US, HMPO in the UK) can determine legal eligibility and grant a travel document. PassportReady helps organize your documents and flag potential mechanical errors before submission.</p>
+          <p>No. Passport issuance is an exclusive statutory authority exercised by sovereign governments under domestic legislation (such as the Indian Passports Act 1967, United States Code 8 U.S.C. § 1185 and 22 CFR Part 51, and the UK Royal Prerogative administered by HM Passport Office). Only appointed government passport and consular officers possess the legal authority to adjudicate citizenship, verify identity records, and issue travel documents. PassportReady provides self-audit checklists and pre-submission organizational guidance only.</p>
         </details>
         <details>
           <summary>Does every country accept the same documents?</summary>
@@ -828,11 +826,11 @@
         <a href="#directory" data-i18n="nav_directory">Country Directory</a>
         <a href="#guides" data-i18n="nav_guides">Passport Guides</a>
         <a href="#tools" data-i18n="nav_tools">Tools</a>
-        <a href="#" data-open-modal="about">About Us</a>
-        <a href="#" data-open-modal="methodology">Methodology</a>
-        <a href="#" data-open-modal="privacy">Privacy Policy</a>
-        <a href="#" data-open-modal="terms">Terms of Service</a>
-        <a href="#" id="footerReportFeeLink" data-open-modal="report-change" data-i18n="btn_report_change">📢 Report Fee / Rule Update</a>
+        <a href="/about/" data-open-modal="about">About Us</a>
+        <a href="/methodology/" data-open-modal="methodology">Methodology</a>
+        <a href="/privacy/" data-open-modal="privacy">Privacy Policy</a>
+        <a href="/terms/" data-open-modal="terms">Terms of Service</a>
+        <a href="/report/" id="footerReportFeeLink" data-open-modal="report-change" data-i18n="btn_report_change">📢 Report Fee / Rule Update</a>
         <a href="https://github.com/Asadxio/passportready-global/issues" target="_blank" rel="noopener" class="feedback-link" data-i18n="feedback_link">Report an Error / Feedback ↗</a>
       </div>
     </div>

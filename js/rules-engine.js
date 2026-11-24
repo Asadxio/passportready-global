@@ -2635,6 +2635,38 @@ class PassportRulesEngine {
       });
     }
 
+    // 1.5 Unanswered / Unconfirmed Proof Reductions
+    if (birthProof === 'unanswered' || birthProof === 'not_checked') {
+      preparationScore -= 25;
+      flags.push({
+        severity: 'warning',
+        code: 'BIRTH_PROOF_UNCONFIRMED',
+        title: (typeof t === 'function' && t('flag_birth_unconfirmed_title')) || 'Proof of Date of Birth Not Confirmed',
+        message: 'You have not confirmed whether you possess an official birth certificate or accepted statutory alternative.',
+        action: 'Verify your birth records before submitting.'
+      });
+    }
+    if (addressProof === 'unanswered' || addressProof === 'not_checked') {
+      preparationScore -= 20;
+      flags.push({
+        severity: 'warning',
+        code: 'ADDRESS_PROOF_UNCONFIRMED',
+        title: (typeof t === 'function' && t('flag_address_unconfirmed_title')) || 'Proof of Address Not Confirmed',
+        message: 'Proof of residential address has not been confirmed.',
+        action: 'Review accepted address proofs for your jurisdiction.'
+      });
+    }
+    if (citizenshipProof === 'unanswered' || citizenshipProof === 'not_checked') {
+      preparationScore -= 25;
+      flags.push({
+        severity: 'warning',
+        code: 'CITIZENSHIP_PROOF_UNCONFIRMED',
+        title: (typeof t === 'function' && t('flag_citizenship_unconfirmed_title')) || 'Proof of Citizenship Not Confirmed',
+        message: 'Foundational proof of citizenship has not been confirmed.',
+        action: 'Verify your citizenship documents.'
+      });
+    }
+
     // 2. Missing Documents & Alternative Flows
     if (birthProof === 'missing') {
       preparationScore -= 25;

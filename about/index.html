@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us — PassportReady</title>
+  <meta name="description" content="Learn about PassportReady, an independent, privacy-first passport preparation guide built to prevent clerical rejections. Free, open-source, and 100% client-side.">
+  <link rel="canonical" href="https://passport.myoss.in/about/">
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#082d25">
+  <link rel="stylesheet" href="../css/styles.css?v=20261020_01">
+  <style>
+    .page-container {
+      width: min(900px, calc(100% - 40px));
+      margin: 40px auto 80px auto;
+    }
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .content-card h1 {
+      color: var(--forest-dark);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+    .content-card .lead {
+      font-size: 1.15rem;
+      color: var(--slate-body);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .content-card h2 {
+      color: var(--forest-base);
+      font-size: 1.4rem;
+      margin: 32px 0 12px 0;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 6px;
+    }
+    .content-card p, .content-card li {
+      color: var(--slate-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .content-card ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--mint-soft);
+      color: var(--forest-base);
+      margin-bottom: 16px;
+    }
+    .notice-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+    .warning-box {
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--forest-base);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .btn-back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <span>✦ Official Government Link Aggregator & Preparation Framework</span>
+      <span>🔒 100% Client-Side Privacy — Zero Data Retention</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap headergrid">
+      <a class="brand" href="../">
+        <span class="brandmark">✦</span>
+        <span>PassportReady<small>Check before you apply</small></span>
+      </a>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="../#checker">Readiness Checker</a>
+        <a class="btn btn-outline" href="../#directory">Directory</a>
+        <a class="btn btn-outline" href="../#guides">Guides</a>
+        <a class="btn btn-outline" href="../#tools">Tools</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container" id="main-content">
+    <a href="../" class="btn-back">← Back to Home & Checker</a>
+
+    <article class="content-card">
+      <span class="badge-pill">Public Service · Open Source</span>
+      <h1>About PassportReady</h1>
+      <p class="lead">PassportReady is an independent, non-governmental preparation engine designed to help citizens, expatriates, and traveling families navigate passport rules with precision and complete data privacy.</p>
+
+      <div class="notice-box">
+        <strong>Strict Independence Statement:</strong> PassportReady is <em>not</em> an official government agency and is not affiliated with any foreign ministry, immigration department, embassy, or consulate. We do not issue passports, schedule official appointments, or accept passport applications. All official submissions must occur on designated government portals.
+      </div>
+
+      <h2>Why PassportReady Exists</h2>
+      <p>Applying for or renewing a passport is one of the most consequential administrative interactions a citizen has with their government. Yet millions of applications face delays, administrative rejections, or forfeiture of fees each year due to simple, preventable issues:</p>
+      <ul>
+        <li><strong>Clerical Mismatches:</strong> Transliteration differences, missing middle names, or inverted given/family names between national identity cards and birth certificates.</li>
+        <li><strong>Biometric Photo Rejections:</strong> Millimeter deviations in chin-to-crown ratio, improper white/cream/blue background shades, or glare on prescription eyewear.</li>
+        <li><strong>Complex Fee Structures:</strong> Navigating domestic vs. consular surcharges, urgent Tatkaal/Expedited fees, minor validity scales, and booklet size differentials.</li>
+        <li><strong>International Validity Traps:</strong> Traveling without realizing a destination enforces the strict 6-month validity rule or Schengen's 10-year issuance requirement.</li>
+      </ul>
+      <p>PassportReady was built to solve this problem before citizens stand in consular queues or pay non-refundable processing fees.</p>
+
+      <h2>Our Core Architecture Promises</h2>
+      <ul>
+        <li><strong>Zero Server Data:</strong> 100% of the checklist logic, name discrepancy analysis, and photo cropping runs client-side inside your browser. No personal identifiers or document scans are ever transmitted to or stored on our servers.</li>
+        <li><strong>Zero Trackers:</strong> No advertising networks, behavioral profiling trackers, or invasive analytics cookies.</li>
+        <li><strong>Official Sources Only:</strong> Every rule, document checklist, fee figure, and statutory link derives strictly from primary government publications (e.g. MEA India, US Department of State, UK HM Passport Office, Jabatan Imigresen Malaysia) and international standards (ICAO Doc 9303).</li>
+        <li><strong>Transparent Limitations:</strong> When a country's rules have not yet undergone full statutory verification, we explicitly designate them as "Awaiting Research" with generic baseline guidance rather than guessing.</li>
+      </ul>
+
+      <h2>Who Builds This</h2>
+      <p>PassportReady is maintained as an open-source public service under the MyOSS civic tech initiative by independent software engineers, accessibility advocates, and international open-data contributors. The project source code is publicly accessible on GitHub.</p>
+
+      <h2>Contact & Feedback</h2>
+      <p>For research corrections, bug reports, or inquiries:</p>
+      <ul>
+        <li><strong>Rule & Fee Updates:</strong> <a href="../report/" style="color:var(--forest-base);font-weight:600">Submit an update via our Report form</a></li>
+        <li><strong>General & Media Inquiries:</strong> <a href="mailto:contact@myoss.in" style="color:var(--forest-base)">contact@myoss.in</a></li>
+        <li><strong>Source Code & Issues:</strong> <a href="https://github.com/Asadxio/passportready-global" target="_blank" rel="noopener" style="color:var(--forest-base)">GitHub Repository (Asadxio/passportready-global)</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap footergrid">
+      <div>
+        <a class="brand" href="../" style="color:#fff">
+          <span class="brandmark">✦</span>
+          <span>PassportReady<small style="color:#92a89e">Check before you apply</small></span>
+        </a>
+        <p data-i18n="footer_disclaimer">
+          PassportReady is an independent preparation guide and is not affiliated with any government or passport-issuing authority. We do not issue passports, schedule official appointments, or collect passport numbers. Always verify final requirements and fees on official government portals.
+        </p>
+      </div>
+      <div class="footerlinks">
+        <a href="../#checker">Readiness Checker</a>
+        <a href="../#directory">Country Directory</a>
+        <a href="../#guides">Passport Guides</a>
+        <a href="../#tools">Tools</a>
+        <a href="./">About Us</a>
+        <a href="../methodology/">Methodology</a>
+        <a href="../privacy/">Privacy Policy</a>
+        <a href="../terms/">Terms of Service</a>
+        <a href="../report/">📢 Report Fee / Rule Update</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

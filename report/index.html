@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report Fee or Rule Update — PassportReady</title>
+  <meta name="description" content="Help keep PassportReady accurate. Report statutory passport fee updates, document changes, or broken official government links. Privacy-friendly.">
+  <link rel="canonical" href="https://passport.myoss.in/report/">
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#082d25">
+  <link rel="stylesheet" href="../css/styles.css?v=20261020_01">
+  <style>
+    .page-container {
+      width: min(850px, calc(100% - 40px));
+      margin: 40px auto 80px auto;
+    }
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .content-card h1 {
+      color: var(--forest-dark);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+    .content-card .lead {
+      font-size: 1.15rem;
+      color: var(--slate-body);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--mint-soft);
+      color: var(--forest-base);
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: var(--slate-dark);
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    .form-group .hint {
+      display: block;
+      font-size: 0.825rem;
+      color: var(--slate-muted);
+      margin-top: 4px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--slate-dark);
+      background: #fff;
+    }
+    .form-control:focus {
+      outline: 2px solid var(--forest-base);
+      border-color: var(--forest-base);
+    }
+    .btn-submit {
+      background: var(--forest-base);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-submit:hover {
+      background: var(--forest-dark);
+    }
+    .btn-secondary {
+      background: #fff;
+      color: var(--slate-dark);
+      border: 1px solid var(--border-light);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover {
+      background: #f8fafc;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--forest-base);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .btn-back:hover { text-decoration: underline; }
+    .secondary-options {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-light);
+    }
+    .success-box {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <span>✦ Official Government Link Aggregator & Preparation Framework</span>
+      <span>🔒 100% Client-Side Privacy — Zero Data Retention</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap headergrid">
+      <a class="brand" href="../">
+        <span class="brandmark">✦</span>
+        <span>PassportReady<small>Check before you apply</small></span>
+      </a>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="../#checker">Readiness Checker</a>
+        <a class="btn btn-outline" href="../#directory">Directory</a>
+        <a class="btn btn-outline" href="../#guides">Guides</a>
+        <a class="btn btn-outline" href="../#tools">Tools</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container" id="main-content">
+    <a href="../" class="btn-back">← Back to Home & Checker</a>
+
+    <article class="content-card">
+      <span class="badge-pill">Community Corrections · Source Integrity</span>
+      <h1>Report Fee or Rule Update</h1>
+      <p class="lead">Passport statutory fees, document rules, and portal links change regularly. If you notice an outdated fee, new administrative regulation, or broken link, report it below so our research team can verify and update the database.</p>
+
+      <form id="reportForm" onsubmit="handleReportSubmit(event)">
+        <div class="form-group">
+          <label for="reportCountry">Country / Jurisdiction *</label>
+          <select id="reportCountry" class="form-control" required>
+            <option value="">-- Select Country --</option>
+            <option value="IN">India (IN)</option>
+            <option value="US">United States (US)</option>
+            <option value="GB">United Kingdom (GB)</option>
+            <option value="CA">Canada (CA)</option>
+            <option value="AU">Australia (AU)</option>
+            <option value="MY">Malaysia (MY)</option>
+            <option value="ID">Indonesia (ID)</option>
+            <option value="NZ">New Zealand (NZ)</option>
+            <option value="KE">Kenya (KE)</option>
+            <option value="LK">Sri Lanka (LK)</option>
+            <option value="JP">Japan (JP)</option>
+            <option value="MX">Mexico (MX)</option>
+            <option value="NG">Nigeria (NG)</option>
+            <option value="PK">Pakistan (PK)</option>
+            <option value="BD">Bangladesh (BD)</option>
+            <option value="NP">Nepal (NP)</option>
+            <option value="OTHER">Other Jurisdiction</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="reportType">Issue Category *</label>
+          <select id="reportType" class="form-control" required>
+            <option value="fee">Statutory Fee Change (Domestic or Consular)</option>
+            <option value="rule">Document Requirement / Eligibility Modification</option>
+            <option value="broken_link">Broken, Moved, or Redirected Official Portal Link</option>
+            <option value="photo_spec">Biometric Photo Specification or Dimension Error</option>
+            <option value="bug">Software Bug / Accessibility or Layout Issue</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="reportSourceUrl">Official Source URL (Required for rule/fee updates) *</label>
+          <input type="url" id="reportSourceUrl" class="form-control" placeholder="https://passportoffice.gov.xx/fees" required>
+          <span class="hint">Must be an official government portal (.gov, foreign ministry, or official gazette). Blogs or forums cannot be used.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="reportDescription">Details of the Change or Correction *</label>
+          <textarea id="reportDescription" class="form-control" rows="5" placeholder="Specify old value vs. new official value, effective date, and relevant section/circular number..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="reportEmail">Your Email (Optional, strictly for verification questions)</label>
+          <input type="email" id="reportEmail" class="form-control" placeholder="name@example.com">
+          <span class="hint">Zero marketing or spam. Used only if our research team needs clarification regarding the official circular.</span>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px">
+          <button type="submit" class="btn-submit">
+            <span>✉ Submit via Email Report</span>
+          </button>
+          <button type="button" class="btn-secondary" onclick="copyReportDetails()">
+            <span>📋 Copy Report to Clipboard</span>
+          </button>
+        </div>
+      </form>
+
+      <div id="successBox" class="success-box">
+        <h3 style="color:#166534;margin-top:0">Report Prepared!</h3>
+        <p>If your email client opened, please send the prefilled email to <strong>updates@myoss.in</strong>. If not, click "Copy Report to Clipboard" above and email it to us directly.</p>
+      </div>
+
+      <div class="secondary-options">
+        <h3 style="font-size:1.15rem;color:var(--slate-dark);margin-bottom:8px">Developers & Technical Contributors</h3>
+        <p style="font-size:0.95rem;color:var(--slate-body)">If you have a GitHub account, you can also open a structured issue or submit a Pull Request directly on our repository:</p>
+        <a href="https://github.com/Asadxio/passportready-global/issues/new?title=[Rule+Update]+&labels=statutory-update" target="_blank" rel="noopener" class="btn-secondary" style="margin-top:8px">
+          <span>GitHub Issues: Submit Update ↗</span>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap footergrid">
+      <div>
+        <a class="brand" href="../" style="color:#fff">
+          <span class="brandmark">✦</span>
+          <span>PassportReady<small style="color:#92a89e">Check before you apply</small></span>
+        </a>
+        <p data-i18n="footer_disclaimer">
+          PassportReady is an independent preparation guide and is not affiliated with any government or passport-issuing authority. We do not issue passports, schedule official appointments, or collect passport numbers. Always verify final requirements and fees on official government portals.
+        </p>
+      </div>
+      <div class="footerlinks">
+        <a href="../#checker">Readiness Checker</a>
+        <a href="../#directory">Country Directory</a>
+        <a href="../#guides">Passport Guides</a>
+        <a href="../#tools">Tools</a>
+        <a href="../about/">About Us</a>
+        <a href="../methodology/">Methodology</a>
+        <a href="../privacy/">Privacy Policy</a>
+        <a href="../terms/">Terms of Service</a>
+        <a href="./">📢 Report Fee / Rule Update</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function buildReportText() {
+      const country = document.getElementById('reportCountry').value || 'Unspecified';
+      const type = document.getElementById('reportType').value;
+      const sourceUrl = document.getElementById('reportSourceUrl').value;
+      const desc = document.getElementById('reportDescription').value;
+      const email = document.getElementById('reportEmail').value || 'Not provided';
+
+      return `PassportReady Update Report\n` +
+             `--------------------------------\n` +
+             `Country: ${country}\n` +
+             `Issue Category: ${type}\n` +
+             `Official Source URL: ${sourceUrl}\n` +
+             `Reporter Email: ${email}\n\n` +
+             `Details:\n${desc}\n`;
+    }
+
+    function handleReportSubmit(e) {
+      e.preventDefault();
+      const body = buildReportText();
+      const country = document.getElementById('reportCountry').value || 'Update';
+      const type = document.getElementById('reportType').value;
+      const subject = encodeURIComponent(`[PassportReady Update] ${country} - ${type}`);
+      const mailtoUrl = `mailto:updates@myoss.in?subject=${subject}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailtoUrl;
+      document.getElementById('successBox').style.display = 'block';
+    }
+
+    function copyReportDetails() {
+      const text = buildReportText();
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Report details copied to clipboard! You can paste and email it to updates@myoss.in');
+        document.getElementById('successBox').style.display = 'block';
+      }).catch(() => {
+        alert('Please select and copy the text manually from the form.');
+      });
+    }
+  </script>
+</body>
+</html>
