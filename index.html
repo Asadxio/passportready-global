@@ -7,8 +7,8 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
   <link rel="apple-touch-icon" href="assets/icon.svg">
-  <title>PassportReady (Public Beta) — Check Before You Apply | Global Passport Preparation</title>
-  <meta name="description" content="Independent global passport preparation platform in public beta. Build a personalized document checklist, spot name and DOB mismatches before submission, discover verified alternatives, and link directly to official government portals.">
+  <title>PassportReady — Global Passport Application &amp; Validity Guide</title>
+  <meta name="description" content="Independent global passport preparation platform in public beta. Build personalized document checklists, spot name &amp; DOB mismatches, check entry validity, and link to portals.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
   <link rel="canonical" href="https://passport.myoss.in/">
@@ -18,34 +18,102 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://passport.myoss.in/">
-  <meta property="og:title" content="PassportReady — Check Before You Apply">
-  <meta property="og:description" content="Prepare for your passport application with personalized checklists, name/DOB mismatch detection, and verified official government sources.">
+  <meta property="og:title" content="PassportReady — Global Passport Application &amp; Validity Guide">
+  <meta property="og:description" content="Independent global passport preparation guide. Build personalized document checklists, spot name &amp; DOB mismatches, check entry validity, and link to portals.">
   <meta property="og:site_name" content="PassportReady">
   <meta property="og:image" content="https://passport.myoss.in/assets/preview.png">
   
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://passport.myoss.in/">
-  <meta name="twitter:title" content="PassportReady — Check Before You Apply">
-  <meta name="twitter:description" content="Independent global passport preparation platform with country-specific rules and official government portal links.">
+  <meta name="twitter:title" content="PassportReady — Global Passport Application &amp; Validity Guide">
+  <meta name="twitter:description" content="Independent global passport preparation guide. Build personalized document checklists, spot name &amp; DOB mismatches, check entry validity, and link to portals.">
   <meta name="twitter:image" content="https://passport.myoss.in/assets/preview.png">
   
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "PassportReady",
-    "url": "https://passport.myoss.in/",
-    "description": "Independent worldwide passport readiness and document-preparation platform.",
-    "applicationCategory": "Government & Travel Readiness Utility",
-    "operatingSystem": "All modern browsers",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "PassportReady",
+      "url": "https://passport.myoss.in/",
+      "description": "Independent worldwide passport readiness, entry validity, and document-preparation platform.",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "All modern browsers",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can PassportReady guarantee my passport application will be approved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Passport issuance is an exclusive statutory authority exercised by sovereign governments under domestic legislation. Only appointed government passport and consular officers possess the legal authority to adjudicate citizenship, verify identity records, and issue travel documents. PassportReady provides self-audit checklists and pre-submission organizational guidance only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does every country accept the same documents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Required documents, accepted alternatives, photo dimensions, fees, and procedures vary widely by issuing country, applicant age, and individual circumstance. Never assume a document accepted in one country is recognized in another."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I do if my name is spelled differently on two documents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Do not assume that a mismatch is harmless. Compare the records to determine which document is your legally recognized primary citizenship record. For minor typographical differences, two secondary IDs or an explanatory affidavit are typically required. Major name changes require official legal channels (e.g., Annexure E or Gazette in India, certified court order under 22 CFR § 51.25 in the US, deed poll in the UK)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is parental consent required for children under 16/18?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Statutory frameworks worldwide enforce strict safeguards against international parental child abduction (e.g. US 22 CFR § 51.28, Indian MEA Annexure D/C, UK parental responsibility rules). Both legal parents or guardians must typically grant consent in person or via notarized forms, unless sole legal custody or termination of parental rights is proven."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the international 6-month passport validity rule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entry validity requirements are established by your destination country. Many nations (such as Thailand, Singapore, and Indonesia) require at least 6 months of passport validity upon entry. The Schengen Area requires 3 months of validity beyond the intended departure date (EU Regulation 2016/399) and issuance within the past 10 years. Under bilateral agreements (such as the US Six-Month Club), certain visitors only require validity for the duration of stay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does PassportReady store or share my personal information?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. PassportReady operates under strict privacy-by-design principles: zero collection of passport numbers, zero cloud storage of identity records, zero trackers, and 100% client-side browser evaluation."
+          }
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://passport.myoss.in/"
+        }
+      ]
     }
-  }
+  ]
   </script>
   
   <link rel="stylesheet" href="css/styles.css?v=20261020_01">

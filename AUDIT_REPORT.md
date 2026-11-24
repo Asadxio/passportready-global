@@ -4,7 +4,7 @@
 **Live Site:** `https://passport.myoss.in/`  
 **Audit Conducted:** October 2026 / November 2026  
 **Auditor:** Senior Full-Stack, Accessibility & Legal Integrity Audit Team  
-**Status:** Phase 2 Complete (Global Readiness: Names, Dates, i18n, Photo Privacy, 60-Destination Validity, Special Categories)
+**Status:** Phase 3 Complete (SEO & Discoverability: 112 Static Routes, Schema.org JSON-LD, 55-60 Char Title, Domain-Agnostic Config, 118-URL Sitemap)
 
 ---
 
@@ -32,6 +32,10 @@ This comprehensive audit was executed to eliminate all placeholder dead links, s
 | **AUD-10** | High | Photo Validator Privacy & Jurisdiction Bounds: Photo tool lacked China (33x48mm) and Malaysia (35x50mm) standards and lacked proof of zero-network transmission. | Added China and Malaysia standards with head-height bounds and religious headwear guidance. Implemented zero-network-request unit test intercepting HTTP/HTTPS/fetch calls during canvas image processing. | **FIXED** |
 | **AUD-11** | High | International Entry Validity Blindspots: Expiry calculator lacked destination-specific entry rules (e.g. Schengen 10-year issuance limit, Southeast Asia 6-month rule, US Six-Month Club). | Added 60-destination international rule dictionary with strict calendar-month math, leap-year handling, Schengen Article 6(1)(a) Regulation (EU) 2016/399 10-year issuance checks, and Six-Month Club exemptions. | **FIXED** |
 | **AUD-12** | High | Missing Statutory Guides for Complex Cases: Missing structured assistance for refugees, dual nationals, surrogacy/adoption, marriage/divorce name changes, gender markers, and emergency travel. | Added 6 comprehensive statutory guides and rules-engine checklist evaluations for refugee/stateless documents, dual nationality loss risks, surrogacy/adoption, marriage/divorce name restoration, gender marker self-certification, and Emergency Travel Certificates (ETC). | **FIXED** |
+| **AUD-13** | High | Lack of Indexable Country & Service Landing Pages: Platform lacked deep static routes for search engines, forcing all traffic to client-side hash sections on the homepage. | Built `scripts/generate-static-pages.js` generating 112 static pages across 27 verified countries and 84 services (`/passport/{country}/{service}/`), complete with unique titles, breadcrumbs, statutory fees, checklists, photo specs, FAQs, and Schema.org JSON-LD (`HowTo`, `GovernmentService`, `FAQPage`, `BreadcrumbList`). | **FIXED** |
+| **AUD-14** | Medium | Home Page Title Length Excess: Home title was 83 characters, resulting in truncated display in Google search results. | Calibrated title to exactly 60 characters: `PassportReady — Global Passport Application & Validity Guide`. Synchronized meta description, Open Graph, and Twitter Cards. | **FIXED** |
+| **AUD-15** | Medium | Outdated Hash Fragments in Sitemap.xml: `sitemap.xml` contained non-indexable anchor fragments (`/#checker`, `/#directory`, etc.) and lacked coverage of country/service pages. | Rebuilt `sitemap.xml` with 118 clean canonical URLs covering root, legal pages, directory, 27 country hubs, and 84 service routes, with `xhtml:link` hreflang tags for all 13 supported languages. | **FIXED** |
+| **AUD-16** | Medium | Hardcoded Domain Coupling: Canonical URLs and sitemap generation lacked centralized domain configuration. | Created `site.config.js` and `js/site-config.js` supporting `process.env.SITE_URL` overrides for seamless deployment to staging, preview, and custom domains. | **FIXED** |
 
 ---
 
@@ -75,11 +79,6 @@ Every factual claim in FAQs, educational guides, rules-engine logic, and documen
 
 ## 4. Issues Remaining for Subsequent Phases
 
-- **Phase 3 (SEO & Discoverability):**
-  - Static country and service routes (`/passport/{country}/{service}/`) for verified and portal-linked jurisdictions.
-  - Optimized title lengths (55-60 characters) and descriptive meta tags.
-  - Sitemaps with hreflang alternates, JSON-LD schema (HowTo, FAQPage, Organization, BreadcrumbList).
-  - Domain-agnostic canonical base URL configuration.
 - **Phase 4 (UX & Accessibility):**
   - Replace functional emojis with accessible inline SVGs.
   - WCAG 2.2 AA keyboard focus trap and axe-core audit.

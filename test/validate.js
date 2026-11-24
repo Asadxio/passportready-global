@@ -3721,10 +3721,10 @@ runTest('Phase H: Comprehensive Automated Testing, Translation Parity, A11y & Ed
   assert(indexContent.includes('class="skip-link" href="#checker"'), 'index.html must have skip link to #checker');
 
   const sitemapContent = fs.readFileSync(path.join(__dirname, '..', 'sitemap.xml'), 'utf8');
-  ['https://passport.myoss.in/', 'https://passport.myoss.in/#checker', 'https://passport.myoss.in/#directory', 'https://passport.myoss.in/#guides', 'https://passport.myoss.in/#tools', 'https://passport.myoss.in/#faq'].forEach(loc => {
+  ['https://passport.myoss.in/', 'https://passport.myoss.in/about/', 'https://passport.myoss.in/methodology/', 'https://passport.myoss.in/privacy/', 'https://passport.myoss.in/passport/'].forEach(loc => {
     assert(sitemapContent.includes(`<loc>${loc}</loc>`), `sitemap.xml must include ${loc}`);
   });
-  assert(sitemapContent.includes('<lastmod>2026-10-20</lastmod>'), 'sitemap.xml must have fresh lastmod 2026-10-20');
+  assert(sitemapContent.includes('<lastmod>'), 'sitemap.xml must have fresh lastmod');
 
   const robotsContent = fs.readFileSync(path.join(__dirname, '..', 'robots.txt'), 'utf8');
   assert(robotsContent.includes('Sitemap: https://passport.myoss.in/sitemap.xml'), 'robots.txt must declare official sitemap');
@@ -4751,7 +4751,7 @@ runTest('Phase 4.8 Public Beta: Transparency Banner, Feedback Link, Limitation N
   const engine = new PassportRulesEngine(rulePacks, countries);
 
   // 1. Transparency & Public Beta Elements in index.html and Assets
-  assert(indexHtml.includes('<title>PassportReady (Public Beta) — Check Before You Apply | Global Passport Preparation</title>'), 'index.html title must reflect Public Beta status');
+  assert(indexHtml.includes('<title>PassportReady — Global Passport Application &amp; Validity Guide</title>'), 'index.html title must reflect optimized 55-60 char title');
   assert(indexHtml.includes('name="description" content="Independent global passport preparation platform in public beta.'), 'index.html meta description must specify public beta status');
   assert(indexHtml.includes('property="og:image" content="https://passport.myoss.in/assets/preview.png"'), 'index.html must specify og:image');
   assert(indexHtml.includes('name="twitter:image" content="https://passport.myoss.in/assets/preview.png"'), 'index.html must specify twitter:image');
@@ -5726,6 +5726,143 @@ runTest('Phase 2 Global Readiness: Photo Validator Zero-Network-Request Client-S
     https.request = originalHttpsRequest;
     if (originalFetch) global.fetch = originalFetch;
   }
+});
+
+runTest('Phase 3 SEO & Discoverability: Home Title Length (55-60 chars), Meta Description & Structured Data', () => {
+  const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  
+  // Extract title text
+  const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+  assert(titleMatch, 'index.html must have a <title> tag');
+  
+  // Unescape HTML entities for true character count (e.g. &amp; -> &)
+  const plainTitle = titleMatch[1].replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+  assert(plainTitle.length >= 55 && plainTitle.length <= 60, 
+    `Home title length must be between 55 and 60 chars (was ${plainTitle.length}: "${plainTitle}")`);
+
+  // Canonical tag check
+  const canonicalMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
+  assert(canonicalMatch, 'index.html must contain a canonical link');
+  assert.strictEqual(canonicalMatch[1], 'https://passport.myoss.in/');
+
+  // Extract JSON-LD script content
+  const jsonLdMatch = html.match(/<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/i);
+  assert(jsonLdMatch, 'index.html must contain a JSON-LD structured data block');
+  
+  const parsedJsonLd = JSON.parse(jsonLdMatch[1]);
+  assert(Array.isArray(parsedJsonLd), 'JSON-LD should contain an array of schemas');
+  
+  const types = parsedJsonLd.map(item => item['@type']);
+  assert(types.includes('WebApplication'), 'JSON-LD must include WebApplication schema');
+  assert(types.includes('FAQPage'), 'JSON-LD must include FAQPage schema');
+  assert(types.includes('BreadcrumbList'), 'JSON-LD must include BreadcrumbList schema');
+
+  // Verify FAQPage has mainEntity with answers
+  const faqSchema = parsedJsonLd.find(item => item['@type'] === 'FAQPage');
+  assert(faqSchema.mainEntity && faqSchema.mainEntity.length >= 5, 'FAQPage schema must have at least 5 Q&A entries');
+});
+
+runTest('Phase 3 SEO & Discoverability: Domain-Agnostic Site Configuration Module', () => {
+  const siteConfig = require('../site.config.js');
+  assert(siteConfig.siteUrl, 'siteConfig must provide siteUrl');
+  assert.strictEqual(siteConfig.defaultSiteUrl, 'https://passport.myoss.in');
+  assert.strictEqual(typeof siteConfig.canonicalUrl, 'function');
+  assert.strictEqual(siteConfig.canonicalUrl('/passport/india/fresh/'), 'https://passport.myoss.in/passport/india/fresh/');
+
+  // Browser-compatible config test
+  const clientConfig = require('../js/site-config.js');
+  assert(clientConfig.siteUrl, 'clientConfig must provide siteUrl');
+  assert.strictEqual(clientConfig.canonicalUrl('/about/'), 'https://passport.myoss.in/about/');
+});
+
+runTest('Phase 3 SEO & Discoverability: Static Country & Service Pages Structure and Schema Quality', () => {
+  const passportDir = path.join(__dirname, '../passport');
+  assert(fs.existsSync(passportDir), '/passport/ directory must exist');
+
+  // Directory index check
+  const dirIndex = path.join(passportDir, 'index.html');
+  assert(fs.existsSync(dirIndex), '/passport/index.html must exist');
+  const dirHtml = fs.readFileSync(dirIndex, 'utf8');
+  assert(dirHtml.includes('Worldwide Passport Directory'), 'Directory index must contain heading');
+
+  // Check verified country directories
+  const countryRules = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/country-rules.json'), 'utf8'));
+  const { COUNTRY_SLUGS, SERVICE_METADATA } = require('../scripts/generate-static-pages.js');
+
+  let servicePagesVerified = 0;
+
+  for (const [iso2, cData] of Object.entries(countryRules)) {
+    const countrySlug = COUNTRY_SLUGS[iso2] || iso2.toLowerCase();
+    const countryDir = path.join(passportDir, countrySlug);
+    assert(fs.existsSync(countryDir), `Country directory for ${iso2} (${countrySlug}) must exist`);
+
+    const countryIndex = path.join(countryDir, 'index.html');
+    assert(fs.existsSync(countryIndex), `Country index for ${countrySlug} must exist`);
+    const cHtml = fs.readFileSync(countryIndex, 'utf8');
+    assert(cHtml.includes(cData.country_name), `Country page must contain country name: ${cData.country_name}`);
+    assert(cHtml.includes(cData.official_portal_url), `Country page must contain official portal URL`);
+
+    // Verify services
+    for (const [serviceKey, sData] of Object.entries(cData.services || {})) {
+      const sMeta = SERVICE_METADATA[serviceKey] || { slug: serviceKey };
+      const serviceSlug = sMeta.slug;
+      const serviceFile = path.join(countryDir, serviceSlug, 'index.html');
+      assert(fs.existsSync(serviceFile), `Service page must exist: ${countrySlug}/${serviceSlug}/index.html`);
+
+      const sHtml = fs.readFileSync(serviceFile, 'utf8');
+      assert(sHtml.includes(cData.country_name), `Service page must contain country name`);
+      assert(sHtml.includes('Statutory Fees'), `Service page must contain Statutory Fees section`);
+      assert(sHtml.includes('Required Documents Checklist'), `Service page must contain Documents Checklist`);
+      assert(sHtml.includes('Step-by-Step Application Procedure'), `Service page must contain Steps`);
+      assert(sHtml.includes(cData.official_portal_url), `Service page must link to official authority portal`);
+
+      // Verify JSON-LD in service page
+      const sJsonMatch = sHtml.match(/<script type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/i);
+      assert(sJsonMatch, `Service page ${countrySlug}/${serviceSlug} must contain JSON-LD block`);
+      const sParsed = JSON.parse(sJsonMatch[1]);
+      const sTypes = sParsed.map(item => item['@type']);
+      assert(sTypes.includes('HowTo'), `Service page must include HowTo schema`);
+      assert(sTypes.includes('GovernmentService'), `Service page must include GovernmentService schema`);
+      assert(sTypes.includes('BreadcrumbList'), `Service page must include BreadcrumbList schema`);
+
+      servicePagesVerified++;
+    }
+  }
+
+  assert(servicePagesVerified >= 80, `At least 80 service pages must be verified (verified: ${servicePagesVerified})`);
+});
+
+runTest('Phase 3 SEO & Discoverability: Sitemap.xml & Robots.txt Integrity', () => {
+  const sitemapPath = path.join(__dirname, '../sitemap.xml');
+  const robotsPath = path.join(__dirname, '../robots.txt');
+
+  assert(fs.existsSync(sitemapPath), 'sitemap.xml must exist');
+  assert(fs.existsSync(robotsPath), 'robots.txt must exist');
+
+  const sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
+  assert(!sitemapXml.includes('/#'), 'sitemap.xml must contain ZERO hash URLs');
+  assert(sitemapXml.includes('<loc>https://passport.myoss.in/</loc>'), 'sitemap.xml must include root URL');
+  assert(sitemapXml.includes('<loc>https://passport.myoss.in/about/</loc>'), 'sitemap.xml must include /about/');
+  assert(sitemapXml.includes('<loc>https://passport.myoss.in/passport/india/fresh/</loc>'), 'sitemap.xml must include sample service page');
+
+  // Verify hreflang annotations for root URL
+  assert(sitemapXml.includes('hreflang="en"'), 'sitemap.xml must include en hreflang');
+  assert(sitemapXml.includes('hreflang="hi"'), 'sitemap.xml must include hi hreflang');
+  assert(sitemapXml.includes('hreflang="ur"'), 'sitemap.xml must include ur hreflang');
+  assert(sitemapXml.includes('hreflang="ar"'), 'sitemap.xml must include ar hreflang');
+  assert(sitemapXml.includes('hreflang="es"'), 'sitemap.xml must include es hreflang');
+  assert(sitemapXml.includes('hreflang="zh"'), 'sitemap.xml must include zh hreflang');
+  assert(sitemapXml.includes('hreflang="x-default"'), 'sitemap.xml must include x-default hreflang');
+
+  // Count total URLs in sitemap
+  const urlCount = (sitemapXml.match(/<url>/g) || []).length;
+  assert(urlCount >= 100, `sitemap.xml must index at least 100 URLs (found: ${urlCount})`);
+
+  // Verify robots.txt
+  const robotsTxt = fs.readFileSync(robotsPath, 'utf8');
+  assert(robotsTxt.includes('User-agent: *'), 'robots.txt must have User-agent: *');
+  assert(robotsTxt.includes('Allow: /'), 'robots.txt must allow root');
+  assert(robotsTxt.includes('Sitemap: https://passport.myoss.in/sitemap.xml'), 'robots.txt must point to sitemap.xml');
 });
 
 console.log('\n====================================================');

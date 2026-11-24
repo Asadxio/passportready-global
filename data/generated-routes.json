@@ -1,0 +1,562 @@
+[
+  {
+    "loc": "/passport/",
+    "priority": "0.9",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/india/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/india/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/india/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/india/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/india/name-correction/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-states/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/united-states/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-states/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-states/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-kingdom/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/united-kingdom/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-kingdom/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/canada/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/canada/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/canada/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/australia/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/australia/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/australia/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/pakistan/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/pakistan/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/pakistan/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/bangladesh/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/bangladesh/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/germany/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/germany/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/germany/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/germany/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-arab-emirates/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/united-arab-emirates/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/united-arab-emirates/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/philippines/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/philippines/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/philippines/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/philippines/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/france/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/france/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/france/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/saudi-arabia/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/saudi-arabia/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/saudi-arabia/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/japan/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/japan/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/japan/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/japan/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/mexico/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/mexico/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/mexico/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/mexico/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/mexico/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/mexico/emergency/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/brazil/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/brazil/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/brazil/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/brazil/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/south-africa/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/south-africa/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/south-africa/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/south-africa/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nigeria/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/nigeria/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nigeria/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nigeria/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/italy/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/italy/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/italy/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/italy/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/ireland/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/ireland/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/ireland/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/ireland/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/ireland/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/kenya/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/kenya/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/kenya/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/kenya/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/kenya/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/malaysia/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/malaysia/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/malaysia/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/malaysia/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/malaysia/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nepal/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/nepal/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nepal/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nepal/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/nepal/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/new-zealand/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/new-zealand/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/new-zealand/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/new-zealand/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/new-zealand/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/singapore/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/singapore/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/singapore/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/singapore/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/singapore/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/spain/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/spain/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/spain/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/spain/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/spain/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/sri-lanka/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/sri-lanka/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/sri-lanka/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/sri-lanka/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/sri-lanka/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/indonesia/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/indonesia/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/indonesia/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/indonesia/minor/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/indonesia/lost-stolen/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  }
+]

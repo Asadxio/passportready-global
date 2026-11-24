@@ -7,7 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased] - Phase 2: Global Readiness (2026-11-24)
+## [Unreleased] - Phase 3: SEO & Discoverability (2026-11-24)
+
+### Added
+- **Static Country and Service Pages (`/passport/{country}/{service}/`)**:
+  - Built static page generation pipeline (`scripts/generate-static-pages.js`) generating 112 static pages across all 27 verified countries and 84 statutory service routes (e.g. `/passport/india/fresh/`, `/passport/united-kingdom/renewal/`, `/passport/united-states/first/`).
+  - Generated dedicated country hub pages (`/passport/{country}/`) and a top-level worldwide passport directory (`/passport/`).
+  - Each service page includes:
+    - Unique `<title>` (50–60 chars) and `<meta name="description">` optimized for search visibility.
+    - Canonical links powered by `site.config.js`.
+    - Clean breadcrumbs navigation bar (`Home / Directory / {Country} / {Service}`).
+    - Full statutory fees table with currency amounts, last verified review dates, and legislative citations.
+    - Step-by-step application procedures linked to primary government sources.
+    - Required documents checklist with requiredness badges (Required, Conditional, Alternative), statutory conditions, and alternatives.
+    - Biometric photo specifications and deep-link to client-side photo validator.
+    - Country-specific FAQs with `<details>` accordion elements.
+    - Valid Schema.org JSON-LD structured data (`HowTo`, `GovernmentService`, `FAQPage`, `BreadcrumbList`).
+- **Domain-Agnostic Site Configuration (`site.config.js` & `js/site-config.js`)**:
+  - Centralized site URL resolution with support for `process.env.SITE_URL` override across build tools, generators, and client headers.
+  - Added `canonicalUrl(path)` helper ensuring canonical tags and sitemaps work seamlessly across production, staging, and local preview environments.
+- **Enhanced Structured Data (Schema.org JSON-LD) on `index.html`**:
+  - Implemented multi-schema JSON-LD structured data on `index.html` containing `WebApplication`, `FAQPage` (with 6 authoritative Q&A entries), and `BreadcrumbList`.
+- **Comprehensive Sitemap & Robots (`sitemap.xml` & `robots.txt`)**:
+  - Generated clean, compliant `sitemap.xml` indexing 118 canonical URLs with zero `#` fragment anchors.
+  - Added `xhtml:link` hreflang annotations for all 13 supported languages (`en`, `hi`, `ur`, `fr`, `de`, `ar`, `es`, `pt`, `zh`, `ru`, `id`, `bn`, `tr`, plus `x-default`).
+  - Configured `robots.txt` pointing to `Sitemap: https://passport.myoss.in/sitemap.xml`.
+- **Automated Test Coverage (51 of 51 Tests Passing)**:
+  - Added 4 automated validation suites to `test/validate.js` asserting home title character count (55–60 chars), domain config portability, static page structural integrity, and sitemap/robots compliance.
+
+### Changed
+- **Home Page Title & Meta Calibration**:
+  - Optimized home page `<title>` from ~83 characters down to exactly 60 characters: `PassportReady — Global Passport Application & Validity Guide`.
+  - Refined meta description and synchronized Open Graph and Twitter Cards for optimal search engine snippet display.
+
+---
+
+## [2.0.0] - Phase 2: Global Readiness (2026-11-24)
 
 ### Added
 - **Name & DOB Discrepancy Analyzer (ICAO 9303 & Cross-Cultural Naming Systems)**:

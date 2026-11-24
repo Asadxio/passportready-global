@@ -4,7 +4,8 @@
 **Phases Completed:**  
 - Phase 1 (Critical Fixes: Trust, Legal, Correctness)  
 - Phase 2 (Global Readiness: Names, Dates, 13 Languages i18n, Photo Privacy, 60-Destination Validity, Special Categories)  
-**Next Upcoming Phase:** Phase 3 (SEO & Discoverability)
+- Phase 3 (SEO & Discoverability: 112 Static Country & Service Pages, 55-60 Char Title, Schema.org JSON-LD, 118-URL Sitemap)  
+**Next Upcoming Phase:** Phase 4 (UX & Accessibility: WCAG 2.2 AA, SVG Icons, Auto-Save & Data Erasure)
 
 ---
 
@@ -33,19 +34,16 @@
 
 ---
 
-## 2. Phase 3 Implementation Roadmap (SEO & Discoverability)
+## 2. Phase 4 Implementation Roadmap (UX & Accessibility)
 
-1. **Static Country and Service Pages:**
-   - Generate static routes: `/passport/{country}/{service}/` (e.g. `/passport/india/fresh/`, `/passport/united-kingdom/renewal/`, `/passport/united-states/first/`).
-   - Include unique titles, meta descriptions, H1, statutory checklist, fees with `last_verified`, official government links, FAQs, breadcrumbs, and internal navigation.
-2. **Title & Meta Tag Optimization:**
-   - Optimize home title to 55-60 characters (e.g. `PassportReady — Global Passport Application & Validity Guide`).
-   - Ensure every page has unique, descriptive meta tags and canonical URLs.
-3. **Structured Data (Schema.org JSON-LD):**
-   - Add `BreadcrumbList`, `FAQPage`, `GovernmentService` / `WebApplication`, and `HowTo` schemas for checklists.
-   - Validate with schema linter.
-4. **Sitemap & Robots Configuration:**
-   - Generate `sitemap.xml` covering every country, service, and language URL with `xhtml:link` hreflang alternates.
-   - Clean, compliant `robots.txt`.
-5. **Domain-Agnostic Configuration:**
-   - Ensure single site_url config in build/head include so canonical URLs and sitemaps work seamlessly on staging, preview, and production (`https://passport.myoss.in/`).
+1. **Accessible Inline SVGs:**
+   - Replace all functional emojis (e.g. `⚠️`, `📢`, `✓`, `📷`) with accessible, screen-reader-safe inline SVG icons with `aria-hidden="true"` or proper accessible labels.
+2. **WCAG 2.2 AA Accessibility Audit:**
+   - Focus trap for modals and interactive popovers.
+   - Contrast ratio verification across dark mode and high-contrast settings.
+   - Screen reader announcements (`aria-live="polite"`) for wizard step changes and score updates.
+3. **Data Erasure & Auto-Save:**
+   - "Clear My Data" one-click action that purges localStorage, state, and pre-filled form fields.
+   - Graceful state restoration with privacy confirmation.
+4. **Print / PDF Export Polish:**
+   - Print stylesheet refinements ensuring multi-page document checklists print cleanly on standard A4/Letter paper without clipped borders or unrendered tables.

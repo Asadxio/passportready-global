@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Passport Directory: Verified Country Guides &amp; Portals</title>
+  <meta name="description" content="Browse official passport application guides, document checklists, and verified fees for 27+ countries with direct government portal links.">
+  <link rel="canonical" href="https://passport.myoss.in/passport/">
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <meta name="theme-color" content="#082d25">
+  <link rel="stylesheet" href="../css/styles.css?v=20261124_p3">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://passport.myoss.in/passport/">
+  <meta property="og:title" content="Global Passport Directory: Verified Country Guides &amp; Portals">
+  <meta property="og:description" content="Browse official passport application guides, document checklists, and verified fees for 27+ countries with direct government portal links.">
+  <meta property="og:site_name" content="PassportReady">
+  <meta property="og:image" content="https://passport.myoss.in/assets/preview.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Global Passport Directory: Verified Country Guides &amp; Portals">
+  <meta name="twitter:description" content="Browse official passport application guides, document checklists, and verified fees for 27+ countries with direct government portal links.">
+  <meta name="twitter:image" content="https://passport.myoss.in/assets/preview.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://passport.myoss.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Passport Directory",
+        "item": "https://passport.myoss.in/passport/"
+      }
+    ]
+  }
+]
+  </script>
+
+  <style>
+    .page-container {
+      width: min(960px, calc(100% - 32px));
+      margin: 32px auto 80px auto;
+    }
+    .breadcrumbs {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+    .breadcrumbs a {
+      color: var(--forest-base);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .breadcrumbs a:hover {
+      text-decoration: underline;
+    }
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+    .content-card h1 {
+      color: var(--forest-dark);
+      font-size: 2rem;
+      line-height: 1.25;
+      margin: 12px 0 16px 0;
+    }
+    .content-card .lead {
+      font-size: 1.1rem;
+      color: var(--slate-body);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .badge-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--mint-soft);
+      color: var(--forest-base);
+    }
+    .badge-verified {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+    .authority-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-sm);
+      padding: 18px 22px;
+      margin: 20px 0 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .authority-info h4 {
+      margin: 0 0 4px 0;
+      color: #065f46;
+      font-size: 1rem;
+    }
+    .authority-info p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #1e3a2b;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 0.95rem;
+    }
+    .spec-table th, .spec-table td {
+      border: 1px solid #e2e8f0;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .spec-table th {
+      background: #f8fafc;
+      color: var(--forest-dark);
+      font-weight: 600;
+    }
+    .spec-table tr:hover {
+      background: #fbfcfe;
+    }
+    .checklist-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .check-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .check-item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .check-item-title {
+      font-weight: 700;
+      color: var(--slate-dark);
+      font-size: 1rem;
+    }
+    .req-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .req-required { background: #fee2e2; color: #991b1b; }
+    .req-conditional { background: #fef3c7; color: #92400e; }
+    .req-alternative { background: #e0f2fe; color: #0369a1; }
+    .faq-accordion details {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+    .faq-accordion summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--forest-dark);
+    }
+    .faq-accordion p {
+      margin: 10px 0 0 0;
+      color: var(--slate-body);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .service-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .service-nav-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+    .service-nav-card:hover {
+      border-color: var(--forest-base);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .service-nav-card h4 {
+      margin: 0 0 6px 0;
+      color: var(--forest-base);
+      font-size: 1rem;
+    }
+    .service-nav-card p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <span>✦ Official Government Link Aggregator & Preparation Framework</span>
+      <span>🔒 100% Client-Side Privacy — Zero Data Retention</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="wrap headergrid">
+      <a class="brand" href="../">
+        <span class="brandmark">✦</span>
+        <span>PassportReady<small>Check before you apply</small></span>
+      </a>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="../#checker">Readiness Checker</a>
+        <a class="btn btn-outline" href="../passport/">Directory</a>
+        <a class="btn btn-outline" href="../#guides">Guides</a>
+        <a class="btn btn-outline" href="../#tools">Tools</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container" id="main-content">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a> <span>/</span> <span>Directory</span></nav>
+    
+  <article class="content-card">
+    <span class="badge-pill">Worldwide Passport Directory</span>
+    <h1>Verified Country Passport Guides</h1>
+    <p class="lead">Select your country to view verified statutory requirements, document checklists, fees, and direct links to official foreign ministries and passport offices.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;font-size:0.9rem">
+      <div style="background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;padding:8px 14px;border-radius:6px;font-weight:600">
+        ✓ 27 Fully Verified Rule Packs
+      </div>
+      <div style="background:#fefce8;border:1px solid #fef08a;color:#854d0e;padding:8px 14px;border-radius:6px;font-weight:600">
+        ⏳ 222 Awaiting Research (Baseline Guidance)
+      </div>
+    </div>
+
+    <h2>Verified Sovereign Jurisdictions</h2>
+    <div class="service-nav-grid" style="grid-template-columns:repeat(auto-fit, minmax(280px, 1fr))">
+      <a href="india/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">India</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">IN</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Passport Seva · Consular, Passport &amp; Visa Division, Ministry of External Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="united-states/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">United States</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">US</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">U.S. Department of State · Bureau of Consular Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="united-kingdom/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">United Kingdom</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">GB</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">HM Passport Office · Home Office</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="canada/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Canada</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">CA</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Immigration, Refugees and Citizenship Canada (IRCC) · Passport Program</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="australia/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Australia</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">AU</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Australian Passport Office · Department of Foreign Affairs and Trade</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="pakistan/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Pakistan</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">PK</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Directorate General of Immigration &amp; Passports · Ministry of Interior</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="bangladesh/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Bangladesh</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">BD</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Department of Immigration and Passports · Ministry of Home Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">1 verified services available →</div>
+    </a><a href="germany/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Germany</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">DE</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Auswärtiges Amt (Federal Foreign Office) &amp; Bundesministerium des Innern und für Heimat (BMI)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="united-arab-emirates/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">United Arab Emirates</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">AE</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="philippines/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Philippines</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">PH</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Department of Foreign Affairs (DFA) · Office of Consular Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="france/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">France</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">FR</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Ministère de l&#039;Intérieur · Agence Nationale des Titres Sécurisés (ANTS)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="saudi-arabia/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Saudi Arabia</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">SA</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">General Directorate of Passports (Al-Jawazat) · Ministry of Interior</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">2 verified services available →</div>
+    </a><a href="japan/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Japan</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">JP</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Ministry of Foreign Affairs (MOFA - 外務省) · Prefectural Passport Offices</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="mexico/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Mexico</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">MX</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Secretaría de Relaciones Exteriores (SRE - Ministry of Foreign Affairs)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">5 verified services available →</div>
+    </a><a href="brazil/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Brazil</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">BR</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Polícia Federal (DPF) · Ministério da Justiça e Segurança Pública</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="south-africa/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">South Africa</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">ZA</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Department of Home Affairs (DHA · iSebe leMicimbi yezeKhaya)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="nigeria/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Nigeria</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">NG</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Nigeria Immigration Service (NIS) · Federal Ministry of Interior</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="italy/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Italy</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">IT</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Polizia di Stato (Questura) · Ministero dell&#039;Interno &amp; MAECI</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">3 verified services available →</div>
+    </a><a href="ireland/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Ireland</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">IE</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Passport Service, Department of Foreign Affairs (An tSeirbhís Pasport)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="kenya/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Kenya</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">KE</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Directorate of Immigration Services (State Department for Immigration and Citizen Services)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="malaysia/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Malaysia</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">MY</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Jabatan Imigresen Malaysia (JIM)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="nepal/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Nepal</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">NP</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Department of Passports (राहदानी विभाग), Ministry of Foreign Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="new-zealand/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">New Zealand</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">NZ</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Te Tari Taiwhenua · Department of Internal Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="singapore/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Singapore</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">SG</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Immigration &amp; Checkpoints Authority (ICA), Ministry of Home Affairs</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="spain/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Spain</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">ES</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Dirección General de la Policía (Policía Nacional, Ministerio del Interior) &amp; MAEC</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="sri-lanka/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Sri Lanka</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">LK</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Department of Immigration and Emigration (DIE / Aapada)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a><a href="indonesia/" class="service-nav-card" style="padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-weight:700;color:var(--forest-dark);font-size:1.05rem">Indonesia</span>
+        <span class="badge-pill badge-verified" style="font-size:0.75rem">ID</span>
+      </div>
+      <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">Direktorat Jenderal Imigrasi (Ditjen Imigrasi, Kementerian Hukum dan HAM)</p>
+      <div style="font-size:0.8rem;color:var(--forest-base);font-weight:600">4 verified services available →</div>
+    </a>
+    </div>
+  </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap footergrid">
+      <div>
+        <a class="brand" href="../" style="color:#fff">
+          <span class="brandmark">✦</span>
+          <span>PassportReady<small style="color:#92a89e">Check before you apply</small></span>
+        </a>
+        <p>
+          PassportReady is an independent preparation guide and is not affiliated with any government or passport-issuing authority. We do not issue passports, schedule official appointments, or collect passport numbers. Always verify final requirements and fees on official government portals.
+        </p>
+      </div>
+      <div class="footerlinks">
+        <a href="../#checker">Readiness Checker</a>
+        <a href="../passport/">Country Directory</a>
+        <a href="../#guides">Passport Guides</a>
+        <a href="../#tools">Tools</a>
+        <a href="../about/">About Us</a>
+        <a href="../methodology/">Methodology</a>
+        <a href="../privacy/">Privacy Policy</a>
+        <a href="../terms/">Terms of Service</a>
+        <a href="../report/">📢 Report Fee / Rule Update</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
