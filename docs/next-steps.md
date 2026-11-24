@@ -5,7 +5,8 @@
 - Phase 1 (Critical Fixes: Trust, Legal, Correctness)  
 - Phase 2 (Global Readiness: Names, Dates, 13 Languages i18n, Photo Privacy, 60-Destination Validity, Special Categories)  
 - Phase 3 (SEO & Discoverability: 112 Static Country & Service Pages, 55-60 Char Title, Schema.org JSON-LD, 118-URL Sitemap)  
-**Next Upcoming Phase:** Phase 4 (UX & Accessibility: WCAG 2.2 AA, SVG Icons, Auto-Save & Data Erasure)
+- Phase 4 (UX & Accessibility: Accessible Vector SVGs, WCAG 2.2 AA Focus Trap, Screen Reader Live Announcers, Silent Auto-Save & "Clear My Data")  
+**Next Upcoming Phase:** Phase 5 (Architecture, Performance, Service Worker Offline Caching & Community Verification)
 
 ---
 
@@ -34,16 +35,13 @@
 
 ---
 
-## 2. Phase 4 Implementation Roadmap (UX & Accessibility)
+## 2. Phase 5 Roadmap (Performance, PWA & Decentralized Rule Maintenance)
 
-1. **Accessible Inline SVGs:**
-   - Replace all functional emojis (e.g. `⚠️`, `📢`, `✓`, `📷`) with accessible, screen-reader-safe inline SVG icons with `aria-hidden="true"` or proper accessible labels.
-2. **WCAG 2.2 AA Accessibility Audit:**
-   - Focus trap for modals and interactive popovers.
-   - Contrast ratio verification across dark mode and high-contrast settings.
-   - Screen reader announcements (`aria-live="polite"`) for wizard step changes and score updates.
-3. **Data Erasure & Auto-Save:**
-   - "Clear My Data" one-click action that purges localStorage, state, and pre-filled form fields.
-   - Graceful state restoration with privacy confirmation.
-4. **Print / PDF Export Polish:**
-   - Print stylesheet refinements ensuring multi-page document checklists print cleanly on standard A4/Letter paper without clipped borders or unrendered tables.
+1. **Service Worker Offline Caching Hardening:**
+   - Pre-cache all 112 static country and service routes in `sw.js` for seamless offline access.
+   - Cache-versioning lifecycle validation and instant offline fallback for all interactive tools.
+2. **Performance & Asset Optimization:**
+   - Lazy load heavy images and non-critical assets; verify Lighthouse performance, accessibility, and SEO >= 95.
+3. **Decentralized Community Rule Maintenance:**
+   - Expand automated JSON schema validation for community-submitted rule pull requests on GitHub.
+   - Automated citation checker ensuring every rule change PR includes a valid `.gov` or official statutory foreign ministry link.
