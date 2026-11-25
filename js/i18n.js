@@ -4104,6 +4104,10 @@ function setLanguage(lang) {
   if (typeof document !== 'undefined') {
     document.documentElement.lang = lang;
     document.documentElement.dir = dict.dir || 'ltr';
+    try {
+      const mt = document.getElementById('mtNotice');
+      if (mt) mt.hidden = !(I18N_METADATA[lang] && I18N_METADATA[lang].needs_review);
+    } catch (e) {}
 
     // Apply translations to all DOM nodes with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {

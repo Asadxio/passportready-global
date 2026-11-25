@@ -100,7 +100,7 @@ const PASSPORT_GUIDES = [
       },
       {
         heading: "3. Name Changes Following Marriage or Divorce",
-        content: "Many modern passport authorities provide simplified procedures for individuals changing their surname post-marriage. In India, under current MEA rules, a simple self-declaration (Annexure 'E') is sufficient to change or add a spouse's surname post-marriage without needing a Gazette notification or marriage certificate. In the US, the UK, Canada, and Australia, an original certified Marriage Certificate issued by the competent civil registrar is accepted without requiring a court decree or Gazette publication. In divorce cases, an official divorce decree or certified court record specifying resumption of a prior surname is required."
+        content: "Many modern passport authorities provide simplified procedures for individuals changing their surname post-marriage. In India, per the Passport Seva document advisor, a surname change after marriage needs the marriage certificate or a Joint Photo Declaration signed by both spouses (Annexure J). In the US, the UK, Canada, and Australia, an original certified Marriage Certificate issued by the competent civil registrar is accepted without requiring a court decree or Gazette publication. In divorce cases, an official divorce decree or certified court record specifying resumption of a prior surname is required."
       }
     ]
   },
@@ -253,7 +253,7 @@ const PASSPORT_GUIDES = [
     sections: [
       {
         heading: "1. Surname Changes Post-Marriage",
-        content: "Taking a spouse's surname or combining surnames with a hyphen requires submitting a certified government marriage certificate issued by a civil registrar (church/religious certificates without civil registration are rejected). In India, under current MEA Passport Rules, changing a surname post-marriage or adding a spouse's name requires only a self-declaration under Annexure 'E'—neither a marriage certificate nor Gazette publication is required. In the US, Form DS-82 or DS-5504 must be accompanied by the original certified marriage certificate."
+        content: "Taking a spouse's surname or combining surnames with a hyphen requires submitting a certified government marriage certificate issued by a civil registrar (church/religious certificates without civil registration are rejected). In India, per the Passport Seva document advisor, changing a surname post-marriage or adding a spouse's name requires the marriage certificate or a Joint Photo Declaration signed by both spouses (Annexure J). In the US, Form DS-82 or DS-5504 must be accompanied by the original certified marriage certificate."
       },
       {
         heading: "2. Restoring Maiden Name After Divorce",

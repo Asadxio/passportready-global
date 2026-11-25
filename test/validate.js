@@ -706,7 +706,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   // Stylesheet check
   const styleMatch = html.match(/<link\s+rel="stylesheet"\s+href="([^"]+)"/);
   assert(styleMatch, 'Stylesheet link must exist');
-  assert(/(20261020_01|20261124_01)/.test(styleMatch[1]), `Stylesheet href must contain valid cache-buster (got ${styleMatch[1]})`);
+  assert(/(20261020_01|20261124_01|20261126_01)/.test(styleMatch[1]), `Stylesheet href must contain valid cache-buster (got ${styleMatch[1]})`);
   
   // Scripts check
   const scriptTags = html.match(/<script\s+src="([^"]+)"/g) || [];
@@ -714,7 +714,7 @@ runTest('index.html applies cache-busting query strings (?v=...) to all local sc
   scriptTags.forEach(tag => {
     const srcMatch = tag.match(/src="([^"]+)"/);
     if (srcMatch && !srcMatch[1].startsWith('http')) {
-      assert(/(20261020_01|20261124_01)/.test(srcMatch[1]), `Local script ${srcMatch[1]} must contain valid cache-busting query string`);
+      assert(/(20261020_01|20261124_01|20261126_01)/.test(srcMatch[1]), `Local script ${srcMatch[1]} must contain valid cache-busting query string`);
     }
   });
 });

@@ -49,9 +49,9 @@ async function verifyLive() {
   assert(index.body.includes('data-dir-filter="needs_research"'), 'Live HTML must contain data-dir-filter="needs_research"');
   assert(index.body.includes('dir-filter-count'), 'Live HTML must contain dir-filter-count spans');
 
-  const hasFaqFix = index.body.includes("routine marriage-related surname changes require only a self-declaration (Annexure 'E')");
-  console.log('Has India Annexure E FAQ Fix:', hasFaqFix);
-  assert(hasFaqFix, 'Must contain India Annexure E FAQ fix');
+  const hasFaqFix = index.body.includes("a surname change after marriage needs the marriage certificate or a Joint Photo Declaration signed by both spouses (Annexure J)");
+  console.log('Has India Annexure J FAQ Fix:', hasFaqFix);
+  assert(hasFaqFix, 'Must contain India Annexure J FAQ fix');
 
   console.log('\n--- 2. Checking Live country-data.js ---');
   const countryDataRes = await fetchUrl('https://passport.myoss.in/data/country-data.js?v=20261020_01');

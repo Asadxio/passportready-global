@@ -3,21 +3,21 @@
  * Enables 100% offline checklist evaluation, photo guide, and calculators.
  */
 
-const CACHE_NAME = 'passportready-v2026.11.24';
+const CACHE_NAME = 'passportready-v2026.11.26';
 
 const PRECACHE_ASSETS = [
   './',
   'index.html',
   'manifest.webmanifest',
-  'css/styles.css?v=20261124_01',
-  'js/site-config.js?v=20261124_01',
-  'js/app.js?v=20261124_01',
-  'js/i18n.js?v=20261124_01',
-  'js/rules-engine.js?v=20261124_01',
-  'js/tools.js?v=20261124_01',
-  'js/guides-data.js?v=20261124_01',
-  'data/country-data.js?v=20261124_01',
-  'data/rule-packs.js?v=20261124_01',
+  'css/styles.css?v=20261126_01',
+  'js/site-config.js?v=20261126_01',
+  'js/app.js?v=20261126_01',
+  'js/i18n.js?v=20261126_01',
+  'js/rules-engine.js?v=20261126_01',
+  'js/tools.js?v=20261126_01',
+  'js/guides-data.js?v=20261126_01',
+  'data/country-data.js?v=20261126_01',
+  'data/rule-packs.js?v=20261126_01',
   'assets/icon.svg',
   'assets/preview.png',
   'locales/en.json',

@@ -45,3 +45,9 @@
 3. **Decentralized Community Rule Maintenance:**
    - Expand automated JSON schema validation for community-submitted rule pull requests on GitHub.
    - Automated citation checker ensuring every rule change PR includes a valid `.gov` or official statutory foreign ministry link.
+
+## Open item: per-language URLs (hreflang)
+sitemap.xml currently lists hreflang alternates as `/?lang=xx`, which are client-side switches of one page, not distinct indexable URLs. Google will likely ignore them. Real per-language pages (e.g. /hi/, /ar/) are needed before hreflang gives SEO benefit.
+
+## Open item: contact mailboxes
+about/privacy/report pages reference contact@, privacy@ and updates@myoss.in. Owner must confirm these mailboxes exist and are monitored.
