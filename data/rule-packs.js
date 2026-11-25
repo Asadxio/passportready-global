@@ -1,7 +1,6 @@
-if (typeof window === 'undefined') {
-  var window = {};
-}
-
+// Generated rule packs bundle for PassportReady — do not edit directly
+// Source of truth: data/country-rules.json
+// Last generated: 2026-11-25T20:20:27.150Z
 window.RULE_PACKS = {
   "IN": {
     "country_code": "IN",
@@ -9,7 +8,7 @@ window.RULE_PACKS = {
     "authority_name": "Passport Seva · Consular, Passport & Visa Division, Ministry of External Affairs",
     "official_portal_url": "https://www.passportindia.gov.in/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-18",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
     "effective_from": "2026-01-01",
     "jurisdictions": [
@@ -266,7 +265,11 @@ window.RULE_PACKS = {
               "date_checked": "2026-10-21",
               "verification_status": "verified"
             }
-          ]
+          ],
+          "senior_discount_verification_status": "verified",
+          "senior_discount_verified_date": "2026-11-26",
+          "senior_discount_source": "https://www.passportindia.gov.in/AppOnlineProject/online/feeSchedule",
+          "senior_discount_note_updated": "Confirmed: 10% rebate on base fee for fresh applications by applicants aged 60+ (and children under 8 years). Does NOT apply to reissues, renewals, or lost/stolen replacements."
         },
         "processing_times": {
           "normal_days": "15 to 30 days including police verification",
@@ -629,6 +632,15 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "passportindia.gov.in"
+    ],
+    "notes": [
+      {
+        "id": "IN-annexure-name-change",
+        "text": "For name change after marriage: submit Annexure J (Joint Photo Declaration signed by both spouses) or a Marriage Certificate issued by the Registrar. A Gazette notification is NOT required for a simple surname change/addition. Annexure E is a separate general eligibility self-declaration form.",
+        "source_url": "https://www.passportindia.gov.in/AppOnlineProject/online/annexureInfo",
+        "verification_status": "verified",
+        "last_reviewed": "2026-11-26"
+      }
     ]
   },
   "US": {
@@ -1050,7 +1062,7 @@ window.RULE_PACKS = {
     "authority_name": "HM Passport Office · Home Office",
     "official_portal_url": "https://www.gov.uk/browse/abroad/passports",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-18",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
     "effective_from": "2026-04-11",
     "jurisdictions": [
@@ -1341,7 +1353,12 @@ window.RULE_PACKS = {
             14.32,
             20.86
           ],
-          "delivery_fee_note": "International courier delivery fees (£14.32 / £20.86) are not verified in the current accessible statutory schedule and must be confirmed directly at gov.uk before application submission."
+          "delivery_fee_note": "International courier delivery fees (£14.32 / £20.86) are not verified in the current accessible statutory schedule and must be confirmed directly at gov.uk before application submission.",
+          "adult_frequent_traveller_online": 116,
+          "frequent_traveller_note": "The large-format passport is officially called the \"Frequent Traveller\" passport and contains 54 pages (not 50). Price is correct. Source: gov.uk/renew-adult-passport/fees verified 2026-11-26.",
+          "frequent_traveller_pages": 54,
+          "frequent_traveller_last_verified": "2026-11-26",
+          "frequent_traveller_source": "https://www.gov.uk/renew-adult-passport/fees"
         },
         "processing_times": {
           "standard": "Up to 3 weeks",
@@ -1427,7 +1444,20 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "gov.uk"
-    ]
+    ],
+    "photo_requirements": {
+      "width_mm": 35,
+      "height_mm": 45,
+      "background": "plain cream, off-white, or light grey (no patterns, no shadows)",
+      "head_min_pct": 70,
+      "head_max_pct": 80,
+      "eyes_open": true,
+      "mouth_closed": true,
+      "glasses": "not recommended (may be rejected if lenses reflect or obscure eyes)",
+      "source_url": "https://www.gov.uk/photos-for-passports",
+      "last_reviewed": "2026-11-26",
+      "verification_status": "verified"
+    }
   },
   "CA": {
     "country_code": "CA",
@@ -1435,7 +1465,7 @@ window.RULE_PACKS = {
     "authority_name": "Immigration, Refugees and Citizenship Canada (IRCC) · Passport Program",
     "official_portal_url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports.html",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-18",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
     "effective_from": "2026-01-01",
     "jurisdictions": [
@@ -1547,8 +1577,8 @@ window.RULE_PACKS = {
           "adult_10_year": 163.5,
           "child_0_to_15": 58.5,
           "urgent_pickup_surcharge": 125.75,
-          "express_pickup_surcharge": 57.15,
-          "standard_pickup_surcharge": 22.85,
+          "express_pickup_surcharge": 50,
+          "standard_pickup_surcharge": 20,
           "fee_records": [
             {
               "currency": "CAD",
@@ -1654,7 +1684,13 @@ window.RULE_PACKS = {
             }
           ],
           "child_overseas": 102.5,
-          "child_urgent_pickup_total": 184.25
+          "child_urgent_pickup_total": 184.25,
+          "express_pickup_surcharge_old": 57.15,
+          "express_pickup_surcharge_last_verified": "2026-11-26",
+          "express_pickup_surcharge_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees.html",
+          "standard_pickup_surcharge_old": 22.85,
+          "standard_pickup_surcharge_last_verified": "2026-11-26",
+          "standard_pickup_surcharge_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees.html"
         },
         "processing_times": {
           "in_person_passport_office": "10 business days",
@@ -2784,7 +2820,7 @@ window.RULE_PACKS = {
     "authority_name": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)",
     "official_portal_url": "https://icp.gov.ae/en/service/issue-passport/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
     "effective_from": "2024-01-01",
     "jurisdictions": [
@@ -2877,7 +2913,7 @@ window.RULE_PACKS = {
         "fees": {
           "currency": "AED",
           "standard_issuance_5_year": 50,
-          "standard_issuance_10_year": 65,
+          "standard_issuance_10_year": 100,
           "express_surcharge": 50,
           "fee_records": [
             {
@@ -2931,7 +2967,14 @@ window.RULE_PACKS = {
               "date_checked": "2026-10-21",
               "verification_status": "verified"
             }
-          ]
+          ],
+          "standard_issuance_10_year_old": 65,
+          "standard_issuance_10_year_note": "AED 10 application/request fee + AED 90 issuance fee = AED 100 total. Source: icp.gov.ae verified 2026-11-26.",
+          "standard_issuance_10_year_last_verified": "2026-11-26",
+          "standard_issuance_10_year_source": "https://icp.gov.ae/en/service/issue-passport/",
+          "express_surcharge_verification_status": "unverified",
+          "express_surcharge_note": "Express surcharge of AED 50 could not be confirmed from icp.gov.ae service pages (2026-11-26 review). ICP only lists a standard delivery fee of AED 15. Check official portal before quoting this fee.",
+          "express_surcharge_last_reviewed": "2026-11-26"
         },
         "processing_times": {
           "standard": "48 hours",
@@ -10423,9 +10466,7 @@ window.RULE_PACKS = {
       "imigrasi.go.id"
     ]
   }
-}
-;
-
+};
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { RULE_PACKS: window.RULE_PACKS };
 }
