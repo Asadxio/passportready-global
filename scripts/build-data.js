@@ -1,3 +1,9 @@
+// DEPRECATED GUARD: this script regenerates data/country-rules.json from stale hardcoded values
+// (e.g. UK GBP 88.50) and would overwrite all verified fixes (Phase 5). Do not run it.
+if (!process.env.ALLOW_STALE_REBUILD) {
+  console.error('build-data.js is deprecated: it would overwrite verified rule packs with stale data. Set ALLOW_STALE_REBUILD=1 only if you intend that.');
+  process.exit(1);
+}
 const fs = require('fs');
 const path = require('path');
 
