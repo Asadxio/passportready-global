@@ -1,6 +1,6 @@
 // Generated rule packs bundle for PassportReady — do not edit directly
 // Source of truth: data/country-rules.json
-// Last generated: 2026-11-25T20:20:27.150Z
+// Last generated: 2026-11-25T20:27:03.454Z
 window.RULE_PACKS = {
   "IN": {
     "country_code": "IN",
@@ -1168,8 +1168,8 @@ window.RULE_PACKS = {
           "adult_jumbo_postal": 129.5,
           "child_online": 66.5,
           "child_postal": 80,
-          "child_jumbo_online": 76.5,
-          "child_jumbo_postal": 90,
+          "child_jumbo_online": 80.5,
+          "child_jumbo_postal": 94,
           "fast_track_1_week_adult": 192,
           "fast_track_1_week_child": 156.5,
           "premium_1_day_adult": 239.5,
@@ -1358,7 +1358,13 @@ window.RULE_PACKS = {
           "frequent_traveller_note": "The large-format passport is officially called the \"Frequent Traveller\" passport and contains 54 pages (not 50). Price is correct. Source: gov.uk/renew-adult-passport/fees verified 2026-11-26.",
           "frequent_traveller_pages": 54,
           "frequent_traveller_last_verified": "2026-11-26",
-          "frequent_traveller_source": "https://www.gov.uk/renew-adult-passport/fees"
+          "frequent_traveller_source": "https://www.gov.uk/renew-adult-passport/fees",
+          "child_jumbo_online_source": "https://www.gov.uk/renew-adult-passport/fees",
+          "child_jumbo_online_effective": "2026-04-08",
+          "child_jumbo_online_verified": "2026-11-26",
+          "child_jumbo_postal_source": "https://www.gov.uk/renew-adult-passport/fees",
+          "child_jumbo_postal_effective": "2026-04-08",
+          "child_jumbo_postal_verified": "2026-11-26"
         },
         "processing_times": {
           "standard": "Up to 3 weeks",
@@ -1690,7 +1696,12 @@ window.RULE_PACKS = {
           "express_pickup_surcharge_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees.html",
           "standard_pickup_surcharge_old": 22.85,
           "standard_pickup_surcharge_last_verified": "2026-11-26",
-          "standard_pickup_surcharge_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees.html"
+          "standard_pickup_surcharge_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees.html",
+          "weekend_holiday_surcharge": 383.5,
+          "weekend_holiday_surcharge_note": "Emergency weekend or statutory holiday service. Strictly for documented emergencies only. Added 2026-11-26.",
+          "weekend_holiday_surcharge_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/fees/fee-changes-passport.html",
+          "weekend_holiday_surcharge_effective": "2026-03-31",
+          "weekend_holiday_surcharge_verified": "2026-11-26"
         },
         "processing_times": {
           "in_person_passport_office": "10 business days",
