@@ -145,3 +145,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Hidden tiered loss replacement penalties for countries with flat replacement fees.
 - **FAQ Sourced Citations**:
   - Corrected FAQ Question 1 to remove the sweeping statement `"Under international and constitutional law, passport issuance is an exercise of sovereign state authority..."`, replacing it with exact statutory citations (Indian Passports Act 1967, 8 U.S.C. § 1185, 22 CFR Part 51, HMPO Royal Prerogative).
+
+## [Unreleased] - Phase 5 batch 1
+### Fixed
+- Pakistan fee table corrected to the official DGIP e-Passport schedule (previous amounts were about half).
+- South Africa fees corrected to the 1 Nov 2022 schedule (R600 / R1,200 / R600).
+- Italy and Brazil validity text corrected (depends on age).
+### Changed
+- Fee records now carry honest verification status. Unconfirmed fees show a visible warning, and country pages say "Partially verified: X of Y fees confirmed" instead of "Fully verified".
+- Unsupported `effective_date` / `effective_from` values removed.
+- Test suite no longer requires an effective date on every Mexico fee record.

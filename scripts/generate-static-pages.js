@@ -97,6 +97,23 @@ function ensureDir(dirPath) {
   }
 }
 
+function feeStats(countryData) {
+  let total = 0, verified = 0;
+  const seen = new Set();
+  Object.values(countryData.services || {}).forEach(sv => {
+    const f = sv && sv.fees;
+    const recs = Array.isArray(f) ? f : (f && Array.isArray(f.fee_records) ? f.fee_records : []);
+    recs.forEach(r => {
+      const key = [r.applicant_category, r.application_channel, r.total_payable !== undefined ? r.total_payable : r.amount].join('|');
+      if (seen.has(key)) return;
+      seen.add(key);
+      total++;
+      if (r.verification_status !== 'unverified') verified++;
+    });
+  });
+  return { total, verified, unverified: total - verified };
+}
+
 function escapeHtml(str) {
   if (!str) return '';
   return String(str)
@@ -444,14 +461,15 @@ function buildServicePageContent(countryData, serviceKey, serviceData, countrySl
       const amtStr = f.total_payable !== undefined
         ? `${f.currency || currency} ${f.total_payable}`
         : (f.amount ? `${f.currency || currency} ${f.amount}` : (f.description || 'Statutory Schedule'));
-      const verStr = f.verification_date || f.date_checked || f.last_reviewed || countryData.last_reviewed || '2026-10-18';
+      const isUnverified = f.verification_status === 'unverified';
+      const verStr = isUnverified ? 'Not confirmed' : (f.verification_date || f.date_checked || f.last_reviewed || countryData.last_reviewed || '2026-10-18');
       const catStr = f.applicant_category ? f.applicant_category.replace(/_/g, ' ') : (f.fee_type || f.name || 'Standard Application');
       const chanStr = f.application_channel ? f.application_channel.replace(/_/g, ' ') : (f.channel || 'Domestic / Standard');
       const authStr = f.applicable_conditions || (feesObj && feesObj.statutory_source) || 'Official Gazette / Regulations';
       return `<tr>
         <td style="text-transform:capitalize"><strong>${escapeHtml(catStr)}</strong><br><small style="color:#64748b">${escapeHtml(f.discount_eligibility || f.conditions || '')}</small></td>
         <td style="text-transform:capitalize">${escapeHtml(chanStr)}</td>
-        <td style="font-weight:700;color:var(--forest-base)">${escapeHtml(amtStr)}</td>
+        <td style="font-weight:700;color:${isUnverified ? '#92400e' : 'var(--forest-base)'}">${escapeHtml(amtStr)}${isUnverified ? '<br><small style="font-weight:500">&#9888; Not yet confirmed against an official page. Check the official portal before paying.</small>' : ''}</td>
         <td>${escapeHtml(verStr)}</td>
         <td style="font-size:0.8rem;color:#475569">${escapeHtml(authStr)}</td>
       </tr>`;
@@ -459,7 +477,8 @@ function buildServicePageContent(countryData, serviceKey, serviceData, countrySl
 
     feesHtml = `
     <h2>Statutory Fees (${escapeHtml(currency)})</h2>
-    <p style="color:#64748b;font-size:0.9rem">All fees verified from official ${escapeHtml(countryData.authority_name)} publications. Zero markup or service charges.</p>
+    <p style="color:#64748b;font-size:0.9rem">${feeRecords.some(x => x.verification_status === 'unverified') ? 'Fees with a check date were confirmed against an official page. Fees marked &#9888; could not be confirmed yet, so check the official portal before paying.' : 'All fees confirmed against official ' + escapeHtml(countryData.authority_name) + ' publications.'} PassportReady adds no markup or service charges.</p>
+    ${(countryData.fee_review_notes || []).length ? '<ul style="color:#475569;font-size:0.85rem;margin:8px 0 12px 18px">' + countryData.fee_review_notes.map(n => '<li>' + escapeHtml(n) + '</li>').join('') + '</ul>' : ''}
     <div style="overflow-x:auto">
       <table class="spec-table">
         <thead>
@@ -584,7 +603,9 @@ function buildServicePageContent(countryData, serviceKey, serviceData, countrySl
     },
     {
       q: `When were these ${countryData.country_name} passport fees last verified?`,
-      a: `All statutory fee schedules and legal bases for ${countryData.country_name} were verified on ${countryData.last_reviewed || '2026-10-18'} from primary government publications.`
+      a: (() => { const st = feeStats(countryData); return st.unverified === 0
+        ? `All ${st.total} fee entries for ${countryData.country_name} were checked against official government pages on ${countryData.last_reviewed || '2026-11-26'}.`
+        : `${st.verified} of ${st.total} fee entries for ${countryData.country_name} were checked against official government pages (last review ${countryData.last_reviewed || '2026-11-26'}). The rest are marked "Not confirmed" in the table; check the official portal before paying.`; })()
     }
   ];
 
@@ -601,7 +622,9 @@ function buildServicePageContent(countryData, serviceKey, serviceData, countrySl
 
   return `
   <article class="content-card">
-    <span class="badge-pill badge-verified">✓ Verified Rule Pack · Reviewed ${escapeHtml(countryData.last_reviewed || '2026-10-18')}</span>
+    ${(() => { const st = feeStats(countryData); return st.unverified === 0
+      ? '<span class="badge-pill badge-verified">✓ Fees confirmed · Reviewed ' + escapeHtml(countryData.last_reviewed || '2026-11-26') + '</span>'
+      : '<span class="badge-pill" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d">&#9888; Partially verified · ' + st.verified + ' of ' + st.total + ' fees confirmed · Reviewed ' + escapeHtml(countryData.last_reviewed || '2026-11-26') + '</span>'; })()}
     <h1>${escapeHtml(countryData.country_name)}: ${escapeHtml(meta.actionNoun)} Checklist &amp; Fees</h1>
     <p class="lead">${escapeHtml(meta.description || `Complete step-by-step preparation guide, document checklist, and verified fee schedule for ${countryData.country_name}.`)}</p>
 
@@ -642,7 +665,9 @@ function buildCountryIndexContent(countryData, countrySlug) {
 
   return `
   <article class="content-card">
-    <span class="badge-pill badge-verified">✓ Fully Verified Country · ${escapeHtml(countryData.country_code)}</span>
+    ${(() => { const st = feeStats(countryData); return st.unverified === 0
+      ? '<span class="badge-pill badge-verified">✓ Fees confirmed · ' + escapeHtml(countryData.country_code) + '</span>'
+      : '<span class="badge-pill" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d">&#9888; Partially verified · ' + st.verified + ' of ' + st.total + ' fees confirmed · ' + escapeHtml(countryData.country_code) + '</span>'; })()}
     <h1>${escapeHtml(countryData.country_name)} Passport Guide &amp; Checklists</h1>
     <p class="lead">Prepare for your ${escapeHtml(countryData.country_name)} passport application or renewal with verified document checklists, official fee schedules, and photo rules.</p>
 

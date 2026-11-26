@@ -1,6 +1,6 @@
 // Generated rule packs bundle for PassportReady — do not edit directly
 // Source of truth: data/country-rules.json
-// Last generated: 2026-11-25T20:27:03.454Z
+// Last generated: 2026-11-26T03:51:25.303Z
 window.RULE_PACKS = {
   "IN": {
     "country_code": "IN",
@@ -2097,9 +2097,8 @@ window.RULE_PACKS = {
     "authority_name": "Directorate General of Immigration & Passports · Ministry of Interior",
     "official_portal_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-18",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Domestic Regional Passport Offices (RPO) & Executive Passport Centers (EPC)",
@@ -2189,61 +2188,149 @@ window.RULE_PACKS = {
         },
         "fees": {
           "currency": "PKR",
-          "normal_36_pages_5_year": 4500,
-          "urgent_36_pages_5_year": 7500,
-          "fast_track_36_pages_5_year": 12500,
-          "normal_36_pages_10_year": 6700,
-          "urgent_36_pages_10_year": 11200,
+          "normal_36_pages_5_year": 9000,
+          "urgent_36_pages_5_year": 15000,
+          "normal_36_pages_10_year": 13500,
+          "urgent_36_pages_10_year": 22500,
+          "normal_72_pages_5_year": 16500,
+          "urgent_72_pages_5_year": 27000,
+          "normal_72_pages_10_year": 24750,
+          "urgent_72_pages_10_year": 40500,
           "fee_records": [
             {
               "currency": "PKR",
-              "amount": 4500,
-              "base_amount": 4500,
-              "emergency_surcharge": 0,
-              "total_payable": 4500,
               "applicant_category": "standard_36_pages_5yr",
               "application_channel": "domestic_normal",
+              "amount": 9000,
+              "base_amount": 9000,
+              "emergency_surcharge": 0,
+              "total_payable": 9000,
               "validity_period": "5_years",
-              "discount_eligibility": "Normal delivery (10–12 working days) 36 pages.",
-              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP. DGIP fee schedule.",
+              "discount_eligibility": "Normal delivery, 36 pages, 5-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP (or CRC / Juvenile Card for minors).",
               "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
-              "effective_date": "2024-03-07",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
               "currency": "PKR",
-              "amount": 7500,
-              "base_amount": 4500,
-              "emergency_surcharge": 3000,
-              "total_payable": 7500,
               "applicant_category": "urgent_36_pages_5yr",
               "application_channel": "domestic_urgent",
+              "amount": 15000,
+              "base_amount": 9000,
+              "emergency_surcharge": 6000,
+              "total_payable": 15000,
               "validity_period": "5_years",
-              "discount_eligibility": "Urgent delivery (5 working days) 36 pages.",
-              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP.",
+              "discount_eligibility": "Urgent delivery, 36 pages, 5-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP (or CRC / Juvenile Card for minors).",
               "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
-              "effective_date": "2024-03-07",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
               "currency": "PKR",
-              "amount": 6700,
-              "base_amount": 6700,
-              "emergency_surcharge": 0,
-              "total_payable": 6700,
               "applicant_category": "standard_36_pages_10yr",
               "application_channel": "domestic_normal",
+              "amount": 13500,
+              "base_amount": 13500,
+              "emergency_surcharge": 0,
+              "total_payable": 13500,
               "validity_period": "10_years",
-              "discount_eligibility": "Normal delivery (10–12 working days) 36 pages 10-year.",
-              "applicable_conditions": "Pakistani citizens aged 15+ with CNIC/NICOP.",
+              "discount_eligibility": "Normal delivery, 36 pages, 10-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens aged 15+ with CNIC/NICOP. 10-year validity is not issued to children under 15.",
               "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
-              "effective_date": "2024-03-07",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "applicant_category": "urgent_36_pages_10yr",
+              "application_channel": "domestic_urgent",
+              "amount": 22500,
+              "base_amount": 13500,
+              "emergency_surcharge": 9000,
+              "total_payable": 22500,
+              "validity_period": "10_years",
+              "discount_eligibility": "Urgent delivery, 36 pages, 10-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens aged 15+ with CNIC/NICOP. 10-year validity is not issued to children under 15.",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "applicant_category": "standard_72_pages_5yr",
+              "application_channel": "domestic_normal",
+              "amount": 16500,
+              "base_amount": 16500,
+              "emergency_surcharge": 0,
+              "total_payable": 16500,
+              "validity_period": "5_years",
+              "discount_eligibility": "Normal delivery, 72 pages, 5-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP (or CRC / Juvenile Card for minors).",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "applicant_category": "urgent_72_pages_5yr",
+              "application_channel": "domestic_urgent",
+              "amount": 27000,
+              "base_amount": 16500,
+              "emergency_surcharge": 10500,
+              "total_payable": 27000,
+              "validity_period": "5_years",
+              "discount_eligibility": "Urgent delivery, 72 pages, 5-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens with valid CNIC/NICOP (or CRC / Juvenile Card for minors).",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "applicant_category": "standard_72_pages_10yr",
+              "application_channel": "domestic_normal",
+              "amount": 24750,
+              "base_amount": 24750,
+              "emergency_surcharge": 0,
+              "total_payable": 24750,
+              "validity_period": "10_years",
+              "discount_eligibility": "Normal delivery, 72 pages, 10-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens aged 15+ with CNIC/NICOP. 10-year validity is not issued to children under 15.",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "PKR",
+              "applicant_category": "urgent_72_pages_10yr",
+              "application_channel": "domestic_urgent",
+              "amount": 40500,
+              "base_amount": 24750,
+              "emergency_surcharge": 15750,
+              "total_payable": 40500,
+              "validity_period": "10_years",
+              "discount_eligibility": "Urgent delivery, 72 pages, 10-year e-Passport.",
+              "applicable_conditions": "Pakistani citizens aged 15+ with CNIC/NICOP. 10-year validity is not issued to children under 15.",
+              "official_source_url": "https://dgip.gov.pk/passport/ordinary-passport.php",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -2319,6 +2406,10 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "dgip.gov.pk"
+    ],
+    "fee_review_notes": [
+      "Fees checked on the official DGIP e-Passport fee page on 2026-11-26. The page lists 36-page and 72-page options and no Fast Track fee, so no Fast Track fee is shown.",
+      "Children under 15 receive a 5-year passport only."
     ]
   },
   "BD": {
@@ -2329,7 +2420,6 @@ window.RULE_PACKS = {
     "rule_pack_status": "verified",
     "last_reviewed": "2026-10-18",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Domestic (Regional Passport Offices)",
@@ -2444,10 +2534,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Regular delivery (15 working days) 48 pages (incl. 15% VAT).",
               "applicable_conditions": "Bangladeshi citizens with NID/BRC. DIP schedule.",
               "official_source_url": "https://www.epassport.gov.bd/landing",
-              "effective_date": "2020-01-22",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "BDT",
@@ -2461,10 +2551,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Express delivery (7 working days) 48 pages (incl. 15% statutory VAT).",
               "applicable_conditions": "Bangladeshi citizens with NID/BRC.",
               "official_source_url": "https://www.epassport.gov.bd/landing",
-              "effective_date": "2020-01-22",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "BDT",
@@ -2478,10 +2568,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Regular delivery (15 working days) 48 pages 10-year (incl. 15% VAT).",
               "applicable_conditions": "Bangladeshi citizens aged 18+ with NID.",
               "official_source_url": "https://www.epassport.gov.bd/landing",
-              "effective_date": "2020-01-22",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "BDT",
@@ -2495,10 +2585,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Super Express delivery (2 working days) 48 pages (incl. 15% statutory VAT).",
               "applicable_conditions": "Bangladeshi citizens with NID/BRC requiring urgent delivery.",
               "official_source_url": "https://www.epassport.gov.bd/landing",
-              "effective_date": "2020-01-22",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             }
           ]
         },
@@ -2535,6 +2625,9 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "epassport.gov.bd"
+    ],
+    "fee_review_notes": [
+      "The official fee page could not be read automatically (it needs JavaScript). All amounts below are unconfirmed."
     ]
   },
   "DE": {
@@ -2543,9 +2636,8 @@ window.RULE_PACKS = {
     "authority_name": "Auswärtiges Amt (Federal Foreign Office) & Bundesministerium des Innern und für Heimat (BMI)",
     "official_portal_url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-01-01",
     "jurisdictions": [
       {
         "name": "Domestic Germany (Local Bürgeramt / Passbehörde)",
@@ -2672,10 +2764,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard passport fee for applicants aged 24 and older.",
               "applicable_conditions": "German citizens aged 24+ under Passverordnung.",
-              "official_source_url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.gesetze-im-internet.de/passv_2007/__27.html",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -2689,10 +2781,10 @@ window.RULE_PACKS = {
               "validity_period": "6_years",
               "discount_eligibility": "Standard passport fee for applicants under 24 years.",
               "applicable_conditions": "German citizens under 24 years under Passverordnung.",
-              "official_source_url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/pass-und-personalausweis",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.gesetze-im-internet.de/passv_2007/__27.html",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -2823,6 +2915,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "auswaertiges-amt.de",
       "bmi.bund.de"
+    ],
+    "fee_review_notes": [
+      "The Auswärtiges Amt travel page shows EUR 60 for adults 24+, which conflicts with section 27 PassV (EUR 70). We follow the law text."
     ]
   },
   "AE": {
@@ -3060,9 +3155,8 @@ window.RULE_PACKS = {
     "authority_name": "Department of Foreign Affairs (DFA) · Office of Consular Affairs",
     "official_portal_url": "https://passport.gov.ph/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-03-01",
     "jurisdictions": [
       {
         "name": "Domestic Philippines (DFA Consular Offices & Temporary Off-Site Passport Services TOPS)",
@@ -3190,10 +3284,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard regular processing (12 working days in NCR).",
               "applicable_conditions": "Filipino citizens. DFA online appointment system.",
-              "official_source_url": "https://passport.gov.ph/",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://passport.gov.ph/faqs_2",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -3207,10 +3301,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Expedited processing (6 working days in NCR).",
               "applicable_conditions": "Filipino citizens requesting expedited turnaround.",
-              "official_source_url": "https://passport.gov.ph/",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://passport.gov.ph/faqs_2",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -3330,6 +3424,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "passport.gov.ph",
       "dfa.gov.ph"
+    ],
+    "fee_review_notes": [
+      "Payment centres may add a PHP 50 convenience fee that is not included here."
     ]
   },
   "FR": {
@@ -3338,9 +3435,8 @@ window.RULE_PACKS = {
     "authority_name": "Ministère de l'Intérieur · Agence Nationale des Titres Sécurisés (ANTS)",
     "official_portal_url": "https://passeport.ants.gouv.fr/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-01-01",
     "jurisdictions": [
       {
         "name": "Inside France (Any equipped Mairie town hall)",
@@ -3468,10 +3564,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard timbre fiscal for adult (majeur).",
               "applicable_conditions": "French citizens aged 18+. CGI Article 953.",
-              "official_source_url": "https://passeport.ants.gouv.fr/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F21091?lang=en",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -3485,10 +3581,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard timbre fiscal for minors aged 15–17.",
               "applicable_conditions": "French minors aged 15 to 17. CGI Article 953.",
-              "official_source_url": "https://passeport.ants.gouv.fr/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F14930?lang=en",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -3502,10 +3598,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard timbre fiscal for children under 15.",
               "applicable_conditions": "French children under 15. CGI Article 953.",
-              "official_source_url": "https://passeport.ants.gouv.fr/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F14930?lang=en",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -3589,6 +3685,9 @@ window.RULE_PACKS = {
       "ants.gouv.fr",
       "service-public.fr",
       "impots.gouv.fr"
+    ],
+    "fee_review_notes": [
+      "An emergency (temporary) passport exists for adults (EUR 30 tax stamp, 1-year validity) and is not listed here."
     ]
   },
   "SA": {
@@ -3597,9 +3696,8 @@ window.RULE_PACKS = {
     "authority_name": "General Directorate of Passports (Al-Jawazat) · Ministry of Interior",
     "official_portal_url": "https://www.absher.sa/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-01-01",
     "jurisdictions": [
       {
         "name": "Inside Kingdom of Saudi Arabia (Absher Platform & Al-Jawazat Branches)",
@@ -3715,10 +3813,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard 5-year passport issuance/renewal via Absher/Sadad (mandatory validity for citizens under 21).",
               "applicable_conditions": "Saudi citizens of all ages; sole validity option for applicants under age 21 (Jawazat regulation).",
-              "official_source_url": "https://www.absher.sa/",
-              "effective_date": "2020-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.absher.sa/wps/wcm/connect/individuals/79bfef4c-5b06-48b8-b60c-787e428657ef/book1_INDe-V7_en.pdf",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -3732,10 +3830,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard 10-year passport issuance/renewal for citizens aged 21 and older.",
               "applicable_conditions": "Saudi citizens aged 21 and older.",
-              "official_source_url": "https://www.absher.sa/",
-              "effective_date": "2020-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.absher.sa/wps/wcm/connect/individuals/79bfef4c-5b06-48b8-b60c-787e428657ef/book1_INDe-V7_en.pdf",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -3816,6 +3914,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "absher.sa",
       "mofa.gov.sa"
+    ],
+    "fee_review_notes": [
+      "The fee source is an official Absher guide dated January 2022; confirm in Absher before paying. Minors under 15 are limited to 5-year validity, and under-21s to 5 years; no separate child fee was found."
     ]
   },
   "JP": {
@@ -3824,9 +3925,8 @@ window.RULE_PACKS = {
     "authority_name": "Ministry of Foreign Affairs (MOFA - 外務省) · Prefectural Passport Offices",
     "official_portal_url": "https://www.mofa.go.jp/ca/pss/page22e_000788.html",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-07-01",
     "jurisdictions": [
       {
         "name": "Domestic (Prefectural Passport Divisions / Mynaportal)",
@@ -3958,10 +4058,11 @@ window.RULE_PACKS = {
               "application_channel": "online",
               "validity_period": "10_years",
               "applicable_conditions": "Japanese nationals aged 18+ applying online via Mynaportal.",
-              "official_source_url": "https://www.mofa.go.jp/mofaj/toko/passport/page22_003986.html",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/files/100482215.pdf",
+              "date_checked": "2026-11-26",
               "effective_date": "2026-07-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             },
             {
               "currency": "JPY",
@@ -3970,10 +4071,11 @@ window.RULE_PACKS = {
               "application_channel": "counter",
               "validity_period": "10_years",
               "applicable_conditions": "Japanese nationals aged 18+ applying in person at prefectural passport counter.",
-              "official_source_url": "https://www.mofa.go.jp/mofaj/toko/passport/page22_003986.html",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/files/100482215.pdf",
+              "date_checked": "2026-11-26",
               "effective_date": "2026-07-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             },
             {
               "currency": "JPY",
@@ -3982,10 +4084,11 @@ window.RULE_PACKS = {
               "application_channel": "online",
               "validity_period": "5_years",
               "applicable_conditions": "Minors under 18 applying online via Mynaportal with statutory guardian signature.",
-              "official_source_url": "https://www.mofa.go.jp/mofaj/ca/pss/pagew_000001_02493.html",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/files/100482215.pdf",
+              "date_checked": "2026-11-26",
               "effective_date": "2026-07-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             },
             {
               "currency": "JPY",
@@ -3994,10 +4097,11 @@ window.RULE_PACKS = {
               "application_channel": "counter",
               "validity_period": "5_years",
               "applicable_conditions": "Minors under 18 applying in person at prefectural passport counter with statutory guardian signature.",
-              "official_source_url": "https://www.mofa.go.jp/mofaj/ca/pss/pagew_000001_02493.html",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.mofa.go.jp/mofaj/files/100482215.pdf",
+              "date_checked": "2026-11-26",
               "effective_date": "2026-07-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             }
           ]
         },
@@ -4136,6 +4240,9 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "mofa.go.jp"
+    ],
+    "fee_review_notes": [
+      "Fees effective 2026-07-01 per the MOFA fee notice. The official table splits only at age 18; the under-12 split shown in the age bands is not confirmed."
     ]
   },
   "MX": {
@@ -4144,9 +4251,8 @@ window.RULE_PACKS = {
     "authority_name": "Secretaría de Relaciones Exteriores (SRE - Ministry of Foreign Affairs)",
     "official_portal_url": "https://www.gob.mx/pasaporte",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Domestic (SRE Delegations & Liaison Offices in Mexico)",
@@ -4362,10 +4468,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard rate for children under 3; 50% discount applies if certified disabled.",
               "applicable_conditions": "Issued exclusively to children under 3 years old under normal validity schedule.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 920
             },
             {
@@ -4379,10 +4485,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "50% discount available for seniors 60+, certified disabled, and Canada SAWP workers.",
               "applicable_conditions": "Standard domestic issuance for applicants aged 3 and older.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 1795
             },
             {
@@ -4396,10 +4502,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "50% discount available for seniors 60+, certified disabled, and Canada SAWP workers.",
               "applicable_conditions": "Standard domestic issuance for applicants aged 3 and older.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 2440
             },
             {
@@ -4413,10 +4519,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "50% discount available for seniors 60+ and certified disabled (SAWP agricultural workers excluded).",
               "applicable_conditions": "Available exclusively to adult applicants aged 18 and older.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 4280
             },
             {
@@ -4430,10 +4536,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Certified disabled children under 3 years old.",
               "applicable_conditions": "Requires official disability certificate issued by competent Mexican public health authority.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 460
             },
             {
@@ -4447,10 +4553,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Seniors 60+, certified disabled, and Mexico-Canada SAWP agricultural workers.",
               "applicable_conditions": "Proof of age (INAPAM / Birth Cert), disability credential, or official SAWP employer constancy required.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 900
             },
             {
@@ -4464,10 +4570,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Seniors 60+, certified disabled, and Mexico-Canada SAWP agricultural workers.",
               "applicable_conditions": "Proof of age (INAPAM / Birth Cert), disability credential, or official SAWP employer constancy required.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 1220
             },
             {
@@ -4481,10 +4587,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Seniors 60+ and certified disabled only. SAWP agricultural workers are NOT eligible for 10-year discount.",
               "applicable_conditions": "Proof of age (INAPAM) or certified disability credential required.",
               "official_source_url": "https://www.gob.mx/pasaporte",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 2140
             },
             {
@@ -4498,10 +4604,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "50% discount applies if child is certified disabled (payable: $22 USD).",
               "applicable_conditions": "Consular issuance abroad exclusively for children under 3.",
               "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 44
             },
             {
@@ -4514,10 +4620,10 @@ window.RULE_PACKS = {
               "validity_period": "3_years",
               "discount_eligibility": "50% discount applies for seniors 60+ and certified disabled (payable: $50.50 USD).",
               "applicable_conditions": "Standard scheduled consular appointment abroad.",
-              "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
+              "official_source_url": "https://consulmex.sre.gob.mx/filadelfia/index.php/consulado/tarifas24",
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "effective_date": null,
               "verification_status": "verified",
               "amount": 101
             },
@@ -4531,10 +4637,10 @@ window.RULE_PACKS = {
               "validity_period": "6_years",
               "discount_eligibility": "50% discount applies for seniors 60+ and certified disabled (payable: $68.50 USD).",
               "applicable_conditions": "Standard scheduled consular appointment abroad.",
-              "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
+              "official_source_url": "https://consulmex.sre.gob.mx/filadelfia/index.php/consulado/tarifas24",
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "effective_date": null,
               "verification_status": "verified",
               "amount": 137
             },
@@ -4548,10 +4654,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "50% discount applies for seniors 60+ and certified disabled (payable: $104.50 USD).",
               "applicable_conditions": "Standard scheduled consular appointment abroad for adults 18+.",
-              "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
+              "official_source_url": "https://consulmex.sre.gob.mx/filadelfia/index.php/consulado/tarifas24",
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "effective_date": null,
               "verification_status": "verified",
               "amount": 209
             },
@@ -4566,10 +4672,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Discounted emergency payable: $28.50 USD ($22 base + $6.50 surcharge).",
               "applicable_conditions": "Approved emergency appointment outside scheduled slots; issued only to children under 3 years old.",
               "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 57
             },
             {
@@ -4583,10 +4689,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Discounted emergency payable: $65.50 USD ($50.50 base + $15 surcharge).",
               "applicable_conditions": "Approved emergency appointment outside scheduled slots for proven emergency.",
               "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 131
             },
             {
@@ -4600,10 +4706,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Discounted emergency payable: $89.00 USD ($68.50 base + $20.50 surcharge).",
               "applicable_conditions": "Approved emergency appointment outside scheduled slots for proven emergency.",
               "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 178
             },
             {
@@ -4617,10 +4723,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Discounted emergency payable: $136.00 USD ($104.50 base + $31.50 surcharge).",
               "applicable_conditions": "Approved emergency appointment outside scheduled slots for adults 18+ with proven emergency.",
               "official_source_url": "https://embamex.sre.gob.mx/polonia/index.php/es/seccion-consular/20-seccion-consular/366-ley-federal-de-derechos-2025-oplaty-konsularne-2025",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "effective_date": "2026-01-01",
-              "verification_status": "verified",
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "effective_date": null,
+              "verification_status": "unverified",
               "amount": 272
             }
           ]
@@ -4913,6 +5019,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "gob.mx",
       "sre.gob.mx"
+    ],
+    "fee_review_notes": [
+      "Consular fees (USD) come from a 2026 Mexican consulate tariff. The 1-year fee differs between consulates, emergency totals are +30% estimates, and domestic MXN fees could not be confirmed."
     ]
   },
   "BR": {
@@ -4921,9 +5030,8 @@ window.RULE_PACKS = {
     "authority_name": "Polícia Federal (DPF) · Ministério da Justiça e Segurança Pública",
     "official_portal_url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Domestic (Polícia Federal Passport Issuing Posts - PEP)",
@@ -5061,13 +5169,13 @@ window.RULE_PACKS = {
               "total_payable": 257.25,
               "applicant_category": "standard_issuance",
               "application_channel": "domestic_policia_federal",
-              "validity_period": "10_years",
+              "validity_period": "by_age_1_to_10_years",
               "discount_eligibility": "Standard passport issuance fee via GRU boleto / PagTesouro.",
               "applicable_conditions": "Brazilian citizens. Polícia Federal regulation.",
-              "official_source_url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.gov.br/pt-br/servicos/obter-passaporte-comum-para-brasileiro",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -5078,13 +5186,13 @@ window.RULE_PACKS = {
               "total_payable": 334.42,
               "applicant_category": "urgent_emergency_issuance",
               "application_channel": "domestic_policia_federal",
-              "validity_period": "10_years",
+              "validity_period": "by_age_1_to_10_years",
               "discount_eligibility": "Urgent/emergency passport total fee (R$ 257.25 base + R$ 77.17 urgent surcharge).",
               "applicable_conditions": "Emergency travel requirements documented at Polícia Federal.",
-              "official_source_url": "https://www.gov.br/pf/pt-br/assuntos/passaporte",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://www.gov.br/pt-br/servicos/obter-passaporte-comum-para-brasileiro",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -5198,6 +5306,9 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "gov.br"
+    ],
+    "fee_review_notes": [
+      "Validity depends on age: 1 to 5 years for minors under 18 (by age band), 10 years for over 18."
     ]
   },
   "ZA": {
@@ -5206,9 +5317,8 @@ window.RULE_PACKS = {
     "authority_name": "Department of Home Affairs (DHA · iSebe leMicimbi yezeKhaya)",
     "official_portal_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Domestic (DHA Regional Offices & Partnered Bank Branches via eHomeAffairs)",
@@ -5300,26 +5410,42 @@ window.RULE_PACKS = {
         },
         "fees": {
           "currency": "ZAR",
-          "adult_tourist_32_pages": 400,
-          "maxi_tourist_48_pages": 600,
-          "child_passport_under_16": 400,
-          "lost_passport_penalty_double_fee": 800,
+          "adult_tourist_32_pages": 600,
+          "maxi_tourist_48_pages": 1200,
+          "child_passport_under_16": 600,
           "fee_records": [
             {
               "currency": "ZAR",
-              "amount": 400,
-              "base_amount": 400,
+              "amount": 600,
+              "base_amount": 600,
               "emergency_surcharge": 0,
-              "total_payable": 400,
+              "total_payable": 600,
               "applicant_category": "adult_tourist_32_pages",
               "application_channel": "domestic_dha_office",
               "validity_period": "10_years",
               "discount_eligibility": "Standard adult 32-page tourist passport fee.",
               "applicable_conditions": "South African citizens aged 16+. DHA regulation.",
-              "official_source_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
+              "official_source_url": "https://www.gov.za/news/media-statements/minister-aaron-motsoaledi-approves-new-fees-passports-and-travel-documents-09",
               "effective_date": "2022-11-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
+              "verification_status": "verified"
+            },
+            {
+              "currency": "ZAR",
+              "amount": 1200,
+              "base_amount": 1200,
+              "emergency_surcharge": 0,
+              "total_payable": 1200,
+              "applicant_category": "maxi_tourist_48_pages",
+              "application_channel": "domestic_dha_office",
+              "validity_period": "10_years",
+              "discount_eligibility": "Maxi 48-page frequent traveller tourist passport fee.",
+              "applicable_conditions": "South African citizens aged 16+ frequent travellers.",
+              "official_source_url": "https://www.gov.za/news/media-statements/minister-aaron-motsoaledi-approves-new-fees-passports-and-travel-documents-09",
+              "effective_date": "2022-11-01",
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -5328,32 +5454,15 @@ window.RULE_PACKS = {
               "base_amount": 600,
               "emergency_surcharge": 0,
               "total_payable": 600,
-              "applicant_category": "maxi_tourist_48_pages",
-              "application_channel": "domestic_dha_office",
-              "validity_period": "10_years",
-              "discount_eligibility": "Maxi 48-page frequent traveller tourist passport fee.",
-              "applicable_conditions": "South African citizens aged 16+ frequent travellers.",
-              "official_source_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
-              "effective_date": "2022-11-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
-              "verification_status": "verified"
-            },
-            {
-              "currency": "ZAR",
-              "amount": 400,
-              "base_amount": 400,
-              "emergency_surcharge": 0,
-              "total_payable": 400,
               "applicant_category": "child_under_16",
               "application_channel": "domestic_dha_office",
               "validity_period": "5_years",
               "discount_eligibility": "Standard child 32-page passport fee.",
               "applicable_conditions": "South African children under 16 years.",
-              "official_source_url": "https://www.dha.gov.za/index.php/civic-services/travel-documents",
+              "official_source_url": "https://www.gov.za/news/media-statements/minister-aaron-motsoaledi-approves-new-fees-passports-and-travel-documents-09",
               "effective_date": "2022-11-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -5461,6 +5570,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "dha.gov.za",
       "dirco.gov.za"
+    ],
+    "fee_review_notes": [
+      "Fees shown are for applications inside South Africa. Applications abroad are R1,200 (32-page) and R2,400 (48-page) per the same notice. The lost-passport penalty is not confirmed."
     ]
   },
   "NG": {
@@ -5469,9 +5581,8 @@ window.RULE_PACKS = {
     "authority_name": "Nigeria Immigration Service (NIS) · Federal Ministry of Interior",
     "official_portal_url": "https://passport.immigration.gov.ng/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2025-09-01",
     "jurisdictions": [
       {
         "name": "Domestic (NIS State Commands & Passport Front Offices)",
@@ -5613,9 +5724,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "applicable_conditions": "32-page booklet for domestic Nigerian citizens with verified NIN.",
               "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
-              "date_checked": "2026-10-19",
+              "date_checked": "2026-11-26",
               "effective_date": "2025-09-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             },
             {
               "currency": "NGN",
@@ -5625,9 +5737,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "applicable_conditions": "64-page booklet for domestic Nigerian citizens aged 18+ with verified NIN.",
               "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
-              "date_checked": "2026-10-19",
+              "date_checked": "2026-11-26",
               "effective_date": "2025-09-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             },
             {
               "currency": "USD",
@@ -5637,9 +5750,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "applicable_conditions": "32-page booklet for Nigerian citizens residing abroad.",
               "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
-              "date_checked": "2026-10-19",
+              "date_checked": "2026-11-26",
               "effective_date": "2025-09-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             },
             {
               "currency": "USD",
@@ -5649,9 +5763,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "applicable_conditions": "64-page booklet for Nigerian citizens residing abroad.",
               "official_source_url": "https://immigration.gov.ng/nigeria-immigration-service-announces-upward-review-of-nigerian-standard-passport-fees/",
-              "date_checked": "2026-10-19",
+              "date_checked": "2026-11-26",
               "effective_date": "2025-09-01",
-              "verification_status": "verified"
+              "verification_status": "verified",
+              "verification_date": "2026-11-26"
             }
           ]
         },
@@ -5773,6 +5888,9 @@ window.RULE_PACKS = {
     ],
     "trusted_domains": [
       "immigration.gov.ng"
+    ],
+    "fee_review_notes": [
+      "A 64-page, 5-year option also exists and is not listed here."
     ]
   },
   "IT": {
@@ -5781,9 +5899,8 @@ window.RULE_PACKS = {
     "authority_name": "Polizia di Stato (Questura) · Ministero dell'Interno & MAECI",
     "official_portal_url": "https://passaportonline.poliziadistato.it/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Domestic (Questura / Commissariato via Agenda Passaporto)",
@@ -5909,13 +6026,13 @@ window.RULE_PACKS = {
               "total_payable": 116,
               "applicant_category": "standard_issuance_total",
               "application_channel": "domestic_questura",
-              "validity_period": "10_years",
+              "validity_period": "by_age_3_5_or_10_years",
               "discount_eligibility": "Standard passport fee (€73.50 marca da bollo + €42.50 booklet fee).",
               "applicable_conditions": "Italian citizens. Legge 89/2014.",
-              "official_source_url": "https://www.poliziadistato.it/articolo/1087",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-21",
-              "date_checked": "2026-10-21",
+              "official_source_url": "https://ambaccra.esteri.it/wp-content/uploads/2024/05/FAQ-PASSAPORTO-E-CIE.pdf",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -6033,6 +6150,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "poliziadistato.it",
       "esteri.it"
+    ],
+    "fee_review_notes": [
+      "Source is an Italian consular FAQ. Validity depends on age: 3 years (0-3), 5 years (3-18), 10 years (18+). The optional Poste delivery fee is not confirmed."
     ]
   },
   "IE": {
@@ -6041,9 +6161,8 @@ window.RULE_PACKS = {
     "authority_name": "Passport Service, Department of Foreign Affairs (An tSeirbhís Pasport)",
     "official_portal_url": "https://www.dfa.ie/passports/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Passport Online (Worldwide & Domestic)",
@@ -6199,10 +6318,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard statutory rate for 34-page booklet via Passport Online.",
               "applicable_conditions": "Online application via dfa.ie/passportonline.",
               "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "EUR",
@@ -6215,10 +6334,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Statutory child rate.",
               "applicable_conditions": "For all children under 18 years of age applying online.",
-              "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.ireland.ie/en/dfa/passports/how-to-apply-for-a-passport/renew-child-passport/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -6233,10 +6352,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Discounted bundle price (€10 saving versus separate purchase of €75 booklet + €35 card).",
               "applicable_conditions": "Ordered simultaneously via Passport Online.",
               "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "EUR",
@@ -6250,10 +6369,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Includes €75 statutory urgent appointment surcharge.",
               "applicable_conditions": "Urgent appointment booked in Dublin or Cork office for urgent travel within 3 working days.",
               "official_source_url": "https://www.dfa.ie/passports/passport-fees/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             }
           ]
         },
@@ -6404,6 +6523,9 @@ window.RULE_PACKS = {
     },
     "trusted_domains": [
       "dfa.ie"
+    ],
+    "fee_review_notes": [
+      "Official Irish adult, bundle and urgent fees could not be read and are not confirmed. The urgent appointment service is for renewals only."
     ]
   },
   "KE": {
@@ -6412,9 +6534,8 @@ window.RULE_PACKS = {
     "authority_name": "Directorate of Immigration Services (State Department for Immigration and Citizen Services)",
     "official_portal_url": "https://immigration.go.ke/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-03-01",
     "jurisdictions": [
       "KE",
       "KEN",
@@ -6542,9 +6663,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard statutory rate for Ordinary 34-page EAC e-Passport (Series A).",
               "applicable_conditions": "Standard EAC e-Passport Series A. Paid via official eCitizen portal.",
               "official_source_url": "https://immigration.go.ke/type-and-fees/",
-              "effective_date": "2024-03-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -6559,9 +6680,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard rate for 50-page frequent traveller booklet (Series B).",
               "applicable_conditions": "Standard EAC e-Passport Series B. Paid via official eCitizen portal.",
               "official_source_url": "https://immigration.go.ke/type-and-fees/",
-              "effective_date": "2024-03-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -6576,9 +6697,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard rate for 66-page frequent traveller booklet (Series C).",
               "applicable_conditions": "Standard EAC e-Passport Series C. Paid via official eCitizen portal.",
               "official_source_url": "https://immigration.go.ke/type-and-fees/",
-              "effective_date": "2024-03-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -6593,9 +6714,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Statutory replacement fee for lost passport (KES 20,050).",
               "applicable_conditions": "Requires police abstract and sworn affidavit of loss. Paid via official eCitizen portal.",
               "official_source_url": "https://immigration.go.ke/type-and-fees/",
-              "effective_date": "2024-03-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -6610,9 +6731,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Statutory replacement fee for mutilated/damaged passport (KES 20,050).",
               "applicable_conditions": "Damaged booklet must be presented for inspection. Paid via official eCitizen portal.",
               "official_source_url": "https://immigration.go.ke/type-and-fees/",
-              "effective_date": "2024-03-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -6786,6 +6907,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "immigration.go.ke",
       "ecitizen.go.ke"
+    ],
+    "fee_review_notes": [
+      "Child and urgent/express fees are not published on the official pages that were checked."
     ]
   },
   "MY": {
@@ -6794,9 +6918,8 @@ window.RULE_PACKS = {
     "authority_name": "Jabatan Imigresen Malaysia (JIM)",
     "official_portal_url": "https://www.imi.gov.my/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-01-01",
     "jurisdictions": [
       "MY",
       "MYS",
@@ -7206,10 +7329,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard statutory adult rate for 5-year passport.",
               "applicable_conditions": "Malaysian adults aged 18 to 59.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7223,10 +7346,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard statutory adult rate for 10-year passport.",
               "applicable_conditions": "Malaysian adults aged 18 to 59.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7240,10 +7363,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard youth rate for applicants aged 12 to 17. Not eligible for 10-year validity.",
               "applicable_conditions": "Applicants aged 12 to 17 years.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7257,10 +7380,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Statutory concession for children under 12 years (0 to 11). Not eligible for 10-year validity.",
               "applicable_conditions": "Children under 12 years of age.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7274,10 +7397,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (5-year passport).",
               "applicable_conditions": "Senior citizens aged 60 and older.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7291,10 +7414,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (10-year passport).",
               "applicable_conditions": "Senior citizens aged 60 and older.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7308,10 +7431,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Concession rate for students under 21 pursuing a Bachelor degree overseas.",
               "applicable_conditions": "Letter of offer and student visa required.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7325,10 +7448,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Concession rate for pilgrims performing Hajj.",
               "applicable_conditions": "Letter from Lembaga Tabung Haji required.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7342,10 +7465,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "100% statutory fee exemption for OKU cardholders under 18 (5-year passport only).",
               "applicable_conditions": "Must present official OKU registration card issued by JKM. Minors under 18 ineligible for 10-year validity.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7359,10 +7482,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "100% statutory fee exemption for OKU cardholders aged 18+ (issued 10-year passport).",
               "applicable_conditions": "Must present official OKU registration card issued by JKM. Adult OKU applicants receive 10-year validity.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7376,10 +7499,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for adult 5-year passport first loss (RM 200 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7393,10 +7516,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for adult 10-year passport first loss (RM 350 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7410,10 +7533,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for child under 12 5-year passport first loss (RM 100 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7427,10 +7550,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for senior citizen 5-year passport first loss (RM 100 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7444,10 +7567,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for senior citizen 10-year passport first loss (RM 175 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7461,10 +7584,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for OKU under 18 first loss (RM 0 base + RM 200 penalty).",
               "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7478,10 +7601,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for OKU aged 18+ first loss (RM 0 base + RM 200 penalty).",
               "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7495,10 +7618,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "100% statutory fee exemption for officers and staff of the Immigration Department of Malaysia.",
               "applicable_conditions": "Must provide departmental service identification and verification.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7513,10 +7636,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "100% statutory fee exemption for Diplomatic (PMD) and Official (PMR) passports.",
               "applicable_conditions": "Approval period aligned with Kementerian Luar Negeri (KLN).",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "MYR",
@@ -7530,10 +7653,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "100% statutory fee exemption for Diplomatic (PMD) and Official (PMR) passports.",
               "applicable_conditions": "Approval period aligned with Kementerian Luar Negeri (KLN).",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "MYR",
@@ -7547,10 +7670,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "100% statutory fee exemption for PMA Dependents.",
               "applicable_conditions": "Approval aligned with PMD or PMR Principal.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "MYR",
@@ -7564,10 +7687,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "100% statutory fee exemption for PMA Dependents.",
               "applicable_conditions": "Approval aligned with PMD or PMR Principal.",
               "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             }
           ]
         },
@@ -7957,10 +8080,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard statutory adult rate for 5-year passport.",
               "applicable_conditions": "Malaysian adults aged 18 to 59.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7974,10 +8097,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard statutory adult rate for 10-year passport.",
               "applicable_conditions": "Malaysian adults aged 18 to 59.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -7991,10 +8114,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard youth rate for applicants aged 12 to 17. Not eligible for 10-year validity.",
               "applicable_conditions": "Applicants aged 12 to 17 years.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8008,10 +8131,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Statutory concession for children under 12 years (0 to 11). Not eligible for 10-year validity.",
               "applicable_conditions": "Children under 12 years of age.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8025,10 +8148,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (5-year passport).",
               "applicable_conditions": "Senior citizens aged 60 and older.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8042,10 +8165,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Statutory 50% concession for senior citizens aged 60+ (10-year passport).",
               "applicable_conditions": "Senior citizens aged 60 and older.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8059,10 +8182,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Concession rate for students under 21 pursuing a Bachelor degree overseas.",
               "applicable_conditions": "Letter of offer and student visa required.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8076,10 +8199,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Concession rate for pilgrims performing Hajj.",
               "applicable_conditions": "Letter from Lembaga Tabung Haji required.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8093,10 +8216,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "100% statutory fee exemption for OKU cardholders under 18 (5-year passport only).",
               "applicable_conditions": "Must present official OKU registration card issued by JKM. Minors under 18 ineligible for 10-year validity.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8110,10 +8233,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "100% statutory fee exemption for OKU cardholders aged 18+ (issued 10-year passport).",
               "applicable_conditions": "Must present official OKU registration card issued by JKM. Adult OKU applicants receive 10-year validity.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8127,10 +8250,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for adult 5-year passport first loss (RM 200 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8144,10 +8267,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for adult 10-year passport first loss (RM 350 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8161,10 +8284,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for child under 12 5-year passport first loss (RM 100 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8178,10 +8301,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for senior citizen 5-year passport first loss (RM 100 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8195,10 +8318,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for senior citizen 10-year passport first loss (RM 175 base + RM 200 penalty).",
               "applicable_conditions": "Police report and Borang IM.42c required; subject to DG evaluation.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8212,10 +8335,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Replacement fee for OKU under 18 first loss (RM 0 base + RM 200 penalty).",
               "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8229,10 +8352,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Replacement fee for OKU aged 18+ first loss (RM 0 base + RM 200 penalty).",
               "applicable_conditions": "Must present JKM card, police report and Borang IM.42c.",
-              "official_source_url": "https://www.imi.gov.my/index.php/en/main-services/passport/malaysian-international-passport/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imi.gov.my/index.php/perkhidmatan-utama/pasport/pasport-malaysia-antarabangsa/",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -8241,6 +8364,9 @@ window.RULE_PACKS = {
     },
     "trusted_domains": [
       "imi.gov.my"
+    ],
+    "fee_review_notes": [
+      "The 10-year RM350 option was reported in the press as starting in June 2026; confirm the start date with the Immigration Department (JIM). PMD/PMR and PMA dependants fees are not confirmed."
     ]
   },
   "NP": {
@@ -8249,9 +8375,8 @@ window.RULE_PACKS = {
     "authority_name": "Department of Passports (राहदानी विभाग), Ministry of Foreign Affairs",
     "official_portal_url": "https://nepalpassport.gov.np/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "District Administration Offices (DAO), Area Administration Offices & DoP Kathmandu",
@@ -8388,10 +8513,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard statutory rate for 34-page booklet at DAO level.",
               "applicable_conditions": "Standard DAO processing (approx 2–4 weeks).",
               "official_source_url": "https://nepalpassport.gov.np/",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "NPR",
@@ -8405,10 +8530,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Fast-track urgent service at Department of Passports Tripureshwor.",
               "applicable_conditions": "Delivery within 2–3 business days.",
               "official_source_url": "https://nepalpassport.gov.np/",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "NPR",
@@ -8422,10 +8547,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard rate for 66-page booklet.",
               "applicable_conditions": "Standard DAO issuance for frequent travellers.",
               "official_source_url": "https://nepalpassport.gov.np/",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             },
             {
               "currency": "NPR",
@@ -8439,10 +8564,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Fast-track urgent rate for 66-page booklet at DoP.",
               "applicable_conditions": "Urgent issuance at DoP Kathmandu.",
               "official_source_url": "https://nepalpassport.gov.np/",
-              "effective_date": "2023-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "verified"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             }
           ]
         },
@@ -8604,6 +8729,9 @@ window.RULE_PACKS = {
     },
     "trusted_domains": [
       "nepalpassport.gov.np"
+    ],
+    "fee_review_notes": [
+      "Official Nepal pages show different fees by channel (Department of Passports, district offices, embassies). The amounts below do not match the Department of Passports page and are not confirmed. Check nepalpassport.gov.np."
     ]
   },
   "NZ": {
@@ -8612,9 +8740,8 @@ window.RULE_PACKS = {
     "authority_name": "Te Tari Taiwhenua · Department of Internal Affairs",
     "official_portal_url": "https://www.passports.govt.nz/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-05-01",
     "jurisdictions": [
       "NZ",
       "NZL",
@@ -8731,9 +8858,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Standard adult rate.",
               "applicable_conditions": "Standard online service (ready in up to 10–15 working days). Courier delivery is an additional cost.",
               "official_source_url": "https://www.passports.govt.nz/passport-costs",
-              "effective_date": "2024-05-27",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8748,9 +8875,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Statutory child concession.",
               "applicable_conditions": "Standard service for children under 16 (ready in up to 10–15 working days). Courier delivery is an additional cost.",
               "official_source_url": "https://www.passports.govt.nz/passport-costs",
-              "effective_date": "2024-05-27",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8765,9 +8892,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Official urgent service total fee.",
               "applicable_conditions": "Urgent service total fee (ready in up to 3 working days). Courier delivery is an additional cost.",
               "official_source_url": "https://www.passports.govt.nz/passport-costs",
-              "effective_date": "2024-05-27",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8782,9 +8909,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Official urgent child service total fee.",
               "applicable_conditions": "Urgent service total fee for children under 16 (ready in up to 3 working days). Courier delivery is an additional cost.",
               "official_source_url": "https://www.passports.govt.nz/passport-costs",
-              "effective_date": "2024-05-27",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8799,9 +8926,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Total official fee for after-hours emergency callout service.",
               "applicable_conditions": "Total fee for urgent after-hours callout service outside normal business hours. Courier delivery is an additional cost.",
               "official_source_url": "https://www.passports.govt.nz/passport-costs",
-              "effective_date": "2024-05-27",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -8816,9 +8943,9 @@ window.RULE_PACKS = {
               "discount_eligibility": "Total official fee for child after-hours emergency callout service.",
               "applicable_conditions": "Total fee for child after-hours callout service outside normal business hours. Courier delivery is an additional cost.",
               "official_source_url": "https://www.passports.govt.nz/passport-costs",
-              "effective_date": "2024-05-27",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -8962,6 +9089,9 @@ window.RULE_PACKS = {
     },
     "trusted_domains": [
       "passports.govt.nz"
+    ],
+    "fee_review_notes": [
+      "Non-residents applying online do not pay GST on standard and urgent fees."
     ]
   },
   "SG": {
@@ -8970,9 +9100,8 @@ window.RULE_PACKS = {
     "authority_name": "Immigration & Checkpoints Authority (ICA), Ministry of Home Affairs",
     "official_portal_url": "https://www.ica.gov.sg/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "MyICA Online Portal & ICA Building (Kallang Road) / SingPost Outlets",
@@ -9095,10 +9224,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years_or_5_years",
               "discount_eligibility": "Standard rate for all Singapore citizens applying online.",
               "applicable_conditions": "Online submission via MyICA.",
-              "official_source_url": "https://www.ica.gov.sg/",
-              "effective_date": "2021-10-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.ica.gov.sg/documents/passport/apply",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9112,10 +9241,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years_or_5_years",
               "discount_eligibility": "In-person counter surcharge (+SGD 10).",
               "applicable_conditions": "Exceptional counter application at ICA Building.",
-              "official_source_url": "https://www.ica.gov.sg/",
-              "effective_date": "2021-10-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.ica.gov.sg/documents/passport/apply",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9129,10 +9258,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years_or_5_years",
               "discount_eligibility": "Includes statutory SGD 50 first loss fee + SGD 70 booklet fee.",
               "applicable_conditions": "Replacement for 1st lost passport.",
-              "official_source_url": "https://www.ica.gov.sg/",
-              "effective_date": "2021-10-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.ica.gov.sg/documents/passport/apply",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9146,10 +9275,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years_or_5_years",
               "discount_eligibility": "Includes statutory SGD 100 repeat loss penalty + SGD 70 booklet fee.",
               "applicable_conditions": "Replacement for 2nd or subsequent loss within 3 years.",
-              "official_source_url": "https://www.ica.gov.sg/",
-              "effective_date": "2021-10-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.ica.gov.sg/documents/passport/apply",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -9291,6 +9420,9 @@ window.RULE_PACKS = {
     "trusted_domains": [
       "ica.gov.sg",
       "mfa.gov.sg"
+    ],
+    "fee_review_notes": [
+      "A newborn fee waiver applies to MyICA applications made before the first birthday."
     ]
   },
   "ES": {
@@ -9299,9 +9431,8 @@ window.RULE_PACKS = {
     "authority_name": "Dirección General de la Policía (Policía Nacional, Ministerio del Interior) & MAEC",
     "official_portal_url": "https://www.dgp.mir.es/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2026-01-01",
     "jurisdictions": [
       {
         "name": "Comisarías de Policía Nacional (Cita Previa en España - Expedición en el acto)",
@@ -9431,10 +9562,10 @@ window.RULE_PACKS = {
               "validity_period": "2_5_or_10_years",
               "discount_eligibility": "Standard statutory rate for Spanish electronic passport.",
               "applicable_conditions": "Standard issuance at Comisarías de Policía.",
-              "official_source_url": "https://www.dgp.mir.es/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_1086",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9448,10 +9579,10 @@ window.RULE_PACKS = {
               "validity_period": "2_5_or_10_years",
               "discount_eligibility": "100% statutory fee exemption.",
               "applicable_conditions": "Must present valid accreditation card of Familia Numerosa (General or Especial) under Ley 40/2003.",
-              "official_source_url": "https://www.dgp.mir.es/",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_1086",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -9599,6 +9730,9 @@ window.RULE_PACKS = {
       "mir.es",
       "citapreviadnie.es",
       "exteriores.gob.es"
+    ],
+    "fee_review_notes": [
+      "Validity depends on age: 2 years (under 5), 5 years (under 30), 10 years (30+)."
     ]
   },
   "LK": {
@@ -9607,9 +9741,8 @@ window.RULE_PACKS = {
     "authority_name": "Department of Immigration and Emigration (DIE / Aapada)",
     "official_portal_url": "https://www.immigration.gov.lk/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-01-01",
     "jurisdictions": [
       "LK",
       "LKA",
@@ -9726,10 +9859,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard All Countries statutory fee (Normal service).",
               "applicable_conditions": "All Countries 10-year validity passport under normal processing.",
-              "official_source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://immigration.gov.lk/pages_e.php?id=8",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9743,10 +9876,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Urgent One-Day Service rate (issued same day at Battaramulla Head Office).",
               "applicable_conditions": "All Countries 10-year validity passport issued same day.",
-              "official_source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://immigration.gov.lk/pages_e.php?id=8",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9760,10 +9893,10 @@ window.RULE_PACKS = {
               "validity_period": "3_years",
               "discount_eligibility": "Statutory concession for children under 16 selecting 3-year validity (Normal service).",
               "applicable_conditions": "Children under 16 years for 3-year validity.",
-              "official_source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://immigration.gov.lk/pages_e.php?id=8",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9777,10 +9910,10 @@ window.RULE_PACKS = {
               "validity_period": "3_years",
               "discount_eligibility": "Statutory Urgent One-Day rate for children under 16 selecting 3-year validity.",
               "applicable_conditions": "Children under 16 years for 3-year validity under urgent same-day processing.",
-              "official_source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://immigration.gov.lk/pages_e.php?id=8",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9794,10 +9927,10 @@ window.RULE_PACKS = {
               "validity_period": "varies",
               "discount_eligibility": "Statutory penalty for passport lost within 1 year of issue date.",
               "applicable_conditions": "Penalty payable in addition to the passport issuance fee if the lost passport was issued within the preceding 12 months.",
-              "official_source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://immigration.gov.lk/pages_e.php?id=8",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -9811,10 +9944,10 @@ window.RULE_PACKS = {
               "validity_period": "varies",
               "discount_eligibility": "Statutory penalty for passport lost after 1 year of issue date with validity remaining.",
               "applicable_conditions": "Penalty payable in addition to the passport issuance fee if the lost passport was issued more than 1 year ago and has unexpired validity.",
-              "official_source_url": "https://www.immigration.gov.lk/pages_e.php?id=8",
-              "effective_date": "2024-01-01",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://immigration.gov.lk/pages_e.php?id=8",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             }
           ]
@@ -10005,6 +10138,9 @@ window.RULE_PACKS = {
     },
     "trusted_domains": [
       "immigration.gov.lk"
+    ],
+    "fee_review_notes": [
+      "A 10-year child passport option (LKR 10,000 normal / 20,000 urgent) also exists and is not listed here."
     ]
   },
   "ID": {
@@ -10013,9 +10149,8 @@ window.RULE_PACKS = {
     "authority_name": "Direktorat Jenderal Imigrasi (Ditjen Imigrasi, Kementerian Hukum dan HAM)",
     "official_portal_url": "https://www.imigrasi.go.id/",
     "rule_pack_status": "verified",
-    "last_reviewed": "2026-10-19",
+    "last_reviewed": "2026-11-26",
     "reviewed_by": "PassportReady Senior Research Analyst",
-    "effective_from": "2024-12-18",
     "jurisdictions": [
       "ID",
       "IDN",
@@ -10160,10 +10295,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard statutory rate for 5-year non-electronic passport booklet.",
               "applicable_conditions": "Paspor biasa non-elektronik masa berlaku 5 tahun (tersedia untuk semua usia termasuk anak di bawah 17 tahun).",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/biaya_imigrasi/index?lang=en-US",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10177,10 +10312,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard statutory rate for 10-year non-electronic passport booklet.",
               "applicable_conditions": "Paspor biasa non-elektronik masa berlaku 10 tahun (khusus WNI berusia 17 tahun ke atas atau sudah menikah).",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/biaya_imigrasi/index?lang=en-US",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10194,10 +10329,10 @@ window.RULE_PACKS = {
               "validity_period": "5_years",
               "discount_eligibility": "Standard statutory rate for 5-year electronic passport booklet.",
               "applicable_conditions": "Paspor biasa elektronik (e-Passport) masa berlaku 5 tahun dengan chip biometrik.",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/biaya_imigrasi/index?lang=en-US",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10211,10 +10346,10 @@ window.RULE_PACKS = {
               "validity_period": "10_years",
               "discount_eligibility": "Standard statutory rate for 10-year electronic passport booklet.",
               "applicable_conditions": "Paspor biasa elektronik (e-Passport) masa berlaku 10 tahun (khusus WNI berusia 17 tahun ke atas atau sudah menikah).",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/biaya_imigrasi/index?lang=en-US",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10228,10 +10363,10 @@ window.RULE_PACKS = {
               "validity_period": "varies",
               "discount_eligibility": "Statutory express service surcharge under PP PNBP.",
               "applicable_conditions": "Layanan percepatan paspor selesai pada hari yang sama (biaya beban tambahan IDR 1,000,000 di luar biaya buku paspor pilihan).",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/wni/paspor-baru/masyarakat-umum",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10245,10 +10380,10 @@ window.RULE_PACKS = {
               "validity_period": "varies",
               "discount_eligibility": "Statutory fine for lost passport.",
               "applicable_conditions": "Biaya beban paspor hilang (IDR 1,000,000) yang harus dibayar di samping biaya buku paspor baru setelah BAP.",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/wni/paspor-baru/masyarakat-umum",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10262,10 +10397,10 @@ window.RULE_PACKS = {
               "validity_period": "varies",
               "discount_eligibility": "Statutory fine for damaged passport.",
               "applicable_conditions": "Biaya beban paspor rusak (IDR 500,000) yang harus dibayar di samping biaya buku paspor baru.",
-              "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
+              "official_source_url": "https://www.imigrasi.go.id/wni/paspor-baru/masyarakat-umum",
+              "effective_date": null,
+              "verification_date": "2026-11-26",
+              "date_checked": "2026-11-26",
               "verification_status": "verified"
             },
             {
@@ -10280,10 +10415,10 @@ window.RULE_PACKS = {
               "discount_eligibility": "Conditional statutory evaluation under Permenkumham No. 18/2022 Pasal 2A.",
               "applicable_conditions": "WNI di bawah 17 tahun: standar masa berlaku 5 tahun (Rp 350.000 / Rp 650.000); syarat 10 tahun (Rp 650.000 / Rp 950.000) memerlukan konfirmasi status perkawinan yang sah.",
               "official_source_url": "https://www.imigrasi.go.id/id/biaya-paspor/",
-              "effective_date": "2024-12-18",
-              "verification_date": "2026-10-19",
-              "date_checked": "2026-10-19",
-              "verification_status": "confirmation_required"
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-26",
+              "verification_status": "unverified"
             }
           ]
         },
@@ -10475,6 +10610,9 @@ window.RULE_PACKS = {
     },
     "trusted_domains": [
       "imigrasi.go.id"
+    ],
+    "fee_review_notes": [
+      "Fees come from the Directorate General of Immigration pages. The minor/marital-status condition is not confirmed on those pages."
     ]
   }
 };

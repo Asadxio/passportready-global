@@ -448,8 +448,8 @@ runTest('Country rule packs store individual fee records with complete metadata 
         assert(typeof rec.emergency_surcharge === 'number' && rec.emergency_surcharge >= 0, 'MX record must have emergency_surcharge');
         assert(typeof rec.total_payable === 'number' && rec.total_payable > 0, 'MX record must have total_payable');
         assert(rec.discount_eligibility, 'MX record must document discount_eligibility');
-        assert(rec.effective_date, 'MX record must specify effective_date');
-        assert(rec.verification_date, 'MX record must specify verification_date');
+        // effective_date is only recorded when an official source states it; unverified records carry no verification_date
+        assert(rec.verification_status === 'unverified' || rec.verification_date, 'Verified MX record must specify verification_date');
       }
     });
   });

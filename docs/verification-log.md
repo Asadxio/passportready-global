@@ -200,3 +200,22 @@
 | **Total** | **56** | **44** | **10** | **3** |
 
 > Items marked ⚠️ UNVERIFIED display a visible "Awaiting verification — check the official portal" notice on the site.
+
+---
+
+## Phase 5, batch 1 (2026-11-26): 21 previously unverified packs
+
+Method: each stored fee was compared with an official government page read on 2026-11-26. A record is `verified` only if an official page was read and the amount matched; otherwise it is `unverified` and shown with a warning. No official page stated an effective date for most schedules, so `effective_date` is now empty unless a source states one (JP 2026-07-01, ZA 2022-11-01, NG 2025-09-01). Applied by `scripts/apply-phase5-batch1.js`.
+
+| Country | Result | Main findings | Official source read |
+|---|---|---|---|
+| PK | **Corrected** | Stored fees were about half the official ones (36-page 5-yr normal 4,500 -> 9,000; 10-yr 6,700 -> 13,500; urgent 7,500 -> 15,000; 11,200 -> 22,500). 72-page options added. Fast Track fee removed (not published). | https://dgip.gov.pk/passport/ordinary-passport.php |
+| ZA | **Corrected** | R400 / R600 / R400 -> R600 / R1,200 / R600 (adult, maxi, child), effective 2022-11-01. Fees abroad are higher (noted). | gov.za media statement, Gazette 47256 |
+| BD | Unverified | Official fee pages need JavaScript and could not be read. | epassport.gov.bd |
+| NP | Unverified | Stored fees do not match the Department of Passports page; channels differ. | nepalpassport.gov.np |
+| MX | Partly verified | Consular USD fees match a 2026 consulate tariff (1-yr conflicts between consulates). Domestic MXN fees unconfirmed. | consulmex.sre.gob.mx |
+| IE | Partly verified | Child fee confirmed. Adult, bundle and urgent not readable. | ireland.ie |
+| MY, ID | Verified (PMD/PMR, PMA, ID minor-marital records unverified) | Amounts match. MY 10-yr start date reported as June 2026 by press, not confirmed. | imi.gov.my, imigrasi.go.id |
+| LK, SA, PH, NG, DE, FR, IT, ES, KE, JP, BR, NZ, SG | Verified | Amounts match. Validity text corrected for IT and BR. Gaps noted per page (see `fee_review_notes` in each pack). | see `official_source_url` on each record |
+
+Open items: Bangladesh and Nepal fees; Mexico domestic fees; Ireland adult fees; Saudi source is a January 2022 Absher document; age bands for several countries (e.g. JP under-12 split, SA under-18 split, ID age 17) not yet confirmed.
