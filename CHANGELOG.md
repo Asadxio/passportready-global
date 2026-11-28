@@ -162,3 +162,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added weekly GitHub Action `link-check.yml` (scripts/check-official-links.js) that opens an issue when an official link breaks.
 - 2026-11-28 (2): second research pass added 54 more portal links. Totals: 21 fully verified, 6 partial, 201 portal linked, 21 awaiting research.
 - 2026-11-28 (3): added Egypt (EG) rule pack as `review_pending`: overseas first-passport/renewal documents and rules from MFA pages; fees and domestic channel not confirmed (shown as "Not confirmed"). Directory: 21 fully verified, 7 partial, 200 linked, 21 awaiting.
+- 2026-11-28 (4): Nepal fees replaced with official figures (nepalpassport.gov.np): NPR 12,000/20,000 adult 34/66 pages etc. Old 5,000/10,000 values were not found on any official page and were removed. Nepal now fully verified. BD, MX domestic, IE adult remain unconfirmed (official pages unreachable from our tools).

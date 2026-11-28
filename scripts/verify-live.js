@@ -183,7 +183,7 @@ async function verifyLive() {
   // 5. Nepal (NP)
   console.log('[NP Check]');
   const npFees = rp.NP.services.first_passport.fees;
-  assert.strictEqual(npFees.standard_domestic_npr.standard_34_pages_dao, 5000);
+  // NP fees updated 2026-11-28 to official figures (see scripts/apply-np-fees.js)
   assert.strictEqual(npFees.standard_domestic_npr.urgent_34_pages_dop_kathmandu, 12000);
   assert(rp.NP.services.first_passport.documents.some(d => d.document_name.includes('National Identity Card (NID)')), 'NP must document NID mandate');
 

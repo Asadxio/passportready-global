@@ -2151,12 +2151,12 @@ window.PASSPORT_COUNTRIES = [
     "official_name": "Federal Democratic Republic of Nepal",
     "authority_url": "https://nepalpassport.gov.np/",
     "authority_label": "Department of Passports · Ministry of Foreign Affairs",
-    "portal_status": "partially_verified",
+    "portal_status": "verified",
     "last_source_reviewed": "2026-10-18",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": [],
-    "fees_total": 4,
-    "fees_confirmed": 0
+    "fees_total": 11,
+    "fees_confirmed": 11
   },
   {
     "name": "Netherlands",

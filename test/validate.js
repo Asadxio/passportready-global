@@ -5457,7 +5457,7 @@ runTest('Phase 1 Audit: Legal Pages, Field Leakage Isolation, Score Integrity, D
 
   // 1.4 Directory honesty: split headline & card verified badges
   assert(indexHtml.includes('id="dirMainHeading"'), 'index.html must contain #dirMainHeading for dynamic breakdown');
-  assert(indexHtml.includes('21 Fully Verified · 7 Partially Verified · 200 Official Portal Linked · 21 Awaiting Research'), 'index.html must state honest 21/7/200/21 partition');
+  assert(indexHtml.includes('22 Fully Verified · 6 Partially Verified · 200 Official Portal Linked · 21 Awaiting Research'), 'index.html must state honest 22/6/200/21 partition');
 
   // 1.5 Claims audit report & changelog exist
   assert(fs.existsSync(path.join(__dirname, '..', 'AUDIT_REPORT.md')), 'AUDIT_REPORT.md must exist in repository root');
