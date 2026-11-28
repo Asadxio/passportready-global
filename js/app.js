@@ -439,7 +439,7 @@
     state.answers.countryName = c.name;
     input.setAttribute('aria-invalid', 'false');
 
-    const isVerified = c.portal_status === 'verified';
+    const isVerified = c.portal_status === 'verified' || c.portal_status === 'partially_verified';
     const isLinked = !!c.authority_url;
 
     hint.className = 'country-source-status hint-resolved';
@@ -1886,6 +1886,7 @@
     return {
       all: list.length,
       verified: list.filter(c => c.portal_status === 'verified').length,
+      partial: list.filter(c => c.portal_status === 'partially_verified').length,
       linked: list.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length,
       needs_research: list.filter(c => c.portal_status === 'official_source_needs_research').length
     };
@@ -1895,7 +1896,7 @@
     const counts = getDirectoryCounts();
     const headingEl = document.getElementById('dirMainHeading');
     if (headingEl) {
-      headingEl.textContent = `${counts.verified} Verified · ${counts.linked} Portal Linked · ${counts.needs_research} Awaiting Research`;
+      headingEl.textContent = `${counts.verified} Fully Verified · ${counts.partial} Partially Verified · ${counts.linked} Official Portal Linked · ${counts.needs_research} Awaiting Research`;
     }
     const filterButtons = document.querySelectorAll('[data-dir-filter]');
     filterButtons.forEach(btn => {
@@ -1929,6 +1930,7 @@
 
       let matchesFilter = true;
       if (state.directoryFilter === 'verified') matchesFilter = c.portal_status === 'verified';
+      else if (state.directoryFilter === 'partial') matchesFilter = c.portal_status === 'partially_verified';
       else if (state.directoryFilter === 'linked') matchesFilter = c.portal_status === 'official_portal_linked_rules_not_fully_audited';
       else if (state.directoryFilter === 'needs_research') matchesFilter = c.portal_status === 'official_source_needs_research';
 
@@ -1944,7 +1946,7 @@
       const emptyTitle = isSearch ? 'No Matching Country or Territory' : 'No Countries in this Category';
       const emptyDesc = isSearch
         ? 'Try searching by common English name or two-letter ISO code.'
-        : 'All 27 currently audited national portals have been fully verified. Zero portals remain in partial audit status.';
+        : 'No countries in this category right now.';
       container.innerHTML = `
         <div style="grid-column:1/-1;text-align:center;padding:40px;background:#f8fafc;border-radius:16px;border:1px dashed #cbd5e1">
           <h3 style="margin:0 0 8px;color:#334155">${escapeHTML(emptyTitle)}</h3>
@@ -1955,10 +1957,10 @@
     }
 
     container.innerHTML = filtered.map(c => {
-      const isVerified = c.portal_status === 'verified';
+      const isVerified = c.portal_status === 'verified' || c.portal_status === 'partially_verified';
       const isLinked = !!c.authority_url;
       const statusClass = isVerified ? 'status-verified' : (isLinked ? 'status-linked' : 'status-needs-research');
-      const statusText = isVerified ? 'VERIFIED' : (isLinked ? 'PORTAL LINKED' : 'AWAITING RESEARCH');
+      const statusText = c.portal_status === 'partially_verified' ? 'PARTIALLY VERIFIED' : isVerified ? 'FULLY VERIFIED' : (isLinked ? 'PORTAL LINKED' : 'AWAITING RESEARCH');
 
       let pack = null;
       if (typeof rulePacks !== 'undefined' && rulePacks[c.alpha2]) {

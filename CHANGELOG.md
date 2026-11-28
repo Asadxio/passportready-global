@@ -155,3 +155,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fee records now carry honest verification status. Unconfirmed fees show a visible warning, and country pages say "Partially verified: X of Y fees confirmed" instead of "Fully verified".
 - Unsupported `effective_date` / `effective_from` values removed.
 - Test suite no longer requires an effective date on every Mexico fee record.
+
+## 2026-11-28 — Honest directory + official portal links
+- Directory counts now split: 21 fully verified, 6 partially verified (some fees unconfirmed), 147 official portal linked (not audited), 75 awaiting research. Old "27 Verified" headline removed.
+- Added official portal links for 147 more countries/territories (101 from search results not yet opened — `link_checked: false`; territories point to the issuing sovereign).
+- Added weekly GitHub Action `link-check.yml` (scripts/check-official-links.js) that opens an issue when an official link breaks.

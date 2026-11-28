@@ -1,0 +1,22 @@
+name: Weekly official-link check
+on:
+  schedule: [{cron: '0 3 * * 1'}]
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - run: node scripts/check-official-links.js > link-report.md || true
+      - name: Open issue if problems found
+        run: |
+          if grep -q '^- ' link-report.md; then
+            gh issue create --title "Official link check $(date +%F)" --body-file link-report.md
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
