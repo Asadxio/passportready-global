@@ -10611,5 +10611,365 @@
     "fee_review_notes": [
       "Fees come from the Directorate General of Immigration pages. The minor/marital-status condition is not confirmed on those pages."
     ]
+  },
+  "EG": {
+    "country_code": "EG",
+    "country_name": "Egypt",
+    "authority_name": "Passports, Emigration and Nationality Administration (Ministry of Interior) / Ministry of Foreign Affairs, Consular Affairs (overseas)",
+    "official_portal_url": "https://moi.gov.eg/passportsen_fr",
+    "rule_pack_status": "review_pending",
+    "last_reviewed": "2026-11-28",
+    "reviewed_by": "Automated research draft - pending human review",
+    "jurisdictions": [
+      {
+        "name": "Domestic (Passports, Emigration and Nationality Administration, Ministry of Interior)",
+        "application_channel": "domestic",
+        "source_url": "https://moi.gov.eg/passportsen_fr"
+      },
+      {
+        "name": "Overseas (Egyptian Embassies and Consulates, Ministry of Foreign Affairs)",
+        "application_channel": "consular",
+        "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73"
+      }
+    ],
+    "age_bands": [
+      {
+        "label": "Minor (under 15)",
+        "min_age": 0,
+        "max_age": 14,
+        "age_basis_source": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73"
+      },
+      {
+        "label": "Adult (15 and over)",
+        "min_age": 15,
+        "max_age": null,
+        "age_basis_source": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73"
+      }
+    ],
+    "services": {
+      "first_passport": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "First-time issuance (consular channel): a father or mother must attend to complete the application; originals must be shown.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "rule": "For newborns, proof of Egyptian identity of both parents is required.",
+            "source_url": "https://cs.mfa.gov.eg/en/CHI/faq",
+            "last_reviewed": "2026-11-28"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Apply in person at the Egyptian mission; the applicant (or a parent for a child) must attend.",
+            "source_url": "https://cs.mfa.gov.eg/ar/QAT/faq"
+          },
+          {
+            "step": "Submit the documents and copies and show originals for inspection; additional documents may be requested depending on the case.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73"
+          },
+          {
+            "step": "Keep the application receipt; you are notified when the application arrives and must hand in the original receipt (and expired passport, if any) at collection.",
+            "source_url": "https://cs.mfa.gov.eg/ar/QAT/faq"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Computerized (digitized) Egyptian birth certificate",
+            "requiredness": "required",
+            "conditions": "Original plus a copy; originals must be shown for inspection.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Egyptian computerized record",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Passports of both parents",
+            "requiredness": "required",
+            "conditions": "Father's and mother's passports, original plus a copy of each.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Not stated",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Computerized Egyptian marriage record of the parents (with the child's entry)",
+            "requiredness": "required",
+            "conditions": "Original plus a copy.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Egyptian computerized record",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Four recent 4x6 cm personal photos on a white background",
+            "requiredness": "required",
+            "conditions": "Four photos, 4x6 cm, white background.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Photos",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          }
+        ],
+        "photo_rules": {
+          "captured_live": false,
+          "details": "Four 4x6 cm photos on a white background (consular first-time issuance per MFA page). Live capture is not stated."
+        },
+        "fees": {
+          "currency": "EGP",
+          "fee_records": [
+            {
+              "currency": null,
+              "amount": null,
+              "base_amount": null,
+              "emergency_surcharge": null,
+              "total_payable": null,
+              "applicant_category": "standard_adult_passport",
+              "application_channel": "consular_overseas",
+              "validity_period": "not_confirmed",
+              "discount_eligibility": "Fee amount not confirmed on an official page opened during research.",
+              "applicable_conditions": "Overseas consular fee. The MFA passport service page and the consular FAQ state that fees are on a separate 'Transaction fees' page; the fees page opened (pages 1-2) listed only visa fees, with no passport entries.",
+              "official_source_url": "https://cs.mfa.gov.eg/ar/MAR/transaction-fees",
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-28",
+              "verification_status": "unverified"
+            },
+            {
+              "currency": "EGP",
+              "amount": null,
+              "base_amount": null,
+              "emergency_surcharge": null,
+              "total_payable": null,
+              "applicant_category": "standard_adult_passport",
+              "application_channel": "domestic_moi",
+              "validity_period": "not_confirmed",
+              "discount_eligibility": "Fee amount not confirmed on an official page opened during research.",
+              "applicable_conditions": "Domestic Ministry of Interior fee. No official domestic fee page could be opened (moi.gov.eg and egypt.gov.eg service pages blocked automated access).",
+              "official_source_url": "https://moi.gov.eg/passportsen_fr",
+              "effective_date": null,
+              "verification_date": null,
+              "date_checked": "2026-11-28",
+              "verification_status": "unverified"
+            }
+          ]
+        },
+        "processing_times": {
+          "consular_overseas": "Not stated for normal issuance on opened pages.",
+          "domestic": "Not found",
+          "lost_passport_replacement_overseas": "Approval from the Passport Authority in Cairo takes 20 to 60 days per the Doha consulate FAQ (a different section says about one month)."
+        },
+        "sources": [
+          {
+            "url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "publisher": "Ministry of Foreign Affairs, Egypt",
+            "page_title": "Issuance or renewal of passport (Arabic)",
+            "checked_at": "2026-11-28",
+            "claims": [
+              "documents",
+              "eligibility"
+            ]
+          },
+          {
+            "url": "https://cs.mfa.gov.eg/en/CHI/faq",
+            "publisher": "Ministry of Foreign Affairs, Egypt (consular FAQ)",
+            "page_title": "FAQ",
+            "checked_at": "2026-11-28",
+            "claims": [
+              "steps",
+              "eligibility"
+            ]
+          }
+        ]
+      },
+      "renewal_reissue": {
+        "availability_status": "available",
+        "eligibility": [
+          {
+            "rule": "Applicant must attend in person (overseas). For under 15, a parent or legal guardian attends.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "rule": "Males aged 29 and over must show military status documents.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "rule": "Passport validity is 7 years with a valid National ID; 3 years if the National ID is expired or absent (3 years once only if absent, then 1 year until a National ID is issued).",
+            "source_url": "https://cs.mfa.gov.eg/ar/QAT/faq",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "rule": "Lost or damaged passport replacement requires prior approval from the Passports authority in Cairo, a local police report, and the applicant in person.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          }
+        ],
+        "steps": [
+          {
+            "step": "Attend the Egyptian mission in person with the current passport, National ID (or birth certificate if under 15) and photos.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73"
+          },
+          {
+            "step": "For lost or damaged passports the mission first obtains approval from the Passports authority in Cairo.",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73"
+          },
+          {
+            "step": "Collect the new passport by handing in the original receipt and the expired passport.",
+            "source_url": "https://cs.mfa.gov.eg/ar/QAT/faq"
+          }
+        ],
+        "documents": [
+          {
+            "document_name": "Current Egyptian passport",
+            "requiredness": "required",
+            "conditions": "Original plus a copy. Original expired passport and the application receipt are handed in when collecting the new passport.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Valid Egyptian National ID card (applicants over 15)",
+            "requiredness": "required",
+            "conditions": "Needed for 7-year validity. If expired: passport issued for 3 years only. If none: computerized birth certificate required and 3-year passport (once only), then 1 year until a National ID is obtained.",
+            "accepted_alternatives": [
+              "Computerized Egyptian birth certificate (if no or expired National ID, per FAQ)"
+            ],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Not stated",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Computerized Egyptian birth certificate (applicants under 15)",
+            "requiredness": "conditional",
+            "conditions": "For renewal for applicants under 15; a parent or legal guardian must attend and bring a parent's passport (original + copy).",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Egyptian computerized record",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Attested school/university enrollment certificate marked 'Student Abroad'",
+            "requiredness": "conditional",
+            "conditions": "Only if the applicant wishes to be recorded as a student abroad.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Attested",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Proof of military status (males aged 29 and over)",
+            "requiredness": "conditional",
+            "conditions": "One of: 'not required for conscription' card/certificate, military service completion certificate, exemption certificate, or letter from the Egyptian military attache confirming status and payment of the fine with the original receipt. Reserve officers over 45 submit Form (100).",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copies",
+            "translation_or_legalisation": "Not stated",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Proof of marital status (female applicants over 15)",
+            "requiredness": "conditional",
+            "conditions": "Unmarried: written declaration. Married: attested computerized marriage record plus husband's passport. Divorced: attested divorce record. Widowed: computerized death record or attested foreign death certificate.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Original + copy",
+            "translation_or_legalisation": "Attested by MFA where foreign",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          },
+          {
+            "document_name": "Four recent 4x6 cm personal photos on a white background",
+            "requiredness": "required",
+            "conditions": "Four photos, 4x6 cm, white background.",
+            "accepted_alternatives": [],
+            "original_or_copy": "Photos",
+            "translation_or_legalisation": "Not applicable",
+            "source_url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "last_reviewed": "2026-11-28"
+          }
+        ],
+        "sources": [
+          {
+            "url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+            "publisher": "Ministry of Foreign Affairs, Egypt",
+            "page_title": "Issuance or renewal of passport (Arabic)",
+            "checked_at": "2026-11-28"
+          },
+          {
+            "url": "https://cs.mfa.gov.eg/ar/QAT/faq",
+            "publisher": "Ministry of Foreign Affairs, Egypt (consular FAQ, Doha)",
+            "page_title": "Frequently asked questions",
+            "checked_at": "2026-11-28"
+          }
+        ]
+      }
+    },
+    "sources": [
+      {
+        "url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/73",
+        "publisher": "Ministry of Foreign Affairs, Egypt",
+        "page_title": "Issuance or renewal of passport",
+        "checked_at": "2026-11-28"
+      },
+      {
+        "url": "https://www.mfa.gov.eg/js/ConsularServicesAndTransactions/Details/74",
+        "publisher": "Ministry of Foreign Affairs, Egypt",
+        "page_title": "Issuance or Renewal of an Egyptian Passport",
+        "checked_at": "2026-11-28"
+      },
+      {
+        "url": "https://cs.mfa.gov.eg/en/CHI/faq",
+        "publisher": "Ministry of Foreign Affairs, Egypt (consular FAQ)",
+        "page_title": "FAQ",
+        "checked_at": "2026-11-28"
+      },
+      {
+        "url": "https://cs.mfa.gov.eg/ar/QAT/faq",
+        "publisher": "Ministry of Foreign Affairs, Egypt (consular FAQ)",
+        "page_title": "Frequently asked questions",
+        "checked_at": "2026-11-28"
+      },
+      {
+        "url": "https://www.mfa.gov.eg/ar/ConsularServicesAndTransactions/Details/2",
+        "publisher": "Ministry of Foreign Affairs, Egypt",
+        "page_title": "Temporary travel document for newborns",
+        "checked_at": "2026-11-28"
+      },
+      {
+        "url": "https://cs.mfa.gov.eg/ar/MAR/transaction-fees",
+        "publisher": "Ministry of Foreign Affairs, Egypt (Masry Bil Kharij)",
+        "page_title": "Transaction fees",
+        "checked_at": "2026-11-28"
+      },
+      {
+        "url": "https://moi.gov.eg/passportsen_fr",
+        "publisher": "Ministry of Interior, Egypt",
+        "page_title": "Passports, Emigration & Nationality Administration",
+        "checked_at": "2026-11-28"
+      }
+    ],
+    "trusted_domains": [
+      "mfa.gov.eg",
+      "cs.mfa.gov.eg",
+      "moi.gov.eg",
+      "egypt.gov.eg"
+    ],
+    "fee_review_notes": [
+      "No passport fee amount could be confirmed. The MFA passport pages say fees are listed on a separate 'Transaction fees' page; pages 1-2 of that page showed only visa fees. Both fee records are therefore unverified with null amounts.",
+      "Domestic (Ministry of Interior) document, fee and step details could not be read: moi.gov.eg and egypt.gov.eg service pages refused automated fetching (robots.txt unreachable). Only the Administration's about page was read. Documents and steps in this pack come from the MFA consular pages and apply to the overseas channel.",
+      "Temporary travel document for newborns (MFA Details/2) lists no fee or validity. Not modelled as a separate service."
+    ]
   }
 }

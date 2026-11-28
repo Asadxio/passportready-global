@@ -918,11 +918,13 @@ window.PASSPORT_COUNTRIES = [
     "official_name": "Arab Republic of Egypt",
     "authority_url": "https://moi.gov.eg/passportsen_fr",
     "authority_label": "Passports, Emigration and Nationality Administration (Ministry of Interior)",
-    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "portal_status": "partially_verified",
     "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": [],
-    "link_checked": false
+    "link_checked": false,
+    "fees_total": 2,
+    "fees_confirmed": 0
   },
   {
     "name": "El Salvador",
@@ -2716,7 +2718,7 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SMR",
     "numeric": "674",
     "official_name": "Republic of San Marino",
-    "authority_url": "https://www.gov.sm/pub1/GovSM/dam/jcr:069bfe33-1a98-408e-a4b7-2c5e48686ae0/Carta%20dei%20Servizi%20Stato%20Civile%2C%20Servizi%20Demografici%20ed%20Elettorali%20rev.120124.pdf",
+    "authority_url": "https://www.gov.sm/pub1/GovSM/dam/jcr:069bfe33-1a98-408e-a4b7-2c5e48686ae0/Carta%20dei%20Servizi%20Stato%20Civile,%20Servizi%20Demografici%20ed%20Elettorali%20rev.120124.pdf",
     "authority_label": "Ufficio Stato Civile, Servizi Demografici ed Elettorali (Sezione Passaporti)",
     "portal_status": "official_portal_linked_rules_not_fully_audited",
     "last_source_reviewed": "2026-11-28",

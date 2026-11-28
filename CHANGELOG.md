@@ -161,3 +161,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added official portal links for 147 more countries/territories (101 from search results not yet opened — `link_checked: false`; territories point to the issuing sovereign).
 - Added weekly GitHub Action `link-check.yml` (scripts/check-official-links.js) that opens an issue when an official link breaks.
 - 2026-11-28 (2): second research pass added 54 more portal links. Totals: 21 fully verified, 6 partial, 201 portal linked, 21 awaiting research.
+- 2026-11-28 (3): added Egypt (EG) rule pack as `review_pending`: overseas first-passport/renewal documents and rules from MFA pages; fees and domestic channel not confirmed (shown as "Not confirmed"). Directory: 21 fully verified, 7 partial, 200 linked, 21 awaiting.

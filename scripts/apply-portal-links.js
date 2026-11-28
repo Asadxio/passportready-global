@@ -14,7 +14,7 @@ let linked=0,none=0;
 arr.forEach(c=>{
   const r=rules[c.alpha2];
   if(r){const s=stats(r);c.fees_total=s.t;c.fees_confirmed=s.v;
-    if(c.portal_status==='verified'&&s.v<s.t)c.portal_status='partially_verified';
+    if((c.portal_status==='verified'||r.rule_pack_status==='review_pending')&&s.v<s.t)c.portal_status='partially_verified';
     return;}
   const x=res[c.alpha2];if(!x)return;
   if(x.url&&/^https:\/\//.test(x.url)&&x.st!=='NONE'){

@@ -558,5 +558,20 @@
     "loc": "/passport/indonesia/lost-stolen/",
     "priority": "0.7",
     "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/eg/",
+    "priority": "0.8",
+    "changefreq": "weekly"
+  },
+  {
+    "loc": "/passport/eg/fresh/",
+    "priority": "0.7",
+    "changefreq": "monthly"
+  },
+  {
+    "loc": "/passport/eg/renewal/",
+    "priority": "0.7",
+    "changefreq": "monthly"
   }
 ]
