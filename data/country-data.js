@@ -9,12 +9,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "AFG",
     "numeric": "004",
     "official_name": "Islamic Republic of Afghanistan",
-    "authority_url": null,
-    "authority_label": "Ministry of Interior (General Directorate of Passports)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://passport.moi.gov.af/Home",
+    "authority_label": "General Directorate of Passports (Ministry of Interior)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Albania",
@@ -36,12 +37,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "DZA",
     "numeric": "012",
     "official_name": "People's Democratic Republic of Algeria",
-    "authority_url": null,
+    "authority_url": "https://interieur.gov.dz/accueil_fr/passeport-biometrique/",
     "authority_label": "Ministère de l'Intérieur, des Collectivités locales et de l'Aménagement du territoire",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "American Samoa",
@@ -63,12 +65,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "AND",
     "numeric": "020",
     "official_name": "Principality of Andorra",
-    "authority_url": null,
-    "authority_label": "Govern d'Andorra (Departament de Policia)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.govern.ad/ca/ministeris-i-secretaries-d-estat/ministeri-de-justicia-i-interior/passaports",
+    "authority_label": "Ministeri de Justícia i Interior (Govern d'Andorra)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Angola",
@@ -76,12 +79,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "AGO",
     "numeric": "024",
     "official_name": "Republic of Angola",
-    "authority_url": null,
+    "authority_url": "https://www.sme.gov.ao/ao/servicos/requisitos-dos-actos-migratorios/nacionais/",
     "authority_label": "Serviço de Migração e Estrangeiros (SME)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Anguilla",
@@ -104,7 +108,7 @@ window.PASSPORT_COUNTRIES = [
     "numeric": "010",
     "official_name": null,
     "authority_url": null,
-    "authority_label": null,
+    "authority_label": "No passport-issuing authority",
     "portal_status": "official_source_needs_research",
     "last_source_reviewed": null,
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
@@ -116,12 +120,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "ATG",
     "numeric": "028",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Antigua and Barbuda Passport Office",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://immigration.gov.ag/general-services/passports/",
+    "authority_label": "Antigua and Barbuda Immigration Department / Passport Office",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Argentina",
@@ -271,12 +276,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "BLR",
     "numeric": "112",
     "official_name": "Republic of Belarus",
-    "authority_url": null,
-    "authority_label": "Citizenship and Migration Department, Ministry of Internal Affairs",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.mfa.gov.by/visa/passport/",
+    "authority_label": "Ministry of Foreign Affairs of Belarus (passport issuance/exchange; in-country issuance by MVD Citizenship and Migration Department)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Belgium",
@@ -354,14 +360,15 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "BOL",
     "numeric": "068",
     "official_name": "Plurinational State of Bolivia",
-    "authority_url": null,
+    "authority_url": "https://migracion.gob.bo/tramites_nal",
     "authority_label": "Dirección General de Migración",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": [
       "Plurinational State of Bolivia"
-    ]
+    ],
+    "link_checked": false
   },
   {
     "name": "Bonaire, Sint Eustatius and Saba",
@@ -411,12 +418,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "BVT",
     "numeric": "074",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
-    "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "authority_url": "https://www.politiet.no/en/english/passports-and-id-cards/passports-and-id-cards-for-norwegian-citizens",
+    "authority_label": "Politiet (Norwegian Police)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
+    "notes": "Passports for this territory are issued by NO; link goes to that authority.",
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Brazil",
@@ -467,12 +475,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "BRN",
     "numeric": "096",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Jabatan Imigresen dan Pendaftaran Kebangsaan",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.immigration.gov.bn/en/SitePages/Travel%20Document.aspx",
+    "authority_label": "Immigration and National Registration Department",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Bulgaria",
@@ -494,12 +503,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "BFA",
     "numeric": "854",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Direction Générale de la Police Nationale",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://police.gov.bf/index.php/infos-utiles/passeport",
+    "authority_label": "Police Nationale du Burkina Faso",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Burundi",
@@ -507,12 +517,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "BDI",
     "numeric": "108",
     "official_name": "Republic of Burundi",
-    "authority_url": null,
-    "authority_label": "Direction Générale de la Migration",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://migration.gov.bi/Document/infos_doc",
+    "authority_label": "Police de l'Air, des Frontières et des Étrangers (Ministère de la Sécurité Publique)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Cabo Verde",
@@ -520,12 +531,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "CPV",
     "numeric": "132",
     "official_name": "Republic of Cabo Verde",
-    "authority_url": null,
-    "authority_label": "Polícia Nacional / Direção Nacional de Identificação",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://sniac.cv/passaporte-electronico-cabo-verdiano/",
+    "authority_label": "Sistema Nacional de Identificação e Autenticação Civil (SNIAC)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Cambodia",
@@ -533,12 +545,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "KHM",
     "numeric": "116",
     "official_name": "Kingdom of Cambodia",
-    "authority_url": null,
-    "authority_label": "General Department of Identification, Ministry of Interior",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://news.gdi.gov.kh/pages/passport-department",
+    "authority_label": "General Department of Identification, Passport Department (Ministry of Interior)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Cameroon",
@@ -589,12 +602,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "CAF",
     "numeric": "140",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Ministère de l'Intérieur / Police Nationale",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://paris.diplomatie.gouv.cf/communiques/12/delivrance-de-passeports-biometriques",
+    "authority_label": "Embassy of Central African Republic in France (embassy page only; no national page found)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Chad",
@@ -602,12 +616,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "TCD",
     "numeric": "148",
     "official_name": "Republic of Chad",
-    "authority_url": null,
+    "authority_url": "https://www.anats.td/",
     "authority_label": "Agence Nationale des Titres Sécurisés (ANATS)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Chile",
@@ -814,15 +829,16 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "COD",
     "numeric": "180",
     "official_name": null,
-    "authority_url": null,
+    "authority_url": "https://dgm.cd/",
     "authority_label": "Direction Générale de Migration (DGM)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": [
       "DR Congo",
       "DRC"
-    ]
+    ],
+    "link_checked": false
   },
   {
     "name": "Denmark",
@@ -844,12 +860,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "DJI",
     "numeric": "262",
     "official_name": "Republic of Djibouti",
-    "authority_url": null,
-    "authority_label": "Djibouti (no official passport page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.egouv.dj/sousmenu/sousmenu_selected_article/103/5/1",
+    "authority_label": "Government of Djibouti e-services portal (Passeport; Ministère de l'Intérieur / Police nationale)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Dominica",
@@ -871,12 +888,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "DOM",
     "numeric": "214",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Dirección General de Pasaportes (no official page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.pasaportes.gob.do/",
+    "authority_label": "Dirección General de Pasaportes (DGP)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Ecuador",
@@ -898,12 +916,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "EGY",
     "numeric": "818",
     "official_name": "Arab Republic of Egypt",
-    "authority_url": null,
-    "authority_label": "Ministry of Interior - Passports (no official page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://moi.gov.eg/passportsen_fr",
+    "authority_label": "Passports, Emigration and Nationality Administration (Ministry of Interior)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "El Salvador",
@@ -911,12 +930,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SLV",
     "numeric": "222",
     "official_name": "Republic of El Salvador",
-    "authority_url": null,
-    "authority_label": "Dirección General de Migración y Extranjería (no official page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.migracion.gob.sv/servicios/emision/",
+    "authority_label": "Dirección General de Migración y Extranjería",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Equatorial Guinea",
@@ -924,12 +944,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "GNQ",
     "numeric": "226",
     "official_name": "Republic of Equatorial Guinea",
-    "authority_url": null,
-    "authority_label": "Equatorial Guinea (no official page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.guineaecuatorialpress.com/noticias/comienza_la_expedicion_de_los_nuevos_pasaportes_biometricos",
+    "authority_label": "Gobierno de Guinea Ecuatorial official portal (passport issuance news; Ministerio de Interior)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Eritrea",
@@ -978,12 +999,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "ETH",
     "numeric": "231",
     "official_name": "Federal Democratic Republic of Ethiopia",
-    "authority_url": null,
-    "authority_label": "Immigration and Citizenship Service (no official page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://ics.gov.et/information/how-to-obtain-a-new-ethiopian-passport/",
+    "authority_label": "Immigration and Citizenship Services",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Falkland Islands (Malvinas)",
@@ -1090,12 +1112,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "ATF",
     "numeric": "260",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "French Southern Territories (uninhabited)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
-    "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "authority_url": "https://passeport.ants.gouv.fr/home",
+    "authority_label": "ANTS France Titres (France)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
+    "notes": "Passports for this territory are issued by FR; link goes to that authority.",
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Gabon",
@@ -1103,12 +1126,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "GAB",
     "numeric": "266",
     "official_name": "Gabonese Republic",
-    "authority_url": null,
-    "authority_label": "Gabon (no official page found)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.dgdi.ga/titresetdocuments/",
+    "authority_label": "Direction Générale de la Documentation et de l'Immigration (DGDI)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Gambia",
@@ -1257,12 +1281,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "GTM",
     "numeric": "320",
     "official_name": "Republic of Guatemala",
-    "authority_url": null,
-    "authority_label": "Instituto Guatemalteco de Migración",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://igm.gob.gt/informacion-pasaportes/",
+    "authority_label": "Instituto Guatemalteco de Migración (IGM)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Guernsey",
@@ -1284,12 +1309,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "GIN",
     "numeric": "324",
     "official_name": "Republic of Guinea",
-    "authority_url": null,
-    "authority_label": "Guinea passport authority",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://mspc.gov.gn/services-aux-usagers/",
+    "authority_label": "Ministère de la Sécurité et de la Protection Civile (Police nationale / passports)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Guinea-Bissau",
@@ -1324,12 +1350,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "HTI",
     "numeric": "332",
     "official_name": "Republic of Haiti",
-    "authority_url": null,
-    "authority_label": "Haiti Direction de l'Immigration et de l'Emigration",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://immigration.mict.gouv.ht/informations-utiles/demande-de-passeport/",
+    "authority_label": "Direction de l'Immigration et de l'Émigration (DIE)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Heard Island and McDonald Islands",
@@ -1337,12 +1364,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "HMD",
     "numeric": "334",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Uninhabited territory (Australian external territory)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
-    "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "authority_url": "https://www.passports.gov.au/",
+    "authority_label": "Australian Passport Office (DFAT)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
+    "notes": "Passports for this territory are issued by AU; link goes to that authority.",
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Honduras",
@@ -1350,12 +1378,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "HND",
     "numeric": "340",
     "official_name": "Republic of Honduras",
-    "authority_url": null,
-    "authority_label": "Instituto Nacional de Migración Honduras",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.inm.gob.hn/",
+    "authority_label": "Instituto Nacional de Migración (INM)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Hong Kong",
@@ -1637,12 +1666,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "KGZ",
     "numeric": "417",
     "official_name": "Kyrgyz Republic",
-    "authority_url": null,
-    "authority_label": "Kyrgyzstan State Registration Service",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://grs.gov.kg/ru/eid/issuing_authority/",
+    "authority_label": "State Registration Service under the Cabinet of Ministers of the Kyrgyz Republic",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Laos",
@@ -1721,12 +1751,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "LBY",
     "numeric": "434",
     "official_name": "Libya",
-    "authority_url": null,
-    "authority_label": "Libya Passport and Nationality authority",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://lpa.gov.ly/en",
+    "authority_label": "Libyan Passport, Nationality and Foreigners Affairs Authority",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Liechtenstein",
@@ -1790,12 +1821,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MDG",
     "numeric": "450",
     "official_name": "Republic of Madagascar",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.pn.gov.mg/passport/indexDepot",
+    "authority_label": "Police Nationale, Ministère de la Sécurité Publique",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Malawi",
@@ -1832,12 +1864,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MDV",
     "numeric": "462",
     "official_name": "Republic of Maldives",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www2.immigration.gov.mv/passport/",
+    "authority_label": "Maldives Immigration (Department of Immigration and Emigration)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Mali",
@@ -1845,12 +1878,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MLI",
     "numeric": "466",
     "official_name": "Republic of Mali",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://demarchesadministratives.gouv.ml/passeport/",
+    "authority_label": "Police Nationale du Mali / Ministère de la Sécurité et de la Protection Civile",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Malta",
@@ -1900,12 +1934,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MRT",
     "numeric": "478",
     "official_name": "Islamic Republic of Mauritania",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.police.gov.mr/index.php/en/police-nationale/presentation",
+    "authority_label": "Direction Générale de la Sûreté Nationale",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Mauritius",
@@ -1913,12 +1948,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MUS",
     "numeric": "480",
     "official_name": "Republic of Mauritius",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://passport.govmu.org/passport/",
+    "authority_label": "Passport and Immigration Office, Mauritius Police Force",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Mayotte",
@@ -1955,12 +1991,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "FSM",
     "numeric": "583",
     "official_name": "Federated States of Micronesia",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://personnel.gov.fm/passport-application/",
+    "authority_label": "FSM National Government (passport application page, Office of Personnel)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Moldova",
@@ -2040,12 +2077,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MAR",
     "numeric": "504",
     "official_name": "Kingdom of Morocco",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.passeport.ma/",
+    "authority_label": "Direction Générale de la Sûreté Nationale (DGSN) passport portal",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Mozambique",
@@ -2053,12 +2091,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MOZ",
     "numeric": "508",
     "official_name": "Republic of Mozambique",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.senami.gov.mz/",
+    "authority_label": "Serviço Nacional de Migração (SENAMI)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Myanmar",
@@ -2066,12 +2105,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "MMR",
     "numeric": "104",
     "official_name": "Republic of Myanmar",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.passport.gov.mm/",
+    "authority_label": "Myanmar Passport Office (Ministry of Home Affairs)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Namibia",
@@ -2093,12 +2133,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "NRU",
     "numeric": "520",
     "official_name": "Republic of Nauru",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://justice.gov.nr/passport-division/",
+    "authority_label": "Passport Division, Department of Justice and Border Control",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Nepal",
@@ -2164,12 +2205,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "NIC",
     "numeric": "558",
     "official_name": "Republic of Nicaragua",
-    "authority_url": null,
-    "authority_label": null,
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.migob.gob.ni/migracion/tramites/pasaporte-por-primera-vez-para-mayores-de-edad/",
+    "authority_label": "Dirección General de Migración y Extranjería (Ministerio de Gobernación)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Niger",
@@ -2177,12 +2219,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "NER",
     "numeric": "562",
     "official_name": "Republic of the Niger",
-    "authority_url": null,
-    "authority_label": "None found",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.police-nationale.interieur.gouv.ne/dmarches-administratives",
+    "authority_label": "Police nationale du Niger (Ministère de l'Intérieur)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Nigeria",
@@ -2319,12 +2362,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "PLW",
     "numeric": "585",
     "official_name": "Republic of Palau",
-    "authority_url": null,
-    "authority_label": "None found",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.palaugov.pw/executive-branch/ministries/state/passport-office/",
+    "authority_label": "Palau Passport Office, Ministry of State",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Palestine",
@@ -2332,14 +2376,15 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "PSE",
     "numeric": "275",
     "official_name": "the State of Palestine",
-    "authority_url": null,
-    "authority_label": "None found",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://moi.gov.ps/",
+    "authority_label": "Ministry of Interior and National Security (Civil Affairs)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": [
       "State of Palestine"
-    ]
+    ],
+    "link_checked": false
   },
   {
     "name": "Panama",
@@ -2671,12 +2716,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SMR",
     "numeric": "674",
     "official_name": "Republic of San Marino",
-    "authority_url": null,
-    "authority_label": "Dipartimento Affari Esteri (San Marino)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.gov.sm/pub1/GovSM/dam/jcr:069bfe33-1a98-408e-a4b7-2c5e48686ae0/Carta%20dei%20Servizi%20Stato%20Civile%2C%20Servizi%20Demografici%20ed%20Elettorali%20rev.120124.pdf",
+    "authority_label": "Ufficio Stato Civile, Servizi Demografici ed Elettorali (Sezione Passaporti)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Sao Tome and Principe",
@@ -2782,12 +2828,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SXM",
     "numeric": "534",
     "official_name": "Sint Maarten (Dutch part)",
-    "authority_url": null,
-    "authority_label": "Government of Sint Maarten",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://sintmaartengov.org/services/Pages/PASSPORT.aspx",
+    "authority_label": "Civil Registry, Government of Sint Maarten",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Slovakia",
@@ -2809,12 +2856,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SVN",
     "numeric": "705",
     "official_name": "Republic of Slovenia",
-    "authority_url": null,
-    "authority_label": "Ministry of Interior of Slovenia",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.gov.si/teme/osebni-dokumenti/",
+    "authority_label": "Ministrstvo za notranje zadeve in javno upravo / upravne enote",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Solomon Islands",
@@ -2865,12 +2913,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SGS",
     "numeric": "239",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Uninhabited/administered territory",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
-    "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "authority_url": "https://www.gov.uk/apply-renew-passport",
+    "authority_label": "HM Passport Office",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
+    "notes": "Passports for this territory are issued by GB; link goes to that authority.",
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "South Korea",
@@ -2878,15 +2927,16 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "KOR",
     "numeric": "410",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Ministry of Foreign Affairs (South Korea)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://www.mofa.go.kr/www/wpge/m_3456/contents.do",
+    "authority_label": "Ministry of Foreign Affairs (Passport Service)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
     "search_terms": [
       "Republic of Korea",
       "ROK"
-    ]
+    ],
+    "link_checked": true
   },
   {
     "name": "South Sudan",
@@ -2894,12 +2944,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SSD",
     "numeric": "728",
     "official_name": "Republic of South Sudan",
-    "authority_url": null,
-    "authority_label": "Directorate of Nationality, Passports and Immigration (South Sudan)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://dnpi.eservices.gov.ss/",
+    "authority_label": "Directorate of Civil Registry, Nationality, Passports and Immigration (Ministry of Interior)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Spain",
@@ -2963,12 +3014,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "SJM",
     "numeric": "744",
     "official_name": null,
-    "authority_url": null,
-    "authority_label": "Norwegian Police (Norway)",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
-    "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "authority_url": "https://www.politiet.no/",
+    "authority_label": "Politiet (Norwegian Police)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
+    "notes": "Passports for this territory are issued by NO; link goes to that authority.",
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Sweden",
@@ -3079,12 +3131,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "TLS",
     "numeric": "626",
     "official_name": "Democratic Republic of Timor-Leste",
-    "authority_url": null,
-    "authority_label": "Servico de Migracao / Ministry of Interior",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://migracao.gov.tl/",
+    "authority_label": "Serviço de Migração (Migration Service)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": true
   },
   {
     "name": "Togo",
@@ -3459,12 +3512,13 @@ window.PASSPORT_COUNTRIES = [
     "alpha3": "ZMB",
     "numeric": "894",
     "official_name": "Republic of Zambia",
-    "authority_url": null,
-    "authority_label": "Zambia Department of Immigration",
-    "portal_status": "official_source_needs_research",
-    "last_source_reviewed": null,
+    "authority_url": "https://zamportal.gov.zm/service-category/for-immigrants/",
+    "authority_label": "Zambia Department of Immigration (via ZamPortal)",
+    "portal_status": "official_portal_linked_rules_not_fully_audited",
+    "last_source_reviewed": "2026-11-28",
     "notes": "ISO 3166-1 entry; this code list can include territories and special areas that may not issue their own sovereign passports.",
-    "search_terms": []
+    "search_terms": [],
+    "link_checked": false
   },
   {
     "name": "Zimbabwe",

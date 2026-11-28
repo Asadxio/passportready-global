@@ -156,8 +156,8 @@ runTest('country-coverage-tracker.csv has 250 rows and strict consistency with c
   }
 
   assert.strictEqual(verifiedCount, 27, 'Exactly 27 verified country packs');
-  assert.strictEqual(linkedCount, 147, 'Exactly 147 portal linked countries');
-  assert.strictEqual(needsResearchCount, 75, 'Exactly 75 awaiting research countries');
+  assert.strictEqual(linkedCount, 201, 'Exactly 201 portal linked countries');
+  assert.strictEqual(needsResearchCount, 21, 'Exactly 21 awaiting research countries');
   assert.strictEqual(verifiedCount + linkedCount + needsResearchCount, 249, 'Total must equal 249');
 });
 
@@ -1269,8 +1269,8 @@ runTest('Phase 4.3.2 Directory filter counts derive dynamically from country dat
 
   assert.strictEqual(expectedTotal, 249, 'Dataset must have 249 entries');
   assert.strictEqual(expectedVerified, 27, 'Dataset must have 27 verified countries');
-  assert.strictEqual(expectedLinked, 147, 'Dataset must have 147 linked portals');
-  assert.strictEqual(expectedResearch, 75, 'Dataset must have 75 awaiting research');
+  assert.strictEqual(expectedLinked, 201, 'Dataset must have 201 linked portals');
+  assert.strictEqual(expectedResearch, 21, 'Dataset must have 21 awaiting research');
   assert.strictEqual(expectedVerified + expectedLinked + expectedResearch, expectedTotal, 'Status counts must partition all entries');
 
   // Assert index.html does not contain stale hardcoded counts
@@ -1313,8 +1313,8 @@ runTest('Phase 4.3.2 Directory filter counts derive dynamically from country dat
   const computedCounts = sandbox.window.PassportApp.getDirectoryCounts();
   assert.strictEqual(computedCounts.all, 249, 'Computed all count must be 249');
   assert.strictEqual(computedCounts.verified + computedCounts.partial, 27, 'Computed verified+partial must be 27');
-  assert.strictEqual(computedCounts.linked, 147, 'Computed linked count must be 147');
-  assert.strictEqual(computedCounts.needs_research, 75, 'Computed needs_research count must be 75');
+  assert.strictEqual(computedCounts.linked, 201, 'Computed linked count must be 201');
+  assert.strictEqual(computedCounts.needs_research, 21, 'Computed needs_research count must be 21');
 
   // Verify getCountryByQuery works across name, alpha2, alpha3, official_name, search_terms
   const byName = sandbox.window.PassportApp.getCountryByQuery('Malaysia');
@@ -1762,7 +1762,7 @@ runTest('Phase 4.3.4 Three-dimensional coverage audit, processing urgency and ap
   const countries = countryDataModule.PASSPORT_COUNTRIES;
   assert.strictEqual(countries.length, 249);
   assert.strictEqual(countries.filter(c => c.portal_status === 'verified' || c.portal_status === 'partially_verified').length, 27);
-  assert.strictEqual(countries.filter(c => c.portal_status === 'official_source_needs_research').length, 75);
+  assert.strictEqual(countries.filter(c => c.portal_status === 'official_source_needs_research').length, 21);
 });
 
 // 22. Phase 4.3.5 Evidence-Linked Coverage Audit across Base Service, Processing Urgency, and Application Channel
@@ -2480,8 +2480,8 @@ runTest('Phase 4.3.6 Evidence Integrity, Country-Allowlist Bypass Removal, and R
   const countries = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
   assert.strictEqual(countries.length, 249);
   assert.strictEqual(countries.filter(c => c.portal_status === 'verified' || c.portal_status === 'partially_verified').length, 27);
-  assert.strictEqual(countries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 147);
-  assert.strictEqual(countries.filter(c => c.portal_status === 'official_source_needs_research').length, 75);
+  assert.strictEqual(countries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 201);
+  assert.strictEqual(countries.filter(c => c.portal_status === 'official_source_needs_research').length, 21);
 });
 
 // 24. Phase 4.3.7 Source-to-Claim Evidence Binding & Strict Fee Schema Validation (Fixtures A–I)
@@ -2870,8 +2870,8 @@ runTest('Phase 4.3.7 Source-to-Claim Evidence Binding & Strict Fee Schema Valida
   const countriesFinal = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
   assert.strictEqual(countriesFinal.length, 249);
   assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'verified' || c.portal_status === 'partially_verified').length, 27);
-  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 147);
-  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'official_source_needs_research').length, 75);
+  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 201);
+  assert.strictEqual(countriesFinal.filter(c => c.portal_status === 'official_source_needs_research').length, 21);
 });
 
 // 25. Phase 4.3.8 Official Source Trust, Fee Schema Integrity & Claim-Level Evidence Audit (Fixtures A–H)
@@ -3104,8 +3104,8 @@ runTest('Phase 4.3.8 Official Source Trust, Fee Schema Integrity & Claim-Level E
   const allCountries = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
   assert.strictEqual(allCountries.length, 249);
   assert.strictEqual(allCountries.filter(c => c.portal_status === 'verified' || c.portal_status === 'partially_verified').length, 27);
-  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 147);
-  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 75);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 201);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 21);
 
   // --- FIXTURE H: Readiness Protection ---
   [resGenUrg, resEvilUrg, resDocsOnly, resFeesOnly].forEach(res => {
@@ -3347,8 +3347,8 @@ runTest('Phase 4.3.9 Official Domain-Trust Independence, Generic-Homepage Disall
   const allCountries = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
   assert.strictEqual(allCountries.length, 249);
   assert.strictEqual(allCountries.filter(c => c.portal_status === 'verified' || c.portal_status === 'partially_verified').length, 27);
-  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 147);
-  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 75);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 201);
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 21);
 
   // Negative fixtures readiness score cap and PREPARED label protection
   [resAttacker, resRootOnly, resFeeCross].forEach(res => {
@@ -3620,8 +3620,8 @@ runTest('Phase 4.3.10 Exception Authorization Hardening & Final Evidence Integri
   const allCountries = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'countries.json'), 'utf8'));
   assert.strictEqual(allCountries.length, 249, 'Total countries must be exactly 249');
   assert.strictEqual(allCountries.filter(c => c.portal_status === 'verified' || c.portal_status === 'partially_verified').length, 27, 'Verified countries must be exactly 27');
-  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 147, 'Linked countries must be exactly 147');
-  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 75, 'Research countries must be exactly 75');
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_portal_linked_rules_not_fully_audited').length, 201, 'Linked countries must be exactly 201');
+  assert.strictEqual(allCountries.filter(c => c.portal_status === 'official_source_needs_research').length, 21, 'Research countries must be exactly 21');
 });
 
 // 28. Phase B: End-to-End Security Hardening, Input Validation, CSP & Prototype Pollution Resistance
@@ -5457,7 +5457,7 @@ runTest('Phase 1 Audit: Legal Pages, Field Leakage Isolation, Score Integrity, D
 
   // 1.4 Directory honesty: split headline & card verified badges
   assert(indexHtml.includes('id="dirMainHeading"'), 'index.html must contain #dirMainHeading for dynamic breakdown');
-  assert(indexHtml.includes('21 Fully Verified · 6 Partially Verified · 147 Official Portal Linked · 75 Awaiting Research'), 'index.html must state honest 21/6/147/75 partition');
+  assert(indexHtml.includes('21 Fully Verified · 6 Partially Verified · 201 Official Portal Linked · 21 Awaiting Research'), 'index.html must state honest 21/6/201/21 partition');
 
   // 1.5 Claims audit report & changelog exist
   assert(fs.existsSync(path.join(__dirname, '..', 'AUDIT_REPORT.md')), 'AUDIT_REPORT.md must exist in repository root');

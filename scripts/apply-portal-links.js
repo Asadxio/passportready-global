@@ -9,7 +9,7 @@ const arr=JSON.parse(txt.slice(i,txt.lastIndexOf(']')+1));
 const rules=require('../data/country-rules.json');
 function stats(c){let t=0,v=0;const seen=new Set();Object.values(c.services||{}).forEach(sv=>{const f=sv&&sv.fees;const recs=Array.isArray(f)?f:(f&&Array.isArray(f.fee_records)?f.fee_records:[]);recs.forEach(r=>{const k=[r.applicant_category,r.application_channel,r.total_payable!==undefined?r.total_payable:r.amount].join('|');if(seen.has(k))return;seen.add(k);t++;if(r.verification_status!=='unverified')v++;});});return{t,v};}
 const res={};
-fs.readdirSync(SP).filter(f=>/^result\d+\.txt$/.test(f)).forEach(f=>fs.readFileSync(path.join(SP,f),'utf8').split('\n').forEach(l=>{const p=l.split('|');if(p.length<4||!/^[A-Z]{2}$/.test(p[0].trim()))return;res[p[0].trim()]={url:p[1].trim(),label:p[2].trim(),st:p[3].trim()};}));
+fs.readdirSync(SP).filter(f=>/^result\d+\.txt$/.test(f)).forEach(f=>fs.readFileSync(path.join(SP,f),'utf8').split('\n').forEach(l=>{const p=l.split('|');if(p.length<4||!/^[A-Z]{2}$/.test(p[0].trim()))return;if(res[p[0].trim()]&&res[p[0].trim()].url&&!p[1].trim())return;res[p[0].trim()]={url:p[1].trim(),label:p[2].trim(),st:p[3].trim()};}));
 let linked=0,none=0;
 arr.forEach(c=>{
   const r=rules[c.alpha2];
