@@ -560,17 +560,17 @@
     "changefreq": "monthly"
   },
   {
-    "loc": "/passport/eg/",
+    "loc": "/passport/egypt/",
     "priority": "0.8",
     "changefreq": "weekly"
   },
   {
-    "loc": "/passport/eg/fresh/",
+    "loc": "/passport/egypt/fresh/",
     "priority": "0.7",
     "changefreq": "monthly"
   },
   {
-    "loc": "/passport/eg/renewal/",
+    "loc": "/passport/egypt/renewal/",
     "priority": "0.7",
     "changefreq": "monthly"
   }

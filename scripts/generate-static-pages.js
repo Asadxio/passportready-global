@@ -78,6 +78,7 @@ const COUNTRY_SLUGS = {
   MX: 'mexico',
   BR: 'brazil',
   ZA: 'south-africa',
+  EG: 'egypt',
   NG: 'nigeria',
   IT: 'italy',
   IE: 'ireland',

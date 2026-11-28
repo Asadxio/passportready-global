@@ -724,19 +724,19 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://passport.myoss.in/passport/eg/</loc>
+    <loc>https://passport.myoss.in/passport/egypt/</loc>
     <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://passport.myoss.in/passport/eg/fresh/</loc>
+    <loc>https://passport.myoss.in/passport/egypt/fresh/</loc>
     <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://passport.myoss.in/passport/eg/renewal/</loc>
+    <loc>https://passport.myoss.in/passport/egypt/renewal/</loc>
     <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
